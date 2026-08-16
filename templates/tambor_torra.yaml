@@ -1,0 +1,35 @@
+# Pilar 3 - Laboratorio de Torrefacao e Sensorialidade.
+# Microtorrefacao em Uberlandia. O tambor e o simbolo da precisao tecnica:
+# aco escovado com marca de uso, brasa contida, nada de fogo cinematografico.
+name: tambor_torra
+pillar: "3"
+kind: scene
+default_aspect_ratio: "4:3"
+requires_reference: false
+risk_flags: []
+
+variables:
+  roast_stage: "development phase, one minute past first crack"
+  drum_finish: "brushed steel front plate, heat discoloured to straw and blue near the door"
+  ambient: "dim workshop, blinds half closed, afternoon light coming in sideways"
+
+body: |
+  Photograph of a small drum coffee roaster in a micro roastery in Uberlandia, mid roast,
+  {roast_stage}. {ambient}.
+  The drum is turning: beans blur slightly behind the sight glass while the trier port and
+  the cast iron door stay sharp. {drum_finish}. The amber glow of the burner spills from
+  the underside of the drum and paints the surrounding metal a low orange; thin smoke
+  drifts up through the sideways light and is caught as a soft volumetric band.
+  A thermocouple probe, a scuffed control panel with a worn dial, and a stainless cooling
+  tray with residual chaff sit in frame. Fingerprints and coffee dust on the metal.
+  Light: mixed sources, warm burner glow against cool daylight from the blinds, deep
+  shadows in the corners, no fill.
+  35mm lens at f/2.8, 1/60s so the drum rotation reads as motion, focus on the trier port.
+  Palette: hot amber, gunmetal, warm brown. Grain from a real high ISO frame.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, open flames licking outside the machine, sparks, chrome showroom finish, laboratory white cleanroom, purple rim lighting"
+
+notes: |
+  Usar para conteudo de perfil de torra, curva, desenvolvimento e controle de processo.
+  O mostrador do painel nao deve conter numeros legiveis inventados: se o post depender
+  do numero, fotografar o painel real e compor por cima.

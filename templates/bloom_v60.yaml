@@ -1,0 +1,37 @@
+# Pilar 4 - Educacao e Cultura Brewing.
+# O bloom e o melhor argumento visual de cafe fresco: se o leito nao cresce,
+# o cafe e velho. Cena didatica, sem pessoa e sem rotulo.
+name: bloom_v60
+pillar: "4"
+kind: macro
+default_aspect_ratio: "3:4"
+requires_reference: false
+risk_flags: []
+
+variables:
+  grind_size: "medium, close to coarse table salt"
+  bloom_timing: "fifteen seconds into the bloom, bed still rising"
+  dripper_material: "matte white ceramic V60 with a chipped glaze on the rim"
+
+body: |
+  Close macro photograph looking down into a {dripper_material}, {bloom_timing}.
+  The coffee bed has domed upward as carbon dioxide escapes: the surface is cracked into
+  a dry crust at the centre and darker and wet at the edges, {grind_size}, with fine
+  bubbles breaking through and collapsing into small craters. A thread of steam lifts from
+  the left side and bends away.
+  The paper filter is stained brown where the water reached it and still white above the
+  line. Below, a scratched borosilicate server and a scale with a matte plastic top,
+  a stray ring of coffee grounds on the counter.
+  Light: single soft window light from the back left, hard enough to model each bubble,
+  deep shadow at the front of the bed, one long highlight on the wet slurry.
+  90mm macro lens at f/4, camera slightly above the rim at a thirty degree angle,
+  shallow focus on the near edge of the bloom, rim of the dripper falling out of focus.
+  Palette: warm brown, cream, wet umber, cool grey counter. Natural contrast.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, latte art, milk foam, perfectly circular foam ring, glowing steam, cgi bubbles, plastic dripper, artificial smoke machine haze"
+
+notes: |
+  Cena de aula: usar em carrossel de metodo, proporcao e frescor. Ajustar
+  `grind_size` e `bloom_timing` conforme o roteiro do post.
+  Nunca colocar pacote ou rotulo aqui; se o post precisar mostrar o SKU, usar
+  drip_coffee_escritorio ou o compositor de produto.

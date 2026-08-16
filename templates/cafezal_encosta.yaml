@@ -1,0 +1,34 @@
+# Pilar 1 - Terroir e Tradicao.
+# Altitude e o argumento da marca (cerca de 1.250 m). O enquadramento precisa
+# mostrar a inclinacao da encosta, nao um cafezal plano de qualquer lugar.
+name: cafezal_encosta
+pillar: "1"
+kind: scene
+default_aspect_ratio: "3:2"
+requires_reference: false
+risk_flags: []
+
+variables:
+  season: "late in the harvest, mixed ripe and overripe cherries still on the branches"
+  time_of_day: "golden hour, forty minutes before sunset"
+  fog_density: "thin mist caught between the rows further up the slope"
+
+body: |
+  Photograph of a coffee plantation on a steep hillside at 1250 metres in Medeiros,
+  Minas Gerais, {time_of_day}. {season}.
+  Rows of Catuai and Arara coffee trees follow the contour of the slope in tight parallel
+  bands, the red laterite soil of the alleys showing between them, dry and cracked with
+  the print of tractor tyres. {fog_density}.
+  The nearest bush fills the left of the frame, leaves glossy and slightly dusty, some
+  chewed at the edges, cherries clustered unevenly along the branch.
+  Light: low warm sun raking along the rows from the right, backlighting the mist, leaves
+  translucent where the sun passes through, deep cool shadow under the canopy.
+  50mm lens at f/4, focus on the near branch, rows compressing into soft depth behind.
+  Distant ridgeline in blue atmospheric haze. Real dust and pollen in the light shaft.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, flat terrain, manicured hedge rows, plastic looking cherries, tropical palm trees, neon green foliage, drone map view"
+
+notes: |
+  Cena base do pilar 1 quando o assunto for altitude, variedade ou terroir.
+  Trocar `season` conforme o calendario real: floracao (setembro), chumbinho,
+  cereja madura (maio a julho), poda. Combina com o Style DNA de campo.

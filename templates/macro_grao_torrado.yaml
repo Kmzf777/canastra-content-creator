@@ -1,0 +1,40 @@
+# Pilar 3 - Laboratorio de Torrefacao e Sensorialidade.
+# Cena de risco baixo: grao solto, sem embalagem e sem pessoa. Pode rodar sem
+# referencia, mas o Style DNA do pilar 3 deve ser aplicado para casar a paleta.
+name: macro_grao_torrado
+pillar: "3"
+kind: macro
+default_aspect_ratio: "1:1"
+requires_reference: false
+risk_flags: []
+
+variables:
+  bean_variety: "Arara"
+  roast_level: "medium-dark, taken just past first crack"
+  support_surface: "brushed stainless steel cupping tray with faint circular use marks"
+  light_direction: "hard raking light from camera left"
+
+body: |
+  Extreme macro photograph of one single roasted {bean_variety} coffee bean lying on a
+  {support_surface}. Roast level: {roast_level}.
+  The centre cut runs the length of the bean, silverskin still lodged inside the crease,
+  dry and pale against the darker shell. Coffee oils bead unevenly along the ridges and
+  throw small specular highlights; the rest of the surface stays matte, porous, faintly
+  cratered where the cell walls collapsed during the roast.
+  Lighting: {light_direction}, one diffused source only, no fill card, deep falloff into
+  the shadow side so the relief of the seam reads clearly.
+  100mm macro lens at f/5.6, focus on the centre cut, background falling off into unlit
+  dark grey. Shot handheld on a workbench, not on a light table.
+  Loose chaff flakes and a light dusting of ground coffee sit off to one side where they
+  happened to fall, not arranged.
+  Palette: burnt umber, warm sienna, cool steel grey. Natural contrast, true blacks,
+  no glow, no bloom.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, perfectly symmetrical bean, glossy candy coating, chocolate-like sheen, floating beans, studio seamless white background, blue colour cast"
+
+notes: |
+  Usar quando o assunto for leitura de torra, ponto de crack, defeito de grao ou
+  diferenca entre lotes. Trocar `roast_level` a cada post para acompanhar o lote
+  real que saiu do tambor naquela semana.
+  Se aparecer pacote ou rotulo na cena, esta cena nao serve: mude para o
+  compositor de produto com foto real da embalagem.

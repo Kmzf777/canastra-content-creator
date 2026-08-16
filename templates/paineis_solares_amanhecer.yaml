@@ -1,0 +1,35 @@
+# Pilar 2 - Sustentabilidade e Engenharia Agricola.
+# A energia 100% fotovoltaica e fato da operacao, entao a cena precisa parecer
+# instalacao de trabalho: poeira, grama pisada, estrutura de metal com marca de uso.
+name: paineis_solares_amanhecer
+pillar: "2"
+kind: scene
+default_aspect_ratio: "16:9"
+requires_reference: false
+risk_flags: []
+
+variables:
+  sun_position: "sun just breaking the horizon behind the far ridge"
+  valley_fog: "low fog still sitting in the valley below, thinning at the edges"
+  panel_condition: "fine red dust film on the lower third of the glass, a few dew streaks"
+
+body: |
+  Wide photograph of a ground mounted solar array on a coffee farm at 1250 metres in
+  Medeiros, Minas Gerais, shot at first light with {sun_position}.
+  The rows of panels run away from the camera along the contour of the slope. The near
+  panel shows {panel_condition}; its glass mirrors the orange sky and the dark silhouette
+  of the ridge, and the galvanised frame carries scratches and a weathered grey patina.
+  Below and beyond, {valley_fog}, with coffee rows emerging from it in soft bands.
+  Light: hard low sun from behind the array, strong rim light on the frames, long shadows
+  raking across cut grass wet with dew, warm highlights against blue shade.
+  24mm lens at f/9, camera low and close to the first row so the panels lead the eye into
+  the valley. Slight lens flare from the direct sun, handled, not decorative.
+  Cabling, a concrete footing and a trampled path in the grass are visible. Working
+  installation, not a brochure.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, futuristic renders, spotless mirror panels, purple sky gradient, wind turbines, cgi grass, lens dirt overlay"
+
+notes: |
+  Cena de abertura para posts de energia, carbono e engenharia agricola. Combina bem
+  com dado real na legenda (kWp instalado, percentual de consumo coberto).
+  Nao usar para falar de qualidade sensorial: aqui o assunto e infraestrutura.

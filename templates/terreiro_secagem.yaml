@@ -1,0 +1,34 @@
+# Pilar 1 - Terroir e Tradicao.
+# O terreiro e a imagem mais reconhecivel da fazenda em Medeiros. O padrao
+# geometrico do rastelo e o assunto; o cafe e a textura.
+name: terreiro_secagem
+pillar: "1"
+kind: scene
+default_aspect_ratio: "3:2"
+requires_reference: false
+risk_flags: []
+
+variables:
+  time_of_day: "late afternoon, sun low over the ridge"
+  drying_stage: "cherries half dried, skins wrinkled and deep red turning brown"
+  rake_pattern: "long parallel furrows left by a wooden rake, running diagonally out of frame"
+
+body: |
+  Photograph of a concrete drying patio on a highland coffee farm in Medeiros, Minas Gerais,
+  {time_of_day}. Coffee cherries are spread in a shallow even bed across the slab,
+  {drying_stage}, worked into {rake_pattern}.
+  The concrete is old and honest: hairline cracks, patched seams, bleached pale where the
+  sun hits all day, darker along the edge where the night dew has not burned off yet.
+  A wooden rake with a worn handle leans against the low kerb, exactly where someone left it.
+  Light: low golden sun raking across the bed so every furrow casts a long shadow and the
+  texture reads as relief. Warm highlights, cool blue shadow, visible dust in the air.
+  35mm lens at f/8, camera at chest height, horizon set high so the hills of the Serra da
+  Canastra sit soft in the background haze.
+  A few loose cherries lie outside the bed near the kerb. Nothing swept, nothing staged.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, tiled repeating pattern, cgi render, immaculate polished concrete, tropical beach vegetation, midday flat light"
+
+notes: |
+  Melhor cena de abertura de carrossel do pilar 1. Ajustar `drying_stage` conforme a
+  fase real do lote (cereja fresca, meia seca, pergaminho) e `time_of_day` conforme a
+  hora do post. Nao usar para falar de torra: o terreiro e etapa de campo.

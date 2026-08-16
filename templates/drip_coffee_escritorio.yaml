@@ -1,0 +1,42 @@
+# Pilar 4 - Educacao e Cultura Brewing, com produto em cena.
+# ATENCAO: o sache de drip coffee tem texto e logotipo impressos. Difusao erra
+# tipografia, entao esta cena exige foto real da embalagem como referencia.
+name: drip_coffee_escritorio
+pillar: "4"
+kind: lifestyle
+default_aspect_ratio: "4:3"
+requires_reference: true
+risk_flags:
+  - packaging_text
+
+variables:
+  sku_line: "Classico"
+  desk_surface: "oiled oak desk top with visible grain and two old ring stains"
+  time_of_day: "mid morning, indirect window light"
+  mug_style: "thick walled unglazed stoneware mug in warm grey"
+
+body: |
+  Photograph of a single serve drip coffee sachet hooked over the rim of a {mug_style},
+  brewing on a {desk_surface}, {time_of_day}. Product line: {sku_line}.
+  The sachet and every printed element on it must be reproduced exactly as they appear in
+  the supplied reference photograph: same paper, same print, same folds, same proportions.
+  Do not redraw, retype, restyle or straighten any text, logo or seal. If the packaging
+  cannot be carried over faithfully, leave it turned away from the camera or out of frame.
+  Coffee is dripping into the mug; a thin plume of steam rises and drifts to the right.
+  Around it, the honest clutter of a desk in use: a closed notebook with a bent corner,
+  a pen without its cap, a phone face down, a spiral of cable. Nothing centred.
+  Light: soft directional daylight from the left, gentle falloff to the right, a warm
+  reflected bounce off the wood into the shadow side, low contrast.
+  50mm lens at f/2.8, camera just above desk height, focus on the sachet seam, background
+  wall falling into soft neutral blur.
+  Palette: warm oak, kraft paper, matte grey, deep coffee brown.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, invented brand text, redrawn logotype, gibberish lettering, packaging redesign, glossy plastic sachet, coffee shop signage in background, floating droplets"
+
+notes: |
+  So rodar com pelo menos uma foto real do sache como referencia (asset com
+  has_readable_packaging=true e is_reference_grade=true). Sem referencia o job
+  deve ser bloqueado pelo guardrail, nao ajustado no prompt.
+  Se o objetivo for o pacote em destaque e nao a cena de uso, prefira o
+  compositor de produto: recorte da foto real sobre o fundo gerado, que e o
+  unico caminho com tipografia garantida.
