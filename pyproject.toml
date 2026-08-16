@@ -1,0 +1,39 @@
+[project]
+name = "canastra-image-engine"
+version = "0.1.0"
+description = "Canastra Image Engine (CIE) - geracao de imagem assistida por IA ancorada na base de fotos reais do Cafe Canastra"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.12",
+    "pydantic>=2.7",
+    "httpx>=0.27",
+    "pillow>=10.3",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+    "fastapi>=0.111",
+    "uvicorn>=0.30",
+    "jinja2>=3.1",
+    "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+# Decoders extras: HEIC vem de celular, e boa parte da base real da operacao nasce ai.
+heic = ["pillow-heif>=0.16"]
+
+[project.scripts]
+cie = "cie.cli:app"
+
+[dependency-groups]
+dev = ["pytest>=8.2", "pytest-cov>=5.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["cie"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

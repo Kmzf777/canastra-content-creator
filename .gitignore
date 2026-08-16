@@ -1,0 +1,21 @@
+# Segredos - a chave da xAI so existe em variavel de ambiente
+.env
+
+# Estado local do CIE (banco, thumbnails, imagens geradas)
+.cie/
+export/
+
+# Base de fotos reais: nunca versionada, nunca sai do diretorio do projeto
+assets/originals/
+assets/cutouts/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+uv.lock
