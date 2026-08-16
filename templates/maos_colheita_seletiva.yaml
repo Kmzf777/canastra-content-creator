@@ -1,0 +1,44 @@
+# Pilar 1 - Terroir e Tradicao, com pessoa em cena.
+# POLITICA ESTRITA: rosto de pessoa real nunca e sintetizado. Aqui o enquadramento
+# resolve o problema antes do modelo: maos, antebracos e frutos, rosto fora do quadro.
+name: maos_colheita_seletiva
+pillar: "1"
+kind: scene
+default_aspect_ratio: "4:3"
+requires_reference: true
+risk_flags:
+  - hands
+  - human_face
+
+variables:
+  harvest_stage: "selective picking, only the fully ripe cherries taken"
+  hand_detail: "weathered hands, short nails, dirt in the creases, a faint old scar on the thumb"
+  clothing: "long sleeve cotton shirt, sun faded blue, sleeve rolled to the elbow"
+
+body: |
+  Tight photograph of a coffee picker's hands at work on a branch, {harvest_stage}.
+  Framing: hands, forearms and branch only. The camera is close and low; the person's head,
+  face and shoulders are entirely outside the frame. No face, no profile, no reflection of
+  a face anywhere in the image.
+  {hand_detail}. One hand steadies the branch while the other rolls a ripe cherry off the
+  stem with the thumb; two cherries already sit cupped in the palm. Fingers are ordinary
+  and correctly formed, five per hand, nails short and uneven.
+  {clothing}, with a smear of soil at the cuff. A canvas bag strap crosses the forearm.
+  The branch carries mixed maturity: deep red ripe cherries, a few green, one overripe and
+  wrinkled, plus dusty leaves with insect bites.
+  Light: dappled sunlight through the canopy, hard patches on the knuckles, cool shade
+  between the leaves, a shaft of light catching floating dust.
+  85mm lens at f/2.8, focus on the picking fingers, background rows dissolving into soft
+  green depth.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, visible face, portrait framing, six fingers, fused fingers, smooth model hands, manicured nails, jewellery, clean pressed clothing, staged smiling worker"
+
+notes: |
+  POLITICA: nenhum rosto identificavel pode ser sintetizado por este template.
+  1. O enquadramento e parte da regra, nao sugestao: rosto sempre fora do quadro.
+  2. Exige asset real como referencia, com consent_on_file=true quando a foto de
+     origem tiver pessoa identificavel; sem consentimento registrado, o job para.
+  3. Maos sao o ponto classico de falha de difusao. Revisar dedo a dedo antes de
+     aprovar, e rejeitar sem tentar corrigir por reprompt do mesmo seed.
+  4. Nunca usar este template para regenerar rosto de pessoa real: essa trilha
+     esta proibida no sistema (risk flag face_regeneration).

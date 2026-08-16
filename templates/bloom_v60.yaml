@@ -28,7 +28,7 @@ body: |
   shallow focus on the near edge of the bloom, rim of the dripper falling out of focus.
   Palette: warm brown, cream, wet umber, cool grey counter. Natural contrast.
 
-negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, latte art, milk foam, perfectly circular foam ring, glowing steam, cgi bubbles, plastic dripper, artificial smoke machine haze"
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, latte art, milk foam, perfectly circular foam ring, glowing steam, cgi bubbles, plastic dripper, brand markings on the dripper, artificial smoke machine haze"
 
 notes: |
   Cena de aula: usar em carrossel de metodo, proporcao e frescor. Ajustar

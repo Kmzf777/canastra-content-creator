@@ -1,0 +1,37 @@
+# Pilar 4 - Educacao e Cultura Brewing.
+# Vertical de story: vapor em contraluz sobre fundo escuro. Cena barata, alto
+# rendimento em Reels e capa de carrossel.
+name: vapor_xicara
+pillar: "4"
+kind: macro
+default_aspect_ratio: "9:16"
+requires_reference: false
+risk_flags: []
+
+variables:
+  cup_material: "heavy cream coloured stoneware cup, glaze crazed with age"
+  steam_density: "thin steam, two or three curling threads, not a cloud"
+  backlight: "hard backlight from a window low behind the cup, background in deep shadow"
+
+body: |
+  Vertical close photograph of a {cup_material} filled to just below the rim with black
+  filter coffee, freshly poured. {steam_density}, rising and bending to the right where a
+  slow draught catches it.
+  Lighting: {backlight}, so the steam is lit from behind and reads bright against an almost
+  black background, while the cup keeps only a thin rim light along its left edge and a
+  soft glow on the glaze.
+  The coffee surface holds a fine ring of pale foam against the ceramic, a small drip on
+  the outside wall running halfway down, and condensation beading on the table beside the
+  base. The stoneware shows real wear: a chipped spot on the foot, tea stain in the crazing.
+  85mm lens at f/2.5, camera at surface level, focus on the near rim, steam falling out of
+  focus as it rises.
+  Palette: near black background, warm cream ceramic, cool white steam. Deep true blacks,
+  no lifted shadows, no glow effect.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, smoke machine fog, thick white cloud, glowing steam, latte art, cgi liquid simulation, mirror clean table, dramatic purple backlight"
+
+notes: |
+  Formato vertical pensado para story e Reels. Trocar `steam_density` conforme o
+  ponto do post: vapor fino sugere cafe recem coado, vapor denso vira fumaca e
+  entrega imagem sintetica.
+  Sem rotulo em cena; se precisar do SKU, usar o compositor de produto.

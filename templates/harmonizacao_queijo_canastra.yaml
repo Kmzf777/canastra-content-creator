@@ -1,0 +1,38 @@
+# Pilar 4 - Educacao e Cultura Brewing.
+# Harmonizacao regional: cafe da Canastra com queijo da Canastra. Cena de mesa,
+# sem pessoa e sem embalagem, para falar de acidez, gordura e sal.
+name: harmonizacao_queijo_canastra
+pillar: "4"
+kind: lifestyle
+default_aspect_ratio: "3:2"
+requires_reference: false
+risk_flags: []
+
+variables:
+  cheese_stage: "meia cura, pale straw paste with a thin dry rind and a few small eyes"
+  cup_style: "small white porcelain cup, slightly chipped rim, on a plain saucer"
+  board_surface: "worn wooden board, knife scars, a dusting of cheese crumbs"
+  time_of_day: "late morning, side window light"
+
+body: |
+  Overhead three quarter photograph of a coffee and cheese pairing on a {board_surface},
+  {time_of_day}. A wedge of artisanal Canastra cheese sits cut open, {cheese_stage}, with a
+  short blade knife resting where it was set down and a broken crumb beside it.
+  Next to the board, a {cup_style} of black filter coffee, the surface still holding a
+  faint ring of crema at the edge and a soft reflection of the window.
+  Everything is slightly off centre and arranged the way someone actually eats: the knife
+  not parallel to anything, one crumb on the table rather than the board, the saucer
+  turned a few degrees.
+  Light: soft directional daylight from the side, gentle specular sheen on the cheese
+  paste, long soft shadows to the right, warm reflected bounce from the wood.
+  50mm lens at f/3.5, camera at forty five degrees, focus on the cut face of the cheese,
+  far edge of the board falling out of focus.
+  Palette: pale straw yellow, warm wood, off white porcelain, deep brown coffee.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, orange cheddar slices, holes like swiss cheese, melted cheese pull, latte art, plastic grapes, symmetrical flat lay grid, restaurant menu styling"
+
+notes: |
+  Usar em conteudo de harmonizacao e cultura mineira, ligando o cafe ao territorio.
+  Ajustar `cheese_stage` conforme o queijo do post (fresco, meia cura, curado):
+  a cor da massa e a espessura da casca mudam bastante entre eles.
+  Se entrar pacote de cafe na mesa, o template passa a exigir referencia real.

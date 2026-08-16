@@ -1,0 +1,41 @@
+# Eixo product - embalagem em destaque.
+# Este template existe como plano B. O caminho preferido e o compositor: recorte
+# da foto real do pacote colado sobre um fundo/superficie gerado. Rotulo com
+# tipografia legivel nunca e gerado do zero.
+name: pacote_madeira_rustica
+pillar: "product"
+kind: product_shot
+default_aspect_ratio: "3:4"
+requires_reference: true
+risk_flags:
+  - packaging_text
+
+variables:
+  sku_line: "Microlote"
+  wood_surface: "reclaimed peroba board, deep grain, old saw marks and a split along one edge"
+  prop_set: "a scatter of whole roasted beans and a small linen cloth pushed to one side"
+  light_setup: "single large softbox at forty five degrees from camera left, black flag on the right"
+
+body: |
+  Product photograph of one Cafe Canastra coffee bag standing upright on a {wood_surface},
+  {prop_set}. Product line: {sku_line}.
+  The bag itself comes from the supplied reference photograph and must be preserved pixel
+  faithful: identical label artwork, identical typography, identical valve, gusset and
+  seams, identical proportions. Do not invent, redraw, translate or re-letter anything
+  printed on it. Extend only the scene around it: the wood, the props, the light and the
+  shadow it casts.
+  Lighting: {light_setup}, so the front face of the bag reads evenly while the right side
+  falls into controlled shadow and the wood grain picks up a raking highlight.
+  90mm lens at f/8, camera at label height, straight on, slight negative fill.
+  The contact shadow under the bag is soft and grounded, with a darker core where the
+  gusset meets the board. Dust in the grain of the wood, no polish, no gloss varnish.
+  Palette: warm wood brown, kraft, deep espresso, neutral grey background falling to dark.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, invented brand text, gibberish lettering, redrawn logotype, mirrored label, floating product, glossy showroom reflection, white cyclorama"
+
+notes: |
+  Preferir SEMPRE o compositor de produto a este template: recorte real do pacote
+  (assets/cutouts) sobre fundo gerado entrega tipografia correta por construcao,
+  enquanto aqui dependemos da fidelidade da edicao por referencia.
+  Use este template apenas quando nao existir recorte disponivel e ainda assim
+  com revisao humana obrigatoria do rotulo antes de publicar.

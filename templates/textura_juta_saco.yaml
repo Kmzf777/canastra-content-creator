@@ -1,0 +1,36 @@
+# Transversal (sem pilar): plano de apoio e fundo de textura.
+# Risco baixo, custo baixo. Serve de base para composicao com recorte real de
+# produto e para fundo de card editorial.
+name: textura_juta_saco
+pillar: null
+kind: texture
+default_aspect_ratio: "1:1"
+requires_reference: false
+risk_flags: []
+
+variables:
+  weave_tightness: "coarse open weave, threads uneven in thickness"
+  wear_level: "used sack, frayed along one fold, a few loose fibres standing up"
+  light_angle: "low raking light from the top left"
+
+body: |
+  Flat overhead photograph of a jute coffee sack laid out as a surface, filling the whole
+  frame. {weave_tightness}. {wear_level}.
+  The fibres are dry and slightly hairy; the weave runs at a small angle to the frame, not
+  perfectly square. A soft fold crosses the lower third, its ridge catching light and its
+  valley holding shadow. Fine coffee dust and two or three bits of chaff have settled into
+  the weave, plus a faint darker patch where the burlap once got damp.
+  Light: {light_angle}, hard enough that every thread casts its own micro shadow and the
+  texture reads by relief rather than by colour.
+  60mm lens at f/8, camera perpendicular to the surface, even focus corner to corner,
+  no vignette added in camera.
+  Palette: warm oat, dry straw, muted brown, no colour cast. Natural contrast, soft
+  highlight rolloff.
+
+negative_prompt: "warped text, distorted logo, extra fingers, plastic skin, oversaturated HDR, watermark, stock photo look, uncanny faces, printed sack stencil lettering, seamless tiling pattern, cgi fabric shader, perfect grid weave, plastic mesh, heavy vignette"
+
+notes: |
+  Fundo neutro para composicao: usar como plano de apoio quando o produto entrar
+  por recorte real (assets/cutouts), evitando gerar embalagem.
+  Nao pedir texto estampado no saco: estencil de fazenda e texto legivel e cai na
+  regra de tipografia, que exige foto real.
