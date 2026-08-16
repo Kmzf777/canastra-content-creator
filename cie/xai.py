@@ -137,6 +137,10 @@ class XaiClient:
 
     `sleeper` e `rng` sao injetaveis para o teste nao dormir de verdade;
     `transport` recebe `httpx.MockTransport` na suite.
+
+    Sem `api_key` explicita a chave vem de `config.require_api_key()`, que
+    levanta `RuntimeError` na construcao quando ela falta - falhar aqui e melhor
+    que descobrir no meio de uma fila de jobs ja parcialmente cobrada.
     """
 
     def __init__(

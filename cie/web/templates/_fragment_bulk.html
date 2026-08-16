@@ -1,0 +1,10 @@
+{# Resposta da marcacao multipla: o aviso entra em #bulk-status e cada card
+   atualizado volta com hx-swap-oob, entao o grid se corrige sem recarregar. #}
+{% from "_macros.html" import asset_card %}
+<div class="notice" data-testid="bulk-result">
+  <b>{{ assets|length }} asset(s)</b> atualizado(s) em: {{ fields|join(', ') }}
+  {% if missing %}
+    <br><span class="badge danger">ignorados por nao existirem: {{ missing|join(', ') }}</span>
+  {% endif %}
+</div>
+{% for asset in assets %}{{ asset_card(asset, true) }}{% endfor %}

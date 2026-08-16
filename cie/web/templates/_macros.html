@@ -1,0 +1,231 @@
+{# Macros compartilhadas. Usam globals do Jinja (rotulos, avisos), entao podem
+   ser importadas sem `with context` e servem tanto a pagina inteira quanto os
+   fragmentos devolvidos ao HTMX. #}
+
+{# Select de enum no card: mostra o valor atual; "__clear__" grava NULL. #}
+{% macro enum_select(name, options, labels, current, blank_label) %}
+  <select name="{{ name }}">
+    <option value="{{ CLEAR }}" {% if current is none %}selected{% endif %}>{{ blank_label }}</option>
+    {% for option in options %}
+      <option value="{{ option.value }}"
+        {% if current is not none and current.value == option.value %}selected{% endif %}>
+        {{ labels.get(option.value, option.value) }}
+      </option>
+    {% endfor %}
+  </select>
+{% endmacro %}
+
+{# Select de enum na marcacao multipla: vazio = nao alterar. #}
+{% macro enum_select_bulk(name, options, labels, blank_label) %}
+  <select name="{{ name }}">
+    <option value="" selected>nao alterar</option>
+    <option value="{{ CLEAR }}">{{ blank_label }}</option>
+    {% for option in options %}
+      <option value="{{ option.value }}">{{ labels.get(option.value, option.value) }}</option>
+    {% endfor %}
+  </select>
+{% endmacro %}
+
+{% macro bool_select_bulk(name, yes_label, no_label) %}
+  <select name="{{ name }}">
+    <option value="" selected>nao alterar</option>
+    <option value="1">{{ yes_label }}</option>
+    <option value="0">{{ no_label }}</option>
+  </select>
+{% endmacro %}
+
+{# Checkbox com hidden "0" na frente: sem isso, desmarcar nao chega ao servidor
+   (navegador nao envia checkbox desmarcado). O parser fica com o ultimo valor. #}
+{% macro flag(name, label, checked, shortcut) %}
+  <label class="check">
+    <input type="hidden" name="{{ name }}" value="0">
+    <input type="checkbox" name="{{ name }}" value="1" {% if checked %}checked{% endif %}>
+    <span>{{ label }}{% if shortcut %} <kbd>{{ shortcut }}</kbd>{% endif %}</span>
+  </label>
+{% endmacro %}
+
+
+{% macro asset_card(asset, oob=false) %}
+<article class="card asset-card" id="asset-card-{{ asset.id }}" data-id="{{ asset.id }}"
+         {% if oob %}hx-swap-oob="true"{% endif %}>
+  <div class="head">
+    {# Fora do form de curadoria e ligado ao form de lote pelo atributo `form`.
+       `hx-preserve` mantem a selecao viva quando o card volta do servidor: sem
+       isso, salvar um card sozinho apagaria a marcacao multipla em andamento. #}
+    <input type="checkbox" class="pick" id="pick-{{ asset.id }}" hx-preserve="true"
+           name="ids" value="{{ asset.id }}" form="bulk-form"
+           aria-label="selecionar asset {{ asset.id }}">
+    <span class="id">#{{ asset.id }}</span>
+    <span class="mono" title="{{ asset.path }}">{{ asset.path|basename }}</span>
+    {% if asset.quality_score is not none %}
+      <span class="badge" style="margin-left:auto">q {{ asset.quality_score }}</span>
+    {% endif %}
+  </div>
+
+  {% if asset.thumb_path %}
+    <a class="thumb" href="/assets/thumb/{{ asset.id }}" target="_blank" rel="noopener">
+      <img src="/assets/thumb/{{ asset.id }}" alt="asset {{ asset.id }}" loading="lazy">
+    </a>
+  {% else %}
+    <div class="thumb empty">sem thumbnail</div>
+  {% endif %}
+
+  <div class="row tiny">
+    {% if asset.needs_review %}<span class="badge warn">curadoria pendente</span>{% endif %}
+    {% if asset.is_usable_as_reference %}
+      <span class="badge ok">referencia liberada</span>
+    {% elif asset.is_reference_grade %}
+      <span class="badge danger">grade, mas travado</span>
+    {% endif %}
+    {% if asset.width %}<span class="badge">{{ asset.width }}x{{ asset.height }}</span>{% endif %}
+  </div>
+
+  <form class="curate" method="post" action="/assets/{{ asset.id }}/curate"
+        hx-post="/assets/{{ asset.id }}/curate"
+        hx-target="#asset-card-{{ asset.id }}" hx-swap="outerHTML">
+    <div class="policy">
+      <div class="title">politica - so humano decide</div>
+      {{ flag('has_identifiable_person', 'pessoa identificavel', asset.has_identifiable_person, 'p') }}
+      {{ flag('consent_on_file', 'consentimento em arquivo', asset.consent_on_file, 'c') }}
+    </div>
+    {{ flag('has_readable_packaging', 'embalagem com texto legivel', asset.has_readable_packaging, '') }}
+    {{ flag('is_reference_grade', 'qualidade de referencia', asset.is_reference_grade, 'r') }}
+    {{ flag('needs_review', 'curadoria pendente', asset.needs_review, '') }}
+
+    {# `notes_present` diz ao servidor que este form manda no campo de texto:
+       assim apagar a anotacao na tela realmente apaga no banco. #}
+    <input type="hidden" name="notes_present" value="1">
+    <input type="text" name="notes" value="{{ asset.notes or '' }}"
+           placeholder="anotacao da curadoria" title="{{ asset.notes or '' }}">
+
+    <div class="fields">
+      <div>
+        <label>pilar</label>
+        {{ enum_select('pillar', PILLARS, PILLAR_LABELS, asset.pillar, 'sem pilar') }}
+      </div>
+      <div>
+        <label>sku</label>
+        {{ enum_select('sku', SKUS, SKU_LABELS, asset.sku, 'sem sku') }}
+      </div>
+      <div style="grid-column: 1 / -1">
+        <label>local</label>
+        {{ enum_select('location', LOCATIONS, LOCATION_LABELS, asset.location, 'sem local') }}
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit">salvar</button>
+      <button type="submit" class="primary" name="mark_reviewed" value="1">salvar + revisado</button>
+    </div>
+  </form>
+</article>
+{% endmacro %}
+
+
+{% macro review_card(item) %}
+{% set g = item.generation %}
+<article class="card review-card" id="gen-card-{{ g.id }}" data-id="{{ g.id }}">
+  {% if item.packaging_warning %}
+    <p class="alert full" data-testid="packaging-warning">{{ PACKAGING_WARNING }}</p>
+  {% endif %}
+  {% if item.face_warning %}
+    <p class="alert full" data-testid="face-warning">{{ FACE_WARNING }}</p>
+  {% endif %}
+
+  <div class="shot">
+    <img class="focal-target" data-id="{{ g.id }}" src="/generations/image/{{ g.id }}"
+         alt="geracao {{ g.id }}" title="clique para marcar o ponto focal do recorte">
+    {% if item.focal %}
+      <span class="focal-dot" style="left: {{ (item.focal[0] * 100)|round(2) }}%; top: {{ (item.focal[1] * 100)|round(2) }}%"></span>
+    {% endif %}
+  </div>
+
+  <div>
+    <div class="row" style="margin-bottom:.5rem">
+      <span class="badge">geracao #{{ g.id }}</span>
+      <span class="badge">job {{ g.job_id }}</span>
+      {% if g.disclosure_required %}
+        <span class="badge seal" data-testid="disclosure-seal">{{ DISCLOSURE_LABEL }}</span>
+      {% endif %}
+    </div>
+
+    <dl class="meta">
+      <dt>template</dt>
+      <dd>
+        {% if item.template %}
+          {{ item.template.name }}
+          <span class="badge">{{ item.template.kind.value }}</span>
+          {% if item.template.pillar %}
+            <span class="badge">{{ PILLAR_LABELS.get(item.template.pillar.value, item.template.pillar.value) }}</span>
+          {% endif %}
+          {% for flag in item.template.risk_flags %}
+            <span class="badge warn">{{ flag.value }}</span>
+          {% endfor %}
+        {% else %}
+          <span class="muted">template removido do catalogo</span>
+        {% endif %}
+      </dd>
+
+      <dt>modelo e custo</dt>
+      <dd>
+        <span class="mono">{{ g.model }}</span>
+        - US$ {{ '%.4f'|format(g.cost_usd) }}
+        {% if g.seed is not none %}- seed {{ g.seed }}{% endif %}
+        {% if item.job %}- {{ item.job.aspect_ratio.value }}{% endif %}
+      </dd>
+
+      <dt>referencias reais</dt>
+      <dd>
+        {% if item.references %}
+          <div class="refs">
+            {% for asset in item.references %}
+              <a href="/assets/thumb/{{ asset.id }}" target="_blank" rel="noopener" title="{{ asset.path }}">
+                <img src="/assets/thumb/{{ asset.id }}" alt="referencia {{ asset.id }}" loading="lazy">
+              </a>
+            {% endfor %}
+          </div>
+        {% else %}
+          <span class="muted">nenhuma - cena puramente descritiva</span>
+        {% endif %}
+      </dd>
+
+      <dt>prompt enviado</dt>
+      <dd><div class="prompt mono">{{ g.prompt }}</div></dd>
+
+      <dt>arquivo</dt>
+      <dd class="tiny mono muted">{{ g.path }}<br>sha256 {{ g.sha256[:16] }}...</dd>
+    </dl>
+
+    <div class="actions">
+      <form class="approve" method="post" action="/generations/{{ g.id }}/approve"
+            hx-post="/generations/{{ g.id }}/approve"
+            hx-target="#gen-card-{{ g.id }}" hx-swap="outerHTML">
+        <button type="submit" class="ok">aprovar <kbd>a</kbd></button>
+      </form>
+      <form class="reject" method="post" action="/generations/{{ g.id }}/reject"
+            hx-post="/generations/{{ g.id }}/reject"
+            hx-target="#gen-card-{{ g.id }}" hx-swap="outerHTML"
+            style="display:flex; gap:.3rem; flex:2">
+        <input type="text" name="reject_reason" placeholder="motivo da rejeicao (obrigatorio)" required>
+        <button type="submit" class="danger">rejeitar <kbd>r</kbd></button>
+      </form>
+    </div>
+    <p class="tiny muted" style="margin-top:.35rem">
+      Clique na imagem para marcar o ponto focal que guia o recorte 9:16, 4:5 e 1:1.
+    </p>
+  </div>
+</article>
+{% endmacro %}
+
+
+{% macro decided_strip(generation) %}
+<div class="decided {% if generation.review_status.value == 'rejected' %}no{% endif %}"
+     id="gen-card-{{ generation.id }}" data-testid="decided">
+  geracao #{{ generation.id }}:
+  <b>{{ 'aprovada' if generation.review_status.value == 'approved' else 'rejeitada' }}</b>
+  {% if generation.reject_reason %}- motivo: {{ generation.reject_reason }}{% endif %}
+  {% if generation.review_status.value == 'approved' and generation.disclosure_required %}
+    <span class="badge seal">{{ DISCLOSURE_LABEL }}</span>
+  {% endif %}
+</div>
+{% endmacro %}

@@ -1,0 +1,132 @@
+# Plano da semana 01 - Cafe Canastra (17 a 23 de agosto)
+#
+# Como usar:
+#   uv run cie queue add --from-plan plans/semana-01.yaml
+#   uv run cie queue run --limit 20 --budget-usd 5.00            # modo seco (padrao)
+#   uv run cie queue run --limit 20 --budget-usd 5.00 --execute  # gasta credito
+#
+# Antes de rodar, tres coisas precisam existir:
+#   1. as cenas no banco          -> uv run cie templates sync
+#   2. o Style DNA do pilar 3     -> uv run cie dna build --pillar 3 --name laboratorio-uberlandia --execute
+#   3. a base curada              -> uv run cie assets review
+#
+# Sobre `aspect_ratio`: aqui so entram proporcoes que a API de imagem aceita.
+# O 4:5 do feed do Instagram NAO e gerado: ele sai do recorte inteligente no
+# `cie export`, que corta a partir da imagem aprovada sem reprocessar nada.
+#
+# Cada entrada vira um job com o prompt ja resolvido e os guardrails avaliados
+# na hora do `queue add`. Job que nasce bloqueado entra na fila como BLOCKED,
+# com a regra e o remedio gravados - ele nunca chega a API e nunca custa nada.
+
+name: semana-01
+notes: |
+  Fio da semana: a safra saindo do terreiro e chegando ao laboratorio.
+  Segunda e terca abrem no pilar 1 (terroir), quarta no pilar 2 (energia),
+  quinta e sexta no pilar 3 (torra e analise), sabado e domingo no pilar 4
+  (brewing e cultura). A textura de juta fecha como fundo de card de citacao.
+
+jobs:
+  # --- Segunda | Pilar 1: Terroir e Tradicao ------------------------------- #
+  # Abertura da semana no terreiro. Cena sem pessoa e sem embalagem: risco
+  # baixo, roda sem referencia. Tres variacoes para escolher o enquadramento.
+  - template: terreiro_secagem
+    n: 3
+    aspect_ratio: "3:2"
+    variables:
+      time_of_day: "late afternoon, sun low over the ridge, long shadows across the yard"
+      drying_stage: "cherries half dried, skins wrinkled, deep red turning to brown"
+    notes: "carrossel de abertura; a primeira imagem vira capa em 4:5 no export"
+
+  # --- Terca | Pilar 1: Terroir e Tradicao --------------------------------- #
+  # O cafezal na encosta a 1.250 m. Serve de plano geral para falar de altitude
+  # e de amplitude termica na legenda.
+  - template: cafezal_encosta
+    n: 2
+    aspect_ratio: "3:2"
+    variables:
+      season: "end of harvest, a few overripe cherries still hanging on the lower branches"
+      fog_density: "thin mist sitting between the rows further up the slope"
+
+  # --- Quarta | Pilar 2: Sustentabilidade e Engenharia Agricola ------------- #
+  # Energia 100% fotovoltaica e fato da operacao, entao a cena tem que parecer
+  # instalacao de trabalho: poeira vermelha no vidro, grama pisada, cabo a vista.
+  - template: paineis_solares_amanhecer
+    n: 2
+    aspect_ratio: "16:9"
+    variables:
+      panel_condition: "fine red dust film on the lower third of the glass, a few dew streaks"
+    notes: "legenda com kWp instalado e percentual do consumo coberto"
+
+  # --- Quinta | Pilar 3: Laboratorio de Torrefacao -------------------------- #
+  # Aqui o Style DNA importa: e o pilar com identidade visual mais fechada
+  # (aco escovado, brasa contida, luz lateral dura).
+  - template: tambor_torra
+    dna: laboratorio-uberlandia
+    n: 2
+    aspect_ratio: "4:3"
+    variables:
+      roast_stage: "development phase, one minute past first crack"
+    notes: "post de perfil de torra; nao mostrar numero legivel no painel"
+
+  # --- Quinta (segundo post) | Pilar 3: Sensorialidade ---------------------- #
+  # Macro do grao do lote da semana. Trocar `roast_level` a cada semana para
+  # acompanhar o que de fato saiu do tambor.
+  - template: macro_grao_torrado
+    dna: laboratorio-uberlandia
+    n: 4
+    aspect_ratio: "1:1"
+    variables:
+      bean_variety: "Arara"
+      roast_level: "medium-dark, taken just past first crack"
+      light_direction: "hard raking light from camera left"
+
+  # --- Sexta | Pilar 4: Educacao e Cultura Brewing -------------------------- #
+  # Stories vertical: o bloom do V60 em macro, quinze segundos apos a primeira
+  # agua. Conteudo de tecnica, nao de produto.
+  - template: bloom_v60
+    n: 2
+    aspect_ratio: "3:4"
+    variables:
+      grind_size: "medium, close to coarse table salt"
+      bloom_timing: "fifteen seconds into the bloom, bed still rising"
+
+  # --- Sabado | Pilar 4: Cultura -------------------------------------------- #
+  # Vapor da xicara em 9:16, direto para Reels/Stories.
+  - template: vapor_xicara
+    n: 2
+    aspect_ratio: "9:16"
+    variables:
+      steam_density: "thin steam, two or three curling threads, not a cloud"
+
+  # --- Domingo | fundo de citacao ------------------------------------------- #
+  # Textura de saco de juta: fundo para card de texto. Sem pilar proprio, serve
+  # aos quatro.
+  - template: textura_juta_saco
+    n: 1
+    aspect_ratio: "1:1"
+    variables:
+      light_angle: "low raking light from the top left"
+
+  # --- Packshot: SO com foto real do SKU ------------------------------------ #
+  # Esta entrada fica comentada de proposito. A cena mexe em rotulo e logotipo,
+  # entao os guardrails exigem uma das duas trilhas abaixo antes de rodar:
+  #
+  #   a) referencia real: troque os ids por packshots marcados com
+  #      `cie assets curate <id> --packaging`, conferidos em
+  #      `cie assets list --reference`;
+  #   b) composicao local: `use_compositor: true` com o recorte PNG do SKU em
+  #      assets/cutouts/ - o rotulo real entra por cima, a difusao so faz o fundo.
+  #
+  # Descomentar sem uma das duas so produz um job BLOCKED: embalagem com texto
+  # legivel nunca e gerada do zero.
+  #
+  # - template: pacote_madeira_rustica
+  #   dna: laboratorio-uberlandia
+  #   n: 2
+  #   aspect_ratio: "3:4"
+  #   reference_assets: [12, 15]
+  #   use_compositor: false
+  #   variables:
+  #     sku: "microlote"
+  #     sku_line: "Microlote"
+  #     light_setup: "single large softbox at forty five degrees from camera left"

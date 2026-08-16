@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}painel{% endblock %}
+
+{% block content %}
+  {% if stats.probe_pending %}
+    <div class="notice hard" data-testid="probe-warning">
+      <h2>sondagem da API pendente</h2>
+      <p>{{ stats.capabilities.summary() }}</p>
+      <p class="tiny muted">
+        Enquanto isso o CIE nao manda imagem de referencia nativa para a API: o
+        estilo viaja por descricao textual do Style DNA. Nada aqui presume o que
+        a API aceita.
+      </p>
+    </div>
+  {% else %}
+    <div class="notice" data-testid="probe-ok">
+      <h2>capacidades da API</h2>
+      <p>{{ stats.capabilities.summary() }}</p>
+      <p class="tiny muted">sondada em {{ stats.capabilities.probed_at }}</p>
+    </div>
+  {% endif %}
+
+  <div class="panel">
+    <h2>base real</h2>
+    <div class="stats">
+      <div class="stat"><b>{{ stats.assets_total }}</b><span>assets catalogados</span></div>
+      <div class="stat {% if stats.assets_needs_review %}alarm{% endif %}">
+        <b>{{ stats.assets_needs_review }}</b><span>precisam de curadoria</span>
+      </div>
+      <div class="stat"><b>{{ stats.assets_reference_grade }}</b><span>qualidade de referencia</span></div>
+      <div class="stat"><b>{{ stats.assets_reference_ready }}</b><span>usaveis como referencia</span></div>
+    </div>
+    <p class="tiny muted" style="margin-top:.5rem">
+      A diferenca entre "qualidade de referencia" e "usaveis" e o consentimento:
+      asset com pessoa identificavel e sem consentimento em arquivo nunca entra
+      num job. <a href="/assets?needs_review=1">abrir a fila de curadoria</a>
+    </p>
+    <div class="row" style="margin-top:.5rem">
+      {% for pillar, total in stats.assets_by_pillar %}
+        <a class="badge" href="/assets?pillar={{ pillar.value }}">
+          {{ PILLAR_LABELS.get(pillar.value, pillar.value) }}: {{ total }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>fila de geracao</h2>
+    <div class="stats">
+      {% for status, total in stats.jobs_by_status %}
+        <div class="stat {% if status.value in ('failed', 'blocked') and total %}alarm{% endif %}">
+          <b>{{ total }}</b><span>jobs {{ JOB_STATUS_LABELS.get(status.value, status.value) }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>imagens geradas</h2>
+    <div class="stats">
+      <div class="stat {% if stats.generations_pending %}alarm{% endif %}">
+        <b>{{ stats.generations_pending }}</b><span>aguardando revisao</span>
+      </div>
+      <div class="stat"><b>{{ stats.generations_approved }}</b><span>aprovadas</span></div>
+      <div class="stat"><b>{{ stats.generations_rejected }}</b><span>rejeitadas</span></div>
+      <div class="stat"><b>US$ {{ '%.2f'|format(stats.total_cost_usd) }}</b><span>custo acumulado</span></div>
+    </div>
+    <p class="tiny muted" style="margin-top:.5rem">
+      <a href="/review">revisar as pendentes</a> - toda imagem aprovada sai com
+      proveniencia e {{ DISCLOSURE_LABEL }}.
+    </p>
+  </div>
+{% endblock %}

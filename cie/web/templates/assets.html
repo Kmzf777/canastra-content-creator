@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+{% from "_macros.html" import asset_card, enum_select_bulk, bool_select_bulk %}
+{% block title %}curadoria{% endblock %}
+
+{% macro filter_select(name, options, labels, current) %}
+  <select name="{{ name }}" onchange="this.form.submit()">
+    <option value="">todos</option>
+    {% for option in options %}
+      <option value="{{ option.value }}" {% if current == option.value %}selected{% endif %}>
+        {{ labels.get(option.value, option.value) }}
+      </option>
+    {% endfor %}
+  </select>
+{% endmacro %}
+
+{% macro filter_bool(name, label, yes_label, no_label, current) %}
+  <div>
+    <label>{{ label }}</label>
+    <select name="{{ name }}" onchange="this.form.submit()">
+      <option value="">todos</option>
+      <option value="1" {% if current == '1' %}selected{% endif %}>{{ yes_label }}</option>
+      <option value="0" {% if current == '0' %}selected{% endif %}>{{ no_label }}</option>
+    </select>
+  </div>
+{% endmacro %}
+
+{% block content %}
+  <div class="notice hard" data-testid="policy-notice">
+    <h2>o default e restritivo, e de proposito</h2>
+    <p>{{ POLICY_NOTICE }}</p>
+    <p class="tiny muted">
+      Atalhos: <kbd>setas</kbd> navegam - <kbd>p</kbd> pessoa identificavel -
+      <kbd>c</kbd> consentimento - <kbd>r</kbd> qualidade de referencia -
+      <kbd>espaco</kbd> seleciona - <kbd>s</kbd> aplica a selecao -
+      <kbd>enter</kbd> salva o card.
+      Cada toque de <kbd>p</kbd>, <kbd>c</kbd> ou <kbd>r</kbd> ja grava no banco.
+    </p>
+  </div>
+
+  <form class="panel row" method="get" action="/assets">
+    <div>
+      <label>pilar</label>
+      {{ filter_select('pillar', PILLARS, PILLAR_LABELS, filters.pillar) }}
+    </div>
+    <div>
+      <label>sku</label>
+      {{ filter_select('sku', SKUS, SKU_LABELS, filters.sku) }}
+    </div>
+    <div>
+      <label>local</label>
+      {{ filter_select('location', LOCATIONS, LOCATION_LABELS, filters.location) }}
+    </div>
+    {{ filter_bool('needs_review', 'curadoria', 'pendente', 'concluida', filters.needs_review) }}
+    {{ filter_bool('reference_grade', 'qualidade', 'referencia', 'comum', filters.reference_grade) }}
+    <button type="submit">filtrar</button>
+    <a class="badge" href="/assets">limpar</a>
+    <span class="muted tiny" style="margin-left:auto">
+      pagina {{ page }} - {{ assets|length }} de {{ total }} assets no catalogo
+    </span>
+  </form>
+
+  <div id="bulk-status"></div>
+
+  {% if assets %}
+    <div class="cards" id="asset-grid">
+      {% for asset in assets %}{{ asset_card(asset) }}{% endfor %}
+    </div>
+  {% else %}
+    <div class="panel muted">nenhum asset com esses filtros.</div>
+  {% endif %}
+
+  <div class="row" style="margin:.7rem 0">
+    {% if prev_url %}<a class="badge" href="{{ prev_url }}">&larr; anterior</a>{% endif %}
+    {% if next_url %}<a class="badge" href="{{ next_url }}">proxima &rarr;</a>{% endif %}
+  </div>
+
+  <div class="sticky-bar">
+    <form id="bulk-form" class="row" method="post" action="/assets/bulk"
+          hx-post="/assets/bulk" hx-target="#bulk-status" hx-swap="innerHTML">
+      <strong>marcacao multipla</strong>
+      <span class="badge" id="pick-count">0 selecionados</span>
+      <div>
+        <label>pessoa identificavel</label>
+        {{ bool_select_bulk('has_identifiable_person', 'tem pessoa', 'sem pessoa') }}
+      </div>
+      <div>
+        <label>consentimento</label>
+        {{ bool_select_bulk('consent_on_file', 'em arquivo', 'ausente') }}
+      </div>
+      <div>
+        <label>embalagem legivel</label>
+        {{ bool_select_bulk('has_readable_packaging', 'sim', 'nao') }}
+      </div>
+      <div>
+        <label>qualidade de referencia</label>
+        {{ bool_select_bulk('is_reference_grade', 'sim', 'nao') }}
+      </div>
+      <div>
+        <label>curadoria</label>
+        {{ bool_select_bulk('needs_review', 'pendente', 'concluida') }}
+      </div>
+      <div>
+        <label>pilar</label>
+        {{ enum_select_bulk('pillar', PILLARS, PILLAR_LABELS, 'limpar pilar') }}
+      </div>
+      <div>
+        <label>sku</label>
+        {{ enum_select_bulk('sku', SKUS, SKU_LABELS, 'limpar sku') }}
+      </div>
+      <div>
+        <label>local</label>
+        {{ enum_select_bulk('location', LOCATIONS, LOCATION_LABELS, 'limpar local') }}
+      </div>
+      <button type="submit" class="primary">aplicar <kbd>s</kbd></button>
+    </form>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Curadoria e trabalho de lote: o teclado manda e cada toque grava. Sem HTMX
+// (maquina offline) o requestSubmit vira POST nativo e o servidor devolve 303.
+(function () {
+  var active = 0;
+
+  function cards() { return Array.prototype.slice.call(document.querySelectorAll('.asset-card')); }
+  function current() { return cards()[active] || null; }
+
+  function paint() {
+    var list = cards();
+    if (!list.length) { return; }
+    active = Math.max(0, Math.min(active, list.length - 1));
+    list.forEach(function (card, index) {
+      card.classList.toggle('is-active', index === active);
+      var pick = card.querySelector('input.pick');
+      card.classList.toggle('picked', !!(pick && pick.checked));
+    });
+    list[active].scrollIntoView({ block: 'nearest' });
+    countPicks();
+  }
+
+  function columns() {
+    var list = cards();
+    if (list.length < 2) { return 1; }
+    var top = list[0].offsetTop, total = 0;
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].offsetTop !== top) { break; }
+      total++;
+    }
+    return Math.max(1, total);
+  }
+
+  function picked() {
+    return Array.prototype.slice.call(document.querySelectorAll('input.pick:checked'));
+  }
+
+  function countPicks() {
+    var badge = document.getElementById('pick-count');
+    if (badge) { badge.textContent = picked().length + ' selecionados'; }
+  }
+
+  function submitCard(card) {
+    var form = card && card.querySelector('form.curate');
+    if (form) { form.requestSubmit(); }
+  }
+
+  function toggleFlag(name) {
+    var card = current();
+    if (!card) { return; }
+    var box = card.querySelector('form.curate input[type=checkbox][name="' + name + '"]');
+    if (!box) { return; }
+    box.checked = !box.checked;
+    submitCard(card);
+  }
+
+  function togglePick() {
+    var card = current();
+    var pick = card && card.querySelector('input.pick');
+    if (!pick) { return; }
+    pick.checked = !pick.checked;
+    card.classList.toggle('picked', pick.checked);
+    countPicks();
+  }
+
+  function applyBulk() {
+    var status = document.getElementById('bulk-status');
+    if (!picked().length) {
+      if (status) { status.innerHTML = '<div class="notice">nada selecionado: use <kbd>espaco</kbd> nos cards.</div>'; }
+      return;
+    }
+    document.getElementById('bulk-form').requestSubmit();
+  }
+
+  document.addEventListener('change', function (event) {
+    if (event.target && event.target.classList && event.target.classList.contains('pick')) {
+      var card = event.target.closest('.asset-card');
+      if (card) { card.classList.toggle('picked', event.target.checked); }
+      countPicks();
+    }
+  });
+
+  document.addEventListener('keydown', function (event) {
+    var tag = (event.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'select' || tag === 'textarea') { return; }
+    if (event.metaKey || event.ctrlKey || event.altKey) { return; }
+    switch (event.key) {
+      case 'ArrowRight': active += 1; break;
+      case 'ArrowLeft': active -= 1; break;
+      case 'ArrowDown': active += columns(); break;
+      case 'ArrowUp': active -= columns(); break;
+      case 'p': case 'P': toggleFlag('has_identifiable_person'); break;
+      case 'c': case 'C': toggleFlag('consent_on_file'); break;
+      case 'r': case 'R': toggleFlag('is_reference_grade'); break;
+      case ' ': togglePick(); break;
+      case 's': case 'S': applyBulk(); break;
+      case 'Enter': submitCard(current()); break;
+      default: return;
+    }
+    event.preventDefault();
+    paint();
+  });
+
+  document.body.addEventListener('htmx:afterSwap', paint);
+  paint();
+})();
+</script>
+{% endblock %}
