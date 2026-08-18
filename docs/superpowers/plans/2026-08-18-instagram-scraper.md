@@ -3181,3 +3181,53 @@ Estes passos nao sao automatizaveis e precisam de um humano com uma conta do Ins
 - [ ] Um post que seja video aparece como "video pulado", nao como erro
 
 Se algum passo falhar, o JSON cru em `raspagem/_colheita/` diz o porque — ele e gravado antes de qualquer download justamente para isso.
+
+---
+
+# Registro de execucao (2026-08-18)
+
+As 11 tasks foram executadas por subagentes, uma por vez, com revisao entre elas.
+15 commits, de `3e1c3bf` a `3e8dbb1`.
+
+## O que a revisao pegou que o plano tinha errado
+
+O plano continha codigo pronto, e parte desse codigo estava errada. Vale registrar,
+porque o padrao se repete:
+
+**Path traversal, tres vezes.** `slug`, `shortcode` e o nome do snippet viram todos
+componente de caminho de arquivo, e os tres aceitavam `..` na redacao original.
+O terceiro caso (`write_envelope`) foi comprovado explorando de verdade: com o codigo
+original, `slug="../../pwned"` gravava um arquivo acima de `_colheita/`. Correcao:
+`models.caminho_seguro` para os dois primeiros, allowlist estrita para o terceiro.
+
+**O parser nao honrava o proprio contrato.** O docstring prometia que so
+`InstagramFormatError` escaparia; dez formas de JSON malformado vazavam
+`AttributeError`, `ValueError` ou `ValidationError`. Como a CLI so captura `CieError`,
+cada uma viraria stacktrace na cara do usuario. Corrigido com `_objeto`/`_lista`/`_inteiro`.
+Fuzz de 5192 combinacoes depois: nenhum vazamento.
+
+**`urlparse` levanta `ValueError`** em link com colchete (`[instagram.com/x`) —
+justamente o tipo de excecao crua que o modulo existe para impedir.
+
+**Handle com ponto era recusado.** `cafe.canastra` caia no ramo de URL e falhava com
+mensagem errada. Pontos sao comuns em handle real.
+
+**Rich quebrava substring no meio.** A largura padrao do console fora de terminal e 79
+colunas, e um caminho Windows e uma "palavra" so para o Rich. Testes que verificam
+substring na saida iam falhar de forma intermitente dependendo do tamanho do caminho
+da maquina. Corrigido com `soft_wrap=True`, sem enfraquecer os testes.
+
+**Erros meus de aritmetica e contagem no plano:** `shortcode_to_media_id("CBa")` e 8282,
+nao 4184; a Task 3 dizia "9 passed" para um arquivo com 8 testes.
+
+## Duas divergencias de desenho, ja registradas acima
+
+`cie scrape run <url>` em vez de `cie scrape <url>`, e o fallback de download pelo
+Playwright adiado ate haver evidencia de 403 do CDN.
+
+## O que NAO foi verificado
+
+Nada que precise de rede ou de conta do Instagram. Playwright nao esta instalado no
+venv (`uv sync --extra scrape` ainda nao foi rodado), entao o caminho real de browser
+— `login`, `status`, e a colheita de verdade — continua sem execucao. A lista de
+verificacao manual no fim deste plano e o que falta.
