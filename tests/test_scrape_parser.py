@@ -133,3 +133,119 @@ def test_imagem_sem_candidato_da_erro_legivel():
     with pytest.raises(InstagramFormatError) as exc:
         parse_media(media)
     assert exc.value.campo == "image_versions2"
+
+
+# --- Regressao: formato inesperado nunca pode escapar como AttributeError,
+# ValueError ou ValidationError do Pydantic. So `InstagramFormatError` sai
+# daqui, com o nome do campo que veio torto.
+
+
+def test_carousel_media_com_string_da_erro_legivel():
+    media = _imagem() | {"media_type": 8, "carousel_media": ["nao-e-um-objeto"]}
+    with pytest.raises(InstagramFormatError) as exc:
+        parse_media(media)
+    assert exc.value.campo == "carousel_media[0]"
+
+
+def test_carousel_media_com_none_da_erro_legivel():
+    media = _imagem() | {"media_type": 8, "carousel_media": [None]}
+    with pytest.raises(InstagramFormatError) as exc:
+        parse_media(media)
+    assert exc.value.campo  # aponta para algum campo, nunca AttributeError nu
+
+
+def test_caption_string_da_erro_legivel():
+    media = _imagem() | {"caption": "nao-e-um-objeto"}
+    with pytest.raises(InstagramFormatError) as exc:
+        parse_media(media)
+    assert exc.value.campo == "caption"
+
+
+def test_caption_lista_da_erro_legivel():
+    media = _imagem() | {"caption": ["nao-e-um-objeto"]}
+    with pytest.raises(InstagramFormatError) as exc:
+        parse_media(media)
+    assert exc.value.campo == "caption"
+
+
+def test_user_string_da_erro_legivel():
+    media = _imagem() | {"user": "nao-e-um-objeto"}
+    with pytest.raises(InstagramFormatError) as exc:
+        parse_media(media)
+    assert exc.value.campo == "user"
+
+
+def test_user_lista_da_erro_legivel():
+    media = _imagem() | {"user": ["nao-e-um-objeto"]}
+    with pytest.raises(InstagramFormatError) as exc:
+        parse_media(media)
+    assert exc.value.campo == "user"
+
+
+def test_code_inteiro_da_erro_legivel():
+    media = _imagem() | {"code": 12345}
+    with pytest.raises(InstagramFormatError) as exc:
+        parse_media(media)
+    assert exc.value.campo == "code"
+
+
+def test_code_lista_da_erro_legivel():
+    media = _imagem() | {"code": ["a", "b"]}
+    with pytest.raises(InstagramFormatError) as exc:
+        parse_media(media)
+    assert exc.value.campo == "code"
+
+
+def test_candidates_string_da_erro_legivel():
+    media = _imagem() | {"image_versions2": {"candidates": "nao-e-uma-lista"}}
+    with pytest.raises(InstagramFormatError) as exc:
+        parse_media(media)
+    assert exc.value.campo == "image_versions2.candidates"
+
+
+def test_width_texto_degrada_para_zero_em_vez_de_levantar():
+    media = _imagem() | {
+        "image_versions2": {
+            "candidates": [
+                {"url": "https://cdn.example/x.jpg", "width": "abc", "height": 100}
+            ]
+        }
+    }
+    item = parse_media(media)[0]
+    assert item.width == 0
+    assert item.height == 100
+
+
+def test_media_malformados_nunca_vazam_excecao_fora_do_contrato():
+    """Cinturao e suspensorio: qualquer entrada torta so pode terminar de dois
+    jeitos - `InstagramFormatError` ou um resultado normal. Nunca outra coisa.
+    """
+    entradas_malformadas = [
+        _imagem() | {"media_type": 8, "carousel_media": ["nao-e-um-objeto"]},
+        _imagem() | {"media_type": 8, "carousel_media": [None]},
+        _imagem() | {"caption": "nao-e-um-objeto"},
+        _imagem() | {"caption": ["nao-e-um-objeto"]},
+        _imagem() | {"user": "nao-e-um-objeto"},
+        _imagem() | {"user": ["nao-e-um-objeto"]},
+        _imagem() | {"code": 12345},
+        _imagem() | {"code": ["a", "b"]},
+        _imagem() | {"image_versions2": {"candidates": "nao-e-uma-lista"}},
+        _imagem()
+        | {
+            "image_versions2": {
+                "candidates": [
+                    {"url": "https://cdn.example/x.jpg", "width": "abc", "height": 100}
+                ]
+            }
+        },
+    ]
+    for media in entradas_malformadas:
+        try:
+            parse_media(media)
+        except InstagramFormatError:
+            pass
+        except Exception as e:
+            pytest.fail(
+                f"parse_media vazou {type(e).__name__} em vez de "
+                f"InstagramFormatError para entrada {media!r}: {e}"
+            )

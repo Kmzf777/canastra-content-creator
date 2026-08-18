@@ -7,6 +7,12 @@ a forma de colher sem tocar em nada aqui.
 Regra que atravessa o modulo: formato inesperado vira `InstagramFormatError` com
 o nome do campo que faltou. `KeyError` nu e proibido - o Instagram muda o JSON
 sem aviso, e a mensagem precisa dizer o que mudou.
+
+Essa regra vale tambem para tipo errado, nao so campo ausente: o Instagram pode
+mandar `code` como int, `user` como string, `carousel_media` com um `None` no
+meio. `AttributeError`, `ValueError` e `ValidationError` do Pydantic sao tao
+proibidos quanto `KeyError` - por isso todo campo externo passa pelos
+acessores `_objeto`/`_lista`/`_inteiro` abaixo antes de ser usado.
 """
 
 from __future__ import annotations
@@ -18,6 +24,38 @@ from .models import ScrapedItem
 
 #: media_type do Instagram: 1 imagem, 2 video, 8 carrossel.
 _TIPO_VIDEO = 2
+
+
+def _objeto(valor, campo: str) -> dict:
+    """Campo que deveria ser objeto. Ausente vira {}; do tipo errado, erro legivel."""
+    if valor is None:
+        return {}
+    if not isinstance(valor, dict):
+        raise InstagramFormatError(
+            f"campo {campo!r} deveria ser objeto, veio {type(valor).__name__}",
+            campo=campo,
+        )
+    return valor
+
+
+def _lista(valor, campo: str) -> list:
+    """Campo que deveria ser lista. Ausente vira []; do tipo errado, erro legivel."""
+    if valor is None:
+        return []
+    if not isinstance(valor, list):
+        raise InstagramFormatError(
+            f"campo {campo!r} deveria ser lista, veio {type(valor).__name__}",
+            campo=campo,
+        )
+    return valor
+
+
+def _inteiro(valor) -> int:
+    """Dimensao que o Instagram as vezes manda como string. Lixo vira 0."""
+    try:
+        return int(valor)
+    except (TypeError, ValueError):
+        return 0
 
 
 def parse_media(media: dict, *, owner_fallback: str = "") -> list[ScrapedItem]:
@@ -37,13 +75,26 @@ def parse_media(media: dict, *, owner_fallback: str = "") -> list[ScrapedItem]:
             "o formato do Instagram provavelmente mudou",
             campo="code",
         )
+    if not isinstance(shortcode, str):
+        raise InstagramFormatError(
+            f"campo 'code' deveria ser string (shortcode do post), veio "
+            f"{type(shortcode).__name__}",
+            campo="code",
+        )
 
-    handle = (media.get("user") or {}).get("username") or owner_fallback
-    caption = ((media.get("caption") or {}).get("text") or "").strip()
+    handle = _objeto(media.get("user"), "user").get("username") or owner_fallback
+    caption = (_objeto(media.get("caption"), "caption").get("text") or "").strip()
     taken_at = _timestamp(media.get("taken_at"))
     post_url = f"https://www.instagram.com/p/{shortcode}/"
 
-    filhos = media.get("carousel_media") or [media]
+    criancas_brutas = _lista(media.get("carousel_media"), "carousel_media")
+    if criancas_brutas:
+        filhos = [
+            _objeto(cru, f"carousel_media[{indice}]")
+            for indice, cru in enumerate(criancas_brutas)
+        ]
+    else:
+        filhos = [media]
 
     itens: list[ScrapedItem] = []
     for indice, filho in enumerate(filhos, start=1):
@@ -55,8 +106,8 @@ def parse_media(media: dict, *, owner_fallback: str = "") -> list[ScrapedItem]:
                 owner_handle=handle,
                 post_url=post_url,
                 display_url=melhor.get("url", ""),
-                width=int(melhor.get("width") or 0),
-                height=int(melhor.get("height") or 0),
+                width=_inteiro(melhor.get("width")),
+                height=_inteiro(melhor.get("height")),
                 taken_at=taken_at,
                 caption=caption,
                 carousel_index=indice,
@@ -66,9 +117,11 @@ def parse_media(media: dict, *, owner_fallback: str = "") -> list[ScrapedItem]:
     return itens
 
 
-def _melhor_candidato(media: dict, *, permitir_vazio: bool) -> dict:
+def _melhor_candidato(filho: dict, *, permitir_vazio: bool) -> dict:
     """A maior resolucao disponivel. O Instagram nao devolve a lista ordenada."""
-    candidatos = (media.get("image_versions2") or {}).get("candidates") or []
+    versoes = _objeto(filho.get("image_versions2"), "image_versions2")
+    candidatos_brutos = _lista(versoes.get("candidates"), "image_versions2.candidates")
+    candidatos = [c for c in candidatos_brutos if isinstance(c, dict)]
     if not candidatos:
         if permitir_vazio:
             # Video sem capa: marcamos e seguimos - o download pula videos de todo jeito.
@@ -80,7 +133,7 @@ def _melhor_candidato(media: dict, *, permitir_vazio: bool) -> dict:
         )
     return max(
         candidatos,
-        key=lambda c: int(c.get("width") or 0) * int(c.get("height") or 0),
+        key=lambda c: _inteiro(c.get("width")) * _inteiro(c.get("height")),
     )
 
 
