@@ -56,3 +56,19 @@ class BudgetExceeded(CieError):
             f"teto de orcamento atingido: US$ {spent:.4f} de US$ {budget:.2f}; "
             f"{pending} job(s) continuam na fila"
         )
+
+
+class ScrapeError(CieError):
+    """Falha na raspagem: link invalido, sessao deslogada, browser ausente."""
+
+
+class InstagramFormatError(ScrapeError):
+    """O JSON do Instagram nao tem a forma esperada.
+
+    O Instagram muda o formato sem aviso. Quando mudar, a mensagem precisa dizer
+    QUAL campo sumiu - `KeyError` nu nao ajuda ninguem as duas da manha.
+    """
+
+    def __init__(self, message: str, *, campo: str = "") -> None:
+        self.campo = campo
+        super().__init__(message)

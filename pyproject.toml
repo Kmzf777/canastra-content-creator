@@ -20,6 +20,9 @@ dependencies = [
 [project.optional-dependencies]
 # Decoders extras: HEIC vem de celular, e boa parte da base real da operacao nasce ai.
 heic = ["pillow-heif>=0.16"]
+# Raspagem do Instagram: usa o Chrome ja instalado (channel="chrome"),
+# nao baixa Chromium. Quem nao vai raspar nao instala.
+scrape = ["playwright>=1.44"]
 
 [project.scripts]
 cie = "cie.cli:app"

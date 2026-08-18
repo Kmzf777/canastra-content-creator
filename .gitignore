@@ -8,6 +8,9 @@ export/
 # Base de fotos reais: nunca versionada, nunca sai do diretorio do projeto
 assets/originals/
 assets/cutouts/
+imagens/
+base-curada/
+raspagem/
 
 # Python
 __pycache__/
@@ -18,3 +21,4 @@ venv/
 .pytest_cache/
 .coverage
 htmlcov/
+saida-teste/
