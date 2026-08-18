@@ -1,0 +1,40 @@
+nome: preservar-embalagem
+descricao: |
+  Bloco de preservacao para o fluxo 1 (`/images/edits` da xAI), onde a embalagem
+  entra como PIXEL e nao como texto. Repare no que ele NAO faz: nao descreve
+  serra, script, pincel, "Desde 1985" nem "250g". De proposito - descrever a arte
+  faz o modelo redesenhar o rotulo e produzir um sosia da marca.
+
+  O que corrige: sem ele o endpoint de edicao reinterpreta o rotulo. Com ele, a
+  crista da serra sai com o perfil real passando ATRAS de "Cafe", detalhe que
+  nenhuma versao descrita em prompt jamais acertou.
+
+  Versao escolhida: `_ref-scripts/espontaneo.py`, bloco PRESERVAR (a mais
+  recente). E a unica que resolve dois problemas que as anteriores nao resolviam:
+    1. multi-fonte - diz "One of the source images", entao funciona quando o
+       payload leva packshot + foto do lugar no campo plural `images`;
+    2. coerencia de luz - autoriza explicitamente a UNICA coisa que pode mudar no
+       pacote, que e a iluminacao, para ela herdar a direcao da cena.
+  Divergencias descartadas: `teste_final.py`, `humanizar.py` e `carrossel.py`
+  usavam "Keep the coffee package in this image", de fonte unica e sem a clausula
+  de luz; `gemini_gerar.py` usava "Reproduce that package EXACTLY", redacao para
+  Gemini (que redesenha) e nao para edicao.
+
+  Quando o rotulo precisar ser exato ao pixel - anuncio pago, e-commerce, rotulo -
+  nem este bloco basta: use composicao local do recorte real.
+texto: |
+  One of the source images is a coffee package. Keep that package EXACTLY as
+  it is: same paper, same colour, same printed artwork, every letter and every line
+  identical, same proportions, same creases, same crimped top, same vent. Do not redraw,
+  restyle, relabel or reinterpret it. Its label is legally exact. Only its LIGHTING should
+  change, to match the harsh overhead sun of the other source photograph.
+negativos:
+  - redrawn label
+  - altered logo
+  - changed lettering
+  - restyled packaging
+  - new brand name
+  - warped text
+  - gibberish text
+  - different typeface
+  - cleaned up design

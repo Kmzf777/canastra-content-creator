@@ -1,0 +1,114 @@
+nome: negativos
+descricao: |
+  Lista negativa de base, verificada. Sai do bloco NEG de `_ref-scripts/espontaneo.py`,
+  a versao mais recente (sol a pino), na ordem original.
+
+  O que ela corrige, por grupo:
+    - anti-nublado (`overcast`, `cloudy`, `flat soft light`, `golden hour`): a luz da
+      fazenda e sol a pino. Ver `luz-sol-pino`.
+    - anti-adereco (`table`, `cloth`, `crochet`, `scale`, `cupping spoon`, `kettle`...):
+      nenhum objeto que nao exista na operacao. A base real mostra pe de cafe, terra
+      vermelha, mangueira de irrigacao, poste de madeira, arame, cadeira de plastico e
+      galpao de zinco. Balanca de cozinha, colher de cupping, bule de agata e pano de
+      crochet na lavoura sao invencao.
+    - anti-bokeh (`bokeh`, `shallow focus`, `portrait mode`, `background blur`...):
+      desfoque nao se desfaz em pos. Ver `foco-profundo`.
+    - anti-anuncio (`product photography`, `advertisement`, `catalogue photography`,
+      `commercial hero shot`, `food styling`): o `-2.0` tem vies forte para foto
+      comercial polida.
+    - anti-pessoa (`people`, `hand`, `face`): rosto de pessoa real nunca e sintetizado
+      neste projeto.
+
+  Duas divergencias resolvidas em relacao ao verbatim de `espontaneo.py`:
+    1. `background blur` foi acrescentado. Nao estava na lista da xAI, mas esta na lista
+       verificada de `_ref-scripts/gemini_gerar.py`, e e o termo que `tests/test_blocos.py`
+       trava. O texto de `foco-profundo` ja dizia "NO background blur"; a lista negativa
+       nao repetia.
+    2. `bokeh balls` foi reposto. Estava em tres versoes anteriores verificadas
+       (`antibokeh.py`, `humanizar.py`, `carrossel.py`) e sumiu em `espontaneo.py` sem
+       motivo registrado.
+
+  Bug corrigido no porte: `espontaneo.py` guardava a string ja comecando com "Avoid: " e
+  o montador prefixava "Avoid: " de novo, produzindo "Avoid: Avoid: ..." nos prompts
+  salvos. Aqui a lista NAO carrega o prefixo - quem monta e `cie.blocos.montar`.
+
+  Cuidado de escopo: o grupo anti-adereco e da CENA DE LAVOURA. Para cena de varanda,
+  mesa ou cozinha, onde mesa e pano existem de verdade, monte sem este bloco - a
+  cobertura anti-bokeh e anti-anuncio continua vindo de `foco-profundo` e
+  `espontaneidade`.
+texto: |
+  overcast, cloudy, flat soft light, diffused light, golden hour, warm glow, amber light,
+  orange grading, rim light, dramatic long shadows, deep black shadows, crushed blacks, table,
+  wooden table, tray, crate, cloth, crochet, linen, napkin, scale, weighing scale, wooden
+  spoon, cupping spoon, cutlery, bowl, jar, kettle, teapot, decorative props, styled
+  arrangement, artful spill, arranged beans, food styling, blurred background, defocused
+  background, background blur, bokeh, bokeh balls, depth of field falloff, shallow focus,
+  portrait mode, lens blur, studio lighting, softbox, reflector, product photography,
+  catalogue photography, advertisement, commercial hero shot, symmetrical centred composition,
+  tidy, people, person, hand, hands, arm, fingers, face, watermark, text overlay, 3d render,
+  CGI, illustration
+negativos:
+  - overcast
+  - cloudy
+  - flat soft light
+  - diffused light
+  - golden hour
+  - warm glow
+  - amber light
+  - orange grading
+  - rim light
+  - dramatic long shadows
+  - deep black shadows
+  - crushed blacks
+  - table
+  - wooden table
+  - tray
+  - crate
+  - cloth
+  - crochet
+  - linen
+  - napkin
+  - scale
+  - weighing scale
+  - wooden spoon
+  - cupping spoon
+  - cutlery
+  - bowl
+  - jar
+  - kettle
+  - teapot
+  - decorative props
+  - styled arrangement
+  - artful spill
+  - arranged beans
+  - food styling
+  - blurred background
+  - defocused background
+  - background blur
+  - bokeh
+  - bokeh balls
+  - depth of field falloff
+  - shallow focus
+  - portrait mode
+  - lens blur
+  - studio lighting
+  - softbox
+  - reflector
+  - product photography
+  - catalogue photography
+  - advertisement
+  - commercial hero shot
+  - symmetrical centred composition
+  - tidy
+  - people
+  - person
+  - hand
+  - hands
+  - arm
+  - fingers
+  - face
+  - watermark
+  - text overlay
+  - 3d render
+  - CGI
+  - illustration

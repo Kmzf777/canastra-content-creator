@@ -1,0 +1,112 @@
+nome: dna-canela
+descricao: |
+  DNA textual da embalagem CANELA 250g. Mesmo layout base do Suave, com quatro
+  diferencas fisicas verificadas contra os packshots reais em
+  `base-curada/01-real-verificada/torrefacao-uberlandia-875m/packshot-canela/`:
+    - material: filme VERMELHO METALIZADO BRILHANTE, com especular forte em
+      faixas e banding de cor (ISO real do packshot 950-1018, o mais alto dos tres);
+    - tinta: BRANCA;
+    - NAO TEM a caixa `SPECIALTY / ESPECIAL / SCA 80+`. E o unico dos tres sem
+      ela, e por isso o bloco a nomeia explicitamente para NEGA-LA: o modelo ja
+      viu os outros dois SKUs e desenha a caixa por conta propria se ninguem
+      proibir;
+    - rodape inferior esquerdo em DUAS linhas: `CAFE TORRADO E` / `MOIDO COM
+      CANELA`, mais um desenho de CANELA EM RAMA amarrada no canto inferior
+      direito, acima do `250g`.
+
+  Quando usar: apenas no fluxo 2 (Gemini, que redesenha o rotulo). No fluxo 1
+  (`/images/edits`) use `preservar-embalagem`.
+
+  Derivado do bloco verificado do Suave por aplicacao das diferencas registradas
+  em `docs/dna-embalagens.md`, mantendo intactas as duas defesas que custaram
+  rodada de geracao: a chapada de topo plano (contra o erro `jagged peaks` da v1,
+  que fez os tres modelos desenharem pico alpino) e a blindagem de ortografia de
+  `_ref-scripts/gemini_cadeira_dna.py` (contra `SOSCIALTY` e `288g`).
+
+  Cuidado extra deste SKU: o filme metalizado brilhante e o pior substrato para
+  legibilidade de letra. Se o pacote ocupar menos de ~30% da altura do quadro,
+  prefira `preservar-embalagem` com `/images/edits`, ou composicao do recorte.
+texto: |
+  CRITICAL PACKAGING ACCURACY - read this before anything else. The reference image of the
+  coffee package is a real, legally-exact product label. You are photographing the REAL
+  OBJECT, not designing a new one. Every printed character must be copied letter-for-letter
+  and digit-for-digit exactly as shown in that reference. Getting even one letter or number
+  wrong is a failure of this task, more important than any other instruction below.
+
+  The coffee package is a 250g flat-bottom pouch made of GLOSSY METALLIC RED FILM, a
+  saturated crimson red with a mirror-bright metallised finish, with soft vertical creases
+  and inward side gussets. It is noticeably TALLER THAN WIDE, roughly 3 units tall to 2
+  wide. The top is a straight crimped fold, not a zip lock, not a plastic slider. A small
+  round embossed degassing vent with one dark centre dot sits on the front panel above the
+  artwork. Because the film is metallised, it carries STRONG SPECULAR HIGHLIGHTS in bands
+  down the creases, with visible colour banding from deep blood red in the folds to almost
+  pink-white where the light hits square on.
+
+  All artwork is a single flat WHITE ink printed straight onto the glossy red film.
+
+  The artwork, top to bottom:
+    - A mountain range drawn in thin sketchy open line. CRITICAL: this range is a LOW,
+      WIDE, FLAT-TOPPED TABLELAND - a plateau escarpment whose upper edge runs almost
+      HORIZONTAL with only small shallow irregular notches and one gentle rounded high
+      point, with fine vertical striations down its face. It is emphatically NOT an alpine
+      mountain, NOT sharp triangular peaks, NOT tall pointed summits, NOT a Swiss or
+      Himalayan skyline. It is a long flat mesa ridge, wider than it is tall, sitting low
+      and spread out behind the lettering. Three tiny V-shaped bird marks fly at its far
+      upper left.
+    - Overlapping and in front of that ridge, slightly right of centre: the word "Cafe"
+      written small in a slanted handwritten script - and it MUST carry an ACUTE ACCENT
+      over the final e, reading "Café" with the accent mark, never a bare e.
+    - Directly below, very large: "CANASTRA" in a thick DRY BRUSH script. The strokes are
+      uneven and partly broken, with the film showing through the ink in places, the way a
+      loaded brush skips on rough stock. Not a clean vector font, not smooth.
+    - A single heavy tapering brush swash sweeps underneath "CANASTRA", thick at its left
+      end where it starts as a blob and thinning to a point at the right.
+    - A very small (R) registered trademark symbol at the upper right of the final A.
+    - "Desde 1985" small and handwritten, sitting to the lower RIGHT, just above the
+      swash's thin end.
+    - IMPORTANT DIFFERENCE FROM THE OTHER TWO BAGS: this red cinnamon bag does NOT carry
+      the thin-line rectangle box. Do not draw that box here.
+      Do not print the word "SPECIALTY" on this bag.
+      Do not print the word "ESPECIAL" on this bag.
+      Do not print "SCA 80+" on this bag.
+      That box belongs to the kraft bag and to the black bag only, and the space where it
+      would sit is left as empty red film.
+    - Bottom left, small sans-serif caps, two lines:
+      "CAFE TORRADO E" over "MOIDO COM CANELA". CAFE carries an acute accent on the final
+      E, reading "CAFÉ", and MOIDO carries an acute accent on the I, reading "MOÍDO".
+    - Bottom right, above the weight box: a small line drawing of two CINNAMON QUILLS -
+      dry rolled bark sticks - tied together with a thin band, drawn in the same thin white
+      line as the rest.
+    - Bottom right corner, inside a small rounded rectangle outline, exactly: "250g" - the
+      weight is TWO HUNDRED AND FIFTY GRAMS, the digits are "2", "5", "0", never "288" or
+      any other number.
+
+  The package is the subject of the photograph. Every one of those words must be legible
+  and spelled exactly as written. Before finishing, re-check every printed character on the
+  package against this list.
+negativos:
+  - sharp triangular mountain peaks
+  - alpine summits
+  - tall pointed mountains
+  - Swiss alps skyline
+  - SPECIALTY box
+  - ESPECIAL box
+  - SCA 80+ seal
+  - kraft paper bag
+  - black bag
+  - matte finish
+  - white rectangular label
+  - printed sticker
+  - second ink colour
+  - zip lock top
+  - plastic slider
+  - warped text
+  - distorted logo
+  - gibberish lettering
+  - misspelled words
+  - missing accent
+  - invented brand name
+  - different logo
+  - clean vector lettering
+  - ground cinnamon powder
+  - cinnamon stick photograph

@@ -1,0 +1,99 @@
+nome: dna-classico
+descricao: |
+  DNA textual da embalagem CLASSICO 250g. Mesmo layout do Suave, com tres
+  diferencas fisicas verificadas contra os packshots reais em
+  `base-curada/01-real-verificada/torrefacao-uberlandia-875m/packshot-classico/`:
+    - material: filme PRETO MATE, e nao papel kraft;
+    - tinta: BRANCA, e nao preta;
+    - rodape inferior esquerdo: `CLASSICO` numa linha so, em vez de `SUAVE` /
+      `TORRADO E MOIDO`.
+  A caixa de linha fina `SPECIALTY / ESPECIAL / SCA 80+` continua existindo, agora
+  em branco. Superficie mate com reflexo difuso amplo (ISO real do packshot
+  365-698, contra 105-124 do Suave).
+
+  Quando usar: apenas no fluxo 2 (Gemini, que redesenha o rotulo). No fluxo 1
+  (`/images/edits`) use `preservar-embalagem`.
+
+  Derivado do bloco verificado do Suave por aplicacao das diferencas registradas
+  em `docs/dna-embalagens.md`, mantendo intactas as duas defesas que custaram
+  rodada de geracao: a chapada de topo plano (contra o erro `jagged peaks` da v1,
+  que fez os tres modelos desenharem pico alpino) e a blindagem de ortografia de
+  `_ref-scripts/gemini_cadeira_dna.py` (contra `SOSCIALTY` e `288g`).
+
+  Observacao de campo: o Classico erra MENOS que o Suave porque costuma ocupar
+  mais quadro (~35% contra ~20%). Fidelidade de rotulo escala com o tamanho no
+  quadro.
+texto: |
+  CRITICAL PACKAGING ACCURACY - read this before anything else. The reference image of the
+  coffee package is a real, legally-exact product label. You are photographing the REAL
+  OBJECT, not designing a new one. Every printed character must be copied letter-for-letter
+  and digit-for-digit exactly as shown in that reference. Getting even one letter or number
+  wrong is a failure of this task, more important than any other instruction below.
+
+  The coffee package is a 250g flat-bottom pouch made of MATTE BLACK FILM, a deep flat
+  black with no shine of its own, with soft vertical creases and inward side gussets. It is
+  noticeably TALLER THAN WIDE, roughly 3 units tall to 2 wide. The top is a straight
+  crimped fold, not a zip lock, not a plastic slider. A small round embossed degassing vent
+  with one dark centre dot sits on the front panel above the artwork. The surface is matte
+  and picks up only a broad diffuse reflection, never a hard specular streak.
+
+  All artwork is a single flat WHITE ink printed straight onto the matte black film. No
+  white label, no sticker, no second colour, no gloss, no foil.
+
+  The artwork, top to bottom:
+    - A mountain range drawn in thin sketchy open line. CRITICAL: this range is a LOW,
+      WIDE, FLAT-TOPPED TABLELAND - a plateau escarpment whose upper edge runs almost
+      HORIZONTAL with only small shallow irregular notches and one gentle rounded high
+      point, with fine vertical striations down its face. It is emphatically NOT an alpine
+      mountain, NOT sharp triangular peaks, NOT tall pointed summits, NOT a Swiss or
+      Himalayan skyline. It is a long flat mesa ridge, wider than it is tall, sitting low
+      and spread out behind the lettering. Three tiny V-shaped bird marks fly at its far
+      upper left.
+    - Overlapping and in front of that ridge, slightly right of centre: the word "Cafe"
+      written small in a slanted handwritten script - and it MUST carry an ACUTE ACCENT
+      over the final e, reading "Café" with the accent mark, never a bare e.
+    - Directly below, very large: "CANASTRA" in a thick DRY BRUSH script. The strokes are
+      uneven and partly broken, with the film showing through the ink in places, the way a
+      loaded brush skips on rough stock. Not a clean vector font, not smooth.
+    - A single heavy tapering brush swash sweeps underneath "CANASTRA", thick at its left
+      end where it starts as a blob and thinning to a point at the right.
+    - A very small (R) registered trademark symbol at the upper right of the final A.
+    - "Desde 1985" small and handwritten, sitting to the lower RIGHT, just above the
+      swash's thin end.
+    - Below, centred: a thin single-line white rectangle outline containing exactly three
+      stacked lines, spelled EXACTLY: "SPECIALTY" small and letterspaced, "ESPECIAL" large
+      and bold, "SCA 80+" small. That first word is "SPECIALTY", nine letters,
+      S-P-E-C-I-A-L-T-Y, never "SOSCIALTY" or any other variant.
+    - Bottom left, small sans-serif caps, on a single line: "CLASSICO", which carries an
+      acute accent on the first A, reading "CLÁSSICO". This bag says "CLASSICO". It does
+      not say "SUAVE" and it does not say "TORRADO E MOIDO".
+    - Bottom right, inside a small rounded rectangle outline, exactly: "250g" - the weight
+      is TWO HUNDRED AND FIFTY GRAMS, the digits are "2", "5", "0", never "288" or any
+      other number.
+
+  The package is the subject of the photograph. Every one of those words must be legible
+  and spelled exactly as written. Before finishing, re-check every printed character on the
+  package against this list.
+negativos:
+  - sharp triangular mountain peaks
+  - alpine summits
+  - tall pointed mountains
+  - Swiss alps skyline
+  - kraft paper bag
+  - brown paper bag
+  - black ink on the artwork
+  - white rectangular label
+  - printed sticker
+  - glossy foil
+  - glossy laminated finish
+  - second ink colour
+  - zip lock top
+  - plastic slider
+  - warped text
+  - distorted logo
+  - gibberish lettering
+  - misspelled words
+  - missing accent
+  - invented brand name
+  - different logo
+  - clean vector lettering

@@ -1,0 +1,31 @@
+nome: hdr-celular
+descricao: |
+  Assinatura de HDR automatico de celular sob sol forte: sombra LEVANTADA e
+  acinzentada em vez de preta, algumas manchas ESTOURADAS para branco sem
+  detalhe, meio-tom achatado, balanco de branco frio e lavado.
+
+  O que corrige, medido no perfil de camera do projeto:
+    - preto esmagado -> celular quase nunca chega a preto puro (`preto%` alvo 0,007;
+      `p1` alvo 14). O bloco proibe massa preta solida.
+    - dourado quente -> nossa base puxa AZUL nas altas (cast R/B 0,969). Dourado
+      quente e assinatura de IA, nao de celular.
+    - saturacao alta -> a base real e LAVADA (saturacao alvo 70), nao vibrante.
+
+  Versao escolhida: `_ref-scripts/espontaneo.py`, bloco HDR (a mais recente, e a
+  unica escrita para sol forte). Divergencia descartada: `humanizar.py` e
+  `carrossel.py` traziam "BAD PHONE HDR ... flat milky grey", que descreve HDR de
+  dia nublado - casava com a luz nublada inventada, nao com sol a pino.
+texto: |
+  PHONE HDR at work, the way it actually looks in bright sun: the shadows are
+  LIFTED and open and slightly grey rather than black - even under the bushes you can still
+  see leaves and earth, nothing is a solid black mass. At the same time the brightest
+  patches of sky and the hottest bits of bare earth are BLOWN OUT to featureless white. The
+  midtones look a bit flat and processed. Slightly cool, washed white balance, muted low
+  saturation - NOT warm, NOT orange, NOT amber, NOT rich or vivid.
+negativos:
+  - crushed blacks
+  - deep black shadows
+  - high contrast
+  - punchy contrast
+  - vibrant saturated colours
+  - teal and orange
