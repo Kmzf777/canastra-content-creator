@@ -1,0 +1,64 @@
+{
+  "target": {"kind": "hashtag", "slug": "tag-cafeespecial", "tag": "cafeespecial"},
+  "harvested_at": "2026-08-18T21:40:00+00:00",
+  "source": "tag_web_info",
+  "pages": [
+    {
+      "data": {
+        "top": {
+          "sections": [
+            {
+              "layout_content": {
+                "medias": [
+                  {
+                    "media": {
+                      "code": "EEE555",
+                      "taken_at": 1786000000,
+                      "media_type": 1,
+                      "user": {"username": "outro_perfil"},
+                      "caption": {"text": "meu cafe da manha"},
+                      "image_versions2": {
+                        "candidates": [
+                          {"url": "https://cdn.example/EEE555.jpg", "width": 1080, "height": 1080}
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "recent": {
+          "sections": [
+            {
+              "layout_content": {
+                "medias": [
+                  {
+                    "media": {
+                      "code": "FFF666",
+                      "taken_at": 1786086400,
+                      "media_type": 1,
+                      "user": {"username": "mais_um"},
+                      "caption": null,
+                      "image_versions2": {
+                        "candidates": [
+                          {"url": "https://cdn.example/FFF666.jpg", "width": 1080, "height": 1080}
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "layout_content": {
+                "one_by_two_item": {"clips": {"items": [{"media": {"code": "IGNORAR"}}]}}
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

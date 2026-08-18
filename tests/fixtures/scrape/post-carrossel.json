@@ -1,0 +1,44 @@
+{
+  "target": {"kind": "post", "slug": "post-DDD444", "shortcode": "DDD444"},
+  "harvested_at": "2026-08-18T21:35:00+00:00",
+  "source": "media_info",
+  "pages": [
+    {
+      "items": [
+        {
+          "code": "DDD444",
+          "taken_at": 1786000000,
+          "media_type": 8,
+          "user": {"username": "terceiro"},
+          "caption": {"text": "tres angulos"},
+          "carousel_media": [
+            {
+              "media_type": 1,
+              "image_versions2": {
+                "candidates": [
+                  {"url": "https://cdn.example/DDD444-1.webp", "width": 1080, "height": 1350}
+                ]
+              }
+            },
+            {
+              "media_type": 1,
+              "image_versions2": {
+                "candidates": [
+                  {"url": "https://cdn.example/DDD444-2.webp", "width": 1080, "height": 1350}
+                ]
+              }
+            },
+            {
+              "media_type": 1,
+              "image_versions2": {
+                "candidates": [
+                  {"url": "https://cdn.example/DDD444-3.webp", "width": 1080, "height": 1350}
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

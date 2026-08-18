@@ -20,7 +20,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 
 from ..errors import InstagramFormatError
-from .models import ScrapedItem
+from .models import HarvestBatch, ScrapedItem
 
 #: media_type do Instagram: 1 imagem, 2 video, 8 carrossel.
 _TIPO_VIDEO = 2
@@ -145,3 +145,108 @@ def _timestamp(valor) -> datetime | None:
         return datetime.fromtimestamp(int(valor), tz=timezone.utc)
     except (TypeError, ValueError, OSError):
         return None
+
+
+def parse_envelope(envelope: dict) -> HarvestBatch:
+    """O arquivo de `raspagem/_colheita/` -> lote parseado.
+
+    Aceita qualquer envelope no formato gravado por `harvest`, venha ele do
+    Playwright ou de um arquivo antigo em disco. Mesma regra do resto do
+    modulo: formato inesperado vira `InstagramFormatError`, nunca `KeyError`,
+    `AttributeError` ou `ValidationError` do Pydantic.
+    """
+    if not isinstance(envelope, dict):
+        raise InstagramFormatError(
+            f"envelope deveria ser objeto, veio {type(envelope).__name__}",
+            campo="envelope",
+        )
+
+    alvo = _objeto(envelope.get("target"), "target")
+    kind = alvo.get("kind")
+    if not kind:
+        raise InstagramFormatError(
+            "envelope sem 'target.kind'; nao da para saber como ler as paginas",
+            campo="target",
+        )
+    if not isinstance(kind, str) or kind not in _EXTRATORES:
+        raise InstagramFormatError(
+            f"alvo de tipo desconhecido: {kind!r} "
+            f"(esperado um de {sorted(_EXTRATORES)})",
+            campo="target.kind",
+        )
+
+    slug_bruto = alvo.get("slug")
+    if slug_bruto is not None and not isinstance(slug_bruto, str):
+        raise InstagramFormatError(
+            f"campo 'target.slug' deveria ser string, veio {type(slug_bruto).__name__}",
+            campo="target.slug",
+        )
+    slug = slug_bruto or kind
+
+    handle_bruto = alvo.get("handle")
+    fallback = handle_bruto if isinstance(handle_bruto, str) else ""
+
+    extrator = _EXTRATORES[kind]
+    itens: list[ScrapedItem] = []
+    for pagina in _lista(envelope.get("pages"), "pages"):
+        pagina_obj = _objeto(pagina, "pages[]")
+        for media in extrator(pagina_obj):
+            itens.extend(parse_media(media, owner_fallback=fallback))
+
+    return HarvestBatch(
+        target_slug=slug,
+        target_kind=kind,
+        harvested_at=_colhido_em(envelope.get("harvested_at")),
+        items=itens,
+    )
+
+
+def _medias_de_feed(pagina: dict) -> list:
+    """`/api/v1/feed/user/<id>/` e `/api/v1/media/<id>/info/` devolvem `items`.
+
+    Os elementos nao sao validados aqui - `parse_media` ja rejeita qualquer
+    coisa que nao seja objeto, entao validar duas vezes so duplicaria a regra.
+    """
+    return _lista(pagina.get("items"), "items")
+
+
+def _medias_de_hashtag(pagina: dict) -> list:
+    """`/api/v1/tags/web_info/` empacota em secoes, divididas em `top` e `recent`.
+
+    Secoes de clips (`one_by_two_item`) sao video em outro formato: no formato
+    delas nao ha chave `medias`, entao a secao simplesmente nao contribui nada
+    - sem precisar de um caso especial para reconhece-las.
+    """
+    encontrados: list = []
+    dados = _objeto(pagina.get("data"), "data")
+    for bloco_nome in ("top", "recent"):
+        bloco = _objeto(dados.get(bloco_nome), f"data.{bloco_nome}")
+        campo_secoes = f"data.{bloco_nome}.sections"
+        for secao in _lista(bloco.get("sections"), campo_secoes):
+            secao_obj = _objeto(secao, f"{campo_secoes}[]")
+            campo_layout = f"{campo_secoes}[].layout_content"
+            layout = _objeto(secao_obj.get("layout_content"), campo_layout)
+            campo_medias = f"{campo_layout}.medias"
+            for entrada in _lista(layout.get("medias"), campo_medias):
+                entrada_obj = _objeto(entrada, f"{campo_medias}[]")
+                media = entrada_obj.get("media")
+                if media is not None:
+                    encontrados.append(media)
+    return encontrados
+
+
+_EXTRATORES = {
+    "profile": _medias_de_feed,
+    "post": _medias_de_feed,
+    "hashtag": _medias_de_hashtag,
+}
+
+
+def _colhido_em(valor) -> datetime:
+    """`harvested_at` do envelope -> datetime. Ilegivel ou ausente vira agora."""
+    if isinstance(valor, str) and valor:
+        try:
+            return datetime.fromisoformat(valor)
+        except ValueError:
+            pass
+    return datetime.now(tz=timezone.utc)

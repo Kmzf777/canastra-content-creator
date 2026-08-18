@@ -1,0 +1,68 @@
+{
+  "target": {"kind": "profile", "slug": "cafecanastra", "handle": "cafecanastra"},
+  "harvested_at": "2026-08-18T21:30:00+00:00",
+  "source": "feed_user",
+  "pages": [
+    {
+      "more_available": true,
+      "next_max_id": "CURSOR_1",
+      "items": [
+        {
+          "code": "AAA111",
+          "taken_at": 1786000000,
+          "media_type": 1,
+          "user": {"username": "cafecanastra"},
+          "caption": {"text": "cafezal ao meio-dia"},
+          "image_versions2": {
+            "candidates": [
+              {"url": "https://cdn.example/AAA111-640.jpg", "width": 640, "height": 800},
+              {"url": "https://cdn.example/AAA111-1080.jpg", "width": 1080, "height": 1350}
+            ]
+          }
+        },
+        {
+          "code": "BBB222",
+          "taken_at": 1786086400,
+          "media_type": 8,
+          "user": {"username": "cafecanastra"},
+          "caption": {"text": "sequencia da torrefacao"},
+          "carousel_media": [
+            {
+              "media_type": 1,
+              "image_versions2": {
+                "candidates": [
+                  {"url": "https://cdn.example/BBB222-1.jpg", "width": 1080, "height": 1080}
+                ]
+              }
+            },
+            {
+              "media_type": 1,
+              "image_versions2": {
+                "candidates": [
+                  {"url": "https://cdn.example/BBB222-2.jpg", "width": 1080, "height": 1080}
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "more_available": false,
+      "items": [
+        {
+          "code": "CCC333",
+          "taken_at": 1786172800,
+          "media_type": 2,
+          "user": {"username": "cafecanastra"},
+          "caption": {"text": "video da colheita"},
+          "image_versions2": {
+            "candidates": [
+              {"url": "https://cdn.example/CCC333-capa.jpg", "width": 1080, "height": 1920}
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
