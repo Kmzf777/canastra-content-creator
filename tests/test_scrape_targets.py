@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import dataclasses
+
 import pytest
 
 from cie.errors import ScrapeError
@@ -113,3 +115,113 @@ def test_shortcode_vira_media_id(shortcode, esperado):
 def test_shortcode_com_caractere_invalido_e_recusado():
     with pytest.raises(ScrapeError):
         shortcode_to_media_id("abc!")
+
+
+def test_shortcode_alphabet_tail():
+    # Ultimos dois caracteres do alfabeto posicional do Instagram.
+    assert shortcode_to_media_id("_") == 63
+    assert shortcode_to_media_id("-") == 62
+
+
+def test_shortcode_vazio_e_recusado():
+    with pytest.raises(ScrapeError):
+        shortcode_to_media_id("")
+
+
+# --- Fix 1: urlparse nao pode vazar ValueError bruto ---------------------
+
+
+@pytest.mark.parametrize(
+    "entrada",
+    [
+        "[instagram.com/cafecanastra",
+        "[cafecanastra]/",
+        "https://insta[gram.com/x",
+        "]abc/",
+    ],
+)
+def test_link_malformado_vira_scrape_error_e_nao_value_error(entrada):
+    with pytest.raises(ScrapeError):
+        parse_target(entrada)
+
+
+# --- Fix 2: handle solto com ponto e aceito; host puro e recusado --------
+
+
+def test_handle_solto_com_ponto_e_aceito():
+    alvo = parse_target("cafe.canastra")
+    assert alvo == ProfileTarget(handle="cafe.canastra")
+
+
+@pytest.mark.parametrize("entrada", ["instagram.com", "www.instagram.com", "instagr.am"])
+def test_host_puro_sem_caminho_e_recusado(entrada):
+    with pytest.raises(ScrapeError):
+        parse_target(entrada)
+
+
+# --- Fix 3: handle com ponto duplo/nas pontas escapa do diretorio --------
+
+
+@pytest.mark.parametrize("entrada", ["@..", "@.", "@.abc", "@abc.", "@a..b"])
+def test_handle_com_pontos_invalidos_e_recusado(entrada):
+    with pytest.raises(ScrapeError):
+        parse_target(entrada)
+
+
+def test_handle_com_ponto_interno_valido_continua_aceito():
+    alvo = parse_target("@cafe.canastra_1")
+    assert alvo == ProfileTarget(handle="cafe.canastra_1")
+
+
+# --- Fix 4: hashtag nao pode ter caracteres ilegais no Windows -----------
+
+
+@pytest.mark.parametrize("entrada", ["#a:b", "#a*b", "#.."])
+def test_hashtag_com_caractere_ilegal_e_recusada(entrada):
+    with pytest.raises(ScrapeError):
+        parse_target(entrada)
+
+
+def test_hashtag_valida_continua_aceita():
+    alvo = parse_target("#cafeespecial")
+    assert alvo == HashtagTarget(tag="cafeespecial")
+
+
+# --- Fix 5: shortcode de post e validado contra o alfabeto ---------------
+
+
+@pytest.mark.parametrize(
+    "entrada",
+    [
+        "https://instagram.com/p/../../etc/",
+        "https://instagram.com/p/abc!def/",
+    ],
+)
+def test_shortcode_de_post_e_validado_no_parse(entrada):
+    with pytest.raises(ScrapeError):
+        parse_target(entrada)
+
+
+# --- Fix 6: kind e ClassVar, nao campo do dataclass -----------------------
+
+
+def test_kind_nao_e_campo_do_dataclass():
+    nomes = {campo.name for campo in dataclasses.fields(ProfileTarget)}
+    assert nomes == {"handle"}
+
+
+# --- Fix 7: esquema nao-http e recusado; URL protocol-relative e aceita --
+
+
+@pytest.mark.parametrize(
+    "entrada",
+    ["ftp://instagram.com/x", "javascript://instagram.com/x"],
+)
+def test_esquema_nao_http_e_recusado(entrada):
+    with pytest.raises(ScrapeError):
+        parse_target(entrada)
+
+
+def test_url_protocol_relative_e_aceita():
+    alvo = parse_target("//instagram.com/cafecanastra")
+    assert alvo == ProfileTarget(handle="cafecanastra")

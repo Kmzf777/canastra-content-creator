@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from typing import ClassVar, Literal
 from urllib.parse import urlparse
 
 from ..errors import ScrapeError
@@ -15,8 +16,17 @@ from ..errors import ScrapeError
 #: Alfabeto posicional que o Instagram usa para codificar media_id em shortcode.
 SHORTCODE_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 
-_HANDLE_RE = re.compile(r"^[A-Za-z0-9._]{1,30}$")
-_TAG_RE = re.compile(r"^[^\s/?#]{1,100}$")
+#: Handle real do Instagram: 1 a 30 caracteres, sem ponto na ponta nem ponto
+#: duplo - o slug vira nome de diretorio, entao ".." nao pode passar.
+_HANDLE_RE = re.compile(r"^(?!.*\.\.)[A-Za-z0-9_](?:[A-Za-z0-9._]{0,28}[A-Za-z0-9_])?$")
+#: Allowlist de caracteres de palavra (letras/digitos/underscore, unicode
+#: incluso) - evita ':', '*', '<', '>', '|', '\' que o Windows nao aceita
+#: em nome de arquivo.
+_TAG_RE = re.compile(r"^\w{1,100}$")
+
+#: Hosts do Instagram aceitos - usado tanto no atalho de host puro quanto na
+#: validacao da URL completa.
+_HOSTS = {"instagram.com", "instagr.am", "m.instagram.com"}
 
 #: Primeiros segmentos de caminho que o Instagram reserva - nenhum e handle.
 _RESERVADOS = {
@@ -32,7 +42,7 @@ class ProfileTarget:
 
     handle: str
 
-    kind = "profile"
+    kind: ClassVar[Literal["profile"]] = "profile"
 
     @property
     def slug(self) -> str:
@@ -45,7 +55,7 @@ class PostTarget:
 
     shortcode: str
 
-    kind = "post"
+    kind: ClassVar[Literal["post"]] = "post"
 
     @property
     def slug(self) -> str:
@@ -58,7 +68,7 @@ class HashtagTarget:
 
     tag: str
 
-    kind = "hashtag"
+    kind: ClassVar[Literal["hashtag"]] = "hashtag"
 
     @property
     def slug(self) -> str:
@@ -95,14 +105,35 @@ def parse_target(raw: str) -> Target:
     if texto.startswith("#"):
         return _hashtag(texto[1:])
 
-    # Handle solto: sem barra, sem ponto, sem esquema.
-    if "/" not in texto and "." not in texto and ":" not in texto:
+    # Sem barra e sem esquema: so pode ser handle - handles com ponto sao comuns.
+    if "/" not in texto and ":" not in texto:
+        if texto.lower().removeprefix("www.") in _HOSTS:
+            raise ScrapeError(
+                "a URL nao aponta para nada: use instagram.com/<perfil>, "
+                "instagram.com/p/<codigo> ou instagram.com/explore/tags/<tag>"
+            )
         return _perfil(texto)
 
-    candidato = texto if "://" in texto else f"https://{texto}"
-    url = urlparse(candidato)
+    if "://" in texto:
+        candidato = texto
+    elif texto.startswith("//"):
+        # URL protocol-relative (comum em copia-e-cola) - prefixo sem as barras.
+        candidato = f"https:{texto}"
+    else:
+        candidato = f"https://{texto}"
+
+    try:
+        url = urlparse(candidato)
+    except ValueError as erro:
+        raise ScrapeError(f"link malformado, nao consegui interpretar {texto!r}: {erro}") from erro
+
+    if url.scheme and url.scheme not in ("http", "https"):
+        raise ScrapeError(
+            f"esquema {url.scheme!r} nao e suportado: use um link http(s) do instagram.com"
+        )
+
     host = (url.netloc or "").lower().removeprefix("www.")
-    if host not in {"instagram.com", "instagr.am", "m.instagram.com"}:
+    if host not in _HOSTS:
         raise ScrapeError(
             f"esta ferramenta so entende links do instagram.com; recebi {host or texto!r}"
         )
@@ -119,7 +150,14 @@ def parse_target(raw: str) -> Target:
     if primeiro == "p":
         if len(partes) < 2:
             raise ScrapeError("URL de post sem codigo depois de /p/")
-        return PostTarget(shortcode=partes[1])
+        shortcode = partes[1]
+        for char in shortcode:
+            if char not in SHORTCODE_ALPHABET:
+                raise ScrapeError(
+                    f"shortcode invalido em {shortcode!r}: caractere {char!r} nao "
+                    f"pertence ao alfabeto do Instagram"
+                )
+        return PostTarget(shortcode=shortcode)
 
     if primeiro in {"reel", "reels", "tv"}:
         raise ScrapeError(
