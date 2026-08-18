@@ -21,6 +21,7 @@ from .config import get_settings
 from .db import applied_migrations, open_db, pending_migrations
 from .enums import Location, Pillar, Sku
 from .ingest import ingest_directory
+from .scrape.cli import app as scrape_app
 
 app = typer.Typer(
     help="Canastra Image Engine - a IA edita e estende o real; nao inventa o real.",
@@ -38,6 +39,7 @@ app.add_typer(templates_app, name="templates")
 app.add_typer(dna_app, name="dna")
 app.add_typer(queue_app, name="queue")
 app.add_typer(report_app, name="report")
+app.add_typer(scrape_app, name="scrape")
 
 console = Console()
 
