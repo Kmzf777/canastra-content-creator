@@ -6,27 +6,43 @@ CIE.
 
 ---
 
-## 1. O teto que voce precisa saber antes de usar isto
+## 1. O que NAO protege voce aqui
 
-`cie/imaging.py` fixa:
+Este documento afirmava, ate 18/08/2026, que o Instagram entregava no maximo 1080px e
+que por isso `is_reference_grade` reprovaria toda imagem raspada. **Isso era falso.**
 
-```python
-REFERENCE_MIN_SIDE = 1200
-```
+A primeira colheita real (`@lacabracoffee`, 40 imagens) mediu:
 
-`is_reference_grade()` so aprova uma foto como referencia se o lado menor tiver pelo
-menos esses 1200 px (alem do `quality_score` minimo). O Instagram entrega imagem no
-maximo em **1080px** de lado. Logo, **nenhuma imagem raspada aqui pode virar pixel de
-saida neste sistema** — `is_reference_grade` reprova todas, sempre.
+| Dimensao entregue | Arquivos | Menor lado | Passa de `REFERENCE_MIN_SIDE = 1200`? |
+|---|---:|---:|:---:|
+| 1080 x 1355 | 19 | 1080 | nao |
+| 1281 x 1611 | 21 | 1281 | **sim** |
 
-Isso nao e uma limitacao a contornar. E a regra da casa funcionando:
+21 de 40 passam do limiar, e 11 de 40 passam como reference-grade completo (limiar de
+lado **e** `quality_score >= 70`). O Instagram serve acima de 1080px, e nada garante
+que esse numero nao suba de novo.
+
+### O que realmente separa mood de materia-prima
+
+Nada no codigo. Concretamente, hoje:
+
+* `cie/ingest.py` nao tem nocao de camada - nao distingue `03-mood-terceiros` de
+  `01-real-verificada`;
+* `cie/guardrails.py` tem regra para rosto, embalagem e qualidade de referencia, mas
+  **nenhuma sobre procedencia de terceiro**;
+* a separacao vive em `base-curada/LEIA-ME.md`, como convencao de pasta e disciplina
+  humana.
+
+A regra da casa continua valendo como regra:
 
 > ### A IA edita e estende o real; a IA nao inventa o real.
 
-Material de terceiro (ou ate o proprio feed da marca, ja recomprimido pelo Instagram)
-nunca e materia-prima de composicao. Ele serve para uma coisa so: virar descritor
-textual de estilo — mood, paleta, enquadramento — para alimentar humano ou Style DNA.
-A ferramenta e construida assumindo esse teto, nao lutando contra ele.
+Mas ela e sustentada por voce, na curadoria, nao pelo motor. Uma foto da La Cabra
+raspada por esta ferramenta, movida para `01-real-verificada` por engano, seria aceita
+pelo `cie ingest` e poderia virar pixel de saida. O unico obstaculo e o passo humano.
+
+**Enquanto nao houver guardrail de procedencia, trate `raspagem/` como material que so
+pode virar descritor textual — e nao confie no motor para lembrar disso por voce.**
 
 ---
 

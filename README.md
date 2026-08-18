@@ -26,7 +26,7 @@ base de fotos reais como materia-prima, nao para substitui-la.
 | Toda imagem sabe se precisa de rotulagem de IA | `generations.disclosure_required` + `manifest.json` do lote |
 | Nada gasta credito por acidente | `--dry-run` e o padrao de `generate` e `queue run`; `--execute` exige `--budget-usd` |
 | Nenhum parametro de API foi inventado | tudo atras de `cie/capabilities.py`, preenchido por `scripts/probe_api.py` |
-| Imagem raspada do Instagram nunca vira pixel de saida | `REFERENCE_MIN_SIDE` (`cie/imaging.py`) e maior que o teto de 1080px do Instagram — detalhes em [docs/RASPAGEM.md](docs/RASPAGEM.md) |
+| Imagem raspada do Instagram **nao** e barrada de virar pixel de saida | lacuna conhecida: o Instagram entrega ate 1281px, acima de `REFERENCE_MIN_SIDE`. Nenhum guardrail cobre procedencia de terceiro — ver [docs/RASPAGEM.md](docs/RASPAGEM.md) |
 
 Os campos `has_identifiable_person` e `consent_on_file` **nunca** sao preenchidos pela maquina.
 Entram no default mais restritivo (pessoa presumida presente, consentimento ausente) e so mudam

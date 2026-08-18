@@ -1,7 +1,15 @@
 async (params) => {
   // Colhe o feed de um perfil.
   // params: {appId, handle, limit}   limit === 0 significa "tudo".
-  // Retorna: {source, handle, userId, pages} ou {error}.
+  // Retorna: {source, handle, pages} ou {error}.
+  //
+  // Usa /api/v1/feed/user/<username>/username/, que aceita o handle direto.
+  // A rota anterior passava por /api/v1/users/web_profile_info/ so para
+  // descobrir o user id numerico. Em 18/08/2026 esse endpoint passou a devolver
+  // HTTP 400 com "Asset asset://laser.provider/ig_business_category_subvertical
+  // has been deleted" - quebra do lado do Instagram, que atingia todo perfil
+  // testado, comercial ou nao. A rota por username dispensa aquela chamada
+  // inteira, entao alem de consertar ficou uma requisicao mais curta.
   const headers = {
     "X-IG-App-ID": params.appId,
     "X-Requested-With": "XMLHttpRequest",
@@ -15,25 +23,14 @@ async (params) => {
   };
 
   try {
-    const perfil = await pedir(
-      `/api/v1/users/web_profile_info/?username=${encodeURIComponent(params.handle)}`
-    );
-    const userId = perfil?.data?.user?.id;
-    if (!userId) {
-      return {
-        error:
-          `perfil @${params.handle} nao encontrado, ou a sessao nao esta logada. ` +
-          `Rode 'cie scrape login' e tente de novo.`,
-      };
-    }
-
+    const base = `/api/v1/feed/user/${encodeURIComponent(params.handle)}/username/`;
     const pages = [];
     let colhidos = 0;
     let maxId = null;
 
     while (params.limit === 0 || colhidos < params.limit) {
       const restante = params.limit === 0 ? 12 : Math.min(12, params.limit - colhidos);
-      let url = `/api/v1/feed/user/${userId}/?count=${restante}`;
+      let url = `${base}?count=${restante}`;
       if (maxId) url += `&max_id=${encodeURIComponent(maxId)}`;
 
       const pagina = await pedir(url);
@@ -50,7 +47,15 @@ async (params) => {
       await new Promise((r) => setTimeout(r, 1200));
     }
 
-    return { source: "feed_user", handle: params.handle, userId, pages };
+    if (pages.length === 0) {
+      return {
+        error:
+          `perfil @${params.handle} nao devolveu nenhum post. Perfil inexistente, ` +
+          `privado, sem publicacoes, ou a sessao caiu. Rode 'cie scrape status'.`,
+      };
+    }
+
+    return { source: "feed_user", handle: params.handle, pages };
   } catch (erro) {
     return { error: String(erro && erro.message ? erro.message : erro) };
   }
