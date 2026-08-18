@@ -37,6 +37,9 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["cie"]
 
+[tool.hatch.build.targets.wheel.force-include]
+"cie/scrape/js" = "cie/scrape/js"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
