@@ -7,14 +7,32 @@ humana os preenche. A raspagem nao tem direito de opinar sobre eles.
 
 from __future__ import annotations
 
+import re
 from datetime import datetime
 from pathlib import PurePosixPath
 from urllib.parse import urlparse
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 #: Extensoes que o CDN do Instagram devolve. Fora dessa lista, cai para .jpg.
 _EXTENSOES_CONHECIDAS = {".jpg", ".jpeg", ".png", ".webp", ".heic"}
+
+#: Fora desta lista, o caractere vira "_": tudo que segue vai virar caminho.
+_CARACTERE_INSEGURO = re.compile(r"[^A-Za-z0-9._-]")
+
+
+def caminho_seguro(valor: str, *, padrao: str) -> str:
+    """Neutraliza o que poderia escapar do diretorio de saida.
+
+    Nao e cosmetico: `shortcode` e `target_slug` viram componente de caminho, e
+    ambos chegam de fora - um do JSON do Instagram, outro de um envelope que o
+    usuario pode ter editado a mao.
+    """
+    limpo = _CARACTERE_INSEGURO.sub("_", valor or "")
+    while ".." in limpo:
+        limpo = limpo.replace("..", "_")
+    limpo = limpo.strip(". ")
+    return limpo or padrao
 
 
 class ScrapedItem(BaseModel):
@@ -42,7 +60,8 @@ class ScrapedItem(BaseModel):
     def filename(self) -> str:
         """`<data>_<shortcode>_<indice>.<ext>` - ordenavel e rastreavel a origem."""
         data = self.taken_at.strftime("%Y-%m-%d") if self.taken_at else "sem-data"
-        return f"{data}_{self.shortcode}_{self.carousel_index}{self.extension}"
+        shortcode_seguro = caminho_seguro(self.shortcode, padrao="sem-codigo")
+        return f"{data}_{shortcode_seguro}_{self.carousel_index}{self.extension}"
 
 
 class HarvestBatch(BaseModel):
@@ -54,6 +73,12 @@ class HarvestBatch(BaseModel):
     target_kind: str
     harvested_at: datetime
     items: list[ScrapedItem] = Field(default_factory=list)
+
+    @field_validator("target_slug", mode="after")
+    @classmethod
+    def _sanitiza_target_slug(cls, v: str) -> str:
+        """Slug vira nome de diretorio - sem proveniencia a preservar aqui."""
+        return caminho_seguro(v, padrao="sem-alvo")
 
     @property
     def images(self) -> list[ScrapedItem]:
