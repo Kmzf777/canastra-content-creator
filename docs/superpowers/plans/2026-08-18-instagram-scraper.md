@@ -342,6 +342,28 @@ Expected: FAIL com `ModuleNotFoundError: No module named 'cie.scrape.targets'`
 
 - [ ] **Step 3: Implemente `targets.py`**
 
+> **Nota pos-execucao (commit `3c37581`).** O bloco abaixo foi implementado como
+> escrito e a revisao de codigo achou defeitos reais **na propria redacao deste
+> plano**, corrigidos em seguida. Se voce estiver reimplementando do zero, use
+> `cie/scrape/targets.py` como referencia, nao este bloco. O que mudou:
+>
+> * `urlparse` vaza `ValueError` em link com colchete (`[instagram.com/x`) —
+>   agora embrulhado em `ScrapeError`;
+> * o guarda `"." not in texto` rejeitava handle com ponto (`cafe.canastra`),
+>   que e comum — removido, com `_HOSTS` cobrindo o caso de digitar so o dominio;
+> * `_HANDLE_RE` aceitava `.` e `..`, e `slug` vira nome de diretorio: `raspagem/..`
+>   escapa para a raiz do repo. Agora exige comeco e fim alfanumerico, sem `..`;
+> * `_TAG_RE` era denylist e passava `:` e `*`, ilegais em caminho no Windows —
+>   virou allowlist `^\w{1,100}$`;
+> * o shortcode de `/p/` nao era validado: `/p/../../etc/` virava `slug` `post-..`;
+> * `kind` virou `ClassVar[Literal[...]]`, para nao virar campo do dataclass por
+>   acidente e para permitir narrowing do union `Target`;
+> * esquema nao-http (`ftp://`, `javascript://`) agora e recusado, e URL
+>   protocolo-relativa (`//instagram.com/x`) passou a funcionar.
+>
+> Licao para as tasks seguintes: `slug` e nome de diretorio. Toda validacao que
+> alimenta `slug` e defesa de path traversal, nao capricho.
+
 Crie `cie/scrape/targets.py`:
 
 ```python
