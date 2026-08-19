@@ -1,0 +1,40 @@
+nome: luz-sol-pino
+descricao: |
+  A luz real da fazenda Medeiros e SOL A PINO: ceu azul com cumulus de borda dura,
+  sombra curta e dura, meio-dia de marco. Medido no EXIF das fotos base (iPhone 7,
+  ISO 20, f/1.8) - e foi nessas mesmas fotos que o alvo de calibracao de camera foi
+  medido, entao pedir outra luz desalinha a geracao do alvo.
+
+  O que corrige: a rodada anterior (`_ref-scripts/humanizar.py` e
+  `_ref-scripts/carrossel.py`) descrevia "sol atras de nuvem alta, dia nublado".
+  Isso era invencao - nao existe naquele lugar naquele horario. Com o nublado o
+  modelo entrega sombra longa e macia e uma cena que nao casa com nenhuma foto
+  real da base.
+
+  Versao escolhida: `_ref-scripts/espontaneo.py`, bloco LUZ (a mais recente).
+  Verificada em `_ref-scripts/prompts/1-capa-sombra-prompt.txt`,
+  `2-classico-poste-prompt.txt` e `3-suave-chao-prompt.txt`.
+
+  Regra travada em `tests/test_blocos.py`: nenhum bloco de luz pode afirmar
+  `overcast` nem `cloudy`. As duas palavras so aparecem NEGADAS no texto, e
+  aparecem como termo negativo na lista abaixo.
+texto: |
+  THE LIGHT IS HARSH OVERHEAD MIDDAY SUN, exactly as in the source photograph. A
+  bright blue sky with hard-edged white cumulus. The sun is almost straight up, so shadows
+  are SHORT, SMALL and fall almost directly beneath things, and their edges are HARD and
+  sharply defined, not soft. Strong contrast between the lit red earth and the dark
+  interior of the coffee bushes. The lit ground is bright and slightly bleached out. This is
+  the middle of a dry-season day, not a soft morning, not overcast, not golden hour.
+negativos:
+  - overcast
+  - cloudy
+  - flat soft light
+  - diffused light
+  - golden hour
+  - warm glow
+  - amber light
+  - orange grading
+  - rim light
+  - dramatic long shadows
+  - deep black shadows
+  - crushed blacks

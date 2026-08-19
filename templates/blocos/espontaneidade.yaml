@@ -1,0 +1,54 @@
+nome: espontaneidade
+descricao: |
+  Instantaneo descartavel, tirado em dois segundos com uma mao. Ninguem compos,
+  ninguem arrumou, ninguem moveu nada para a foto. Quadro torto, horizonte fora de
+  nivel, assunto de lado, bordas cortando coisas.
+
+  O que corrige: o modelo tende ao centro, a simetria e ao "heroi de produto".
+  Tambem elimina o derramado arrumado e o objeto atravessado por cima, que a
+  rodada anterior ainda produzia. E fecha a porta para pessoa em quadro - rosto de
+  pessoa real nunca e sintetizado neste projeto, entao nenhuma pessoa entra por
+  geracao.
+
+  Versao escolhida: `_ref-scripts/espontaneo.py`, bloco ESPONTANEO (a mais
+  recente e a mais completa). Divergencia descartada: `gemini_gerar.py` traz uma
+  compressao do mesmo bloco, sem "nobody moved anything into place for the
+  photograph"; `humanizar.py` e `carrossel.py` traziam o bloco FONE, que misturava
+  espontaneidade com anti-anuncio numa frase so.
+
+  A negacao de anuncio ("NOT a product photograph, NOT an advertisement") vive nos
+  negativos abaixo, e nao no texto, para nao repetir instrucao em dois lugares.
+texto: |
+  This is a throwaway snapshot, taken in about two seconds with one hand.
+  Nobody composed it, nobody arranged anything, nobody moved anything into place for the
+  photograph. Nothing is spilled artfully, nothing is laid across anything else, nothing is
+  centred. The frame is tilted a few degrees, the horizon is not level, the subject sits off
+  to one side, and the edges cut through things arbitrarily. NO PEOPLE VISIBLE - no hands,
+  no arms, no faces, nobody in frame.
+negativos:
+  - styled arrangement
+  - artful spill
+  - arranged beans
+  - food styling
+  - styled set
+  - studio lighting
+  - softbox
+  - reflector
+  - product photography
+  - catalogue photography
+  - advertisement
+  - commercial hero shot
+  - symmetrical centred composition
+  - tidy
+  - people
+  - person
+  - hand
+  - hands
+  - arm
+  - fingers
+  - face
+  - watermark
+  - text overlay
+  - 3d render
+  - CGI
+  - illustration

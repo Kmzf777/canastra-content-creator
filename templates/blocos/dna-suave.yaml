@@ -1,0 +1,97 @@
+nome: dna-suave
+descricao: |
+  DNA textual da embalagem SUAVE 250g: papel kraft natural, tinta PRETA chapada,
+  caixa de linha fina `SPECIALTY / ESPECIAL / SCA 80+`, rodape `SUAVE` /
+  `TORRADO E MOIDO`.
+
+  Quando usar: apenas no fluxo 2, o do Gemini, que trata a foto de referencia como
+  INSPIRACAO e REDESENHA o rotulo a partir dela. No fluxo 1 (`/images/edits` da
+  xAI) NAO use este bloco - use `preservar-embalagem`, porque descrever a arte faz
+  o modelo redesenhar e produzir um sosia da marca.
+
+  O que corrige, em duas camadas:
+    1. Camada de forma (herdada de `_ref-scripts/dna_v2.py`, verificada em 5
+       geracoes). A v1 do DNA dizia `jagged peaks` e os TRES modelos desenharam,
+       obedientemente, pico alpino pontudo. A Serra da Canastra e uma CHAPADA de
+       topo plano. O erro nao era do modelo: era da especificacao. A v2 corrigiu
+       quatro pontos - topo plano, acento em `Café`, simbolo `®`, e pincel seco com
+       falha de tinta em vez de vetor limpo.
+    2. Camada de ortografia (herdada de `_ref-scripts/gemini_cadeira_dna.py`,
+       bloco DNA_BLINDADO, a mais recente). O Gemini ja tinha escrito `SOSCIALTY`
+       e `288g`. A defesa e citar cada string entre aspas, soletrar
+       `S-P-E-C-I-A-L-T-Y` e nomear os digitos de `250g` um a um.
+
+  Fidelidade de rotulo escala com o tamanho no quadro: abaixo de ~30% da altura,
+  conte com erro de letra mesmo com este bloco. Gere 2-3 variantes e escolha.
+
+  Regras travadas em `tests/test_blocos.py`: nenhuma parte AFIRMATIVA do texto
+  pode conter `jagged peaks`, `alpine` ou `pointed summits` (so aparecem negadas);
+  `"SPECIALTY"` soletrado e `"250g"` com os digitos nomeados sao obrigatorios.
+texto: |
+  CRITICAL PACKAGING ACCURACY - read this before anything else. The reference image of the
+  coffee package is a real, legally-exact product label. You are photographing the REAL
+  OBJECT, not designing a new one. Every printed character must be copied letter-for-letter
+  and digit-for-digit exactly as shown in that reference. Getting even one letter or number
+  wrong is a failure of this task, more important than any other instruction below.
+
+  The coffee package is a 250g flat-bottom kraft paper pouch, natural unbleached brown
+  paper, visibly fibrous, with soft vertical creases and inward side gussets. It is
+  noticeably TALLER THAN WIDE, roughly 3 units tall to 2 wide. The top is a straight
+  crimped fold, not a zip lock, not a plastic slider. A small round embossed degassing vent
+  with one dark centre dot sits on the front panel above the artwork.
+
+  All artwork is a single flat matte BLACK ink printed straight onto the bare kraft. No
+  white label, no sticker, no second colour, no gloss, no foil.
+
+  The artwork, top to bottom:
+    - A mountain range drawn in thin sketchy open line. CRITICAL: this range is a LOW,
+      WIDE, FLAT-TOPPED TABLELAND - a plateau escarpment whose upper edge runs almost
+      HORIZONTAL with only small shallow irregular notches and one gentle rounded high
+      point, with fine vertical striations down its face. It is emphatically NOT an alpine
+      mountain, NOT sharp triangular peaks, NOT tall pointed summits, NOT a Swiss or
+      Himalayan skyline. It is a long flat mesa ridge, wider than it is tall, sitting low
+      and spread out behind the lettering. Three tiny V-shaped bird marks fly at its far
+      upper left.
+    - Overlapping and in front of that ridge, slightly right of centre: the word "Cafe"
+      written small in a slanted handwritten script - and it MUST carry an ACUTE ACCENT
+      over the final e, reading "Café" with the accent mark, never a bare e.
+    - Directly below, very large: "CANASTRA" in a thick DRY BRUSH script. The strokes are
+      uneven and partly broken, with the paper fibre showing through the ink in places, the
+      way a loaded brush skips on rough stock. Not a clean vector font, not smooth.
+    - A single heavy tapering brush swash sweeps underneath "CANASTRA", thick at its left
+      end where it starts as a blob and thinning to a point at the right.
+    - A very small (R) registered trademark symbol at the upper right of the final A.
+    - "Desde 1985" small and handwritten, sitting to the lower RIGHT, just above the
+      swash's thin end.
+    - Below, centred: a thin single-line rectangle outline containing exactly three stacked
+      lines, spelled EXACTLY: "SPECIALTY" small and letterspaced, "ESPECIAL" large and
+      bold, "SCA 80+" small. That first word is "SPECIALTY", nine letters,
+      S-P-E-C-I-A-L-T-Y, never "SOSCIALTY" or any other variant.
+    - Bottom left, small sans-serif caps, two lines: "SUAVE" over "TORRADO E MOIDO", where
+      MOIDO carries an acute accent on the I, reading "MOÍDO".
+    - Bottom right, inside a small rounded rectangle outline, exactly: "250g" - the weight
+      is TWO HUNDRED AND FIFTY GRAMS, the digits are "2", "5", "0", never "288" or any
+      other number.
+
+  The package is the subject of the photograph. Every one of those words must be legible
+  and spelled exactly as written. Before finishing, re-check every printed character on the
+  package against this list.
+negativos:
+  - sharp triangular mountain peaks
+  - alpine summits
+  - tall pointed mountains
+  - Swiss alps skyline
+  - white rectangular label
+  - printed sticker
+  - glossy foil
+  - second ink colour
+  - zip lock top
+  - plastic slider
+  - warped text
+  - distorted logo
+  - gibberish lettering
+  - misspelled words
+  - missing accent
+  - invented brand name
+  - different logo
+  - clean vector lettering

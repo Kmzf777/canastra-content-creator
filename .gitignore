@@ -22,3 +22,4 @@ venv/
 .coverage
 htmlcov/
 saida-teste/
+_ref-scripts/

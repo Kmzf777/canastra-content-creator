@@ -1,0 +1,48 @@
+nome: foco-profundo
+descricao: |
+  Bloco anti-bokeh. E o bloco MAIS IMPORTANTE do conjunto e o unico que o
+  compositor se recusa a montar sem: desfoque NAO se desfaz em pos. Tone mapping,
+  ruido, halo e artefato de JPEG se adicionam depois; profundidade de campo rasa,
+  nao. Morre na geracao ou nao morre.
+
+  A fisica a descrever: sensor 1/1.7" a f/1.8 da profundidade de campo enorme,
+  tudo igualmente nitido, distancia suaviza por nevoa e nunca por desfoco, cantos
+  moles por lente larga barata.
+
+  O que corrige: `grok-imagine-image-2.0` tem vies forte para fotografia comercial
+  polida. Sem este bloco ele entrega anuncio com fundo desfocado; com ele, cena de
+  celular. Foi a variavel unica testada em `_ref-scripts/antibokeh.py`.
+
+  Versao escolhida: `_ref-scripts/espontaneo.py`, bloco FOCO (a mais recente).
+  Divergencias entre versoes:
+    - `antibokeh.py` / `prompt-antibokeh.txt`: mais enfatico ("CRITICAL", "almost
+      infinite depth of field"), porem preso a cena da mesa (mesa, caneco, pires).
+    - `carrossel.py`: redacao neutra de cena ("Foreground and far background"),
+      porem sem o paragrafo de canto mole na mesma frase.
+    - `espontaneo.py`: mais recente, junta foco profundo + canto mole + ruido +
+      blocking de JPEG num bloco so. Adotada.
+  Consequencia assumida: a clausula de cena e a da lavoura ("the rows far up the
+  slope"). Em cena urbana ou de cozinha, troque essa frase ao usar o bloco.
+
+  Regra travada em `tests/test_blocos.py`: `montar()` inclui este bloco por padrao
+  e levanta erro se uma lista explicita de blocos vier sem ele.
+texto: |
+  EVERYTHING IN THE FRAME IS SHARP. Tiny 1/1.7 inch phone sensor at f/1.8, enormous
+  depth of field. Near ground and the rows far up the slope are ALL equally crisp and
+  detailed. NO focus falloff, NO background blur, NO bokeh, NO subject separation. Distance
+  reads faint from dust haze only, never from defocus. The four CORNERS are visibly SOFTER
+  and slightly smeared the way a cheap wide phone lens falls apart away from centre. Fine
+  luminance noise in the shadows, faint JPEG blocking in the flat sky.
+negativos:
+  - blurred background
+  - defocused background
+  - background blur
+  - out of focus leaves
+  - bokeh
+  - bokeh balls
+  - depth of field falloff
+  - subject separation
+  - shallow focus
+  - selective focus
+  - portrait mode
+  - lens blur
