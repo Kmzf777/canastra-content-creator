@@ -112,6 +112,84 @@ Regras que não se negociam:
 
 ---
 
+## Raspagem do Instagram (`cie scrape`)
+
+Cole um link de perfil, post ou hashtag; as imagens caem em `raspagem/` com
+proveniência registrada. Detalhes em `docs/RASPAGEM.md`.
+
+Extra opcional — não vem no `sync` normal, usa o Chrome já instalado e **não**
+baixa Chromium:
+
+```bash
+python -m uv sync --extra scrape
+```
+
+Login uma vez. A sessão fica em `.cie/browser-profile/` (gitignored):
+
+```bash
+python -m uv run cie scrape login     # abre o Chrome; logue e deixe a janela aberta
+python -m uv run cie scrape status    # a sessão salva ainda está logada?
+```
+
+**Use uma conta secundária.** Raspagem pesada rende bloqueio temporário, e é a
+conta logada aí que leva.
+
+```bash
+python -m uv run cie scrape run https://www.instagram.com/lacabracoffee/ --limit 30
+python -m uv run cie scrape run https://www.instagram.com/p/DX61hmijlDI/
+python -m uv run cie scrape run @cafecanastra --dry-run
+```
+
+| Opção | Padrão | Efeito |
+|---|---|---|
+| `--limit N` | 12 | posts a colher; `0` = todos |
+| `--out DIR` | `raspagem/` | raiz de saída |
+| `--delay S` | 1.0 | pausa entre downloads |
+| `--dry-run` | desligado | lista o que baixaria, não baixa |
+| `--show-browser` | desligado | abre a janela em vez de headless |
+
+Reel é recusado no parse do link (vídeo não é referência de imagem estática).
+Vídeo dentro de carrossel é pulado, não é erro.
+
+Quando quebrar, os dois estágios se separam — o JSON cru é gravado **antes** de
+qualquer download, então a colheita não se perde:
+
+```bash
+python -m uv run cie scrape harvest @alvo --limit 30        # só o JSON cru
+python -m uv run cie scrape collect raspagem/_colheita/<arq>.json   # só o download
+```
+
+### Onde as coisas caem
+
+```
+raspagem/                                   (gitignored)
+  _colheita/<alvo>-<carimbo>.json           JSON cru da colheita
+  <handle>/2026-05-04_DX61hmijlDI_1.jpg     imagem
+  <handle>/2026-05-04_DX61hmijlDI_1.json    sidecar de proveniência
+  _manifest.json                            índice por sha256
+```
+
+O sidecar guarda post_url, handle, shortcode, índice no carrossel, URL do CDN,
+dimensões, sha256 e quando foi raspado. **Não** guarda `has_identifiable_person`
+nem `consent_on_file` — esses só existem em `Asset` e só a curadoria humana
+preenche.
+
+### O que a raspagem NÃO protege
+
+`cie scrape` para em `raspagem/`. Mover para `base-curada/` é decisão humana.
+
+E a proteção é só essa. Medido em 18/08/2026, na primeira colheita real: **21 de
+40 imagens vieram em 1281×1611**, acima de `REFERENCE_MIN_SIDE = 1200`, e 11
+passariam como reference-grade completo. `cie/ingest.py` não conhece camada e
+`cie/guardrails.py` não tem regra de procedência — nada no código impede uma foto
+de terceiro raspada daqui de virar pixel de saída se alguém a mover para
+`01-real-verificada`.
+
+Trate `raspagem/` como material que só vira descritor textual, e não conte com o
+motor para lembrar disso.
+
+---
+
 ## Regras de geração
 
 Tudo abaixo foi medido ou obtido por erro da API, não inferido.
@@ -287,3 +365,11 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
    explicitamente e negue as variações.
 9. **Commit de outra sessão caiu na minha branch** → duas sessões no mesmo
    diretório git → use worktree.
+10. **Documentei uma garantia que não existia** → afirmei que o Instagram entrega no
+    máximo 1080px, logo nada raspado passaria em `is_reference_grade`; li meu próprio
+    `Counter` errado (o número que eu olhava era a altura) e o Instagram entrega
+    1281px → não transforme em garantia escrita aquilo que você não mediu no arquivo
+    real. Proteção que depende de um número do fornecedor não é proteção, é acidente.
+11. **`python -m uv` sumiu do venv** → `uv sync` remove tudo que não está declarado no
+    `pyproject.toml`, e o `uv` instalado via pip era exatamente isso → depois de
+    qualquer `uv sync`, confira as ferramentas que vivem no venv sem estar no lock.
