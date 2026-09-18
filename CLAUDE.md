@@ -373,3 +373,18 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
 11. **`python -m uv` sumiu do venv** → `uv sync` remove tudo que não está declarado no
     `pyproject.toml`, e o `uv` instalado via pip era exatamente isso → depois de
     qualquer `uv sync`, confira as ferramentas que vivem no venv sem estar no lock.
+12. **O Gemini segura o enquadramento quando o prompt é ordem de edição, não de cena**
+    → em 18/08 concluí que "o Gemini trata a referência como inspiração"; o teste era
+    de *geração de cena*, onde ele de fato reconstrói. Numa **troca de fundo** com o
+    prompt aberto em `EDIT THE PROVIDED PHOTOGRAPH` + `KEEP THE PACKAGE
+    PIXEL-FOR-PIXEL IDENTICAL`, os 3 SKUs saíram com posição, escala, recorte, vincos
+    e brilho especular indistinguíveis da fonte (conferido por blend a 50% —
+    `saida-teste/site-fundo-branco/_conferencia-posicao.jpg`) → a frase "referência é
+    inspiração" vale para cena, não para edição. Abra o prompt nomeando a operação.
+13. **`Desde 1985` virou `Doodo 1985` e `TORRADO E MOÍDO` virou `TRODULB E HÚMO`**
+    numa troca de fundo que não pedia mudança nenhuma no rótulo → o Gemini
+    **redesenha o quadro inteiro**, não copia pixel; então tipografia pequena é
+    reescrita mesmo em "edição", e abaixo de ~2% da altura do quadro ela não
+    sobrevive. Deu 1 acerto em 3 no Clássico, 1 em 1 no Suave e no Canela (texto
+    maior) → em troca de fundo, `--n 3` e confira **com recorte ampliado da faixa de
+    texto**, não olhando a imagem inteira: em miniatura os três erros passam batido.
