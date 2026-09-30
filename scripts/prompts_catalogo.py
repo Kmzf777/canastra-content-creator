@@ -33,7 +33,7 @@ ANCORA = "saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg"
 # blocos reaproveitados
 # --------------------------------------------------------------------------- #
 
-#: O tratamento de estudio. Identico em todas as 85 imagens - e o que faz o
+#: O tratamento de estudio. Identico em todas as imagens do catalogo - e o que faz o
 #: catalogo parecer uma sessao so, e nao 85 fotos avulsas.
 ESTUDIO = """\
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial \
@@ -55,12 +55,12 @@ reflection of the package on the floor."""
 #: O que impede o "heroi de produto" com camera no chao e o pacote tombando.
 def enquadramento(ocupacao: int, orientacao: str = "straight on, front face square to the camera") -> str:
     return (
-        f"FRAMING — vertical portrait. The package stands upright and centred, seen "
-        f"{orientacao}, at eye level with the camera at the package's mid-height so "
-        f"the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle "
-        f"perspective distortion, no leaning. The package occupies about {ocupacao}% "
-        f"of the frame height, with even margins left and right and the base sitting "
-        f"a little below centre."
+        f"FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The "
+        f"package stands upright and centred, seen {orientacao}, at eye level with the "
+        f"camera at the package's mid-height so the vertical edges stay parallel. No "
+        f"low hero angle, no tilt, no wide-angle perspective distortion, no leaning. "
+        f"The package occupies about {ocupacao}% of the frame height, with even "
+        f"margins left and right and the base sitting a little below centre."
     )
 
 
@@ -129,7 +129,12 @@ class Produto:
     frente: str
     verso: str
     arte: str
+    lateral_ref: str = ""  # foto crua em angulo, mostra a sanfona real (familia saco/doypack)
     laterais: list[tuple[str, str]] = field(default_factory=list)  # (rotulo, fonte|'')
+    # rotulo -> texto extra anexado ao prompt daquela lateral. Existe para o caso
+    # em que a foto crua nao da para ler: melhor soletrar um valor conferido com o
+    # cliente do que mandar o modelo "copiar" algo ilegivel e aceitar o que vier.
+    lateral_extra: dict[str, str] = field(default_factory=dict)
 
     @property
     def dir(self) -> Path:
@@ -175,6 +180,7 @@ PRODUTOS: list[Produto] = [
         "the kraft paper of the pouch itself — a warm natural tan", 56,
         "suave-250g-moido-frente-01.jpg", "suave-250g-moido-verso-06.jpg",
         arte_saco(linha_dupla("SUAVE", "TORRADO E MOÍDO"), "250g"),
+        lateral_ref="suave-250g-moido-frente-05.jpg",
     ),
     Produto(
         "suave-250g-graos", "Canastra Suave 250g — Torrado em Grãos",
@@ -182,6 +188,7 @@ PRODUTOS: list[Produto] = [
         "the kraft paper of the pouch itself — a warm natural tan", 56,
         "suave-250g-graos-frente-01.jpg", "suave-250g-graos-verso-04.jpg",
         arte_saco(linha_dupla("SUAVE", "TORRADO EM GRÃOS"), "250g"),
+        lateral_ref="suave-250g-graos-frente-03.jpg",
     ),
     Produto(
         "suave-500g-moido", "Canastra Suave 500g — Torrado e Moído",
@@ -189,6 +196,7 @@ PRODUTOS: list[Produto] = [
         "the kraft paper of the pouch itself — a warm natural tan", 70,
         "suave-500g-moido-frente-01.jpg", "suave-500g-moido-verso-05.jpg",
         arte_saco(linha_dupla("SUAVE", "TORRADO E MOÍDO"), "500g"),
+        lateral_ref="suave-500g-moido-frente-04.jpg",
     ),
     Produto(
         "suave-500g-graos", "Canastra Suave 500g — Torrado em Grãos",
@@ -196,6 +204,7 @@ PRODUTOS: list[Produto] = [
         "the kraft paper of the pouch itself — a warm natural tan", 70,
         "suave-500g-graos-frente-01.jpg", "suave-500g-graos-verso-05.jpg",
         arte_saco(linha_dupla("SUAVE", "TORRADO EM GRÃOS"), "500g"),
+        lateral_ref="suave-500g-graos-frente-04.jpg",
     ),
     Produto(
         "suave-1kg-graos", "Canastra Suave 1kg — Torrado em Grãos",
@@ -206,6 +215,7 @@ PRODUTOS: list[Produto] = [
             'two lines in title case, not full caps: "Suave" over "Torrado em grãos"',
             "1Kg",
         ),
+        lateral_ref="suave-1kg-graos-frente-04.jpg",
     ),
     # ---------------- Clássico ----------------
     Produto(
@@ -214,6 +224,7 @@ PRODUTOS: list[Produto] = [
         "the matte black film of the pouch itself", 56,
         "classico-250g-moido-frente-01.jpg", "classico-250g-moido-verso-06.jpg",
         arte_saco(linha_dupla("CLÁSSICO", "TORRADO E MOÍDO"), "250g"),
+        lateral_ref="classico-250g-moido-frente-05.jpg",
     ),
     Produto(
         "classico-250g-graos", "Canastra Clássico 250g — Torrado em Grãos",
@@ -221,6 +232,7 @@ PRODUTOS: list[Produto] = [
         "the matte black film of the pouch itself", 56,
         "classico-250g-graos-frente-02.jpg", "classico-250g-graos-verso-07.jpg",
         arte_saco(SELO_GRAOS, "250g"),
+        lateral_ref="classico-250g-graos-frente-06.jpg",
     ),
     Produto(
         "classico-500g-moido", "Canastra Clássico 500g — Torrado e Moído",
@@ -228,6 +240,7 @@ PRODUTOS: list[Produto] = [
         "the matte black film of the pouch itself", 70,
         "classico-500g-moido-frente-01.jpg", "classico-500g-moido-verso-04.jpg",
         arte_saco(linha_dupla("CLÁSSICO", "TORRADO E MOÍDO"), "500g"),
+        lateral_ref="classico-500g-moido-frente-03.jpg",
     ),
     Produto(
         "classico-500g-graos", "Canastra Clássico 500g — Torrado em Grãos",
@@ -235,6 +248,7 @@ PRODUTOS: list[Produto] = [
         "the matte black film of the pouch itself", 70,
         "classico-500g-graos-frente-01.jpg", "classico-500g-graos-verso-06.jpg",
         arte_saco(SELO_GRAOS, "500g"),
+        lateral_ref="classico-500g-graos-frente-05.jpg",
     ),
     Produto(
         "classico-1kg-graos", "Canastra Clássico 1kg — Torrado em Grãos",
@@ -245,6 +259,7 @@ PRODUTOS: list[Produto] = [
             'two lines in title case, not full caps: "Clássico" over "Torrado em grãos"',
             "1Kg",
         ),
+        lateral_ref="classico-1kg-graos-frente-03.jpg",
     ),
     # ---------------- Canela ----------------
     Produto(
@@ -260,6 +275,7 @@ PRODUTOS: list[Produto] = [
             '"MOÍDO COM CANELA", with the acute accent on the final E of CAFÉ and on '
             f"the I of MOÍDO. Bottom right, {peso('250g')}."
         ),
+        lateral_ref="canela-250g-moido-frente-03.jpg",
     ),
     # ---------------- Microlote ----------------
     Produto(
@@ -290,6 +306,7 @@ PRODUTOS: list[Produto] = [
             'small letterspaced caps "MICRORREGIÃO SERRA DA CANASTRA". Bottom right, '
             'small "PESO LÍQ." above a larger "250g"'
         ),
+        lateral_ref="microlote-250g-graos-frente-04.jpg",
     ),
     Produto(
         "microlote-250g-moido", "Microlote 250g — Torrado e Moído",
@@ -318,6 +335,7 @@ PRODUTOS: list[Produto] = [
             'small letterspaced caps "MICRORREGIÃO SERRA DA CANASTRA". Bottom right, '
             'small "PESO LÍQ." above a larger "250g"'
         ),
+        lateral_ref="microlote-250g-moido-frente-03.jpg",
     ),
     # ---------------- Néctar de Minas ----------------
     Produto(
@@ -343,6 +361,7 @@ PRODUTOS: list[Produto] = [
             'rule: the upper row reads "1kg", then a short run of slashes, then "100% '
             'ARÁBICA"; the lower row reads "TORRADO EM GRÃOS"'
         ),
+        lateral_ref="nectar-gourmet-1kg-graos-frente-03.jpg",
     ),
     Produto(
         "nectar-500g-moido", "Néctar de Minas Gourmet 500g — Torrado e Moído",
@@ -368,6 +387,7 @@ PRODUTOS: list[Produto] = [
             'ARÁBICA"; the lower row reads "TORRADO & MOÍDO", with the acute accent on '
             "the I of MOÍDO"
         ),
+        lateral_ref="nectar-gourmet-500g-moido-frente-08.jpg",
     ),
     # ---------------- Cápsulas ----------------
     Produto(
@@ -525,6 +545,66 @@ PRODUTOS: list[Produto] = [
             ("lateral direita", "drip-canela-100g-lateral-03.jpg"),
         ],
     ),
+    # ---------------- Cápsulas Suave ----------------
+    # Entrou depois dos 20 primeiros, por isso vem no fim e não junto das outras
+    # cápsulas: inserir no meio renumeraria 18-20, que já estão gerados em disco.
+    # As fotos cruas vieram por WhatsApp em 591x1280 — um oitavo da área das
+    # outras cápsulas. O que não deu para ler em zoom (AROMA e DOÇURA nas barras
+    # da lateral esquerda) não está soletrado aqui de propósito: o prompt de
+    # lateral já manda copiar da foto, e chute meu vira erro impresso.
+    Produto(
+        "capsulas-suave", "Cápsulas Suave — 10 un. de 5g",
+        "Capsulas-Suave-10un-5g", "caixa",
+        (
+            "a small upright KRAFT CARDBOARD carton, matte uncoated board with visible "
+            "fibre, noticeably taller than wide and about half as deep as it is wide, "
+            "with crisp square corners and a solid DARK CHOCOLATE BROWN printed band "
+            "wrapping the top of the box including the top face — a warm deep brown, "
+            "clearly brown rather than black and darker than the kraft. All other "
+            "printing is BLACK ink on the bare kraft"
+        ),
+        "the dark chocolate brown band at the top of the carton", 56,
+        "capsulas-suave-frente-01.jpg", "capsulas-suave-verso-02.jpg",
+        (
+            'On the front face, top to bottom: across the dark brown top band, in white '
+            'letterspaced caps, "COMPATÍVEIS COM SISTEMA NESPRESSO". Below the band, '
+            'small widely letterspaced caps, "C Á P S U L A S". Then ' + LOGO + ". "
+            "Below the logo, a colour product photograph of espresso capsules: one "
+            "capsule in the foreground seen from a raised angle, its body a warm "
+            "reddish BROWN and its CREAM-WHITE foil lid peeled back and curling up and "
+            "over the open cup, and a second capsule behind it to the right showing "
+            "its cream-white foil lid face on, with a third brown capsule body just "
+            "visible behind that. No coffee beans, no leaves, no cinnamon. To the "
+            "right of that photograph, a short curved leader line pointing to a "
+            'rounded rectangle outline containing "SUAVE" in letterspaced caps, and '
+            'under it two small lines, "CONTEÚDO" over "10un. DE 5g.". Lower centre, a '
+            "rectangle outline drawn as four corner brackets rather than a continuous "
+            'line, containing three stacked lines, "GOURMET" small, "ESPECIAL" large, '
+            'and "SCAA 80+" — note SCAA with two A, not SCA. At the very bottom, '
+            'centred in small caps, "INDÚSTRIA BRASILEIRA"'
+        ),
+        laterais=[
+            ("lateral esquerda", "capsulas-suave-lateral-03.jpg"),
+            ("lateral direita", "capsulas-suave-lateral-04.jpg"),
+        ],
+        lateral_extra={
+            # As notas nao dao para ler na foto do WhatsApp: as barras de AROMA e
+            # DOCURA estao 100% cheias e o numero fica preto sobre preto. Sem isso
+            # soletrado, o modelo inventa - a primeira geracao saiu "70 / 80 / 80 /
+            # 40". Valores confirmados com o Arthur em 25/09/2026.
+            "lateral esquerda": (
+                "The reference photo is low resolution. The roast label is "
+                '"TORRA MÉDIA" on ONE line — it is NOT "TORRA MÉDIA ESCURA". The '
+                "four rating rows must carry exactly these values, with a comma as "
+                'the decimal mark: CORPO "7,0" with the track about 70% filled; '
+                'AROMA "10" with the track completely full end to end, the number '
+                'reading over the black fill; DOÇURA "10", also completely full; '
+                'CITRICIDADE "6,0" with the track about 60% filled. Do not write '
+                "these as 70, 80 or 40 — CORPO is seven comma zero and CITRICIDADE "
+                "is six comma zero."
+            ),
+        },
+    ),
 ]
 
 
@@ -572,25 +652,28 @@ def p_frente_cor(p: Produto) -> str:
 
 def p_lateral_saco(p: Produto) -> str:
     return "\n\n".join([
-        "Create a second studio photograph of the SAME package shown in the attached "
-        "image, from the same session — same lighting, same white cove, same neutral "
-        "colour, same distance from camera. This is a companion shot for a product "
-        "page, not a new product.",
+        "STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The "
+        "output must show a DIFFERENT camera angle than both attachments: a full "
+        "90-degree side profile, described below.",
         f"THE PACKAGE — {p.corpo}.",
-        "ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera "
-        "does not move: it stays at the package's mid-height, level, square to the "
-        "subject. What faces the camera now is the narrow SIDE of the pouch — the "
-        "inward-folded gusset, which runs as a vertical crease down the middle of the "
-        "visible face and is completely UNPRINTED. No logo, no lettering, no artwork of "
-        "any kind is visible from this angle. The front panel is edge-on and reads only "
-        "as a thin sliver at the left edge.",
-        "The silhouette shows the true depth of the bag: a flat base spreading wider "
-        "than the body, the body tapering slightly upwards, and the straight crimped "
-        "top fold running across the top.",
+        "First attached image: the studio front view — copy its lighting, white cove "
+        "background, and colour treatment only. Second attached image: a raw photo at "
+        "a slight angle — look at it ONLY to measure the true depth and fold geometry "
+        "of the side gusset (how far it recesses, the crease pattern, the taper). Its "
+        "viewpoint, its printed logo, its background and its lighting must NOT appear "
+        "in your output.",
+        "THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown "
+        "in either image, so the camera looks squarely at the narrow SIDE face of the "
+        "pouch — the inward-folded gusset filling almost the entire frame width, "
+        "running as a vertical crease down the middle, completely UNPRINTED. No logo, "
+        "no lettering, no artwork, no front panel visible at all except a razor-thin "
+        "sliver at the very left edge. If any part of \"CANASTRA\" or the mountain logo "
+        "is legible in your output, the rotation failed — redo it further. The camera "
+        "stays level at the package's mid-height, square to the subject, same distance "
+        "as the front shot.",
         ESTUDIO,
         enquadramento(p.ocupacao, "in strict side profile"),
-        "Do not invent any printed text on the side panel. If you are unsure whether "
-        "something is printed there, leave it blank.",
+        "Do not invent any printed text on the side panel — it is blank.",
     ])
 
 
@@ -612,7 +695,7 @@ def p_lateral_caixa(p: Produto, rotulo: str) -> str:
         "line is hard to read in the reference, reproduce it as it is rather than "
         "guessing at a replacement. Do not generate a QR code or a barcode that is not "
         "in the reference, and do not redraw the ones that are — copy them.",
-    ])
+    ] + ([p.lateral_extra[rotulo]] if rotulo in p.lateral_extra else []))
 
 
 def p_verso(p: Produto) -> str:
@@ -641,13 +724,18 @@ def p_verso(p: Produto) -> str:
 # escrita
 # --------------------------------------------------------------------------- #
 
+def _total_imagens() -> int:
+    """2 frentes + laterais (min 1) + verso, por produto."""
+    return sum(2 + max(1, len(p.laterais)) + 1 for p in PRODUTOS)
+
+
 CABECALHO = f"""\
 # Prompts de estúdio — catálogo Café Canastra
 
 Gerado por `scripts/prompts_catalogo.py`. Para mudar qualquer convenção, edite o
 script e rode de novo — não edite este arquivo à mão, ele é sobrescrito.
 
-20 produtos, **85 imagens**. Para rodar no ChatGPT, colando um bloco por vez.
+{len(PRODUTOS)} produtos, **{_total_imagens()} imagens**. Para rodar no ChatGPT, colando um bloco por vez.
 
 ---
 
@@ -666,9 +754,6 @@ batido. Amplie a faixa de texto pequeno — `Desde 1985`, a linha do rodapé, o 
 Foi exatamente aí que o Clássico saiu com `Doodo 1985` e `TRODULB E HÚMO` num teste
 que não pedia mudança nenhuma no rótulo.
 
-**Peça 3 variantes de cada frente e escolha.** A taxa de acerto medida neste
-projeto é de cerca de 2 em 3 quando o texto é grande, e cai conforme ele diminui.
-
 **O verso é o ponto fraco, e não é questão de prompt.** O modelo redesenha o
 quadro inteiro em vez de copiar pixels, e o verso tem CNPJ, endereço, lote, QR de
 rastreabilidade e código de barras em corpo minúsculo. Ele vai inventar. O prompt
@@ -677,13 +762,21 @@ imagens é **composição da foto real** — recorte, endireitar a perspectiva, 
 fundo — sem redesenho. Se for gerar mesmo assim, trate o QR e o código de barras
 como decoração: eles não vão funcionar no leitor.
 
+**O lateral dos sacos também é rascunho, por um motivo diferente.** Mesmo
+anexando uma foto real em ângulo como referência de geometria, o modelo insiste
+num perfil pontudo tipo lâmina em vez da sanfona reta e larga de verdade — é viés
+do modelo, testado e confirmado, não falta de referência. A foto em ângulo ajuda
+em uma coisa: sem ela o modelo às vezes nem gira o pacote e vaza o logotipo numa
+face que deveria ficar em branco. Mesma recomendação do verso — composição da
+foto real é a rota confiável para publicação.
+
 ---
 
 ## Convenções fixadas
 
 | | |
 |---|---|
-| **Formato** | Retrato. No ChatGPT, saída retrato = 1024×1536 (2:3). Se o site pedir 4:5, recorte depois. |
+| **Formato** | Retrato 3:4, pedido direto no prompt (`3:4 aspect ratio`) — sem recorte depois. |
 | **Fundo branco** | Ciclorama branco de estúdio, com sombra de contato. Não é `#FFFFFF` chapado — dá volume ao produto. |
 | **Fundo colorido** | A cor sai **da própria embalagem**, amostrada da foto. O prompt não fixa hex nenhum. |
 | **Luz** | Softbox à esquerda alta, rebatedor à direita, kicker no topo. Igual nas 85. |
@@ -731,7 +824,7 @@ def montar() -> str:
             f"{i}.1 Frente — fundo branco",
             [f"{rel}/{p.frente}", ANCORA],
             p_frente_branco(p),
-            "Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.",
+            "Confira o rodapé e o `Desde 1985` ampliados antes de seguir.",
         ))
         partes.append(bloco(
             f"{i}.2 Frente — fundo cor da embalagem",
@@ -752,9 +845,14 @@ def montar() -> str:
         else:
             partes.append(bloco(
                 f"{i}.3 Lateral — perfil",
-                [f"a imagem aprovada em {i}.1"],
+                [f"a imagem aprovada em {i}.1", f"{rel}/{p.lateral_ref}"],
                 p_lateral_saco(p),
-                "Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.",
+                "⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, "
+                "o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta "
+                "e larga de verdade — viés do modelo, não falta de referência (testado). "
+                "A segunda imagem ao menos evita vazar o logotipo nessa lateral, que "
+                "deveria ficar em branco. Rota confiável: composição da foto real "
+                "(recorte/endireitar), sem redesenho.",
             ))
             prox = 4
 
@@ -773,6 +871,8 @@ def conferir() -> int:
     faltando: list[str] = []
     for p in PRODUTOS:
         alvos = [p.frente, p.verso] + [f for _, f in p.laterais]
+        if not p.laterais:
+            alvos.append(p.lateral_ref)
         for a in alvos:
             if not (p.dir / a).exists():
                 faltando.append(f"{p.pasta}/{a}")

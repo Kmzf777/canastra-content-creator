@@ -3,7 +3,7 @@
 Gerado por `scripts/prompts_catalogo.py`. Para mudar qualquer convenção, edite o
 script e rode de novo — não edite este arquivo à mão, ele é sobrescrito.
 
-20 produtos, **85 imagens**. Para rodar no ChatGPT, colando um bloco por vez.
+21 produtos, **90 imagens**. Para rodar no ChatGPT, colando um bloco por vez.
 
 ---
 
@@ -22,9 +22,6 @@ batido. Amplie a faixa de texto pequeno — `Desde 1985`, a linha do rodapé, o 
 Foi exatamente aí que o Clássico saiu com `Doodo 1985` e `TRODULB E HÚMO` num teste
 que não pedia mudança nenhuma no rótulo.
 
-**Peça 3 variantes de cada frente e escolha.** A taxa de acerto medida neste
-projeto é de cerca de 2 em 3 quando o texto é grande, e cai conforme ele diminui.
-
 **O verso é o ponto fraco, e não é questão de prompt.** O modelo redesenha o
 quadro inteiro em vez de copiar pixels, e o verso tem CNPJ, endereço, lote, QR de
 rastreabilidade e código de barras em corpo minúsculo. Ele vai inventar. O prompt
@@ -33,13 +30,21 @@ imagens é **composição da foto real** — recorte, endireitar a perspectiva, 
 fundo — sem redesenho. Se for gerar mesmo assim, trate o QR e o código de barras
 como decoração: eles não vão funcionar no leitor.
 
+**O lateral dos sacos também é rascunho, por um motivo diferente.** Mesmo
+anexando uma foto real em ângulo como referência de geometria, o modelo insiste
+num perfil pontudo tipo lâmina em vez da sanfona reta e larga de verdade — é viés
+do modelo, testado e confirmado, não falta de referência. A foto em ângulo ajuda
+em uma coisa: sem ela o modelo às vezes nem gira o pacote e vaza o logotipo numa
+face que deveria ficar em branco. Mesma recomendação do verso — composição da
+foto real é a rota confiável para publicação.
+
 ---
 
 ## Convenções fixadas
 
 | | |
 |---|---|
-| **Formato** | Retrato. No ChatGPT, saída retrato = 1024×1536 (2:3). Se o site pedir 4:5, recorte depois. |
+| **Formato** | Retrato 3:4, pedido direto no prompt (`3:4 aspect ratio`) — sem recorte depois. |
 | **Fundo branco** | Ciclorama branco de estúdio, com sombra de contato. Não é `#FFFFFF` chapado — dá volume ao produto. |
 | **Fundo colorido** | A cor sai **da própria embalagem**, amostrada da foto. O prompt não fixa hex nenhum. |
 | **Luz** | Softbox à esquerda alta, rebatedor à direita, kicker no topo. Igual nas 85. |
@@ -91,6 +96,8 @@ como decoração: eles não vão funcionar no leitor.
 
 20. [Drip Coffee Canela 100g — 10 sachês](#20-drip-canela) — 5 imagens
 
+21. [Cápsulas Suave — 10 un. de 5g](#21-capsulas-suave) — 5 imagens
+
 
 ---
 
@@ -108,7 +115,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Suave-250g-Moido/`.
 1. `fotos produtos cru/Canastra-Suave-250g-Moido/suave-250g-moido-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -119,7 +126,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -149,25 +156,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 1.1`
+2. `fotos produtos cru/Canastra-Suave-250g-Moido/suave-250g-moido-frente-05.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a 250g-style flat-bottom KRAFT PAPER pouch: natural unbleached brown paper, matte, visibly fibrous, with inward side gussets and a straight crimped top fold — not a zip lock, not a plastic slider. A small round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat matte BLACK ink laid directly on the bare kraft: no white label, no sticker, no gloss, no foil.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 1.4 Verso
@@ -190,7 +198,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -211,7 +219,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Suave-250g-Graos/`.
 1. `fotos produtos cru/Canastra-Suave-250g-Graos/suave-250g-graos-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -222,7 +230,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -252,25 +260,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 2.1`
+2. `fotos produtos cru/Canastra-Suave-250g-Graos/suave-250g-graos-frente-03.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a 250g-style flat-bottom KRAFT PAPER pouch: natural unbleached brown paper, matte, visibly fibrous, with inward side gussets and a straight crimped top fold — not a zip lock, not a plastic slider. A small round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat matte BLACK ink laid directly on the bare kraft: no white label, no sticker, no gloss, no foil.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 2.4 Verso
@@ -293,7 +302,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -314,7 +323,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Suave-500g-Moido/`.
 1. `fotos produtos cru/Canastra-Suave-500g-Moido/suave-500g-moido-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -325,7 +334,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -355,25 +364,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 3.1`
+2. `fotos produtos cru/Canastra-Suave-500g-Moido/suave-500g-moido-frente-04.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a 250g-style flat-bottom KRAFT PAPER pouch: natural unbleached brown paper, matte, visibly fibrous, with inward side gussets and a straight crimped top fold — not a zip lock, not a plastic slider. A small round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat matte BLACK ink laid directly on the bare kraft: no white label, no sticker, no gloss, no foil.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 3.4 Verso
@@ -396,7 +406,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -417,7 +427,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Suave-500g-Graos/`.
 1. `fotos produtos cru/Canastra-Suave-500g-Graos/suave-500g-graos-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -428,7 +438,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -458,25 +468,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 4.1`
+2. `fotos produtos cru/Canastra-Suave-500g-Graos/suave-500g-graos-frente-04.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a 250g-style flat-bottom KRAFT PAPER pouch: natural unbleached brown paper, matte, visibly fibrous, with inward side gussets and a straight crimped top fold — not a zip lock, not a plastic slider. A small round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat matte BLACK ink laid directly on the bare kraft: no white label, no sticker, no gloss, no foil.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 4.4 Verso
@@ -499,7 +510,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -520,7 +531,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Suave-1kg-Graos/`.
 1. `fotos produtos cru/Canastra-Suave-1kg-Graos/suave-1kg-graos-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -531,7 +542,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -561,25 +572,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 5.1`
+2. `fotos produtos cru/Canastra-Suave-1kg-Graos/suave-1kg-graos-frente-04.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a 250g-style flat-bottom KRAFT PAPER pouch: natural unbleached brown paper, matte, visibly fibrous, with inward side gussets and a straight crimped top fold — not a zip lock, not a plastic slider. A small round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat matte BLACK ink laid directly on the bare kraft: no white label, no sticker, no gloss, no foil.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 5.4 Verso
@@ -602,7 +614,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -623,7 +635,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Classico-250g-Moido/`.
 1. `fotos produtos cru/Canastra-Classico-250g-Moido/classico-250g-moido-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -634,7 +646,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -664,25 +676,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 6.1`
+2. `fotos produtos cru/Canastra-Classico-250g-Moido/classico-250g-moido-frente-05.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a flat-bottom pouch in MATTE BLACK film with a wide soft diffuse sheen, inward side gussets and a straight crimped top fold — not a zip lock, not a plastic slider. A round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat WHITE ink on the black film.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 6.4 Verso
@@ -705,7 +718,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -726,7 +739,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Classico-250g-Graos/`.
 1. `fotos produtos cru/Canastra-Classico-250g-Graos/classico-250g-graos-frente-02.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -737,7 +750,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -767,25 +780,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 7.1`
+2. `fotos produtos cru/Canastra-Classico-250g-Graos/classico-250g-graos-frente-06.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a flat-bottom pouch in MATTE BLACK film with a wide soft diffuse sheen, inward side gussets and a straight crimped top fold — not a zip lock, not a plastic slider. A round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat WHITE ink on the black film.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 7.4 Verso
@@ -808,7 +822,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -829,7 +843,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Classico-500g-Moido/`.
 1. `fotos produtos cru/Canastra-Classico-500g-Moido/classico-500g-moido-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -840,7 +854,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -870,25 +884,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 8.1`
+2. `fotos produtos cru/Canastra-Classico-500g-Moido/classico-500g-moido-frente-03.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a flat-bottom pouch in MATTE BLACK film with a wide soft diffuse sheen, inward side gussets and a straight crimped top fold — not a zip lock, not a plastic slider. A round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat WHITE ink on the black film.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 8.4 Verso
@@ -911,7 +926,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -932,7 +947,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Classico-500g-Graos/`.
 1. `fotos produtos cru/Canastra-Classico-500g-Graos/classico-500g-graos-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -943,7 +958,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -973,25 +988,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 9.1`
+2. `fotos produtos cru/Canastra-Classico-500g-Graos/classico-500g-graos-frente-05.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a flat-bottom pouch in MATTE BLACK film with a wide soft diffuse sheen, inward side gussets and a straight crimped top fold — not a zip lock, not a plastic slider. A round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat WHITE ink on the black film.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 9.4 Verso
@@ -1014,7 +1030,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -1035,7 +1051,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Classico-1kg-Graos/`.
 1. `fotos produtos cru/Canastra-Classico-1kg-Graos/classico-1kg-graos-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -1046,7 +1062,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -1076,25 +1092,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 10.1`
+2. `fotos produtos cru/Canastra-Classico-1kg-Graos/classico-1kg-graos-frente-03.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a flat-bottom pouch in MATTE BLACK film with a wide soft diffuse sheen, inward side gussets and a straight crimped top fold — not a zip lock, not a plastic slider. A round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat WHITE ink on the black film.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 10.4 Verso
@@ -1117,7 +1134,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -1138,7 +1155,7 @@ Fotos cruas em `fotos produtos cru/Canastra-Canela-250g-Moido/`.
 1. `fotos produtos cru/Canastra-Canela-250g-Moido/canela-250g-moido-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -1149,7 +1166,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -1179,25 +1196,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 11.1`
+2. `fotos produtos cru/Canastra-Canela-250g-Moido/canela-250g-moido-frente-03.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a flat-bottom pouch in GLOSSY RED METALLIC film with strong specular highlights running in broad bands across the surface, inward side gussets and a straight crimped top fold. A round embossed degassing vent with one dark centre dot sits on the front panel above the artwork. All printing is flat WHITE ink on the red foil.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 11.4 Verso
@@ -1220,7 +1238,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -1241,7 +1259,7 @@ Fotos cruas em `fotos produtos cru/Microlote-250g-Graos/`.
 1. `fotos produtos cru/Microlote-250g-Graos/microlote-250g-graos-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -1252,7 +1270,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -1282,25 +1300,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 12.1`
+2. `fotos produtos cru/Microlote-250g-Graos/microlote-250g-graos-frente-04.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a 250g stand-up KRAFT PAPER doypack: natural unbleached brown paper, matte and fibrous, with a rounded top, a pressed seal across the top edge and inward side gussets, wider and shorter than a block-bottom bag. A round embossed degassing vent with one dark centre dot sits high on the front panel. All printing is BLACK ink on the bare kraft, except one red stamp.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 12.4 Verso
@@ -1323,7 +1342,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -1344,7 +1363,7 @@ Fotos cruas em `fotos produtos cru/Microlote-250g-Moido/`.
 1. `fotos produtos cru/Microlote-250g-Moido/microlote-250g-moido-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -1355,7 +1374,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -1385,25 +1404,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 13.1`
+2. `fotos produtos cru/Microlote-250g-Moido/microlote-250g-moido-frente-03.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a 250g stand-up KRAFT PAPER doypack: natural unbleached brown paper, matte and fibrous, with a rounded top, a pressed seal across the top edge and inward side gussets, wider and shorter than a block-bottom bag. A round embossed degassing vent with one dark centre dot sits high on the front panel. All printing is BLACK ink on the bare kraft, except one red stamp.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 13.4 Verso
@@ -1426,7 +1446,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 52% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -1447,7 +1467,7 @@ Fotos cruas em `fotos produtos cru/Nectar-de-Minas-Gourmet-1kg-Graos/`.
 1. `fotos produtos cru/Nectar-de-Minas-Gourmet-1kg-Graos/nectar-gourmet-1kg-graos-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -1458,7 +1478,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -1488,25 +1508,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 14.1`
+2. `fotos produtos cru/Nectar-de-Minas-Gourmet-1kg-Graos/nectar-gourmet-1kg-graos-frente-03.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a flat-bottom pouch in BLACK film with a soft satin sheen, inward side gussets whose folded edges catch the light as two lighter vertical bands, and a straight crimped top fold. A round embossed degassing vent with one dark centre dot sits high on the front panel. All printing is flat WHITE ink on the black film. This is the Néctar de Minas line — it does NOT carry the Café Canastra mountain logo.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 14.4 Verso
@@ -1529,7 +1550,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 88% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -1550,7 +1571,7 @@ Fotos cruas em `fotos produtos cru/Nectar-de-Minas-Gourmet-500g-Moido/`.
 1. `fotos produtos cru/Nectar-de-Minas-Gourmet-500g-Moido/nectar-gourmet-500g-moido-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -1561,7 +1582,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -1591,25 +1612,26 @@ Keep the soft contact shadow under the base, now reading as a slightly deeper to
 **Anexar, nesta ordem:**
 
 1. `a imagem aprovada em 15.1`
+2. `fotos produtos cru/Nectar-de-Minas-Gourmet-500g-Moido/nectar-gourmet-500g-moido-frente-08.jpg`
 
-Perfil puro: a sanfona lateral não tem impressão, então não há texto para errar.
+⚠️ Rascunho conhecido: mesmo com a foto real em ângulo como referência, o modelo insiste num formato pontudo tipo lâmina em vez da sanfona reta e larga de verdade — viés do modelo, não falta de referência (testado). A segunda imagem ao menos evita vazar o logotipo nessa lateral, que deveria ficar em branco. Rota confiável: composição da foto real (recorte/endireitar), sem redesenho.
 
 ```text
-Create a second studio photograph of the SAME package shown in the attached image, from the same session — same lighting, same white cove, same neutral colour, same distance from camera. This is a companion shot for a product page, not a new product.
+STRICT ROTATION TASK. Do not reproduce either attached image's viewpoint. The output must show a DIFFERENT camera angle than both attachments: a full 90-degree side profile, described below.
 
 THE PACKAGE — a flat-bottom pouch in BLACK film with a soft satin sheen, inward side gussets whose folded edges catch the light as two lighter vertical bands, and a straight crimped top fold. A round embossed degassing vent with one dark centre dot sits high on the front panel. All printing is flat WHITE ink on the black film. This is the Néctar de Minas line — it does NOT carry the Café Canastra mountain logo.
 
-ROTATE THE PACKAGE 90 DEGREES to a straight side-on profile view. The camera does not move: it stays at the package's mid-height, level, square to the subject. What faces the camera now is the narrow SIDE of the pouch — the inward-folded gusset, which runs as a vertical crease down the middle of the visible face and is completely UNPRINTED. No logo, no lettering, no artwork of any kind is visible from this angle. The front panel is edge-on and reads only as a thin sliver at the left edge.
+First attached image: the studio front view — copy its lighting, white cove background, and colour treatment only. Second attached image: a raw photo at a slight angle — look at it ONLY to measure the true depth and fold geometry of the side gusset (how far it recesses, the crease pattern, the taper). Its viewpoint, its printed logo, its background and its lighting must NOT appear in your output.
 
-The silhouette shows the true depth of the bag: a flat base spreading wider than the body, the body tapering slightly upwards, and the straight crimped top fold running across the top.
+THE OUTPUT VIEWPOINT: rotate the package a full 90 degrees past what is shown in either image, so the camera looks squarely at the narrow SIDE face of the pouch — the inward-folded gusset filling almost the entire frame width, running as a vertical crease down the middle, completely UNPRINTED. No logo, no lettering, no artwork, no front panel visible at all except a razor-thin sliver at the very left edge. If any part of "CANASTRA" or the mountain logo is legible in your output, the rotation failed — redo it further. The camera stays level at the package's mid-height, square to the subject, same distance as the front shot.
 
 STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen in strict side profile, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
-Do not invent any printed text on the side panel. If you are unsure whether something is printed there, leave it blank.
+Do not invent any printed text on the side panel — it is blank.
 ```
 
 #### 15.4 Verso
@@ -1632,7 +1654,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 70% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -1653,7 +1675,7 @@ Fotos cruas em `fotos produtos cru/Capsulas-Classico-10un-5g/`.
 1. `fotos produtos cru/Capsulas-Classico-10un-5g/capsulas-classico-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -1664,7 +1686,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -1709,7 +1731,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
 ```
@@ -1734,7 +1756,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
 ```
@@ -1759,7 +1781,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -1780,7 +1802,7 @@ Fotos cruas em `fotos produtos cru/Capsulas-Canela-10un-5g/`.
 1. `fotos produtos cru/Capsulas-Canela-10un-5g/capsulas-canela-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -1791,7 +1813,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -1836,7 +1858,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
 ```
@@ -1861,7 +1883,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
 ```
@@ -1886,7 +1908,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -1907,7 +1929,7 @@ Fotos cruas em `fotos produtos cru/Drip-Coffee-Classico-100g/`.
 1. `fotos produtos cru/Drip-Coffee-Classico-100g/drip-classico-100g-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -1918,7 +1940,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -1963,7 +1985,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
 ```
@@ -1988,7 +2010,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
 ```
@@ -2013,7 +2035,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -2034,7 +2056,7 @@ Fotos cruas em `fotos produtos cru/Drip-Coffee-Suave-100g/`.
 1. `fotos produtos cru/Drip-Coffee-Suave-100g/drip-suave-100g-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -2045,7 +2067,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -2090,7 +2112,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
 ```
@@ -2115,7 +2137,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
 ```
@@ -2140,7 +2162,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
@@ -2161,7 +2183,7 @@ Fotos cruas em `fotos produtos cru/Drip-Coffee-Canela-100g/`.
 1. `fotos produtos cru/Drip-Coffee-Canela-100g/drip-canela-100g-frente-01.jpg`
 2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
 
-Peça 3 variantes. Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
 
 ```text
 Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
@@ -2172,7 +2194,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
@@ -2217,7 +2239,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
 ```
@@ -2242,7 +2264,7 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
 ```
@@ -2267,7 +2289,136 @@ STUDIO TREATMENT — identical across the whole catalogue. A clean commercial pa
 
 EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
 
-FRAMING — vertical portrait. The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 62% of the frame height, with even margins left and right and the base sitting a little below centre.
+
+CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
+```
+
+---
+
+
+## 21. Cápsulas Suave — 10 un. de 5g
+
+<a id="21-capsulas-suave"></a>
+
+Fotos cruas em `fotos produtos cru/Capsulas-Suave-10un-5g/`.
+
+#### 21.1 Frente — fundo branco
+
+**Anexar, nesta ordem:**
+
+1. `fotos produtos cru/Capsulas-Suave-10un-5g/capsulas-suave-frente-01.jpg`
+2. `saida-teste/site-fundo-branco/FINAL-suave-250g-branco.jpg`
+
+Confira o rodapé e o `Desde 1985` ampliados antes de seguir.
+
+```text
+Create a studio product photograph of the coffee package shown in the attached reference photo. The second attached image is the STYLE ANCHOR: match its lighting, its white background, its neutral colour and its overall treatment. The product itself comes from the first image.
+
+THE PACKAGE — a small upright KRAFT CARDBOARD carton, matte uncoated board with visible fibre, noticeably taller than wide and about half as deep as it is wide, with crisp square corners and a solid DARK CHOCOLATE BROWN printed band wrapping the top of the box including the top face — a warm deep brown, clearly brown rather than black and darker than the kraft. All other printing is BLACK ink on the bare kraft.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+
+LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
+
+On the front face, top to bottom: across the dark brown top band, in white letterspaced caps, "COMPATÍVEIS COM SISTEMA NESPRESSO". Below the band, small widely letterspaced caps, "C Á P S U L A S". Then the Café Canastra logo lockup — a mountain ridge drawn in thin sketchy open line, a LOW, WIDE, FLAT-TOPPED tableland: an almost horizontal plateau escarpment with shallow irregular notches and one gently rounded high point, never sharp alpine peaks, with three tiny V-shaped bird marks at its far upper left; overlapping and in front of that ridge, slightly right of centre, the word "Café" written small in slanted handwriting AND CARRYING AN ACUTE ACCENT over the e; directly below, very large, "CANASTRA" spelled C-A-N-A-S-T-R-A in a thick dry-brush script with uneven, partly broken strokes; a single heavy tapering brush swash sweeping underneath it, thick at the left and thinning to a point at the right; a very small ® at the upper right of the final A; and "Desde 1985" small and handwritten at the lower right, just above the tip of the swash. Below the logo, a colour product photograph of espresso capsules: one capsule in the foreground seen from a raised angle, its body a warm reddish BROWN and its CREAM-WHITE foil lid peeled back and curling up and over the open cup, and a second capsule behind it to the right showing its cream-white foil lid face on, with a third brown capsule body just visible behind that. No coffee beans, no leaves, no cinnamon. To the right of that photograph, a short curved leader line pointing to a rounded rectangle outline containing "SUAVE" in letterspaced caps, and under it two small lines, "CONTEÚDO" over "10un. DE 5g.". Lower centre, a rectangle outline drawn as four corner brackets rather than a continuous line, containing three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — note SCAA with two A, not SCA. At the very bottom, centred in small caps, "INDÚSTRIA BRASILEIRA".
+```
+
+#### 21.2 Frente — fundo cor da embalagem
+
+**Anexar, nesta ordem:**
+
+1. `a imagem aprovada em 21.1`
+
+Só a aprovada do passo anterior. É o que garante que as duas fiquem na mesma posição.
+
+```text
+EDIT THE ATTACHED PHOTOGRAPH. This is a background replacement and nothing else. Do not re-stage it, do not re-shoot it, do not re-draw it, do not re-frame it.
+
+KEEP THE PACKAGE PIXEL-FOR-PIXEL IDENTICAL: the same package, at the exact same position in the frame, the exact same scale, the exact same rotation and camera perspective, the exact same crop. The same creases and folds. The same printed artwork and the same typography, letter for letter. The package must occupy exactly the same pixels of the frame as it does in the source.
+
+CHANGE ONLY THE BACKGROUND. Replace the white cove with a seamless sweep in exactly the same colour as the dark chocolate brown band at the top of the carton — sample that colour from the package itself. Wall and floor are the same colour and continuous, with no visible horizon line, no seam, no edge and no props. Keep the same key light direction and the same highlight pattern on the package, and let the new backdrop bounce a little of its own colour back onto the package, the way a coloured cove really would.
+
+Keep the soft contact shadow under the base, now reading as a slightly deeper tone of the backdrop colour rather than grey. No mirror reflection. Everything stays sharp. No added text, no watermark.
+```
+
+#### 21.3 Lateral esquerda
+
+**Anexar, nesta ordem:**
+
+1. `fotos produtos cru/Capsulas-Suave-10un-5g/capsulas-suave-lateral-03.jpg`
+2. `a imagem aprovada em 21.1`
+
+⚠️ Painel de texto corrido. Confira linha por linha, ampliado.
+
+```text
+Create a studio photograph of the LATERAL ESQUERDA of the carton shown in the attached reference photo. The second attached image is the STYLE ANCHOR for lighting and background; the first image is the panel to reproduce.
+
+THE PACKAGE — a small upright KRAFT CARDBOARD carton, matte uncoated board with visible fibre, noticeably taller than wide and about half as deep as it is wide, with crisp square corners and a solid DARK CHOCOLATE BROWN printed band wrapping the top of the box including the top face — a warm deep brown, clearly brown rather than black and darker than the kraft. All other printing is BLACK ink on the bare kraft.
+
+Turn the carton so that this side panel faces the camera square on, at eye level, vertical edges parallel. Show only a very thin sliver of the front face at one edge so the box still reads as a solid object.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+
+CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
+
+The reference photo is low resolution. The roast label is "TORRA MÉDIA" on ONE line — it is NOT "TORRA MÉDIA ESCURA". The four rating rows must carry exactly these values, with a comma as the decimal mark: CORPO "7,0" with the track about 70% filled; AROMA "10" with the track completely full end to end, the number reading over the black fill; DOÇURA "10", also completely full; CITRICIDADE "6,0" with the track about 60% filled. Do not write these as 70, 80 or 40 — CORPO is seven comma zero and CITRICIDADE is six comma zero.
+```
+
+#### 21.4 Lateral direita
+
+**Anexar, nesta ordem:**
+
+1. `fotos produtos cru/Capsulas-Suave-10un-5g/capsulas-suave-lateral-04.jpg`
+2. `a imagem aprovada em 21.1`
+
+⚠️ Painel de texto corrido. Confira linha por linha, ampliado.
+
+```text
+Create a studio photograph of the LATERAL DIREITA of the carton shown in the attached reference photo. The second attached image is the STYLE ANCHOR for lighting and background; the first image is the panel to reproduce.
+
+THE PACKAGE — a small upright KRAFT CARDBOARD carton, matte uncoated board with visible fibre, noticeably taller than wide and about half as deep as it is wide, with crisp square corners and a solid DARK CHOCOLATE BROWN printed band wrapping the top of the box including the top face — a warm deep brown, clearly brown rather than black and darker than the kraft. All other printing is BLACK ink on the bare kraft.
+
+Turn the carton so that this side panel faces the camera square on, at eye level, vertical edges parallel. Show only a very thin sliver of the front face at one edge so the box still reads as a solid object.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the side panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
+
+CRITICAL — THIS PANEL IS ALL TEXT. Reproduce every printed character exactly as it appears in the attached photograph: same wording, same line breaks, same order, same accents, same numbers. Do not re-typeset it, do not translate it, do not paraphrase it, do not summarise it, do not invent a single word. If a line is hard to read in the reference, reproduce it as it is rather than guessing at a replacement. Do not generate a QR code or a barcode that is not in the reference, and do not redraw the ones that are — copy them.
+```
+
+#### 21.5 Verso
+
+**Anexar, nesta ordem:**
+
+1. `fotos produtos cru/Capsulas-Suave-10un-5g/capsulas-suave-verso-02.jpg`
+2. `a imagem aprovada em 21.1`
+
+⚠️ Rótulo legal. Leia o aviso do topo antes de gastar geração aqui.
+
+```text
+Create a studio photograph of the BACK of the package shown in the attached reference photo. The second attached image is the STYLE ANCHOR for lighting and background; the first image is the panel to reproduce.
+
+THE PACKAGE — a small upright KRAFT CARDBOARD carton, matte uncoated board with visible fibre, noticeably taller than wide and about half as deep as it is wide, with crisp square corners and a solid DARK CHOCOLATE BROWN printed band wrapping the top of the box including the top face — a warm deep brown, clearly brown rather than black and darker than the kraft. All other printing is BLACK ink on the bare kraft.
+
+Turn the package so the back panel faces the camera square on, at eye level, vertical edges parallel, flat and undistorted.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
