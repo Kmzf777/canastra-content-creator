@@ -1,0 +1,377 @@
+[
+  {
+    "texto": "Você",
+    "inicioMs": 0,
+    "fimMs": 340
+  },
+  {
+    "texto": "está",
+    "inicioMs": 340,
+    "fimMs": 680
+  },
+  {
+    "texto": "procurando",
+    "inicioMs": 680,
+    "fimMs": 1390
+  },
+  {
+    "texto": "algo",
+    "inicioMs": 1390,
+    "fimMs": 1620
+  },
+  {
+    "texto": "para",
+    "inicioMs": 1620,
+    "fimMs": 1970
+  },
+  {
+    "texto": "lucrar",
+    "inicioMs": 1970,
+    "fimMs": 2290
+  },
+  {
+    "texto": "muito?",
+    "inicioMs": 2290,
+    "fimMs": 2990
+  },
+  {
+    "texto": "Você",
+    "inicioMs": 2990,
+    "fimMs": 3050
+  },
+  {
+    "texto": "já",
+    "inicioMs": 3050,
+    "fimMs": 3180
+  },
+  {
+    "texto": "pensou",
+    "inicioMs": 3180,
+    "fimMs": 3360
+  },
+  {
+    "texto": "ter",
+    "inicioMs": 3360,
+    "fimMs": 3460
+  },
+  {
+    "texto": "sua",
+    "inicioMs": 3460,
+    "fimMs": 3590
+  },
+  {
+    "texto": "própria",
+    "inicioMs": 3590,
+    "fimMs": 3880
+  },
+  {
+    "texto": "marca",
+    "inicioMs": 3880,
+    "fimMs": 4200
+  },
+  {
+    "texto": "de",
+    "inicioMs": 4200,
+    "fimMs": 4240
+  },
+  {
+    "texto": "café",
+    "inicioMs": 4240,
+    "fimMs": 4530
+  },
+  {
+    "texto": "especiais?",
+    "inicioMs": 4530,
+    "fimMs": 5400
+  },
+  {
+    "texto": "Aqui",
+    "inicioMs": 5400,
+    "fimMs": 5640
+  },
+  {
+    "texto": "a",
+    "inicioMs": 5640,
+    "fimMs": 5730
+  },
+  {
+    "texto": "gente",
+    "inicioMs": 5730,
+    "fimMs": 6240
+  },
+  {
+    "texto": "tem",
+    "inicioMs": 6240,
+    "fimMs": 6580
+  },
+  {
+    "texto": "plantio",
+    "inicioMs": 6580,
+    "fimMs": 7440
+  },
+  {
+    "texto": "próprio,",
+    "inicioMs": 7440,
+    "fimMs": 8240
+  },
+  {
+    "texto": "a",
+    "inicioMs": 8240,
+    "fimMs": 8700
+  },
+  {
+    "texto": "gente",
+    "inicioMs": 8700,
+    "fimMs": 8800
+  },
+  {
+    "texto": "traz",
+    "inicioMs": 8800,
+    "fimMs": 8880
+  },
+  {
+    "texto": "a",
+    "inicioMs": 8880,
+    "fimMs": 8970
+  },
+  {
+    "texto": "nossa",
+    "inicioMs": 8970,
+    "fimMs": 9000
+  },
+  {
+    "texto": "própria",
+    "inicioMs": 9000,
+    "fimMs": 9240
+  },
+  {
+    "texto": "fazenda,",
+    "inicioMs": 9240,
+    "fimMs": 10020
+  },
+  {
+    "texto": "temos",
+    "inicioMs": 10020,
+    "fimMs": 10180
+  },
+  {
+    "texto": "toda",
+    "inicioMs": 10180,
+    "fimMs": 10400
+  },
+  {
+    "texto": "essa",
+    "inicioMs": 10400,
+    "fimMs": 10620
+  },
+  {
+    "texto": "fábrica",
+    "inicioMs": 10620,
+    "fimMs": 11060
+  },
+  {
+    "texto": "aqui,",
+    "inicioMs": 11060,
+    "fimMs": 11390
+  },
+  {
+    "texto": "a",
+    "inicioMs": 11390,
+    "fimMs": 11440
+  },
+  {
+    "texto": "sua",
+    "inicioMs": 11440,
+    "fimMs": 11610
+  },
+  {
+    "texto": "disposição",
+    "inicioMs": 11610,
+    "fimMs": 12340
+  },
+  {
+    "texto": "e",
+    "inicioMs": 12340,
+    "fimMs": 12430
+  },
+  {
+    "texto": "podemos",
+    "inicioMs": 12430,
+    "fimMs": 12730
+  },
+  {
+    "texto": "ajudar",
+    "inicioMs": 12730,
+    "fimMs": 13070
+  },
+  {
+    "texto": "você",
+    "inicioMs": 13070,
+    "fimMs": 13350
+  },
+  {
+    "texto": "a",
+    "inicioMs": 13350,
+    "fimMs": 13400
+  },
+  {
+    "texto": "realizar",
+    "inicioMs": 13400,
+    "fimMs": 13850
+  },
+  {
+    "texto": "esse",
+    "inicioMs": 13850,
+    "fimMs": 14160
+  },
+  {
+    "texto": "sonho.",
+    "inicioMs": 14160,
+    "fimMs": 14440
+  },
+  {
+    "texto": "Temos",
+    "inicioMs": 14440,
+    "fimMs": 14770
+  },
+  {
+    "texto": "aqui",
+    "inicioMs": 14770,
+    "fimMs": 15060
+  },
+  {
+    "texto": "os",
+    "inicioMs": 15060,
+    "fimMs": 15140
+  },
+  {
+    "texto": "melhores",
+    "inicioMs": 15140,
+    "fimMs": 15520
+  },
+  {
+    "texto": "equipamentos,",
+    "inicioMs": 15520,
+    "fimMs": 16430
+  },
+  {
+    "texto": "os",
+    "inicioMs": 16430,
+    "fimMs": 16450
+  },
+  {
+    "texto": "melhores",
+    "inicioMs": 16450,
+    "fimMs": 16890
+  },
+  {
+    "texto": "profissionais",
+    "inicioMs": 16890,
+    "fimMs": 17600
+  },
+  {
+    "texto": "e",
+    "inicioMs": 17600,
+    "fimMs": 17870
+  },
+  {
+    "texto": "podemos",
+    "inicioMs": 17870,
+    "fimMs": 18100
+  },
+  {
+    "texto": "fazer",
+    "inicioMs": 18100,
+    "fimMs": 18390
+  },
+  {
+    "texto": "todo",
+    "inicioMs": 18390,
+    "fimMs": 18720
+  },
+  {
+    "texto": "o",
+    "inicioMs": 18720,
+    "fimMs": 18760
+  },
+  {
+    "texto": "processo.",
+    "inicioMs": 18760,
+    "fimMs": 19380
+  },
+  {
+    "texto": "Desde",
+    "inicioMs": 19380,
+    "fimMs": 19680
+  },
+  {
+    "texto": "a",
+    "inicioMs": 19680,
+    "fimMs": 19740
+  },
+  {
+    "texto": "torra,",
+    "inicioMs": 19740,
+    "fimMs": 20160
+  },
+  {
+    "texto": "o",
+    "inicioMs": 20160,
+    "fimMs": 20210
+  },
+  {
+    "texto": "acotamento,",
+    "inicioMs": 20210,
+    "fimMs": 20940
+  },
+  {
+    "texto": "o",
+    "inicioMs": 20940,
+    "fimMs": 21050
+  },
+  {
+    "texto": "moagem,",
+    "inicioMs": 21050,
+    "fimMs": 21480
+  },
+  {
+    "texto": "clique",
+    "inicioMs": 21480,
+    "fimMs": 21540
+  },
+  {
+    "texto": "aqui,",
+    "inicioMs": 21540,
+    "fimMs": 22240
+  },
+  {
+    "texto": "clique",
+    "inicioMs": 22240,
+    "fimMs": 22560
+  },
+  {
+    "texto": "em",
+    "inicioMs": 22560,
+    "fimMs": 22820
+  },
+  {
+    "texto": "baixo",
+    "inicioMs": 22820,
+    "fimMs": 22980
+  },
+  {
+    "texto": "e",
+    "inicioMs": 22980,
+    "fimMs": 23040
+  },
+  {
+    "texto": "vem",
+    "inicioMs": 23040,
+    "fimMs": 23210
+  },
+  {
+    "texto": "conosco.",
+    "inicioMs": 23210,
+    "fimMs": 23940
+  }
+]

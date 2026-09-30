@@ -23,3 +23,35 @@ venv/
 htmlcov/
 saida-teste/
 _ref-scripts/
+
+# Video motion graphics: dependencias, quadros crus e MP4 nao versionam
+video-suave/node_modules/
+video-suave/_frames/
+video-suave/saida/
+video-suave/assets/
+
+# Motor de video Remotion: dependencias, binarios e saidas nao versionam
+instagram/remotion/node_modules/
+instagram/remotion/out/
+instagram/remotion/projetos/*/saida/
+instagram/remotion/whisper.cpp/
+
+# A pasta publica de cada projeto (`--public-dir`). Substituiu `projetos/*/fonte/`
+# quando as duas coisas que precisavam ser servidas -- o video cru e os recortes
+# de embalagem -- passaram a viver sob uma pasta publica so, em subpastas:
+#
+#   projetos/<p>/public/fonte/    material cru, pesado (pl.mp4 tem 5 MB)
+#   projetos/<p>/public/assets/   recortes aprovados, 25 MB nos tres SKUs
+#
+# Nenhuma das duas versiona: `fonte/` e material bruto do projeto e `assets/` e
+# DERIVADO -- `python -m instagram.recorte.publicar` o reconstroi a partir de
+# instagram/assets/embalagem/, que e a copia que manda. Versionar a copia
+# derivada criaria duas verdades para o mesmo pixel.
+instagram/remotion/projetos/*/public/
+
+# Recortes de embalagem: PNG derivado, regeravel por
+# `python -m instagram.recorte <fonte> <saida>` a partir de base-curada/ (que
+# tambem e gitignored). Os .json de laudo FICAM versionados: sao pequenos, sao a
+# trilha de auditoria, e carregam retangulo_rotulo medido a mao.
+instagram/assets/embalagem/*.png
+instagram/assets/materialidade/*.png

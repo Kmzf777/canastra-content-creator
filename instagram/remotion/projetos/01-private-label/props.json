@@ -1,0 +1,215 @@
+{
+  "_frames": "Os frames estao no tempo da FONTE (arquivo original, antes do corte). Legenda.tsx desloca por cortarAntesFrames. Nao pre-alinhe aqui.",
+  "_origem": "gerado por scripts/gerar-props.mjs a partir de transcricao.json (75 palavras)",
+  "_manchete": {
+    "nota": "texto = CITACAO LITERAL de transcricao.json, palavras dePalavra..atePalavra (indices 0-based, contiguas), com a UNICA transformacao de caixa alta. inicioFrame = Math.round(inicioMs da palavra dePalavra / 1000 * 30), no TEMPO DA FONTE como os blocos; PecaVideo subtrai cortarAntesFrames. tests/manchete-props.test.ts prova tudo isso e reprova copy inventada.",
+    "citacao": "sua própria marca de café",
+    "dePalavra": 11,
+    "atePalavra": 15,
+    "inicioMs": 3460,
+    "fimMs": 4530,
+    "fps": 30,
+    "palavraAcentoTexto": "MARCA"
+  },
+  "arquivo": "pl.mp4",
+  "razaoFonte": 0.5625,
+  "cortarAntesFrames": 34,
+  "manchete": {
+    "texto": "SUA PRÓPRIA MARCA DE CAFÉ",
+    "modo": "cartela",
+    "inicioFrame": 104,
+    "palavraAcento": 2
+  },
+  "blocos": [
+    {
+      "texto": "Você está",
+      "inicioFrame": 0,
+      "fimFrame": 20
+    },
+    {
+      "texto": "procurando algo",
+      "inicioFrame": 20,
+      "fimFrame": 49
+    },
+    {
+      "texto": "para lucrar",
+      "inicioFrame": 49,
+      "fimFrame": 69
+    },
+    {
+      "texto": "muito? Você",
+      "inicioFrame": 69,
+      "fimFrame": 92
+    },
+    {
+      "texto": "já pensou",
+      "inicioFrame": 92,
+      "fimFrame": 102
+    },
+    {
+      "texto": "ter sua",
+      "inicioFrame": 102,
+      "fimFrame": 112
+    },
+    {
+      "texto": "própria marca",
+      "inicioFrame": 112,
+      "fimFrame": 126
+    },
+    {
+      "texto": "de café",
+      "inicioFrame": 126,
+      "fimFrame": 136
+    },
+    {
+      "texto": "especiais? Aqui",
+      "inicioFrame": 136,
+      "fimFrame": 169
+    },
+    {
+      "texto": "a gente",
+      "inicioFrame": 169,
+      "fimFrame": 187
+    },
+    {
+      "texto": "tem plantio",
+      "inicioFrame": 187,
+      "fimFrame": 223
+    },
+    {
+      "texto": "próprio, a",
+      "inicioFrame": 223,
+      "fimFrame": 261
+    },
+    {
+      "texto": "gente traz",
+      "inicioFrame": 261,
+      "fimFrame": 271
+    },
+    {
+      "texto": "a nossa",
+      "inicioFrame": 271,
+      "fimFrame": 281
+    },
+    {
+      "texto": "própria fazenda,",
+      "inicioFrame": 281,
+      "fimFrame": 301
+    },
+    {
+      "texto": "temos toda",
+      "inicioFrame": 301,
+      "fimFrame": 312
+    },
+    {
+      "texto": "essa fábrica",
+      "inicioFrame": 312,
+      "fimFrame": 332
+    },
+    {
+      "texto": "aqui, a",
+      "inicioFrame": 332,
+      "fimFrame": 343
+    },
+    {
+      "texto": "sua disposição",
+      "inicioFrame": 343,
+      "fimFrame": 370
+    },
+    {
+      "texto": "e podemos",
+      "inicioFrame": 370,
+      "fimFrame": 382
+    },
+    {
+      "texto": "ajudar você",
+      "inicioFrame": 382,
+      "fimFrame": 401
+    },
+    {
+      "texto": "a realizar",
+      "inicioFrame": 401,
+      "fimFrame": 416
+    },
+    {
+      "texto": "esse sonho.",
+      "inicioFrame": 416,
+      "fimFrame": 433
+    },
+    {
+      "texto": "Temos aqui",
+      "inicioFrame": 433,
+      "fimFrame": 452
+    },
+    {
+      "texto": "os melhores",
+      "inicioFrame": 452,
+      "fimFrame": 466
+    },
+    {
+      "texto": "equipamentos, os",
+      "inicioFrame": 466,
+      "fimFrame": 494
+    },
+    {
+      "texto": "melhores profissionais",
+      "inicioFrame": 494,
+      "fimFrame": 528
+    },
+    {
+      "texto": "e podemos",
+      "inicioFrame": 528,
+      "fimFrame": 543
+    },
+    {
+      "texto": "fazer todo",
+      "inicioFrame": 543,
+      "fimFrame": 562
+    },
+    {
+      "texto": "o processo.",
+      "inicioFrame": 562,
+      "fimFrame": 581
+    },
+    {
+      "texto": "Desde a",
+      "inicioFrame": 581,
+      "fimFrame": 592
+    },
+    {
+      "texto": "torra, o",
+      "inicioFrame": 592,
+      "fimFrame": 606
+    },
+    {
+      "texto": "acotamento, o",
+      "inicioFrame": 606,
+      "fimFrame": 632
+    },
+    {
+      "texto": "moagem, clique",
+      "inicioFrame": 632,
+      "fimFrame": 646
+    },
+    {
+      "texto": "aqui, clique",
+      "inicioFrame": 646,
+      "fimFrame": 677
+    },
+    {
+      "texto": "em baixo",
+      "inicioFrame": 677,
+      "fimFrame": 689
+    },
+    {
+      "texto": "e vem",
+      "inicioFrame": 689,
+      "fimFrame": 699
+    },
+    {
+      "texto": "conosco.",
+      "inicioFrame": 699,
+      "fimFrame": 718
+    }
+  ]
+}
