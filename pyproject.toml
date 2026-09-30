@@ -23,6 +23,14 @@ heic = ["pillow-heif>=0.16"]
 # Raspagem do Instagram: usa o Chrome ja instalado (channel="chrome"),
 # nao baixa Chromium. Quem nao vai raspar nao instala.
 scrape = ["playwright>=1.44"]
+# Recorte de packshot: matting classico, sem rede neural e sem GPU.
+# Escolhido porque o interior do rotulo nunca entra no solver.
+recorte = [
+    "numpy>=1.26",
+    "scipy>=1.13",
+    "pymatting>=1.1.12",
+    "opencv-python-headless>=4.10",
+]
 
 [project.scripts]
 cie = "cie.cli:app"

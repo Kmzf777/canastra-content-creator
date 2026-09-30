@@ -1,0 +1,179 @@
+{
+ "origem": "base-curada/01-real-verificada/torrefacao-uberlandia-875m/packshot-suave/Suave (5).jpg",
+ "origem_sha256": "d448a7f67b08ce827db347e1de412ec5af86354c48e284117db83d68b404031b",
+ "dimensoes": [
+  4096,
+  2304
+ ],
+ "banda": 6,
+ "retangulo_rotulo": [
+  1693,
+  568,
+  3020,
+  1680
+ ],
+ "gerado_em": "2026-09-30T08:23:15+00:00",
+ "recorte": {
+  "modo": "fundo_multicor",
+  "modo_pedido": "auto",
+  "refinado_por_grabcut": true,
+  "populacoes": {
+   "otsu": 112.0,
+   "fracao_escura": 0.10827184892402283,
+   "l_medio_escuro": 59.3,
+   "l_medio_claro": 165.0,
+   "separacao": 105.6
+  },
+  "escala_analise": [
+   900,
+   506
+  ],
+  "tentativas": [
+   {
+    "modo": "fundo_uniforme",
+    "fracao_coberta": 0.6787,
+    "toca_borda": true,
+    "lados_tocados": [
+     "topo",
+     "base",
+     "direita"
+    ],
+    "caixa": [
+     135,
+     0,
+     900,
+     506
+    ],
+    "area_px": 309079,
+    "dimensoes_analise": [
+     900,
+     506
+    ],
+    "semente": {
+     "fracao_coberta": 0.6787,
+     "toca_borda": true,
+     "lados_tocados": [
+      "topo",
+      "base",
+      "direita"
+     ],
+     "caixa": [
+      135,
+      0,
+      900,
+      506
+     ],
+     "area_px": 309079,
+     "dimensoes_analise": [
+      900,
+      506
+     ]
+    },
+    "recusa": "modo fundo_uniforme: o maior componente TOCA A BORDA da imagem (topo, base, direita). Packshot de embalagem nao encosta na borda -- isso e cenario entrando no recorte, nao objeto. A foto nao satisfaz a premissa deste metodo."
+   },
+   {
+    "modo": "objeto_escuro",
+    "fracao_coberta": 0.0731,
+    "toca_borda": true,
+    "lados_tocados": [
+     "topo"
+    ],
+    "caixa": [
+     172,
+     0,
+     691,
+     399
+    ],
+    "area_px": 33294,
+    "dimensoes_analise": [
+     900,
+     506
+    ],
+    "semente": {
+     "fracao_coberta": 0.0731,
+     "toca_borda": true,
+     "lados_tocados": [
+      "topo"
+     ],
+     "caixa": [
+      172,
+      0,
+      691,
+      399
+     ],
+     "area_px": 33294,
+     "dimensoes_analise": [
+      900,
+      506
+     ]
+    },
+    "recusa": "modo objeto_escuro: o maior componente TOCA A BORDA da imagem (topo). Packshot de embalagem nao encosta na borda -- isso e cenario entrando no recorte, nao objeto. A foto nao satisfaz a premissa deste metodo."
+   },
+   {
+    "modo": "fundo_multicor",
+    "fracao_coberta": 0.3683,
+    "toca_borda": false,
+    "lados_tocados": [],
+    "caixa": [
+     135,
+     98,
+     691,
+     417
+    ],
+    "area_px": 167740,
+    "dimensoes_analise": [
+     900,
+     506
+    ],
+    "semente": {
+     "fracao_coberta": 0.3985,
+     "toca_borda": false,
+     "lados_tocados": [],
+     "caixa": [
+      136,
+      28,
+      691,
+      417
+     ],
+     "area_px": 181484,
+     "dimensoes_analise": [
+      900,
+      506
+     ]
+    },
+    "recusa": null
+   }
+  ],
+  "fracao_coberta": 0.3683,
+  "toca_borda": false,
+  "lados_tocados": [],
+  "caixa": [
+   614,
+   446,
+   3145,
+   1899
+  ],
+  "area_px": 3475968,
+  "dimensoes_analise": [
+   4096,
+   2304
+  ],
+  "orientacao": {
+   "eixo_longo_graus": -1.2,
+   "lado_longo_px": 2533.1,
+   "lado_curto_px": 1441.0,
+   "razao": 1.76,
+   "deitada": true,
+   "giro_para_ficar_em_pe_graus": -90
+  },
+  "banda_pedida": 6,
+  "banda_efetiva": 10
+ },
+ "laudo": {
+  "pixels_alterados": 0,
+  "maior_delta": 0,
+  "pixels_opacos": 3422414,
+  "alfa_minimo_no_rotulo": 255,
+  "aprovado": true
+ }
+}
