@@ -87,6 +87,22 @@ A verdade operacional está nos documentos, não no código:
 | `docs/briefing-captura.md` | O que falta fotografar. Bloqueador real do projeto |
 | `docs/custos-geracao.md` | Preços confirmados dos dois provedores |
 | `Direcao-Criativa.md` | Posicionamento de marca e os 4 pilares de conteúdo |
+| `mercadolivre/LEIA-ME.md` | **Mercado Livre.** Resumo de sessão, estado da conta, o que foi corrigido e o que segue sem verificação. **Leia antes de mexer no ML** |
+
+### Skills de conteúdo (`.claude/skills/`)
+
+Todo trabalho de imagem passa por elas. O fluxo é sempre o mesmo — curadoria de
+referência, prompt, Claude in Chrome no ChatGPT, conferência ampliada, registro.
+
+| Skill | Quando |
+|---|---|
+| `canastra-conteudo` | hub: qualquer imagem. Dono do fluxo, da mecânica do ChatGPT e da conferência |
+| `canastra-embalagem` | a embalagem aparece legível — rótulo tem que sobreviver letra por letra |
+| `canastra-cena` | lavoura, mesa, torrefação, UGC — realismo e procedência da referência |
+
+A regra que mais se perde, e que um agente de teste furou neste repositório:
+**só marque um campo como conferido se a referência permitir lê-lo.** Ilegível não
+é "confere", é `não verificável` — pergunte o valor e soletre no prompt.
 
 ### Camadas de permissão da base de imagens
 
@@ -388,3 +404,115 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     sobrevive. Deu 1 acerto em 3 no Clássico, 1 em 1 no Suave e no Canela (texto
     maior) → em troca de fundo, `--n 3` e confira **com recorte ampliado da faixa de
     texto**, não olhando a imagem inteira: em miniatura os três erros passam batido.
+14. **Refiz o verso da embalagem e a arte vazou para fora da embalagem** — foto
+    ocupando 100% da tela, texto por cima das marcas de corte → tratei
+    `verso-embalagem.png` como tela livre e compus a partir do canto superior
+    esquerdo. É **arquivo de produção**: tem sangria, marcas de corte, abas de solda
+    e margem de segurança → antes de recompor arte de produção, **meça os limites no
+    próprio pixel**. Medidos aqui (coordenadas do arquivo 656×939):
+
+    | Região | Coordenadas |
+    |---|---|
+    | painel útil (fora disso = aba `SOLDA`) | `x = 64..579` |
+    | margem de segurança do conteúdo | `x = 73..569` |
+    | faixa da história (única parte editável) | `y = 234..500` |
+    | bloco Serra da Canastra — **preservar, não redesenhar** | `x = 340..557, y = 382..499` |
+
+    E valide no fim contando pixels alterados fora do painel: tem que dar **0**.
+15. **A limpeza da marca d'água comeu o texto pequeno** (`F: FABRICADO` virou
+    `FA8R CADO`, `ORGULHOSAMENTE` perdeu letras) → a folha é vermelho clareado e o
+    texto é creme com anti-aliasing: um pixel de texto a 50% de cobertura tem
+    exatamente a cor de um pixel de folha. Os dois caem na mesma reta RED→CREAM, então
+    **nenhum limiar de cor por pixel separa os dois** → use limiar conservador (tira a
+    folha fraca, preserva todo o texto) e preencha à parte só as regiões que você
+    **provou** estarem vazias — conte os pixels de conteúdo com `assert` antes de
+    pintar, nunca preencha um retângulo no olho.
+16. **Conclui que o Mercado Livre estava inacessível e quase parei a pesquisa** → o 403
+    era do User-Agent do `WebFetch`; `curl` com UA de Chrome devolve 200. Mas na página
+    de busca esse 200 vinha com `suspicious-traffic-frontend` no `data-assets-prefix`,
+    o muro anti-bot — **conteúdo falso com status de sucesso** → teste o host com UA de
+    navegador antes de declarar bloqueio, e depois **confira o que veio**, não o código
+    HTTP. É a lição 3 outra vez, fora da API de imagem: 200 nunca é prova. Rota que
+    funciona para dado de marketplace é a extensão do Chrome na sessão logada; contornar
+    detecção de bot está fora de escopo. Ver `docs/ML-CAPSULAS-ESTRATEGIA.md` §1 e §11.
+17. **`_pega_download.py` salvou a imagem de ontem sem reclamar** → ele procurava só
+    `ChatGPT Image*.png`, e a conta agora está em português, onde o arquivo nasce
+    `Imagem do ChatGPT ....png`. Não deu erro: o glob achou downloads antigos do
+    padrão inglês e o `max(..., getmtime)` devolveu o mais recente **deles**. Como as
+    duas imagens tinham 1086x1448, a linha de conferência do próprio script não
+    denunciou nada → o script agora cobre os dois padrões. Lição geral: um seletor que
+    não encontra o alvo mas encontra *algo* é pior que um que falha. Depois de baixar,
+    confira o **carimbo de hora** do arquivo que o script imprimiu, não só as dimensões.
+18. **Notas sensoriais ilegíveis viraram `70 / 80 / 80 / 40` na primeira geração** →
+    nas cápsulas Suave, AROMA e DOÇURA são **10**, então a barra vai 100% cheia e o
+    número fica preto sobre preto; na foto de WhatsApp (591x1280) não dá para ler. O
+    prompt de lateral manda "copie da foto", e o modelo, sem conseguir ler, inventou →
+    quando a fonte não permite ler, "copiar da foto" não é instrução, é convite ao
+    chute. Confirme o valor com o cliente e **soletre no prompt** (campo
+    `lateral_extra` em `scripts/prompts_catalogo.py`). Notas do Suave: CORPO 7,0 ·
+    AROMA 10 · DOÇURA 10 · CITRICIDADE 6,0.
+19. **Quase apliquei um passe de saturação numa foto real da lavoura** para encostar
+    no alvo escrito `satur = 70` → o alvo é a **média de duas populações diferentes**.
+    Medido agora com `scripts/home_medir.py:perfil` sobre a própria base verificada:
+    lavoura de Medeiros mediana **85,9** (min 66,8 · máx 105,8), packshot de Uberlândia
+    mediana **59,1** (min 17,9 · máx 99,6). O 70 não descreve nenhuma das duas. O mesmo
+    vale para `estourado%`: a lavoura ao meio-dia estoura o céu (mediana 0,26%, e 3,5%
+    no quadro que tem céu aberto) e o packshot não estoura nada (0,001%) → **compare
+    cena com cena e packshot com packshot**; antes de "corrigir" uma métrica, meça o
+    grupo de referência certo. E nunca calibre uma **foto real** contra esse alvo: ela
+    é a fonte da medida, não a candidata a ser corrigida.
+20. **Ia reprovar `SEM GLÚTÉN` como erro de geração** → o acento no E parece corrupção
+    clássica de difusão, mas ampliei a foto crua e **a embalagem impressa real também
+    traz `SEM GLÚTÉN`**. A geração copiou fielmente → antes de acusar a geração de um
+    erro de português, confira se o erro não está na **arte real**. A referência é a
+    fonte da verdade mesmo quando ela está errada; o alvo é fidelidade, não correção
+    ortográfica. Vale o inverso também: não "conserte" o rótulo no prompt.
+21. **Os packshots de estúdio das cápsulas passaram na frente e falharam nas laterais**
+    → a frente tem tipografia grande e saiu íntegra nos 3 SKUs; as laterais têm corpo
+    pequeno e perderam **só os diacríticos**: `ARABICA` por `ARÁBICA` (Clássico 16.3 e
+    Suave 21.3) e `DOCURA` por `DOÇURA` (Canela 17.4). Os **números** das notas
+    sensoriais estavam todos certos (8,0/9,0/9,0/8,5 · 6,5/10/10/6,0 · 7,0/10/10/6,0)
+    → o modelo erra o **acento** antes de errar o dígito. Numa conferência de lateral,
+    varra a lista de acentos do `canastra-embalagem` explicitamente, campo a campo;
+    números batendo não indicam que o texto está íntegro.
+22. **O carimbo de lote saiu `F:23.2025`, um mês que não existe** → é carimbo variável
+    impresso fora da arte, e o modelo o redesenha como qualquer outro texto. No Canela
+    saiu `F:12.2025`, plausível, e passaria despercebido → trate **lote, fabricação e
+    validade como o QR**: regenerados, nunca confiáveis. Em imagem de e-commerce isso é
+    informação regulatória falsa, então ou some do enquadramento ou entra por composição
+    da foto real. Plausível é pior que absurdo: o absurdo você vê.
+23. **Imagem 3:4 destoaria da vitrine da Tray** → o catálogo da loja serve tudo em
+    **1:1** (`images.tcdn.com.br/.../90_<slug>.jpg` é a miniatura; sem prefixo é a
+    original, medida em 600×600). Subir o 1086×1448 direto deixaria a grade desalinhada
+    → compus 1448×1448 estendendo a coluna de borda (`crop(0,0,1,H).resize(pad,H)`), o
+    que preserva o gradiente vertical do fundo colorido sem emenda visível. Limites do
+    upload: JPG/JPEG/PNG, 5 MB, 2.500px.
+24. **Reordenar imagem de produto na Tray não responde a arrastar com o mouse** →
+    os `.preview-item-image` são `draggable="true"` (HTML5 nativo), e `left_click_drag`
+    não dispara `dragstart`/`drop`. Disparar os eventos via JS com um `DataTransfer`
+    compartilhado funciona, **mas o Vue só re-renderiza no próximo evento de teclado** —
+    a primeira tentativa pareceu falhar e só se aplicou quando apertei uma seta depois.
+    Receita: `__hdrag(origem, destino)` e em seguida uma tecla neutra (`ArrowLeft`);
+    confira a ordem relendo os `src`, não pela tela. Não existe botão "tornar principal":
+    principal é a posição 0.
+25. **Vídeo renderizou deitado / a matemática de recorte deu errado** → li
+    `width/height` do container (1024×576) e ignorei o `displaymatrix: rotation of
+    -90°`; a dimensão de exibição era 576×1024, 9:16 nativo → **sondagem de vídeo
+    sempre honra a matriz de rotação**; a dimensão codificada não é a dimensão de
+    exibição.
+26. **O render a 360 px saiu 360×638 e ninguém reclamou** → passei `--scale=0.333`
+    achando que 1080 × 0,333 fecharia em 360×640. Fecha em 359,64×639,36; o still
+    aceita altura ímpar e sai 360×639, mas o h264 exige lado par e o **Remotion desce
+    639 para 638 em silêncio**, com exit 0. 360/638 = 0,5643, e 9:16 é 0,5625: a peça
+    saiu esticada 0,3% na vertical sem um aviso → **nunca digite a escala; derive-a da
+    largura alvo** (`escalaParaLargura()` em `instagram/remotion/src/verificacao/telefone.ts`)
+    e recuse lado ímpar antes do render. É a lição 3 de novo, agora em vídeo: exit 0
+    não prova que o parâmetro fez o que se queria.
+27. **`fps=2,scale=180:-1,tile=6x8` não montou a folha de contato** → o ffmpeg que vem
+    dentro do Remotion (`node_modules/@remotion/compositor-*/ffmpeg.exe`) é build
+    mínima: publica ~50 filtros e **não tem `fps` nem `tile`**. Pior, a mensagem para
+    `fps=2` é `No option name near '2'`, que parece erro de sintaxe e me fez reescrever
+    o filtro em vez de duvidar do binário; só `fps=fps=2` devolveu o verdadeiro `No such
+    filter: 'fps'` → antes de depurar a sintaxe de um filtro, **confirme que o filtro
+    existe naquela build** (`ffmpeg -filters`). Amostragem se faz com `-r`, que é opção
+    de saída e não filtro, e o mosaico se monta em Node com `pngjs`.
