@@ -1,0 +1,587 @@
+{
+  "_gerado_por": "src/briefing/compilar.ts",
+  "_sha256Briefing": "45eb894ecbb117c811011bf4800aa97662b23e0fd55d0c84e963ffb6a32fea21",
+  "_sha256Plano": "e230e9d694d351a4fce15b01b63cec9339d9825bf2066b10450ca30fd2fe7596",
+  "serie": "avulsa",
+  "fps": 30,
+  "formatos": [
+    "9:16",
+    "1:1"
+  ],
+  "duracaoFrames": 684,
+  "razaoDaPeca": 0.5625,
+  "cenas": [
+    {
+      "duracaoFrames": 127,
+      "inicioNaPecaFrames": 0,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 1.14,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "aparaAntesFrames": 34,
+      "eventos": [
+        {
+          "papel": "manchete",
+          "texto": "SUA PRÓPRIA MARCA DE CAFÉ",
+          "familia": "manchete",
+          "cadenciaTexto": "palavra",
+          "pista": "topo",
+          "irmaos": 5,
+          "inicioFrames": 9,
+          "duracaoIrmaoFrames": 108,
+          "duracaoFrames": 108,
+          "palavraAcento": 2
+        }
+      ]
+    },
+    {
+      "duracaoFrames": 139,
+      "inicioNaPecaFrames": 127,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 5.38,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "aparaAntesFrames": 161,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "PLANTIO PRÓPRIO",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 12,
+          "duracaoIrmaoFrames": 114,
+          "duracaoFrames": 114
+        }
+      ]
+    },
+    {
+      "duracaoFrames": 132,
+      "inicioNaPecaFrames": 266,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 10.02,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "aparaAntesFrames": 301,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "FÁBRICA PRÓPRIA",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 12,
+          "duracaoIrmaoFrames": 108,
+          "duracaoFrames": 108
+        }
+      ]
+    },
+    {
+      "duracaoFrames": 95,
+      "inicioNaPecaFrames": 398,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 14.42,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "aparaAntesFrames": 433,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "EQUIPAMENTO E EQUIPE",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 9,
+          "duracaoIrmaoFrames": 75,
+          "duracaoFrames": 75
+        }
+      ]
+    },
+    {
+      "duracaoFrames": 191,
+      "inicioNaPecaFrames": 493,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 17.58,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "aparaAntesFrames": 527,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "DA TORRA À MOAGEM",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 12,
+          "duracaoIrmaoFrames": 96,
+          "duracaoFrames": 96
+        },
+        {
+          "papel": "manchete",
+          "texto": "VEM CONOSCO",
+          "familia": "manchete",
+          "cadenciaTexto": "palavra",
+          "pista": "topo",
+          "irmaos": 2,
+          "inicioFrames": 123,
+          "duracaoIrmaoFrames": 60,
+          "duracaoFrames": 60
+        }
+      ]
+    }
+  ],
+  "transicoes": [
+    {
+      "tipo": "corte",
+      "duracaoFrames": 0
+    },
+    {
+      "tipo": "corte",
+      "duracaoFrames": 0
+    },
+    {
+      "tipo": "corte",
+      "duracaoFrames": 0
+    },
+    {
+      "tipo": "corte",
+      "duracaoFrames": 0
+    }
+  ],
+  "legenda": {
+    "blocos": [
+      {
+        "texto": "procurando algo",
+        "inicioFrame": 0,
+        "fimFrame": 15
+      },
+      {
+        "texto": "para lucrar",
+        "inicioFrame": 15,
+        "fimFrame": 35
+      },
+      {
+        "texto": "muito? Você",
+        "inicioFrame": 35,
+        "fimFrame": 58
+      },
+      {
+        "texto": "já pensou",
+        "inicioFrame": 58,
+        "fimFrame": 68
+      },
+      {
+        "texto": "ter sua",
+        "inicioFrame": 68,
+        "fimFrame": 78
+      },
+      {
+        "texto": "própria marca",
+        "inicioFrame": 78,
+        "fimFrame": 92
+      },
+      {
+        "texto": "de café",
+        "inicioFrame": 92,
+        "fimFrame": 102
+      },
+      {
+        "texto": "especiais? Aqui",
+        "inicioFrame": 102,
+        "fimFrame": 135
+      },
+      {
+        "texto": "a gente",
+        "inicioFrame": 135,
+        "fimFrame": 153
+      },
+      {
+        "texto": "tem plantio",
+        "inicioFrame": 153,
+        "fimFrame": 189
+      },
+      {
+        "texto": "próprio, a",
+        "inicioFrame": 189,
+        "fimFrame": 227
+      },
+      {
+        "texto": "gente traz",
+        "inicioFrame": 227,
+        "fimFrame": 237
+      },
+      {
+        "texto": "a nossa",
+        "inicioFrame": 237,
+        "fimFrame": 247
+      },
+      {
+        "texto": "própria fazenda,",
+        "inicioFrame": 247,
+        "fimFrame": 267
+      },
+      {
+        "texto": "temos toda",
+        "inicioFrame": 267,
+        "fimFrame": 278
+      },
+      {
+        "texto": "essa fábrica",
+        "inicioFrame": 278,
+        "fimFrame": 298
+      },
+      {
+        "texto": "aqui, a",
+        "inicioFrame": 298,
+        "fimFrame": 309
+      },
+      {
+        "texto": "sua disposição",
+        "inicioFrame": 309,
+        "fimFrame": 336
+      },
+      {
+        "texto": "e podemos",
+        "inicioFrame": 336,
+        "fimFrame": 348
+      },
+      {
+        "texto": "ajudar você",
+        "inicioFrame": 348,
+        "fimFrame": 367
+      },
+      {
+        "texto": "a realizar",
+        "inicioFrame": 367,
+        "fimFrame": 382
+      },
+      {
+        "texto": "esse sonho.",
+        "inicioFrame": 382,
+        "fimFrame": 399
+      },
+      {
+        "texto": "Temos aqui",
+        "inicioFrame": 399,
+        "fimFrame": 418
+      },
+      {
+        "texto": "os melhores",
+        "inicioFrame": 418,
+        "fimFrame": 432
+      },
+      {
+        "texto": "equipamentos, os",
+        "inicioFrame": 432,
+        "fimFrame": 460
+      },
+      {
+        "texto": "melhores profissionais",
+        "inicioFrame": 460,
+        "fimFrame": 494
+      },
+      {
+        "texto": "e podemos",
+        "inicioFrame": 494,
+        "fimFrame": 509
+      },
+      {
+        "texto": "fazer todo",
+        "inicioFrame": 509,
+        "fimFrame": 528
+      },
+      {
+        "texto": "o processo.",
+        "inicioFrame": 528,
+        "fimFrame": 547
+      },
+      {
+        "texto": "Desde a",
+        "inicioFrame": 547,
+        "fimFrame": 558
+      },
+      {
+        "texto": "torra, o",
+        "inicioFrame": 558,
+        "fimFrame": 572
+      },
+      {
+        "texto": "acotamento, o",
+        "inicioFrame": 572,
+        "fimFrame": 598
+      },
+      {
+        "texto": "moagem, clique",
+        "inicioFrame": 598,
+        "fimFrame": 612
+      },
+      {
+        "texto": "aqui, clique",
+        "inicioFrame": 612,
+        "fimFrame": 643
+      },
+      {
+        "texto": "em baixo",
+        "inicioFrame": 643,
+        "fimFrame": 655
+      },
+      {
+        "texto": "e vem",
+        "inicioFrame": 655,
+        "fimFrame": 665
+      },
+      {
+        "texto": "conosco.",
+        "inicioFrame": 665,
+        "fimFrame": 684
+      }
+    ],
+    "deslocamentoFrames": -34,
+    "grudadosEmZero": 1,
+    "maiorRecuoFrames": 14,
+    "descartadosAntesDoInicio": 1,
+    "descartadosDepoisDoFim": 0
+  },
+  "audio": {
+    "locucao": {
+      "arquivo": "pl.wav",
+      "ganhoDb": 0,
+      "aparaAntesS": 1.14
+    },
+    "trilha": null
+  },
+  "assets": [],
+  "licencas": {
+    "particulas": false,
+    "orbesDeBrilho": false,
+    "varreduraDeLuz": false,
+    "shockwave": false,
+    "molaComOvershoot": false,
+    "revelarCaractereACaractere": false,
+    "flashNoCorte": false,
+    "irisWipe": false,
+    "motionBlurBurst": false,
+    "swipeMarcaTexto": false,
+    "highlightPalavraAtiva": false,
+    "aceitaTempoMorto": false,
+    "justificativa": ""
+  },
+  "exigePreservacao": false,
+  "gancho": "sua própria marca de café especiais, feita com plantio e fábrica próprios",
+  "cta": "clique no link e vem conosco",
+  "diagnostico": {
+    "eventos": [
+      {
+        "cena": 0,
+        "indice": 0,
+        "texto": "SUA PRÓPRIA MARCA DE CAFÉ",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 99,
+            "linha": 0.04949999999999999,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.104353425,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": true,
+            "porque": "faixa em 'topo': corpo 99 px, 3 linha(s), mancha 10,435% do quadro contra o piso 6,861% (1,25x a legenda de duas linhas). DOMINA"
+          },
+          "1:1": {
+            "encaixe": "coluna",
+            "corpo": 48,
+            "linha": 0.042666666666666665,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.037925925925925925,
+            "piso": 0.06925308641975308,
+            "domina": false,
+            "candidataADominar": true,
+            "porque": "coluna em 'topo': corpo 48 px, 4 linha(s), mancha 3,793% do quadro contra o piso 6,925% (1,25x a legenda de duas linhas). NAO DOMINA"
+          }
+        }
+      },
+      {
+        "cena": 1,
+        "indice": 0,
+        "texto": "PLANTIO PRÓPRIO",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 180,
+            "linha": 0.08999999999999998,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.12599999999999997,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 180 px, mancha 12,600%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          },
+          "1:1": {
+            "encaixe": "coluna",
+            "corpo": 65,
+            "linha": 0.057777777777777775,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.02920987654320988,
+            "piso": 0.06925308641975308,
+            "domina": false,
+            "candidataADominar": false,
+            "porque": "coluna em 'topo': corpo 65 px, mancha 2,921%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      },
+      {
+        "cena": 2,
+        "indice": 0,
+        "texto": "FÁBRICA PRÓPRIA",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 180,
+            "linha": 0.08999999999999998,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.12599999999999997,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 180 px, mancha 12,600%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          },
+          "1:1": {
+            "encaixe": "coluna",
+            "corpo": 65,
+            "linha": 0.057777777777777775,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.02920987654320988,
+            "piso": 0.06925308641975308,
+            "domina": false,
+            "candidataADominar": false,
+            "porque": "coluna em 'topo': corpo 65 px, mancha 2,921%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      },
+      {
+        "cena": 3,
+        "indice": 0,
+        "texto": "EQUIPAMENTO E EQUIPE",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 115,
+            "linha": 0.05749999999999999,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.08081944444444442,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 115 px, mancha 8,082%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          },
+          "1:1": {
+            "encaixe": "coluna",
+            "corpo": 41,
+            "linha": 0.036444444444444446,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.018262716049382715,
+            "piso": 0.06925308641975308,
+            "domina": false,
+            "candidataADominar": false,
+            "porque": "coluna em 'topo': corpo 41 px, mancha 1,826%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      },
+      {
+        "cena": 4,
+        "indice": 0,
+        "texto": "DA TORRA À MOAGEM",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 158,
+            "linha": 0.079,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.11095111111111111,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 158 px, mancha 11,095%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          },
+          "1:1": {
+            "encaixe": "coluna",
+            "corpo": 64,
+            "linha": 0.056888888888888885,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.042477037037037035,
+            "piso": 0.06925308641975308,
+            "domina": false,
+            "candidataADominar": false,
+            "porque": "coluna em 'topo': corpo 64 px, mancha 4,248%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      },
+      {
+        "cena": 4,
+        "indice": 1,
+        "texto": "VEM CONOSCO",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 135,
+            "linha": 0.06749999999999999,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.09466874999999998,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": true,
+            "porque": "faixa em 'topo': corpo 135 px, 2 linha(s), mancha 9,467% do quadro contra o piso 6,861% (1,25x a legenda de duas linhas). DOMINA"
+          },
+          "1:1": {
+            "encaixe": "coluna",
+            "corpo": 48,
+            "linha": 0.042666666666666665,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.021276444444444445,
+            "piso": 0.06925308641975308,
+            "domina": false,
+            "candidataADominar": true,
+            "porque": "coluna em 'topo': corpo 48 px, 2 linha(s), mancha 2,128% do quadro contra o piso 6,925% (1,25x a legenda de duas linhas). NAO DOMINA"
+          }
+        }
+      }
+    ],
+    "licencasLigadas": []
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "_esquema": "canastra-briefing/1",
+
+  "_peca": "Pitch de private label do Arthur, o mesmo arquivo do 01-private-label (md5 9e20dbd2e4ddfb2d8927f02920e5bc10, conferido contra C:/Users/rafae/Downloads/02 PL.mp4 em 01/10/2026). A diferenca para o 01 nao e a fonte, e a EDICAO: o 01 entrega uma timeline continua com 2,0 s de evento de texto em 23,2 s, ou seja 91,4% do tempo sem nenhuma camada alem da legenda, e proibicoes.md:12 proibe tempo morto. Aqui a fala vira 5 cenas e cada uma carrega um texto ancorado no que ele DIZ naquele trecho.",
+
+  "_fronteiras": "As 5 cenas sao fatias CONTIGUAS do mesmo arquivo: cena N comeca exatamente onde a N-1 termina (1,14 / 5,38 / 10,02 / 14,42 / 17,58 / 23,94 s). Nenhuma pausa foi removida. Isso e deliberado: o motor toca UM <Audio> continuo com uma unica apara, entao tirar pausa do VIDEO dessincronizaria a fala. Apertar o pitch cortando silencio exigiria cortar o audio tambem, e o motor nao faz isso hoje. Consequencia boa: a fronteira pode cair no meio de uma palavra sem produzir emenda nenhuma, porque com transicao `corte` nao ha descontinuidade visual nem sonora -- a fronteira so decide que texto esta no ar.",
+
+  "_cortes": "Os instantes vieram de silencedetect no pl.wav (-30 dB, 0,35 s), medidos em 30/09/2026: silencio de 0 a 1,135 s na cabeca, depois pausas em 5,08 · 6,78 · 9,55 · 13,99 · 16,02 · 17,50 · 21,52. Ajustei as fronteiras para a fronteira de CLAUSULA da transcricao, nao para o silencio bruto, porque o que decide onde o texto troca e a frase.",
+
+  "_legenda_defeito": "DEFEITO CONHECIDO E NAO MASCARADO: o Whisper esticou as duas primeiras palavras para tras, para dentro do ar morto medido. 'Voce' fica em 0-340 ms e 'esta' em 340-680 ms, ambos dentro do silencio de 0 a 1.135 ms. Com apara de 1,14 s esses blocos morrem antes do frame 0 e a peca abre em 'procurando algo'. O compile vai relatar descartadosAntesDoInicio e maiorRecuoFrames -- LEIA o relatorio. Nao corrigi o inicioMs a mao porque isso seria inventar alinhamento; o conserto certo e re-transcrever o pl.wav ja aparado, e e decisao do Rafael.",
+
+  "_acotamento": "A transcricao traz 'o acotamento', que nao e palavra -- e erro do Whisper, provavelmente por 'ensacamento' ou 'acondicionamento'. NAO corrigi na transcricao (licao 20: a referencia e a fonte da verdade mesmo quando esta errada) e NAO usei a palavra em texto de tela. A etiqueta da cena 5 diz 'DA TORRA A MOAGEM', que sao as duas palavras que ele de fato pronuncia.",
+
+  "serie": "avulsa",
+  "fps": 30,
+  "formatos": ["9:16", "1:1"],
+  "duracao": {"modo": "somaCenas", "alvoS": 22.8},
+
+  "cenas": [
+    {
+      "_fala": "[algo para lucrar muito?] Voce ja pensou ter sua propria marca de cafe especiais?",
+      "_razao": "0,5625 MEDIDO por sondar em 01/10/2026: o container declara 1024x576 e tem displaymatrix -90, logo EXIBE 576x1024. Chutar a razao do container poria a peca deitada com exit 0.",
+      "duracaoS": 4.24,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 1.14,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "eventos": [
+        {
+          "_ancora": "Citacao dele, nao copy inventada: 'ter sua propria marca de cafe especiais'.",
+          "papel": "manchete",
+          "texto": "SUA PRÓPRIA MARCA DE CAFÉ",
+          "entradaS": 0.3,
+          "duracaoS": 3.6,
+          "pista": "topo",
+          "palavraAcento": 2
+        }
+      ]
+    },
+    {
+      "_fala": "Aqui a gente tem plantio proprio, a gente traz a nossa propria fazenda,",
+      "duracaoS": 4.64,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 5.38,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "PLANTIO PRÓPRIO",
+          "entradaS": 0.4,
+          "duracaoS": 3.8,
+          "pista": "topo"
+        }
+      ]
+    },
+    {
+      "_fala": "temos toda essa fabrica aqui, a sua disposicao e podemos ajudar voce a realizar esse sonho.",
+      "duracaoS": 4.40,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 10.02,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "FÁBRICA PRÓPRIA",
+          "entradaS": 0.4,
+          "duracaoS": 3.6,
+          "pista": "topo"
+        }
+      ]
+    },
+    {
+      "_fala": "Temos aqui os melhores equipamentos, os melhores profissionais",
+      "_curta": "3,16 s e a cena mais curta. O evento sai aos 2,8 s, antes do corte, conforme a regra de entradaS + duracaoS menor que a duracaoS da cena.",
+      "duracaoS": 3.16,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 14.42,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "EQUIPAMENTO E EQUIPE",
+          "entradaS": 0.3,
+          "duracaoS": 2.5,
+          "pista": "topo"
+        }
+      ]
+    },
+    {
+      "_fala": "e podemos fazer todo o processo. Desde a torra, o [acotamento], o moagem, clique aqui, clique em baixo e vem conosco.",
+      "_dois": "Dois eventos nesta cena de propósito: a etiqueta do processo sai e o CTA entra, para o fim da peca nao correr mudo de texto. O CTA cita o que ele fala: 'vem conosco'.",
+      "duracaoS": 6.36,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 17.58,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "DA TORRA À MOAGEM",
+          "entradaS": 0.4,
+          "duracaoS": 3.2,
+          "pista": "topo"
+        },
+        {
+          "papel": "manchete",
+          "texto": "VEM CONOSCO",
+          "entradaS": 4.1,
+          "duracaoS": 2.0,
+          "pista": "topo"
+        }
+      ]
+    }
+  ],
+
+  "_transicoes": "Quatro `corte`, nao `fade`. Duas razoes medidas: (1) corte consome 0 frames, entao a peca dura exatamente a soma das cenas e a fala nao desliza; (2) um fade entre duas fatias CONTIGUAS do mesmo video mostraria o mesmo quadro se dissolvendo em si mesmo, que e um defeito, nao uma transicao.",
+  "transicoes": [
+    {"tipo": "corte"},
+    {"tipo": "corte"},
+    {"tipo": "corte"},
+    {"tipo": "corte"}
+  ],
+
+  "_audio": "A locucao e a fala do proprio video, extraida em pl.wav. A apara de 1,14 s casa com a da cena 1, e e ela que a legenda usa como ancora. Trilha null e declaracao, nao esquecimento: o repositorio nao tem nenhum arquivo de musica sem voz gravado ou licenciado (medido em 01/10/2026), e declarar um nome que nao existe em disco MATA o render com exit 1, como acontece hoje no 02-jornada-do-grao.",
+  "audio": {
+    "locucao": {"arquivo": "pl.wav", "ganhoDb": 0, "aparaAntesS": 1.14},
+    "trilha": null
+  },
+
+  "_relogio": "relogio: 'fonte' declara que transcricao.json esta no tempo CRU do arquivo, nao no da peca. O rebase e do compilador, uma vez. A skill nao documenta este campo -- achado usando ela, em 01/10/2026.",
+  "legenda": {
+    "arquivo": "transcricao.json",
+    "relogio": "fonte",
+    "ancora": {"tipo": "locucao"}
+  },
+
+  "assets": [],
+
+  "gancho": "sua própria marca de café especiais, feita com plantio e fábrica próprios",
+  "cta": "clique no link e vem conosco"
+}
