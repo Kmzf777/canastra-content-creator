@@ -99,6 +99,7 @@ referência, prompt, Claude in Chrome no ChatGPT, conferência ampliada, registr
 | `canastra-conteudo` | hub: qualquer imagem. Dono do fluxo, da mecânica do ChatGPT e da conferência |
 | `canastra-embalagem` | a embalagem aparece legível — rótulo tem que sobreviver letra por letra |
 | `canastra-cena` | lavoura, mesa, torrefação, UGC — realismo e procedência da referência |
+| `canastra-estatico` | post estático de feed — o catálogo declarado e a escada de correção do rótulo |
 
 A regra que mais se perde, e que um agente de teste furou neste repositório:
 **só marque um campo como conferido se a referência permitir lê-lo.** Ilegível não
@@ -516,3 +517,32 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     filter: 'fps'` → antes de depurar a sintaxe de um filtro, **confirme que o filtro
     existe naquela build** (`ffmpeg -filters`). Amostragem se faz com `-r`, que é opção
     de saída e não filtro, e o mosaico se monta em Node com `pngjs`.
+28. **Apliquei como regra de pipeline uma proibição que era de escopo de pasta** →
+    `assets/materialidade/LEIA-ME.md` diz que embalagem "nunca nasce aqui", e eu li isso
+    como "embalagem nunca entra em geração". É falso, e contra evidência que já estava no
+    disco: os **96 packshots** de `saida-teste/catalogo-estudio/` saíram por geração e
+    foram aprovados, a lição 21 registra a frente íntegra nos 3 SKUs e a 12 registra os 3
+    indistinguíveis da fonte num blend a 50% → antes de transformar uma linha de LEIA-ME
+    em restrição de arquitetura, confira **de que escopo aquele arquivo fala**. Documento
+    de pasta descreve a pasta. A proteção do rótulo não é a proibição: é mandar a
+    referência certa e conferir letra por letra, com composição de pixel real como rede.
+29. **Declarei o gabarito de conferência de memória, dentro do módulo escrito para proibir
+    isso** → ao criar a primeira peça de `instagram/estaticos/catalogo.py` escrevi
+    `strings_impressas` transcrevendo da lembrança: saiu `"CLÁSSICO"` onde o selo diz
+    **`"CLÁSSICO EM GRÃOS"`**, `"TORRADO EM GRÃOS"` onde diz **`"TORRA EXCLUSIVA"`**, e
+    faltavam `SPECIALTY`, `ESPECIAL`, `Café` e **`"Desde 1985"`** — justamente a string da
+    lição 13. Um subagente ampliou e discordou; só então eu ampliei e confirmei → **a
+    regra da lição 18 vale na hora de DECLARAR, não só na de conferir.** Gabarito não
+    conferido no pixel não é gabarito, é lembrança com cara de dado. E quando outro agente
+    contesta um dado seu, confira você mesmo — aceitar a leitura dele é a mesma falha
+    terceirizada.
+30. **O texto do cartão sumiu sobre o packshot e a correção óbvia era proibida** → com as
+    três linhas sobrepostas à foto, o contraste do creme mediu 4,42:1 · 3,43:1 · **1,09:1**
+    — a terceira invisível. A causa é estrutural: o bloco atravessa fundo que vai de preto
+    (o pacote) a branco (o ciclorama), e **nenhuma cor fixa sobrevive a essa amplitude**;
+    o packshot de fundo colorido é pior ainda, 2,46:1. O remédio padrão — scrim escuro
+    atrás do texto — é barrado por `proibicoes.md`, que proíbe gradiente por cima da
+    embalagem → quando a correção de legibilidade esbarra numa regra de marca, **mude a
+    geometria, não a regra**: o texto ganhou faixa sólida própria no rodapé e o contraste
+    virou constante do molde, 11,59:1, com o pacote intocado. Medir antes de escolher a
+    cor evita as duas rodadas.
