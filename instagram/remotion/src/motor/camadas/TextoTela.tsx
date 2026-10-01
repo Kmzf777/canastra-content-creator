@@ -46,7 +46,7 @@
 // seguro. Tracking positivo NAO tem esse consolo, e por isso e proibido nesta
 // camada.
 
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
 import React from 'react';
 import {TIPO} from '../../identidade/tokens';
 import {larguraEm} from '../../identidade/glifos';
@@ -56,7 +56,9 @@ import {larguraEm} from '../../identidade/glifos';
 // cima -- foi por essa falta que a legenda saiu em Times New Roman.
 import {PILHA} from '../../identidade/tipografia';
 import {duracaoComIrmaos, duracaoDeIrmao, progresso, push} from '../movimento';
+import {cadencia} from '../cadencia';
 import {formaTextoTela, type Modo, type PapelTexto} from './texto-forma';
+import {linhaMaximaDoQuadro} from '../encaixe';
 import type {Zonas} from '../layout';
 
 export type PropsTextoTela = {
@@ -88,11 +90,38 @@ export const TextoTela: React.FC<PropsTextoTela> = ({
   palavraAcento,
 }) => {
   const frame = useCurrentFrame();
+  // A CADENCIA VEM DA COMPOSICAO, nao de uma constante. Este `useVideoConfig` e
+  // a razao pela qual a peca passa a estar certa em qualquer fps: antes de
+  // 01/10/2026 nenhuma camada de texto chamava esta funcao, e a 60 fps a
+  // manchete inteira durava metade.
+  const {fps} = useVideoConfig();
+  const c = React.useMemo(() => cadencia(fps), [fps]);
   const t = frame - inicioFrame;
 
+  // O TETO DO QUADRO E RECALCULADO AQUI, E NAO RECEBIDO COMO PROP.
+  //
+  // Esta camada ja remede `formaTextoTela` com as zonas que `Cena.tsx` passou -- e o
+  // desenho precisa chegar no MESMO corpo que `resolverEncaixe` relatou no diagnostico.
+  // Sem esta linha o diagnostico diria 310 px e o pixel sairia com 410, que e
+  // exatamente a divergencia plano-x-tela que `forma.irmaos` ja custou uma vez.
+  //
+  // Vem de `linhaMaximaDoQuadro`, a mesma funcao que `resolverEncaixe` chama: o teto
+  // tem UM dono. E ele le `zonas.seguro`, que `Cena.tsx` NAO troca (ela troca
+  // `zonas.manchete`), entao o quadro reconstruido aqui e o mesmo de la.
+  const linhaMaxima = React.useMemo(() => linhaMaximaDoQuadro(zonas, modo), [zonas, modo]);
+
   const forma = React.useMemo(
-    () => formaTextoTela({texto, modo, zonas, papel, palavraAcento}),
-    [texto, modo, zonas, papel, palavraAcento],
+    () =>
+      formaTextoTela({
+        texto,
+        modo,
+        zonas,
+        papel,
+        palavraAcento,
+        cadencia: c,
+        ...(linhaMaxima === null ? {} : {linhaMaxima}),
+      }),
+    [texto, modo, zonas, papel, palavraAcento, c, linhaMaxima],
   );
 
   if (forma.palavras.length === 0) return null;
@@ -100,20 +129,24 @@ export const TextoTela: React.FC<PropsTextoTela> = ({
   // A janela de cada palavra. O padrao cresce com o numero de palavras, senao a
   // primeira comeca a sair antes de a ultima entrar e a manchete nunca fica
   // legivel por inteiro -- ver `duracaoDeIrmao`.
-  const duracaoPalavra = duracaoFrames ?? duracaoDeIrmao(forma.palavras.length);
+  // `forma.irmaos`, NAO `forma.palavras.length`: a cadencia do papel decide quantos
+  // elementos escalonam (palavra / linha / bloco), e o compilador dimensionou a cena
+  // com esse MESMO numero. Contar palavras aqui devolveria a divergencia de 6 frames
+  // que a etiqueta de 3 palavras produzia.
+  const duracaoPalavra = duracaoFrames ?? duracaoDeIrmao(forma.irmaos, c);
 
   // A janela da CENA: do primeiro frame da primeira palavra ao ultimo frame da
   // ultima. O push de camera corre por cima dela inteira.
-  const duracaoCena = duracaoComIrmaos(forma.palavras.length, duracaoPalavra);
+  const duracaoCena = duracaoComIrmaos(forma.irmaos, duracaoPalavra, c);
   if (t < 0 || t >= duracaoCena) return null;
 
   // Estado do conjunto, sem stagger: e ele que liga o fundo da cartela.
-  const conjunto = progresso(t, {inicio: 0, duracao: duracaoCena});
+  const conjunto = progresso(t, {inicio: 0, duracao: duracaoCena}, c);
 
   // O espaco entre palavras vem da MESMA medida que quebrou as linhas. Usar
   // `gap` em vez de um caractere de espaco porque cada palavra e um elemento
   // proprio, com opacidade e escala propria.
-  const espaco = larguraEm(' ', papel) * forma.corpo;
+  const espaco = larguraEm(' ', forma.familia) * forma.corpo;
 
   return (
     <AbsoluteFill
@@ -156,17 +189,17 @@ export const TextoTela: React.FC<PropsTextoTela> = ({
           >
             {forma.palavras
               .filter((p) => p.linha === iLinha)
-              .map((p) => {
+              .map((p, iPalavra) => {
                 const e = progresso(t, {
                   inicio: p.atrasoFrames,
                   duracao: duracaoPalavra,
-                });
+                }, c);
                 return (
                   <span
-                    key={`${p.irmao}-${p.texto}`}
+                    key={`${iLinha}-${iPalavra}-${p.texto}`}
                     style={{
-                      fontFamily: PILHA[papel],
-                      fontWeight: TIPO[papel].peso,
+                      fontFamily: PILHA[forma.familia],
+                      fontWeight: TIPO[forma.familia].peso,
                       fontSize: forma.corpo,
                       lineHeight: forma.entrelinha,
                       // Ver "O CONTRATO COM A MEDICAO" no cabecalho.

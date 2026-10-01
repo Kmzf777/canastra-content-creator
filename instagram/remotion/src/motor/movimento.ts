@@ -18,13 +18,13 @@
 // Duas derivacoes precisam estar escritas, porque nao sao leitura direta de
 // token e a proxima sessao vai querer saber de onde sairam:
 //
-//   1. A SAIDA OCUPA OS MESMOS FRAMES DA ENTRADA (`TEMPO.entrada`). Nao existe
+//   1. A SAIDA OCUPA OS MESMOS FRAMES DA ENTRADA (`c.entrada`). Nao existe
 //      token de duracao de saida, e inventar um seria escolher no olho. O que
 //      torna a saida "acelerada" e `TEMPO.saidaExpoente` (2,4), nao um numero
 //      de frames menor: com t^2,4 a massa do movimento fica no fim, entao a
 //      saida LE como mais rapida ocupando a mesma janela.
 //
-//   2. `TEMPO.overshoot` (3%) e lido como POUSO, nao como repique. A escala
+//   2. `c.overshoot` (3%) e lido como POUSO, nao como repique. A escala
 //      entra 3% GRANDE e assenta em 100%; na saida continua descendo para 97%.
 //      E uma direcao so, do primeiro ao ultimo frame. Repique -- passar do
 //      alvo e voltar -- e easing elastico, e `src/identidade/proibicoes.md`
@@ -32,6 +32,7 @@
 //      mexer na proibicao primeiro, de proposito.
 
 import {PUSH, TEMPO} from '../identidade/tokens';
+import type {Cadencia} from './cadencia';
 
 export type Fase = 'antes' | 'entrada' | 'hold' | 'saida' | 'depois';
 
@@ -118,48 +119,68 @@ export const POUSO = bezierDeCss(TEMPO.pousoEasing);
 // ---------------------------------------------------------------------------
 // reparticao da janela
 
-/** entrada + holdFinal + saida. Abaixo disso as pontas comprimem. */
-export const DURACAO_MINIMA = TEMPO.entrada + TEMPO.holdFinal + TEMPO.entrada;
+// `DURACAO_MINIMA` era uma constante de modulo derivada de frames a 30 fps.
+// Agora ela e `c.duracaoMinima`, porque depende do fps da composicao -- ver
+// `motor/cadencia.ts`. A soma continua sendo entrada + holdFinal + entrada.
 
 export type Fases = {entrada: number; hold: number; saida: number};
 
 /**
  * Reparte `duracao` em entrada / hold / saida, em frames inteiros.
  *
- * Numa janela folgada as pontas sao `TEMPO.entrada` cheios e o hold fica com a
+ * Numa janela folgada as pontas sao `c.entrada` cheios e o hold fica com a
  * sobra. Numa janela curta as PONTAS cedem e o hold nunca fica negativo: um
  * elemento de 3 frames ainda tem uma fase de cada, um de 2 frames aparece
  * inteiro e sai inteiro. A alternativa -- deixar entrada e saida se
  * sobreporem -- daria presenca subindo e descendo no mesmo frame.
  */
-export function fases(duracao: number): Fases {
+export function fases(duracao: number, c: Cadencia): Fases {
   const d = Math.max(0, Math.floor(duracao));
   if (d === 0) return {entrada: 0, hold: 0, saida: 0};
-  const ponta = Math.min(TEMPO.entrada, Math.floor(d / 3));
+  const ponta = Math.min(c.entrada, Math.floor(d / 3));
   return {entrada: ponta, hold: d - 2 * ponta, saida: ponta};
 }
 
 // ---------------------------------------------------------------------------
 // o progresso
 
-export function progresso(frame: number, janela: Janela): Estado {
+export function progresso(frame: number, janela: Janela, c: Cadencia): Estado {
   const {inicio, duracao} = janela;
   const t = frame - inicio;
 
-  if (t < 0) return {fase: 'antes', presenca: 0, escala: 1 + TEMPO.overshoot};
-  if (t >= duracao) return {fase: 'depois', presenca: 0, escala: 1 - TEMPO.overshoot};
+  if (t < 0) return {fase: 'antes', presenca: 0, escala: 1 + c.overshoot};
+  if (t >= duracao) return {fase: 'depois', presenca: 0, escala: 1 - c.overshoot};
 
-  const f = fases(duracao);
+  const f = fases(duracao, c);
   const inicioSaida = duracao - f.saida;
 
+  // AS DUAS PONTAS SAO NORMALIZADAS PELO FRAME DESENHADO, NAO PELO VIZINHO QUE
+  // NAO E DESENHADO. O `+1` de cada lado e isso, e cada um conserta um defeito
+  // medido em 01/10/2026 numa janela de 36 frames:
+  //
+  //   entrada, sem o `+1`: `t / f.entrada` com t = 0 da 0, entao o PRIMEIRO
+  //     frame renderizado de todo elemento saia com presenca 0,0000 -- um frame
+  //     pago e invisivel -- e a entrada so completava no primeiro frame do hold.
+  //     Com o `+1`, o primeiro frame desenhado sai em POUSO(1/12) = 0,334183 e a
+  //     entrada fecha em t = 11, o ultimo frame dela.
+  //
+  //   saida, sem o `+1`: presenca nos seis ultimos frames desenhados era
+  //     0,8105 0,7257 0,6221 0,4986 0,3544 0,1885 e o frame seguinte nunca e
+  //     desenhado (`TextoTela.tsx` devolve null em `t >= duracaoCena`), entao o
+  //     elemento desaparecia de 18,85% de opacidade para zero num frame -- o
+  //     "sai seco" que `proibicoes.md` nao quer. O expoente 2,4 AMPLIFICA o
+  //     erro: com saida linear o residuo seria 8,33%.
+  //
   // Entrada: 0 -> 1 pela curva de pouso.
-  const pEntrada = f.entrada === 0 ? 1 : Math.min(1, t / f.entrada);
+  const pEntrada = f.entrada === 0 ? 1 : Math.min(1, (t + 1) / f.entrada);
   const entrada = POUSO(pEntrada);
 
   // Saida: 1 -> 0 acelerando por t^saidaExpoente.
   const pSaida =
-    f.saida === 0 || t < inicioSaida ? 0 : Math.min(1, (t - inicioSaida) / f.saida);
-  const queda = Math.pow(pSaida, TEMPO.saidaExpoente);
+    f.saida === 0 || t < inicioSaida
+      ? 0
+      : Math.min(1, (t - inicioSaida + 1) / f.saida);
+  const queda = Math.pow(pSaida, c.saidaExpoente);
 
   const fase: Fase = t < f.entrada ? 'entrada' : t < inicioSaida ? 'hold' : 'saida';
 
@@ -169,7 +190,7 @@ export function progresso(frame: number, janela: Janela): Estado {
     // esta em transicao -- multiplicar so somaria erro de ponto flutuante.
     presenca: Math.min(entrada, 1 - queda),
     // Uma direcao so: 1+overshoot -> 1 -> 1-overshoot. Ver o cabecalho.
-    escala: 1 + TEMPO.overshoot * (1 - entrada) - TEMPO.overshoot * queda,
+    escala: 1 + c.overshoot * (1 - entrada) - c.overshoot * queda,
   };
 }
 
@@ -177,14 +198,18 @@ export function progresso(frame: number, janela: Janela): Estado {
 // irmaos
 
 /** Quantos frames o irmao `indice` espera antes de comecar a entrar. */
-export function atrasoDoIrmao(indice: number): number {
-  return Math.max(0, Math.floor(indice)) * TEMPO.stagger;
+export function atrasoDoIrmao(indice: number, c: Cadencia): number {
+  return Math.max(0, Math.floor(indice)) * c.stagger;
 }
 
 /** A janela de cada um dos `quantidade` irmaos, escalonada. */
-export function janelasDeIrmaos(quantidade: number, base: Janela): Janela[] {
+export function janelasDeIrmaos(
+  quantidade: number,
+  base: Janela,
+  c: Cadencia,
+): Janela[] {
   return Array.from({length: Math.max(0, Math.floor(quantidade))}, (_, i) => ({
-    inicio: base.inicio + atrasoDoIrmao(i),
+    inicio: base.inicio + atrasoDoIrmao(i, c),
     duracao: base.duracao,
   }));
 }
@@ -195,14 +220,18 @@ export function janelasDeIrmaos(quantidade: number, base: Janela): Janela[] {
  * O stagger empurra o fim junto com o comeco: se a cena nao crescer, o ultimo
  * elemento perde a saida e desaparece por corte.
  */
-export function duracaoComIrmaos(quantidade: number, duracao: number): number {
+export function duracaoComIrmaos(
+  quantidade: number,
+  duracao: number,
+  c: Cadencia,
+): number {
   const n = Math.max(1, Math.floor(quantidade));
-  return duracao + atrasoDoIrmao(n - 1);
+  return duracao + atrasoDoIrmao(n - 1, c);
 }
 
 /**
  * Quanto CADA irmao precisa durar para que todos fiquem cheios AO MESMO TEMPO
- * por `TEMPO.holdFinal` frames.
+ * por `c.holdFinal` frames.
  *
  * O DEFEITO QUE ISTO CONSERTA, visto num still e nao num teste:
  *
@@ -222,9 +251,9 @@ export function duracaoComIrmaos(quantidade: number, duracao: number): number {
  * Ou seja: a janela de cada irmao cresce exatamente o tanto que o stagger
  * atrasa o ultimo. Nenhum numero novo -- so os tokens.
  */
-export function duracaoDeIrmao(quantidade: number): number {
+export function duracaoDeIrmao(quantidade: number, c: Cadencia): number {
   const n = Math.max(1, Math.floor(quantidade));
-  return DURACAO_MINIMA + atrasoDoIrmao(n - 1);
+  return c.duracaoMinima + atrasoDoIrmao(n - 1, c);
 }
 
 // ---------------------------------------------------------------------------

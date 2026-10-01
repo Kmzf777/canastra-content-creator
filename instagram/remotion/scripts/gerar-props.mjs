@@ -175,6 +175,11 @@ async function gerar() {
   const {agrupar} = await import('../src/legenda/agrupar.ts');
   const {LEGENDA} = await import('../src/identidade/tokens.ts');
   const {sondar} = await import('../src/motor/sondar.ts');
+  // `LEGENDA.duracaoMinFrames` virou `duracaoMinSegundos` em 01/10/2026 (os
+  // tokens de tempo passaram a segundos). Esta linha so IMPRIME o piso, entao
+  // sem a conversao ela sairia `piso undefined frames` -- erro de log que ninguem
+  // ve. A conta e a mesma que `agrupar.ts` faz por dentro.
+  const {emFrames} = await import('../src/motor/relogio.ts');
 
   const transcricao = path.join(a.projeto, 'transcricao.json');
   const props = path.join(a.projeto, 'props.json');
@@ -205,6 +210,15 @@ async function gerar() {
   const fonte = await sondar(
     path.join(a.projeto, 'public', 'fonte', medidos.arquivo),
   );
+  // `sondar()` devolve `duracao: null` para imagem parada desde 01/10/2026. A
+  // fonte deste script e sempre um video, mas `null * 1000` e `0`, e um zero
+  // silencioso aqui envenenaria a prova de tempo em vez de reprovar.
+  if (fonte.duracao === null) {
+    throw new Error(
+      `${medidos.arquivo} nao e um video: sondar() diz imagem parada. A prova de ` +
+        'tempo da fonte precisa de duracao medida.',
+    );
+  }
   const prova = provarTempoDaFonte({
     palavras,
     fps: a.fps,
@@ -253,7 +267,7 @@ async function gerar() {
   console.log(`\n== blocos ==`);
   console.log(
     `  ${palavras.length} palavras -> ${blocos.length} blocos ` +
-      `(teto ${LEGENDA.maxPalavras} palavras, piso ${LEGENDA.duracaoMinFrames} frames)`,
+      `(teto ${LEGENDA.maxPalavras} palavras, piso ${emFrames(LEGENDA.duracaoMinSegundos, a.fps)} frames)`,
   );
   console.log(
     `  primeiro: frame ${blocos[0].inicioFrame}-${blocos[0].fimFrame} "${blocos[0].texto}"`,

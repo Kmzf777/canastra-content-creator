@@ -1,0 +1,65 @@
+{
+  "_esquema": "canastra-briefing/1",
+  "_proposito": "PECA DE PROVA DA ESTRUTURA DE CENA. Nao e peca de publicacao: ela existe para a conferencia no pixel de C1 (cena), C2 (fonte polimorfica) e C3 (eventos em lista). Tres cenas, tres tipos de fonte, tres papeis de texto.",
+  "serie": "jornada",
+  "fps": 30,
+  "formatos": ["9:16"],
+  "duracao": {"modo": "somaCenas"},
+  "cenas": [
+    {
+      "_cena": "VIDEO. razaoExibicao 0,5625 MEDIDA por sondar (o container mente 1024x576; ha displaymatrix de -90). aparaAntesS 1,14 e o ar morto medido na cabeca.",
+      "duracaoS": 4,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 1.14,
+        "enquadramento": "preencher",
+        "camera": "parado"
+      },
+      "eventos": [
+        {"papel": "manchete", "texto": "SUA PRÓPRIA MARCA", "entradaS": 0.2, "pista": "tela", "palavraAcento": 2}
+      ]
+    },
+    {
+      "_cena": "FOTO DE LAVOURA. 4032x3024, EXIF Orientation 1, razao 1,333333 MEDIDA. `cartao` + `faixa`: a foto se declara como foto apoiada, e a sobra de baixo e onde a legenda passaria.",
+      "duracaoS": 4,
+      "fonte": {
+        "tipo": "foto",
+        "arquivo": "cafezal.jpg",
+        "razaoExibicao": 1.333333,
+        "registro": "cartao",
+        "enquadramento": {"tipo": "faixa"},
+        "camera": "pushLento"
+      },
+      "eventos": [
+        {"papel": "etiqueta", "texto": "MEDEIROS 1250 M", "entradaS": 0.5, "pista": "topo"}
+      ]
+    },
+    {
+      "_cena": "RECORTE COM ALFA SOBRE FUNDO. O PNG e 4096x2304 e NAO tem metadado de orientacao (medido: sondar devolve `rotacao nenhuma`), entao o pacote esta DEITADO no pixel. rotacaoGraus 90 o poe em pe; razaoExibicao 0,5625 e a razao DEPOIS do giro.",
+      "duracaoS": 4,
+      "fonte": {
+        "tipo": "foto",
+        "arquivo": "classico-250g.png",
+        "razaoExibicao": 0.5625,
+        "registro": "moldura",
+        "enquadramento": {"tipo": "faixa"},
+        "camera": "parado",
+        "rotacaoGraus": 90
+      },
+      "eventos": [
+        {"papel": "dado", "texto": "250 G", "entradaS": 0.5, "pista": "principal"}
+      ]
+    }
+  ],
+  "transicoes": [{"tipo": "corte"}, {"tipo": "fade", "duracaoS": 0.5}],
+  "audio": {
+    "_audio": "A locucao do 01-private-label, que existe no disco. Sem ela a peca sairia muda, e Reel mudo perde elegibilidade para nao-seguidor.",
+    "locucao": {"arquivo": "pl.wav", "ganhoDb": 0, "aparaAntesS": 1.14},
+    "trilha": null
+  },
+  "assets": [],
+  "gancho": "o pacote com a sua marca, feito na Canastra",
+  "cta": "chama no direct"
+}

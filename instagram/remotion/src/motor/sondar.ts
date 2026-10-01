@@ -13,16 +13,36 @@ export type Sonda = {
   largura: number;
   /** altura de EXIBICAO, ja com a rotacao aplicada */
   altura: number;
-  /** rotacao do displaymatrix em graus (0 quando nao ha) */
-  rotacao: number;
+  /**
+   * De onde a rotacao veio, e quantos graus.
+   *
+   * POR QUE NAO E SO UM NUMERO. Um `0` que significa "nao achei metadado" e um
+   * `0` que significa "medi e e zero" sao fatos diferentes, e um deles e um
+   * alarme: se a fonte e `nenhuma` num JPEG de camera, ou a foto foi reescrita
+   * por um editor que apagou o EXIF, ou o `Orientation` esta la e nao foi lido.
+   * Devolver `0` nos dois casos foi exatamente como o defeito de 01/10/2026
+   * passou despercebido.
+   */
+  rotacao: {fonte: 'displaymatrix' | 'exif' | 'nenhuma'; graus: number};
   /** largura/altura de EXIBICAO */
   razao: number;
-  /** segundos */
-  duracao: number;
-  /** r_frame_rate: a taxa nominal do container */
-  fps: number;
-  /** avg_frame_rate: a taxa media real, que costuma diferir da nominal */
-  fpsMedio: number;
+  /** `true` quando o fluxo tem um frame so (`format_name === 'image2'`) */
+  imagemParada: boolean;
+  /**
+   * segundos. `null` em imagem parada: o 0,04 do ffprobe e do demuxer, nao do
+   * arquivo.
+   */
+  duracao: number | null;
+  /**
+   * r_frame_rate: a taxa nominal do container. `null` em imagem parada: os
+   * 25 fps que o ffprobe devolve para `image2` sao ficcao.
+   */
+  fps: number | null;
+  /**
+   * avg_frame_rate: a taxa media real, que costuma diferir da nominal. `null`
+   * em imagem parada.
+   */
+  fpsMedio: number | null;
   /** dimensao como esta gravada no container, antes da rotacao */
   codificada: {largura: number; altura: number};
   /** o binario que respondeu, para o relato de falha */
@@ -128,6 +148,32 @@ type FluxoFfprobe = {
   side_data_list?: {rotation?: number}[];
 };
 
+/** O EXIF nao vem no fluxo: vem nas TAGS DO FRAME. */
+type FrameFfprobe = {tags?: Record<string, string>};
+type FormatoFfprobe = {duration?: string; format_name?: string};
+
+/**
+ * EXIF `Orientation` -> graus de rotacao no sentido do displaymatrix.
+ *
+ * A tabela EXIF tem 8 valores; 2, 4, 5 e 7 incluem espelhamento, que este motor
+ * NAO aplica -- ele so troca largura por altura quando preciso. Espelhar uma
+ * foto de produto trocaria o lado do rotulo, e isso e alteracao de arte, nao de
+ * enquadramento.
+ *
+ * 5, 6, 7 e 8 trocam os eixos. E so isso que a dimensao de exibicao precisa
+ * saber.
+ */
+const GRAUS_DO_ORIENTATION: Record<number, number> = {
+  1: 0,
+  2: 0,
+  3: 180,
+  4: 180,
+  5: 90,
+  6: 90,
+  7: 270,
+  8: 270,
+};
+
 function taxa(bruta: string | undefined): number {
   if (!bruta) return 0;
   const [num, den] = bruta.split('/').map(Number);
@@ -137,11 +183,21 @@ function taxa(bruta: string | undefined): number {
 }
 
 /**
- * Le a dimensao REAL de um video, honrando o displaymatrix.
+ * Le a dimensao de EXIBICAO de um video OU de uma foto, honrando os DOIS
+ * metadados de rotacao que existem.
  *
- * A dimensao codificada mente: `pl.mp4` esta gravado 1024x576 com
- * `rotation -90`, logo exibe 576x1024 (9:16 nativo). Ler width/height do
- * container e renderizar por eles deita a peca inteira.
+ * A dimensao codificada mente, e mente por duas tecnologias diferentes:
+ *
+ * - `pl.mp4` esta gravado 1024x576 com `displaymatrix rotation -90`, logo exibe
+ *   576x1024 (9:16 nativo).
+ * - `Classico (5).jpg` esta gravado 4096x2304 com EXIF `Orientation 6`, logo
+ *   exibe 2304x4096 (razao 0,5625, nao 1,7778).
+ *
+ * Ler width/height do container e renderizar por eles deita a peca inteira. Ate
+ * 01/10/2026 esta funcao lia so o `side_data_list.rotation` -- que e metadado de
+ * CONTAINER DE VIDEO -- e por isso respondia sobre foto com tres erros ao mesmo
+ * tempo: razao errada, `rotacao: 0` num Orientation 6, e `fps: 25` / `duracao:
+ * 0.04` inventados pelo demuxer `image2` para um arquivo parado.
  */
 export async function sondar(caminho: string): Promise<Sonda> {
   const absoluto = path.resolve(caminho);
@@ -161,6 +217,11 @@ export async function sondar(caminho: string): Promise<Sonda> {
         'json',
         '-show_streams',
         '-show_format',
+        // O EXIF vem nas TAGS DO FRAME, nao do fluxo. `%+#1` pede UM frame:
+        // medido, e e o mesmo binario que ja estava aqui, sem dependencia nova.
+        '-show_frames',
+        '-read_intervals',
+        '%+#1',
         absoluto,
       ],
       {maxBuffer: 16 * 1024 * 1024},
@@ -173,7 +234,11 @@ export async function sondar(caminho: string): Promise<Sonda> {
     );
   }
 
-  let j: {streams?: FluxoFfprobe[]; format?: {duration?: string}};
+  let j: {
+    streams?: FluxoFfprobe[];
+    frames?: FrameFfprobe[];
+    format?: FormatoFfprobe;
+  };
   try {
     j = JSON.parse(stdout);
   } catch {
@@ -186,27 +251,55 @@ export async function sondar(caminho: string): Promise<Sonda> {
     throw new Error(`ffprobe nao devolveu dimensao para ${absoluto}`);
   }
 
-  // A rotacao vem no side_data_list do tipo Display Matrix, em graus e com
-  // sinal. Aplicamos nos: o ffprobe NAO reflete a rotacao em stream=width.
-  const rotacaoBruta = Number(
-    v.side_data_list?.find((s) => s.rotation !== undefined)?.rotation ?? 0,
-  );
-  const rotacao = Number.isFinite(rotacaoBruta) ? rotacaoBruta : 0;
-  const normalizada = ((Math.round(rotacao) % 360) + 360) % 360;
+  // IMAGEM PARADA. Medido em 01/10/2026: `format_name` e `image2` para JPEG e
+  // para PNG, e `mov,mp4,m4a,3gp,3g2,mj2` para o `pl.mp4`. Para todo `image2` o
+  // ffprobe devolve `r_frame_rate: 25/1` e `duration: 0.040000` -- os dois sao
+  // artefato do demuxer e nao medida do arquivo.
+  const imagemParada = (j.format?.format_name ?? '') === 'image2';
+
+  // ROTACAO, por DOIS metadados, nesta ordem de prioridade.
+  //
+  // O displaymatrix vence porque, quando os dois existem, ele e o que o
+  // container de video declara e e o que um player honra. Na pratica eles nao
+  // coexistem: medido, `pl.mp4` tem displaymatrix e nenhum `Orientation`, e os
+  // JPEG tem `Orientation` e nenhum side_data.
+  const rotacao = ((): Sonda['rotacao'] => {
+    const bruto = v.side_data_list?.find((s) => s.rotation !== undefined)
+      ?.rotation;
+    if (bruto !== undefined && Number.isFinite(Number(bruto))) {
+      return {fonte: 'displaymatrix', graus: Number(bruto)};
+    }
+    // O ffprobe devolve o Orientation PREENCHIDO DE ESPACOS (`"    6"`,
+    // medido). `Number()` sobre a string resolve; comparacao de string
+    // falharia em silencio, e silencio aqui e a razao de o defeito ter durado
+    // tres rodadas.
+    const cru = j.frames?.[0]?.tags?.Orientation;
+    const n = cru === undefined ? NaN : Number(String(cru).trim());
+    if (Number.isFinite(n) && n in GRAUS_DO_ORIENTATION) {
+      return {fonte: 'exif', graus: GRAUS_DO_ORIENTATION[n]};
+    }
+    return {fonte: 'nenhuma', graus: 0};
+  })();
+
+  const normalizada = ((Math.round(rotacao.graus) % 360) + 360) % 360;
   const trocado = normalizada === 90 || normalizada === 270;
 
   const largura = trocado ? v.height : v.width;
   const altura = trocado ? v.width : v.height;
 
-  const fps = taxa(v.r_frame_rate);
-  const fpsMedio = taxa(v.avg_frame_rate) || fps;
+  const fps = imagemParada ? null : taxa(v.r_frame_rate);
+  const fpsMedio = imagemParada ? null : taxa(v.avg_frame_rate) || fps;
+  const duracao = imagemParada
+    ? null
+    : Number(v.duration ?? j.format?.duration ?? 0);
 
   return {
     largura,
     altura,
     rotacao,
     razao: largura / altura,
-    duracao: Number(v.duration ?? j.format?.duration ?? 0),
+    imagemParada,
+    duracao,
     fps,
     fpsMedio,
     codificada: {largura: v.width, altura: v.height},

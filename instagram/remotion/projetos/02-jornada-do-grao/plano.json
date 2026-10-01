@@ -1,0 +1,298 @@
+{
+  "_gerado_por": "src/briefing/compilar.ts",
+  "_sha256Briefing": "4414a4e0936f5da8c9da98da4237f40bd382f541ce27cc5487d2903afbb24dec",
+  "_sha256Plano": "30ba7721fa886b7a33faa920816be10eb53b6568c3d042b7ec27e251e90a3cff",
+  "serie": "jornada",
+  "fps": 30,
+  "formatos": [
+    "9:16"
+  ],
+  "duracaoFrames": 600,
+  "razaoDaPeca": null,
+  "cenas": [
+    {
+      "duracaoFrames": 150,
+      "inicioNaPecaFrames": 0,
+      "fonte": {
+        "tipo": "foto",
+        "arquivo": "IMG_1421.JPG",
+        "razaoExibicao": 0.75,
+        "registro": "telaCheia",
+        "enquadramento": {
+          "tipo": "recorte",
+          "x": 0.125,
+          "y": 0,
+          "largura": 0.75,
+          "altura": 1
+        },
+        "camera": "pushLento",
+        "rotacaoGraus": 0
+      },
+      "aparaAntesFrames": 0,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "1 · NO PÉ",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 6,
+          "duracaoIrmaoFrames": 138,
+          "duracaoFrames": 138
+        }
+      ]
+    },
+    {
+      "duracaoFrames": 150,
+      "inicioNaPecaFrames": 150,
+      "fonte": {
+        "tipo": "foto",
+        "arquivo": "IMG_1424.JPG",
+        "razaoExibicao": 0.75,
+        "registro": "telaCheia",
+        "enquadramento": {
+          "tipo": "recorte",
+          "x": 0.125,
+          "y": 0,
+          "largura": 0.75,
+          "altura": 1
+        },
+        "camera": "pushLento",
+        "rotacaoGraus": 0
+      },
+      "aparaAntesFrames": 0,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "2 · CEREJA VERDE",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 6,
+          "duracaoIrmaoFrames": 138,
+          "duracaoFrames": 138
+        }
+      ]
+    },
+    {
+      "duracaoFrames": 150,
+      "inicioNaPecaFrames": 300,
+      "fonte": {
+        "tipo": "foto",
+        "arquivo": "IMG_1398.JPG",
+        "razaoExibicao": 1.3333,
+        "registro": "telaCheia",
+        "enquadramento": {
+          "tipo": "recorte",
+          "x": 0.2890625,
+          "y": 0,
+          "largura": 0.421875,
+          "altura": 1
+        },
+        "camera": "pushLento",
+        "rotacaoGraus": 0
+      },
+      "aparaAntesFrames": 0,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "3 · LAVOURA DE MEDEIROS",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 6,
+          "duracaoIrmaoFrames": 138,
+          "duracaoFrames": 138
+        },
+        {
+          "papel": "dado",
+          "texto": "1.235–1.272 M · EXIF",
+          "familia": "dado",
+          "cadenciaTexto": "linha",
+          "pista": "principal",
+          "irmaos": 2,
+          "inicioFrames": 48,
+          "duracaoIrmaoFrames": 96,
+          "duracaoFrames": 96
+        }
+      ]
+    },
+    {
+      "duracaoFrames": 150,
+      "inicioNaPecaFrames": 450,
+      "fonte": {
+        "tipo": "cor",
+        "cor": "#3B2A1F"
+      },
+      "aparaAntesFrames": 0,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "4 · 250 G MOÍDO",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 6,
+          "duracaoIrmaoFrames": 138,
+          "duracaoFrames": 138,
+          "palavraAcento": 2
+        }
+      ]
+    }
+  ],
+  "transicoes": [
+    {
+      "tipo": "corte",
+      "duracaoFrames": 0
+    },
+    {
+      "tipo": "corte",
+      "duracaoFrames": 0
+    },
+    {
+      "tipo": "corte",
+      "duracaoFrames": 0
+    }
+  ],
+  "legenda": null,
+  "audio": {
+    "locucao": null,
+    "trilha": {
+      "arquivo": "trilha-sem-voz.wav",
+      "ganhoDb": -3,
+      "aparaAntesS": 0,
+      "loopar": true,
+      "fadeEntradaS": 0.5,
+      "fadeSaidaS": 0.8
+    }
+  },
+  "assets": [
+    {
+      "arquivo": "suave-250g.png",
+      "tipo": "recorte-embalagem",
+      "laudoExigido": true
+    }
+  ],
+  "licencas": {
+    "particulas": false,
+    "orbesDeBrilho": false,
+    "varreduraDeLuz": false,
+    "shockwave": false,
+    "molaComOvershoot": false,
+    "revelarCaractereACaractere": false,
+    "flashNoCorte": false,
+    "irisWipe": false,
+    "motionBlurBurst": false,
+    "swipeMarcaTexto": false,
+    "highlightPalavraAtiva": false,
+    "aceitaTempoMorto": false,
+    "justificativa": ""
+  },
+  "exigePreservacao": true,
+  "gancho": "o grao no pe, antes de qualquer embalagem, nos 2 primeiros segundos",
+  "cta": "a jornada inteira acaba em 250 g; link na bio",
+  "diagnostico": {
+    "eventos": [
+      {
+        "cena": 0,
+        "indice": 0,
+        "texto": "1 · NO PÉ",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 189,
+            "linha": 0.09449999999999999,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.11906999999999998,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 189 px, mancha 11,907%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      },
+      {
+        "cena": 1,
+        "indice": 0,
+        "texto": "2 · CEREJA VERDE",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 126,
+            "linha": 0.06299999999999999,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.08819999999999997,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 126 px, mancha 8,820%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      },
+      {
+        "cena": 2,
+        "indice": 0,
+        "texto": "3 · LAVOURA DE MEDEIROS",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 126,
+            "linha": 0.06299999999999999,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.13229999999999997,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 126 px, mancha 13,230%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      },
+      {
+        "cena": 2,
+        "indice": 1,
+        "texto": "1.235–1.272 M · EXIF",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 115,
+            "linha": 0.05749999999999999,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.08081944444444442,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": true,
+            "porque": "faixa em 'principal': corpo 115 px, 2 linha(s), mancha 8,082% do quadro contra o piso 6,861% (1,25x a legenda de duas linhas). DOMINA"
+          }
+        }
+      },
+      {
+        "cena": 3,
+        "indice": 0,
+        "texto": "4 · 250 G MOÍDO",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 180,
+            "linha": 0.08999999999999998,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.12599999999999997,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 180 px, mancha 12,600%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      }
+    ],
+    "licencasLigadas": []
+  }
+}

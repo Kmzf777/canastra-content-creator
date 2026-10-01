@@ -37,6 +37,14 @@
 import {COR, LEGENDA, SOMBRA} from '../../identidade/tokens';
 import {METRICAS, larguraEm} from '../../identidade/glifos';
 import {atrasoDoIrmao, duracaoComIrmaos, duracaoDeIrmao} from '../movimento';
+import type {Cadencia} from '../cadencia';
+import {
+  CADENCIA_DO_PAPEL,
+  FAMILIA_DO_PAPEL,
+  type CadenciaTexto,
+  type PapelEvento,
+} from '../evento';
+import type {Papel} from '../../identidade/tipografia';
 import type {Caixa, Zonas} from '../layout';
 
 /**
@@ -45,8 +53,13 @@ import type {Caixa, Zonas} from '../layout';
  */
 export type Modo = 'sobreImagem' | 'cartela';
 
-/** Os dois papeis que um texto de tela pode ter. `corpo` e da legenda. */
-export type PapelTexto = 'manchete' | 'dado';
+/**
+ * Papel de um texto de tela. Sao os papeis de EVENTO -- e o mapa para a familia de
+ * tipografia e `FAMILIA_DO_PAPEL`, nunca indexacao direta: `GLIFOS` tem as chaves
+ * manchete/corpo/dado, e `papel: 'etiqueta'` indexado direto lancava
+ * `TypeError: Cannot read properties of undefined (reading 'x')` (medido).
+ */
+export type PapelTexto = PapelEvento;
 
 export type PalavraPosta = {
   texto: string;
@@ -69,6 +82,22 @@ export type SombraPosta = {
 export type Forma = {
   modo: Modo;
   papel: PapelTexto;
+  /** a familia de tipografia do papel. E ela que o `.tsx` usa, nao o papel. */
+  familia: Papel;
+  /** como este texto se revela: `CADENCIA_DO_PAPEL[papel]` */
+  cadenciaTexto: CadenciaTexto;
+  /**
+   * Quantos elementos ESCALONADOS o texto tem, pela cadencia.
+   *
+   * `palavra` -> uma por palavra · `linha` -> uma por linha · `bloco` -> 1.
+   *
+   * ESTE CAMPO EXISTE PARA O PLANO E O PIXEL NAO DISCORDAREM. Quem dimensiona a
+   * duracao (`duracaoDeIrmao`, `duracaoComIrmaos`) tem que contar a MESMA coisa que
+   * o stagger escalona. Antes de 01/10/2026 o compilador contava por cadencia e
+   * `TextoTela` contava `palavras.length`: a etiqueta `MEDEIROS 1250 M` recebia 36
+   * frames e desenhava 42.
+   */
+  irmaos: number;
   /** ja recortada contra `zonas.seguro` */
   caixa: Caixa;
   /** px do quadro */
@@ -79,6 +108,13 @@ export type Forma = {
   palavras: PalavraPosta[];
   larguraBloco: number;
   alturaBloco: number;
+  /**
+   * `true` quando foi o TETO DO QUADRO que parou a busca, e nao a caixa da pista.
+   *
+   * E o unico sinal de que o texto pediu mais do que o quadro aceita. Sem ele o
+   * teto agiria em silencio, que e o defeito que este motor persegue em toda parte.
+   */
+  noTetoDoQuadro: boolean;
   cor: string;
   /** cor de fundo da tela inteira, ou `null` se o video continua visivel */
   fundo: string | null;
@@ -112,6 +148,8 @@ export function quebrar(
   texto: string,
   {papel, corpo, largura}: {papel: PapelTexto; corpo: number; largura: number},
 ): string[] {
+  // Pela FAMILIA, nunca pelo papel cru: `GLIFOS['etiqueta']` e `undefined`.
+  const familia = FAMILIA_DO_PAPEL[papel];
   const palavras = texto.split(/\s+/).filter((p) => p.length > 0);
   if (palavras.length === 0) return [];
 
@@ -119,7 +157,7 @@ export function quebrar(
   let atual = palavras[0];
   for (let i = 1; i < palavras.length; i++) {
     const tentativa = `${atual} ${palavras[i]}`;
-    if (larguraEm(tentativa, papel) * corpo <= largura + EPS) {
+    if (larguraEm(tentativa, familia) * corpo <= largura + EPS) {
       atual = tentativa;
     } else {
       linhas.push(atual);
@@ -140,8 +178,8 @@ function contarPalavras(texto: string): number {
  * Nao e `DURACAO_MINIMA`: com a janela minima para todas, a primeira palavra
  * comeca a sair antes de a ultima terminar de entrar. Ver `duracaoDeIrmao`.
  */
-export function duracaoPorPalavra(texto: string): number {
-  return duracaoDeIrmao(contarPalavras(texto));
+export function duracaoPorPalavra(texto: string, c: Cadencia): number {
+  return duracaoDeIrmao(contarPalavras(texto), c);
 }
 
 /**
@@ -153,11 +191,12 @@ export function duracaoPorPalavra(texto: string): number {
  */
 export function duracaoDaFrase(
   texto: string,
-  duracao: number = duracaoPorPalavra(texto),
+  c: Cadencia,
+  duracao: number = duracaoPorPalavra(texto, c),
 ): number {
   const n = contarPalavras(texto);
   if (n === 0) return 0;
-  return duracaoComIrmaos(n, duracao);
+  return duracaoComIrmaos(n, duracao, c);
 }
 
 function medirBloco(
@@ -167,8 +206,12 @@ function medirBloco(
   entrelinha: number,
   caixa: Caixa,
 ) {
+  const familia = FAMILIA_DO_PAPEL[papel];
   const linhas = quebrar(texto, {papel, corpo, largura: caixa.largura});
-  const larguraBloco = linhas.reduce((m, l) => Math.max(m, larguraEm(l, papel) * corpo), 0);
+  const larguraBloco = linhas.reduce(
+    (m, l) => Math.max(m, larguraEm(l, familia) * corpo),
+    0,
+  );
   const alturaBloco = linhas.length * corpo * entrelinha;
   return {linhas, larguraBloco, alturaBloco};
 }
@@ -179,6 +222,8 @@ export function formaTextoTela({
   zonas,
   papel = 'manchete',
   palavraAcento,
+  cadencia,
+  linhaMaxima,
 }: {
   texto: string;
   modo: Modo;
@@ -186,6 +231,23 @@ export function formaTextoTela({
   papel?: PapelTexto;
   /** indice da UNICA palavra que recebe `COR.acento`. Fora da faixa = nenhuma. */
   palavraAcento?: number;
+  /** de `cadencia(useVideoConfig().fps)`. Obrigatorio: sem ele o stagger volta a
+   *  ser 3 frames em qualquer fps. */
+  cadencia: Cadencia;
+  /**
+   * O TETO: altura maxima de UMA LINHA, em pixeis do quadro.
+   *
+   * Chega em PIXEIS DE LINHA, e nao em corpo, para a entrelinha continuar morando
+   * num arquivo so. Quem calcula o teto (`motor/encaixe.ts`) sabe a altura do
+   * quadro mas NAO sabe se este texto vai ser desenhado com a entrelinha natural da
+   * fonte (cartela) ou com a apertada da legenda (sobre imagem) -- a escolha e feita
+   * dez linhas abaixo, aqui. Mandar o corpo maximo de la obrigaria os dois arquivos a
+   * saber a mesma regra, e duas copias de uma regra divergem no primeiro conserto.
+   *
+   * `undefined` = sem teto. E o que a cartela usa: ela pinta `COR.terra` por cima da
+   * fonte, entao nao ha nada embaixo para tapar.
+   */
+  linhaMaxima?: number;
 }): Forma {
   // A caixa. `cartela` toma a area segura inteira; `sobreImagem` toma a faixa
   // de manchete que `layout()` reservou -- as duas recortadas contra o seguro.
@@ -196,8 +258,9 @@ export function formaTextoTela({
   // (manchete 1,088); sobre a imagem e a apertada da legenda (0,96), que e o
   // valor medido para texto sobre video. A diferenca de respiro entre os dois
   // modos nao e um numero escolhido: e a distancia entre essas duas medidas.
+  const familia = FAMILIA_DO_PAPEL[papel];
   const entrelinha =
-    modo === 'cartela' ? METRICAS[papel].alturaLinha : LEGENDA.entrelinha;
+    modo === 'cartela' ? METRICAS[familia].alturaLinha : LEGENDA.entrelinha;
 
   // O RESPIRO DA CARTELA, medido e nao escolhido.
   //
@@ -213,9 +276,23 @@ export function formaTextoTela({
   // a zona da legenda, logo abaixo.
   const linhasDeFolga = modo === 'cartela' ? 1 : 0;
 
-  // Busca binaria pelo maior corpo inteiro que ainda cabe. O teto e uma linha
-  // unica ocupando a altura toda -- acima disso nada cabe, por definicao.
-  const teto = Math.max(1, Math.floor(caixa.altura / entrelinha));
+  // Busca binaria pelo maior corpo inteiro que ainda cabe. O teto da CAIXA e uma
+  // linha unica ocupando a altura toda -- acima disso nada cabe, por definicao.
+  //
+  // O TETO DO QUADRO ENTRA AQUI, E NAO NO VEREDITO, E ESSA E A PARTE QUE IMPORTA.
+  //
+  // Medido em 01/10/2026: `250 G` em `dado`/`principal` no 9:16 saia com corpo 410 px
+  // -- a caixa de `principal` tem 788,74 px de altura e a busca MAXIMIZA, entao cinco
+  // caracteres esticam ate preencher 41% do quadro. O still (out/antes-f261.png)
+  // mostra o `250` cobrindo o ombro do pacote e o `G` em cima do logotipo.
+  //
+  // Um teto que so reprovasse no diagnostico deixaria o pixel errado sair do mesmo
+  // jeito -- e a licao 3 do CLAUDE.md: relatorio nao e efeito. Entao o teto e um LIMITE
+  // DE BUSCA: o corpo escolhido ja nasce dentro dele.
+  const tetoDaCaixa = Math.max(1, Math.floor(caixa.altura / entrelinha));
+  const tetoDoQuadro =
+    linhaMaxima === undefined ? Infinity : Math.max(1, Math.floor(linhaMaxima / entrelinha));
+  const teto = Math.min(tetoDaCaixa, tetoDoQuadro);
   const cabe = (c: number) => {
     const m = medirBloco(texto, papel, c, entrelinha, caixa);
     const alturaPedida = m.alturaBloco + linhasDeFolga * c * entrelinha;
@@ -240,6 +317,14 @@ export function formaTextoTela({
   // o teste verde.
   while (corpo > 1 && !cabe(corpo)) corpo--;
 
+  // QUEM SEGUROU O CORPO: a caixa da pista, ou o teto do quadro?
+  //
+  // O numero sozinho nao conta essa historia, e as duas respostas pedem conserto
+  // diferente -- caixa apertada se resolve mudando a pista, teto atingido se resolve
+  // encurtando o texto. `corpo === tetoDoQuadro` nao bastaria: o corpo pode coincidir
+  // com o teto por acaso enquanto a caixa e o limite de fato.
+  const noTetoDoQuadro = tetoDoQuadro < tetoDaCaixa && corpo === tetoDoQuadro;
+
   const {linhas, larguraBloco, alturaBloco} = medirBloco(
     texto,
     papel,
@@ -248,28 +333,63 @@ export function formaTextoTela({
     caixa,
   );
 
-  // As palavras, na ordem do texto, cada uma sabendo em que linha caiu e quanto
-  // espera para entrar. O indice de irmao e o da FRASE, nao o da linha: o
-  // stagger tem que varrer a manchete inteira, nao reiniciar a cada quebra.
+  // O INDICE DE IRMAO SAI DA CADENCIA DO PAPEL, nao do numero de palavras.
+  //
+  // Antes de 01/10/2026 este bloco incrementava `irmao` por PALAVRA em todo papel, e
+  // `CADENCIA_DO_PAPEL` existia sem chegar aqui. As consequencias eram duas, e as
+  // duas medidas: (a) `duracaoDaFrase('R$ 39,90')` tratava `R$` e `39,90` como dois
+  // irmaos, e um cartao de preco que revela `R$` e o numero 3 frames depois le como
+  // defeito -- e essa e a justificativa ESCRITA da cadencia do `dado`; (b) a etiqueta
+  // `MEDEIROS 1250 M` recebia 36 frames do plano (1 irmao, cadencia `bloco`) e
+  // desenhava 42 (3 palavras), porque o plano contava por cadencia e a tela contava
+  // por palavra.
+  //
+  // `irmaoDaPalavra` e a UNICA regra, e ela vale para o atraso E para a contagem:
+  //
+  //   palavra .... o indice da palavra na FRASE (nao na linha): o stagger varre a
+  //                manchete inteira e nao reinicia a cada quebra
+  //   linha ...... o indice da LINHA. Cada linha de um dado e um campo, e as
+  //                palavras de uma linha entram juntas
+  //   bloco ...... sempre 0. Um carimbo nao tem ritmo interno: ou esta no quadro
+  //                ou nao esta
+  const cadenciaTexto = CADENCIA_DO_PAPEL[papel];
   const palavras: PalavraPosta[] = [];
-  let irmao = 0;
+  let indiceNaFrase = 0;
   linhas.forEach((linha, iLinha) => {
     for (const p of linha.split(' ')) {
+      const irmao =
+        cadenciaTexto === 'palavra'
+          ? indiceNaFrase
+          : cadenciaTexto === 'linha'
+            ? iLinha
+            : 0;
       palavras.push({
         texto: p,
         irmao,
         linha: iLinha,
-        // UM acento por cena: uma palavra, nunca duas.
-        cor: irmao === palavraAcento ? COR.acento : COR.creme,
-        atrasoFrames: atrasoDoIrmao(irmao),
+        // UM acento por cena: uma palavra, nunca duas. O indice do acento continua
+        // sendo o da PALAVRA na frase, e nao o de irmao -- senao numa etiqueta
+        // (todos os irmaos 0) o acento pintaria o bloco inteiro.
+        cor: indiceNaFrase === palavraAcento ? COR.acento : COR.creme,
+        atrasoFrames: atrasoDoIrmao(irmao, cadencia),
       });
-      irmao++;
+      indiceNaFrase++;
     }
   });
+
+  const irmaos =
+    cadenciaTexto === 'palavra'
+      ? Math.max(1, palavras.length)
+      : cadenciaTexto === 'linha'
+        ? Math.max(1, linhas.length)
+        : 1;
 
   return {
     modo,
     papel,
+    familia,
+    cadenciaTexto,
+    irmaos,
     caixa,
     corpo,
     entrelinha,
@@ -277,6 +397,7 @@ export function formaTextoTela({
     palavras,
     larguraBloco,
     alturaBloco,
+    noTetoDoQuadro,
     cor: COR.creme,
     // A cartela cobre o quadro com terra. Nunca branco: `proibicoes.md` nomeia
     // "fundo branco puro com texto centrado" como o padrao do modelo generativo.

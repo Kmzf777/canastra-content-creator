@@ -31,6 +31,11 @@ import {fileURLToPath} from 'node:url';
 import {duracaoDaFrase, formaTextoTela} from '../src/motor/camadas/texto-forma';
 import {layout} from '../src/motor/layout';
 import {LEGENDA} from '../src/identidade/tokens';
+import {cadencia} from '../src/motor/cadencia';
+
+// A cadencia de 30 fps, que e o fps em que TODOS os numeros deste arquivo foram
+// medidos. Ver o cabecalho equivalente em `tests/textotela.test.ts`.
+const C = cadencia(30);
 
 // Caminho resolvido a partir do arquivo de teste, nao do cwd.
 const ler = (rel: string) =>
@@ -60,9 +65,9 @@ describe('a manchete e opcional', () => {
     const z = layout({largura: 1080, altura: 1920, razaoFonte: 9 / 16});
     for (const vazio of ['', '   ', '\n']) {
       for (const modo of ['sobreImagem', 'cartela'] as const) {
-        expect(formaTextoTela({texto: vazio, modo, zonas: z}).palavras).toEqual([]);
+        expect(formaTextoTela({texto: vazio, modo, zonas: z, cadencia: C}).palavras).toEqual([]);
       }
-      expect(duracaoDaFrase(vazio)).toBe(0);
+      expect(duracaoDaFrase(vazio, C)).toBe(0);
     }
   });
 });
@@ -173,7 +178,7 @@ describe.skipIf(semManchete)('o tempo da manchete esta no relogio da FONTE', () 
     const fimDaFala = Math.max(
       ...props.blocos.map((b: {fimFrame: number}) => b.fimFrame),
     );
-    expect(m!.inicioFrame + duracaoDaFrase(m!.texto)).toBeLessThanOrEqual(fimDaFala);
+    expect(m!.inicioFrame + duracaoDaFrase(m!.texto, C)).toBeLessThanOrEqual(fimDaFala);
   });
 });
 
@@ -183,7 +188,7 @@ describe.skipIf(semManchete)('a manchete declarada cabe e se le nos dois formato
     for (const [w, h] of FORMATOS) {
       const rotulo = `${w}x${h}`;
       const z = layout({largura: w, altura: h, razaoFonte: props.razaoFonte});
-      const f = formaTextoTela({texto: m!.texto, modo: m!.modo, zonas: z});
+      const f = formaTextoTela({texto: m!.texto, modo: m!.modo, zonas: z, cadencia: C});
       expect(f.corpo, rotulo).toBeGreaterThan(0);
       expect(f.larguraBloco, rotulo).toBeLessThanOrEqual(f.caixa.largura + 1e-6);
       expect(f.alturaBloco, rotulo).toBeLessThanOrEqual(f.caixa.altura + 1e-6);
@@ -208,7 +213,7 @@ describe.skipIf(semManchete)('a manchete declarada cabe e se le nos dois formato
     // legislar sobre o modo que nao foi escolhido.
     for (const [w, h] of FORMATOS) {
       const z = layout({largura: w, altura: h, razaoFonte: props.razaoFonte});
-      const f = formaTextoTela({texto: m!.texto, modo: m!.modo, zonas: z});
+      const f = formaTextoTela({texto: m!.texto, modo: m!.modo, zonas: z, cadencia: C});
       expect(f.corpo, `${w}x${h} modo ${m!.modo}`).toBeGreaterThan(
         LEGENDA.corpoEm1080 * (w / 1080),
       );

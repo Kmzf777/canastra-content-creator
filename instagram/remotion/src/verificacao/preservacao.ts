@@ -4,8 +4,30 @@ import {PNG} from 'pngjs';
 /**
  * Laudo de preservacao de pixel.
  *
- * Este e o portao que impede o motor de estragar o rotulo da embalagem. A
- * regra da marca e dura: nenhum efeito pode alterar pixel dentro da
+ * ATENCAO: ESTE MODULO NAO ESTA LIGADO A NADA. NAO E UM PORTAO ATIVO.
+ *
+ * `compararRegiao` tem 9 testes em `tests/preservacao.test.ts` e ZERO chamadores no
+ * runtime: `scripts/conferir.mjs` roda os portoes 0, 1, 2, 3 e 4 (selo, folha,
+ * telefone, determinismo, loop) e nenhum deles e este. O `exigePreservacao` que
+ * `compilar.ts` deriva de `assets.length > 0` tambem nao tem leitor -- ele e escrito
+ * no `plano.json` e ninguem o le. Medido em 30/09/2026.
+ *
+ * Ate esta data o paragrafo abaixo comecava com "Este e o portao que impede o motor
+ * de estragar o rotulo da embalagem", no presente, como se rodasse. Nao rodava. A
+ * funcao esta correta e testada; o que nao existe e a chamada. Quem ler isto e
+ * concluir que o rotulo esta protegido no pipeline esta errado.
+ *
+ * POR QUE AINDA NAO FOI LIGADO (e nao e esquecimento)
+ *
+ * Para comparar uma regiao e preciso saber ONDE a embalagem esta no quadro, e o
+ * esquema `canastra-briefing/1` nao sabe dizer: `assets` vive no nivel do BRIEFING e
+ * nao nomeia a cena nem o retangulo em que o recorte aparece. O proprio
+ * `projetos/02-jornada-do-grao/briefing.json` registra isso em `_bloqueio_4`. Ligar
+ * este portao depende de o esquema ganhar essa coordenada primeiro.
+ *
+ * O QUE ELE FARA QUANDO FOR LIGADO
+ *
+ * A regra da marca e dura: nenhum efeito pode alterar pixel dentro da
  * embalagem (ver `src/identidade/proibicoes.md`). Um glow, um
  * `<CameraMotionBlur>` ou uma correcao de cor local passa despercebido no
  * olho e destroi a tipografia pequena -- e tipografia pequena e exatamente

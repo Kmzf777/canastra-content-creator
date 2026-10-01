@@ -1,0 +1,47 @@
+{
+  "_esquema": "canastra-briefing/1",
+  "_leia": "ESTE arquivo e a verdade humana e pode ser editado a mao. `plano.json`, que nasce dele, NAO pode: ele carrega o sha256 deste arquivo, e o PORTAO 0 (`node scripts/conferir.mjs --portao=selo --projeto=projetos/01-private-label`) reprova plano cujo hash nao bate. Esse portao NAO roda sozinho no render: depois de editar aqui, recompile com `scripts/compilar.mjs` ou o plano fica fora de sincronia em silencio. Todo tempo aqui esta em SEGUNDOS, contados do inicio DA CENA.",
+  "serie": "avulsa",
+  "fps": 30,
+  "formatos": ["9:16", "1:1"],
+  "duracao": {"modo": "somaCenas", "alvoS": 23.2},
+  "cenas": [
+    {
+      "_nota": "Uma cena so, porque a peca atual e uma timeline unica. Os 7 silencios medidos no pl.mp4 (5,08 / 6,78 / 9,55 / 13,99 / 16,02 / 17,50 / 21,52 s, no tempo da fonte) sao os pontos de corte naturais para dividir isto em cenas depois.",
+      "duracaoS": 23.2,
+      "fonte": {
+        "_razao": "0,5625 e a razao de EXIBICAO. O container grava 1024x576 e mente: o displaymatrix e -90, logo exibe 576x1024. Quem preenche este campo e sondar(), nao o dedo.",
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 1.14,
+        "enquadramento": "faixa",
+        "camera": "parado"
+      },
+      "eventos": [
+        {
+          "_procedencia": "citacao literal de transcricao.json, com a UNICA transformacao de caixa alta. tests/manchete-props.test.ts prova.",
+          "papel": "manchete",
+          "texto": "SUA PRÓPRIA MARCA DE CAFÉ",
+          "entradaS": 2.333,
+          "palavraAcento": 2,
+          "pista": "tela"
+        }
+      ]
+    }
+  ],
+  "transicoes": [],
+  "legenda": {
+    "_ancora": "A ancora aponta para audio.locucao.aparaAntesS em vez de repetir o 1,14: dois campos com o mesmo valor divergem no primeiro conserto.",
+    "arquivo": "transcricao.json",
+    "relogio": "fonte",
+    "ancora": {"tipo": "locucao"}
+  },
+  "audio": {
+    "locucao": {"arquivo": "pl.wav", "ganhoDb": 0, "aparaAntesS": 1.14},
+    "trilha": null
+  },
+  "assets": [],
+  "gancho": "pergunta direta sobre lucro, na voz do dono, nos 2 primeiros segundos",
+  "cta": "clique aqui embaixo e vem conosco"
+}

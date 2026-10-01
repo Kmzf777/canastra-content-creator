@@ -1,0 +1,135 @@
+{
+  "_esquema": "canastra-briefing/1",
+  "_bloqueio_1": "A serie 4 canonica pede 5 estagios EM VIDEO: galho, terreiro, sacaria, tambor, xicara. O acervo tem ZERO de terreiro, sacaria, tambor e xicara (05-formatos.md secao 5.4, [medido]). Esta peca e a reducao honesta a 4 estagios com FOTO PARADA do que existe hoje. Nao substitua estagio por imagem gerada.",
+  "_bloqueio_2": "A TRILHA NAO EXISTE no repositorio: nenhum arquivo de audio sem voz foi gravado ou licenciado, e `trilha-sem-voz.wav` nao esta em public/audio/. O nome esta aqui para que o briefing seja completo. ATENCAO: a frase anterior dizia que \"o portao de ritmo reprova por arquivo ausente, em vez de deixar sair Reel mudo\" -- NENHUM PORTAO CONFERE ISSO. Medido em 30/09/2026: `src/verificacao/ritmo.ts` nao existe e `scripts/conferir.mjs` nao checa existencia de arquivo de audio. Renderizar este projeto hoje SAI MUDO e com exit 0. Confira a mao que `public/audio/` tem a trilha antes de renderizar.",
+  "_bloqueio_3": "AS 3 FOTOS SAO COPIA de base-curada/01-real-verificada/fazenda-medeiros-1250m/ (camada 01: EXIF de camera e GPS, recorte permitido). Elas vivem em public/fonte/ deste projeto, PLANAS, sem subpasta. O prefixo \"jornada/\" que estava aqui era recusado pelo refinador com arquivo-com-caminho e a recusa esta certa: `arquivo` e o NOME do arquivo dentro de public/fonte/, e o prefixo vive em Fonte.tsx por SUB.fonte. Medido em 30/09/2026: nenhuma pasta public/fonte/ do repositorio tem subpasta (a unica que existe, de 01-private-label, tem 4 arquivos e 0 diretorios), e \"jornada\" e o nome da SERIE, nao de pasta nenhuma -- as 3 fotos vem de 3 pastas DIFERENTES da base curada (cafeeiro-com-mao, cereja-verde, cafezal), logo o prefixo nao espelhava disco em lugar algum. Namespace por projeto ja e dado por uma pasta publica por projeto (src/motor/pasta-publica.ts), que e o que impede colisao de nome.",
+  "_bloqueio_4": "A CENA 4 NAO MOSTRA O PACOTE. O esquema `canastra-briefing/1` declara `assets` no nivel do briefing, para o portao de preservacao, e NAO tem como dizer em que cena um recorte de embalagem aparece no quadro. Enquanto esse campo nao existir, a cena 4 e uma cartela de cor com etiqueta -- e dizer o contrario seria descrever um pixel que nao sai.",
+  "serie": "jornada",
+  "fps": 30,
+  "formatos": ["9:16"],
+  "duracao": {"modo": "somaCenas", "alvoS": 20.0},
+  "cenas": [
+    {
+      "_estagio": "1 de 4: no pe",
+      "duracaoS": 5.0,
+      "fonte": {
+        "_medido": "IMG_1421.JPG grava 4032x3024 e tem EXIF Orientation 6, logo EXIBE 3024x4032: razao 0,7500. O prototipo out/_spec-briefing/b-jornada-foto.json declarava 1,3333 aqui, que e a mentira paisagem. Medido por ffprobe -show_frames em 30/09/2026.",
+        "_recorte": "Janela 9:16 dentro de 3024x4032: largura = 4032*0,5625 = 2268 px de 3024 = 0,75 da largura, centrada em x = 0,125. Joga fora 25,00% da foto, contra os 57,81% que a mesma janela jogaria fora numa foto paisagem.",
+        "tipo": "foto",
+        "arquivo": "IMG_1421.JPG",
+        "razaoExibicao": 0.75,
+        "registro": "telaCheia",
+        "enquadramento": {"tipo": "recorte", "x": 0.125, "y": 0.0, "largura": 0.75, "altura": 1.0},
+        "camera": "pushLento"
+      },
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "1 · NO PÉ",
+          "entradaS": 0.2,
+          "duracaoS": 4.6,
+          "pista": "topo"
+        }
+      ]
+    },
+    {
+      "_estagio": "2 de 4: cereja verde",
+      "duracaoS": 5.0,
+      "fonte": {
+        "_medido": "IMG_1424.JPG tambem e Orientation 6: grava 4032x3024, exibe 3024x4032, razao 0,7500.",
+        "tipo": "foto",
+        "arquivo": "IMG_1424.JPG",
+        "razaoExibicao": 0.75,
+        "registro": "telaCheia",
+        "enquadramento": {"tipo": "recorte", "x": 0.125, "y": 0.0, "largura": 0.75, "altura": 1.0},
+        "camera": "pushLento"
+      },
+      "eventos": [
+        {
+          "_nota": "CEREJA VERDE, nao madura. As 3 fotos de cereja da base sao de fruto verde [medido]. Escrever MADURA aqui seria mentir sobre o pixel.",
+          "papel": "etiqueta",
+          "texto": "2 · CEREJA VERDE",
+          "entradaS": 0.2,
+          "duracaoS": 4.6,
+          "pista": "topo"
+        }
+      ]
+    },
+    {
+      "_estagio": "3 de 4: lavoura",
+      "duracaoS": 5.0,
+      "fonte": {
+        "_medido": "IMG_1398.JPG e EXIF Orientation 1: grava e exibe 4032x3024, razao 1,3333. Esta e a unica das tres em que o 1,3333 do prototipo estava certo.",
+        "_recorte": "Janela 9:16 dentro de 4032x3024: largura = 3024*0,5625 = 1701 px de 4032 = 0,421875, centrada em x = 0,2890625. Joga fora 57,81% da foto -- o preco da foto paisagem no formato principal do catalogo.",
+        "tipo": "foto",
+        "arquivo": "IMG_1398.JPG",
+        "razaoExibicao": 1.3333,
+        "registro": "telaCheia",
+        "enquadramento": {
+          "tipo": "recorte",
+          "x": 0.2890625,
+          "y": 0.0,
+          "largura": 0.421875,
+          "altura": 1.0
+        },
+        "camera": "pushLento"
+      },
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "3 · LAVOURA DE MEDEIROS",
+          "entradaS": 0.2,
+          "duracaoS": 4.6,
+          "pista": "topo"
+        },
+        {
+          "_procedencia": "1.235-1.272 m e a FAIXA de altitude gravada em EXIF nas fotos de marco/2017 como CONJUNTO [medido]. Nao e a altitude deste arquivo, que nao foi medida individualmente -- e por isso o texto diz EXIF e nao um numero unico.",
+          "papel": "dado",
+          "texto": "1.235–1.272 M · EXIF",
+          "entradaS": 1.6,
+          "duracaoS": 3.2,
+          "pista": "principal"
+        }
+      ]
+    },
+    {
+      "_estagio": "4 de 4: pacote. Ver _bloqueio_4: o recorte de embalagem ainda nao tem como entrar no quadro por briefing.",
+      "duracaoS": 5.0,
+      "fonte": {"tipo": "cor", "cor": "#3B2A1F"},
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "4 · 250 G MOÍDO",
+          "entradaS": 0.2,
+          "duracaoS": 4.6,
+          "pista": "topo",
+          "palavraAcento": 2
+        }
+      ]
+    }
+  ],
+  "transicoes": [{"tipo": "corte"}, {"tipo": "corte"}, {"tipo": "corte"}],
+  "audio": {
+    "_sem_voz": "locucao null e peca SEM VOZ, nao peca sem faixa. A serie 4 e explicitamente sem voz COM faixa, e Reel sem faixa de audio perde elegibilidade para nao-seguidor (05-formatos.md secao 3, [oficial]).",
+    "locucao": null,
+    "trilha": {
+      "_bloqueio": "ARQUIVO INEXISTENTE. Ver _bloqueio_2 no topo.",
+      "arquivo": "trilha-sem-voz.wav",
+      "ganhoDb": -3,
+      "aparaAntesS": 0,
+      "loopar": true,
+      "fadeEntradaS": 0.5,
+      "fadeSaidaS": 0.8
+    }
+  },
+  "assets": [
+    {
+      "_laudo": "O laudo NAO e copiado para ca. A prova de que este recorte foi aprovado e a PRESENCA do arquivo em public/assets/, cuja unica porta de entrada e instagram/recorte/publicar.py, fail-closed.",
+      "arquivo": "suave-250g.png",
+      "tipo": "recorte-embalagem",
+      "laudoExigido": true
+    }
+  ],
+  "gancho": "o grao no pe, antes de qualquer embalagem, nos 2 primeiros segundos",
+  "cta": "a jornada inteira acaba em 250 g; link na bio"
+}

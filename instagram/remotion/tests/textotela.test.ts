@@ -14,7 +14,6 @@
 
 import {describe, it, expect} from 'vitest';
 import {
-  DURACAO_MINIMA,
   POUSO,
   atrasoDoIrmao,
   bezierDeCss,
@@ -28,6 +27,13 @@ import {duracaoDaFrase, duracaoPorPalavra, formaTextoTela, quebrar} from '../src
 import {layout} from '../src/motor/layout';
 import {COR, LEGENDA, PUSH, TEMPO} from '../src/identidade/tokens';
 import {GLIFOS, METRICAS, larguraEm} from '../src/identidade/glifos';
+import {cadencia} from '../src/motor/cadencia';
+import {emFrames} from '../src/motor/relogio';
+
+// A cadencia de 30 fps, que e o fps em que TODOS os numeros deste arquivo foram
+// medidos. Passar `C` em vez de deixar um default e o que garante que o teste
+// continua medindo o mesmo tempo depois de a cadencia virar parametro.
+const C = cadencia(30);
 
 const FORMATOS: Array<[number, number]> = [
   [1080, 1920],
@@ -71,23 +77,23 @@ describe('bezier do token de pouso', () => {
 // ---------------------------------------------------------------------------
 describe('fases', () => {
   it('numa janela folgada usa os tokens crus', () => {
-    const f = fases(90);
-    expect(f.entrada).toBe(TEMPO.entrada);
-    expect(f.saida).toBe(TEMPO.entrada);
-    expect(f.hold).toBe(90 - 2 * TEMPO.entrada);
+    const f = fases(90, C);
+    expect(f.entrada).toBe(C.entrada);
+    expect(f.saida).toBe(C.entrada);
+    expect(f.hold).toBe(90 - 2 * C.entrada);
   });
 
   it('a duracao minima e entrada + holdFinal + saida', () => {
-    expect(DURACAO_MINIMA).toBe(TEMPO.entrada + TEMPO.holdFinal + TEMPO.entrada);
-    const f = fases(DURACAO_MINIMA);
-    expect(f.entrada).toBe(TEMPO.entrada);
-    expect(f.hold).toBe(TEMPO.holdFinal);
-    expect(f.saida).toBe(TEMPO.entrada);
+    expect(C.duracaoMinima).toBe(C.entrada + C.holdFinal + C.entrada);
+    const f = fases(C.duracaoMinima, C);
+    expect(f.entrada).toBe(C.entrada);
+    expect(f.hold).toBe(C.holdFinal);
+    expect(f.saida).toBe(C.entrada);
   });
 
   it('janela curta comprime as pontas em vez de estourar o hold', () => {
     for (const d of [1, 2, 3, 9, 20, 35]) {
-      const f = fases(d);
+      const f = fases(d, C);
       expect(f.entrada + f.hold + f.saida).toBe(d);
       expect(f.hold).toBeGreaterThanOrEqual(0);
       expect(f.entrada).toBeGreaterThanOrEqual(0);
@@ -102,7 +108,7 @@ describe('progresso', () => {
 
   it('antes do inicio o elemento nao existe', () => {
     for (const f of [0, 5, 9]) {
-      const e = progresso(f, j);
+      const e = progresso(f, j, C);
       expect(e.fase).toBe('antes');
       expect(e.presenca).toBe(0);
     }
@@ -110,29 +116,36 @@ describe('progresso', () => {
 
   it('depois do fim o elemento nao existe', () => {
     for (const f of [70, 71, 200]) {
-      const e = progresso(f, j);
+      const e = progresso(f, j, C);
       expect(e.fase).toBe('depois');
       expect(e.presenca).toBe(0);
     }
   });
 
-  it('a entrada vai de 0 a 1 ao longo de TEMPO.entrada frames', () => {
-    expect(progresso(10, j).presenca).toBeCloseTo(0, 6);
-    expect(progresso(10 + TEMPO.entrada, j).presenca).toBeCloseTo(1, 6);
+  it('a entrada vai de 0 a 1 ao longo de C.entrada frames', () => {
+    // O PRIMEIRO FRAME DESENHADO NAO E MAIS ZERO, e isso e o conserto, nao um
+    // ajuste de teste. Ate 01/10/2026 a entrada era `t / f.entrada`: em t = 0
+    // dava 0, um frame renderizado e invisivel. Agora e `(t + 1) / f.entrada`,
+    // entao o primeiro frame desenhado sai em POUSO(1/12) = 0,334183 (medido) e
+    // a entrada COMPLETA no ultimo frame dela, t = C.entrada - 1.
+    expect(progresso(10, j, C).presenca).toBeCloseTo(POUSO(1 / C.entrada), 6);
+    expect(progresso(10, j, C).presenca).toBeCloseTo(0.334183, 6);
+    expect(progresso(10 + C.entrada - 1, j, C).presenca).toBeCloseTo(1, 6);
+    expect(progresso(10 + C.entrada, j, C).presenca).toBeCloseTo(1, 6);
     // e cresce monotonicamente no meio
     let anterior = -1;
-    for (let f = 10; f <= 10 + TEMPO.entrada; f++) {
-      const p = progresso(f, j).presenca;
+    for (let f = 10; f <= 10 + C.entrada; f++) {
+      const p = progresso(f, j, C).presenca;
       expect(p).toBeGreaterThanOrEqual(anterior - 1e-9);
       anterior = p;
     }
   });
 
   it('o hold fica cheio e parado', () => {
-    const f0 = 10 + TEMPO.entrada;
-    const f1 = 10 + 60 - TEMPO.entrada;
+    const f0 = 10 + C.entrada;
+    const f1 = 10 + 60 - C.entrada;
     for (let f = f0; f < f1; f++) {
-      const e = progresso(f, j);
+      const e = progresso(f, j, C);
       expect(e.presenca).toBeCloseTo(1, 9);
       expect(e.escala).toBeCloseTo(1, 9);
       if (f > f0) expect(e.fase).toBe('hold');
@@ -140,28 +153,74 @@ describe('progresso', () => {
   });
 
   it('a saida e ACELERADA: na metade ainda esta quase cheia', () => {
-    const inicioSaida = 10 + 60 - TEMPO.entrada;
-    const meio = inicioSaida + TEMPO.entrada / 2;
-    const esperado = 1 - Math.pow(0.5, TEMPO.saidaExpoente);
-    expect(progresso(meio, j).presenca).toBeCloseTo(esperado, 6);
+    const inicioSaida = 10 + 60 - C.entrada;
+    // `pSaida` = 0,5 cai no frame (inicioSaida + entrada/2 - 1), porque a saida
+    // e normalizada pelo ULTIMO frame desenhado -- ver o comentario em
+    // `movimento.ts`. Sem o `-1` isto mede 7/12 e nao 6/12.
+    const meio = inicioSaida + C.entrada / 2 - 1;
+    const esperado = 1 - Math.pow(0.5, C.saidaExpoente);
+    expect(progresso(meio, j, C).presenca).toBeCloseTo(esperado, 6);
     // e isso e bem mais lento que linear no comeco
-    expect(progresso(meio, j).presenca).toBeGreaterThan(0.75);
+    expect(progresso(meio, j, C).presenca).toBeGreaterThan(0.75);
   });
 
   it('a saida cai monotonicamente ate 0', () => {
     let anterior = 2;
-    for (let f = 10 + 60 - TEMPO.entrada; f <= 10 + 60; f++) {
-      const p = progresso(f, j).presenca;
+    for (let f = 10 + 60 - C.entrada; f <= 10 + 60; f++) {
+      const p = progresso(f, j, C).presenca;
       expect(p).toBeLessThanOrEqual(anterior + 1e-9);
       anterior = p;
     }
-    expect(progresso(10 + 60, j).presenca).toBe(0);
+    expect(progresso(10 + 60, j, C).presenca).toBe(0);
+  });
+
+  it('o ULTIMO frame DESENHADO fecha em zero, e nao a 18,85%', () => {
+    // O DEFEITO QUE ESTE TESTE PEGA, e que os outros deixaram passar:
+    //
+    // a saida era normalizada pelo primeiro frame NAO desenhado. Medido numa
+    // janela de 36 frames, presenca nos seis ultimos frames desenhados:
+    //   0.8105  0.7257  0.6221  0.4986  0.3544  0.1885
+    // e o frame seguinte nunca e desenhado (`TextoTela.tsx` devolve null em
+    // `t >= duracaoCena`). Ou seja o elemento desaparecia de 18,85% de
+    // opacidade para zero num frame -- o "sai seco" que a regra 6 proibe. Na
+    // cartela isso e uma tela cheia de terra sumindo a 19%.
+    //
+    // O teste vizinho passava porque media `progresso(duracao)`, que e o ramo
+    // 'depois' -- nunca o ultimo frame renderizado.
+    for (const duracao of [36, 51, 66, 90]) {
+      const janela = {inicio: 0, duracao};
+      expect(progresso(duracao - 1, janela, C).presenca).toBeCloseTo(0, 9);
+      expect(progresso(duracao - 1, janela, C).escala).toBeCloseTo(
+        1 - C.overshoot,
+        9,
+      );
+    }
+  });
+
+  it('o PRIMEIRO frame desenhado ja tem presenca, e nao um frame gasto invisivel', () => {
+    // A OUTRA PONTA DO MESMO DEFEITO. A entrada era normalizada pelo frame
+    // ANTERIOR ao primeiro desenhado: `t / f.entrada` com t = 0 da 0, entao o
+    // primeiro frame renderizado de todo elemento saia com presenca 0,0000 --
+    // um frame pago e invisivel, e a escala travada em 1+overshoot.
+    //
+    // Com `(t + 1) / f.entrada` o primeiro frame desenhado sai em POUSO(1/12) =
+    // 0,334183 (medido) e a entrada COMPLETA no ultimo frame dela (t = 11), nao
+    // no primeiro frame do hold.
+    for (const duracao of [36, 51, 66, 90]) {
+      const janela = {inicio: 0, duracao};
+      const e = progresso(0, janela, C);
+      expect(e.presenca).toBeGreaterThan(0);
+      expect(e.presenca).toBeCloseTo(POUSO(1 / C.entrada), 9);
+      expect(e.escala).toBeLessThan(1 + C.overshoot);
+      // a entrada fecha no ULTIMO frame dela, nao um frame depois
+      expect(progresso(C.entrada - 1, janela, C).presenca).toBeCloseTo(1, 9);
+    }
   });
 
   it('as tres fases aparecem, na ordem, sem buraco', () => {
     const vistas: string[] = [];
     for (let f = 10; f < 70; f++) {
-      const fase = progresso(f, j).fase;
+      const fase = progresso(f, j, C).fase;
       expect(fase).not.toBe('antes');
       expect(fase).not.toBe('depois');
       if (vistas[vistas.length - 1] !== fase) vistas.push(fase);
@@ -170,16 +229,22 @@ describe('progresso', () => {
   });
 
   it('a escala pousa de 1+overshoot para 1 e sai encolhendo: uma direcao so', () => {
-    expect(progresso(10, j).escala).toBeCloseTo(1 + TEMPO.overshoot, 6);
-    expect(progresso(10 + TEMPO.entrada, j).escala).toBeCloseTo(1, 6);
+    // A escala do frame ANTERIOR ao primeiro desenhado seria 1 + overshoot; o
+    // primeiro DESENHADO ja pousou um pedaco: 1 + 0,03 * (1 - POUSO(1/12)) =
+    // 1,019975 (medido). O teto 1 + overshoot continua valendo como limite, e e
+    // ele que o laco abaixo confere frame a frame.
+    expect(progresso(10, j, C).escala).toBeCloseTo(1.019975, 6);
+    expect(progresso(10, j, C).escala).toBeLessThan(1 + C.overshoot);
+    expect(progresso(10 + C.entrada - 1, j, C).escala).toBeCloseTo(1, 6);
+    expect(progresso(10 + C.entrada, j, C).escala).toBeCloseTo(1, 6);
     // nunca volta para cima em nenhum frame -- e isso que separa pouso de
     // easing elastico, que `proibicoes.md` proibe
     let anterior = Infinity;
     for (let f = 10; f <= 10 + 60; f++) {
-      const s = progresso(f, j).escala;
+      const s = progresso(f, j, C).escala;
       expect(s).toBeLessThanOrEqual(anterior + 1e-9);
-      expect(s).toBeLessThanOrEqual(1 + TEMPO.overshoot + 1e-9);
-      expect(s).toBeGreaterThanOrEqual(1 - TEMPO.overshoot - 1e-9);
+      expect(s).toBeLessThanOrEqual(1 + C.overshoot + 1e-9);
+      expect(s).toBeGreaterThanOrEqual(1 - C.overshoot - 1e-9);
       anterior = s;
     }
   });
@@ -187,50 +252,50 @@ describe('progresso', () => {
 
 // ---------------------------------------------------------------------------
 describe('stagger entre irmaos', () => {
-  it('o atraso do irmao i e i * TEMPO.stagger', () => {
-    expect(atrasoDoIrmao(0)).toBe(0);
-    expect(atrasoDoIrmao(1)).toBe(TEMPO.stagger);
-    expect(atrasoDoIrmao(4)).toBe(4 * TEMPO.stagger);
+  it('o atraso do irmao i e i * C.stagger', () => {
+    expect(atrasoDoIrmao(0, C)).toBe(0);
+    expect(atrasoDoIrmao(1, C)).toBe(C.stagger);
+    expect(atrasoDoIrmao(4, C)).toBe(4 * C.stagger);
   });
 
   it('a entrada de cada irmao comeca exatamente stagger frames depois', () => {
     const base = {inicio: 0, duracao: 60};
     const irmaos = [0, 1, 2, 3, 4].map((i) => ({
-      inicio: base.inicio + atrasoDoIrmao(i),
+      inicio: base.inicio + atrasoDoIrmao(i, C),
       duracao: base.duracao,
     }));
     for (let i = 1; i < irmaos.length; i++) {
-      expect(irmaos[i].inicio - irmaos[i - 1].inicio).toBe(TEMPO.stagger);
+      expect(irmaos[i].inicio - irmaos[i - 1].inicio).toBe(C.stagger);
     }
     // e o primeiro frame em que cada irmao deixa de ser 'antes'
     for (let i = 0; i < irmaos.length; i++) {
-      expect(progresso(atrasoDoIrmao(i) - 1, irmaos[i]).fase).toBe('antes');
-      expect(progresso(atrasoDoIrmao(i), irmaos[i]).fase).toBe('entrada');
+      expect(progresso(atrasoDoIrmao(i, C) - 1, irmaos[i], C).fase).toBe('antes');
+      expect(progresso(atrasoDoIrmao(i, C), irmaos[i], C).fase).toBe('entrada');
     }
   });
 
   it('a cena cresce o bastante para caber o ultimo irmao', () => {
-    expect(duracaoComIrmaos(1, 60)).toBe(60);
-    expect(duracaoComIrmaos(5, 60)).toBe(60 + 4 * TEMPO.stagger);
+    expect(duracaoComIrmaos(1, 60, C)).toBe(60);
+    expect(duracaoComIrmaos(5, 60, C)).toBe(60 + 4 * C.stagger);
   });
 
   it('janelasDeIrmaos entrega uma janela por irmao, escalonada e de mesma duracao', () => {
-    const js = janelasDeIrmaos(4, {inicio: 7, duracao: 45});
+    const js = janelasDeIrmaos(4, {inicio: 7, duracao: 45}, C);
     expect(js.length).toBe(4);
     expect(js.map((j) => j.inicio)).toEqual([
       7,
-      7 + TEMPO.stagger,
-      7 + 2 * TEMPO.stagger,
-      7 + 3 * TEMPO.stagger,
+      7 + C.stagger,
+      7 + 2 * C.stagger,
+      7 + 3 * C.stagger,
     ]);
     expect(js.every((j) => j.duracao === 45)).toBe(true);
     // o ultimo irmao termina dentro da duracao que `duracaoComIrmaos` pede
     const ultimo = js[js.length - 1];
-    expect(ultimo.inicio - 7 + ultimo.duracao).toBe(duracaoComIrmaos(4, 45));
+    expect(ultimo.inicio - 7 + ultimo.duracao).toBe(duracaoComIrmaos(4, 45, C));
   });
 
   it('nenhum irmao e pedido antes do primeiro', () => {
-    expect(janelasDeIrmaos(0, {inicio: 0, duracao: 45})).toEqual([]);
+    expect(janelasDeIrmaos(0, {inicio: 0, duracao: 45}, C)).toEqual([]);
   });
 });
 
@@ -309,31 +374,31 @@ describe('quebrar', () => {
 describe('duracaoDaFrase', () => {
   it('conta o stagger de todas as palavras, nao so a duracao de uma', () => {
     // O erro que esta funcao existe para impedir: dimensionar a Sequence por
-    // DURACAO_MINIMA e cortar a saida da ultima palavra.
-    expect(duracaoDaFrase('CAFE')).toBe(DURACAO_MINIMA);
-    expect(duracaoDaFrase('CAFE DA CANASTRA')).toBeGreaterThan(DURACAO_MINIMA);
+    // C.duracaoMinima e cortar a saida da ultima palavra.
+    expect(duracaoDaFrase('CAFE', C)).toBe(C.duracaoMinima);
+    expect(duracaoDaFrase('CAFE DA CANASTRA', C)).toBeGreaterThan(C.duracaoMinima);
     // 3 palavras: janela de cada uma cresce 2*stagger, e a cena cresce outro
     // 2*stagger por causa do atraso do ultimo irmao.
-    expect(duracaoDaFrase('CAFE DA CANASTRA')).toBe(DURACAO_MINIMA + 4 * TEMPO.stagger);
+    expect(duracaoDaFrase('CAFE DA CANASTRA', C)).toBe(C.duracaoMinima + 4 * C.stagger);
   });
 
   it('a ultima palavra termina dentro da duracao devolvida', () => {
     const texto = 'CAFE ESPECIAL DA SERRA DA CANASTRA';
-    const total = duracaoDaFrase(texto);
-    const porPalavra = duracaoPorPalavra(texto);
-    const f = formaTextoTela({texto, modo: 'cartela', zonas: zonasDe(1080, 1920)});
+    const total = duracaoDaFrase(texto, C);
+    const porPalavra = duracaoPorPalavra(texto, C);
+    const f = formaTextoTela({texto, modo: 'cartela', zonas: zonasDe(1080, 1920), cadencia: C});
     const ultima = f.palavras[f.palavras.length - 1];
     expect(ultima.atrasoFrames + porPalavra).toBeLessThanOrEqual(total);
     // e no frame final do total a ultima palavra ja saiu
     expect(
-      progresso(total, {inicio: ultima.atrasoFrames, duracao: porPalavra}).presenca,
+      progresso(total, {inicio: ultima.atrasoFrames, duracao: porPalavra}, C).presenca,
     ).toBe(0);
   });
 
   it('EXISTE um trecho em que a frase inteira esta cheia, e dura holdFinal', () => {
     // O DEFEITO QUE ESTE TESTE PEGA, e que os outros 51 deixaram passar:
     //
-    // com `DURACAO_MINIMA` para todas as palavras, o stagger empurra so o
+    // com `C.duracaoMinima` para todas as palavras, o stagger empurra so o
     // comeco. Visto no still do frame 30 de uma manchete de 6 palavras: 'CAFE'
     // ja estava em 0,81 de presenca, saindo, e 'CANASTRA' ainda entrando --
     // nao havia UM frame com a manchete legivel inteira. Passa despercebido em
@@ -345,22 +410,22 @@ describe('duracaoDaFrase', () => {
       'TORRAMOS AQUI NA FAZENDA E MANDAMOS NO MESMO DIA EM QUE SAI DO TAMBOR',
     ]) {
       const n = texto.split(/\s+/).filter(Boolean).length;
-      const porPalavra = duracaoPorPalavra(texto);
-      const total = duracaoDaFrase(texto);
+      const porPalavra = duracaoPorPalavra(texto, C);
+      const total = duracaoDaFrase(texto, C);
 
       let cheios = 0;
       for (let t = 0; t <= total; t++) {
         const todas = Array.from({length: n}, (_, i) =>
-          progresso(t, {inicio: atrasoDoIrmao(i), duracao: porPalavra}),
+          progresso(t, {inicio: atrasoDoIrmao(i, C), duracao: porPalavra}, C),
         );
         if (todas.every((e) => e.presenca >= 1 - 1e-9)) cheios++;
       }
-      expect(cheios).toBeGreaterThanOrEqual(TEMPO.holdFinal);
+      expect(cheios).toBeGreaterThanOrEqual(C.holdFinal);
     }
   });
 
   it('texto sem palavra nao gera cena', () => {
-    expect(duracaoDaFrase('   ')).toBe(0);
+    expect(duracaoDaFrase('   ', C)).toBe(0);
   });
 });
 
@@ -380,8 +445,7 @@ describe('formaTextoTela: area segura', () => {
         const f = formaTextoTela({
           texto: 'CAFE ESPECIAL DA SERRA DA CANASTRA',
           modo,
-          zonas: z,
-        });
+          zonas: z, cadencia: C});
         dentro(f.caixa, z.seguro);
       }
     }
@@ -397,7 +461,7 @@ describe('formaTextoTela: area segura', () => {
       const z = zonasDe(w, h);
       for (const modo of ['sobreImagem', 'cartela'] as const) {
         for (const texto of textos) {
-          const f = formaTextoTela({texto, modo, zonas: z});
+          const f = formaTextoTela({texto, modo, zonas: z, cadencia: C});
           expect(f.larguraBloco).toBeLessThanOrEqual(f.caixa.largura + 1e-6);
           expect(f.alturaBloco).toBeLessThanOrEqual(f.caixa.altura + 1e-6);
           expect(f.corpo).toBeGreaterThan(0);
@@ -408,12 +472,11 @@ describe('formaTextoTela: area segura', () => {
 
   it('texto mais longo recebe corpo menor ou igual', () => {
     const z = zonasDe(1080, 1920);
-    const curto = formaTextoTela({texto: 'CAFE', modo: 'cartela', zonas: z});
+    const curto = formaTextoTela({texto: 'CAFE', modo: 'cartela', zonas: z, cadencia: C});
     const longo = formaTextoTela({
       texto: 'TORRAMOS AQUI NA FAZENDA E MANDAMOS NO MESMO DIA',
       modo: 'cartela',
-      zonas: z,
-    });
+      zonas: z, cadencia: C});
     expect(longo.corpo).toBeLessThan(curto.corpo);
   });
 });
@@ -422,8 +485,8 @@ describe('formaTextoTela: area segura', () => {
 describe('formaTextoTela: os dois modos sao geometrias diferentes', () => {
   const z = zonasDe(1080, 1920);
   const texto = 'CAFE ESPECIAL DA SERRA DA CANASTRA';
-  const sobre = formaTextoTela({texto, modo: 'sobreImagem', zonas: z});
-  const cartela = formaTextoTela({texto, modo: 'cartela', zonas: z});
+  const sobre = formaTextoTela({texto, modo: 'sobreImagem', zonas: z, cadencia: C});
+  const cartela = formaTextoTela({texto, modo: 'cartela', zonas: z, cadencia: C});
 
   it('a caixa nao e a mesma', () => {
     const mesma =
@@ -461,7 +524,7 @@ describe('formaTextoTela: os dois modos sao geometrias diferentes', () => {
     // do respiro que o modo existe para ter.
     for (const [w, h] of FORMATOS) {
       const z = zonasDe(w, h);
-      const c = formaTextoTela({texto, modo: 'cartela', zonas: z});
+      const c = formaTextoTela({texto, modo: 'cartela', zonas: z, cadencia: C});
       expect(c.alturaBloco + c.corpo * c.entrelinha).toBeLessThanOrEqual(
         c.caixa.altura + 1e-6,
       );
@@ -496,15 +559,14 @@ describe('formaTextoTela: acento e papel', () => {
       texto: 'CAFE ESPECIAL DA CANASTRA',
       modo: 'cartela',
       zonas: z,
-      palavraAcento: 1,
-    });
+      palavraAcento: 1, cadencia: C});
     const acentuadas = f.palavras.filter((p) => p.cor === COR.acento);
     expect(acentuadas.length).toBe(1);
     expect(acentuadas[0].texto).toBe('ESPECIAL');
   });
 
   it('sem palavraAcento nenhuma palavra usa o acento', () => {
-    const f = formaTextoTela({texto: 'CAFE DA CANASTRA', modo: 'cartela', zonas: z});
+    const f = formaTextoTela({texto: 'CAFE DA CANASTRA', modo: 'cartela', zonas: z, cadencia: C});
     expect(f.palavras.every((p) => p.cor !== COR.acento)).toBe(true);
   });
 
@@ -513,8 +575,7 @@ describe('formaTextoTela: acento e papel', () => {
       texto: 'CAFE DA CANASTRA',
       modo: 'cartela',
       zonas: z,
-      palavraAcento: 99,
-    });
+      palavraAcento: 99, cadencia: C});
     expect(f.palavras.every((p) => p.cor !== COR.acento)).toBe(true);
   });
 
@@ -522,8 +583,7 @@ describe('formaTextoTela: acento e papel', () => {
     const f = formaTextoTela({
       texto: 'CAFE ESPECIAL DA CANASTRA',
       modo: 'sobreImagem',
-      zonas: z,
-    });
+      zonas: z, cadencia: C});
     expect(f.palavras.map((p) => p.texto)).toEqual(['CAFE', 'ESPECIAL', 'DA', 'CANASTRA']);
     expect(f.palavras.map((p) => p.irmao)).toEqual([0, 1, 2, 3]);
   });
@@ -533,8 +593,7 @@ describe('formaTextoTela: acento e papel', () => {
       texto: '250 G',
       modo: 'sobreImagem',
       zonas: z,
-      papel: 'dado',
-    });
+      papel: 'dado', cadencia: C});
     expect(f.papel).toBe('dado');
     expect(f.entrelinha).toBeGreaterThan(0);
   });

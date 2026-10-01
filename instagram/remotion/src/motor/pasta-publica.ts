@@ -35,4 +35,11 @@ export const SUB = {
   fonte: 'fonte',
   /** recortes de embalagem com laudo aprovado (instagram/recorte/publicar.py) */
   assets: 'assets',
+  /**
+   * Trilha de audio. SEPARADA de `fonte` de proposito: musica licenciada tem
+   * procedencia e licenca que material gravado por nos nao tem, e guardar as duas na
+   * mesma pasta perde a distincao. A LOCUCAO continua em `fonte/` -- ela e material cru
+   * do projeto, e `pl.wav` ja esta la.
+   */
+  audio: 'audio',
 } as const;

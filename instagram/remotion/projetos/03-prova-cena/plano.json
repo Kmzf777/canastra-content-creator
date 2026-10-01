@@ -1,0 +1,199 @@
+{
+  "_gerado_por": "src/briefing/compilar.ts",
+  "_sha256Briefing": "f1a6ff392c544ac7d82a9960b5805f3e1db71dce7e1a893945a082bbd02808c4",
+  "_sha256Plano": "90bbb8f33088bb8f6719e84d1b8259a0cff1f1528e567f7bf4c87a68bd82d7a9",
+  "serie": "jornada",
+  "fps": 30,
+  "formatos": [
+    "9:16"
+  ],
+  "duracaoFrames": 345,
+  "razaoDaPeca": 0.5625,
+  "cenas": [
+    {
+      "duracaoFrames": 120,
+      "inicioNaPecaFrames": 0,
+      "fonte": {
+        "tipo": "video",
+        "arquivo": "pl.mp4",
+        "razaoExibicao": 0.5625,
+        "aparaAntesS": 1.14,
+        "enquadramento": "preencher",
+        "camera": "parado"
+      },
+      "aparaAntesFrames": 34,
+      "eventos": [
+        {
+          "papel": "manchete",
+          "texto": "SUA PRÓPRIA MARCA",
+          "familia": "manchete",
+          "cadenciaTexto": "palavra",
+          "pista": "tela",
+          "irmaos": 3,
+          "inicioFrames": 6,
+          "duracaoIrmaoFrames": 42,
+          "duracaoFrames": 48,
+          "palavraAcento": 2
+        }
+      ]
+    },
+    {
+      "duracaoFrames": 120,
+      "inicioNaPecaFrames": 120,
+      "fonte": {
+        "tipo": "foto",
+        "arquivo": "cafezal.jpg",
+        "razaoExibicao": 1.333333,
+        "registro": "cartao",
+        "enquadramento": {
+          "tipo": "faixa"
+        },
+        "camera": "pushLento",
+        "rotacaoGraus": 0
+      },
+      "aparaAntesFrames": 0,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "MEDEIROS 1250 M",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 15,
+          "duracaoIrmaoFrames": 36,
+          "duracaoFrames": 36
+        }
+      ]
+    },
+    {
+      "duracaoFrames": 120,
+      "inicioNaPecaFrames": 225,
+      "fonte": {
+        "tipo": "foto",
+        "arquivo": "classico-250g.png",
+        "razaoExibicao": 0.5625,
+        "registro": "moldura",
+        "enquadramento": {
+          "tipo": "faixa"
+        },
+        "camera": "parado",
+        "rotacaoGraus": 90
+      },
+      "aparaAntesFrames": 0,
+      "eventos": [
+        {
+          "papel": "dado",
+          "texto": "250 G",
+          "familia": "dado",
+          "cadenciaTexto": "linha",
+          "pista": "principal",
+          "irmaos": 2,
+          "inicioFrames": 15,
+          "duracaoIrmaoFrames": 39,
+          "duracaoFrames": 42
+        }
+      ]
+    }
+  ],
+  "transicoes": [
+    {
+      "tipo": "corte",
+      "duracaoFrames": 0
+    },
+    {
+      "tipo": "fade",
+      "duracaoFrames": 15
+    }
+  ],
+  "legenda": null,
+  "audio": {
+    "locucao": {
+      "arquivo": "pl.wav",
+      "ganhoDb": 0,
+      "aparaAntesS": 1.14
+    },
+    "trilha": null
+  },
+  "assets": [],
+  "licencas": {
+    "particulas": false,
+    "orbesDeBrilho": false,
+    "varreduraDeLuz": false,
+    "shockwave": false,
+    "molaComOvershoot": false,
+    "revelarCaractereACaractere": false,
+    "flashNoCorte": false,
+    "irisWipe": false,
+    "motionBlurBurst": false,
+    "swipeMarcaTexto": false,
+    "highlightPalavraAtiva": false,
+    "aceitaTempoMorto": false,
+    "justificativa": ""
+  },
+  "exigePreservacao": false,
+  "gancho": "o pacote com a sua marca, feito na Canastra",
+  "cta": "chama no direct",
+  "diagnostico": {
+    "eventos": [
+      {
+        "cena": 0,
+        "indice": 0,
+        "texto": "SUA PRÓPRIA MARCA",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "cartela",
+            "corpo": 152,
+            "linha": 0.08613333333333333,
+            "tetoDeLinha": null,
+            "noTeto": false,
+            "dominancia": 0.18183703703703702,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": true,
+            "porque": "cartela em 'tela': corpo 152 px, 3 linha(s), mancha 18,184% do quadro contra o piso 6,861% (1,25x a legenda de duas linhas). DOMINA"
+          }
+        }
+      },
+      {
+        "cena": 1,
+        "indice": 0,
+        "texto": "MEDEIROS 1250 M",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 158,
+            "linha": 0.079,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.11095111111111111,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 158 px, mancha 11,095%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      },
+      {
+        "cena": 2,
+        "indice": 0,
+        "texto": "250 G",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 310,
+            "linha": 0.15499999999999997,
+            "tetoDeLinha": 0.155,
+            "noTeto": true,
+            "dominancia": 0.16016666666666662,
+            "piso": 0.0686111111111111,
+            "domina": true,
+            "candidataADominar": true,
+            "porque": "faixa em 'principal': corpo 310 px, 2 linha(s), mancha 16,017% do quadro contra o piso 6,861% (1,25x a legenda de duas linhas). DOMINA. Corpo SEGURADO PELO TETO de 15,500% da altura do quadro (linha 15,500%): a caixa de 'principal' aceitaria mais, e mais taparia a imagem."
+          }
+        }
+      }
+    ],
+    "licencasLigadas": []
+  }
+}
