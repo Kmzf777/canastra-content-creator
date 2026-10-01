@@ -46,7 +46,7 @@ Abrir o formulário de edição em 30/09 deu os custos exatos e **derrubou duas 
 | Comissão Clássico (14%) | R$ 2,62 | R$ 19,59 |
 | Comissão Premium (19%) | R$ 3,55 | R$ 26,58 |
 | **Frete grátis** | **R$ 14,45** | **R$ 14,45** |
-| Comprador paga | R$ 1,40 | R$ 7,20 |
+| Comprador paga | R$ 1,40 @18,70 · **R$ 2,40 @34,90** | R$ 7,20 |
 
 **O frete grátis é R$ 14,45 nos dois** — valor único, que não muda com o preço nem com o
 peso. Era o único número que a documentação marcava como mole (R$ 20,00 interpolado).

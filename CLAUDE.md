@@ -99,6 +99,7 @@ referência, prompt, Claude in Chrome no ChatGPT, conferência ampliada, registr
 | `canastra-conteudo` | hub: qualquer imagem. Dono do fluxo, da mecânica do ChatGPT e da conferência |
 | `canastra-embalagem` | a embalagem aparece legível — rótulo tem que sobreviver letra por letra |
 | `canastra-cena` | lavoura, mesa, torrefação, UGC — realismo e procedência da referência |
+| `canastra-mercadolivre` | mexer na Central do ML pelo navegador — o que grava, o que falha em silêncio |
 
 A regra que mais se perde, e que um agente de teste furou neste repositório:
 **só marque um campo como conferido se a referência permitir lê-lo.** Ilegível não
@@ -516,3 +517,51 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     filter: 'fps'` → antes de depurar a sintaxe de um filtro, **confirme que o filtro
     existe naquela build** (`ffmpeg -filters`). Amostragem se faz com `-r`, que é opção
     de saída e não filtro, e o mosaico se monta em Node com `pngjs`.
+28. **Terceiro arquivo deste repositório lido pela dimensão codificada, e dessa vez a
+    sondagem mentiu com três números ao mesmo tempo** → `sondar()` em
+    `instagram/remotion/src/motor/sondar.ts` lia só `side_data_list.rotation`, que é
+    **displaymatrix — metadado de contêiner de vídeo**, e nada lia EXIF
+    (`grep -in "exif|orientation" src/motor/sondar.ts` = 0 linhas). Rodando sobre
+    `base-curada/01-real-verificada/torrefacao-uberlandia-875m/packshot-classico/Classico (5).jpg`
+    ele devolvia `{largura:4096, altura:2304, rotacao:0, razao:1.7778, duracao:0.04,
+    fps:25}`: razão **1,7778** onde a de exibição é **0,5625**; `rotacao: 0` num arquivo
+    cujo EXIF traz `Orientation = 6`; e `fps`/`duracao` **inventados pelo demuxer
+    `image2`** para uma foto parada — todo JPEG e todo PNG voltam `r_frame_rate: 25/1` e
+    `duration: 0.040000`, medido.
+
+    Os três casos são **um padrão**, não três bugs:
+
+    | caso | arquivo | o que mentia |
+    |---|---|---|
+    | 1 (lição 25) | `pl.mp4` | gravado 1024×576 com `displaymatrix rotation -90`, exibe 576×1024 |
+    | 2 | `projetos/01-private-label/public/assets/{classico,suave,canela}-250g.png` | 4096×2304 **deitados**: o `Orientation 6` da origem nunca foi aplicado na publicação, e os três laudos `instagram/assets/embalagem/*.json` gravam `"dimensoes": [4096, 2304]`. Medido agora: `rotacao.fonte = 'nenhuma'` — o metadado **não está** esperando no arquivo, ele foi perdido |
+    | 3 | `sondar()` sobre qualquer foto | lia um metadado de vídeo num arquivo que só tem o de foto |
+
+    → **Regra: em todo ponto onde este motor recebe imagem ou vídeo, a dimensão de
+    exibição é derivada de metadado de rotação, e o metadado tem DOIS nomes por
+    tecnologia** — `side_data_list.rotation` (displaymatrix, contêiner de vídeo) e EXIF
+    `Orientation` (JPEG/TIFF). Ler `width`/`height` sem os dois é o defeito padrão deste
+    repositório. O mesmo `ffprobe` que o Remotion já traz expõe os dois, sem dependência
+    nova: `ffprobe -show_frames -read_intervals "%+#1"` e `frames[0].tags.Orientation`
+    — que **vem preenchido de espaços** (`"    6"`), então comparação de string falha em
+    silêncio e `Number(String(x).trim())` é obrigatório. `format_name === 'image2'` é o
+    sinal de foto parada, e vale para JPEG e PNG.
+
+    Dois corolários que custaram tanto quanto a leitura errada:
+
+    - **Um `0` de "não achei metadado" e um `0` medido são fatos diferentes, e um deles é
+      alarme.** Por isso `rotacao` deixou de ser `number` e virou
+      `{fonte: 'displaymatrix' | 'exif' | 'nenhuma', graus}`. Era devolver `0` nos dois
+      casos que fazia o defeito passar despercebido.
+    - **Ausência é melhor que número inventado** (lição 3 outra vez): `fps`, `fpsMedio` e
+      `duracao` agora são `null` em imagem parada, e o tipo diz isso, o que obriga os
+      chamadores a tratar. Distribuição medida em `base-curada/01-real-verificada`: dos 12
+      packshots de Uberlândia, **12 são `Orientation 6`**; das 26 fotos da fazenda,
+      **8 são `Orientation 6` e 18 são `Orientation 1`** — ou seja, metade da base
+      verificada exibe num eixo diferente do que está gravado.
+
+    E o campo declarado à mão não substitui a medição: o protótipo
+    `instagram/remotion/out/_spec-briefing/b-jornada-foto.json` declara
+    `razaoExibicao: 1.3333` para `IMG_1421.JPG` e `IMG_1424.JPG`, e os dois são
+    `Orientation 6` — medido agora, exibem 3024×4032, razão **0,750000**. Campo de razão
+    existe para ser **conferido contra `sondar()`**, não para ser acreditado.

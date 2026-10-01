@@ -31,14 +31,13 @@ técnica e descrição.
 
 ---
 
-### A extensão lê, mas não escreve
-Medido em 30/09: toda a leitura da conta pela extensão do Chrome é confiável — tarifas,
-fretes, categoria, status, reputação. **Gravar, não.** O "Confirmar" do formulário não
-submete, o Editor em massa não abre, e nada disso dá erro: parece que funcionou.
+### Antes de mexer no ML pelo navegador, carregue a skill
+**`canastra-mercadolivre`** tem a mecânica medida: a receita de edição que funciona,
+o que falha em silêncio, os seletores e como conferir se gravou de verdade.
 
-**Se você for tentar de novo, leia primeiro**
-[`11-folha-de-aplicacao.md`](11-folha-de-aplicacao.md) § "Por que a automação não deu".
-E **sempre recarregue para conferir se gravou** — a tela mente.
+O resumo: **clique triplo, nunca `Ctrl+A`** · o acordeão demora até **19 s** e clicar de
+novo **fecha** · confira na **lista de anúncios**, não na recarga · **aba nova a cada
+3 ou 4 anúncios** · ler sempre funciona, escrever exige a receita.
 
 ## Estado da conta em 30/09/2026 — fatos medidos
 
@@ -209,6 +208,38 @@ como se fosse fato.
 esse número vale. É a lição 10 de novo: não transforme em garantia escrita o que você
 não mediu no lugar certo.
 
+### 15. O kit de 40 não tem desconto por volume nenhum
+Caixa de 10 a R$ 34,90 = **R$ 3,49/cápsula**. Kit de 40 a R$ 139,90 = **R$ 3,50/cápsula**.
+O kit está um centavo **mais caro** por cápsula que a caixa avulsa — ou seja, **não existe
+motivo para o comprador subir de ticket**. Passei a sessão inteira tratando o kit como o
+produto que "resolve a margem" sem notar que a escada de preço está plana.
+
+**Regra:** num portfólio de formatos do mesmo produto, **calcule sempre o preço por unidade
+base** (aqui, por cápsula) e confira se a escada desce. Preço absoluto maior não é escada.
+Decisão em aberto, fora do escopo aprovado — ver
+[`12-precos-de-atacado.md`](12-precos-de-atacado.md).
+
+### 16. Tratei como "escolha" o que o ML impõe
+Documentei que "Compatível" saiu do título porque **não cabia** junto com "Café Especial",
+e registrei como **decisão do Rafael**. Ao tentar gravar, o ML recusou o título sem
+"Compatível" — *"omite que as cápsulas são compatíveis com Nespresso"* — e desabilitou o
+Confirmar. **Nunca foi uma escolha.** Levei ao cliente um trade-off que não existia.
+
+**Regra:** antes de pedir ao cliente para escolher, **confira se as duas opções existem**.
+Restrição de plataforma se descobre submetendo, não deduzindo — e o formulário recusa de
+graça. É a "evidência barata" do próprio método deste projeto, aplicada fora da API.
+
+### 17. O `Ctrl+A` era a causa dos "Confirmar" que não gravavam
+Passei várias rodadas concluindo que o formulário do ML "não grava pela automação".
+Gravava — só que eu limpava os campos com `Ctrl+A` e o `Ctrl` não registrava, deixando
+uma letra **`a`** no início do valor. Vi `aClássico, Suave e Canela` num screenshot e a
+ficha caiu. O campo ficava inválido, o Confirmar não submetia, **e nenhum erro aparecia**.
+Trocando por **clique triplo**, gravou de primeira.
+
+**Regra:** para limpar campo de texto no navegador, **clique triplo**, não `Ctrl+A`.
+E quando algo "não grava sem dar erro", **olhe o conteúdo do campo num screenshot** antes
+de culpar a plataforma — eu cheguei a escrever no repositório que era limitação do site.
+
 ---
 
 ## Verificado × não verificado
@@ -225,7 +256,7 @@ não mediu no lugar certo.
 ### Não verificado — não afirmar como fato
 | Item | Situação |
 |---|---|
-| **Limite de 60 caracteres no título** | Vem de blog. Nenhum dos 16 vídeos confirmou |
+| ~~Limite de 60 caracteres no título~~ | **Resolvido: é real.** O formulário mostra `60 / 60` |
 | **Ciclo de 28 dias de aprendizado de campanha** | Vem de blog |
 | ~~Frete grátis do kit~~ | **Resolvido: R$ 14,45, medido no formulário em 30/09** |
 | **Tarifa pós-24/08/2026** | Houve nova revisão depois da de março. Valores novos não encontrados |
@@ -250,7 +281,9 @@ não mediu no lugar certo.
 | [`07-artefatos.md`](07-artefatos.md) | Os artefatos publicados e quais ainda valem |
 | [`09-remessa-e-estrategia-de-preco.md`](09-remessa-e-estrategia-de-preco.md) | Remessa ao Full em 1/2/3 meses, as 3 estratégias de preço e o limiar de 131 vendas |
 | [`10-textos-prontos.md`](10-textos-prontos.md) | **Título, descrição e vídeo dos 7, prontos para colar** |
-| [`11-folha-de-aplicacao.md`](11-folha-de-aplicacao.md) | **Campo a campo dos 7, para aplicar à mão.** E por que a automação não grava |
+| [`11-folha-de-aplicacao.md`](11-folha-de-aplicacao.md) | Campo a campo dos 7 e a mecânica de edição |
+| [`12-precos-de-atacado.md`](12-precos-de-atacado.md) | Atacado (ML Negócios): sim nos kits, não nas caixas, e só depois do verde |
+| [`13-o-que-falta.md`](13-o-que-falta.md) | **COMECE AQUI para executar.** O que falta em cada anúncio, em sequência, com o estado lido do formulário |
 | [`99-historico-estrategia-v1.md`](99-historico-estrategia-v1.md) | Primeira versão. **Contém números superados** |
 | `pesquisa/` | 16 transcrições, scripts de busca e `ACHADOS.md` |
 | `scripts/` | Cálculos em Python que geraram cada número. `matriz.py` = teto de estoque; `teto.py` = teto de rentabilidade |

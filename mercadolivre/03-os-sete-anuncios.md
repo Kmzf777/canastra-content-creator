@@ -78,15 +78,22 @@ Todos ganham **"Café Especial"** e **"Canastra"**, que não estavam em **nenhum
 | Kit 40 | Casa com o filtro *Formato de venda: Kit* e a faixa *18–49 unidades* |
 | Sabor no título | "Cápsula de café com canela" é busca diferente de "cápsula de café especial" |
 
-### O que saiu: "Compatível"
-Não cabe junto com "Café Especial" no Clássico — daria 61 de 60. **Decisão do Rafael:
-manter "Café Especial".**
+### RESOLVIDO em 30/09: "Compatível" é obrigatório
 
-⚠️ **Risco a avaliar:** os títulos atuais usam "Compatível Nespresso". Remover pode ter
-implicação de política de marca. Não verificado.
+Era "risco a avaliar, não verificado". **É trava.** Ao submeter
+`Cápsulas Café Especial Canastra Clássico Nespresso 10un`, o ML recusou:
 
-⚠️ **O limite de 60 caracteres vem de blog** e não foi confirmado em nenhum vídeo nem no
-formulário de cadastro.
+> *"O título sugerido omite que as cápsulas são compatíveis com Nespresso, alterando a
+> identidade do produto."*
+
+— e **desabilitou o Confirmar**. A decisão de manter "Café Especial" em vez de
+"Compatível" foi tomada sob premissa falsa: **não havia escolha**.
+
+### RESOLVIDO em 30/09: o limite de 60 caracteres é real
+O contador do próprio formulário mostra `60 / 60`. Vinha de blog, agora está medido.
+
+**Títulos refeitos** — cortando a quantidade, não o "Café Especial" — em
+[`11-folha-de-aplicacao.md`](11-folha-de-aplicacao.md).
 
 ### Regra de ouro
 **Nunca editar título de anúncio rodando** — reseta o histórico de relevância. Estes
