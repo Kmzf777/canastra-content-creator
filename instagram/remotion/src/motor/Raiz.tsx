@@ -197,8 +197,12 @@ export const Raiz: React.FC = () => (
         mesmo padrao de PonteAssets. A dimensao sai do molde, nao digitada
         aqui: 1080x1350 esta declarado em `estatico/moldes.ts`, que e o espelho
         do catalogo Python. Digitar de novo seria a terceira fonte de verdade. */}
+    {/* `fps={30}` literal, como PonteAssets: um still de 1 frame nao tem taxa, e o
+        valor so existe porque `<Composition>` o exige. Nao vem do plano -- peca
+        estatica nao tem plano -- nem de uma constante FPS, que deixou de existir
+        em 01/10/2026 quando o fps passou a sair do `plano.json`. */}
     <Composition id="Carta" component={Carta}
-      durationInFrames={1} fps={FPS}
+      durationInFrames={1} fps={30}
       width={MOLDES_ESTATICO['cartao-produto'].largura}
       height={MOLDES_ESTATICO['cartao-produto'].altura}
       defaultProps={{
