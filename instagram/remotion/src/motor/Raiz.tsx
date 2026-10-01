@@ -53,6 +53,8 @@ import {DIMENSAO, type Formato} from '../briefing/esquema';
 import type {Plano} from '../briefing/compilar';
 import {Peca} from './Peca';
 import {PonteAssets, PONTE_PADRAO} from './PonteAssets';
+import {Carta} from '../estatico/Carta';
+import {MOLDES_ESTATICO} from '../estatico/moldes';
 import {COR, TIPO} from '../identidade/tokens';
 import {PILHA} from '../identidade/tipografia';
 
@@ -190,5 +192,27 @@ export const Raiz: React.FC = () => (
     <Composition id="PonteAssets" component={PonteAssets}
       durationInFrames={1} fps={30} width={1920} height={1080}
       defaultProps={PONTE_PADRAO} />
+
+    {/* Peca ESTATICA de feed, 4:5. `durationInFrames={1}` porque e still --
+        mesmo padrao de PonteAssets. A dimensao sai do molde, nao digitada
+        aqui: 1080x1350 esta declarado em `estatico/moldes.ts`, que e o espelho
+        do catalogo Python. Digitar de novo seria a terceira fonte de verdade. */}
+    {/* `fps={30}` literal, como PonteAssets: um still de 1 frame nao tem taxa, e o
+        valor so existe porque `<Composition>` o exige. Nao vem do plano -- peca
+        estatica nao tem plano -- nem de uma constante FPS, que deixou de existir
+        em 01/10/2026 quando o fps passou a sair do `plano.json`. */}
+    <Composition id="Carta" component={Carta}
+      durationInFrames={1} fps={30}
+      width={MOLDES_ESTATICO['cartao-produto'].largura}
+      height={MOLDES_ESTATICO['cartao-produto'].altura}
+      defaultProps={{
+        molde: 'cartao-produto',
+        imagem: 'assets/carta-fonte.png',
+        dados: {
+          preco: 'R$ 31,70',
+          altitude: '1.250 m',
+          local: 'Medeiros, MG',
+        },
+      }} />
   </>
 );
