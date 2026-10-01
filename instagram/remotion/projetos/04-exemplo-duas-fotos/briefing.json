@@ -1,0 +1,78 @@
+{
+  "_esquema": "canastra-briefing/1",
+  "_proposito": "PEÇA-EXEMPLO MÍNIMA. Duas cenas de FOTO PARADA, uma etiqueta de texto em cada, uma transição. Existe para ser o menor briefing completo que o motor aceita: quem nunca escreveu um pode copiar este e trocar as duas fotos e os dois textos.",
+  "_porque_duas_fotos": "O acervo tem 3 fotos de lavoura e 1 vídeo. Uma peça de duas fotos paradas é a única que se monta inteira com o que existe hoje, sem gerar pixel nenhum.",
+  "_como_reconstituir": "public/ e saida/ são gitignored (.gitignore linhas 36 e 50), então só este arquivo e o plano.json viajam no repositório. Para rodar: mkdir -p public/fonte, copie IMG_1398.JPG e IMG_1424.JPG de projetos/02-jornada-do-grao/public/fonte/ e pl.wav de projetos/01-private-label/public/fonte/, e siga o §3 da skill canastra-video.",
+  "_conferido": "Compilado, selado, renderizado e normalizado em 01/10/2026. Reel 1080x1920, 7,50 s, 225 frames. Áudio -21,14 -> -14,13 LUFS (loudnorm em modo dynamic, com aviso). Os 5 portões de conferir.mjs saíram exit 0 com --frame=60; os 3 vereditos de olho foram dados lendo contato.png e os dois stills.",
+  "serie": "avulsa",
+  "fps": 30,
+  "formatos": ["9:16"],
+  "duracao": {"modo": "somaCenas"},
+  "cenas": [
+    {
+      "_cena": "1 de 2: a lavoura inteira. Abre no plano aberto para a cena 2 fechar no grão.",
+      "duracaoS": 4,
+      "fonte": {
+        "_procedencia": "IMG_1398.JPG, cópia de projetos/02-jornada-do-grao/public/fonte/, que a documenta como vinda de base-curada/01-real-verificada/fazenda-medeiros-1250m/ (camada 01: EXIF de câmera e GPS, pixel permitido).",
+        "_medido": "sondar() em 01/10/2026: exibe 4032x3024, razão 1,333333, rotação exif 0. Paisagem de verdade, sem matriz mentindo.",
+        "_registro": "`cartao` + `faixa`: a foto aparece INTEIRA, recuada 5% e ancorada no alto, e a sobra de baixo é a terra onde a etiqueta e a legenda correriam. Escolhido porque a janela 9:16 dentro de uma foto 4:3 jogaria fora 57,81% do quadro -- e esta foto é sobre a extensão da lavoura, que é exatamente o que o corte comeria.",
+        "tipo": "foto",
+        "arquivo": "IMG_1398.JPG",
+        "razaoExibicao": 1.333333,
+        "registro": "cartao",
+        "enquadramento": {"tipo": "faixa"},
+        "camera": "pushLento"
+      },
+      "eventos": [
+        {
+          "_texto": "Medeiros/MG é a fazenda das 3 fotos da camada 01. Não escrevo altitude aqui: o EXIF dá uma FAIXA para o conjunto de março/2017, não um número deste arquivo.",
+          "_duracao": "duracaoS É OBRIGATÓRIO NA PRÁTICA. Sem ele o compilador escreve duracaoFrames: 36 -- 1,2 s a 30 fps -- e a etiqueta pisca e some, com exit 0. Medido em 01/10/2026: compilei sem o campo, o plano saiu com 36, e os stills dos frames 60 e 170 vieram SEM TEXTO NENHUM. 0,4 + 3,4 = 3,8 s numa cena de 4,0: entra, fica, e sai antes do corte.",
+          "papel": "etiqueta",
+          "texto": "LAVOURA DE MEDEIROS",
+          "entradaS": 0.4,
+          "duracaoS": 3.4,
+          "pista": "topo"
+        }
+      ]
+    },
+    {
+      "_cena": "2 de 2: o mesmo café, à distância de um braço. Fecha o movimento aberto -> fechado.",
+      "duracaoS": 4,
+      "fonte": {
+        "_procedencia": "IMG_1424.JPG, mesma origem e mesma camada da cena 1.",
+        "_medido": "sondar() em 01/10/2026: grava 4032x3024 mas EXIBE 3024x4032 -- rotação exif 90, razão 0,750000. É a matriz de rotação do §2 da skill: chutar 1,3333 aqui deitaria a foto com exit 0.",
+        "_recorte": "Janela 9:16 dentro de 3024x4032: largura = 4032*0,5625 = 2268 px de 3024 = 0,75 da largura já orientada, centrada em x = 0,125. Joga fora 25,00% da foto. Fração do arquivo ORIENTADO, nunca pixel.",
+        "_registro": "`telaCheia` porque aqui o assunto é a textura: o grão tem que encostar nas quatro bordas. Com `faixa` seria recusado, e com razão.",
+        "tipo": "foto",
+        "arquivo": "IMG_1424.JPG",
+        "razaoExibicao": 0.75,
+        "registro": "telaCheia",
+        "enquadramento": {"tipo": "recorte", "x": 0.125, "y": 0.0, "largura": 0.75, "altura": 1.0},
+        "camera": "pushLento"
+      },
+      "eventos": [
+        {
+          "_texto": "VERDE, não madura. As fotos de cereja do acervo são todas de fruto verde [medido, olhando o arquivo]. Escrever MADURA aqui seria mentir sobre o pixel.",
+          "_duracao": "Mesma razão da cena 1: sem duracaoS a etiqueta vive 36 frames e some.",
+          "papel": "etiqueta",
+          "texto": "CEREJA AINDA VERDE",
+          "entradaS": 0.4,
+          "duracaoS": 3.4,
+          "pista": "topo"
+        }
+      ]
+    }
+  ],
+  "_transicoes": "Exatamente cenas - 1 = 1. O fade de 0,5 s GASTA 15 frames: as cenas somam 240 e a peça tem 225.",
+  "transicoes": [{"tipo": "fade", "duracaoS": 0.5}],
+  "audio": {
+    "_tentativa_1": "Comecei com os dois null, porque uma peça de duas fotos paradas não tem som próprio. O refinador recusou, e a recusa está certa: [audio-mudo] `05-formatos.md` §3, Reel sem áudio perde elegibilidade para não-seguidor. Não existe licença para ligar o mudo. Declare uma trilha, ou uma locução, ou as duas.",
+    "_o_que_o_acervo_tem": "UM arquivo de áudio no repositório inteiro: pl.wav. Nenhuma trilha sem voz foi gravada ou licenciada até 01/10/2026. Então esta peça usa a locução do 01-private-label, como o 03-prova-cena já faz, e isso é um EMPRÉSTIMO DE ESTRUTURA: a fala é sobre private label e não sobre a lavoura. Ao reaproveitar este briefing para uma peça de publicação, troque este arquivo -- não publique a peça com esta voz.",
+    "_apara": "1,14 s é o ar morto na cabeça de pl.wav, medido e registrado em 03-prova-cena. Não remedi aqui; herdei a medida do mesmo arquivo.",
+    "locucao": {"arquivo": "pl.wav", "ganhoDb": 0, "aparaAntesS": 1.14},
+    "trilha": null
+  },
+  "assets": [],
+  "gancho": "a lavoura de Medeiros inteira no primeiro quadro, antes de qualquer embalagem",
+  "cta": "chama no direct"
+}

@@ -1,0 +1,153 @@
+{
+  "_gerado_por": "src/briefing/compilar.ts",
+  "_sha256Briefing": "0ed692ff55b3cb240c5ac54a29ae017bb16dbae404f9f0f656da25bc1d88822a",
+  "_sha256Plano": "cdd4a7f2916ccbef6a8a2278e908905964631a1bba30fcd06c2c501a3f16770f",
+  "serie": "avulsa",
+  "fps": 30,
+  "formatos": [
+    "9:16"
+  ],
+  "duracaoFrames": 225,
+  "razaoDaPeca": 1.333333,
+  "cenas": [
+    {
+      "duracaoFrames": 120,
+      "inicioNaPecaFrames": 0,
+      "fonte": {
+        "tipo": "foto",
+        "arquivo": "IMG_1398.JPG",
+        "razaoExibicao": 1.333333,
+        "registro": "cartao",
+        "enquadramento": {
+          "tipo": "faixa"
+        },
+        "camera": "pushLento",
+        "rotacaoGraus": 0
+      },
+      "aparaAntesFrames": 0,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "LAVOURA DE MEDEIROS",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 12,
+          "duracaoIrmaoFrames": 102,
+          "duracaoFrames": 102
+        }
+      ]
+    },
+    {
+      "duracaoFrames": 120,
+      "inicioNaPecaFrames": 105,
+      "fonte": {
+        "tipo": "foto",
+        "arquivo": "IMG_1424.JPG",
+        "razaoExibicao": 0.75,
+        "registro": "telaCheia",
+        "enquadramento": {
+          "tipo": "recorte",
+          "x": 0.125,
+          "y": 0,
+          "largura": 0.75,
+          "altura": 1
+        },
+        "camera": "pushLento",
+        "rotacaoGraus": 0
+      },
+      "aparaAntesFrames": 0,
+      "eventos": [
+        {
+          "papel": "etiqueta",
+          "texto": "CEREJA AINDA VERDE",
+          "familia": "dado",
+          "cadenciaTexto": "bloco",
+          "pista": "topo",
+          "irmaos": 1,
+          "inicioFrames": 12,
+          "duracaoIrmaoFrames": 102,
+          "duracaoFrames": 102
+        }
+      ]
+    }
+  ],
+  "transicoes": [
+    {
+      "tipo": "fade",
+      "duracaoFrames": 15
+    }
+  ],
+  "legenda": null,
+  "audio": {
+    "locucao": {
+      "arquivo": "pl.wav",
+      "ganhoDb": 0,
+      "aparaAntesS": 1.14
+    },
+    "trilha": null
+  },
+  "assets": [],
+  "licencas": {
+    "particulas": false,
+    "orbesDeBrilho": false,
+    "varreduraDeLuz": false,
+    "shockwave": false,
+    "molaComOvershoot": false,
+    "revelarCaractereACaractere": false,
+    "flashNoCorte": false,
+    "irisWipe": false,
+    "motionBlurBurst": false,
+    "swipeMarcaTexto": false,
+    "highlightPalavraAtiva": false,
+    "aceitaTempoMorto": false,
+    "justificativa": ""
+  },
+  "exigePreservacao": false,
+  "gancho": "a lavoura de Medeiros inteira no primeiro quadro, antes de qualquer embalagem",
+  "cta": "chama no direct",
+  "diagnostico": {
+    "eventos": [
+      {
+        "cena": 0,
+        "indice": 0,
+        "texto": "LAVOURA DE MEDEIROS",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 79,
+            "linha": 0.0395,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.034672222222222215,
+            "piso": 0.0686111111111111,
+            "domina": false,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 79 px, mancha 3,467%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      },
+      {
+        "cena": 1,
+        "indice": 0,
+        "texto": "CEREJA AINDA VERDE",
+        "porFormato": {
+          "9:16": {
+            "encaixe": "faixa",
+            "corpo": 79,
+            "linha": 0.0395,
+            "tetoDeLinha": 0.155,
+            "noTeto": false,
+            "dominancia": 0.041606666666666646,
+            "piso": 0.0686111111111111,
+            "domina": false,
+            "candidataADominar": false,
+            "porque": "faixa em 'topo': corpo 79 px, mancha 4,161%. Papel 'etiqueta' nao e candidato a dominar -- carimbo nao e o elemento dominante da cena."
+          }
+        }
+      }
+    ],
+    "licencasLigadas": []
+  }
+}
