@@ -55,3 +55,6 @@ instagram/remotion/projetos/*/public/
 # trilha de auditoria, e carregam retangulo_rotulo medido a mao.
 instagram/assets/embalagem/*.png
 instagram/assets/materialidade/*.png
+
+# Bundles de estatico: peca, legenda e sidecar. Saida, nao fonte.
+saida-estaticos/
