@@ -4,7 +4,7 @@
 > o que foi medido, o que foi decidido, o que eu errei e corrigi, e o que continua sem
 > verificação. Sessões futuras não têm a memória desta.
 >
-> **Última atualização:** 30/09/2026
+> **Última atualização:** 05/10/2026
 > **Objetivo do projeto:** cápsulas Nespresso-compatíveis são o produto escolhido para
 > ser o primeiro a escalar em vendas no Mercado Livre.
 
@@ -316,9 +316,55 @@ Armadilhas já resolvidas, registradas em `pesquisa/pesquisar.py`:
 
 ---
 
+### 18. Ninguém tinha olhado as fotos dos anúncios
+A conta vinha sendo auditada por preço, título, frete e ficha técnica. Em 04/10/2026 abri as
+fotos pela primeira vez: nos **três anúncios de 10 un**, duas das três mostravam a **caixa
+dispenser de atacado** — caixa grande com dezenas de cápsulas a granel — num anúncio que
+vende *1 caixa de 10 un a R$ 34,90*. A terceira era mock-up 2D chapado. Todas entre
+**375 e 500 px**, abaixo dos 1200 que o ML exige para habilitar zoom.
+
+**Regra:** numa auditoria de anúncio, **a foto é campo como qualquer outro**. Com 37,68% de
+envio incorreto nesta conta, expectativa visual errada é combustível de devolução, não
+detalhe estético.
+
+---
+
+## Alterações aplicadas
+
+| Data | Anúncios | O que mudou | Autorização |
+|---|---|---|---|
+| 04/10/2026 | `2692127545` · `2692076338` · `2692082114` (os 3 de 10 un) | **Fotos**: as 3 antigas substituídas por 3 de catálogo — embalagem + cápsula (capa), três cápsulas, cápsula isolada | Rafael, na conversa |
+| 05/10/2026 | os mesmos 3 | **Fotos**: inseridas a frente e a(s) lateral(is) entre a capa e as cápsulas. Clássico e Canela ficaram com **5**, Suave com **6** | Rafael, na conversa |
+
+Ordem final, por anúncio: **capa** (embalagem + cápsula) → **frente** → **lateral(is)** →
+**três cápsulas** → **cápsula isolada**.
+
+**Duas laterais ficaram de fora, e o motivo importa.** O carimbo de lote/fabricação/validade
+é impresso fora da arte e a geração o **redesenha** (lição 22 do `CLAUDE.md`):
+
+| Arquivo | Por que não subiu |
+|---|---|
+| `16.4` | `F: 23.2025` — **mês 23 não existe** |
+| `17.3` | `L:114 F:12.2025 V:12.2026` — plausível, e por isso pior: ninguém vê |
+
+`21.4` subiu porque saiu **sem carimbo nenhum**. Para completar a lateral que falta no
+Clássico e no Canela, a rota é compor o carimbo da foto real ou tirá-lo do enquadramento.
+
+**Ressalva escrita, não reprova:** `16.3` e `21.3` trazem `ARABICA` **sem acento** (o certo
+é `ARÁBICA`) e os QR de rastreabilidade de todas as laterais são **regenerados, não
+escaneáveis**. Subiram com o Rafael avisado.
+
+Origem: `saida-teste/catalogo-estudio/{16,17,21}-capsulas-*/`. Conferido na **lista de
+anúncios** e relendo os 3 formulários do zero: as fotos antigas sumiram e a ordem no
+servidor bate com a pedida — 5 · 5 · 6.
+
+**Os 4 kits de 40 un continuam com as fotos antigas** — fora do escopo autorizado.
+
+---
+
 ## Estado atual e próximo passo
 
-Nada foi alterado na conta. O que está pendente, em ordem:
+Nada mais foi alterado na conta. O que está pendente, em ordem:
 
 1. **Certificado digital** — vencia 30/09. Sem ele não sai NF-e e o Full pode pausar
 2. **R$ 75 de garantia** — recupera o verde-claro. Maior retorno por real do projeto

@@ -85,6 +85,30 @@ Cada família tem corpo e ocupação próprios, já escritos no script. O que mu
   num perfil pontudo em vez da sanfona reta. Decisão do Arthur: aceitar como rascunho.
 - **Caixas** (cápsula, drip): 5 imagens em vez de 4 — duas laterais. A faixa do topo
   identifica a variante: Clássico preta, Canela vinho, Suave marrom-chocolate.
+- **Cápsulas**: mais 3 imagens (`.6` embalagem + cápsula ao lado, `.7` cápsula isolada,
+  `.8` três cápsulas), com a cápsula de plástico de verdade. Ver abaixo.
+
+## A cápsula de plástico — o produto dentro da caixa
+
+A caixa **desenha** uma cápsula na frente, e esse desenho **não é fonte de cor**. A arte
+do Canela mostra vinho; a cápsula real é **cobre metálico**. O Clássico bate por acaso.
+
+| SKU | Cápsula real | Lida em |
+|---|---|---|
+| Clássico | preta brilhante, tampa prata lisa | `capsulas-classico-detalhe-06/07.jpg` |
+| Canela | **cobre metálico**, tampa prata lisa | `capsulas-canela-detalhe-07/08.jpg` |
+| Suave | preta, idêntica à do Clássico | **não há foto** — Arthur, 04/10/2026 |
+
+A tampa de alumínio é **lisa**: sem logo, sem letra, sem código. O modelo adora carimbar
+a montanha nela — é o campo que mais falha nessas três tomadas.
+
+A referência que vai anexada **não é a foto crua**: a cápsula ocupa ~3% dela. Rode
+`python scripts/capsula_referencia.py`, que monta as duas vistas reais lado a lado em
+`saida-teste/catalogo-estudio/_capsulas-recorte/`.
+
+Em `.6` a caixa muda de escala, então **o rótulo é redesenhado** — confira como numa
+frente nova. Em `.7` e `.8` não há rótulo no quadro: o que se confere é tampa lisa, cor
+do corpo e ausência de adereço.
 
 ## Erros que já custaram rodada
 

@@ -3,7 +3,7 @@
 Gerado por `scripts/prompts_catalogo.py`. Para mudar qualquer convenção, edite o
 script e rode de novo — não edite este arquivo à mão, ele é sobrescrito.
 
-21 produtos, **90 imagens**. Para rodar no ChatGPT, colando um bloco por vez.
+21 produtos, **99 imagens**. Para rodar no ChatGPT, colando um bloco por vez.
 
 ---
 
@@ -86,9 +86,9 @@ foto real é a rota confiável para publicação.
 
 15. [Néctar de Minas Gourmet 500g — Torrado e Moído](#15-nectar-500g-moido) — 4 imagens
 
-16. [Cápsulas Clássico — 10 un. de 5g](#16-capsulas-classico) — 5 imagens
+16. [Cápsulas Clássico — 10 un. de 5g](#16-capsulas-classico) — 8 imagens
 
-17. [Cápsulas Canela — 10 un. de 5g](#17-capsulas-canela) — 5 imagens
+17. [Cápsulas Canela — 10 un. de 5g](#17-capsulas-canela) — 8 imagens
 
 18. [Drip Coffee Clássico 100g — 10 sachês](#18-drip-classico) — 5 imagens
 
@@ -96,7 +96,7 @@ foto real é a rota confiável para publicação.
 
 20. [Drip Coffee Canela 100g — 10 sachês](#20-drip-canela) — 5 imagens
 
-21. [Cápsulas Suave — 10 un. de 5g](#21-capsulas-suave) — 5 imagens
+21. [Cápsulas Suave — 10 un. de 5g](#21-capsulas-suave) — 8 imagens
 
 
 ---
@@ -1690,7 +1690,7 @@ FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The packag
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
-On the front face, top to bottom: across the black top band, in white letterspaced caps, "COMPATÍVEIS COM SISTEMA NESPRESSO". Below the band, small widely letterspaced caps, "C Á P S U L A S". Then the Café Canastra logo lockup — a mountain ridge drawn in thin sketchy open line, a LOW, WIDE, FLAT-TOPPED tableland: an almost horizontal plateau escarpment with shallow irregular notches and one gently rounded high point, never sharp alpine peaks, with three tiny V-shaped bird marks at its far upper left; overlapping and in front of that ridge, slightly right of centre, the word "Café" written small in slanted handwriting AND CARRYING AN ACUTE ACCENT over the e; directly below, very large, "CANASTRA" spelled C-A-N-A-S-T-R-A in a thick dry-brush script with uneven, partly broken strokes; a single heavy tapering brush swash sweeping underneath it, thick at the left and thinning to a point at the right; a very small ® at the upper right of the final A; and "Desde 1985" small and handwritten at the lower right, just above the tip of the swash. Below the logo, a colour product photograph of one espresso capsule standing upright — black body, silver foil lid — with two more capsules lying behind it, a few roasted coffee beans and two small green coffee leaves at its left. To the right of that photograph, a rounded rectangle outline containing "CLÁSSICO", and under it two small lines, "CONTEÚDO" over "10un. DE 5g.". Lower centre, a thin rectangle outline containing three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — note SCAA with two A, not SCA. At the very bottom, centred in small caps, "INDÚSTRIA BRASILEIRA".
+On the front face, top to bottom: across the black top band, in white letterspaced caps, "COMPATÍVEIS COM SISTEMA NESPRESSO". Below the band, small widely letterspaced caps, "C Á P S U L A S". Then the Café Canastra logo lockup — a mountain ridge drawn in thin sketchy open line, a LOW, WIDE, FLAT-TOPPED tableland: an almost horizontal plateau escarpment with shallow irregular notches and one gently rounded high point, never sharp alpine peaks, with three tiny V-shaped bird marks at its far upper left; overlapping and in front of that ridge, slightly right of centre, the word "Café" written small in slanted handwriting AND CARRYING AN ACUTE ACCENT over the e; directly below, very large, "CANASTRA" spelled C-A-N-A-S-T-R-A in a thick dry-brush script with uneven, partly broken strokes; a single heavy tapering brush swash sweeping underneath it, thick at the left and thinning to a point at the right; a very small ® at the upper right of the final A; and "Desde 1985" small and handwritten at the lower right, just above the tip of the swash. Below the logo, a colour product photograph of one espresso capsule standing upright — black body, silver foil lid — with two more capsules lying behind it, a few roasted coffee beans and two small green coffee leaves at its left. To the right of that photograph, a rounded rectangle outline containing "CLÁSSICO", and under it two small lines, "CONTEÚDO" over "10un. DE 5g.". Lower centre, a rectangle outline drawn as FOUR CORNER BRACKETS rather than a continuous line — each corner is an L of rule and the middle of every side is open — containing three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — note SCAA with two A, not SCA. At the very bottom, centred in small caps, "INDÚSTRIA BRASILEIRA".
 ```
 
 #### 16.2 Frente — fundo cor da embalagem
@@ -1786,6 +1786,95 @@ FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The packag
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
 ```
 
+#### 16.6 Embalagem + cápsula ao lado
+
+**Anexar, nesta ordem:**
+
+1. `a imagem aprovada em 16.1`
+2. `saida-teste/catalogo-estudio/_capsulas-recorte/capsula-classico-ref.jpg`
+
+⚠️ A caixa muda de escala, então o rótulo é **redesenhado** — confira `Desde 1985`, `SCAA 80+` e o rodapé ampliados, como numa frente nova.
+
+```text
+Create a studio product photograph that puts the carton and its real capsules together in one frame.
+
+THE TWO ATTACHMENTS HAVE DIFFERENT JOBS, do not mix them. FIRST image — the approved studio packshot of the carton: it is the source of the CARTON and of nothing else. Reproduce that carton's printed artwork, its proportions, its colours, its lighting and its white cove exactly as they are there. SECOND image — two tight crops of the REAL capsule photographed on a wooden table, the same capsule twice: standing on the left, lying on its side on the right so the foil lid shows. Look at it ONLY to read the capsule's shape, its proportions, its colour, its finish and its silver foil lid. Its wooden table, its warm tungsten light, its two-up split layout and its white border must NOT appear in your output — the output is one single photograph on a white cove.
+
+THE CARTON — a small upright KRAFT CARDBOARD carton, matte uncoated board with visible fibre, noticeably taller than wide and about half as deep as it is wide, with crisp square corners and a solid BLACK printed band wrapping the top of the box including the top face. All other printing is BLACK ink on the bare kraft.
+
+LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
+
+On the front face, top to bottom: across the black top band, in white letterspaced caps, "COMPATÍVEIS COM SISTEMA NESPRESSO". Below the band, small widely letterspaced caps, "C Á P S U L A S". Then the Café Canastra logo lockup — a mountain ridge drawn in thin sketchy open line, a LOW, WIDE, FLAT-TOPPED tableland: an almost horizontal plateau escarpment with shallow irregular notches and one gently rounded high point, never sharp alpine peaks, with three tiny V-shaped bird marks at its far upper left; overlapping and in front of that ridge, slightly right of centre, the word "Café" written small in slanted handwriting AND CARRYING AN ACUTE ACCENT over the e; directly below, very large, "CANASTRA" spelled C-A-N-A-S-T-R-A in a thick dry-brush script with uneven, partly broken strokes; a single heavy tapering brush swash sweeping underneath it, thick at the left and thinning to a point at the right; a very small ® at the upper right of the final A; and "Desde 1985" small and handwritten at the lower right, just above the tip of the swash. Below the logo, a colour product photograph of one espresso capsule standing upright — black body, silver foil lid — with two more capsules lying behind it, a few roasted coffee beans and two small green coffee leaves at its left. To the right of that photograph, a rounded rectangle outline containing "CLÁSSICO", and under it two small lines, "CONTEÚDO" over "10un. DE 5g.". Lower centre, a rectangle outline drawn as FOUR CORNER BRACKETS rather than a continuous line — each corner is an L of rule and the middle of every side is open — containing three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — note SCAA with two A, not SCA. At the very bottom, centred in small caps, "INDÚSTRIA BRASILEIRA".
+
+THE CAPSULES — a Nespresso-compatible espresso capsule: a small truncated cone, WIDE at the open end where a crimped rim flange runs all the way round, tapering upward to a narrow rounded dome at the closed end, with a shallow concentric step moulded into the dome and a tiny centre pip. The flange is sealed with a smooth SILVER aluminium foil lid that is completely BLANK — no logo, no lettering, no number, no code, no printing of any kind on the foil. The crimped edge of the flange shows fine regular radial knurling and reads as bare bright metal. The body is opaque GLOSSY BLACK plastic, deep neutral black with no brown and no blue in it, carrying one soft vertical specular highlight down the lit side and a long dark reflection on the shadow side.
+
+THE ARRANGEMENT — the carton stands upright, slightly left of centre, front face square to the camera, exactly as in the first image. On the white floor to its right, clear of the carton and never overlapping it, two capsules: one STANDING upright on its flange with the domed closed end pointing up and the foil lid hidden against the floor, set a little behind; and one LYING on its side in front of it, rolled so the SILVER FOIL LID faces the camera and reads as a full circle. The two capsules touch neither each other nor the carton. Each one casts its own small soft contact shadow on the floor, in the same direction as the carton's.
+
+SCALE — the capsule is small: a standing capsule reaches about one third of the carton's height. Do not enlarge it to fill the gap.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 50% of the frame height, with even margins left and right and the base sitting a little below centre.
+
+DO NOT print anything on the foil lid — no logo, no mountain, no "CANASTRA", no variant name, no numbers, no barcode, no embossing. The lid is blank silver foil. NOTHING ELSE SITS ON THE FLOOR of the set: no loose coffee beans, no ground coffee, no cup, saucer, spoon, leaf, cinnamon quill, cloth, wood, board or water drop as a real object in the scene — this does not touch the beans, leaves or quills that are PRINTED inside the carton's own artwork, which stay exactly as they are. Do not open, tear, peel or pierce any capsule — all of them are sealed and intact.
+```
+
+#### 16.7 Cápsula isolada
+
+**Anexar, nesta ordem:**
+
+1. `saida-teste/catalogo-estudio/_capsulas-recorte/capsula-classico-ref.jpg`
+2. `a imagem aprovada em 16.1`
+
+Sem rótulo no quadro: o que se confere aqui é a **tampa lisa** (o modelo tende a carimbar um logo nela), a cor do corpo e a ausência de adereço.
+
+```text
+Create a studio product photograph of ONE espresso capsule alone — no carton, no box, no packaging anywhere in the frame.
+
+FIRST attached image — two tight crops of the REAL capsule photographed on a wooden table, the same capsule twice: standing on the left, lying on its side on the right so the foil lid shows. It is the source of the capsule's shape, proportions, colour, finish and foil lid, and of nothing else. Its wooden table, its warm tungsten light, its two-up split layout and its white border must not appear. SECOND attached image — the STYLE ANCHOR: match its lighting, its white cove background, its neutral white balance and its overall treatment. Do not reproduce the carton shown in it.
+
+THE SUBJECT — a Nespresso-compatible espresso capsule: a small truncated cone, WIDE at the open end where a crimped rim flange runs all the way round, tapering upward to a narrow rounded dome at the closed end, with a shallow concentric step moulded into the dome and a tiny centre pip. The flange is sealed with a smooth SILVER aluminium foil lid that is completely BLANK — no logo, no lettering, no number, no code, no printing of any kind on the foil. The crimped edge of the flange shows fine regular radial knurling and reads as bare bright metal. The body is opaque GLOSSY BLACK plastic, deep neutral black with no brown and no blue in it, carrying one soft vertical specular highlight down the lit side and a long dark reflection on the shadow side.
+
+THE POSE — a single capsule STANDING upright on its flange, the domed closed end pointing up, the foil lid resting on the floor and hidden. Seen very slightly from above, so the flange reads as a narrow ellipse at the base and the dome reads as a dome. One capsule only.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). A single capsule stands upright and centred. The camera is at eye level with the subject, only very slightly above it — just enough that the top dome reads as a dome — square to the group, no low hero angle, no top-down view, no wide-angle distortion. A standing capsule occupies about 40% of the frame height, the group centred with even margins left and right and resting a little below centre.
+
+DO NOT print anything on the foil lid — no logo, no mountain, no "CANASTRA", no variant name, no numbers, no barcode, no embossing. The lid is blank silver foil. NOTHING ELSE SITS ON THE FLOOR of the set: no loose coffee beans, no ground coffee, no cup, saucer, spoon, leaf, cinnamon quill, cloth, wood, board or water drop as a real object in the scene — this does not touch the beans, leaves or quills that are PRINTED inside the carton's own artwork, which stay exactly as they are. Do not open, tear, peel or pierce any capsule — all of them are sealed and intact.
+```
+
+#### 16.8 Três cápsulas isoladas
+
+**Anexar, nesta ordem:**
+
+1. `saida-teste/catalogo-estudio/_capsulas-recorte/capsula-classico-ref.jpg`
+2. `a imagem aprovada em 16.1`
+
+Confira que as três têm a **mesma cor e o mesmo tamanho** e que a deitada mostra a tampa prata lisa.
+
+```text
+Create a studio product photograph of THREE espresso capsules together — no carton, no box, no packaging anywhere in the frame.
+
+FIRST attached image — two tight crops of the REAL capsule photographed on a wooden table, the same capsule twice: standing on the left, lying on its side on the right so the foil lid shows. It is the source of the capsule's shape, proportions, colour, finish and foil lid, and of nothing else. Its wooden table, its warm tungsten light, its two-up split layout and its white border must not appear. SECOND attached image — the STYLE ANCHOR: match its lighting, its white cove background, its neutral white balance and its overall treatment. Do not reproduce the carton shown in it.
+
+THE SUBJECT — three identical capsules. Each one is a Nespresso-compatible espresso capsule: a small truncated cone, WIDE at the open end where a crimped rim flange runs all the way round, tapering upward to a narrow rounded dome at the closed end, with a shallow concentric step moulded into the dome and a tiny centre pip. The flange is sealed with a smooth SILVER aluminium foil lid that is completely BLANK — no logo, no lettering, no number, no code, no printing of any kind on the foil. The crimped edge of the flange shows fine regular radial knurling and reads as bare bright metal. The body is opaque GLOSSY BLACK plastic, deep neutral black with no brown and no blue in it, carrying one soft vertical specular highlight down the lit side and a long dark reflection on the shadow side.
+
+THE ARRANGEMENT — two capsules STANDING upright side by side at the back, each on its flange with the domed closed end pointing up and the foil lid hidden against the floor, a small gap between them so they do not touch. In front of them and slightly to one side, the third capsule LIES on its side, rolled so the SILVER FOIL LID faces the camera and reads as a full circle, its dome pointing away. The three form a shallow triangle on the floor. Each casts its own small soft contact shadow, all in the same direction. All three capsules are exactly the same colour and the same size.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The three capsules sit as a compact group, centred. The camera is at eye level with the subject, only very slightly above it — just enough that the top dome reads as a dome — square to the group, no low hero angle, no top-down view, no wide-angle distortion. A standing capsule occupies about 34% of the frame height, the group centred with even margins left and right and resting a little below centre.
+
+DO NOT print anything on the foil lid — no logo, no mountain, no "CANASTRA", no variant name, no numbers, no barcode, no embossing. The lid is blank silver foil. NOTHING ELSE SITS ON THE FLOOR of the set: no loose coffee beans, no ground coffee, no cup, saucer, spoon, leaf, cinnamon quill, cloth, wood, board or water drop as a real object in the scene — this does not touch the beans, leaves or quills that are PRINTED inside the carton's own artwork, which stay exactly as they are. Do not open, tear, peel or pierce any capsule — all of them are sealed and intact.
+```
+
 ---
 
 
@@ -1817,7 +1906,7 @@ FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The packag
 
 LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
 
-On the front face, top to bottom: across the wine red top band, in white letterspaced caps, "COMPATÍVEIS COM SISTEMA NESPRESSO". Below the band, small widely letterspaced caps, "C Á P S U L A S". Then the Café Canastra logo lockup — a mountain ridge drawn in thin sketchy open line, a LOW, WIDE, FLAT-TOPPED tableland: an almost horizontal plateau escarpment with shallow irregular notches and one gently rounded high point, never sharp alpine peaks, with three tiny V-shaped bird marks at its far upper left; overlapping and in front of that ridge, slightly right of centre, the word "Café" written small in slanted handwriting AND CARRYING AN ACUTE ACCENT over the e; directly below, very large, "CANASTRA" spelled C-A-N-A-S-T-R-A in a thick dry-brush script with uneven, partly broken strokes; a single heavy tapering brush swash sweeping underneath it, thick at the left and thinning to a point at the right; a very small ® at the upper right of the final A; and "Desde 1985" small and handwritten at the lower right, just above the tip of the swash. Below the logo, a colour product photograph of one espresso capsule standing upright — wine red body, silver foil lid — with two more capsules lying behind it and a small bundle of cinnamon quills at its right. To the right of that photograph, a rounded rectangle outline containing "CANELA", and under it two small lines, "CONTEÚDO" over "10un. DE 5g.". Lower centre, a thin rectangle outline containing three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — note SCAA with two A, not SCA. At the very bottom, centred in small caps, "INDÚSTRIA BRASILEIRA".
+On the front face, top to bottom: across the wine red top band, in white letterspaced caps, "COMPATÍVEIS COM SISTEMA NESPRESSO". Below the band, small widely letterspaced caps, "C Á P S U L A S". Then the Café Canastra logo lockup — a mountain ridge drawn in thin sketchy open line, a LOW, WIDE, FLAT-TOPPED tableland: an almost horizontal plateau escarpment with shallow irregular notches and one gently rounded high point, never sharp alpine peaks, with three tiny V-shaped bird marks at its far upper left; overlapping and in front of that ridge, slightly right of centre, the word "Café" written small in slanted handwriting AND CARRYING AN ACUTE ACCENT over the e; directly below, very large, "CANASTRA" spelled C-A-N-A-S-T-R-A in a thick dry-brush script with uneven, partly broken strokes; a single heavy tapering brush swash sweeping underneath it, thick at the left and thinning to a point at the right; a very small ® at the upper right of the final A; and "Desde 1985" small and handwritten at the lower right, just above the tip of the swash. Below the logo, a colour product photograph of one espresso capsule standing upright — wine red body, silver foil lid — with two more capsules lying behind it and a small bundle of cinnamon quills at its right. To the right of that photograph, a rounded rectangle outline containing "CANELA", and under it two small lines, "CONTEÚDO" over "10un. DE 5g.". Lower centre, a rectangle outline drawn as FOUR CORNER BRACKETS rather than a continuous line — each corner is an L of rule and the middle of every side is open — containing three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — note SCAA with two A, not SCA. At the very bottom, centred in small caps, "INDÚSTRIA BRASILEIRA".
 ```
 
 #### 17.2 Frente — fundo cor da embalagem
@@ -1911,6 +2000,95 @@ EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally 
 FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
+```
+
+#### 17.6 Embalagem + cápsula ao lado
+
+**Anexar, nesta ordem:**
+
+1. `a imagem aprovada em 17.1`
+2. `saida-teste/catalogo-estudio/_capsulas-recorte/capsula-canela-ref.jpg`
+
+⚠️ A caixa muda de escala, então o rótulo é **redesenhado** — confira `Desde 1985`, `SCAA 80+` e o rodapé ampliados, como numa frente nova.
+
+```text
+Create a studio product photograph that puts the carton and its real capsules together in one frame.
+
+THE TWO ATTACHMENTS HAVE DIFFERENT JOBS, do not mix them. FIRST image — the approved studio packshot of the carton: it is the source of the CARTON and of nothing else. Reproduce that carton's printed artwork, its proportions, its colours, its lighting and its white cove exactly as they are there. SECOND image — two tight crops of the REAL capsule photographed on a wooden table, the same capsule twice: standing on the left, lying on its side on the right so the foil lid shows. Look at it ONLY to read the capsule's shape, its proportions, its colour, its finish and its silver foil lid. Its wooden table, its warm tungsten light, its two-up split layout and its white border must NOT appear in your output — the output is one single photograph on a white cove.
+
+THE CARTON — a small upright KRAFT CARDBOARD carton, matte uncoated board with visible fibre, noticeably taller than wide and about half as deep as it is wide, with crisp square corners and a solid DEEP WINE RED printed band wrapping the top of the box including the top face. All other printing is BLACK ink on the bare kraft.
+
+LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
+
+On the front face, top to bottom: across the wine red top band, in white letterspaced caps, "COMPATÍVEIS COM SISTEMA NESPRESSO". Below the band, small widely letterspaced caps, "C Á P S U L A S". Then the Café Canastra logo lockup — a mountain ridge drawn in thin sketchy open line, a LOW, WIDE, FLAT-TOPPED tableland: an almost horizontal plateau escarpment with shallow irregular notches and one gently rounded high point, never sharp alpine peaks, with three tiny V-shaped bird marks at its far upper left; overlapping and in front of that ridge, slightly right of centre, the word "Café" written small in slanted handwriting AND CARRYING AN ACUTE ACCENT over the e; directly below, very large, "CANASTRA" spelled C-A-N-A-S-T-R-A in a thick dry-brush script with uneven, partly broken strokes; a single heavy tapering brush swash sweeping underneath it, thick at the left and thinning to a point at the right; a very small ® at the upper right of the final A; and "Desde 1985" small and handwritten at the lower right, just above the tip of the swash. Below the logo, a colour product photograph of one espresso capsule standing upright — wine red body, silver foil lid — with two more capsules lying behind it and a small bundle of cinnamon quills at its right. To the right of that photograph, a rounded rectangle outline containing "CANELA", and under it two small lines, "CONTEÚDO" over "10un. DE 5g.". Lower centre, a rectangle outline drawn as FOUR CORNER BRACKETS rather than a continuous line — each corner is an L of rule and the middle of every side is open — containing three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — note SCAA with two A, not SCA. At the very bottom, centred in small caps, "INDÚSTRIA BRASILEIRA".
+
+THE CAPSULES — a Nespresso-compatible espresso capsule: a small truncated cone, WIDE at the open end where a crimped rim flange runs all the way round, tapering upward to a narrow rounded dome at the closed end, with a shallow concentric step moulded into the dome and a tiny centre pip. The flange is sealed with a smooth SILVER aluminium foil lid that is completely BLANK — no logo, no lettering, no number, no code, no printing of any kind on the foil. The crimped edge of the flange shows fine regular radial knurling and reads as bare bright metal. The body is COPPER metallic — a warm polished orange-brown metal finish with a bright specular band running round the taper. It is NOT wine red, NOT maroon and NOT the colour of the band on the carton: the capsule printed in the carton's own artwork is drawn wine red, and the real capsule is copper. The upper face of the flange carries the same copper colour; the outer crimped edge and the foil lid underneath it are silver.
+
+THE ARRANGEMENT — the carton stands upright, slightly left of centre, front face square to the camera, exactly as in the first image. On the white floor to its right, clear of the carton and never overlapping it, two capsules: one STANDING upright on its flange with the domed closed end pointing up and the foil lid hidden against the floor, set a little behind; and one LYING on its side in front of it, rolled so the SILVER FOIL LID faces the camera and reads as a full circle. The two capsules touch neither each other nor the carton. Each one casts its own small soft contact shadow on the floor, in the same direction as the carton's.
+
+SCALE — the capsule is small: a standing capsule reaches about one third of the carton's height. Do not enlarge it to fill the gap.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 50% of the frame height, with even margins left and right and the base sitting a little below centre.
+
+DO NOT print anything on the foil lid — no logo, no mountain, no "CANASTRA", no variant name, no numbers, no barcode, no embossing. The lid is blank silver foil. NOTHING ELSE SITS ON THE FLOOR of the set: no loose coffee beans, no ground coffee, no cup, saucer, spoon, leaf, cinnamon quill, cloth, wood, board or water drop as a real object in the scene — this does not touch the beans, leaves or quills that are PRINTED inside the carton's own artwork, which stay exactly as they are. Do not open, tear, peel or pierce any capsule — all of them are sealed and intact.
+```
+
+#### 17.7 Cápsula isolada
+
+**Anexar, nesta ordem:**
+
+1. `saida-teste/catalogo-estudio/_capsulas-recorte/capsula-canela-ref.jpg`
+2. `a imagem aprovada em 17.1`
+
+Sem rótulo no quadro: o que se confere aqui é a **tampa lisa** (o modelo tende a carimbar um logo nela), a cor do corpo e a ausência de adereço.
+
+```text
+Create a studio product photograph of ONE espresso capsule alone — no carton, no box, no packaging anywhere in the frame.
+
+FIRST attached image — two tight crops of the REAL capsule photographed on a wooden table, the same capsule twice: standing on the left, lying on its side on the right so the foil lid shows. It is the source of the capsule's shape, proportions, colour, finish and foil lid, and of nothing else. Its wooden table, its warm tungsten light, its two-up split layout and its white border must not appear. SECOND attached image — the STYLE ANCHOR: match its lighting, its white cove background, its neutral white balance and its overall treatment. Do not reproduce the carton shown in it.
+
+THE SUBJECT — a Nespresso-compatible espresso capsule: a small truncated cone, WIDE at the open end where a crimped rim flange runs all the way round, tapering upward to a narrow rounded dome at the closed end, with a shallow concentric step moulded into the dome and a tiny centre pip. The flange is sealed with a smooth SILVER aluminium foil lid that is completely BLANK — no logo, no lettering, no number, no code, no printing of any kind on the foil. The crimped edge of the flange shows fine regular radial knurling and reads as bare bright metal. The body is COPPER metallic — a warm polished orange-brown metal finish with a bright specular band running round the taper. It is NOT wine red, NOT maroon and NOT the colour of the band on the carton: the capsule printed in the carton's own artwork is drawn wine red, and the real capsule is copper. The upper face of the flange carries the same copper colour; the outer crimped edge and the foil lid underneath it are silver.
+
+THE POSE — a single capsule STANDING upright on its flange, the domed closed end pointing up, the foil lid resting on the floor and hidden. Seen very slightly from above, so the flange reads as a narrow ellipse at the base and the dome reads as a dome. One capsule only.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). A single capsule stands upright and centred. The camera is at eye level with the subject, only very slightly above it — just enough that the top dome reads as a dome — square to the group, no low hero angle, no top-down view, no wide-angle distortion. A standing capsule occupies about 40% of the frame height, the group centred with even margins left and right and resting a little below centre.
+
+DO NOT print anything on the foil lid — no logo, no mountain, no "CANASTRA", no variant name, no numbers, no barcode, no embossing. The lid is blank silver foil. NOTHING ELSE SITS ON THE FLOOR of the set: no loose coffee beans, no ground coffee, no cup, saucer, spoon, leaf, cinnamon quill, cloth, wood, board or water drop as a real object in the scene — this does not touch the beans, leaves or quills that are PRINTED inside the carton's own artwork, which stay exactly as they are. Do not open, tear, peel or pierce any capsule — all of them are sealed and intact.
+```
+
+#### 17.8 Três cápsulas isoladas
+
+**Anexar, nesta ordem:**
+
+1. `saida-teste/catalogo-estudio/_capsulas-recorte/capsula-canela-ref.jpg`
+2. `a imagem aprovada em 17.1`
+
+Confira que as três têm a **mesma cor e o mesmo tamanho** e que a deitada mostra a tampa prata lisa.
+
+```text
+Create a studio product photograph of THREE espresso capsules together — no carton, no box, no packaging anywhere in the frame.
+
+FIRST attached image — two tight crops of the REAL capsule photographed on a wooden table, the same capsule twice: standing on the left, lying on its side on the right so the foil lid shows. It is the source of the capsule's shape, proportions, colour, finish and foil lid, and of nothing else. Its wooden table, its warm tungsten light, its two-up split layout and its white border must not appear. SECOND attached image — the STYLE ANCHOR: match its lighting, its white cove background, its neutral white balance and its overall treatment. Do not reproduce the carton shown in it.
+
+THE SUBJECT — three identical capsules. Each one is a Nespresso-compatible espresso capsule: a small truncated cone, WIDE at the open end where a crimped rim flange runs all the way round, tapering upward to a narrow rounded dome at the closed end, with a shallow concentric step moulded into the dome and a tiny centre pip. The flange is sealed with a smooth SILVER aluminium foil lid that is completely BLANK — no logo, no lettering, no number, no code, no printing of any kind on the foil. The crimped edge of the flange shows fine regular radial knurling and reads as bare bright metal. The body is COPPER metallic — a warm polished orange-brown metal finish with a bright specular band running round the taper. It is NOT wine red, NOT maroon and NOT the colour of the band on the carton: the capsule printed in the carton's own artwork is drawn wine red, and the real capsule is copper. The upper face of the flange carries the same copper colour; the outer crimped edge and the foil lid underneath it are silver.
+
+THE ARRANGEMENT — two capsules STANDING upright side by side at the back, each on its flange with the domed closed end pointing up and the foil lid hidden against the floor, a small gap between them so they do not touch. In front of them and slightly to one side, the third capsule LIES on its side, rolled so the SILVER FOIL LID faces the camera and reads as a full circle, its dome pointing away. The three form a shallow triangle on the floor. Each casts its own small soft contact shadow, all in the same direction. All three capsules are exactly the same colour and the same size.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The three capsules sit as a compact group, centred. The camera is at eye level with the subject, only very slightly above it — just enough that the top dome reads as a dome — square to the group, no low hero angle, no top-down view, no wide-angle distortion. A standing capsule occupies about 34% of the frame height, the group centred with even margins left and right and resting a little below centre.
+
+DO NOT print anything on the foil lid — no logo, no mountain, no "CANASTRA", no variant name, no numbers, no barcode, no embossing. The lid is blank silver foil. NOTHING ELSE SITS ON THE FLOOR of the set: no loose coffee beans, no ground coffee, no cup, saucer, spoon, leaf, cinnamon quill, cloth, wood, board or water drop as a real object in the scene — this does not touch the beans, leaves or quills that are PRINTED inside the carton's own artwork, which stay exactly as they are. Do not open, tear, peel or pierce any capsule — all of them are sealed and intact.
 ```
 
 ---
@@ -2421,6 +2599,95 @@ EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally 
 FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen with the back panel square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 56% of the frame height, with even margins left and right and the base sitting a little below centre.
 
 CRITICAL — THIS PANEL IS A LEGAL LABEL. Reproduce every printed character exactly as it appears in the attached photograph: the description paragraph, the roast and intensity meters, the altitude icon, the preparation bullets, the producer seal, the company name, address and registration numbers, the net weight, the batch and date stamps. Same wording, same line breaks, same accents, same digits. Do not re-typeset, do not translate, do not paraphrase, do not summarise, do not modernise, do not invent a single character. Do not generate a new QR code and do not generate a new barcode — copy the ones in the reference exactly as printed.
+```
+
+#### 21.6 Embalagem + cápsula ao lado
+
+**Anexar, nesta ordem:**
+
+1. `a imagem aprovada em 21.1`
+2. `saida-teste/catalogo-estudio/_capsulas-recorte/capsula-classico-ref.jpg`
+
+⚠️ A caixa muda de escala, então o rótulo é **redesenhado** — confira `Desde 1985`, `SCAA 80+` e o rodapé ampliados, como numa frente nova. A foto da cápsula é a do **Clássico**: a cápsula Suave é idêntica — preta, tampa prata — confirmado com o Arthur em 04/10/2026, porque não existe foto da cápsula Suave de fato. Ela entra só como fonte de **forma, cor e luz da cápsula**; a caixa vem inteira da imagem 1.
+
+```text
+Create a studio product photograph that puts the carton and its real capsules together in one frame.
+
+THE TWO ATTACHMENTS HAVE DIFFERENT JOBS, do not mix them. FIRST image — the approved studio packshot of the carton: it is the source of the CARTON and of nothing else. Reproduce that carton's printed artwork, its proportions, its colours, its lighting and its white cove exactly as they are there. SECOND image — two tight crops of the REAL capsule photographed on a wooden table, the same capsule twice: standing on the left, lying on its side on the right so the foil lid shows. Look at it ONLY to read the capsule's shape, its proportions, its colour, its finish and its silver foil lid. Its wooden table, its warm tungsten light, its two-up split layout and its white border must NOT appear in your output — the output is one single photograph on a white cove.
+
+THE CARTON — a small upright KRAFT CARDBOARD carton, matte uncoated board with visible fibre, noticeably taller than wide and about half as deep as it is wide, with crisp square corners and a solid DARK CHOCOLATE BROWN printed band wrapping the top of the box including the top face — a warm deep brown, clearly brown rather than black and darker than the kraft. All other printing is BLACK ink on the bare kraft.
+
+LABEL FIDELITY — this is the part that fails. Reproduce the printed artwork exactly as specified below: same layout, same proportions, same wording, same accents, letter for letter. Do not re-typeset it, do not translate it, do not paraphrase it, do not tidy it up, do not invent extra lines, do not add a barcode or a QR code that is not described. Every character listed must be legible and spelled exactly as written.
+
+On the front face, top to bottom: across the dark brown top band, in white letterspaced caps, "COMPATÍVEIS COM SISTEMA NESPRESSO". Below the band, small widely letterspaced caps, "C Á P S U L A S". Then the Café Canastra logo lockup — a mountain ridge drawn in thin sketchy open line, a LOW, WIDE, FLAT-TOPPED tableland: an almost horizontal plateau escarpment with shallow irregular notches and one gently rounded high point, never sharp alpine peaks, with three tiny V-shaped bird marks at its far upper left; overlapping and in front of that ridge, slightly right of centre, the word "Café" written small in slanted handwriting AND CARRYING AN ACUTE ACCENT over the e; directly below, very large, "CANASTRA" spelled C-A-N-A-S-T-R-A in a thick dry-brush script with uneven, partly broken strokes; a single heavy tapering brush swash sweeping underneath it, thick at the left and thinning to a point at the right; a very small ® at the upper right of the final A; and "Desde 1985" small and handwritten at the lower right, just above the tip of the swash. Below the logo, a colour product photograph of espresso capsules: one capsule in the foreground seen from a raised angle, its body a warm reddish BROWN and its CREAM-WHITE foil lid peeled back and curling up and over the open cup, and a second capsule behind it to the right showing its cream-white foil lid face on, with a third brown capsule body just visible behind that. No coffee beans, no leaves, no cinnamon. To the right of that photograph, a short curved leader line pointing to a rounded rectangle outline containing "SUAVE" in letterspaced caps, and under it two small lines, "CONTEÚDO" over "10un. DE 5g.". Lower centre, a rectangle outline drawn as four corner brackets rather than a continuous line, containing three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — note SCAA with two A, not SCA. At the very bottom, centred in small caps, "INDÚSTRIA BRASILEIRA".
+
+THE CAPSULES — a Nespresso-compatible espresso capsule: a small truncated cone, WIDE at the open end where a crimped rim flange runs all the way round, tapering upward to a narrow rounded dome at the closed end, with a shallow concentric step moulded into the dome and a tiny centre pip. The flange is sealed with a smooth SILVER aluminium foil lid that is completely BLANK — no logo, no lettering, no number, no code, no printing of any kind on the foil. The crimped edge of the flange shows fine regular radial knurling and reads as bare bright metal. The body is opaque GLOSSY BLACK plastic, deep neutral black with no brown and no blue in it, carrying one soft vertical specular highlight down the lit side and a long dark reflection on the shadow side.
+
+THE ARRANGEMENT — the carton stands upright, slightly left of centre, front face square to the camera, exactly as in the first image. On the white floor to its right, clear of the carton and never overlapping it, two capsules: one STANDING upright on its flange with the domed closed end pointing up and the foil lid hidden against the floor, set a little behind; and one LYING on its side in front of it, rolled so the SILVER FOIL LID faces the camera and reads as a full circle. The two capsules touch neither each other nor the carton. Each one casts its own small soft contact shadow on the floor, in the same direction as the carton's.
+
+SCALE — the capsule is small: a standing capsule reaches about one third of the carton's height. Do not enlarge it to fill the gap.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The package stands upright and centred, seen straight on, front face square to the camera, at eye level with the camera at the package's mid-height so the vertical edges stay parallel. No low hero angle, no tilt, no wide-angle perspective distortion, no leaning. The package occupies about 50% of the frame height, with even margins left and right and the base sitting a little below centre.
+
+DO NOT print anything on the foil lid — no logo, no mountain, no "CANASTRA", no variant name, no numbers, no barcode, no embossing. The lid is blank silver foil. NOTHING ELSE SITS ON THE FLOOR of the set: no loose coffee beans, no ground coffee, no cup, saucer, spoon, leaf, cinnamon quill, cloth, wood, board or water drop as a real object in the scene — this does not touch the beans, leaves or quills that are PRINTED inside the carton's own artwork, which stay exactly as they are. Do not open, tear, peel or pierce any capsule — all of them are sealed and intact.
+```
+
+#### 21.7 Cápsula isolada
+
+**Anexar, nesta ordem:**
+
+1. `saida-teste/catalogo-estudio/_capsulas-recorte/capsula-classico-ref.jpg`
+2. `a imagem aprovada em 21.1`
+
+Sem rótulo no quadro: o que se confere aqui é a **tampa lisa** (o modelo tende a carimbar um logo nela), a cor do corpo e a ausência de adereço. A foto da cápsula é a do **Clássico**: a cápsula Suave é idêntica — preta, tampa prata — confirmado com o Arthur em 04/10/2026, porque não existe foto da cápsula Suave de fato. Ela entra só como fonte de **forma, cor e luz da cápsula**; a caixa vem inteira da imagem 1.
+
+```text
+Create a studio product photograph of ONE espresso capsule alone — no carton, no box, no packaging anywhere in the frame.
+
+FIRST attached image — two tight crops of the REAL capsule photographed on a wooden table, the same capsule twice: standing on the left, lying on its side on the right so the foil lid shows. It is the source of the capsule's shape, proportions, colour, finish and foil lid, and of nothing else. Its wooden table, its warm tungsten light, its two-up split layout and its white border must not appear. SECOND attached image — the STYLE ANCHOR: match its lighting, its white cove background, its neutral white balance and its overall treatment. Do not reproduce the carton shown in it.
+
+THE SUBJECT — a Nespresso-compatible espresso capsule: a small truncated cone, WIDE at the open end where a crimped rim flange runs all the way round, tapering upward to a narrow rounded dome at the closed end, with a shallow concentric step moulded into the dome and a tiny centre pip. The flange is sealed with a smooth SILVER aluminium foil lid that is completely BLANK — no logo, no lettering, no number, no code, no printing of any kind on the foil. The crimped edge of the flange shows fine regular radial knurling and reads as bare bright metal. The body is opaque GLOSSY BLACK plastic, deep neutral black with no brown and no blue in it, carrying one soft vertical specular highlight down the lit side and a long dark reflection on the shadow side.
+
+THE POSE — a single capsule STANDING upright on its flange, the domed closed end pointing up, the foil lid resting on the floor and hidden. Seen very slightly from above, so the flange reads as a narrow ellipse at the base and the dome reads as a dome. One capsule only.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). A single capsule stands upright and centred. The camera is at eye level with the subject, only very slightly above it — just enough that the top dome reads as a dome — square to the group, no low hero angle, no top-down view, no wide-angle distortion. A standing capsule occupies about 40% of the frame height, the group centred with even margins left and right and resting a little below centre.
+
+DO NOT print anything on the foil lid — no logo, no mountain, no "CANASTRA", no variant name, no numbers, no barcode, no embossing. The lid is blank silver foil. NOTHING ELSE SITS ON THE FLOOR of the set: no loose coffee beans, no ground coffee, no cup, saucer, spoon, leaf, cinnamon quill, cloth, wood, board or water drop as a real object in the scene — this does not touch the beans, leaves or quills that are PRINTED inside the carton's own artwork, which stay exactly as they are. Do not open, tear, peel or pierce any capsule — all of them are sealed and intact.
+```
+
+#### 21.8 Três cápsulas isoladas
+
+**Anexar, nesta ordem:**
+
+1. `saida-teste/catalogo-estudio/_capsulas-recorte/capsula-classico-ref.jpg`
+2. `a imagem aprovada em 21.1`
+
+Confira que as três têm a **mesma cor e o mesmo tamanho** e que a deitada mostra a tampa prata lisa. A foto da cápsula é a do **Clássico**: a cápsula Suave é idêntica — preta, tampa prata — confirmado com o Arthur em 04/10/2026, porque não existe foto da cápsula Suave de fato. Ela entra só como fonte de **forma, cor e luz da cápsula**; a caixa vem inteira da imagem 1.
+
+```text
+Create a studio product photograph of THREE espresso capsules together — no carton, no box, no packaging anywhere in the frame.
+
+FIRST attached image — two tight crops of the REAL capsule photographed on a wooden table, the same capsule twice: standing on the left, lying on its side on the right so the foil lid shows. It is the source of the capsule's shape, proportions, colour, finish and foil lid, and of nothing else. Its wooden table, its warm tungsten light, its two-up split layout and its white border must not appear. SECOND attached image — the STYLE ANCHOR: match its lighting, its white cove background, its neutral white balance and its overall treatment. Do not reproduce the carton shown in it.
+
+THE SUBJECT — three identical capsules. Each one is a Nespresso-compatible espresso capsule: a small truncated cone, WIDE at the open end where a crimped rim flange runs all the way round, tapering upward to a narrow rounded dome at the closed end, with a shallow concentric step moulded into the dome and a tiny centre pip. The flange is sealed with a smooth SILVER aluminium foil lid that is completely BLANK — no logo, no lettering, no number, no code, no printing of any kind on the foil. The crimped edge of the flange shows fine regular radial knurling and reads as bare bright metal. The body is opaque GLOSSY BLACK plastic, deep neutral black with no brown and no blue in it, carrying one soft vertical specular highlight down the lit side and a long dark reflection on the shadow side.
+
+THE ARRANGEMENT — two capsules STANDING upright side by side at the back, each on its flange with the domed closed end pointing up and the foil lid hidden against the floor, a small gap between them so they do not touch. In front of them and slightly to one side, the third capsule LIES on its side, rolled so the SILVER FOIL LID faces the camera and reads as a full circle, its dome pointing away. The three form a shallow triangle on the floor. Each casts its own small soft contact shadow, all in the same direction. All three capsules are exactly the same colour and the same size.
+
+STUDIO TREATMENT — identical across the whole catalogue. A clean commercial packshot on a seamless white cove: white sweep curving from wall to floor with no visible horizon line, no seam, no corner, no table, no surface texture, no props. One large softbox as key light from the upper left, a white bounce card on the right lifting the shadow side, and a narrow top kicker separating the top edge of the pack from the background. The white is bright and even, with at most a very faint neutral falloff near the outer corners. Directly beneath the base, a soft short CONTACT SHADOW — diffuse, neutral grey, no hard edge, no long cast shadow, no mirror reflection. Neutral daylight white balance: the warm tungsten cast of the reference photograph must be gone, the whites must read white.
+
+EVERYTHING IN FRAME IS SHARP — deep depth of field, the whole package equally crisp from the nearest fold to the far edge. No background blur, no bokeh, no vignette, no glow, no lens flare, no added props, no added text, no watermark, no reflection of the package on the floor.
+
+FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The three capsules sit as a compact group, centred. The camera is at eye level with the subject, only very slightly above it — just enough that the top dome reads as a dome — square to the group, no low hero angle, no top-down view, no wide-angle distortion. A standing capsule occupies about 34% of the frame height, the group centred with even margins left and right and resting a little below centre.
+
+DO NOT print anything on the foil lid — no logo, no mountain, no "CANASTRA", no variant name, no numbers, no barcode, no embossing. The lid is blank silver foil. NOTHING ELSE SITS ON THE FLOOR of the set: no loose coffee beans, no ground coffee, no cup, saucer, spoon, leaf, cinnamon quill, cloth, wood, board or water drop as a real object in the scene — this does not touch the beans, leaves or quills that are PRINTED inside the carton's own artwork, which stay exactly as they are. Do not open, tear, peel or pierce any capsule — all of them are sealed and intact.
 ```
 
 ---

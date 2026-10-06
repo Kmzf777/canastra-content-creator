@@ -1,5 +1,8 @@
 # Concorrência
 
+> Artefato: [A Régua da Cápsula](https://claude.ai/artifact/VLbmSYC9ZmzXNhd6qkiz1k)
+> — estes dados cruzados com nossos preços, promoção, Ads e retorno.
+>
 > Preços lidos na busca logada do Mercado Livre em 25/09/2026.
 > Selos de venda são **acumulados**, não mensais.
 
@@ -14,8 +17,9 @@
 | **Especial** ← onde a Canastra compete | Orfeu, Coffee++, Sebastian, Zanelli, Baobá | **2,29 – 3,14** |
 | **Premium e importado** | Orfeu descafeinado/orgânico, Orfeu Arara, Nespresso, Illy | 3,44 – 4,20 |
 
-**Canastra proposta:** R$ 3,49 (caixa) e R$ 3,50 (kit) no cheio; R$ 2,89 e R$ 3,12 em
-promoção. Fica acima do Orfeu corrente e abaixo do premium dele.
+**Canastra, aplicado em 30/09:** R$ 3,49/cáp (caixa a 34,90) e R$ 3,50/cáp
+(kit a 139,90). Em promoção seriam R$ 2,89 e R$ 3,12 — mas a Central está **bloqueada**
+até a reputação virar. Lucro real: **R$ 12,51** na caixa e **R$ 45,46** no kit.
 
 ---
 

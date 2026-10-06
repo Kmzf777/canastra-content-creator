@@ -173,8 +173,15 @@ dentro de um artefato superado.
 | 9 | Selo de origem e "desde 1985" |
 | 10 | **Aviso de incompatibilidade** (não serve em Vertuo nem Dolce Gusto) |
 
-Fotos de produto em `fotos produtos cru/Capsulas-*`. **Foto de produto é foto, não
-render** — política do projeto, e o comprador de especial identifica imagem sintética.
+Fotos cruas em `fotos produtos cru/Capsulas-*`; packshots de catálogo em
+`saida-teste/catalogo-estudio/{16,17,21}-capsulas-*/`.
+
+> **Revisado em 04/10/2026.** Este arquivo dizia *"foto de produto é foto, não render"*
+> como política do projeto. Na prática os 96 packshots de `catalogo-estudio/` saem de
+> geração, foram aprovados, e são **fiéis à embalagem e à cápsula reais** — conferidos
+> letra por letra em recorte ampliado. Os 3 anúncios de 10 un passaram a usá-los, com
+> autorização do Rafael. O que a regra protege de verdade continua valendo: **rosto de
+> pessoa real nunca é sintetizado**, e rótulo sem conferência ampliada não sobe.
 
 ---
 

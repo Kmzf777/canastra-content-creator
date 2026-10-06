@@ -13,6 +13,7 @@ Artifact. Publicar sem ela cria um artefato **novo**, separado.
 
 | Artefato | Conteúdo | Link |
 |---|---|---|
+| **A Régua da Cápsula** | Concorrência na régua de R$/cápsula + nossos 7 anúncios + escada de promoção + Ads interativo com o teto do nicho. **O mais recente.** Script: [`scripts/retorno.py`](scripts/retorno.py) | [VLbmSYC9ZmzXNhd6qkiz1k](https://claude.ai/artifact/VLbmSYC9ZmzXNhd6qkiz1k) |
 | **Remessa, Verba e Verde** | Remessa ao Full em 1/2/3 meses × 3 posturas, com seletor das 3 estratégias de preço no Ads. Traz os dois bloqueadores medidos em 30/09 e o limiar de 131 vendas para o verde. **O mais recente.** Equivalente em md: [`09-remessa-e-estrategia-de-preco.md`](09-remessa-e-estrategia-de-preco.md) | [DVnV5QhiRsh1GLeD2iyEBD](https://claude.ai/artifact/DVnV5QhiRsh1GLeD2iyEBD) |
 | **Estoque contra Verba** | Matriz 5/10/20/40/80 de cada × R$ 20/40/80 ao dia: cobertura, dia do esgotamento, reposição semanal e a seção **furar o teto de Ads** (custo de comprar o Estrela, stop-loss, piso ROAS 2,0×). Equivalente em md: [`05-ads.md`](05-ads.md) § Furar o teto | [L2YUsB7GtKkoGeGi39GTqk](https://claude.ai/artifact/L2YUsB7GtKkoGeGi39GTqk) |
 | **Os Sete Anúncios** | Títulos, preços, promoção, categoria, projeção de 3 meses, Ads e a fonte de cada decisão. **O mais completo sobre a execução.** | [Fp2V2omRoCwydaPdZ1osSw](https://claude.ai/artifact/Fp2V2omRoCwydaPdZ1osSw) |

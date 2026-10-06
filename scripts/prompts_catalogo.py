@@ -89,6 +89,16 @@ LOGO = (
     'the swash'
 )
 
+#: O bloco GOURMET/ESPECIAL/SCAA 80+ das tres caixas de capsula. Medido em
+#: 04/10/2026: nos TRES SKUs ele e desenhado com quatro cantos, nao com
+#: retangulo continuo. O script descrevia 'thin rectangle outline' no Classico
+#: e no Canela - erro meu, lido por analogia e nao no pixel.
+CANTOS = (
+    'a rectangle outline drawn as FOUR CORNER BRACKETS rather than a continuous '
+    'line — each corner is an L of rule and the middle of every side is open — '
+    'containing '
+)
+
 CAIXA_SCA = (
     'a thin single-line rectangle outline containing three stacked lines: '
     '"SPECIALTY" small and letterspaced, spelled S-P-E-C-I-A-L-T-Y, then "ESPECIAL" '
@@ -135,10 +145,67 @@ class Produto:
     # em que a foto crua nao da para ler: melhor soletrar um valor conferido com o
     # cliente do que mandar o modelo "copiar" algo ilegivel e aceitar o que vier.
     lateral_extra: dict[str, str] = field(default_factory=dict)
+    # Familia capsula: a capsula de plastico de verdade, fotografada solta.
+    # So preenchido onde ela existe - e so onde a cor foi LIDA numa foto da
+    # capsula real, nunca copiada da ilustracao impressa na caixa. A caixa do
+    # Canela desenha uma capsula VINHO e a capsula de verdade e COBRE: arte
+    # impressa nao e fonte de cor de capsula.
+    capsula_corpo: str = ""   # descricao fisica, lida no pixel da foto crua
+    capsula_fonte: str = ""   # caminho, a partir de RAIZ, da foto da capsula real
+    capsula_nota: str = ""    # ressalva de procedencia, impressa no .md
 
     @property
     def dir(self) -> Path:
         return CRU / self.pasta
+
+
+#: A geometria da capsula, igual nos tres SKUs. Lida nas fotos cruas
+#: `capsulas-classico-detalhe-06/07.jpg` e `capsulas-canela-detalhe-07/08.jpg`,
+#: ampliadas 3x: a tampa de aluminio e LISA, sem impressao nenhuma - nao ha logo,
+#: letra nem codigo nela. Se a geracao imprimir qualquer coisa na tampa, errou.
+CAPSULA_FORMA = (
+    "a Nespresso-compatible espresso capsule: a small truncated cone, WIDE at the "
+    "open end where a crimped rim flange runs all the way round, tapering upward to "
+    "a narrow rounded dome at the closed end, with a shallow concentric step moulded "
+    "into the dome and a tiny centre pip. The flange is sealed with a smooth SILVER "
+    "aluminium foil lid that is completely BLANK — no logo, no lettering, no number, "
+    "no code, no printing of any kind on the foil. The crimped edge of the flange "
+    "shows fine regular radial knurling and reads as bare bright metal"
+)
+
+#: O corpo, por SKU. Preto do Classico e do Suave conferido com o Arthur em
+#: 04/10/2026: a capsula Suave e preta, identica a do Classico - so a caixa muda.
+CAPSULA_PRETA = (
+    "The body is opaque GLOSSY BLACK plastic, deep neutral black with no brown and "
+    "no blue in it, carrying one soft vertical specular highlight down the lit side "
+    "and a long dark reflection on the shadow side"
+)
+CAPSULA_COBRE = (
+    "The body is COPPER metallic — a warm polished orange-brown metal finish with a "
+    "bright specular band running round the taper. It is NOT wine red, NOT maroon "
+    "and NOT the colour of the band on the carton: the capsule printed in the "
+    "carton's own artwork is drawn wine red, and the real capsule is copper. The "
+    "upper face of the flange carries the same copper colour; the outer crimped edge "
+    "and the foil lid underneath it are silver"
+)
+
+
+def capsula_enq(altura: int, arranjo: str) -> str:
+    """Enquadramento para as tomadas em que a capsula e o assunto.
+
+    A capsula tem 37 mm; a caixa de 10 unidades mede por volta de 115 mm de
+    altura (largura ~76 mm, exigida pelos 37 mm de diametro da capsula na
+    profundidade que a propria descricao do corpo declara, "half as deep as it is
+    wide"). Dai o um terco do bloco de conjunto - derivado, nao chutado.
+    """
+    return (
+        f"FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). "
+        f"{arranjo} The camera is at eye level with the subject, only very slightly "
+        f"above it — just enough that the top dome reads as a dome — square to the "
+        f"group, no low hero angle, no top-down view, no wide-angle distortion. A "
+        f"standing capsule occupies about {altura}% of the frame height, the group "
+        f"centred with even margins left and right and resting a little below centre."
+    )
 
 
 SACO_SUAVE = (
@@ -411,8 +478,7 @@ PRODUTOS: list[Produto] = [
             "lying behind it, a few roasted coffee beans and two small green coffee "
             "leaves at its left. To the right of that photograph, a rounded rectangle "
             'outline containing "CLÁSSICO", and under it two small lines, "CONTEÚDO" '
-            'over "10un. DE 5g.". Lower centre, a thin rectangle outline containing '
-            'three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — '
+            'over "10un. DE 5g.". Lower centre, ' + CANTOS + 'three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — '
             "note SCAA with two A, not SCA. At the very bottom, centred in small caps, "
             '"INDÚSTRIA BRASILEIRA"'
         ),
@@ -420,6 +486,8 @@ PRODUTOS: list[Produto] = [
             ("lateral esquerda", "capsulas-classico-lateral-02.jpg"),
             ("lateral direita", "capsulas-classico-lateral-03.jpg"),
         ],
+        capsula_corpo=CAPSULA_PRETA,
+        capsula_fonte="saida-teste/catalogo-estudio/_capsulas-recorte/capsula-classico-ref.jpg",
     ),
     Produto(
         "capsulas-canela", "Cápsulas Canela — 10 un. de 5g",
@@ -442,8 +510,7 @@ PRODUTOS: list[Produto] = [
             "capsules lying behind it and a small bundle of cinnamon quills at its "
             "right. To the right of that photograph, a rounded rectangle outline "
             'containing "CANELA", and under it two small lines, "CONTEÚDO" over '
-            '"10un. DE 5g.". Lower centre, a thin rectangle outline containing three '
-            'stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — note '
+            '"10un. DE 5g.". Lower centre, ' + CANTOS + 'three stacked lines, "GOURMET" small, "ESPECIAL" large, and "SCAA 80+" — note '
             "SCAA with two A, not SCA. At the very bottom, centred in small caps, "
             '"INDÚSTRIA BRASILEIRA"'
         ),
@@ -451,6 +518,8 @@ PRODUTOS: list[Produto] = [
             ("lateral esquerda", "capsulas-canela-lateral-04.jpg"),
             ("lateral direita", "capsulas-canela-lateral-05.jpg"),
         ],
+        capsula_corpo=CAPSULA_COBRE,
+        capsula_fonte="saida-teste/catalogo-estudio/_capsulas-recorte/capsula-canela-ref.jpg",
     ),
     # ---------------- Drip ----------------
     Produto(
@@ -604,6 +673,21 @@ PRODUTOS: list[Produto] = [
                 "is six comma zero."
             ),
         },
+        # Nao existe foto da capsula Suave de fato: a pasta so tem 4 fotos da
+        # CAIXA, vindas por WhatsApp. A ilustracao impressa desenha uma capsula
+        # marrom, e arte impressa nao serve de fonte - no Canela ela desenha
+        # vinho onde a capsula real e cobre. Cor confirmada com o Arthur em
+        # 04/10/2026: a capsula Suave e PRETA, a mesma do Classico. Por isso a
+        # fonte de pixel aqui e a foto do Classico, com o papel declarado no
+        # proprio prompt.
+        capsula_corpo=CAPSULA_PRETA,
+        capsula_fonte="saida-teste/catalogo-estudio/_capsulas-recorte/capsula-classico-ref.jpg",
+        capsula_nota=(
+            "A foto da cápsula é a do **Clássico**: a cápsula Suave é idêntica — preta, "
+            "tampa prata — confirmado com o Arthur em 04/10/2026, porque não existe foto "
+            "da cápsula Suave de fato. Ela entra só como fonte de **forma, cor e luz da "
+            "cápsula**; a caixa vem inteira da imagem 1."
+        ),
     ),
 ]
 
@@ -698,6 +782,113 @@ def p_lateral_caixa(p: Produto, rotulo: str) -> str:
     ] + ([p.lateral_extra[rotulo]] if rotulo in p.lateral_extra else []))
 
 
+# --------------------------------------------------------------------------- #
+# familia capsula: as 3 tomadas da capsula de plastico de verdade
+# --------------------------------------------------------------------------- #
+
+#: Repetido nas tres: a tampa e lisa. O modelo adora carimbar um logo nela.
+CAPSULA_NEGATIVOS = (
+    "DO NOT print anything on the foil lid — no logo, no mountain, no \"CANASTRA\", "
+    "no variant name, no numbers, no barcode, no embossing. The lid is blank silver "
+    "foil. NOTHING ELSE SITS ON THE FLOOR of the set: no loose coffee beans, no "
+    "ground coffee, no cup, saucer, spoon, leaf, cinnamon quill, cloth, wood, board "
+    "or water drop as a real object in the scene — this does not touch the beans, "
+    "leaves or quills that are PRINTED inside the carton's own artwork, which stay "
+    "exactly as they are. Do not open, tear, peel or pierce any capsule — all of "
+    "them are sealed and intact."
+)
+
+
+def p_pack_capsula(p: Produto) -> str:
+    """Padrao 1 — a caixa com a capsula real ao lado."""
+    return "\n\n".join([
+        "Create a studio product photograph that puts the carton and its real "
+        "capsules together in one frame.",
+        "THE TWO ATTACHMENTS HAVE DIFFERENT JOBS, do not mix them. FIRST image — the "
+        "approved studio packshot of the carton: it is the source of the CARTON and "
+        "of nothing else. Reproduce that carton's printed artwork, its proportions, "
+        "its colours, its lighting and its white cove exactly as they are there. "
+        "SECOND image — two tight crops of the REAL capsule photographed on a "
+        "wooden table, the same capsule twice: standing on the left, lying on its "
+        "side on the right so the foil lid shows. Look at it ONLY to read the "
+        "capsule's shape, its proportions, its colour, its finish and its silver "
+        "foil lid. Its wooden table, its warm tungsten light, its two-up split "
+        "layout and its white border must NOT appear in your output — the output "
+        "is one single photograph on a white cove.",
+        f"THE CARTON — {p.corpo}.",
+        FIDELIDADE,
+        p.arte.rstrip(".") + ".",
+        f"THE CAPSULES — {CAPSULA_FORMA}. {p.capsula_corpo}.",
+        "THE ARRANGEMENT — the carton stands upright, slightly left of centre, front "
+        "face square to the camera, exactly as in the first image. On the white floor "
+        "to its right, clear of the carton and never overlapping it, two capsules: "
+        "one STANDING upright on its flange with the domed closed end pointing up and "
+        "the foil lid hidden against the floor, set a little behind; and one LYING on "
+        "its side in front of it, rolled so the SILVER FOIL LID faces the camera and "
+        "reads as a full circle. The two capsules touch neither each other nor the "
+        "carton. Each one casts its own small soft contact shadow on the floor, in "
+        "the same direction as the carton's.",
+        "SCALE — the capsule is small: a standing capsule reaches about one third of "
+        "the carton's height. Do not enlarge it to fill the gap.",
+        ESTUDIO,
+        enquadramento(50),
+        CAPSULA_NEGATIVOS,
+    ])
+
+
+def p_capsula_solo(p: Produto) -> str:
+    """Padrao 2 — uma capsula sozinha."""
+    return "\n\n".join([
+        "Create a studio product photograph of ONE espresso capsule alone — no "
+        "carton, no box, no packaging anywhere in the frame.",
+        "FIRST attached image — two tight crops of the REAL capsule photographed "
+        "on a wooden table, the same capsule twice: standing on the left, lying on "
+        "its side on the right so the foil lid shows. It is the source of the "
+        "capsule's shape, proportions, colour, finish and foil lid, and of nothing "
+        "else. Its wooden table, its warm tungsten light, its two-up split layout "
+        "and its white border must not appear. SECOND attached image — the STYLE ANCHOR: match its "
+        "lighting, its white cove background, its neutral white balance and its "
+        "overall treatment. Do not reproduce the carton shown in it.",
+        f"THE SUBJECT — {CAPSULA_FORMA}. {p.capsula_corpo}.",
+        "THE POSE — a single capsule STANDING upright on its flange, the domed closed "
+        "end pointing up, the foil lid resting on the floor and hidden. Seen very "
+        "slightly from above, so the flange reads as a narrow ellipse at the base and "
+        "the dome reads as a dome. One capsule only.",
+        ESTUDIO,
+        capsula_enq(40, "A single capsule stands upright and centred."),
+        CAPSULA_NEGATIVOS,
+    ])
+
+
+def p_capsula_trio(p: Produto) -> str:
+    """Padrao 3 — tres capsulas soltas."""
+    return "\n\n".join([
+        "Create a studio product photograph of THREE espresso capsules together — no "
+        "carton, no box, no packaging anywhere in the frame.",
+        "FIRST attached image — two tight crops of the REAL capsule photographed "
+        "on a wooden table, the same capsule twice: standing on the left, lying on "
+        "its side on the right so the foil lid shows. It is the source of the "
+        "capsule's shape, proportions, colour, finish and foil lid, and of nothing "
+        "else. Its wooden table, its warm tungsten light, its two-up split layout "
+        "and its white border must not appear. SECOND attached image — the STYLE ANCHOR: match its "
+        "lighting, its white cove background, its neutral white balance and its "
+        "overall treatment. Do not reproduce the carton shown in it.",
+        f"THE SUBJECT — three identical capsules. Each one is {CAPSULA_FORMA}. "
+        f"{p.capsula_corpo}.",
+        "THE ARRANGEMENT — two capsules STANDING upright side by side at the back, "
+        "each on its flange with the domed closed end pointing up and the foil lid "
+        "hidden against the floor, a small gap between them so they do not touch. In "
+        "front of them and slightly to one side, the third capsule LIES on its side, "
+        "rolled so the SILVER FOIL LID faces the camera and reads as a full circle, "
+        "its dome pointing away. The three form a shallow triangle on the floor. Each "
+        "casts its own small soft contact shadow, all in the same direction. All "
+        "three capsules are exactly the same colour and the same size.",
+        ESTUDIO,
+        capsula_enq(34, "The three capsules sit as a compact group, centred."),
+        CAPSULA_NEGATIVOS,
+    ])
+
+
 def p_verso(p: Produto) -> str:
     return "\n\n".join([
         "Create a studio photograph of the BACK of the package shown in the attached "
@@ -724,9 +915,13 @@ def p_verso(p: Produto) -> str:
 # escrita
 # --------------------------------------------------------------------------- #
 
+def _n_imagens(p: Produto) -> int:
+    """2 frentes + laterais (min 1) + verso + as 3 tomadas de capsula, se houver."""
+    return 2 + max(1, len(p.laterais)) + 1 + (3 if p.capsula_corpo else 0)
+
+
 def _total_imagens() -> int:
-    """2 frentes + laterais (min 1) + verso, por produto."""
-    return sum(2 + max(1, len(p.laterais)) + 1 for p in PRODUTOS)
+    return sum(_n_imagens(p) for p in PRODUTOS)
 
 
 CABECALHO = f"""\
@@ -810,8 +1005,7 @@ def bloco(titulo: str, anexos: list[str], prompt: str, nota: str = "") -> str:
 def montar() -> str:
     partes = [CABECALHO]
     for i, p in enumerate(PRODUTOS, start=1):
-        n = 2 + max(1, len(p.laterais)) + 1
-        partes.append(f"{i}. [{p.nome}](#{i}-{p.slug}) — {n} imagens\n")
+        partes.append(f"{i}. [{p.nome}](#{i}-{p.slug}) — {_n_imagens(p)} imagens\n")
     partes.append("\n---\n")
 
     for i, p in enumerate(PRODUTOS, start=1):
@@ -862,6 +1056,33 @@ def montar() -> str:
             p_verso(p),
             "⚠️ Rótulo legal. Leia o aviso do topo antes de gastar geração aqui.",
         ))
+
+        if p.capsula_corpo:
+            nota_fonte = (" " + p.capsula_nota) if p.capsula_nota else ""
+            partes.append(bloco(
+                f"{i}.{prox + 1} Embalagem + cápsula ao lado",
+                [f"a imagem aprovada em {i}.1", p.capsula_fonte],
+                p_pack_capsula(p),
+                "⚠️ A caixa muda de escala, então o rótulo é **redesenhado** — confira "
+                "`Desde 1985`, `SCAA 80+` e o rodapé ampliados, como numa frente nova."
+                + nota_fonte,
+            ))
+            partes.append(bloco(
+                f"{i}.{prox + 2} Cápsula isolada",
+                [p.capsula_fonte, f"a imagem aprovada em {i}.1"],
+                p_capsula_solo(p),
+                "Sem rótulo no quadro: o que se confere aqui é a **tampa lisa** (o modelo "
+                "tende a carimbar um logo nela), a cor do corpo e a ausência de adereço."
+                + nota_fonte,
+            ))
+            partes.append(bloco(
+                f"{i}.{prox + 3} Três cápsulas isoladas",
+                [p.capsula_fonte, f"a imagem aprovada em {i}.1"],
+                p_capsula_trio(p),
+                "Confira que as três têm a **mesma cor e o mesmo tamanho** e que a deitada "
+                "mostra a tampa prata lisa." + nota_fonte,
+            ))
+
         partes.append("---\n")
 
     return "\n".join(partes)
@@ -876,11 +1097,13 @@ def conferir() -> int:
         for a in alvos:
             if not (p.dir / a).exists():
                 faltando.append(f"{p.pasta}/{a}")
+        if p.capsula_fonte and not (RAIZ / p.capsula_fonte).exists():
+            faltando.append(p.capsula_fonte)
     if not (RAIZ / ANCORA).exists():
         faltando.append(ANCORA)
     for f in faltando:
         print(f"AUSENTE: {f}", file=sys.stderr)
-    total = sum(2 + max(1, len(p.laterais)) + 1 for p in PRODUTOS)
+    total = _total_imagens()
     print(f"{len(PRODUTOS)} produtos, {total} imagens, {len(faltando)} fonte(s) ausente(s)")
     return 1 if faltando else 0
 

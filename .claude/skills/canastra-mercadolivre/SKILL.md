@@ -79,13 +79,51 @@ E **espere alguns minutos** antes de concluir que falhou.
 |---|---|
 | Ler qualquer coisa (`javascript_tool`, `get_page_text`, `read_page`, `find`) | **sempre** |
 | `element.click()` por JS em **checkbox e radio** | sim |
+| `element.click()` por JS no **chevron do acordeão** | **sim** — medido 04/10/2026, dispensa o `wait` de 19 s |
+| `element.click()` por JS em **"Excluir foto"** | **sim** |
 | `element.click()` por JS em **botão que navega ou submete** | **não** |
 | Clique real no chevron, no campo, no Confirmar | sim, com a receita acima |
+
+A fronteira não é "JS não funciona": **JS funciona em controle local de estado**
+(acordeão, excluir, checkbox) e **falha no que submete**. O Confirmar continua exigindo
+clique real.
+
+Dois detalhes que quebram automação em lote:
+
+- os **`aria-label` mudam a cada re-render** (`D_NQ_NP_…-F.jpg` → `D_Q_NP_…-G.jpg`), então
+  guardar uma lista de botões e clicar em todos opera em refs mortos;
+- um **laço síncrono pega o mesmo botão N vezes**, porque o React só re-renderiza no fim do
+  tick. Uma chamada por ação, relendo o DOM.
 | Abrir o **Editor em massa** | **não** — o menu abre, os itens não levam a lugar nenhum |
 | Definir valor por `setter` nativo do React | **não** — o campo reverte |
 
 **A aba degrada.** Depois de ~6 anúncios editados nela, o acordeão para de abrir e o
 screenshot estoura o tempo. **Abra uma aba nova a cada 3 ou 4 anúncios.**
+
+---
+
+## Fotos — mecânica medida em 04/10/2026
+
+| Coisa | Como é |
+|---|---|
+| input | `input[type=file]` dentro do acordeão **Fotos**, `multiple`, aceita jpg/png/webp |
+| cada foto | `button.media-uploader__element-primary-action`, com `img` dentro; a ordem do DOM **é** a ordem do anúncio |
+| capa | é a **posição 1**, marcada `FOTO DE CAPA`. Não existe botão "tornar principal" |
+| excluir | `button[aria-label^="Excluir foto"]` — `.click()` por JS funciona |
+| arrastar | `button[…--drag]` HTML5; **não testado**. Evite: ordene pela ordem de upload |
+
+**Suba uma imagem por chamada.** `file_upload` com 3 caminhos entregou na **ordem
+inversa** — pedi `.6, .8, .7` e o anúncio ficou `.7, .8, .6`, com o detalhe virando capa.
+Em miniatura de 120 px isso não salta aos olhos.
+
+**Adicione antes de remover**: o campo é obrigatório e não aceita ficar vazio.
+
+**Não pré-formate a imagem.** O ML faz **trim da margem branca** e reduz a altura para
+1200 — subi 1448×1448 e ele guardou 1031×1200. As variantes quadradas da grade (`-S` 90,
+`-Q` 284, `-V` 320, `-W` 568) ele gera sozinho. Mande o 3:4 do catálogo com fundo branco.
+
+Para conferir o que o servidor guardou, baixe do CDN com `curl` e UA de Chrome:
+`https://http2.mlstatic.com/<id>-F.jpg` é a versão cheia.
 
 ---
 

@@ -3,6 +3,7 @@
 Uso: python scripts/_pega_download.py <destino relativo a partir da raiz do repo>
 """
 import glob
+import json
 import os
 import shutil
 import sys
@@ -20,6 +21,24 @@ RAIZ = Path(__file__).resolve().parent.parent
 IDADE_MAXIMA_S = 180
 
 
+# `exigir_recente` sozinho nao basta quando se baixa varias imagens em sequencia:
+# se o clique em Baixar nao disparar, o download ANTERIOR ainda esta dentro da
+# janela de 180 s e passa como se fosse o desta rodada. Medido em 04/10/2026 - a
+# 17.7 foi gravada com a imagem da 21.6, mesmo carimbo de hora, sem um erro. Por
+# isso cada arquivo de origem so pode ser consumido UMA vez.
+CONSUMIDOS = RAIZ / ".cie" / "downloads-consumidos.json"
+
+
+def ja_consumido(caminho: str) -> bool:
+    chave = f"{os.path.abspath(caminho)}|{os.path.getmtime(caminho):.0f}"
+    vistos = json.loads(CONSUMIDOS.read_text()) if CONSUMIDOS.exists() else []
+    if chave in vistos:
+        return True
+    CONSUMIDOS.parent.mkdir(parents=True, exist_ok=True)
+    CONSUMIDOS.write_text(json.dumps(vistos[-200:] + [chave]))
+    return False
+
+
 def exigir_recente(caminho: str) -> None:
     """Aborta se o arquivo for velho demais para ser o download desta rodada."""
     idade = time.time() - os.path.getmtime(caminho)
@@ -32,17 +51,26 @@ def exigir_recente(caminho: str) -> None:
 
 def main():
     destino = sys.argv[1]
-    # O ChatGPT nomeia o arquivo no idioma da conta: "ChatGPT Image ....png" em
-    # ingles, "Imagem do ChatGPT ....png" em portugues. Procurar so um dos dois
-    # nao da erro: pega silenciosamente um download antigo do outro padrao.
+    # NAO filtre por nome. Ja vimos tres padroes: "ChatGPT Image ....png" (conta
+    # em ingles), "Imagem do ChatGPT ....png" (conta em portugues) e, desde
+    # 04/10/2026, o TITULO DO CHAT ("Capsulas Cafe Canastra em Estudio.png") -
+    # ou seja, uma string arbitraria que o proprio modelo escolheu. Nome de
+    # arquivo e um seletor que o fornecedor pode trocar a qualquer momento; o
+    # que de fato separa o download desta rodada dos outros e o CARIMBO DE HORA.
+    # Entao: qualquer .png, o mais recente, e `exigir_recente` como unica trava.
     DOWNLOADS = Path(r"C:\Users\rafae\Downloads")
-    padroes = ("ChatGPT Image*.png", "Imagem do ChatGPT*.png")
-    files = [f for pad in padroes for f in glob.glob(str(DOWNLOADS / pad))]
+    files = glob.glob(str(DOWNLOADS / "*.png"))
     if not files:
         print("NENHUM ARQUIVO ENCONTRADO EM DOWNLOADS", file=sys.stderr)
         return 1
     latest = max(files, key=os.path.getmtime)
     exigir_recente(latest)
+    if ja_consumido(latest):
+        raise SystemExit(
+            f"ABORTADO: {latest} ja foi gravado numa rodada anterior. "
+            "O clique em Baixar nao disparou e o glob devolveu o download "
+            "passado. Clique em Baixar de novo e repita."
+        )
     im = Image.open(latest)
     w, h = im.size
     dest_path = RAIZ / destino
