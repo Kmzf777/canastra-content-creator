@@ -101,6 +101,8 @@ referência, prompt, Claude in Chrome no ChatGPT, conferência ampliada, registr
 | `canastra-cena` | lavoura, mesa, torrefação, UGC — realismo e procedência da referência |
 | `canastra-mercadolivre` | mexer na Central do ML pelo navegador — o que grava, o que falha em silêncio |
 | `canastra-estatico` | post estático de feed — o catálogo declarado e a escada de correção do rótulo |
+| `canastra-carrossel` | carrossel de feed — os 10 tipos de slide, o ritmo e os três portões |
+| `canastra-direcao` | direção de foto — que chão, que luz, que prop, que paleta. Os looks nomeados |
 
 A regra que mais se perde, e que um agente de teste furou neste repositório:
 **só marque um campo como conferido se a referência permitir lê-lo.** Ilegível não
@@ -595,3 +597,164 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     geometria, não a regra**: o texto ganhou faixa sólida própria no rodapé e o contraste
     virou constante do molde, 11,59:1, com o pacote intocado. Medir antes de escolher a
     cor evita as duas rodadas.
+32. **Ia descrever a cápsula Canela como vinho, lendo a ilustração impressa na caixa** →
+    a arte da frente desenha uma cápsula **vinho**, e a cápsula de plástico de verdade,
+    ampliada 3× em `capsulas-canela-detalhe-07/08.jpg`, é **cobre metálico**. O Clássico
+    bate (arte preta, cápsula preta), e foi justamente esse acerto que quase me fez
+    generalizar → **arte impressa não é fonte de cor do produto que ela ilustra.** A
+    ilustração é um desenho feito por um designer, não uma medição. Para qualquer
+    atributo físico de um item que aparece desenhado na embalagem, a fonte é a foto do
+    item, e quando ela não existe o campo é `não verificável` — a cápsula Suave não tem
+    foto nenhuma, e a cor (preta, igual à do Clássico) veio do Arthur em 04/10/2026, não
+    da arte marrom que a caixa desenha. Gravado em `capsula_corpo`/`capsula_fonte` no
+    `scripts/prompts_catalogo.py`.
+33. **A foto crua da cápsula não servia de guidance e eu quase anexei assim mesmo** →
+    `*-detalhe-*.jpg` tem 3072×4096 e a cápsula ocupa ~3% da área; o resto é mesa de
+    madeira e parede. Anexada inteira, o modelo lê melhor a mesa do que o produto →
+    quando o assunto é pequeno dentro da foto crua, **recorte antes de anexar**. O
+    `scripts/capsula_referencia.py` monta uma folha com as duas vistas reais lado a lado
+    (em pé e deitada, para o corpo e para a tampa) — dois `crop` colados sobre branco,
+    nada gerado. E o prompt passou a **negar explicitamente o layout da referência**
+    ("its two-up split layout and its white border must not appear"), senão o modelo
+    copia a folha de contato em vez do produto.
+34. **Um clique em (1340, 25) no ChatGPT apagou um prompt de 3.840 caracteres já
+    inserido** → eu quis fechar o overlay de edição que abre depois do upload e mirei no
+    X do canto superior direito; ali, com o overlay fechado, fica o botão de **chat
+    temporário**, e ligar o modo temporário recarrega a página (`?temporary-chat=true`) e
+    leva anexos e composer junto → feche o overlay de imagem do ChatGPT com **`Escape`**,
+    nunca com clique no canto. Vale a regra geral: num app que troca o que está sob o
+    cursor, tecla é mais segura que coordenada.
+35. **Terceiro padrão de nome no download do ChatGPT, e dessa vez não dá para listar os
+    padrões** → `_pega_download.py` procurava `ChatGPT Image*.png` e `Imagem do ChatGPT*.png`
+    (lição 17); agora o arquivo nasceu `Cápsulas Café Canastra em Estúdio.png` — **o título
+    que o próprio modelo deu ao chat**, ou seja, uma string arbitrária e diferente a cada
+    conversa. O glob não achou nada, pegou um PNG de 28/09 e só o guarda de idade impediu
+    o estrago → a lição 17 estava certa no diagnóstico e **errada no remédio**: acrescentar
+    um padrão a cada quebra é correr atrás. Nome de arquivo é um seletor que o fornecedor
+    troca sem avisar; o que separa o download desta rodada dos outros é o **carimbo de
+    hora**. O script agora pega qualquer `*.png`, o mais recente, e a trava é só temporal.
+36. **A 17.7 foi gravada com a imagem da 21.6, mesmo carimbo, sem um erro sequer** → ao
+    baixar várias imagens em sequência, um clique em Baixar que não dispara deixa o
+    download ANTERIOR como o mais recente, e ele ainda está dentro da janela de 180 s do
+    `exigir_recente` → **uma janela de tempo não distingue "não baixou" de "baixou agora"
+    quando os eventos são seguidos.** Cada arquivo de origem passou a ser consumido uma
+    única vez (`.cie/downloads-consumidos.json`), e foi essa trava — não a de idade — que
+    pegou as duas falhas seguintes. Corolário de processo: por isso os agentes paralelos
+    **geram e não baixam**; o download é serial, de um processo só.
+37. **Quatro agentes em abas separadas, e o rascunho do composer é um só** → o ChatGPT
+    compartilha o rascunho e os anexos do composer **entre abas da mesma conta**. Três dos
+    quatro agentes abriram a aba nova já com o prompt e os anexos de outro agente dentro.
+    Nenhum enviou errado porque conferiram, mas um `file_upload` + clique em Enviar sem
+    conferência teria gerado a imagem do colega, com status de sucesso → ao paralelizar o
+    ChatGPT, **leia o `.ProseMirror` e a lista de anexos imediatamente antes de cada envio**
+    e limpe com `selectAll`+`delete`. Aba separada não é sessão separada.
+38. **Ia reprovar o bloco `GOURMET / ESPECIAL / SCAA 80+` do Clássico por sair em cantos** →
+    o `scripts/prompts_catalogo.py` descrevia "a thin rectangle outline" no Clássico e no
+    Canela, e só o Suave trazia os quatro cantos. Ampliando `capsulas-classico-detalhe-08`
+    e `capsulas-canela-detalhe-09`, **os três SKUs usam cantos**: a geração estava certa e
+    a descrição é que estava errada, escrita por analogia entre SKUs irmãos — a lição 30
+    outra vez, agora dentro do próprio script que existe para evitá-la → quando a geração
+    diverge do gabarito, **o gabarito também é suspeito**; confira os dois contra o pixel
+    antes de decidir quem errou. Dois agentes também reportaram erros que a ampliação
+    desmentiu (`INDÚSTRIA BRASILEIRA` sem acento, cápsulas encostando na caixa, cápsula de
+    cabeça para baixo): relato de agente é pista, nunca veredito.
+39. **Quadrei 9 imagens em 1:1 para o Mercado Livre e o ML desfez tudo** → compus
+    1448×1448 esticando a coluna da borda (a receita da lição 23, feita para a Tray), subi,
+    e o que ficou guardado foi **1031×1200**: o ML faz **trim da margem branca** e reduz a
+    altura para 1200. Ele então gera sozinho as variantes quadradas que usa na grade
+    (`-S` 90, `-Q` 284, `-V` 320, `-W` 568), com padding próprio → **receita de vitrine não
+    é portátil entre marketplaces.** A Tray serve o arquivo como ele sobe; o ML reprocessa.
+    Antes de pré-formatar imagem para uma plataforma, **suba uma e meça o que ela guardou**
+    (`-F` é a versão cheia). Para o ML basta mandar o 3:4 original com fundo branco.
+40. **O Confirmar das Fotos do ML não respondeu a dois cliques seguidos na mesma
+    coordenada** → eu media `getBoundingClientRect()` do botão, clicava, e `elementFromPoint`
+    confirmava que o alvo era o Confirmar — mas a seção não fechava e a lista seguia com a
+    capa de 2022. O que destravou foi **rolar a seção para o topo, tirar screenshot e clicar
+    na coordenada lida no screenshot**: o `scrollIntoView` que eu fizera antes deixava o
+    botão numa posição que o rect reportava certo e o clique real não alcançava → quando um
+    clique por coordenada falha duas vezes num alvo que o `elementFromPoint` confirma,
+    **pare de confiar no rect e leia o alvo no pixel**. É a mesma disciplina da conferência
+    de imagem: o DOM descreve, o screenshot mostra.
+41. **`element.click()` por JS ABRE o acordeão do ML** → a skill `canastra-mercadolivre`
+    dizia que só clique real funcionava, e por isso eu gastava um `wait` de 10 s mais um
+    screenshot por seção. Medido em 04/10/2026: `button.accordion-container__toggle.click()`
+    abre na hora, e `button[aria-label^="Excluir foto"].click()` remove a foto. O que
+    continua exigindo clique real é o **Confirmar** → a fronteira não é "JS não funciona",
+    é **JS funciona em controle local de estado (acordeão, excluir, checkbox) e falha no
+    que submete**. Dois corolários medidos: os `aria-label` **mudam a cada re-render**
+    (`D_NQ_NP_…-F.jpg` vira `D_Q_NP_…-G.jpg`), então guardar uma lista de botões e clicar
+    em todos opera em refs mortos; e um laço síncrono pega **o mesmo botão N vezes**, porque
+    o React só re-renderiza no fim do tick. Uma chamada por exclusão, relendo o DOM.
+42. **O `file_upload` com 3 arquivos entregou na ordem inversa** → subi `.6, .8, .7` e o
+    anúncio ficou `.7, .8, .6`, ou seja, a capa virou o detalhe em vez da embalagem. Em
+    miniatura de 120 px a inversão não salta aos olhos → **suba uma imagem por chamada** e
+    confira a ordem antes de confirmar. Para conferir: a ordem do DOM é
+    `button.media-uploader__element-primary-action img`, e dá para baixar cada preview do
+    CDN com `curl` e UA de Chrome em vez de depender da miniatura na tela.
+43. **Duas das três fotos dos anúncios de cápsula mostravam a caixa dispenser de atacado** →
+    o anúncio vende *1 caixa de 10 un* a R$ 34,90 e a foto mostrava uma caixa grande com
+    dezenas de cápsulas a granel; a terceira era mock-up 2D chapado. Todas entre 375 e
+    500 px, abaixo dos 1200 que o ML pede para habilitar zoom. Ninguém tinha olhado as fotos
+    porque o trabalho da conta vinha sendo preço, título, frete e ficha → **numa auditoria
+    de anúncio, a foto é campo como qualquer outro.** Com 37,68% de envio incorreto nesta
+    conta, expectativa visual errada é combustível de devolução, não detalhe estético.
+    Trocadas pelas 3 de catálogo em 04/10/2026, com autorização do Rafael.
+44. **Ia subir para um anúncio público uma lateral com `F: 23.2025`, um mês que não
+    existe** → a lição 22 já previa isso ("trate lote, fabricação e validade como o QR:
+    regenerados, nunca confiáveis") e mesmo assim a `16.4` estava na fila de upload, porque
+    o pedido era "as laterais" e eu tratei as seis como um bloco. Conferidas uma a uma,
+    **as seis laterais de cápsula são três coisas diferentes**: `16.3`/`21.3` têm o painel
+    de dados com `ARABICA` sem acento; `16.4`/`17.3` têm o carimbo regenerado — um absurdo
+    (mês 23) e um **plausível** (`F: 12.2025`), que é o pior dos dois; `17.4` tem o painel
+    de dados correto e `21.4` saiu **sem carimbo nenhum**, limpa → **"as laterais" não é
+    uma unidade.** Antes de publicar um conjunto, abra cada peça: aqui o mesmo número de
+    arquivo (`.3`, `.4`) mostra faces diferentes conforme o SKU, porque a geração não
+    seguiu a nomenclatura. Subi as cinco sem dado regulatório falso e deixei `16.4` e
+    `17.3` fora, dizendo o porquê — escopo reduzido é decisão do cliente, mas publicar data
+    impossível não é uma opção que eu possa escolher por ele.
+45. **Pedi "mude SOMENTE o selo" e o ChatGPT refez 79,2% do quadro** → em 05/10/2026, no
+    post da cozinha, a v1 voltou com a cena aprovada e só o selo circular errado. Mandei um
+    follow-up de edição no mesmo chat nomeando a operação e repetindo o que preservar
+    ("same kitchen, same counter, same light, same package position"). A v2 veio com outra
+    cozinha inteira — pia, escorredor, outra caneca, pano de crochê que eu não pedi.
+    **Medido com `np.abs(v1-v2).max(axis=2) > 12`: 79,2% dos pixels mudaram, para um pedido
+    que cobria ~1,1% do quadro** → isto fecha a contradição que `docs/PESQUISA-REALISMO-GERACAO.md`
+    §3 tinha deixado aberta. A documentação da OpenAI prescreve *"small, single-change
+    follow-ups"* e o fórum avisava que reusar a conversa degrada; **na nossa medição o
+    fórum está certo**: follow-up de edição no mesmo chat não preserva, regenera. Corolário
+    operacional: **cena aprovada não se arrisca em follow-up.** Salve a v1, e corrija o
+    defeito por composição local ou numa conversa nova — nunca pedindo "só isso" por cima
+    de um resultado que você já quer manter.
+46. **Soletrar não converge em texto curvo, e o campo em arco foi o único a quebrar nas
+    duas rodadas** → na v1 o selo saiu `CLA&SICO EH GRÃO6` / `TORRA EXCLUSIYA`; apliquei o
+    degrau 1 (soletrar letra a letra, inclusive "o caractere antes do A final é um V, não
+    um Y") e a v2 devolveu `CLAS6ICO EM GRÃO6` / `TORRA EXCLUBIVA` — o `V` corrigiu e o `S`
+    quebrou. **Erro diferente, mesma falha.** No mesmo quadro e nas duas rodadas,
+    `SPECIALTY` — tipografia pequena, mas em **linha reta** — saiu íntegra. *(Leitura minha,
+    não medição: o preditor de sobrevivência pode ser a curvatura da linha de base, não só
+    a altura da letra. Tentei medir altura de glifo e **joguei a medição fora**: as caixas
+    que amostrei incluíam o anel do selo, então o número não media o que eu dizia que media
+    — ver a regra de validar a região amostrada.)* → para texto em arco, **pule os degraus
+    1 a 5 e vá direto ao 6**. A composição custou um `crop`, um casamento de nível de preto
+    (deslocamento medido −2,7/−2,8/−1,7) e uma máscara circular suave, com `assert` de
+    **0 pixels alterados fora da caixa** — e resolveu em uma passada o que duas gerações
+    não resolveram.
+47. **O portão de transbordo reprovou os 7 slides do deck por um defeito que não
+    existia** → medi `scrollHeight > clientHeight + 1` em todo elemento com texto e
+    reportei como transbordo. Saiu "TRANSBORDA" para `manchete`, `nome`, `afirmacao`,
+    `numero`, `rotulo` — ou seja, **todo título**, o que é uniforme demais para ser
+    defeito real. Sondando os números em vez do booleano: `h1` de 92px com
+    `line-height: 1.03` dá `sh=198 ch=190 delta=8` com **`overflow: visible`** — a
+    caixa de linha é menor que a caixa natural do glifo, e **nada é cortado**. →
+    `scrollHeight > clientHeight` **só é defeito quando o elemento pode cortar**;
+    com `overflow: visible` ele mede a folga do glifo, não perda de conteúdo. A
+    condição passou a exigir `getComputedStyle(el).overflow !== 'visible'`, e a faixa
+    de texto ganhou altura fixa com `overflow:hidden` **para que o portão tenha o que
+    medir**. É a regra de validar a região amostrada aplicada a uma métrica de DOM:
+    antes de acreditar num alarme que acende em tudo, imprima o número cru.
+
+    Corolário que vale para todo portão deste repositório: **portão é necessário, não
+    suficiente.** Os três passaram no deck e o olho ainda pegou dois defeitos de
+    composição que nenhum deles vê — a faixa cobrindo a base da embalagem e o
+    `1.250 m` quebrando em duas linhas. Por isso `render.miniaturas` existe e por isso
+    a mensagem de sucesso da CLI termina em *"olhe o `_feed` antes de publicar"*.

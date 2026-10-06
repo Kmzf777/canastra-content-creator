@@ -95,6 +95,8 @@ Medido nesta sessão, em conta Plus com interface em português.
 |---|---|
 | Aba | `tabs_create_mcp` sempre nova; nunca reaproveitar tabId de outro fluxo |
 | Composer | seletor `.ProseMirror` — o antigo `#prompt-textarea` sumiu |
+| Anexar | `find` o input "Anexar arquivos" e `file_upload` com **todos os caminhos numa chamada só**, na ordem que o prompt cita como FIRST/SECOND |
+| Fechar o overlay do upload | **`Escape`**. O X fica em cima do botão de *chat temporário*: clicar ali recarrega em `?temporary-chat=true` e leva anexos e prompt junto |
 | Inserir prompt | `document.execCommand('insertText', false, txt)`; **nunca** `computer.type` (o `\n` envia antes da hora) |
 | Conferir inserção | comparar `el.textContent.length` com o tamanho esperado; a diferença normal é 2 por quebra de parágrafo |
 | Enviar | `find` no botão Enviar e clicar; **se o composer continuar cheio, clique de novo** — o primeiro clique costuma só focar |
@@ -104,13 +106,41 @@ Medido nesta sessão, em conta Plus com interface em português.
 | Achar a imagem | `img[alt]` casando `/gerada|Generated/` — o alt é `Imagem 1 gerada`, não `Imagem gerada` |
 | Baixar | clicar na imagem para abrir tela cheia, depois `find` no botão **Baixar**. O ícone ⬇ inline não baixa de forma confiável |
 
+### Cena aprovada não se arrisca em follow-up
+
+**Follow-up de edição no mesmo chat não preserva a imagem — regenera.** Medido em
+05/10/2026 no post da cozinha: a v1 voltou com a cena certa e só o selo circular
+errado. O follow-up nomeava a operação e repetia o que preservar ("same kitchen,
+same counter, same light, same package position"). A v2 veio com **outra cozinha
+inteira**. `np.abs(v1-v2).max(axis=2) > 12` deu **79,2% dos pixels alterados**,
+para um pedido que cobria ~1,1% do quadro.
+
+A documentação da OpenAI prescreve *"small, single-change follow-ups"*. Na nossa
+medição ela não se cumpre. Então:
+
+- deu certo a cena e errou um detalhe → **salve o arquivo** e conserte por
+  composição local (degrau 6) ou numa **conversa nova**;
+- nunca peça "só isso" por cima de um resultado que você já quer manter;
+- gerar várias imagens na mesma conversa tem o mesmo risco — ver
+  `docs/PESQUISA-REALISMO-GERACAO.md` §2.
+
 ### Salvar
 
 ```bash
 python -m uv run python scripts/_pega_download.py "<destino relativo>"
 ```
 
-Ele pega o PNG mais recente de Downloads e imprime origem, destino e dimensões.
+Ele pega o PNG **mais recente** de Downloads — sem filtrar por nome, porque o ChatGPT
+já nomeou o arquivo de três jeitos (`ChatGPT Image*`, `Imagem do ChatGPT*` e, desde
+04/10/2026, o **título do chat**) — e imprime origem, destino e dimensões. Cada arquivo
+de origem só pode ser consumido uma vez: se o clique em Baixar não disparar, o script
+aborta em vez de regravar o download anterior.
+
+**Paralelizar: gere em paralelo, baixe em série.** Vários agentes baixando ao mesmo
+tempo trocam as imagens entre si sem erro nenhum. E o ChatGPT **compartilha o rascunho
+e os anexos do composer entre abas** — leia o `.ProseMirror` e a lista de anexos
+imediatamente antes de cada envio.
+
 **Confira o carimbo de hora do arquivo de origem que ele imprimiu.** O script já
 salvou silenciosamente uma imagem do dia anterior porque procurava só um dos dois
 padrões de nome (`ChatGPT Image*` em inglês, `Imagem do ChatGPT*` em português) e

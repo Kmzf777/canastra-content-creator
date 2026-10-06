@@ -83,6 +83,32 @@ por ela. Não aplique passe de saturação numa foto da base.
 
 ## Blocos obrigatórios do prompt
 
+**Polo amador** — este é o bloco que decide se a imagem parece real, e ele é
+anterior a câmera, grão e luz. O eixo não é *qualidade*, é **como a foto parece
+ter sido feita**:
+
+| Polo profissional (denuncia IA) | Polo amador (o nosso alvo) |
+|---|---|
+| luz e exposição controladas | luz disponível, sem controle |
+| enquadramento proposital, centrado, margens pares | colocação de câmera ordinária, incidental |
+| cor polida, contraste tratado | cor lavada, balanço neutro a frio |
+| cenário arrumado | cenário vivido, coisa fora do lugar |
+
+Nosso prompt de catálogo pede o polo profissional de propósito — e **está certo
+para packshot**. Em cena, cada uma dessas frases empurra para o lado errado.
+Origem e detalhe em `docs/PESQUISA-REALISMO-GERACAO.md` §1.
+
+**Negação explícita dos atratores da cena** — o modelo tem composição favorita e
+não a abandona por omissão, só por proibição nomeada. Medido em 05/10/2026: com
+*"DO NOT INCLUDE: marble countertop, golden hour light, window flare, styled props,
+linen cloth, coffee beans arranged on the surface, flowers, bokeh, vignette, colour
+grading, studio lighting"*, a cozinha voltou com **granito**, cafeteira, pote de
+plástico e caneca — nenhum prop inventado, foco profundo do pacote à parede.
+
+Escreva a lista por cena, não genérica: cozinha puxa bancada de mármore e luz de
+janela grande; lavoura puxa golden hour e fileira infinita. É a lição 8 virada em
+rotina.
+
 **Anti-bokeh** — desfoque não se desfaz em pós; morre na geração ou não morre.
 Descreva a física: sensor 1/1.7" a f/1.8, profundidade de campo enorme, tudo
 igualmente nítido, distância suaviza por névoa e nunca por desfoco, cantos moles

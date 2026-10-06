@@ -77,6 +77,22 @@ registro de lições, **não palpite** — `rotear()` levanta `KeyError` de prop
 | 5 | erra ~1 em 3 sem padrão | gerar N variantes e escolher | site_fundo_branco.py |
 | 6 | sobreviveu ao teto | **compor o pixel real por cima** | recorte/ + preservacao.ts |
 | 6 | lote, validade, QR, código de barras | **nunca aceita gerado** | lição 22 |
+| 6 | **texto em arco** (selo circular) | **compor direto, não soletre** | lição 46 |
+
+### Texto em arco pula os degraus 1 a 5
+
+Medido em 05/10/2026, no selo do Clássico. A v1 saiu `CLA&SICO EH GRÃO6` /
+`TORRA EXCLUSIYA`. Apliquei o degrau 1 soletrando letra a letra, inclusive *"o
+caractere antes do A final é um V, não um Y"*. A v2 devolveu `CLAS6ICO EM GRÃO6` /
+`TORRA EXCLUBIVA`: o `V` corrigiu e o `S` quebrou. **Erro diferente, mesma falha.**
+
+No mesmo quadro e nas duas rodadas, `SPECIALTY` — tipografia pequena, mas em
+**linha reta** — saiu íntegra. *(Leitura minha, não medição: o preditor pode ser a
+curvatura da linha de base, não só a altura da letra.)*
+
+A composição custou um `crop`, um casamento de nível de preto e uma máscara
+circular suave, com `assert` de **0 pixels alterados fora da caixa** — e resolveu
+numa passada o que duas gerações não resolveram.
 
 ### O teto é 3 e o degrau 6 é o piso, não o fracasso
 
@@ -84,6 +100,13 @@ Não insista em prompt num campo que a lição 13 diz que não sobrevive: **abai
 da altura do quadro a tipografia não sobrevive em nenhuma rodada.** Insistir não
 converge, só gasta geração. O degrau 6 não depende do modelo — é por isso que o laço
 termina sempre.
+
+> **O limiar de ~2% está incompleto, não refutado.** Em 05/10/2026, no mesmo quadro,
+> `SPECIALTY` é tipografia pequena em linha reta e saiu íntegra nas duas rodadas,
+> enquanto o texto curvo do selo quebrou nas duas. Altura sozinha não previu o
+> resultado. Tentei medir altura de glifo para fechar o número e **joguei a medição
+> fora** — as caixas amostradas incluíam o anel do selo, então mediam outra coisa.
+> Até alguém medir direito, trate altura **e** curvatura como critério.
 
 ### Lote, fabricação, validade e QR nunca entram
 
