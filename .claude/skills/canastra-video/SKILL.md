@@ -605,3 +605,14 @@ usuário, não presuma.
 Erro que custou uma rodada vira lição no `Registro de lições` do `CLAUDE.md`, no formato
 **sintoma → causa raiz → regra**. Erro não registrado se repete na próxima sessão, que não
 tem a memória desta.
+
+---
+
+## Série de colagem (estilo @_victorzk) — motor à parte
+
+Peça de colagem NÃO passa pelo briefing: o esquema não tem vocabulário de colagem. O motor
+é `src/colagem/` (câmera 2.5D, legenda A/B, Dymo/serifa/marcador/recorte, grafismos) e a
+peça de referência é `src/pecas/especial/` (composição `EspecialColagem`). Leia
+`docs/motion-colagem.md` antes: lá estão as medidas das referências, o fluxo (narração →
+`scripts/alinhar_narracao.py` → `roteiro.ts` → biblioteca `instagram/assets/colagem` →
+`scripts/contato.mjs`) e a licença de técnica da série (`proibicoes.md`, fim do arquivo).

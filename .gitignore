@@ -58,3 +58,6 @@ instagram/assets/materialidade/*.png
 
 # Bundles de estatico: peca, legenda e sidecar. Saida, nao fonte.
 saida-estaticos/
+
+# biblioteca de colagem: o indice.json versiona, os PNG nao (como embalagem/)
+instagram/assets/colagem/**/*.png

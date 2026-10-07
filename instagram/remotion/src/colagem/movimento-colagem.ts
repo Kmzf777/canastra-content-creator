@@ -63,6 +63,36 @@ export function carimbar(q: number, inicio: number): {visivel: boolean; escala: 
   return {visivel: true, escala: 1.15 + (1 - 1.15) * t};
 }
 
+/**
+ * Passo de stop-motion: a pose dos recortes só muda a cada `passo` quadros
+ * (3 → 10 "desenhos" por segundo a 30 fps), enquanto a câmera anda lisa a 30 fps.
+ * É o contraste das referências: gráfico em 8–12 fps sobre câmera contínua.
+ */
+export function posterizar(q: number, passo = 3, desde = 0): number {
+  if (q < desde) return q;
+  return desde + Math.floor((q - desde) / passo) * passo;
+}
+
+/**
+ * Carimbo com ultrapassagem configurável. A série de colagem tem licença para
+ * até 12% (1,12 → 0,97 → 1,00): é o "stamp" das referências. Fora da série, a
+ * regra de `proibicoes.md` continua: sem elástico.
+ */
+export function carimbo(q: number, inicio: number, pico = 1.12, quadros = 4): {visivel: boolean; escala: number} {
+  if (q < inicio) return {visivel: false, escala: 1};
+  const k = q - inicio;
+  if (k >= quadros) return {visivel: true, escala: 1};
+  const fases = [pico, 1 - (pico - 1) * 0.25, 1 + (pico - 1) * 0.08, 1];
+  return {visivel: true, escala: fases[Math.min(fases.length - 1, Math.floor((k / quadros) * fases.length))]};
+}
+
+/** Squash & stretch de entrada: chega achatado e largo, assenta em 4 quadros. */
+export function esmagar(q: number, inicio: number): {sx: number; sy: number; visivel: boolean} {
+  if (q < inicio) return {sx: 1, sy: 1, visivel: false};
+  const t = saida((q - inicio) / 4);
+  return {visivel: true, sx: 1.35 + (1 - 1.35) * t, sy: 0.55 + (1 - 0.55) * t};
+}
+
 /** Progresso 0..1 entre dois quadros, com ease-out. */
 export function progresso(q: number, de: number, ate: number): number {
   if (ate <= de) return q >= ate ? 1 : 0;

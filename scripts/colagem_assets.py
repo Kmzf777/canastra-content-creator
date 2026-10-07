@@ -112,7 +112,9 @@ def ruido_suave(shape: tuple[int, int], escala: float, r: np.random.Generator) -
     return grande / (np.abs(grande).max() + 1e-6)
 
 
-def peca(rgb: np.ndarray, alfa: np.ndarray, nome: str, filete: int, com_reticula: bool = True) -> None:
+def peca(rgb: np.ndarray, alfa: np.ndarray, nome: str, filete: int, com_reticula: bool = True,
+         destino: Path | None = None) -> None:
+    destino = destino or DEST
     """Grava <nome>-b0..b2: objeto (retícula) + filete creme de borda irregular."""
     pad = filete * 2 + 6
     rgb = cv2.copyMakeBorder(rgb, pad, pad, pad, pad, cv2.BORDER_CONSTANT, value=(255, 255, 255))
@@ -130,13 +132,14 @@ def peca(rgb: np.ndarray, alfa: np.ndarray, nome: str, filete: int, com_reticula
         rgba = np.dstack([np.clip(cor, 0, 255), fil * 255]).astype(np.uint8)
         ys, xs = np.where(fil > 0.02)
         rgba = rgba[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
-        DEST.mkdir(parents=True, exist_ok=True)
-        Image.fromarray(rgba, "RGBA").save(DEST / f"{nome}-b{b}.png", optimize=True)
+        destino.mkdir(parents=True, exist_ok=True)
+        Image.fromarray(rgba, "RGBA").save(destino / f"{nome}-b{b}.png", optimize=True)
     print(f"{nome:16s} {rgba.shape[1]}x{rgba.shape[0]}")
 
 
 def foto_rasgada(arquivo: Path, nome: str, larg: int, recorte: tuple[float, float, float, float] | None = None,
-                 margem: int = 18, com_reticula: bool = False) -> None:
+                 margem: int = 18, com_reticula: bool = False, destino: Path | None = None) -> None:
+    destino = destino or DEST
     """Foto real como cópia impressa: retângulo com margem creme e borda rasgada."""
     im = ImageOps.exif_transpose(Image.open(arquivo)).convert("RGB")
     if recorte:
@@ -158,8 +161,8 @@ def foto_rasgada(arquivo: Path, nome: str, larg: int, recorte: tuple[float, floa
         rasgo = 5 + 4 * ruido_suave((H2, W2), 40, r) + 2.5 * ruido_suave((H2, W2), 4, r)
         a = np.clip(dist - rasgo, 0, 1)
         rgba = np.dstack([tela, a * 255]).astype(np.uint8)
-        DEST.mkdir(parents=True, exist_ok=True)
-        Image.fromarray(rgba, "RGBA").save(DEST / f"{nome}-b{b}.png", optimize=True)
+        destino.mkdir(parents=True, exist_ok=True)
+        Image.fromarray(rgba, "RGBA").save(destino / f"{nome}-b{b}.png", optimize=True)
     print(f"{nome:16s} {w + 2 * margem}x{h + 2 * margem} (foto)")
 
 
