@@ -196,7 +196,7 @@ const Altimetro: React.FC<C> = ({q}) => {
                  transform: 'rotate(-1.5deg)', boxShadow: '0 10px 14px rgba(0,0,0,0.4)',
                  backgroundImage: `repeating-linear-gradient(0deg, rgba(59,42,31,0.25) 0 2px, transparent 2px 40px)`}}>
       <div style={{position: 'absolute', left: 0, right: 0, top: topo - 420, height: 8, background: COR.acento}} />
-      <div style={{position: 'absolute', left: 14, top: topo - 420 - 70, fontFamily: PILHA.dado, fontSize: 38, color: COR.terra}}>
+      <div style={{position: 'absolute', left: 14, top: topo - 420 - 70, fontFamily: PILHA.dado, fontSize: 34, color: COR.terra, whiteSpace: 'nowrap'}}>
         {m.toLocaleString('pt-BR')} m
       </div>
     </div>
