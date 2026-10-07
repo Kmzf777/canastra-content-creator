@@ -54,6 +54,8 @@ import type {Plano} from '../briefing/compilar';
 import {Peca} from './Peca';
 import {PonteAssets, PONTE_PADRAO} from './PonteAssets';
 import {Carta} from '../estatico/Carta';
+import {VoceSabia} from '../colagem/VoceSabia';
+import {DURACAO_Q as VOCE_SABIA_Q, FPS as VOCE_SABIA_FPS} from '../colagem/tempos';
 import {MOLDES_ESTATICO} from '../estatico/moldes';
 import {COR, TIPO} from '../identidade/tokens';
 import {PILHA} from '../identidade/tipografia';
@@ -201,6 +203,10 @@ export const Raiz: React.FC = () => (
         valor so existe porque `<Composition>` o exige. Nao vem do plano -- peca
         estatica nao tem plano -- nem de uma constante FPS, que deixou de existir
         em 01/10/2026 quando o fps passou a sair do `plano.json`. */}
+    {/* Peca 06, colagem. Composicao propria, FORA do motor por briefing: duracao e
+        fps vem de `colagem/tempos.ts`, medidos na narracao, nao de um plano.json. */}
+    <Composition id="VoceSabiaColagem" component={VoceSabia}
+      durationInFrames={VOCE_SABIA_Q} fps={VOCE_SABIA_FPS} width={1080} height={1920} />
     <Composition id="Carta" component={Carta}
       durationInFrames={1} fps={30}
       width={MOLDES_ESTATICO['cartao-produto'].largura}
