@@ -873,3 +873,11 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     DE COMANDO (tem que citar a composição) e derrube a árvore dele
     (`taskkill /PID <pid> /T /F`). Nunca mate `chrome-headless-shell` às cegas: outra
     sessão pode estar renderizando.
+62. **O normalizador recusou o render final por 0,08 dB** → a mixagem da peça 07 saiu do
+    Remotion com pico real de **+0,05 dBTP** (carimbo + thump + pops empilhados), o
+    `loudnorm` limitou para −1 dBTP em PCM e o encode AAC, depois do limitador, devolveu o
+    pico a **−0,62 dBTP** no MP4 — fora da folga de 0,3 dB do `normalizar-audio.mjs` → com
+    efeito percussivo na mixagem, **peça ao loudnorm um teto com margem para o AAC**: duas
+    passadas com `TP=-1.6` deram −14,20 LUFS e −1,17 dBTP medidos no MP4 escrito. O módulo
+    `src/motor/audio/normalizar.ts` ainda pede o teto exato; a correção certa é separar o
+    teto PEDIDO do teto VERIFICADO.
