@@ -38,12 +38,16 @@ Peça de referência: `src/pecas/especial/` (peça 07, composição `EspecialCol
 
 1. Copy com gancho de tensão (fato **verificado**) → fala amigável → conteúdo → virada → marca.
 2. Narração na ElevenLabs v4 (texto inteiro numa geração, tags por trecho).
-3. `scripts/alinhar_narracao.py` → `palavras.json` (texto do roteiro, tempo do whisper + silêncios).
+3. `scripts/alinhar_narracao.py` → `palavras-whisper.json` (texto do roteiro, tempo do whisper);
+   depois `python scripts/alinhar_forcado.py palavras-whisper.json <narracao> palavras.json` funde
+   com o alinhamento forçado CTC (validado: erro mediano 0,02 s; o whisper sozinho deslizou 0,7 s).
+   Nenhum tempo é digitado nas cenas nem no som: tudo lê a palavra com `em(faixa, 'palavra')`.
 4. `roteiro.ts`: declarar em ordem o que vira colagem (`b`), o que some (`mudo`); o resto é pílula.
 5. Assets: ChatGPT sobre branco liso → `scripts/colagem_assets*.py` → biblioteca → `publicar`.
 6. Som: `scripts/colagem_sfx_v2.py` (efeitos + trilha em seções nos tempos medidos).
 7. Conferência: `node scripts/contato.mjs <comp> <projeto> [segundos]` — folha geral e folha de
-   densidade a 10 fps; nada parado por mais de ~1,5 s; texto dentro de x≈140–940.
+   densidade a 10 fps; nada parado por mais de ~1,5 s; texto dentro de x≈140–940; stills DENTRO
+   de cada chicote (as duas imagens coladas, sem faixa preta); marcador terminando com a fala.
 
 ## Licença de técnica da série
 

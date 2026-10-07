@@ -114,14 +114,21 @@ def ruido_suave(shape: tuple[int, int], escala: float, r: np.random.Generator) -
 
 def peca(rgb: np.ndarray, alfa: np.ndarray, nome: str, filete: int, com_reticula: bool = True,
          destino: Path | None = None) -> None:
+    """Grava <nome>-b0..b2: objeto (retícula) + filete creme de borda irregular.
+
+    As três variantes são cortadas pela MESMA caixa (a união das três). Cortar cada uma
+    justa na própria borda dava tamanhos diferentes (até 2,4%), e como o Remotion desenha
+    as três com a mesma largura, o objeto inteiro pulsava de tamanho e escorregava a cada
+    3 quadros. O boil só pode mexer no contorno de papel, nunca no objeto.
+    """
     destino = destino or DEST
-    """Grava <nome>-b0..b2: objeto (retícula) + filete creme de borda irregular."""
     pad = filete * 2 + 6
     rgb = cv2.copyMakeBorder(rgb, pad, pad, pad, pad, cv2.BORDER_CONSTANT, value=(255, 255, 255))
     alfa = cv2.copyMakeBorder(alfa, pad, pad, pad, pad, cv2.BORDER_CONSTANT, value=0)
     obj = reticula(rgb) if com_reticula else rgb.astype(np.float32)
     dentro = (alfa > 0.5).astype(np.uint8)
     dist_fora = cv2.distanceTransform(1 - dentro, cv2.DIST_L2, 5)
+    variantes = []
     for b in range(3):
         r = rng(f"{nome}#{b}")
         # borda de tesoura: raio do filete oscila em baixa frequência + picote fino
@@ -129,12 +136,14 @@ def peca(rgb: np.ndarray, alfa: np.ndarray, nome: str, filete: int, com_reticula
         fil = np.clip(raio - dist_fora + 0.5, 0, 1)
         fil = np.maximum(fil, alfa)
         cor = CREME[None, None, :] * (1 - alfa[..., None]) + obj * alfa[..., None]
-        rgba = np.dstack([np.clip(cor, 0, 255), fil * 255]).astype(np.uint8)
-        ys, xs = np.where(fil > 0.02)
-        rgba = rgba[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
-        destino.mkdir(parents=True, exist_ok=True)
-        Image.fromarray(rgba, "RGBA").save(destino / f"{nome}-b{b}.png", optimize=True)
-    print(f"{nome:16s} {rgba.shape[1]}x{rgba.shape[0]}")
+        variantes.append(np.dstack([np.clip(cor, 0, 255), fil * 255]).astype(np.uint8))
+    uniao = np.max([v[..., 3] for v in variantes], axis=0) > 5
+    ys, xs = np.where(uniao)
+    y0, y1, x0, x1 = ys.min(), ys.max() + 1, xs.min(), xs.max() + 1
+    destino.mkdir(parents=True, exist_ok=True)
+    for b, rgba in enumerate(variantes):
+        Image.fromarray(rgba[y0:y1, x0:x1], "RGBA").save(destino / f"{nome}-b{b}.png", optimize=True)
+    print(f"{nome:16s} {x1 - x0}x{y1 - y0}")
 
 
 def foto_rasgada(arquivo: Path, nome: str, larg: int, recorte: tuple[float, float, float, float] | None = None,

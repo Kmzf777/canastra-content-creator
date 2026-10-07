@@ -109,7 +109,36 @@ def texturas() -> dict[str, list[Path]]:
     return out
 
 
+def reprocessar_v1() -> list[str]:
+    """Refaz as peças da peça 06 a partir das folhas guardadas na biblioteca, com o corte
+    unificado das 3 variantes (ver `peca`), e sobrescreve os arquivos da biblioteca."""
+    br = B.RAIZ / "brutos"
+    tmp = Path("saida-teste/motion-07/pecas-v1")
+    specs = [
+        ("2026-10-07_xicara-colher.png", ["xicara", "colher"], {"juntar_px": 40, "limiar": 8}, 12, ("xicara",)),
+        ("2026-10-07_graos-verdes-defeito.png", [f"grao-{i:02d}" for i in range(1, 11)] + ["grao-defeito"], {"juntar_px": 30}, 9, ()),
+        ("2026-10-07_prato-balanca.png", ["prato"], {"juntar_px": 40}, 12, ()),
+        ("2026-10-07_cerejas-estagios.png", ["cereja-verde-1", "cereja-verde-2", "cereja-verde-3", "cereja-amarela-1",
+                                             "cereja-amarela-2", "cereja-amarela-3", "cachinho", "cereja-vermelha-1",
+                                             "cereja-vermelha-2", "cereja-vermelha-3"], {"juntar_px": 24, "limiar": 55}, 9, ()),
+        ("2026-10-07_peneira-torrado.png", ["peneira", "torrado"], {"juntar_px": 40}, 12, ()),
+    ]
+    por_id = {i["id"]: i for i in B.carregar()}
+    feitos = []
+    for arq, nomes, kw, filete, conv in specs:
+        for n, (rgb, a) in separar(br / arq, nomes, **kw).items():
+            if n in conv:
+                a = convexo(a)
+            peca(rgb, a, n, filete=filete, com_reticula=True, destino=tmp)
+            it = por_id[f"{DIA}_{n}"]
+            for k, dst in enumerate(it["arquivos"]):
+                shutil.copy2(tmp / f"{n}-b{k}.png", dst)
+            feitos.append(it["id"])
+    return feitos
+
+
 def main() -> None:
+    v1 = reprocessar_v1()
     reg = []  # (nome, categoria, variantes, tags, origem, bruto, nota)
     b = guardar_bruto("m07-defeitos-a.png", "defeitos-graves-a")
     for n, var in processar("m07-defeitos-a.png",
@@ -176,8 +205,9 @@ def main() -> None:
     B.publicar(PROJ, ids)
     # peças da v1 que a 07 reaproveita
     B.publicar(PROJ, [f"{DIA}_{n}" for n in ["xicara", "torrado", "cereja-verde-1", "cereja-amarela-2", "cereja-vermelha-3",
-                                            "cachinho", "foto-cafeeiro", "foto-lavoura-ceu", "foto-lavoura-rua",
+                                            "cachinho", "peneira", "foto-cafeeiro", "foto-lavoura-ceu", "foto-lavoura-rua",
                                             "foto-cereja-verde", "fita-crepe", "kraft"]])
+    print(len(v1), "peças da v1 refeitas com corte unificado")
     print(len(ids), "peças novas na biblioteca")
 
 

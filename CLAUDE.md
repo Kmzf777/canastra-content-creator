@@ -801,3 +801,75 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     você o nome (lição 50). Cuidado extra do Grok: o id da URL **muda** quando a imagem
     termina de gerar (`8c5d2d0e…` virou `63212096…`); releia `location.pathname` na hora
     de baixar. Mecânica completa na `canastra-conteudo`.
+52. **Os downloads do ChatGPT pararam de chegar sem erro na segunda rodada** → em 07/10/2026
+    a primeira leva (5 imagens, uma por aba) chegou em Downloads; a segunda, nas MESMAS abas,
+    não chegou e nada reclamou. O Chrome libera o primeiro download automático de cada aba e
+    segura o segundo esperando permissão → **um download por aba**: para baixar de novo, abra
+    a conversa (`/c/<id>`) numa aba NOVA e baixe dali — chegou na hora. Tentei também um
+    servidor em `127.0.0.1` recebendo o blob por `fetch`: a CSP do chatgpt.com bloqueia
+    (`TypeError: Failed to fetch`) e não se contorna CSP. E o envio: em aba de fundo o clique
+    (por ref ou coordenada) e o screenshot estouram 45 s, mas **`el.closest('form').requestSubmit()`
+    envia** — desde que se espere ~1 s depois do `insertText`, senão o React ainda não registrou
+    o texto e o submit sai vazio.
+53. **O whisper estragou os acentos da legenda, e o tempo dele adiantou palavras para dentro
+    da pausa** → com `-ml 1` o whisper.cpp parte a palavra em tokens e corta o UTF-8 no meio
+    ("café" vira "caf\ufffd"), e números falados por extenso viram UM token ("trezentos e
+    cinquenta" = "350") → **o texto da legenda vem do roteiro, o tempo vem do whisper**,
+    casados por sequência de letras sem acento (`scripts/alinhar_narracao.py`); palavras do
+    roteiro que caem num token só são espalhadas pela duração dele. Refinar pelo silêncio só
+    vale quando o início do whisper cai DENTRO de um silêncio: com margem de 0,05 s, "preto"
+    (19,58 s, 0,02 s antes da pausa) foi puxado para depois dela (19,85 s). *(O texto
+    continua vindo do roteiro; o TEMPO passou a vir da fusão whisper + CTC — lição 56.)*
+54. **A pílula quebrou frase no artigo: "POR ISSO A / GENTE SÓ TORRA", "FIM DESSE / VÍDEO"**
+    → cortar a legenda em "3 palavras" é contar, não ler → orçamento por caracteres (20) e
+    palavras (5), partição equilibrada por programação dinâmica e **custo alto para bloco que
+    termina em palavra fraca** — artigo, preposição e também determinante/possessivo
+    (`desse`, `seu`, `nosso`). Legenda é leitura; o portão é `tests/especial-roteiro.test.ts`.
+55. **Texto de colagem cortado na borda só em alguns quadros** → a câmera 2.5D anda até
+    ~120 px e amplia até ~1,16×, então "PROVA 1" em x=250 saía do quadro no meio da cena e o
+    still do começo não mostrava → com câmera em movimento, **a área segura da tipografia é
+    x ≈ 140–940 em repouso**, e a conferência precisa de stills no MEIO e no FIM de cada
+    movimento, não só na entrada do texto.
+56. **"Erro de sincronização de voz e legenda" que o cliente viu e o teste não pegava** → em
+    07/10/2026, na peça 07, o tempo das palavras vinha do whisper (lição 53) e ele
+    **deslizava sem cair em silêncio nenhum**: de 23,8 s a 28,6 s ficou 0,5 a 0,7 s
+    atrasado ("Não é especial" começa em 23,83 s, ele dizia 24,48 s), e de novo em
+    32,9–35 s. A regra da lição 53 só corrige início que cai DENTRO de pausa, então
+    passou. O alinhamento forçado CTC (`torchaudio` MMS_FA, lê o roteiro inteiro sobre o
+    áudio) nunca perde a região, mas atrasa ~0,1 s dentro da frase e, depois de pausa, às
+    vezes atrasa a frase inteira 0,2–0,4 s ("Zero defeito grave", "Se não tem nota") →
+    **nenhum alinhador sozinho é confiável; funda e meça.** `scripts/alinhar_forcado.py`
+    funde os dois (ataque após pausa → média quando concordam → CTC quando o whisper
+    desliza) e foi validado contra 109 ataques lidos à mão no envelope do áudio: whisper
+    mediana 0,10 s / máx 0,76 s; CTC 0,09 / 0,39; fusão **0,02 / 0,15**. Corolário que
+    custou o dobro: **nenhum tempo de cena ou de som é digitado** — 60 segundos escritos à
+    mão nas cenas e no `Sons.tsx` teriam ficado para trás quando as palavras andaram 0,7 s.
+    Tudo lê a palavra (`em(faixa, 'palavra')`) ou a troca (`TROCA`, `CENA_INICIO`).
+57. **O marcador terminava de escrever depois da fala, e um deles nem terminava** → a
+    escrita andava a 2 quadros por letra fixos: "COLHEITA ANTES DA HORA." acabava 0,4 s
+    depois da voz; "O NOSSO TÁ AQUI." esperava a câmera pousar (+14 quadros) e o fecho
+    entrava antes da última letra → **a velocidade da escrita sai da duração da fala**
+    (`dur={fala(faixa)}`), e o movimento de câmera que um texto espera acontece DURANTE a
+    frase, não antes do texto.
+58. **O chicote mostrava uma faixa preta de até meia tela, nas 10 trocas** → a cena que
+    saía andava 520 px sozinha e revelava o fundo da raiz; com borrão parece falha de
+    render → **chicote é a imagem que sai e a que entra COLADAS**, andando uma tela inteira
+    sob borrão direcional, cada uma congelada no último/primeiro quadro durante os 12
+    quadros da janela (`Especial.tsx`). Visto na folha de contato de 76,95 s: conferir
+    transição exige still DENTRO da janela, não antes e depois dela.
+59. **A etiqueta tapou o logotipo do pacote** → posicionei "O NOSSO TÁ AQUI." 160 px acima
+    do selo sem medir onde o pacote está no recorte: o PNG tem margem transparente e o
+    pacote ocupa só fy 0,17–0,75 (o selo fica a 84% da altura DELE, colado no logotipo) →
+    **antes de pôr qualquer coisa relativa à embalagem, meça o bbox do alfa do recorte**;
+    texto de colagem não cobre logotipo nem selo.
+60. **Todo objeto da colagem "respirava" no vídeo** → o recorte de cada uma das 3 variantes
+    de borda (o boil) usava o bbox DELA; os tamanhos diferiam até 2,4% e, como a variante
+    alterna a cada 3 quadros, o objeto pulsava → **as variantes de uma peça são cortadas
+    pela UNIÃO dos bboxes** (`scripts/colagem_assets.py:peca`), e toda a biblioteca foi
+    refeita assim.
+61. **O render "parado" continuou rodando** → no Windows o `TaskStop` encerra o shell, mas o
+    `node` do Remotion e os `chrome-headless-shell` filhos seguem renderizando (CPU cheia,
+    arquivo de saída travado) → depois de parar um render, procure o processo pela LINHA
+    DE COMANDO (tem que citar a composição) e derrube a árvore dele
+    (`taskkill /PID <pid> /T /F`). Nunca mate `chrome-headless-shell` às cegas: outra
+    sessão pode estar renderizando.

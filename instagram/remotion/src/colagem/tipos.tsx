@@ -76,14 +76,20 @@ function rasgado(chave: string, amp = 3.2, passo = 6): string {
   return `polygon(${pts.join(',')})`;
 }
 
-/** Etiqueta de marcador em papel rasgado; as letras são "escritas" a cada 2 quadros. */
-export const Marcador: React.FC<Pos & {texto: string; tamanho?: number; tinta?: string; papel?: string | null; escrever?: boolean; chave: string; fora?: number}> = ({
-  q, ini, x, y, rot, ancora = 'centro', texto, tamanho = 96, tinta = COR.acento, papel = '#F7F2E6', escrever = true, chave, fora,
+/**
+ * Etiqueta de marcador em papel rasgado; as letras são "escritas" uma a cada 2 quadros.
+ * Com `dur` (quadros), a escrita cabe nesse tempo: a fala de "colheita antes da hora"
+ * dura 32 quadros e as 23 letras a 2 por quadro terminavam 0,5 s DEPOIS da voz.
+ * Nunca escreve mais devagar que 2 quadros por letra nem mais rápido que 2 letras por quadro.
+ */
+export const Marcador: React.FC<Pos & {texto: string; tamanho?: number; tinta?: string; papel?: string | null; escrever?: boolean; chave: string; fora?: number; dur?: number}> = ({
+  q, ini, x, y, rot, ancora = 'centro', texto, tamanho = 96, tinta = COR.acento, papel = '#F7F2E6', escrever = true, chave, fora, dur,
 }) => {
   const qp = posterizar(q, 3, ini);
   const p = assentar(qp, ini, chave);
   if (!p.visivel || (fora !== undefined && q >= fora)) return null;
-  const n = escrever ? Math.floor((q - ini) / 2) + 1 : texto.length;
+  const passo = dur ? Math.min(2, Math.max(0.5, dur / texto.length)) : 2;
+  const n = escrever ? Math.floor((q - ini) / passo) + 1 : texto.length;
   const r = rot ?? sorteio(`${chave}#rot`, -4, 4);
   return (
     <div style={{

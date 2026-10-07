@@ -10,10 +10,29 @@
 // (scripts/alinhar_narracao.py: whisper + silêncios, texto do roteiro).
 
 import palavrasJson from '../../../projetos/07-cafe-especial-colagem/palavras.json';
-import {blocosA, Roteiro, type Palavra} from '../../colagem/legenda';
+import {blocosA, Roteiro, type Faixa, type Palavra} from '../../colagem/legenda';
 
 export const PALAVRAS = palavrasJson as Palavra[];
 const r = new Roteiro(PALAVRAS);
+
+const chave = (s: string) => s.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+/**
+ * Início (s) da `n`-ésima `palavra` dentro de uma faixa — para gesto, câmera ou som que
+ * bate numa palavra do MEIO de um trecho. Nenhum tempo das cenas é escrito à mão: em
+ * 07/10/2026 o realinhamento forçado moveu inícios de frase em até 0,4 s, e cada segundo
+ * digitado nas cenas teria ficado para trás. Lança se não achar.
+ */
+export function em(f: Faixa, palavra: string, n = 1): number {
+  let k = 0;
+  for (let i = f.de; i <= f.ate; i++) {
+    if (chave(PALAVRAS[i].texto) === chave(palavra) && ++k === n) return PALAVRAS[i].inicio;
+  }
+  throw new Error(`em(): "${palavra}" (${n}ª) não está em "${f.texto}"`);
+}
+
+/** Início da palavra seguinte à faixa: até onde a fala do trecho ocupa o tempo. */
+export const depois = (f: Faixa): number => PALAVRAS[f.ate + 1]?.inicio ?? f.fim + 0.4;
 
 // ---------------------------------------------------------------- 1 tensão
 export const S1 = {
@@ -137,7 +156,25 @@ export const MUDAS = r.mudas;
 export const BLOCOS_A = blocosA(PALAVRAS, EM_B, MUDAS);
 
 /** Início de cada cena (s): a fala que abre a cena. */
-export const CENA_INICIO = [0, S2.calma.inicio, S3.especial.inicio, S4.graoCru.inicio - 0.6, S5.comparar.inicio,
+export const CENA_INICIO = [0, S2.calma.inicio, S3.especial.inicio, S4.primeira.inicio, S5.comparar.inicio,
   // a cena 8 entra 0,3 s depois do "Por isso" para o "NO PÉ." respirar antes do chicote
   S6.passou.inicio, S7.aqui.inicio, S8.porIsso.inicio + 0.3, S9.olha.inicio];
 export const FIM = 79.0;
+
+/**
+ * Trocas DENTRO de uma cena (s). A cena muda de fase e a raiz dá o chicote no mesmo
+ * instante, então as duas leem daqui — antes eram dois números digitados em dois
+ * arquivos, e realinhar a narração separava um do outro.
+ */
+export const TROCA = {
+  /** "…perde ponto." → "Abaixo de oitenta": a régua de 0 a 100 */
+  regua: S6.abaixo.inicio - 0.13,
+  /** o painel das polaroides entra um respiro antes de "Preto e ardido" */
+  painel: S7.pretoArdido.inicio - 0.15,
+  /** "…antes da hora." → "A torra pode estragar…" */
+  tese: S7.estragar.inicio - 0.13,
+  /** "…um café ruim." → "Especial se decide no pé." */
+  pe: S7.decide.inicio - 0.06,
+  /** o selo → "Salva esse vídeo" */
+  fecho: S9.salva.inicio,
+};

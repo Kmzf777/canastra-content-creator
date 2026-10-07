@@ -76,10 +76,10 @@ describe('legenda A/B', () => {
     for (const i of r.emB) expect(emA.has(i)).toBe(false);
   });
 
-  it('pílula tem no máximo 5 palavras/20 caracteres e quebra na pontuação', () => {
+  it('pílula tem no máximo 4 palavras/16 caracteres e quebra na pontuação', () => {
     const ps = P('Não precisa largar o café. Mas até o fim');
     const a = blocosA(ps, new Set());
-    for (const b of a) { expect(b.palavras.length).toBeLessThanOrEqual(5); expect(b.texto.length).toBeLessThanOrEqual(20); }
+    for (const b of a) { expect(b.palavras.length).toBeLessThanOrEqual(4); expect(b.texto.length).toBeLessThanOrEqual(16); }
     expect(a.some((b) => b.texto.endsWith('CAFÉ.'))).toBe(true);
   });
 

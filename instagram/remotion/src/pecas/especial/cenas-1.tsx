@@ -11,8 +11,8 @@ import {Palco, Plano} from '../../colagem/palco';
 import {Dymo, Marcador, Recortadas, Serifa} from '../../colagem/tipos';
 import {progresso} from '../../colagem/movimento-colagem';
 import {semente} from '../../colagem/semente';
-import {Cobertura, Divisoria, fq, Fundo, PacoteGenerico, Peca, Rodape, SombraFolhas, Tachinha, Troca, Vinheta} from './apoio';
-import {S1, S2, S3, S4, S5} from './roteiro';
+import {Cobertura, Divisoria, fala, fq, Fundo, PacoteGenerico, Peca, Rodape, SombraFolhas, Tachinha, Troca, Vinheta} from './apoio';
+import {em, S1, S2, S3, S4, S5, S6} from './roteiro';
 
 type C = {q: number};
 const cam = (q: number, chaves: Chave[], chave: string, i: number, pulsos: number[] = [], tremores: number[] = []) =>
@@ -21,20 +21,24 @@ const cam = (q: number, chaves: Chave[], chave: string, i: number, pulsos: numbe
 // ===================================================================== 1 · tensão
 export const Cena1: React.FC<C> = ({q}) => {
   const lei = fq(S1.lei.inicio);
-  const lei2 = fq(5.12);
+  const lei2 = fq(em(S1.lei, 'lei'));
   const c = cam(q, [
     {q: 0, x: 0, y: 30, zoom: 1.0, rot: 0},
-    {q: fq(4.6), x: 0, y: -10, zoom: 1.12, rot: -0.6, curva: 'linear'},
-    {q: fq(5.76), x: 0, y: -10, zoom: 1.16, rot: -0.6},
-  ], 'c1', 1.5, [fq(0.6), fq(S1.casca.inicio), fq(S1.pau.inicio), lei, lei2], [lei, lei2]);
+    {q: lei - 2, x: 0, y: -10, zoom: 1.12, rot: -0.6, curva: 'linear'},
+    {q: fq(S2.calma.inicio), x: 0, y: -10, zoom: 1.16, rot: -0.6},
+  ], 'c1', 1.5, [fq(S1.doCafe.inicio), fq(S1.casca.inicio), fq(S1.pau.inicio), lei, lei2], [lei, lei2]);
+  // a troca casca/graveto acelera de "pode ser" até "pau": batidas nas palavras e entre elas
+  const [t0, t1, t2] = [S1.podeSer.inicio, S1.casca.inicio, S1.pau.inicio];
   const trocas = [
-    {nome: 'casca', ini: fq(2.2), w: 300},
-    {nome: 'graveto', ini: fq(2.47), w: 430, rot: 20},
-    {nome: 'casca', ini: fq(2.74), w: 320, rot: -10},
-    {nome: 'graveto', ini: fq(3.02), w: 440, rot: -15},
-    {nome: 'casca', ini: fq(3.25), w: 300, rot: 8},
-    {nome: 'graveto', ini: fq(3.49), w: 450, rot: 24},
+    {nome: 'casca', ini: fq(t0), w: 300},
+    {nome: 'graveto', ini: fq((t0 + t1) / 2), w: 430, rot: 20},
+    {nome: 'casca', ini: fq(t1), w: 320, rot: -10},
+    {nome: 'graveto', ini: fq(t1 + (t2 - t1) * 0.37), w: 440, rot: -15},
+    {nome: 'casca', ini: fq(t1 + (t2 - t1) * 0.68), w: 300, rot: 8},
+    {nome: 'graveto', ini: fq(t2), w: 450, rot: 24},
   ];
+  const compra = fq(em(S1.doCafe, 'compra'));
+  const pode = fq(S1.podeSer.inicio);
   return (
     <AbsoluteFill>
       <Fundo cor={COR.preto} forca={0.3} />
@@ -46,12 +50,12 @@ export const Cena1: React.FC<C> = ({q}) => {
         <Plano p={1}>
           <Peca q={q} ini={-8} nome="xicara" x={540} y={900} w={760} />
           {/* "que você compra": o café de qualquer pacote (silhueta sem marca) e a lupa que vai investigar */}
-          <PacoteGenerico q={q} ini={fq(S1.doCafe.inicio) + fq(0.5)} x={230} y={1330} h={470} rot={-9} fora={fq(2.2)} />
-          <Peca q={q} ini={fq(1.62)} nome="lupa" x={900 - 330 * progresso(q, fq(1.62), fq(2.15))} y={1300 - 380 * progresso(q, fq(1.62), fq(2.15))} w={420} rot={-25} fora={fq(2.2)} />
+          <PacoteGenerico q={q} ini={fq(S1.doCafe.inicio) + fq(0.5)} x={230} y={1330} h={470} rot={-9} fora={pode} />
+          <Peca q={q} ini={compra} nome="lupa" x={900 - 330 * progresso(q, compra, pode - 2)} y={1300 - 380 * progresso(q, compra, pode - 2)} w={420} rot={-25} fora={pode} />
           <Troca q={q} itens={trocas} x={540} y={905} />
-          {q >= fq(3.85) && <Peca q={q} ini={fq(3.85)} nome="casca" x={430} y={870} w={250} rot={-12} />}
+          {q >= fq(t2) + 11 && <Peca q={q} ini={fq(t2) + 11} nome="casca" x={430} y={870} w={250} rot={-12} />}
           <Recortadas q={q} ini={fq(S1.ate1.inicio)} texto="ATÉ 1%" x={540} y={340} tamanho={140} chave="c1-ate" />
-          <Elipse q={q} ini={fq(1.0)} cx={540} cy={340} rx={400} ry={140} cor={COR.acento} chave="c1-el" espessura={10} />
+          <Elipse q={q} ini={fq(em(S1.doCafe, 'café')) + 9} cx={540} cy={340} rx={400} ry={140} cor={COR.acento} chave="c1-el" espessura={10} />
           <Marcador q={q} ini={fq(S1.casca.inicio)} texto="CASCA" x={240} y={1260} rot={-7} tamanho={92} chave="c1-casca" />
           <Seta q={q} ini={fq(S1.casca.inicio) + 5} de={[300, 1180]} para={[450, 1010]} cor={COR.creme} chave="c1-s1" />
           <Marcador q={q} ini={fq(S1.pau.inicio)} texto="PAU" x={850} y={1270} rot={6} tamanho={96} chave="c1-pau" />
@@ -78,7 +82,7 @@ export const Cena2: React.FC<C> = ({q}) => {
   const c = cam(q, [
     {q: ini, x: 0, y: 0, zoom: 1.1, rot: 0},
     {q: ini + 16, x: 0, y: 0, zoom: 1.0, rot: 0, curva: 'rapida'},
-    {q: fq(10.88), x: -50, y: -20, zoom: 1.04, rot: 0.4, curva: 'linear'},
+    {q: fq(S3.especial.inicio), x: -50, y: -20, zoom: 1.04, rot: 0.4, curva: 'linear'},
   ], 'c2', 1, [fq(S2.fim.inicio), fq(S2.seuEspecial.inicio)]);
   return (
     <AbsoluteFill>
@@ -93,13 +97,13 @@ export const Cena2: React.FC<C> = ({q}) => {
           <Brilho q={q} ini={ini + 8} x={210} y={770} r={50} cor={COR.acento} />
           <Cruz q={q} ini={ini + 5} x={170} y={470} cor={COR.terra} chave="c2-c1" />
           <Cruz q={q} ini={ini + 9} x={920} y={800} s={44} cor={COR.terra} chave="c2-c2" />
-          <Peca q={q} ini={fq(6.86)} nome="xicara" x={290} y={1110} w={400} rot={-5} />
+          <Peca q={q} ini={fq(em(S2.largar, 'largar'))} nome="xicara" x={290} y={1110} w={400} rot={-5} />
           <PacoteGenerico q={q} ini={fq(S2.fim.inicio)} x={730} y={1090} h={600} rot={4} />
           <Tachinha q={q} ini={fq(S2.fim.inicio) + 4} x={730} y={810} cor="terra" />
-          <Marcador q={q} ini={fq(9.0)} texto="?" x={915} y={900} tamanho={150} rot={8} chave="c2-q" />
+          <Marcador q={q} ini={fq(S2.saber.inicio) + 4} texto="?" x={915} y={900} tamanho={150} rot={8} chave="c2-q" />
           <Dymo q={q} ini={fq(S2.seuEspecial.inicio)} texto="SE O SEU É" x={420} y={1420} tamanho={96} rot={-2} />
-          <Serifa q={q} ini={fq(10.02)} texto="especial?" x={650} y={1575} tamanho={175} cor={COR.acento} rot={-3} />
-          <Seta q={q} ini={fq(10.2)} de={[540, 1350]} para={[660, 1260]} curva={0.3} cor={COR.preto} chave="c2-s" />
+          <Serifa q={q} ini={fq(em(S2.seuEspecial, 'especial'))} texto="especial?" x={650} y={1575} tamanho={175} cor={COR.acento} rot={-3} />
+          <Seta q={q} ini={fq(em(S2.seuEspecial, 'especial')) + 5} de={[540, 1350]} para={[660, 1260]} curva={0.3} cor={COR.preto} chave="c2-s" />
         </Plano>
         <Plano p={2.4}>
           <Peca q={q} ini={ini} nome="folha-2" x={120} y={1700} w={540} rot={30} sombra={false} />
@@ -117,7 +121,7 @@ export const Cena3: React.FC<C> = ({q}) => {
   const escuro = q >= duas;
   const c = cam(q, [
     {q: ini, x: 0, y: 0, zoom: 1.0, rot: 0},
-    {q: fq(14.8), x: 0, y: -30, zoom: 1.07, rot: -0.5, curva: 'linear'},
+    {q: fq(S4.primeira.inicio), x: 0, y: -30, zoom: 1.07, rot: -0.5, curva: 'linear'},
   ], 'c3', 1, [ini, fq(S3.nomeBonito.inicio), fq(S3.prova.inicio), duas], [duas]);
   return (
     <AbsoluteFill>
@@ -156,21 +160,25 @@ const DEFEITOS: Array<{nome: string; rot: string; x: number; y: number; w: numbe
 ];
 
 export const Cena4: React.FC<C> = ({q}) => {
-  const ini = fq(14.8);
+  const ini = fq(S4.primeira.inicio);
   const foco = DEFEITOS.map((d) => ({q: fq(S4[d.t].inicio) + 3, x: (d.x - 540) * 0.45, y: (d.y - 960) * 0.45, zoom: 1.13, rot: 0, curva: 'rapida' as const}));
   const acabou = fq(S4.acabou.inicio);
+  const olha = fq(S4.olha.inicio);
+  const preto = fq(S4.preto.inicio);
+  const achou = fq(S4.achou.inicio);
   const c = cam(q, [
     {q: ini, x: 0, y: -40, zoom: 1.0, rot: 0},
-    {q: fq(17.8), x: 0, y: 0, zoom: 1.04, rot: 0, curva: 'linear'},
-    {q: fq(18.5), x: -70, y: -60, zoom: 1.08, rot: -0.5},
-    {q: fq(19.3), x: 60, y: 60, zoom: 1.08, rot: 0.5},
+    {q: olha - 3, x: 0, y: 0, zoom: 1.04, rot: 0, curva: 'linear'},
+    {q: fq(em(S4.olha, 'por')), x: -70, y: -60, zoom: 1.08, rot: -0.5},
+    {q: preto, x: 60, y: 60, zoom: 1.08, rot: 0.5},
     ...foco,
-    {q: fq(22.5), x: -110, y: -70, zoom: 1.15, rot: 0},
+    {q: achou, x: -110, y: -70, zoom: 1.15, rot: 0},
     {q: acabou + 3, x: 0, y: 0, zoom: 1.02, rot: 0, curva: 'rapida'},
-    {q: fq(25.54), x: 0, y: -20, zoom: 1.06, rot: 0, curva: 'linear'},
+    {q: fq(S5.comparar.inicio), x: 0, y: -20, zoom: 1.06, rot: 0, curva: 'linear'},
   ], 'c4', 0.9, [fq(S4.graoCru.inicio), fq(S4.g350.inicio), acabou, fq(S4.naoEspecial.inicio)], [acabou]);
-  const lupaT = progresso(q, fq(17.9), fq(19.3));
-  const pincaT = progresso(q, fq(22.5), fq(23.2));
+  const lupaT = progresso(q, olha, preto);
+  // a pinça tira o grão preto da bandeja e some no "Acabou."
+  const pincaT = progresso(q, achou, acabou - 3);
   return (
     <AbsoluteFill>
       <Fundo cor={COR.terra} forca={0.35} />
@@ -183,17 +191,17 @@ export const Cena4: React.FC<C> = ({q}) => {
           <Peca q={q} ini={fq(S4.classificador.inicio)} nome="peneira-classificacao" x={970} y={1640} w={340} rot={-12} fora={fq(S4.acabou.inicio)} />
           {DEFEITOS.map((d) => {
             const t = fq(S4[d.t].inicio);
-            const pinçado = d.nome === 'grao-preto' ? fq(23.25) : undefined;
+            const pinçado = d.nome === 'grao-preto' ? acabou - 1 : undefined;
             return (
               <React.Fragment key={d.nome}>
                 <Peca q={q} ini={t} nome={d.nome} x={d.x} y={d.y} w={d.w} rot={d.giro} fora={pinçado} />
                 <Elipse q={q} ini={t + 4} cx={d.x} cy={d.y} rx={d.w * 0.68} ry={d.w * 0.78} cor={COR.creme} chave={`c4-e-${d.nome}`} espessura={7} fora={acabou} />
-                <Marcador q={q} ini={t + 1} texto={d.rot} x={d.x} y={d.y - d.w * 0.95} tamanho={58} chave={`c4-m-${d.nome}`} fora={acabou} />
+                <Marcador q={q} ini={t + 1} dur={fala(S4[d.t])} texto={d.rot} x={d.x} y={d.y - d.w * 0.95} tamanho={58} chave={`c4-m-${d.nome}`} fora={acabou} />
               </React.Fragment>
             );
           })}
-          <Peca q={q} ini={fq(17.9)} nome="lupa" x={260 + 560 * lupaT} y={760 + 480 * lupaT} w={420} rot={-20} fora={fq(19.6)} />
-          <Peca q={q} ini={fq(22.5)} nome="pinca" x={1000 - 690 * pincaT} y={560 + 220 * pincaT} w={520} rot={-40} fora={fq(23.6)} />
+          <Peca q={q} ini={olha} nome="lupa" x={260 + 560 * lupaT} y={760 + 480 * lupaT} w={420} rot={-20} fora={preto + 9} />
+          <Peca q={q} ini={achou} nome="pinca" x={1000 - 690 * pincaT} y={560 + 220 * pincaT} w={520} rot={-40} fora={acabou + 4} />
           <Dymo q={q} ini={ini + 3} texto="PROVA 1" x={330} y={300} tamanho={100} rot={-2} fora={acabou} />
           <Dymo q={q} ini={fq(S4.graoCru.inicio)} texto="GRÃO CRU" x={600} y={420} tamanho={100} rot={1} fora={acabou} />
           <Recortadas q={q} ini={fq(S4.g350.inicio)} texto="350 g" x={800} y={575} tamanho={110} chave="c4-350" fora={acabou} />
@@ -221,20 +229,22 @@ export const Cena5: React.FC<C> = ({q}) => {
   const ini = fq(S5.comparar.inicio);
   const noEsp = fq(S5.noEspecial.inicio);
   const zero = fq(S5.zero.inicio);
+  const grave = fq(em(S5.zero, 'grave'));
+  const defeitos = fq(em(S5.d360, 'defeitos'));
   const c = cam(q, [
     {q: ini, x: -270, y: 0, zoom: 1.25, rot: 0},
     {q: noEsp - 1, x: -250, y: -20, zoom: 1.28, rot: -0.4, curva: 'linear'},
     {q: noEsp + 5, x: 270, y: 0, zoom: 1.25, rot: 0.3, curva: 'rapida'},
-    {q: fq(31.9), x: 260, y: -10, zoom: 1.27, rot: 0, curva: 'linear'},
-    {q: fq(31.9) + 8, x: 0, y: 0, zoom: 1.0, rot: 0, curva: 'suave'},
-    {q: fq(32.42), x: 0, y: 0, zoom: 1.02, rot: 0},
+    {q: grave + 2, x: 260, y: -10, zoom: 1.27, rot: 0, curva: 'linear'},
+    {q: grave + 10, x: 0, y: 0, zoom: 1.0, rot: 0, curva: 'suave'},
+    {q: fq(S6.passou.inicio), x: 0, y: 0, zoom: 1.02, rot: 0},
   ], 'c5', 0.8, [fq(S5.tipo.inicio), fq(S5.d360.inicio), zero], [zero]);
   const s = semente('c5-pilha');
   const quedas = Array.from({length: 26}, (_, k) => ({
-    nome: PILHA_DEFEITOS[k % PILHA_DEFEITOS.length], ini: fq(28.0) + k * 2,
+    nome: PILHA_DEFEITOS[k % PILHA_DEFEITOS.length], ini: fq(em(S5.tipo, 'de')) - 3 + k * 2,
     x: 80 + s() * 380, y: 1180 + s() * 260, w: 110 + s() * 50, rot: (s() - 0.5) * 120,
   }));
-  const n360 = Math.round(360 * progresso(q, fq(S5.d360.inicio), fq(29.26)));
+  const n360 = Math.round(360 * progresso(q, fq(S5.d360.inicio), defeitos));
   return (
     <AbsoluteFill>
       <Palco cam={c} id="c5">
@@ -243,18 +253,18 @@ export const Cena5: React.FC<C> = ({q}) => {
           <div style={{position: 'absolute', left: 540, top: -400, width: 1140, height: 2720, background: COR.creme}} />
           <Divisoria q={q} ini={ini + 2} />
           <Dymo q={q} ini={fq(S5.classificacao.inicio)} texto="CLASSIFICAÇÃO" x={270} y={330} tamanho={54} rot={-2} />
-          <Dymo q={q} ini={fq(26.87)} texto="OFICIAL" x={220} y={410} tamanho={54} rot={1} />
-          <Dymo q={q} ini={fq(27.2)} texto="BRASILEIRA" x={300} y={490} tamanho={54} fundo={COR.verde} rot={-1} />
-          <Peca q={q} ini={fq(26.4)} nome="peneira-classificacao" x={160} y={1380} w={300} rot={-10} />
-          <Dymo q={q} ini={fq(S5.tipo.inicio)} texto="TIPO 8" x={270} y={650} tamanho={100} fundo={COR.creme} tinta={COR.preto} rot={-2} />
+          <Dymo q={q} ini={fq(em(S5.classificacao, 'oficial'))} texto="OFICIAL" x={220} y={410} tamanho={54} rot={1} />
+          <Dymo q={q} ini={fq(em(S5.classificacao, 'brasileira'))} texto="BRASILEIRA" x={300} y={490} tamanho={54} fundo={COR.verde} rot={-1} />
+          <Peca q={q} ini={fq(em(S5.classificacao, 'classificação')) + 7} nome="peneira-classificacao" x={160} y={1380} w={300} rot={-10} />
+          <Dymo q={q} ini={fq(em(S5.tipo, 'tipo'))} texto="TIPO 8" x={270} y={650} tamanho={100} fundo={COR.creme} tinta={COR.preto} rot={-2} />
           {quedas.map((d, k) => <Peca key={k} q={q} ini={d.ini} nome={d.nome} x={d.x} y={d.y} w={d.w} rot={d.rot} />)}
           <Recortadas q={q} ini={fq(S5.d360.inicio)} texto={String(n360)} x={270} y={880} tamanho={180} chave="c5-360" intervalo={0} />
-          <Dymo q={q} ini={fq(29.26)} texto="DEFEITOS" x={270} y={1060} tamanho={80} fundo={COR.acento} rot={2} />
-          <Rodape q={q} ini={fq(29.4)} x={270} y={1630} texto="*COB · amostra de 300 g" tamanho={30} />
-          <Serifa q={q} ini={fq(30.56)} texto="especial" x={810} y={520} tamanho={150} cor={COR.preto} rot={-3} />
+          <Dymo q={q} ini={defeitos} texto="DEFEITOS" x={270} y={1060} tamanho={80} fundo={COR.acento} rot={2} />
+          <Rodape q={q} ini={defeitos + 4} x={270} y={1630} texto="*COB · amostra de 300 g" tamanho={30} />
+          <Serifa q={q} ini={fq(em(S5.noEspecial, 'especial'))} texto="especial" x={810} y={520} tamanho={150} cor={COR.preto} rot={-3} />
           <Recortadas q={q} ini={zero} texto="0" x={810} y={860} tamanho={330} chave="c5-zero" />
           <Elipse q={q} ini={zero + 4} cx={810} cy={860} rx={190} ry={230} cor={COR.acento} chave="c5-el" espessura={11} />
-          <Dymo q={q} ini={fq(31.38)} texto="DEFEITO GRAVE" x={810} y={1100} tamanho={62} fundo={COR.acento} rot={-1} />
+          <Dymo q={q} ini={fq(em(S5.zero, 'defeito'))} texto="DEFEITO GRAVE" x={810} y={1100} tamanho={62} fundo={COR.acento} rot={-1} />
           <Brilho q={q} ini={zero + 2} x={990} y={700} r={70} cor={COR.acento} />
           <Rodape q={q} ini={zero + 6} x={810} y={1630} texto="*classificação SCA, 350 g" tamanho={30} cor={COR.terra} />
         </Plano>

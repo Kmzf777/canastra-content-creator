@@ -14,13 +14,14 @@ describe('peça 07 — roteiro e legendas', () => {
     expect(soltas.map((p) => p.texto)).toEqual([]);
   });
 
-  it('pílula: até 5 palavras e 20 caracteres, ao menos 0,25 s, sem se sobrepor', () => {
+  it('pílula: até 4 palavras e 18 caracteres, ao menos 0,2 s, sem se sobrepor', () => {
     for (let k = 0; k < BLOCOS_A.length; k++) {
       const b = BLOCOS_A[k];
       expect(b.palavras.length).toBeGreaterThanOrEqual(1);
-      expect(b.palavras.length).toBeLessThanOrEqual(5);
-      expect(b.texto.length).toBeLessThanOrEqual(20);
-      expect(b.fim - b.inicio).toBeGreaterThanOrEqual(0.25);
+      expect(b.palavras.length).toBeLessThanOrEqual(4);
+      expect(b.texto.length).toBeLessThanOrEqual(18);
+      // 0,2 s = 6 quadros: "PEGA" espremido entre a fala e a colagem que entra
+      expect(b.fim - b.inicio).toBeGreaterThanOrEqual(0.2);
       if (k > 0) expect(b.inicio).toBeGreaterThanOrEqual(BLOCOS_A[k - 1].fim - 1e-9);
     }
   });

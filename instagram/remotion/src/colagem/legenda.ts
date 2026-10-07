@@ -78,9 +78,21 @@ const FRACAS = new Set(['a', 'o', 'as', 'os', 'um', 'uma', 'de', 'do', 'da', 'do
  * `maxPalavras` palavras, de tamanhos parecidos, evitando bloco que termina em palavra
  * fraca. Programação dinâmica: a sequência tem no máximo uma dúzia de palavras.
  */
-function particionar(textos: string[], maxChars: number, maxPalavras: number): number[][] {
+function particionar(
+  textos: string[], maxChars: number, maxPalavras: number,
+  inicios: number[] = [], minimo = 0.3, fins: number[] = [],
+): number[][] {
   const n = textos.length;
   const chars = (a: number, b: number) => textos.slice(a, b).join(' ').length;
+  // respiro DENTRO do bloco: a voz fecha a ideia e o texto não ("COMPRA PODE SER")
+  const respiro = (a: number, b: number) => {
+    let k = 0;
+    for (let j = a; j < b - 1 && fins.length; j++) k += Math.max(0, inicios[j + 1] - fins[j] - 0.12);
+    return k;
+  };
+  // quanto tempo o bloco [a,b) fica na tela: do início dele ao início do seguinte
+  const dura = (a: number, b: number) =>
+    inicios.length ? (b < n ? inicios[b] : inicios[n - 1] + 0.4) - inicios[a] : Infinity;
   const custo = (a: number, b: number, ultimo: boolean) => {
     const c = chars(a, b);
     let k = 0;
@@ -88,6 +100,9 @@ function particionar(textos: string[], maxChars: number, maxPalavras: number): n
     if (c > maxChars) k += 1e4 * (c - maxChars);
     if (!ultimo && FRACAS.has(norm(textos[b - 1]))) k += 400;
     if (b - a === 1 && FRACAS.has(norm(textos[a]))) k += 600;
+    // bloco que pisca (menos de `minimo` na tela) não dá para ler: "MAS" por 0,11 s
+    if (dura(a, b) < minimo) k += 3000 * (minimo - dura(a, b));
+    k += 800 * respiro(a, b);
     return k + (maxChars - c) ** 2 * 0.3;
   };
   const melhor: number[] = Array(n + 1).fill(Infinity);
@@ -112,7 +127,7 @@ export function blocosA(
   palavras: Palavra[],
   emB: Set<number>,
   mudas: Set<number> = new Set(),
-  opc = {maxChars: 20, maxPalavras: 5, pausa: 0.3, minimo: 0.3, cauda: 0.22},
+  opc = {maxChars: 16, maxPalavras: 4, pausa: 0.3, minimo: 0.3, cauda: 0.22},
 ): BlocoA[] {
   const fora = (i: number) => emB.has(i) || mudas.has(i);
   // 1) segmentos: corridas de palavras A, quebradas em pontuação, pausa ou colagem
@@ -137,7 +152,9 @@ export function blocosA(
   if (atual.length) segmentos.push(atual);
   // 2) cada segmento vira blocos equilibrados
   const grupos: number[][] = segmentos.flatMap((seg) =>
-    particionar(seg.map((i) => palavras[i].texto), opc.maxChars, opc.maxPalavras).map((g) => g.map((k) => seg[k])),
+    particionar(seg.map((i) => palavras[i].texto), opc.maxChars, opc.maxPalavras,
+      seg.map((i) => palavras[i].inicio), opc.minimo, seg.map((i) => palavras[i].fim))
+      .map((g) => g.map((k) => seg[k])),
   );
 
   const blocos: BlocoA[] = grupos.map((g) => ({

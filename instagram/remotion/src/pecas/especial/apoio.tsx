@@ -10,6 +10,8 @@ import {semente, sorteio} from '../../colagem/semente';
 
 export const FPS = 30;
 export const fq = (s: number) => Math.round(s * FPS);
+/** Quadros que a voz leva para dizer uma faixa — o `dur` de um Marcador que escreve junto com ela. */
+export const fala = (f: {inicio: number; fim: number}) => fq(f.fim - f.inicio) + 2;
 
 export const Fundo: React.FC<{cor: string; textura?: 'kraft' | 'nenhuma'; forca?: number}> = ({cor, textura = 'kraft', forca = 0.5}) => (
   <AbsoluteFill style={{background: cor}}>
