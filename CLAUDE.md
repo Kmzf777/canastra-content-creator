@@ -88,6 +88,7 @@ A verdade operacional está nos documentos, não no código:
 | `docs/custos-geracao.md` | Preços confirmados dos dois provedores |
 | `Direcao-Criativa.md` | Posicionamento de marca e os 4 pilares de conteúdo |
 | `mercadolivre/LEIA-ME.md` | **Mercado Livre.** Resumo de sessão, estado da conta, o que foi corrigido e o que segue sem verificação. **Leia antes de mexer no ML** |
+| `marca/LEIA-ME.md` | **Logo oficial** em preto e em branco, fundo transparente, 3508×2481, idêntica à do site. Entra como pixel, nunca redesenhada |
 
 ### Skills de conteúdo (`.claude/skills/`)
 
@@ -101,7 +102,7 @@ referência, prompt, Claude in Chrome no ChatGPT, conferência ampliada, registr
 | `canastra-cena` | lavoura, mesa, torrefação, UGC — realismo e procedência da referência |
 | `canastra-mercadolivre` | mexer na Central do ML pelo navegador — o que grava, o que falha em silêncio |
 | `canastra-estatico` | post estático de feed — o catálogo declarado e a escada de correção do rótulo |
-| `canastra-carrossel` | carrossel de feed — os 10 tipos de slide, o ritmo e os três portões |
+| `canastra-carrossel` | carrossel de feed — os 10 tipos de slide, o ritmo, os três portões e o **estilo aprovado "Céu a pino"** (Claude Design + `scripts/dc_render.py`) |
 | `canastra-direcao` | direção de foto — que chão, que luz, que prop, que paleta. Os looks nomeados |
 
 A regra que mais se perde, e que um agente de teste furou neste repositório:
@@ -116,7 +117,7 @@ por assunto. Ver `base-curada/LEIA-ME.md`.
 | Camada | Referência de imagem | Style DNA | Recorte |
 |---|:---:|:---:|:---:|
 | `01-real-verificada` (38) — EXIF de câmera **e** GPS | sim | sim | sim |
-| `02-real-nao-verificada` (6) — sem prova de origem | não | não | não |
+| `02-real-nao-verificada` (6) — sem EXIF; **confirmadas próprias pelo cliente em 06/10/2026**, ainda não movidas para `01` | sim | não | sim |
 | `03-mood-terceiros` (16) — scrapes de Pinterest | **nunca** | só descritor textual | **nunca** |
 | `04-quarentena` (6) — sintéticas e baixa resolução | **nunca** | **nunca** | **nunca** |
 
@@ -758,3 +759,45 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     composição que nenhum deles vê — a faixa cobrindo a base da embalagem e o
     `1.250 m` quebrando em duas linhas. Por isso `render.miniaturas` existe e por isso
     a mensagem de sucesso da CLI termina em *"olhe o `_feed` antes de publicar"*.
+48. **A embalagem saiu gigante na lavoura, e o cliente viu antes de mim** → em
+    07/10/2026, na capa do carrossel de história, o prompt pedia *"camera at knee height,
+    level"* e, no mesmo parágrafo, o topo do pacote acima da linha das fileiras de café.
+    As duas coisas não cabem no mesmo mundo: **a linha do horizonte fica na altura da
+    câmera**, e um objeto mais baixo que a câmera fica inteiro abaixo dela. Para o topo
+    de um pacote de ~23 cm passar das fileiras com a lente a ~50 cm do chão, o pacote
+    precisa ter mais de meio metro, e foi o que o modelo desenhou: um saco de ~1 m no
+    meio do cafezal. O rótulo estava perfeito; a escala denunciava → **ao ditar
+    enquadramento, faça a conta da altura da câmera antes de enviar.** Pacote acima do
+    horizonte exige celular apoiado no chão (lente a poucos centímetros); câmera alta
+    exige pacote abaixo do horizonte. E ponha uma **régua de escala** no quadro, com o
+    tamanho escrito: uma folha de café caída (~12 cm) ao lado de um pacote de 23 cm. O
+    modelo obedece à composição pedida e não tem noção de tamanho de produto, então a
+    proporção que você não escreveu ele resolve aumentando o produto.
+49. **O remove.bg não serviu para recortar os assets do motion, e o recorte certo era
+    local** → em 07/10/2026, na peça 06, a página de upload só cria o `input[type=file]`
+    no clique, e o clique abre o seletor nativo do Windows, que o Claude in Chrome não
+    opera. Além disso o plano gratuito entrega prévia de baixa resolução, e o próprio site
+    avisa que sai do ar em 01/12/2026 → **para asset de colagem, peça a folha ao ChatGPT
+    já sobre branco liso (#FFFFFF), objetos afastados**, e recorte local:
+    `scripts/colagem_assets.py` (limiar de distância ao branco + componente conexo,
+    resolução cheia). Dois cuidados medidos: objeto branco sobre branco (o pires) perde
+    metade da borda no limiar e se resolve com casco convexo; sombra suave entra no
+    recorte com limiar baixo e vira mancha de retícula (cerejas: limiar 22 → 55).
+50. **Download do ChatGPT sem depender do nome do arquivo** → a lição 35 trocou o glob por
+    trava de tempo; nesta sessão nem isso foi preciso: `fetch(img.src)` no blob da imagem
+    gerada (`img[alt*="gerada"]`, 1254×1254, PNG cheio) e um `<a download="nome-escolhido.png">`
+    clicado por JS gravam em Downloads com **o nome que você deu**. Nenhum padrão de nome
+    para adivinhar, e cinco folhas baixaram em paralelo sem trocar uma pela outra. E o
+    envio: o clique por JS no botão Enviar **não envia** numa aba em segundo plano, e o
+    clique por `ref` estourou 45 s; clique por **coordenada lida no screenshot** enviou
+    na primeira (a lição 40 de novo, agora no ChatGPT).
+51. **No Grok Imagine, o "mais recente de Downloads" teria salvo a imagem de outra sessão**
+    → em 07/10/2026, cinco segundos antes de eu baixar a primeira imagem do Grok, outra
+    sessão gravou `motion06-folha4-cerejas.png` na mesma pasta. O Grok baixa em **JPG** com
+    o nome `grok-image-<id do post>.jpg`, e o `_pega_download.py` procura o PNG mais
+    recente: ele teria copiado a folha do motion como se fosse o meu slide, sem erro →
+    **com duas sessões ativas, "o arquivo mais novo" não identifica nada.** Selecione pelo
+    identificador que o próprio fornecedor põe no nome (o id do post está na URL) ou dê
+    você o nome (lição 50). Cuidado extra do Grok: o id da URL **muda** quando a imagem
+    termina de gerar (`8c5d2d0e…` virou `63212096…`); releia `location.pathname` na hora
+    de baixar. Mecânica completa na `canastra-conteudo`.

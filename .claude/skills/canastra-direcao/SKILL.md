@@ -1,6 +1,6 @@
 ---
 name: canastra-direcao
-description: Use when deciding how a Café Canastra photo should LOOK — que chão, que luz, que empilhamento, que props, que paleta — for a scene, packshot, carousel slide or ad. Covers the named looks (Terra, Empilhado, Mesa de Minas, Palco escuro, Didático branco) and the rules that keep art direction from breaking realism or borrowing someone else's brand.
+description: Use when deciding how a Café Canastra photo should LOOK — que chão, que luz, que empilhamento, que props, que paleta — for a scene, packshot, carousel slide or ad. Covers the named looks (Céu a pino, Terra, Empilhado, Mesa de Minas, Palco escuro, Didático branco) and the rules that keep art direction from breaking realism or borrowing someone else's brand — including when a product came out looking giant or out of scale.
 ---
 
 # Direção de foto — o eixo da cenografia
@@ -39,6 +39,7 @@ O nosso motor já governa bem o eixo da óptica. Ninguém governava o da cenogra
 
 | Look | O quadro | Estado |
 |---|---|---|
+| **Céu a pino** | assunto em pé na terra vermelha, fotografado com o celular **no chão**: horizonte baixo, metade de cima só céu de meio-dia, folha caída como régua de escala | **aprovado pelo cliente**, 07/10/2026: capa e slide 2 do carrossel de história. É o padrão de carrossel |
 | **Terra** | pacote sobre a terra vermelha, sol a pino, sombra dura e curta, céu azul com cumulus entrando no alto | geração — a lavoura existe, pacote na lavoura não |
 | **Empilhado** | os três SKUs repetidos como arquitetura, enchendo o quadro | **pronto** — 96 packshots aprovados + composição |
 | **Bancada** | cozinha de verdade, granito, azulejo, luz lateral dura de manhã, sombra recortada | **validado** — as peças de 05/10 e o deck de cápsulas |
@@ -53,6 +54,23 @@ O nosso motor já governa bem o eixo da óptica. Ninguém governava o da cenogra
   **Não é golden hour**: as 26 fotos de Medeiros foram capturadas entre 10h e 11h, e
   o acervo não tem outra luz;
 - o contraste dos três materiais da linha: **preto mate, kraft, vermelho metalizado**.
+
+### Céu a pino: a geometria que faz o look
+
+O look é o **Terra** resolvido para receber tipografia: o céu de meio-dia vira a
+página do slide. Três decisões o sustentam, e a primeira já custou uma rodada:
+
+- **O horizonte fica na altura da câmera.** Para o assunto subir contra o céu, a
+  lente vai **no chão**, a ~8 cm. Com a câmera "na altura do joelho" e o pacote
+  passando das fileiras, o modelo desenhou um saco de ~1 m, e o cliente viu antes de
+  nós (lição 48).
+- **Régua de escala com tamanho escrito.** Uma folha de café caída (~12 cm) ao lado
+  de um pacote de 23 cm, e as árvores (2 m) a 20–30 m. Sem números, o modelo resolve
+  a proporção aumentando o produto.
+- **Céu reservado onde o texto vai.** Assunto à direita; a metade de cima livre, e o
+  canto superior esquerdo sem árvore, poste, fio ou pássaro.
+
+Os blocos de prompt prontos estão em `canastra-carrossel/ceu-a-pino.md` §1.
 
 ### Palco escuro é o polo oposto, e isso é declarado
 
@@ -120,3 +138,5 @@ porque Pinterest não vira pixel.
 - Você está aplicando o alvo de celular num slide de **palco escuro**, ou o inverso.
   São slots diferentes e o alvo de cada um é diferente.
 - A direção de arte pediu profundidade de campo rasa. **A óptica ganha.**
+- Você pediu o produto passando do horizonte **sem** pôr a câmera no chão, ou sem
+  uma régua de escala com tamanho escrito.
