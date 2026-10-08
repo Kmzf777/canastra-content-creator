@@ -159,7 +159,9 @@ export const BLOCOS_A = blocosA(PALAVRAS, EM_B, MUDAS);
 export const CENA_INICIO = [0, S2.calma.inicio, S3.especial.inicio, S4.primeira.inicio, S5.comparar.inicio,
   // a cena 8 entra 0,3 s depois do "Por isso" para o "NO PÉ." respirar antes do chicote
   S6.passou.inicio, S7.aqui.inicio, S8.porIsso.inicio + 0.3, S9.olha.inicio];
-export const FIM = 79.0;
+/** Fim da peça (s): a última palavra + 0,5 s para o fecho respirar, arredondado para cima
+ *  ao décimo. Derivado, não digitado — uma peça nova copia este arquivo. */
+export const FIM = Math.ceil((PALAVRAS[PALAVRAS.length - 1].fim + 0.5) * 10) / 10;
 
 /**
  * Trocas DENTRO de uma cena (s). A cena muda de fase e a raiz dá o chicote no mesmo

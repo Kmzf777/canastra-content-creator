@@ -821,10 +821,11 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     (19,58 s, 0,02 s antes da pausa) foi puxado para depois dela (19,85 s). *(O texto
     continua vindo do roteiro; o TEMPO passou a vir da fusão whisper + CTC — lição 56.)*
 54. **A pílula quebrou frase no artigo: "POR ISSO A / GENTE SÓ TORRA", "FIM DESSE / VÍDEO"**
-    → cortar a legenda em "3 palavras" é contar, não ler → orçamento por caracteres (20) e
-    palavras (5), partição equilibrada por programação dinâmica e **custo alto para bloco que
+    → cortar a legenda em "3 palavras" é contar, não ler → orçamento por caracteres (16) e
+    palavras (4), partição equilibrada por programação dinâmica e **custo alto para bloco que
     termina em palavra fraca** — artigo, preposição e também determinante/possessivo
-    (`desse`, `seu`, `nosso`). Legenda é leitura; o portão é `tests/especial-roteiro.test.ts`.
+    (`desse`, `seu`, `nosso`) —, para bloco-relâmpago (< 0,3 s na tela) e para bloco que
+    atravessa respiro. Legenda é leitura; o portão é `tests/especial-roteiro.test.ts`.
 55. **Texto de colagem cortado na borda só em alguns quadros** → a câmera 2.5D anda até
     ~120 px e amplia até ~1,16×, então "PROVA 1" em x=250 saía do quadro no meio da cena e o
     still do começo não mostrava → com câmera em movimento, **a área segura da tipografia é
@@ -878,6 +879,7 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     `loudnorm` limitou para −1 dBTP em PCM e o encode AAC, depois do limitador, devolveu o
     pico a **−0,62 dBTP** no MP4 — fora da folga de 0,3 dB do `normalizar-audio.mjs` → com
     efeito percussivo na mixagem, **peça ao loudnorm um teto com margem para o AAC**: duas
-    passadas com `TP=-1.6` deram −14,20 LUFS e −1,17 dBTP medidos no MP4 escrito. O módulo
-    `src/motor/audio/normalizar.ts` ainda pede o teto exato; a correção certa é separar o
-    teto PEDIDO do teto VERIFICADO.
+    passadas com `TP=-1.6` deram −14,20 LUFS e −1,17 dBTP medidos no MP4 escrito. Corrigido
+    no motor: `src/motor/audio/normalizar.ts` separa o teto PEDIDO (0,6 dB abaixo) do teto
+    VERIFICADO e, se o MP4 ainda passar, refaz pedindo mais baixo pelo excesso medido (um
+    teste com rajadas de ruído a 0 dBFS precisou de 2,3 dB e passou na segunda tentativa).

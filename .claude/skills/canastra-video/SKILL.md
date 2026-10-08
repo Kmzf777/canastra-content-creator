@@ -1,6 +1,6 @@
 ---
 name: canastra-video
-description: Use when producing or auditing any Café Canastra moving piece — reel, vídeo de Instagram, Shorts, TikTok, motion, criativo animado, legenda queimada, kinetic type, versão 1:1 ou 4:5 de um vertical — or when writing/compiling a briefing.json for the video engine in instagram/remotion, rendering a peça, running the conferir.mjs portões, normalizing audio, or debugging why a render came out torto, mudo or with the wrong duração.
+description: Use when producing or auditing any Café Canastra moving piece — reel, vídeo de Instagram, Shorts, TikTok, motion, motion de colagem narrado (estilo @_victorzk), criativo animado, legenda queimada, kinetic type, versão 1:1 ou 4:5 de um vertical — or when writing/compiling a briefing.json for the video engine in instagram/remotion, writing copy or an ElevenLabs narration for a reel, syncing captions and collage to a narration, rendering a peça, running the conferir.mjs portões, normalizing audio, writing the Reel's descrição/legenda do post, or debugging why a render came out torto, mudo, fora de sincronia or with the wrong duração.
 ---
 
 # Motor de vídeo — Café Canastra
@@ -610,9 +610,28 @@ tem a memória desta.
 
 ## Série de colagem (estilo @_victorzk) — motor à parte
 
-Peça de colagem NÃO passa pelo briefing: o esquema não tem vocabulário de colagem. O motor
-é `src/colagem/` (câmera 2.5D, legenda A/B, Dymo/serifa/marcador/recorte, grafismos) e a
-peça de referência é `src/pecas/especial/` (composição `EspecialColagem`). Leia
-`docs/motion-colagem.md` antes: lá estão as medidas das referências, o fluxo (narração →
-`scripts/alinhar_narracao.py` → `roteiro.ts` → biblioteca `instagram/assets/colagem` →
-`scripts/contato.mjs`) e a licença de técnica da série (`proibicoes.md`, fim do arquivo).
+Motion de colagem narrado NÃO passa pelo briefing nem pelo `conferir.mjs` (os dois
+dependem de `plano.json`). **REQUIRED: leia `colagem.md`, nesta pasta, antes de escrever
+copy, gerar narração, alinhar, montar cena, conferir ou escrever a descrição de uma peça
+da série.** É o processo da peça 07 (`src/pecas/especial/`, aprovada pelo cliente como
+impecável em 07/10/2026), na ordem em que se faz. As medidas das referências estão em
+`docs/motion-colagem.md`.
+
+O que não se negocia — cada linha já custou uma rodada:
+
+| Regra | Lição |
+|---|---|
+| Tempo das palavras = fusão whisper + CTC (`scripts/alinhar_forcado.py`), conferida contra o áudio (`scripts/conferir_alinhamento.py`) | 56 |
+| Nenhum segundo digitado em cena, som ou trilha: `em()`, `depois()`, `TROCA`, `CENA_INICIO` | 56 |
+| Marcador escreve no tempo da fala: `dur={fala(faixa)}` | 57 |
+| Chicote com as duas imagens coladas; conferir com still DENTRO da janela | 58 |
+| Medir o alfa do recorte antes de pôr texto perto da embalagem; nunca sobre logo ou selo | 59 |
+| Variantes de boil cortadas pela união dos bboxes | 60 |
+| Render abortado: matar a árvore pelo PID achado na linha de comando | 61 |
+| Áudio: `normalizar-audio.mjs` mede o MP4 escrito e corrige a margem de pico do AAC sozinho | 62 |
+
+Ferramentas da série: `scripts/alinhar_narracao.py` · `scripts/alinhar_forcado.py` ·
+`scripts/conferir_alinhamento.py` · `scripts/biblioteca_colagem.py` ·
+`scripts/colagem_assets*.py` · `instagram/remotion/scripts/contato.mjs` ·
+`scripts/varrer_movimento.py` · `scripts/folha_do_video.py` ·
+`instagram/remotion/scripts/normalizar-audio.mjs`.

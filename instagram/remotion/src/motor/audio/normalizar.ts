@@ -421,6 +421,9 @@ export type Relatorio = {
   /** true quando nada foi reencodado porque ja estava no alvo */
   pulou: boolean;
   audio: Audio;
+  /** quanto abaixo do teto o loudnorm mirou, em dB, e em quantas tentativas */
+  margemPicoDb?: number;
+  tentativas?: number;
 };
 
 /**
@@ -451,6 +454,25 @@ export const TOLERANCIA_LU = 0.5;
  * efeitos sem deixar passar um arquivo que de fato estoure.
  */
 const FOLGA_PICO_DB = 0.3;
+
+/**
+ * Margem de pico para o AAC, em dB: o teto PEDIDO ao loudnorm fica isto abaixo do
+ * teto VERIFICADO.
+ *
+ * Medido na peça 07 (07/10/2026): a mixagem saiu do Remotion com pico real de
+ * +0,05 dBTP (carimbo + thump + pops empilhados); pedindo -1 dBTP o limitador
+ * entregou -1 em PCM e o encode AAC devolveu o pico a -0,62 dBTP no MP4 — 0,08 dB
+ * além da folga, e o arquivo foi recusado. Pedindo -1,6 o MP4 mediu -1,17 dBTP e
+ * -14,20 LUFS. A folga acima continua sendo a do teto verificado.
+ *
+ * É só o PONTO DE PARTIDA: quanto o AAC sobe o pico depende do conteúdo (rajada de
+ * ruído de 6 ms a 0 dBFS subiu 2,2 dB, medido). Se o MP4 escrito passar do teto, a
+ * próxima tentativa pede o teto mais baixo pelo excesso MEDIDO — ver `normalizar`.
+ */
+const MARGEM_AAC_DB = 0.6;
+
+/** Tentativas de encode com margem corrigida pelo excesso de pico medido. */
+const MAX_TENTATIVAS_PICO = 3;
 
 /**
  * Teto de iteracoes.
@@ -565,7 +587,7 @@ export async function normalizar(o: {
 
     // --- audio para PCM, uma vez. 24 bits: a iteracao aplica ganho varias
     //     vezes e 16 bits acumularia ruido de quantizacao a toa.
-    let wav = temp('a0.wav');
+    const wav = temp('a0.wav');
     await ffmpeg(
       [
         '-hide_banner', '-nostats', '-y',
@@ -580,95 +602,115 @@ export async function normalizar(o: {
       `extracao do audio de ${path.basename(entrada)}`,
     );
 
-    // --- itera em PCM ate cair na tolerancia
-    const passos: Passo[] = [];
-    let medida = await medir(wav, o.alvo);
-    let tipo = 'nenhum';
+    // --- itera em PCM ate cair na tolerancia, pedindo ao loudnorm um teto
+    //     `margem` abaixo do verificado: o AAC sobe o pico depois do limitador.
+    const iterarEmPcm = async (margem: number, tentativa: number) => {
+      const pedido: Alvo = {...o.alvo, picoDbtp: o.alvo.picoDbtp - margem};
+      const passos: Passo[] = [];
+      let atual = wav;
+      let medida = await medir(atual, pedido);
+      let tipo = 'nenhum';
 
-    for (let n = 1; n <= maxIteracoes; n++) {
-      if (dentroDoAlvo(medida, o.alvo, tolerancia)) break;
+      for (let n = 1; n <= maxIteracoes; n++) {
+        if (dentroDoAlvo(medida, pedido, tolerancia)) break;
 
-      const proximo = temp(`a${n}.wav`);
-      const stderr = await ffmpeg(
+        const proximo = temp(`t${tentativa}a${n}.wav`);
+        const stderr = await ffmpeg(
+          [
+            '-hide_banner', '-nostats', '-y',
+            '-i', atual,
+            '-af', filtroDeCorrecao(medida, pedido),
+            '-c:a', 'pcm_s24le',
+            '-ar', String(audio.taxa),
+            '-f', 'wav',
+            proximo,
+          ],
+          `correcao de loudness, tentativa ${tentativa}, iteracao ${n}`,
+        );
+        tipo = jsonDoStderr(stderr, `iteracao ${n}`).normalization_type;
+
+        const depoisDoPasso = await medir(proximo, pedido);
+        passos.push({iteracao: n, antes: medida, depois: depoisDoPasso, tipo});
+
+        // Nao adianta insistir se parou de melhorar: isso e o limitador tendo
+        // chegado ao teto de pico, e mais uma volta so reencoda por nada.
+        const melhorou =
+          Math.abs(depoisDoPasso.i - o.alvo.lufs) <
+          Math.abs(medida.i - o.alvo.lufs) - 0.05;
+
+        atual = proximo;
+        medida = depoisDoPasso;
+        if (!melhorou) break;
+      }
+      return {pcm: atual, passos, tipo};
+    };
+
+    // --- UM encode de AAC por tentativa, com o video copiado bit a bit. Se o MP4
+    //     escrito passar do teto de pico, a margem cresce pelo excesso MEDIDO e a
+    //     tentativa seguinte refaz a partir do PCM original.
+    let margem = MARGEM_AAC_DB;
+    const excessos: string[] = [];
+    for (let tentativa = 1; ; tentativa++) {
+      const {pcm, passos, tipo} = await iterarEmPcm(margem, tentativa);
+      const mp4 = temp(`saida${tentativa}.mp4`);
+      await ffmpeg(
         [
           '-hide_banner', '-nostats', '-y',
-          '-i', wav,
-          '-af', filtroDeCorrecao(medida, o.alvo),
-          '-c:a', 'pcm_s24le',
-          '-ar', String(audio.taxa),
-          '-f', 'wav',
-          proximo,
+          '-i', entrada,
+          '-i', pcm,
+          '-map', '0:v:0',
+          '-map', '1:a:0',
+          // Nenhum pixel muda: o portao de preservacao e o de determinismo ficam
+          // valendo exatamente como estavam.
+          '-c:v', 'copy',
+          '-c:a', 'aac', '-b:a', bitrate,
+          '-movflags', '+faststart',
+          // O audio corrigido tem a mesma duracao do original, mas se algum dia
+          // divergir por um quadro e o video que manda.
+          '-shortest',
+          // mesmo motivo do '-f wav' acima: a extensao real e .tmp.
+          '-f', 'mp4',
+          mp4,
         ],
-        `correcao de loudness, iteracao ${n}`,
+        `remux de ${path.basename(entrada)} com o audio normalizado`,
       );
-      tipo = jsonDoStderr(stderr, `iteracao ${n}`).normalization_type;
 
-      const depoisDoPasso = await medir(proximo, o.alvo);
-      passos.push({iteracao: n, antes: medida, depois: depoisDoPasso, tipo});
+      // --- a prova: medir o MP4 escrito, DEPOIS do AAC. O que foi medido no WAV
+      //     nao vale como garantia do que saiu do encoder.
+      const depois = await medir(mp4, o.alvo);
+      const erro = Math.abs(depois.i - o.alvo.lufs);
+      if (erro > tolerancia) {
+        throw new Error(
+          `a normalizacao rodou e errou o alvo: pedi ${o.alvo.lufs} LUFS e o ` +
+            `MP4 escrito mede ${depois.i} LUFS (${erro.toFixed(2)} LU de erro, ` +
+            `tolerancia ${tolerancia} LU) depois de ${passos.length} ` +
+            `iteracao(oes). Modo do loudnorm: ${tipo}.`,
+        );
+      }
+      if (depois.tp > o.alvo.picoDbtp + FOLGA_PICO_DB) {
+        excessos.push(`margem ${margem.toFixed(2)} dB -> ${depois.tp} dBTP`);
+        if (tentativa >= MAX_TENTATIVAS_PICO) {
+          throw new Error(
+            `a normalizacao passou do teto de pico: pedi ${o.alvo.picoDbtp} dBTP ` +
+              `e o MP4 escrito mede ${depois.tp} dBTP (folga permitida ` +
+              `${FOLGA_PICO_DB} dB) depois de ${tentativa} tentativas ` +
+              `(${excessos.join('; ')}).`,
+          );
+        }
+        margem += depois.tp - o.alvo.picoDbtp + 0.15;
+        continue;
+      }
 
-      // Nao adianta insistir se parou de melhorar: isso e o limitador tendo
-      // chegado ao teto de pico, e mais uma volta so reencoda por nada.
-      const melhorou =
-        Math.abs(depoisDoPasso.i - o.alvo.lufs) <
-        Math.abs(medida.i - o.alvo.lufs) - 0.05;
+      fs.rmSync(saida, {force: true});
+      fs.renameSync(mp4, saida);
 
-      wav = proximo;
-      medida = depoisDoPasso;
-      if (!melhorou) break;
+      return {
+        entrada, saida, alvo: o.alvo, antes, depois,
+        ganhoLu: Number((depois.i - antes.i).toFixed(2)),
+        passos, tipo, pulou: false, audio,
+        margemPicoDb: Number(margem.toFixed(2)), tentativas: tentativa,
+      };
     }
-
-    // --- UM encode de AAC, com o video copiado bit a bit
-    const mp4 = temp('saida.mp4');
-    await ffmpeg(
-      [
-        '-hide_banner', '-nostats', '-y',
-        '-i', entrada,
-        '-i', wav,
-        '-map', '0:v:0',
-        '-map', '1:a:0',
-        // Nenhum pixel muda: o portao de preservacao e o de determinismo ficam
-        // valendo exatamente como estavam.
-        '-c:v', 'copy',
-        '-c:a', 'aac', '-b:a', bitrate,
-        '-movflags', '+faststart',
-        // O audio corrigido tem a mesma duracao do original, mas se algum dia
-        // divergir por um quadro e o video que manda.
-        '-shortest',
-        // mesmo motivo do '-f wav' acima: a extensao real e .tmp.
-        '-f', 'mp4',
-        mp4,
-      ],
-      `remux de ${path.basename(entrada)} com o audio normalizado`,
-    );
-
-    // --- a prova: medir o MP4 escrito, DEPOIS do AAC. O que foi medido no WAV
-    //     nao vale como garantia do que saiu do encoder.
-    const depois = await medir(mp4, o.alvo);
-    const erro = Math.abs(depois.i - o.alvo.lufs);
-    if (erro > tolerancia) {
-      throw new Error(
-        `a normalizacao rodou e errou o alvo: pedi ${o.alvo.lufs} LUFS e o ` +
-          `MP4 escrito mede ${depois.i} LUFS (${erro.toFixed(2)} LU de erro, ` +
-          `tolerancia ${tolerancia} LU) depois de ${passos.length} ` +
-          `iteracao(oes). Modo do loudnorm: ${tipo}.`,
-      );
-    }
-    if (depois.tp > o.alvo.picoDbtp + FOLGA_PICO_DB) {
-      throw new Error(
-        `a normalizacao passou do teto de pico: pedi ${o.alvo.picoDbtp} dBTP ` +
-          `e o MP4 escrito mede ${depois.tp} dBTP (folga permitida ` +
-          `${FOLGA_PICO_DB} dB).`,
-      );
-    }
-
-    fs.rmSync(saida, {force: true});
-    fs.renameSync(mp4, saida);
-
-    return {
-      entrada, saida, alvo: o.alvo, antes, depois,
-      ganhoLu: Number((depois.i - antes.i).toFixed(2)),
-      passos, tipo, pulou: false, audio,
-    };
   } finally {
     // Nunca deixar temporario para tras, nem quando deu errado no meio.
     for (const t of temporarios) fs.rmSync(t, {force: true});

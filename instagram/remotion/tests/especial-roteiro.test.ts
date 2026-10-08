@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest';
-import {BLOCOS_A, CENA_INICIO, EM_B, MUDAS, PALAVRAS} from '../src/pecas/especial/roteiro';
+import {BLOCOS_A, CENA_INICIO, EM_B, FIM, MUDAS, PALAVRAS} from '../src/pecas/especial/roteiro';
 
 describe('peça 07 — roteiro e legendas', () => {
   it('nenhuma palavra em A e B ao mesmo tempo', () => {
@@ -28,7 +28,9 @@ describe('peça 07 — roteiro e legendas', () => {
 
   it('as cenas começam em ordem e dentro da narração', () => {
     for (let k = 1; k < CENA_INICIO.length; k++) expect(CENA_INICIO[k]).toBeGreaterThan(CENA_INICIO[k - 1]);
-    expect(CENA_INICIO[CENA_INICIO.length - 1]).toBeLessThan(79);
+    expect(CENA_INICIO[CENA_INICIO.length - 1]).toBeLessThan(FIM);
+    // a 07 foi entregue com 79,0 s: o FIM derivado tem que reproduzir isso
+    expect(FIM).toBe(79);
   });
 
   it('imprime a pílula para revisão', () => {

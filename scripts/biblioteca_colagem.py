@@ -60,14 +60,24 @@ def salvar(itens: list[dict]) -> None:
 
 def registrar(nome: str, categoria: str, variantes: list[Path], tags: list[str], origem: str,
               bruto: str | None = None, prompt: str | None = None, dia: str | None = None,
-              nota: str = "") -> dict:
-    """Copia as variantes para a biblioteca e grava/atualiza a entrada no índice."""
+              nota: str = "", substituir: bool = False) -> dict:
+    """Copia as variantes para a biblioteca e grava a entrada no índice.
+
+    O id é `<dia>_<nome>`: registrar de novo um id que já existe SOBRESCREVE os PNG que
+    outros projetos usam (reusar `xicara` no mesmo dia trocaria o pixel da peça 07).
+    Por isso recusa, a menos que `substituir=True` — só para a MESMA peça refeita.
+    """
     if categoria not in CATEGORIAS:
         raise SystemExit(f"categoria '{categoria}' não existe: {sorted(CATEGORIAS)}")
     if origem not in ORIGENS:
         raise SystemExit(f"origem '{origem}' não existe: {sorted(ORIGENS)}")
     dia = dia or date.today().isoformat()
     ident = f"{dia}_{nome}"
+    existente = next((i for i in carregar() if i["id"] == ident), None)
+    if existente and not substituir:
+        raise SystemExit(f"'{ident}' já existe na biblioteca (usado em: {', '.join(existente['usado_em']) or 'nenhum'}). "
+                         "Registrar de novo sobrescreveria os PNG. Use outro nome, ou substituir=True "
+                         "se é a mesma peça refeita.")
     destino = RAIZ / "pecas" / categoria
     destino.mkdir(parents=True, exist_ok=True)
     arquivos = []
@@ -107,6 +117,16 @@ def publicar(projeto: str, ids: list[str]) -> None:
     for ident in ids:
         if ident not in por_id:
             raise SystemExit(f"id '{ident}' não está no índice")
+    # O projeto lê a peça pelo NOME (`colagem/<nome>-bN.png`), não pelo id: duas peças
+    # de datas diferentes com o mesmo nome se sobrescreveriam em silêncio.
+    pedidos = [por_id[i] for i in ids]
+    for it in pedidos:
+        rivais = [o["id"] for o in itens if o["nome"] == it["nome"] and o["id"] != it["id"]
+                  and (projeto in o["usado_em"] or o in pedidos)]
+        if rivais:
+            raise SystemExit(f"'{it['id']}' e {rivais} têm o mesmo nome '{it['nome']}' neste projeto: "
+                             "um sobrescreveria o outro. Registre com nome distinto.")
+    for ident in ids:
         it = por_id[ident]
         for k, arq in enumerate(it["arquivos"]):
             alvo = pasta / (f"{it['nome']}-b{k}.png" if len(it["arquivos"]) > 1 else f"{it['nome']}.png")

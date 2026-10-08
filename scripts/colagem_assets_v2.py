@@ -200,7 +200,8 @@ def main() -> None:
         B.CATEGORIAS["papelaria"] = "tachinha, clipe, post-it, etiqueta"
     ids = []
     for nome, cat, var, tags, origem, bruto, nota in reg:
-        e = B.registrar(nome, cat, var, tags, origem, bruto=bruto, dia=DIA, nota=nota)
+        # este script é o dono destas peças: rodar de novo refaz as MESMAS, então substitui
+        e = B.registrar(nome, cat, var, tags, origem, bruto=bruto, dia=DIA, nota=nota, substituir=True)
         ids.append(e["id"])
     B.publicar(PROJ, ids)
     # peças da v1 que a 07 reaproveita

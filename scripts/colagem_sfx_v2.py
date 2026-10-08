@@ -2,21 +2,27 @@
 
 As referências do @_victorzk põem um som em CADA entrada (papel, carimbo, caneta,
 pop) e trocam o clima da trilha na virada. Aqui tudo é sintetizado com semente fixa
-(rodar duas vezes dá os mesmos bytes). A trilha tem as seções nos tempos MEDIDOS da
-narração (`projetos/07-.../palavras.json`):
+(rodar duas vezes dá os mesmos bytes). As seções da trilha começam em FRASES da
+narração, lidas de `<PROJ>/palavras.json` — nenhum segundo digitado (lição 56):
 
-    0,00–5,76   tensão: zumbido grave + batimento     ("Até um por cento…")
-    5,76–49,46  groove lo-fi 88 BPM                   ("Calma!" → "raríssimo")
-    49,46–62,82 respiro: sem bateria, abafado          ("o que quase ninguém conta")
-    62,82–77,0  groove de volta                        (a fazenda)
-    77,0–79,0   fecho
+    início → "Calma"              tensão: zumbido grave + batimento   ("Até um por cento…")
+    "Calma" → "E aqui vem"        groove lo-fi 88 BPM
+    "E aqui vem" → "Por isso"     respiro: sem bateria, abafado       ("o que quase ninguém conta")
+    "Por isso" → "Salva esse"     groove de volta                     (a fazenda)
+    "Salva esse" → FIM            fecho; FIM = última palavra + 0,5 s, a mesma regra do roteiro.ts
+
+Peça nova: copie, troque `PROJ` e as frases em `trilha()`.
 
     python -m uv run python scripts/colagem_sfx_v2.py
 """
 
 from __future__ import annotations
 
+import json
+import math
+import re
 import sys
+import unicodedata
 import wave
 from pathlib import Path
 
@@ -27,8 +33,24 @@ from colagem_sfx import SR, banda, ding, env, norm, pop, rasgo, slide, t, thump,
 from colagem_sfx import carimbo as carimbo_v1  # noqa: E402
 
 RNG = np.random.default_rng(20261007 + 7)
-DEST = Path("instagram/remotion/projetos/07-cafe-especial-colagem/public/sfx")
-DUR = 79.0
+PROJ = Path("instagram/remotion/projetos/07-cafe-especial-colagem")
+DEST = PROJ / "public" / "sfx"
+PALAVRAS = json.loads((PROJ / "palavras.json").read_text(encoding="utf-8"))
+DUR = math.ceil((PALAVRAS[-1]["fim"] + 0.5) * 10) / 10
+
+
+def _chave(s: str) -> str:
+    return re.sub(r"[^a-z0-9]", "", unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower())
+
+
+def inicio_de(trecho: str) -> float:
+    """Início (s) da primeira ocorrência da frase na narração. Lança se não achar."""
+    alvo = [_chave(w) for w in trecho.split()]
+    chaves = [_chave(p["texto"]) for p in PALAVRAS]
+    for i in range(len(chaves) - len(alvo) + 1):
+        if chaves[i:i + len(alvo)] == alvo:
+            return PALAVRAS[i]["inicio"]
+    raise SystemExit(f'frase "{trecho}" não está em {PROJ}/palavras.json')
 BPM = 88
 BATIDA = 60 / BPM
 
@@ -157,7 +179,8 @@ def trilha() -> np.ndarray:
     n = int(DUR * SR)
     mus = np.zeros(n)
     bat = np.zeros(n)
-    ini, resp, volta, fim = 5.76, 49.46, 62.82, 77.0
+    ini, resp, volta, fim = (inicio_de("Calma"), inicio_de("E aqui vem"), inicio_de("Por isso a gente"),
+                             inicio_de("Salva esse vídeo"))
     compasso = 4 * BATIDA
     k = 0
     tc = ini

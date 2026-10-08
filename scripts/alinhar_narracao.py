@@ -36,11 +36,39 @@ def palavras_roteiro(texto: str) -> list[str]:
     return [p for p in re.split(r"\s+", texto.replace("…", " ").strip()) if sem_acento(p)]
 
 
-NUMEROS = {  # o whisper escreve número em algarismo; o roteiro, por extenso
-    "1": "um", "5": "cinco", "80": "oitenta", "85": "oitentaecinco", "90": "noventa",
-    "350": "trezentosecinquenta", "360": "trezentosesessenta", "0": "zero",
-    "1250": "milduzentosecinquenta",
-}
+UNIDADES = ["zero", "um", "dois", "tres", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez", "onze",
+            "doze", "treze", "quatorze", "quinze", "dezesseis", "dezessete", "dezoito", "dezenove"]
+DEZENAS = ["", "", "vinte", "trinta", "quarenta", "cinquenta", "sessenta", "setenta", "oitenta", "noventa"]
+CENTENAS = ["", "cento", "duzentos", "trezentos", "quatrocentos", "quinhentos", "seiscentos", "setecentos",
+            "oitocentos", "novecentos"]
+
+
+def por_extenso(n: int) -> str:
+    """Número inteiro (0 a 999.999) por extenso, como a voz lê, sem espaço nem acento:
+    350 -> "trezentosecinquenta", 1985 -> "milnovecentoseoitentaecinco". O whisper escreve
+    o número em algarismo e o roteiro por extenso; é esta chave que casa os dois. Antes
+    era uma tabela com os números da peça 07, e número novo caía em interpolação calado."""
+    def ate_mil(k: int) -> list[str]:
+        if k < 20:
+            return [UNIDADES[k]]
+        if k < 100:
+            d, u = divmod(k, 10)
+            return [DEZENAS[d]] + (["e", UNIDADES[u]] if u else [])
+        if k == 100:
+            return ["cem"]
+        c, r = divmod(k, 100)
+        return [CENTENAS[c]] + (["e"] + ate_mil(r) if r else [])
+    if n < 1000:
+        return "".join(ate_mil(n))
+    milhar, resto = divmod(n, 1000)
+    partes = (["mil"] if milhar == 1 else ate_mil(milhar) + ["mil"])
+    if resto:
+        # "mil e cem", "mil e vinte"; mas "mil novecentos e oitenta e cinco"
+        partes += (["e"] if resto < 100 or resto % 100 == 0 else []) + ate_mil(resto)
+    return "".join(partes)
+
+
+NUMEROS = {"0": "zero"}  # exceções à regra de `por_extenso`, se a voz ler diferente
 
 
 def tokens_whisper(caminho: str) -> list[tuple[float, float, str]]:
@@ -51,7 +79,11 @@ def tokens_whisper(caminho: str) -> list[tuple[float, float, str]]:
         if not t:
             continue
         chave = sem_acento(t.replace("%", " por cento"))
-        chave = NUMEROS.get(re.sub(r"[^0-9]", "", t), chave) if re.fullmatch(r"[0-9.,%]+[.,?]?", t) else chave
+        if re.fullmatch(r"[0-9.,%]+[.,?]?", t):
+            digitos = re.sub(r"[^0-9]", "", t)
+            chave = NUMEROS.get(digitos) or (por_extenso(int(digitos)) if digitos and len(digitos) <= 6 else chave)
+            if "%" in t:
+                chave += "porcento"
         out.append((s["offsets"]["from"] / 1000, s["offsets"]["to"] / 1000, chave))
     return out
 
