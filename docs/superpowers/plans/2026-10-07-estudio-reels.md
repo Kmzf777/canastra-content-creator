@@ -26,6 +26,8 @@ estudio-reels/
   fases/08-conferencia.md, 09-publicacao.md, 10-retrospectiva.md      (Tarefa 6)
   navegador/chrome.md, instagram.md, chatgpt.md, elevenlabs.md, referencias.md, bancos-livres.md   (Tarefa 7)
   licoes.md                     (Tarefa 8)
+  copy/kishotenketsu.md, oferta.md, criativos-anuncio.md                (Tarefa 12)
+  navegador/meta-anuncios.md    (Tarefa 12)
   modelo/CONTRATO.md            (Tarefa 0) cópia desta seção
   modelo/plantar.py             (Tarefa 1)
   modelo/remotion/              (Tarefa 3)
@@ -37,7 +39,7 @@ estudio-reels/
 ```
 <repo>/.claude/skills/estudio-reels-<slug>/
   SKILL.md                 cópia do maestro com name/description da marca
-  fases/  navegador/  licoes.md
+  fases/  navegador/  copy/  licoes.md
   licoes-empresa.md        começa vazio (cabeçalho só)
   SEMENTE                  versão da semente de origem, ex.: 1.0.0
 <repo>/motion/
@@ -47,8 +49,10 @@ estudio-reels/
   concorrencia/            (fase 02)
   referencias/             (fase 06) descritores e links
   biblioteca/indice.json   biblioteca/categorias.json  biblioteca/brutos/  biblioteca/pecas/<categoria>/
-  pecas/NN-<tema>/         roteiro.txt, narracao.mp3, palavras-whisper.json, palavras.json,
-                           sons.json, public/{fonte,colagem,sfx,assets}/, saida/, legenda-post.md
+  pecas/NN-<tema>/         roteiro.txt, roteiro-tags.txt, fontes.md, narracao.mp3,
+                           palavras-whisper.json, palavras.json, sons.json,
+                           public/{fonte,colagem,sfx,assets}/, saida/,
+                           legenda-post.md (orgânico) ou anuncio.md (modo oferta)
 <repo>/.gitignore          + motion/remotion/node_modules/, motion/.venv/, motion/biblioteca/**/*.png,
                              motion/pecas/*/public/, motion/pecas/*/saida/, motion/ferramentas/whisper.cpp/
 <repo>/CLAUDE.md           + 1 seção "Reels (estudio-reels)" apontando para a skill da marca
@@ -241,7 +245,58 @@ Peça nova: copiar `src/pecas/_modelo/` → `src/pecas/<NN-tema>/`, trocar o imp
 - [ ] **Step 2:** reescrever cada universal no formato **sintoma → causa → regra**, sem nome de produto ou conta, mantendo os números medidos que provam a regra; agrupar por tema (Geração de imagem · Chrome e sites · Vídeo e Remotion · Áudio e alinhamento · Método); numerar.
 - [ ] **Step 3:** no fim, a tabela "origem" (número da lição no Canastra → número aqui) para rastreio.
 
-### Tarefa 9: Integração (orquestrador, depois das Tarefas 1–8)
+### Tarefa 12: Copy, oferta e criativo de anúncio (acrescentada depois da onda paralela)
+
+Pedido do usuário: a skill tem que ter o princípio do HardCopy para criar ofertas e bons
+criativos, como modo de conteúdo, e prender quem assiste até o fim em venda, educativo ou
+geral. Pesquisa: `docs/superpowers/specs/2026-10-07-estudio-reels-copy-pesquisa.md`. Spec:
+§2 (linha Copy), §4.1 (modos), §7.1–7.2 (travas de anúncio e de oferta).
+
+**Files (12a, agora — arquivos novos, disjuntos da onda):**
+- Create: `SEMENTE/copy/kishotenketsu.md`, `SEMENTE/copy/oferta.md`,
+  `SEMENTE/copy/criativos-anuncio.md`, `SEMENTE/navegador/meta-anuncios.md`
+
+- [ ] **kishotenketsu.md**: origem (起承轉合 → 起承転結) em 3 linhas; os 4 tempos, com o
+  *ten* como pivô que reenquadra, não necessariamente conflito; os 4 modos de §4.1 com
+  molde por duração (porcentagem e segundos de cada tempo); a variante "ketsu primeiro" do
+  anúncio; os 3 esqueletos chineses de vídeo que vende (preço · efeito · dor) e os 3 tipos
+  japoneses de anúncio (problema→solução · demonstração · oferta direta); retenção com o
+  grau de evidência de cada regra (lacuna de informação com contexto; toda promessa paga;
+  pergunta→resposta curta; Zeigarnik **não** se cita); checklist "prende até o fim"; a
+  peça 07 mapeada nos 4 tempos como exemplo marcado.
+- [ ] **oferta.md**: campos do briefing; Big Idea ×3 (ângulos distintos) e escolha no ponto
+  de parada do roteiro; promessa, mecanismo, prova (só [oficial]/[medido]), oferta
+  empilhada, bônus, garantia, urgência real, objeção principal, CTA e destino;
+  conformidade com fontes públicas conferidas na hora (CDC arts. 37 e 49; Código do CONAR;
+  Padrões de Publicidade da Meta — atributos pessoais, antes/depois, alegação de saúde e
+  dinheiro; LGPD para depoimento); nicho regulado = parar e pedir a regra do setor.
+- [ ] **criativos-anuncio.md**: formato 9:16; área segura de anúncio (14/35/6 → y
+  269–1248, x 65–1015 em 1080×1920) contra a do orgânico; abertura de 3 s (0,5 s imagem
+  de produto/dor/resultado → promessa em texto até 1,5 s → prova até 3 s), legenda
+  queimada; 3–5 ganchos sobre o mesmo corpo (corpo narrado uma vez + ganchos à parte +
+  junção por ffmpeg + alinhamento sobre a junção, uma pasta `NN-tema-gK` por variação);
+  cartão final com oferta + CTA + logo real; render 1440×2560 com a escala derivada da
+  largura (lição VID de escala); edição cinética mapeada no motor (sem respiro morto, uma
+  frase por tela, fundo por frase, figurinha na cor da palavra, quebra de padrão com foto
+  real de banco livre — nunca rosto sintetizado —, tremor, trilha + impacto); métricas
+  lidas no Gerenciador (taxa de gancho = reproduções de 3 s ÷ impressões; retenção; CTR;
+  CPA/ROAS se houver) e a tabela de diagnóstico; travas (§7.1).
+- [ ] **meta-anuncios.md**: Biblioteca de Anúncios (pública, sem login; país; busca por
+  anunciante ou termo; filtros ativo/vídeo; "veiculação iniciada em"; versões do mesmo
+  criativo; o que anotar; sinal, não prova) e Gerenciador (só leitura; onde ler as
+  colunas; nunca editar, publicar, duplicar ou gastar). Passos de tela não vistos nesta
+  sessão marcados **a validar no piloto**.
+
+**12b (orquestrador, depois que as Tarefas 1, 3, 5 e 7 voltarem):** apontar o `copy/`
+no `SKILL.md` (tabela de arquivos, modo de conteúdo, trava de anúncio), nas fases 02
+(ramo da Biblioteca de Anúncios), 03 (escolha do modo no passo 1; Big Ideas no ponto de
+parada), 04 (variações de gancho), 07 (área segura de anúncio, cartão final), 08 (stills
+de área segura, render das variações), 09 (`anuncio.md` em vez de descrição) e 10
+(métricas só leitura); `plantar.py` copia `copy/` na plantação e no `--atualizar` (com
+teste); motor com `AREA_SEGURA.organico/anuncio` lido pela pílula, com teste vitest
+(pílula inteira acima de y 1248 no modo anúncio).
+
+### Tarefa 9: Integração (orquestrador, depois das Tarefas 1–8 e 12)
 
 - [ ] **Step 1:** conferir referências cruzadas: todo comando citado nas fases existe em C4/C5 com a mesma assinatura; todo arquivo citado existe.
 - [ ] **Step 2:** rodar `python -m pytest modelo/tests modelo/ferramentas/tests -q` na semente.
@@ -264,4 +319,4 @@ Peça nova: copiar `src/pecas/_modelo/` → `src/pecas/<NN-tema>/`, trocar o imp
 
 ## Ordem de execução
 
-- Tarefa 0 (orquestrador) → **onda paralela**: Tarefas 1, 2, 3, 4, 5, 6, 7, 8 (8 agentes, arquivos disjuntos) → Tarefa 9 (orquestrador) → Tarefa 10 (agentes) → Tarefa 11 (com o usuário).
+- Tarefa 0 (orquestrador) → **onda paralela**: Tarefas 1, 2, 3, 4, 5, 6, 7, 8 (8 agentes, arquivos disjuntos) + 12a (arquivos novos) → 12b (orquestrador, quando 1/3/5/7 voltarem) → Tarefa 9 (orquestrador) → Tarefa 10 (agentes, com um cenário de criativo de oferta) → Tarefa 11 (com o usuário).

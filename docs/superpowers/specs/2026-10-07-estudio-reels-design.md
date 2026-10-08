@@ -17,7 +17,8 @@ sessão.
 | Tema | Decisão |
 |---|---|
 | Onde mora | Skill pessoal em `~/.claude/skills/estudio-reels/` (a "semente"). Não é plugin |
-| Escopo da v1 | Só Reels de motion. Estático e carrossel ficam para a v2, reaproveitando as fases de contexto |
+| Escopo da v1 | Só vídeo vertical em motion: Reel orgânico (educativo ou geral), criativo de anúncio de oferta e VSL curta. Estático, carrossel e anúncio de feed 4:5 ficam para a v2, reaproveitando as fases de contexto |
+| Copy | Método Kishōtenketsu (起承転結, da quadra chinesa 起承轉合) adaptado por **modo de conteúdo** (§4.1); oferta montada por briefing e 3 Big Ideas. Base: `2026-10-07-estudio-reels-copy-pesquisa.md` (só fonte pública; nada de material de curso pago) |
 | Ferramentas externas | Tudo pelo Chrome do usuário (Claude in Chrome), com as sessões dele logadas. **Nenhuma API, nenhuma chave, nenhum cadastro** |
 | Contexto | Pesquisa primeiro (repo + site + Instagram + Google), depois pergunta só o que faltou |
 | Concorrência | Nicho (a skill sugere 3–6, o usuário confirma) + referências de formato de motion (1–3) |
@@ -50,6 +51,11 @@ sessão.
   navegador/
     chrome.md             regras comuns (abas, login, downloads, conferir antes de enviar)
     instagram.md · chatgpt.md · elevenlabs.md · referencias.md (Pinterest/Google) · bancos-livres.md
+    meta-anuncios.md      Biblioteca de Anúncios (pública) e Gerenciador (só leitura)
+  copy/
+    kishotenketsu.md      o método por modo e duração, retenção com evidência, moldes
+    oferta.md             briefing, Big Idea ×3, promessa, mecanismo, prova, oferta, conformidade
+    criativos-anuncio.md  anúncio vertical: área segura, abertura de 3 s, variações, métricas
   licoes.md               lições universais (sites, ferramentas, motor, método)
   modelo/
     remotion/             motor de colagem (src/colagem, peça-esqueleto, scripts, testes)
@@ -104,15 +110,30 @@ comanda dali em diante.
 |---|---|---|---|
 | 00 Plantio | repo qualquer | confere Node, Python e espaço em disco; copia a semente; cria `motion/`; `npm install`; dependências Python; whisper.cpp; `.gitignore` | cópia da skill + motor |
 | 01 Contexto | repo + Chrome | lê README/docs; site, Instagram (seguidores, cadência, posts de topo) e Google da empresa; marca cada fato pela origem (**[oficial]**, **[medido]**, **[terciário]**); extrai cores, fontes e logo; pergunta o que faltou (público, o que não pode afirmar, tom, objetivo, produtos foco); pede o banco de imagens e o separa em camadas (própria verificada · própria sem prova · terceiro = referência · sintética = quarentena) | `marca/` |
-| 02 Concorrência | dossiê + Chrome | sugere 3–6 concorrentes e 1–3 referências de formato; usuário confirma; por perfil: aba Reels, ordena por views, estuda os de topo (gancho dos 3 s, duração, cortes por segundo, sistemas de texto, CTA) — skill `watch` se existir, senão quadros pelo Chrome | `concorrencia/estudo-<data>.md` |
-| 03 Roteiro | dossiê + estudo | pauta que **não acusa produto da empresa**; estrutura da peça 07 (gancho de tensão, "Calma!" + promessa, mito, dado surpreendente a cada 8–10 s, virada com frase repetível, marca, fecho + salvar); tabela fato → fonte (só [oficial]/[medido] viram fala); **PARADA: mostra e espera OK** | `roteiro.txt` + texto com tags |
+| 02 Concorrência | dossiê + Chrome | sugere 3–6 concorrentes e 1–3 referências de formato; usuário confirma; por perfil: aba Reels, ordena por views, estuda os de topo (gancho dos 3 s, duração, cortes por segundo, sistemas de texto, CTA) — skill `watch` se existir, senão quadros pelo Chrome. Modo oferta/VSL: também a Biblioteca de Anúncios da Meta (anúncio ativo há 30–60+ dias com várias versões = provável vencedor) | `concorrencia/estudo-<data>.md` |
+| 03 Roteiro | dossiê + estudo | **escolhe o modo** (§4.1) e lê o `copy/` dele; pauta que **não acusa produto da empresa**; estrutura da peça 07 (gancho de tensão, "Calma!" + promessa, mito, dado surpreendente a cada 8–10 s, virada com frase repetível, marca, fecho + salvar); tabela fato → fonte (só [oficial]/[medido] viram fala); **PARADA: mostra e espera OK** | `roteiro.txt` + texto com tags |
 | 04 Narração | roteiro aprovado | Chrome → ElevenLabs → modelo v4 conferido no rótulo da tela → voz da marca (escolhida com o usuário na 1ª peça e gravada no dossiê) → texto inteiro, 3 tomadas → baixa as 3; escolhe a tomada transcrevendo e comparando com o roteiro (+ duração); aceleração, se pedida, local (ffmpeg) | `narracao.mp3` |
 | 05 Tempo | narração final | whisper.cpp → texto do roteiro + tempo → fusão com CTC → `conferir_alinhamento pausas` e leitura dos suspeitos | `palavras.json` |
 | 06 Assets | roteiro + biblioteca | busca na biblioteca; banco da empresa; Unsplash/Pexels para lugar real; ChatGPT para objetos e texturas (folha sobre branco), com referência de terceiro permitida pela §7.3; recorte local (união dos bboxes no boil, casco convexo, lente); registrar com o prompt; publicar no projeto | biblioteca + `public/` da peça |
 | 07 Montagem | tudo acima | copia o esqueleto; `roteiro.ts` (b/mudo/t); nenhum segundo digitado; cenas em planos com câmera; chicote colado ou cobertura em toda troca; marcador no tempo da fala; área segura; embalagem só como recorte real, com o alfa medido; som por entrada e trilha em seções pelas frases; cores/fontes/logo do dossiê | composição Remotion |
 | 08 Conferência | composição | tsc + testes; stills dirigidos (palavra-colagem e 2 antes, fim de cada marcador, meio e fim de cada movimento, dentro de cada chicote); render de teste em 2º plano + `varrer_movimento`; render final; normalizar (−14 LUFS, pico ≤ −1 dBTP medido no MP4); `folha_do_video`; mostra cedo ao usuário | `reel.mp4` |
-| 09 Publicação | reel final | descrição pelo molde (1ª linha ≤ ~55 caracteres com a busca; colinha; pergunta aberta, nunca "comenta X"; até 5 hashtags; fontes); checklist (rótulo de IA, localização, capa no corte 3:4); publica pelo Chrome **só com OK explícito na hora** | `legenda-post.md` |
-| 10 Retrospectiva | a peça inteira | lições (sintoma → causa → regra); regra na fase ou correção no motor; commit; lista de promoção para a semente | cópia melhorada + semente nova |
+| 09 Publicação | reel final | descrição pelo molde (1ª linha ≤ ~55 caracteres com a busca; colinha; pergunta aberta, nunca "comenta X"; até 5 hashtags; fontes); checklist (rótulo de IA, localização, capa no corte 3:4); publica pelo Chrome **só com OK explícito na hora**. Modo oferta: pacote do anúncio (texto principal, título, CTA, variações nomeadas) e checklist de área segura; nunca sobe nem impulsiona | `legenda-post.md` ou `anuncio.md` |
+| 10 Retrospectiva | a peça inteira | lições (sintoma → causa → regra); regra na fase ou correção no motor; commit; lista de promoção para a semente. Modo oferta: lê o resultado no Gerenciador de Anúncios, **só leitura** (taxa de gancho, retenção, CTR) e diagnostica | cópia melhorada + semente nova |
+
+### 4.1 Modos de conteúdo
+
+A fase 03 começa escolhendo o modo. O motor, as fases 04–08 e as travas são os mesmos; mudam
+a estrutura da fala, a duração, a área segura e o que a fase 09 entrega.
+
+| Modo | Para quê | Duração | Estrutura (起承転結) | Fecho |
+|---|---|---|---|---|
+| `educativo` | Reel orgânico que ensina (o padrão da peça 07) | 45–90 s | Ki gancho de tensão → Shō promessa + provas → Ten o que quase ninguém conta (reenquadra) → Ketsu volta ao começo | salvar / compartilhar |
+| `oferta` | criativo de anúncio | 15–30 s (até 60) | **Ketsu primeiro** (resultado ou oferta em 0–3 s) ou dor primeiro → mecanismo e prova → Ten quebra a objeção principal → oferta | CTA do botão ("Saiba mais") |
+| `vsl` | vídeo de vendas narrado em motion cinético | 1–5 min | briefing → 3 Big Ideas → Ki dor → Shō promessa de revelar → Ten quebra a objeção → Ketsu oferta empilhada + garantia | CTA |
+| `geral` | orgânico de marca (bastidor, história, venda leve) | 30–60 s | Ki cena → Shō desenvolve → Ten virada que muda o sentido → Ketsu amarra à marca | pergunta aberta |
+
+Anúncio usa a área segura de anúncio do Reels: ~14% do topo, ~35% da base e ~6% das laterais
+livres de texto (em 1080×1920: y 269–1248, x 65–1015), mais restrita que a do orgânico.
 
 ## 5. Camada do navegador
 
@@ -160,6 +181,8 @@ comanda dali em diante.
   configuração de conta sem OK do usuário naquele momento.
 - Sem crédito, deslogado ou captcha: para e avisa. Não resolve captcha.
 - Cookie e consentimento: a opção mais restritiva.
+- Anúncio: nunca cria, sobe, impulsiona nem edita campanha, e nunca gasta verba, sem OK do
+  usuário naquele momento. O Gerenciador de Anúncios é só leitura para a skill.
 
 ### 7.2 Conteúdo
 
@@ -169,6 +192,9 @@ comanda dali em diante.
 - Embalagem e logo entram como pixel real (recorte), nunca redesenhados por modelo.
 - Rosto de pessoa real nunca é sintetizado.
 - Na publicação, rótulo de IA ligado (narração sintética).
+- Oferta: urgência e escassez só se forem reais (prazo ou lote verdadeiros); depoimento só
+  real e autorizado; promessa só com prova [oficial]/[medido]; nicho regulado (saúde,
+  finanças, suplemento, cosmético) segue a regra do setor. Detalhe em `copy/oferta.md`.
 
 ### 7.3 Imagem de terceiro como referência
 
@@ -193,6 +219,7 @@ comanda dali em diante.
 | `fases/` | `.claude/skills/canastra-video/colagem.md`, `SKILL.md`, `legenda-post.md`, `instagram/estrategia/` | sem fatos do café; exemplos marcados como exemplo |
 | `navegador/` | lições 16, 34–37, 39–42, 45, 50–52 e a mecânica desta sessão | sem nomes de conta |
 | `licoes.md` | lições 1–62 do `CLAUDE.md` | só as universais |
+| `copy/` e `navegador/meta-anuncios.md` | pesquisa de 07/10/2026 (Kishōtenketsu, 带货 chinês, anúncio japonês, ciência da curiosidade, Meta) e o vídeo público da "VSL Japonesa" | moldes por modo e duração, sem fato de nicho; a peça 07 como exemplo marcado |
 
 ## 9. Teste e critérios de aceite
 
@@ -215,7 +242,8 @@ comanda dali em diante.
 
 ## 10. Fora da v1
 
-Estático e carrossel; publicação sem OK; qualquer API ou chave; distribuição como plugin.
+Estático e carrossel; anúncio de feed 4:5; publicação sem OK; subir anúncio ou mexer em
+campanha; qualquer API ou chave; distribuição como plugin.
 
 ## 11. Riscos e questões abertas
 
