@@ -14,6 +14,7 @@ ORIGEM_FOTO = {
     "CAN-MIC-MO-250": "packshot com o selo trocado pelo pixel da foto real",
 }
 
+SEM_GTIN = sum(1 for p in PRODUTOS if not p[6])
 linhas = []
 for i, (sku, tsku, _pg, _pr, cat, fmt, ean) in enumerate(PRODUTOS, 1):
     p = tray[tsku]
@@ -71,8 +72,8 @@ Três campos saíram daqui **sem medição**, e estão marcados para o Rafael co
 - **`ncm`.** Preenchido `09012100` (café torrado, não descafeinado) nas 20 linhas.
   Confirmar com a contabilidade, principalmente para cápsula e drip coffee.
 - **`gtin`.** Só está preenchido onde o código de barras foi lido no verso do
-  pacote de verdade. Cinco produtos ficaram em branco porque o código nunca foi
-  lido. E atenção: **`7892262780089` é o mesmo código no Clássico 500 g moído e no
+  pacote de verdade. """ + f"{SEM_GTIN} produtos ficaram" + """ em branco porque o código
+  nunca foi lido. E atenção: **`7892262780089` é o mesmo código no Clássico 500 g moído e no
   500 g em grãos** — está assim na embalagem impressa, não é erro de digitação.
 
 ## De onde vieram os dados
