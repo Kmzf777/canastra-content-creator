@@ -1,0 +1,69 @@
+{
+ "CAN-CLA-GR-250": [
+  "01-classico-graos-250g-1.jpg"
+ ],
+ "CAN-CLA-MO-250": [
+  "02-classico-moido-250g-1.jpg"
+ ],
+ "CAN-CLA-GR-500": [
+  "03-classico-graos-500g-1.jpg"
+ ],
+ "CAN-CLA-MO-500": [
+  "04-classico-moido-500g-1.jpg",
+  "04-classico-moido-500g-2.jpg"
+ ],
+ "CAN-CLA-GR-1000": [
+  "05-classico-graos-1kg-1.jpg",
+  "05-classico-graos-1kg-2.jpg",
+  "05-classico-graos-1kg-3.jpg"
+ ],
+ "CAN-SUA-GR-250": [
+  "06-suave-graos-250g-1.jpg"
+ ],
+ "CAN-SUA-MO-250": [
+  "07-suave-moido-250g-1.jpg"
+ ],
+ "CAN-SUA-GR-500": [
+  "08-suave-graos-500g-1.jpg"
+ ],
+ "CAN-SUA-MO-500": [
+  "09-suave-moido-500g-1.jpg",
+  "09-suave-moido-500g-2.jpg"
+ ],
+ "CAN-SUA-GR-1000": [
+  "10-suave-graos-1kg-1.jpg"
+ ],
+ "CAN-CAN-MO-250": [
+  "11-canela-moido-250g-1.jpg"
+ ],
+ "CAN-MIC-GR-250": [
+  "12-microlote-graos-250g-1.jpg"
+ ],
+ "CAN-MIC-MO-250": [
+  "13-microlote-moido-250g-1.jpg"
+ ],
+ "NEC-GOU-GR-1000": [
+  "14-nectar-gourmet-graos-1kg-1.jpg",
+  "14-nectar-gourmet-graos-1kg-2.jpg",
+  "14-nectar-gourmet-graos-1kg-3.jpg"
+ ],
+ "NEC-GOU-MO-500": [
+  "15-nectar-gourmet-moido-500g-1.jpg",
+  "15-nectar-gourmet-moido-500g-2.jpg"
+ ],
+ "CAN-CAP-CLA-10": [
+  "16-capsulas-classico-10un-1.jpg"
+ ],
+ "CAN-CAP-CAN-10": [
+  "17-capsulas-canela-10un-1.jpg"
+ ],
+ "CAN-CAP-SUA-10": [
+  "18-capsulas-suave-10un-1.jpg"
+ ],
+ "CAN-DRI-CLA-10": [
+  "19-drip-coffee-classico-10un-1.jpg"
+ ],
+ "CAN-DRI-SUA-10": [
+  "20-drip-coffee-suave-10un-1.jpg"
+ ]
+}
