@@ -1,5 +1,11 @@
 # Motion de colagem narrado — o padrão aprovado
 
+> **Leia `estrategia.md` antes.** Este formato é **exceção**: só com pedido explícito do
+> cliente. Os 130 virais analisados não usam colagem narrada de ponta a ponta, o Reel 08 nesse
+> formato foi reprovado (lição 66), e voz padrão da marca é humana ou nenhuma. O processo abaixo
+> continua valendo como técnica (alinhamento, chicote, assets) quando o formato for pedido, ou
+> para a colagem usada como 1–2 cartões dentro de uma peça real.
+
 Peça 07 (`src/pecas/especial/`, composição `EspecialColagem`, 79 s) foi aprovada pelo
 cliente como **impecável** em 07/10/2026. Este arquivo é o processo dela, na ordem em que
 se faz, com o que deu errado no caminho. Peça nova da série copia este processo — e a
@@ -62,6 +68,8 @@ parada a 0,5 s, promessa e não assunto) e `03-roteiro.md` (o relógio). Regras:
 
 ## 3. Narração (ElevenLabs v4)
 
+- **Voz:** padrão é humana (alguém da casa) ou nenhuma — `estrategia.md` §3. ElevenLabs só com
+  pedido do cliente; aí, rótulo de IA e a legenda dizendo que a narração é gerada.
 - **Mesma voz da série (Elvis)**, texto inteiro numa geração (gerar em partes muda a
   entonação entre os cortes), 3 tomadas para escolher; confira de ouvido contra o roteiro.
 - **Uma tag por trecho**, em inglês e entre colchetes: a emoção vale até a próxima tag.

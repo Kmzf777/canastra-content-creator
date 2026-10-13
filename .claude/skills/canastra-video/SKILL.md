@@ -1,9 +1,14 @@
 ---
 name: canastra-video
-description: Use when producing or auditing any Café Canastra moving piece — reel, vídeo de Instagram, Shorts, TikTok, motion, motion de colagem narrado (estilo @_victorzk), criativo animado, legenda queimada, kinetic type, versão 1:1 ou 4:5 de um vertical — or when writing/compiling a briefing.json for the video engine in instagram/remotion, writing copy or an ElevenLabs narration for a reel, syncing captions and collage to a narration, rendering a peça, running the conferir.mjs portões, normalizing audio, writing the Reel's descrição/legenda do post, or debugging why a render came out torto, mudo, fora de sincronia or with the wrong duração.
+description: Use when planning, writing, producing or auditing any Café Canastra moving piece — reel, vídeo de Instagram, Shorts, TikTok, motion, criativo animado, legenda queimada, kinetic type, versão 1:1 ou 4:5 de um vertical — including choosing the format, the hook, the voice, the copy/roteiro, the background music or sound, the edit and the CTA; or when writing/compiling a briefing.json for the engine in instagram/remotion, syncing captions to a narration, rendering, running the conferir.mjs portões, normalizing audio, writing the Reel's descrição, or debugging a render that came out torto, mudo, fora de sincronia or with the wrong duração.
 ---
 
 # Motor de vídeo — Café Canastra
+
+> **ANTES de escrever copy, escolher gancho, voz ou música, ou planejar a edição: leia
+> `estrategia.md` (nesta pasta).** Ele decide o *quê* (formato, gancho, voz, roteiro, som,
+> edição, marca, CTA, medição) a partir de 130 virais analisados; o resto desta skill decide o
+> *como* (motor, briefing, portões). Plano sem 3 fichas de referência citadas não está pronto.
 
 O motor vive em `instagram/remotion/` e é **dirigido por briefing**:
 
@@ -610,15 +615,14 @@ tem a memória desta.
 
 ## Referências antes de criar
 
-Toda peça nova começa pela biblioteca `instagram/referencias-virais/` (72 vídeos virais de café
-analisados quadro a quadro, com relatório e índice). Busque 3 referências do mesmo formato ou
-etapa (`python scripts/indice_referencias.py buscar <termos>`) e cite-as no planejamento. Peça
-animada: leia antes `instagram/referencias-virais/relatorio-motion.md` (58 motions de marca; a
-regra é motion como camada fina sobre material real, nunca no lugar dele). Duas
-regras da reprovação do Reel 08 (lição 66): humor e metáfora só de dentro do café; torra nunca
-com fogo, fumaça ou grão preto.
+A estratégia inteira está em `estrategia.md`; a biblioteca em `instagram/referencias-virais/`
+(130 fichas; busca: `python scripts/indice_referencias.py buscar <termos>`). Peça animada:
+`instagram/referencias-virais/relatorio-motion.md`.
 
 ## Série de colagem (estilo @_victorzk) — motor à parte
+
+> **Exceção, não padrão** (`estrategia.md` §1): só com pedido explícito do cliente. Os 130 virais
+> não usam colagem narrada de ponta a ponta, e o Reel 08 nesse formato foi reprovado.
 
 Motion de colagem narrado NÃO passa pelo briefing nem pelo `conferir.mjs` (os dois
 dependem de `plano.json`). **REQUIRED: leia `colagem.md`, nesta pasta, antes de escrever
