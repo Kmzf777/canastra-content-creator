@@ -898,3 +898,18 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     de cor, o som e o resfriador, e fale de controle e de sabor doce. Vale para a fala, a
     colagem e a trilha de efeitos. A pesquisa de referência está em
     `instagram/referencias-virais/` (relatório, índice e 72 fichas).
+68. **O Reel 08b v1 foi reprovado pelo dono: "desincronia, legenda em excesso, boneco
+    bugado, conteúdo vazio, edição sem vida"** → em 13/10/2026 a v1 empilhava pílula de
+    legenda com a frase inteira **e** colagem dizendo a mesma coisa; o boneco de palito
+    herdou o *boil* da colagem (o corpo inteiro tremia a cada 3 quadros, o que lê como
+    falha de render, não como desenho à mão) e tinha membros em reta quebrada; e cenas
+    "reais" usavam uma mão parada, que lê como foto. A v2, aprovada num teste A/B de um
+    trecho antes de refazer a peça (`src/pecas/onze/teste/`, `src/pecas/onze/v2/`), segue
+    as referências que o dono mandou (motion de marca do Aryan Raj e o método do
+    `kaomei/stickman-video-director`) → **sem pílula: só a palavra-chave entra, no quadro
+    em que a voz a diz; boneco sem boil, membro em curva contínua, cabeça sempre por cima
+    do braço, uma ação física por cena; câmera sempre andando com parallax; vídeo real
+    sempre em movimento.** E o ritmo: o primeiro teste saiu "absurdo de rápido" — com
+    narração acelerada, o movimento não compete com a voz (corrida ~15 px/quadro, tremor
+    ≤ 14 px, carimbo de palavra ≤ 115%). Para mudança de linguagem, **teste num trecho de
+    10 s e mostre antes de refazer 80 s.**

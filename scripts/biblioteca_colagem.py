@@ -42,6 +42,7 @@ CATEGORIAS = {
     "fita": "fita crepe, adesivo",
     "grafismo": "seta, rabisco, círculo, sublinhado, carimbo desenhado",
     "papelaria": "tachinha, clipe, post-it, etiqueta de barbante",
+    "objeto": "objeto do cotidiano que a fala cita — só de dentro do café (lição 66: nada de frango, chama, fogo)",
 }
 ORIGENS = {"gerado-chatgpt", "real-verificada", "codigo"}
 

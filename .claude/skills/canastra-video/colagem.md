@@ -196,6 +196,41 @@ Esqueleto: `src/pecas/especial/` (`roteiro.ts`, `apoio.tsx`, `cenas-*.tsx`,
   FRASES da narração (`inicio_de("Calma")` em `scripts/colagem_sfx_v2.py`, que lê
   `palavras.json`); peça nova copia o script e troca só `PROJ` e as frases.
 
+## 7b. Motion educativo com boneco: o padrão aprovado em 13/10/2026 (peça 08b)
+
+O Reel 08b (`src/pecas/onze/v2/Onze2.tsx`, composição `OnzeProvas2`, 82 s) foi aprovado
+pelo cliente depois de uma v1 reprovada ("desincronia, legenda em excesso, boneco bugado,
+edição sem vida", lição 68). Ele **substitui a pílula da §7** quando a peça é educativa e
+narrada. As referências que o cliente mandou foram o motion de marca do Aryan Raj e o
+método do `kaomei/stickman-video-director`, que só serviu para aprender: a peça não tem
+nenhum vídeo gerado por IA.
+
+- **Sem pílula.** O texto é a manchete: só a palavra-chave, entrando no QUADRO em que a voz
+  a diz (`Manchete` em `src/pecas/onze/teste/TesteCodigo.tsx`, carimbo ≤ 115%). Frases inteiras
+  só em serifa, palavra por palavra.
+- **Boneco v2** (`src/pecas/onze/teste/BonecoV2.tsx`). Não use o `colagem/boneco.tsx`, cujo
+  boil faz o corpo inteiro tremer e lê como falha.
+  - membro em curva contínua e cabeça sempre por cima do braço;
+  - respira e pisca (`q`);
+  - mão por alvo com IK (`alvoD`/`alvoE`, em fração de h a partir dos pés; `ANAT` dá boca e olho);
+  - objeto na mão com giro próprio (`giroD`/`giroE`). Sem isso, a caneca gira com o
+    antebraço e vira de cabeça para baixo.
+- **Uma ação física por cena, em batidas** (anda → pega → usa → reage), nunca uma pose
+  congelada por segundos. Analise o trecho do boneco a 6 qps antes de entregar: dois dos três
+  defeitos que o cliente apontou só apareciam assim.
+- **Objeto que se acumula fica.** Grão jogado na caixa empilha, com giro curto no voo e
+  imagem fixa (`Img` sem boil). Se uma peça treme parada, parece defeito.
+- **Câmera sempre andando, com parallax** (fundo p 0,3–0,6 · cena 1 · texto 1,1 · folha
+  desfocada cruzando a lente p 2,2–2,6). Troca de cena com borrão e deslize de 3 quadros,
+  e corte seco só nas rajadas.
+- **Vídeo real só em movimento** (nunca a mão parada) e sem repetir o mesmo trecho em duas cenas.
+  Os clipes do WhatsApp são 720p: use ampliação ≤ 1,08 e escuro ≤ 0,2.
+- **Ritmo:** a narração vem acelerada, então o movimento não compete com ela. Corrida
+  ~15 px/quadro, tremor ≤ 14 px e planos ≥ 2 s quando a fala deixa.
+- **Gancho com movimento desde o quadro 0:** a câmera mergulha no objeto, setas e círculo
+  apontam, e na palavra-virada o quadro congela em P&B com flash e carimbo.
+- **Mudança de linguagem:** teste num trecho de 10 s e mostre antes de refazer a peça inteira.
+
 ## 8. Conferência (antes de chamar de pronto)
 
 | Ordem | O quê | Como |
