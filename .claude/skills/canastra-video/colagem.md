@@ -24,6 +24,14 @@ Medidas das referências (@_victorzk, quadro a quadro): `docs/motion-colagem.md`
 
 ## 2. Copy
 
+> **Antes de qualquer copy, consulte a biblioteca de referências virais**
+> (`instagram/referencias-virais/`): leia o `relatorio.md` e busque 3 referências do mesmo
+> formato ou etapa com `python scripts/indice_referencias.py buscar <termos>`, citando-as no
+> planejamento. Lição 66: o Reel 08 foi reprovado por piada de fora do café (frango de
+> padaria) e por chama sobre o torrador (leu-se "café queimado"). Nos 72 virais analisados,
+> nenhum usa voz sintética, colagem do começo ao fim ou fogo desenhado sobre o produto: a
+> colagem desta série é exceção a justificar, não padrão.
+
 Estrutura da 07, que segurou 79 s (Kishōtenketsu com gancho de tensão):
 
 | Bloco | Faz |

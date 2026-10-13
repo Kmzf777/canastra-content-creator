@@ -88,6 +88,7 @@ A verdade operacional está nos documentos, não no código:
 | `docs/custos-geracao.md` | Preços confirmados dos dois provedores |
 | `Direcao-Criativa.md` | Posicionamento de marca e os 4 pilares de conteúdo |
 | `mercadolivre/LEIA-ME.md` | **Mercado Livre.** Resumo de sessão, estado da conta, o que foi corrigido e o que segue sem verificação. **Leia antes de mexer no ML** |
+| `instagram/referencias-virais/LEIA-ME.md` | **Biblioteca de vídeos virais** (130 fichas quadro a quadro: 72 de café e 58 de motion de marca; gancho, transcrição, edição, diagnóstico), o relatório da reprovação do Reel 08 e o `relatorio-motion.md`. **Consulte antes de criar qualquer vídeo**: `python scripts/indice_referencias.py buscar <termos>` |
 | `marca/LEIA-ME.md` | **Logo oficial** em preto e em branco, fundo transparente, 3508×2481, idêntica à do site. Entra como pixel, nunca redesenhada |
 
 ### Skills de conteúdo (`.claude/skills/`)
@@ -883,3 +884,17 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     no motor: `src/motor/audio/normalizar.ts` separa o teto PEDIDO (0,6 dB abaixo) do teto
     VERIFICADO e, se o MP4 ainda passar, refaz pedindo mais baixo pelo excesso medido (um
     teste com rajadas de ruído a 0 dBFS precisou de 2,3 dB e passou na segunda tentativa).
+66. **O Reel 08 ("esse café já foi uma fruta") foi reprovado pelo marketing, e o dono
+    apontou duas causas** → em 11/10/2026: *"Nada a ver essa do frango assado"* e *"A parte
+    do fogo no grão levou a entender que o café é queimado, pode enviesar o público"*. As
+    duas eram minhas: (a) para o terreiro, usei uma analogia **de fora do café** ("revirada
+    tipo frango de padaria", com um frango girando no espeto), que rebaixa um produto premium
+    a comida de balcão e não tem nada a ver com o assunto; (b) na torra, escrevi "foi pro
+    fogo" e pus **chamas de colagem sobre o tambor**. Para o consumidor brasileiro, torra
+    escura e queimada é justamente o defeito que o café especial combate; a imagem de fogo
+    confirma o preconceito que a marca quer desfazer → **humor e metáfora só de dentro do
+    café** (preparo, sabor, cultura de café, o próprio ofício), nunca comida ou objeto
+    alheio; e **torra nunca se mostra com fogo, fumaça ou grão preto**. Mostre o grão mudando
+    de cor, o som e o resfriador, e fale de controle e de sabor doce. Vale para a fala, a
+    colagem e a trilha de efeitos. A pesquisa de referência está em
+    `instagram/referencias-virais/` (relatório, índice e 72 fichas).

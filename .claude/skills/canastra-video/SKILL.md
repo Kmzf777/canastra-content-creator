@@ -608,6 +608,16 @@ tem a memória desta.
 
 ---
 
+## Referências antes de criar
+
+Toda peça nova começa pela biblioteca `instagram/referencias-virais/` (72 vídeos virais de café
+analisados quadro a quadro, com relatório e índice). Busque 3 referências do mesmo formato ou
+etapa (`python scripts/indice_referencias.py buscar <termos>`) e cite-as no planejamento. Peça
+animada: leia antes `instagram/referencias-virais/relatorio-motion.md` (58 motions de marca; a
+regra é motion como camada fina sobre material real, nunca no lugar dele). Duas
+regras da reprovação do Reel 08 (lição 66): humor e metáfora só de dentro do café; torra nunca
+com fogo, fumaça ou grão preto.
+
 ## Série de colagem (estilo @_victorzk) — motor à parte
 
 Motion de colagem narrado NÃO passa pelo briefing nem pelo `conferir.mjs` (os dois
