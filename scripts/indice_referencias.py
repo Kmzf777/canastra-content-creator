@@ -24,7 +24,9 @@ CAMPOS = ["frente", "perfil", "id", "views", "curtidas", "duracao_s", "data", "c
           "quem_aparece", "formato", "gancho", "fala", "humor", "etapas", "torra_mostrada", "organico", "licao"]
 VOCAB = {
     "frente": {"processo", "brasil", "influenciadores", "marcas",
-               "motion-criadores", "motion-marcas", "motion-3d-fooh", "motion-brasil"},
+               "motion-criadores", "motion-marcas", "motion-3d-fooh", "motion-brasil",
+               # entrada pelo chat #conteudo do bot central-claude (13/10/2026)
+               "concorrentes"},
     "quem_aparece": {"produtor-familia", "trabalhador", "criador-especialista", "equipe-marca", "convidado",
                      "maos-apenas", "ninguem"},
     "formato": {"asmr-processo", "tarefa-continua", "produtor-fala", "esquete-humor", "experimento",
@@ -83,7 +85,9 @@ def ler(arq: Path) -> dict:
     titulo = texto.splitlines()[0].lstrip("# ").strip()
     d["titulo"] = titulo
     d["arquivo"] = arq.relative_to(RAIZ).as_posix()
-    d["link"] = f"https://www.instagram.com/reel/{d['id']}/"
+    # A linha "| Link | <url> |" da ficha manda (TikTok e posts /p/); sem ela, o padrão de Reel.
+    ml = re.search(r"^\|\s*Link\s*\|\s*(https?://\S+)", texto, flags=re.M)
+    d["link"] = ml.group(1).rstrip("|").strip() if ml else f"https://www.instagram.com/reel/{d['id']}/"
     return d
 
 
