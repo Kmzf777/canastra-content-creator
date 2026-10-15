@@ -472,3 +472,21 @@ Método: leitura direta de artigos da central de ajuda (help.shopee.com.br) em 2
 | A31 | SEM FONTE OFICIAL | https://seller.shopee.com.br/edu/home (só lista "atributo Anvisa") | A existência do tema é confirmada só pelo título. Data de 21/09/2026, 169 categorias e restrição a anúncios novos não conferidos. |
 
 Resumo: 2 confirmadas (A11 parcial, A27 desatualizável), 0 contestadas, 10 sem fonte oficial lida. Pendente para nova rodada com busca: Centro de Educação do Vendedor (Full, penalidades, Anvisa) e a página de políticas de frete grátis do vendedor.
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Lido no Chrome (as páginas carregam por JavaScript): Centro de Educação do Vendedor (seller.shopee.com.br/edu) e FAQ do Shopee Ads (ads.shopee.com.br/learn/faq). Sem login e sem captcha. Tabelas em imagem foram lidas por captura de tela.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A2 | PARCIAL | https://seller.shopee.com.br/edu/article/23197; https://seller.shopee.com.br/edu/article/26370; https://seller.shopee.com.br/edu/article/26581 (26-01-2026; 29-10-2025; 07-05-2026) | Confirmados os mínimos por item: preço a partir de R$20; 10 un./mês até R$79,99; 5 un./mês a partir de R$80; preço mínimo por tamanho (P/M/G). Também confirmado CNPJ no Simples, Lucro Real ou Presumido, com certificado do mesmo CNPJ. Nota acima de 4,5 e 5 pedidos/dia não aparecem. |
+| A5 | PARCIAL | https://seller.shopee.com.br/edu/article/26581 (07-05-2026) | Confirmadas as taxas por unidade de R$1,00/R$2,50/R$6,00/R$12,50 (P/M/G/XG) desde 01/07/2026, mas como 'Taxa de Envio Excepcional' para itens fora dos critérios. A partir de R$20 só é grátis se o item cumprir pedidos em 30 dias e tamanho (de R$20 a R$29,99 só P; de R$30 a R$39,99 só P e M). |
+| A7 | PARCIAL | https://seller.shopee.com.br/edu/article/26581 (07-05-2026) | R$5/un. e R$3/un. confirmados (tolerância de 5% por SKU, teto de R$5.000 por ASN, 1 isenção por semestre). Cancelamento sem custo: coleta até 2 dias úteis antes; entrega no armazém até 1 dia útil antes. |
+| A9 | CONFIRMADA | https://seller.shopee.com.br/edu/article/27600 (19-05-2026) | De 0,5 a 2 p.p. em itens a partir de R$50; não precisa de inscrição prévia. |
+| A11 | PARCIAL | https://help.shopee.com.br/portal/4/article/76324; https://seller.shopee.com.br/edu/article/16320 (s/d; 07-10-2025) | Mantém a confirmação parcial anterior (2 dias úteis; 7 a 30 dias corridos para pré-encomenda). O 16320 confirma o cancelamento automático por não envio ou por etiqueta expirada. A inatividade de 7 dias segue só no 76324, que não tem data. |
+| A12 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955 (20-02-2026) | Quadro (imagem): não envio de 8% ou mais com 2 pedidos ou mais = 1 ponto; com 90 ou mais = 2 pontos. Atraso de 5% ou mais, com as mesmas contagens. |
+| A13 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955 (20-02-2026) | Faixas: 3-5, 6-8, 9-11, 12-14 e 15+ pontos; visibilidade de −5% a −30%; perde o frete grátis a partir da faixa 2 (6 pontos); 15+ congela a conta; zera a cada trimestre. A taxa vale desde 01/06/2026 e não é cobrada de lojas com VBM abaixo de R$2.500 no mês anterior. |
+| A16-A17 | PARCIAL | https://seller.shopee.com.br/edu/article/23431 (16-03-2026) | A17 confirmada: R$20 / R$30 (de R$80 a R$199,99) / R$40 (acima de R$200). A16 em parte: 'Todos os vendedores têm os benefícios', em artigo de 16/03/2026, mas o texto não usa a palavra obrigatório. O cupom é limitado se houver penalidades ativas. |
+| A18 | CONFIRMADA | https://seller.shopee.com.br/edu/article/25794 (24-04-2026) | A Shopee paga os outros 75%. Teto de R$10. Vale só para logística do vendedor (Intelipost ou API de Frete). |
+| A22 | CONTESTADA | https://seller.shopee.com.br/edu/article/27255 (28-05-2026) | O oficial diz raio de até 7 km, não 10 km. Confirmados: entrega em até 4 h, coleta pela Uber Direct ou pela própria Shopee, limite de pedidos por hora definido pelo vendedor, etiqueta em 30 min ou 1 h conforme o tempo de preparo. A coleta a cada hora não aparece (a coleta é solicitada automaticamente). |
+| A31 | PARCIAL | https://seller.shopee.com.br/edu/article/11602 (21-10-2025 (atualizado em 16/09/2026)) | Confirmado o campo Anvisa no anúncio ('00' se o produto for dispensado). A data de 21/09/2026, as 169 categorias e a restrição a anúncios novos não aparecem. |

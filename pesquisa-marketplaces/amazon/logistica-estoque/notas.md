@@ -353,3 +353,16 @@ Fontes oficiais lidas em 2026-10-14 (páginas sem data de publicação; todas ti
 | A10 | SEM FONTE OFICIAL (parcial) | https://venda.amazon.com.br/cresca/dba | Confirmado: tempo de preparo padrão de 0 dia (preparo no mesmo dia útil antes do corte) e prazo maior configurável por SKU. A faixa de 1 a 30 dias não consta. Logística própria (não DBA) não foi coberta. |
 | A11 | SEM FONTE OFICIAL (parcial) | https://venda.amazon.com.br/cresca/dba | Confirmados: envio tardio abaixo de 4%, postagem até 9 pacotes/dia e coleta a partir de 10, produto abaixo de 30 kg. O cancelamento antes do envio abaixo de 2,5% não consta nesta página. |
 | A12 | CONTESTADA | https://venda.amazon.com.br/termos/frete19 ; https://venda.amazon.com.br/cresca/fba | Os termos (início 15/08/2025, sem fim; pode estar superada): FBA/FBA Onsite abaixo de R$ 19 só Prime; de R$ 19 a R$ 79 frete grátis com entrega de 3 dias ou mais; acima de R$ 79 com entrega em até 1 dia. DBA: abaixo de R$ 19 frete pago; R$ 19 a R$ 79 só na mesma região; acima de R$ 79 só entre regiões diferentes. Já /cresca/fba diz R$ 129 para não-Prime e não cita R$ 149. A página de DBA confirma R$ 19 mas trata R$ 79 como faixa de tarifa, não como limite de frete. A contradição segue sem resolução. |
+
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Método: Chrome do usuário, lendo advertising.amazon.com/pt-br, venda.amazon.com.br, amazon.com.br/gp/help e a Central de Ajuda do Seller Central (sessão já aberta, só leitura). Sem captcha. Ids como em pendentes-amazon.tsv.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A6 | CONFIRMADA | https://venda.amazon.com.br/termos/experimente-fba | Isenção de logística, coleta e armazenagem. Conta nova = sem inventário ou envio FBA entre 01/01/2025 e 31/07/2026. A isenção pode ser aplicada em até 10 dias após a chegada do 1º envio. |
+| A7 | PARCIAL | https://venda.amazon.com.br/cresca/fba | Confirmados: CNPJ ativo na Sefaz, Simples ou Regime Normal, IE em 12 estados (SP, MG, PR, RJ, SC, RS, CE, DF, PE, BA, GO, ES) ou Programa de Filiais, Faturador como passo 1. MEI aceito, certificado A1 e 'sem mínimo' não aparecem. |
+| A8 | CONTESTADA | https://sellercentral.amazon.com.br/help/hub/reference/G201104750 | A ajuda oficial recomenda de 2 semanas (ou o prazo de reposição) a 13 semanas, não 5. As 5 semanas aparecem só no webinar. Lido na Central de Ajuda do Seller Central com a sessão já aberta, só leitura. |
+| A10 | PARCIAL | https://sellercentral.amazon.com.br/help/hub/reference/GAFNWEYTJUV2GBFC ; https://sellercentral.amazon.com.br/help/hub/reference/G202174810 | Confirmado: limite mensal por tipo de armazenagem, em m³, pelo IPI e pelas vendas; contas com menos de 39 semanas no FBA não têm limite. Pontuação 700 e limite por produto em excesso não aparecem. Lido na Central de Ajuda do Seller Central com a sessão já aberta, só leitura. |
+| A11 | SEM FONTE OFICIAL | https://sellercentral.amazon.com.br/help/hub/reference/GX4YXVJBW4C3MHU7 ; https://sellercentral.amazon.com.br/help/hub/reference/G200178470 | 200 caixas por envio, 22 kg e 100 cm não encontrados. Indício de divergência: a tabela de tarifas de coleta tem faixas por caixa até 30 kg. |

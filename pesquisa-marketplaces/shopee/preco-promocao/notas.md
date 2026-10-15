@@ -381,3 +381,22 @@ Por "restrições legais", esses itens também saem do cálculo de gasto mínimo
 | R12 | SEM FONTE OFICIAL | nenhuma localizada | Vídeos do canal Shopee Brasil (fqDYuDPJsEg, MfH07p4ZtT4); política escrita de preço não lida. O limite de 4 vezes veio de áudio e transcrição. |
 
 **Pendência.** Pontos críticos para uma nova rodada, com busca ou navegador: texto do artigo 18483, política de preço da Central do Vendedor e regras de campanha.
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Lido no Chrome (as páginas carregam por JavaScript): Centro de Educação do Vendedor (seller.shopee.com.br/edu) e FAQ do Shopee Ads (ads.shopee.com.br/learn/faq). Sem login e sem captcha. Tabelas em imagem foram lidas por captura de tela.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| R1 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 (01-03-2026 (atualizado em 01/10/2026)) | Até R$79,99: 20% + R$4,50 desde 01/10/2026. |
+| R2 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 (01-03-2026 (atualizado em 01/10/2026)) | Faixas da tabela (imagem): R$80 a R$99,99 = 14% + R$16; R$100 a R$199,99 = 14% + R$20; R$200 a R$499,99 = 14% + R$26; acima de R$500 = 14% + R$26. |
+| R3 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 (01-03-2026 (atualizado em 01/10/2026)) | Cobrança por item. Não é cobrada em cancelamentos nem em devoluções com retorno do produto. |
+| R4 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18484 (01-03-2026) | Vale para CPF com mais de 450 pedidos em 90 dias. |
+| R5 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 (01-03-2026 (atualizado em 01/10/2026)) | Agora há fonte oficial; a fonte única de praticante deixa de ser a base. |
+| R6 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 (01-03-2026 (atualizado em 01/10/2026)) | De R$80 a R$499,99: 5%. Acima de R$500: 'até 8%'. O vendedor recebe o mesmo valor, ou seja, o subsídio não sai dele. Para acima de R$500 o texto diz 'até 8%', não 8% fixo. |
+| R7 | PARCIAL | https://seller.shopee.com.br/edu/article/23431; https://seller.shopee.com.br/edu/article/25794 (16-03-2026; 24-04-2026) | Confirmados: todos os vendedores no programa, tetos dos cupons de R$20/R$30/R$40 por faixa e coparticipação de 25% só para logística própria (teto de R$10). O fim do adicional de 6% e a data exata não aparecem. O cupom pode ser limitado se houver penalidades ativas. |
+| R8 | SEM FONTE OFICIAL | https://seller.shopee.com.br/edu/article/11533; https://seller.shopee.com.br/edu/article/3757 (04-04-2025; 14-08-2025) | Os artigos oficiais sobre Campanhas Oficiais não citam taxa de 2% a 3% nem renovação automática. A busca 'taxa de campanha' no Centro de Educação não trouxe nada sobre isso. |
+| R9 | SEM FONTE OFICIAL | https://seller.shopee.com.br/edu/article/11533; https://seller.shopee.com.br/edu/article/3757 (04-04-2025; 14-08-2025) | As regras da campanha específica (desconto de 5% ou mais, preço de R$19 ou mais, 5 unidades ou mais) não aparecem nos artigos gerais. Valem como exemplo de tela. |
+| R10 | PARCIAL | https://help.shopee.com.br/portal/4/article/76177; https://seller.shopee.com.br/edu/article/2621 (s/d; 14-08-2025) | Mantém a leitura anterior (um cupom da Shopee + um do vendedor). O cupom de frete como terceiro e a ordem de aplicação não aparecem; o 2621 não trata de combinação de cupons. |
+| R11 | CONFIRMADA | https://seller.shopee.com.br/edu/article/27600 (19-05-2026) | Full+: pelo menos 40% dos pedidos via Full. Entre 40% e 70%: 0,5 p.p. em itens de R$50 a R$79,99 (as faixas maiores vão até 2 p.p.). Crédito na carteira na 1ª semana do mês seguinte. |
+| R12 | CONFIRMADA | https://seller.shopee.com.br/edu/article/2618; https://seller.shopee.com.br/edu/article/2637 (08-08-2025; 15-10-2025) | Desconto enganoso (subir o preço antes da promoção) é proibido. Variações com diferença acima de 4x podem ser consideradas spam de preço. |

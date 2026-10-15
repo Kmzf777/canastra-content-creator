@@ -389,3 +389,22 @@ Limite: o orçamento de WebSearch da sessão estava esgotado e as páginas ofici
 | A17 | SEM FONTE OFICIAL (não verificada) | canal Shopee Brasil, "Shopee Trends 2026" (yxG_g8vHZIc) | Número de comunicação institucional, não relido. Tipo de dado é de marketing. |
 
 Resumo: confirmadas 0, contestadas 0, sem fonte oficial 12. Próximo passo: reler a tabela de tarifas e a política de variações na Central do Vendedor com navegador (as páginas exigem JavaScript) ou refazer a busca com orçamento disponível.
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Chrome com JavaScript, só leitura, sem login. Fontes: Centro de Educação do Vendedor, Central de Ajuda, ads.shopee.com.br e blog oficial.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A8 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 (01-03-2026 (atualizado em 01/10/2026)) | Até R$79,99: 20% + R$4,50 desde 01/10/2026. |
+| A9 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 (01-03-2026 (atualizado em 01/10/2026)) | Tabela (imagem): R$100 a R$199,99 = 14% + R$20; R$200 a R$499,99 = 14% + R$26; acima de R$500 = 14% + R$26. |
+| A10 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 (01-03-2026 (atualizado em 01/10/2026)) | A cobrança é por item. Se um kit conta como 1 item, o artigo não diz. |
+| A30 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18484 (01-03-2026) | Vale para CPF acima de 450 pedidos em 90 dias. Ao migrar para CNPJ, o adicional sai em até 7 dias úteis. |
+| A7 | CONFIRMADA | https://seller.shopee.com.br/edu/article/2637 (15-10-2025) | Diferença acima de 4x entre variações pode ser spam de preço. |
+| A5 | PARCIAL | https://seller.shopee.com.br/edu/article/11907; https://seller.shopee.com.br/edu/article/2637 (24-07-2025; 15-10-2025) | Confirmados: opções do mesmo produto num só anúncio e penalidade por mau uso. O critério 'função, proposta ou categoria diferente' não aparece em palavras; o exemplo oficial é mochila e tênis. |
+| A6 | PARCIAL | https://seller.shopee.com.br/edu/article/11907; https://seller.shopee.com.br/edu/article/16213 (24-07-2025; 02-04-2026) | Confirmados: 'Variação 2' (dois níveis) e preço e estoque por opção. Foto por opção é só recomendação; SKU e GTIN por variação são opcionais. O GTIN tem de ser correto quando informado (16213). Não se fala em limite máximo de 2 níveis. |
+| A3 | PARCIAL | https://seller.shopee.com.br/edu/article/5407 (19-09-2024) | Confirmado: ranking de palavras-chave dos últimos 7 dias no Assistente de Vendas. O 'top 30' aparece só para produtos mais vendidos. Não aparecem as 3 categorias da loja nem o índice de 0 a 100; a dica oficial é focar nas 3 principais buscas. |
+| A14 | SEM FONTE OFICIAL | https://seller.shopee.com.br/edu/article/19154 (28-10-2024) | Procurei no Centro de Educação ('produtos recomendados ads') e no 19154; o portal ads.shopee.com.br não foi varrido para isso. Nada sobre etiquetas, limite de 50, ROAS de 7-10, 10 vendas ou 100 visualizações. |
+| A15 | SEM FONTE OFICIAL | https://seller.shopee.com.br/edu/article/19154 (28-10-2024) | Estratégia de verba, ACOS abaixo da margem e CTR acima de 1,5% não aparecem nas páginas oficiais de Ads lidas. É prática de canal. |
+| A31 | CONFIRMADA | https://seller.shopee.com.br/edu/article/3305 (26-01-2026) | Cobrado por envio fora das dimensões. Pode haver também remoção do anúncio, penalidades e congelamento. |
+| A17 | CONFIRMADA | https://shopee.com.br/blog/sobre-nos/ (s/d) | É número institucional (imagem da página Sobre Nós). Em comunicados mais antigos a empresa falou em 85% e 90%. |

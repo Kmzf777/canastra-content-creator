@@ -441,3 +441,13 @@ Método: leitura das páginas oficiais públicas (venda.amazon.com.br, advertisi
 | R12 | SEM FONTE OFICIAL | (nenhuma página escrita lida) | Prazo da autorização de marca, nota fiscal e isenção de GTIN para kits em cerca de 10 dias úteis só no vídeo nDtHI8fUEAA; nada oficial escrito encontrado. |
 
 Placar: 7 confirmadas (R1, R2, R3, R7, R8 só EUA, R9, R11), 2 contestadas (R6, R10), 3 sem fonte oficial (R4, R5, R12).
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Método: Chrome renderizando JavaScript; leitura das páginas públicas de ajuda (amazon.com.br/gp/help e ajuda do Seller Central, só leitura), advertising.amazon.com/pt-br e venda.amazon.com.br. Sem captcha. Páginas sem data visível (s/d).
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| R4 | PARCIAL | https://sellercentral.amazon.com.br/help/hub/reference/G201003420 | Confirmado: a etiqueta não pode cobrir a validade. Itens vencidos ou a até 50 dias do vencimento na chegada vão para descarte e não voltam ao vendedor. Alimentos precisam de mais de 90 dias de validade restante, controle por lote e prazo por subcategoria (café: 150 dias). A página não diz "sem reembolso" de forma explícita. |
+| R5 | PARCIAL | https://sellercentral.amazon.com.br/help/hub/reference/G201829010 ; https://sellercentral.amazon.com.br/help/hub/reference/G200333160 | Confirmado: categorias e marcas restritas exigem pedido de aprovação com documentos, e a política de suplementos remete às regras da ANVISA. A lista exata (tabela nutricional, fotos, NF) não aparece nas páginas públicas lidas. |
+| R12 | CONTESTADA | https://sellercentral.amazon.com.br/help/hub/reference/G200426310 ; https://sellercentral.amazon.com.br/help/hub/reference/G200333160 | A isenção de GTIN é pedida pelo próprio vendedor no fluxo de cadastro, com prazo de até 48 h. A aprovação de marca ou categoria leva de 2 a 7 dias úteis. Não são cerca de 10 dias úteis. Não achei o serviço gratuito do time de cadastro. |

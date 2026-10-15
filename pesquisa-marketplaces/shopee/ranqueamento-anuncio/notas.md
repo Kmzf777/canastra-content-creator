@@ -545,3 +545,20 @@ Método: reabri hoje as páginas oficiais da Central de Ajuda (help.shopee.com.b
 **Placar:** 2 confirmadas (A3, A15), 1 contestada em parte (A4), 9 sem fonte oficial verificada (A6, A9, A11, A12, A14, A18, A21, A26, A30).
 
 **Pendências para nova rodada:** reabrir os vídeos do canal oficial (A6, A9, A11, A12, A14); localizar a política de pontos de penalidade na Central do Vendedor (A21, A26); achar página oficial de faturamento do Shopee Ads (A18); achar o comunicado oficial e a lista de categorias da Anvisa (A30).
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Chrome com JavaScript, só leitura, sem login. Fontes: Centro de Educação do Vendedor, Central de Ajuda, ads.shopee.com.br e blog oficial.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A6 | PARCIAL | https://seller.shopee.com.br/edu/article/17658; https://seller.shopee.com.br/edu/article/21806 (08-12-2023; 24-04-2026) | Confirmados: estrutura produto + marca + especificação (imagem no 17658) e veto a termos de busca excessivos ou irrelevantes e a palavras exageradas (21806). Os 36 caracteres não aparecem; o 21806 só pede título com 10 caracteres ou mais. |
+| A11 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18658 (08-10-2024) | Resolução não pode passar de 1280 x 1280 pixels. |
+| A9 | PARCIAL | https://seller.shopee.com.br/edu/article/2822; https://seller.shopee.com.br/edu/article/17411 (17-11-2025; 26-09-2024) | Fundo branco ou neutro confirmado. O produto em ~70% e o mínimo de 1.000 px não aparecem. Os artigos dizem até 9 imagens e arquivo de até 2 MB. O 21806 cita 'pelo menos 60% do produto' só para a Imagem de Fundo Limpa do Otimizador de IA. |
+| A14 | CONFIRMADA | https://seller.shopee.com.br/edu/article/2637 (15-10-2025) | Recomenda anúncio individual por produto e a ferramenta de kits para combinações. Mesmo abaixo de 4x pode haver penalidade. |
+| A12 | PARCIAL | https://seller.shopee.com.br/edu/article/16213; https://seller.shopee.com.br/edu/article/21806 (02-04-2026 (atualizado em 16/09/2026); 24-04-2026) | Confirmados: GTIN depende da categoria (obrigatório em eletrônicos, eletrodomésticos e suplementos) e deve ser o correto. Já 'remoção permanente' não aparece: o GTIN incorreto gera aviso que trava edições até a correção, com apelação. |
+| A21 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955 (20-02-2026 (atualizado em 09/09/2026)) | Quadro (imagem): 3-5 pts = 14 dias, -5%, sem Indicado nem campanhas, mantém frete grátis, R$100; 6-8 = -10%, R$250; 9-11 = 21 dias, -20%, R$500. Lojas com VBM abaixo de R$2.500 no mês anterior não pagam a taxa. |
+| A18 | PARCIAL | https://ads.shopee.com.br/learn/faq/473/2205 (s/d) | Cobrança por impressão (oCPM) desde 07/05/2026, mas só para GMV Max - Anúncios de Produto (Lance Automático, Meta de ROAS, Grupo de Anúncios, GMV Max da Loja). Não vale para todo o Shopee Ads. |
+| A26 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18456 (04-02-2026 (atualizado em 29/06/2026)) | Tabela (imagem). Entrada: CNPJ, loja com mais de 90 dias, 30 pedidos ou mais em 30 dias, nota 4,5 ou mais, chat 60% ou mais, preparo de até 1 dia útil, até 1 ponto, TNE de até 2%, 20% ou mais de envios aos sábados, 10 compradores únicos ou mais. |
+| A15 | CONFIRMADA | https://help.shopee.com.br/portal/4/article/76444 (s/d) | 5 moedas por avaliação com imagem. Remove avaliações fora das diretrizes e respostas do vendedor com tom grosseiro ou ofensivo. |
+| A30 | PARCIAL | https://seller.shopee.com.br/edu/article/11602 (21-10-2025 (atualizado em 16/09/2026)) | Confirmado o campo Anvisa; anúncio sem o código ou com código errado pode ser removido sem aviso. A data de 21/09/2026 e as 169 categorias não aparecem; a data só em terceiro (blog Base). |

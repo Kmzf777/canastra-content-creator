@@ -361,3 +361,14 @@ Método: leitura das páginas oficiais por WebFetch em 2026-10-14. Orçamento de
 | R10 | SEM FONTE OFICIAL | (nenhuma acessível; páginas do Listing Hub e de ferramentas de marca retornaram 404) | Regras de kit físico, kit virtual e isenção de GTIN só em webinars. Conferir na ajuda do Seller Central (exige login). |
 | R11 | SEM FONTE OFICIAL | (nenhuma acessível) | Regras de variações (pai sem estoque, temas, tarifa por variação de quantidade, selo Black Friday) só no webinar de 2026-10-13. Conferir na ajuda do Seller Central (exige login). |
 | R12 | CONFIRMADA | https://venda.amazon.com.br/brand-registry | [OFICIAL, dado interno] Programe e Poupe com 10% a 15% de desconto: média de até 1,8x de conversão. Brand Store: compra 53,9% mais frequente e ticket 71,3% maior, dado interno de ago/2024. É material promocional da Amazon, sem metodologia. |
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Método: Chrome renderizando JavaScript; leitura das páginas públicas de ajuda (amazon.com.br/gp/help e ajuda do Seller Central, só leitura), advertising.amazon.com/pt-br e venda.amazon.com.br. Sem captcha. Páginas sem data visível (s/d).
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| R2 | CONFIRMADA | https://venda.amazon.com.br/precos | Profissional: 1º ano grátis e R$ 19/mês a partir do 13º mês. A tabela renderizada põe os R$ 2,00 por item só na coluna do plano Individual. Ressalva resolvida. Atenção: cases-grandes R4 (fora deste lote) diz "Profissional: R$ 2,00 por item", o que a página não sustenta. |
+| R9 | PARCIAL | https://sellercentral.amazon.com.br/help/hub/reference/G202130410 ; https://sellercentral.amazon.com.br/help/hub/reference/GQCYJTBSFZK8HGN6 | Confirmado: Seller Central aceita marca com pedido pendente (no BR, protocolo no INPI) e exige marca fixada de forma permanente no produto ou embalagem. Não achei a lista de funções liberadas com pedido pendente nem a proibição de denunciar violação. A página diz que o cadastro serve para "encontrar e denunciar violações". |
+| R10 | PARCIAL | https://sellercentral.amazon.com.br/help/hub/reference/GUQ2QM8DKFGQD7MA ; https://sellercentral.amazon.com.br/help/hub/reference/G200426310 ; https://sellercentral.amazon.com.br/help/hub/reference/G201813840 | Kit virtual confirmado: só dono da marca com Brand Registry, itens FBA novos da mesma marca, de 2 a 5 ASINs, e o estoque sai dos itens avulsos (sem montagem prévia). Isenção de GTIN vale para "produtos em combo", pedida pelo próprio vendedor, com prazo de até 48 h. Kit físico no FBA com uma etiqueta e o Listing Hub gratuito não aparecem nas páginas lidas. |
+| R11 | PARCIAL | https://sellercentral.amazon.com.br/help/hub/reference/GH3RMVV3ZDYRRQ5S | Confirmado: o ASIN pai é virtual e sem estoque, e o tema depende da categoria (tamanho, cor, sabor, quantidade ou número de itens). Não achei "sem limite de variações", tarifa por variação de quantidade, regra de versão personalizada nem selo Black Friday. |

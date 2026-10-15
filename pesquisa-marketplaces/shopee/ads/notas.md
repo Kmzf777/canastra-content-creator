@@ -423,3 +423,19 @@ Limite da verificação: o orçamento de WebSearch (200 por turno, compartilhado
 | A15 | CONFIRMADA | vídeos oficiais Shopee Brasil BZbrt87EAzs e M9Plk5F5144 (2026-07-06) | Fonte oficial lida pelo analista (30 dias ativo, ±20%, pausa reinicia aprendizado, mínimo de 5 produtos). Eu não reabri os vídeos nesta verificação. Regra de 2026-07, ainda dentro de 6 meses. |
 | A25 | SEM FONTE OFICIAL | https://seller.shopee.com.br/edu/article/18439 | A página oficial lida só traz o título "Taxa de comissão e taxa fixa por item", sem valores. R$4,50 desde 2026-10-01 e as demais faixas vêm só de vídeos de praticantes. |
 | A22 | SEM FONTE OFICIAL | https://ads.shopee.com.br/ad-types/420 | Nenhuma página oficial lida traz as posições (2 primeiros, 1 a cada 3, 26 em 55, 7 em 30). Só o blog Magis5, sem data. |
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Lido no Chrome (as páginas carregam por JavaScript): Centro de Educação do Vendedor (seller.shopee.com.br/edu) e FAQ do Shopee Ads (ads.shopee.com.br/learn/faq). Sem login e sem captcha. Tabelas em imagem foram lidas por captura de tela.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A3 | PARCIAL | https://ads.shopee.com.br/ad-types/1414 (s/d) | Confirma só a lista de elegíveis. A exclusividade para Lojas Oficiais não aparece na página. |
+| A6 | PARCIAL | https://ads.shopee.com.br/learn/faq/473/1527; https://ads.shopee.com.br/learn/faq/473/2205 (s/d (migração em 07/05/2026)) | Confirmados: GMV Max com Lance Automático e Meta de ROAS, e as 3 sugestões de ROAS. O percentil de competitividade não aparece. O 1527 ainda fala em seleção automática de palavras-chave; o lance manual por palavra-chave não é tratado. |
+| A7 | SEM FONTE OFICIAL | https://ads.shopee.com.br/learn/faq/323/1469 (s/d) | O artigo oficial Orçamento usa R$10 só como exemplo e não fala em mínimo. O mínimo de R$10 (antes R$6) segue só por praticantes. |
+| A8 | CONFIRMADA | https://ads.shopee.com.br/learn/faq/339/1496; https://ads.shopee.com.br/learn/faq/340/1498 (s/d) | Créditos comprados antes, não reembolsáveis; valores sem desconto expiram em 6 meses. A Recarga Automática existe (artigo próprio, só o título foi lido). A recarga mínima de R$50 não foi verificada. |
+| A11 | CONFIRMADA | https://ads.shopee.com.br/learn/faq/473/2205 (migração em 07/05/2026) | A atribuição por impressão (1 dia) vale só para GMV Max Anúncios de Produto, que passaram a cobrar por impressão (oCPM) em 07/05/2026. A de clique (7 dias) vale para todos. |
+| A12 | SEM FONTE OFICIAL | https://ads.shopee.com.br/learn/faq/473/2205; https://ads.shopee.com.br/learn/faq/473/2198; https://ads.shopee.com.br/learn/faq/354/1509 (s/d) | O oficial diz que, na atribuição por clique, entram vendas de outros produtos da mesma loja em até 7 dias; não fala em vendas orgânicas. 'Vendas' (antigo GMV) exclui descontos desde jan/2026. Não há definição oficial de métricas 'diretas'. |
+| A13 | SEM FONTE OFICIAL | https://ads.shopee.com.br/learn/faq/473/1527; https://ads.shopee.com.br/learn/faq/473/1951 (s/d) | Os dois artigos oficiais sobre Meta de ROAS não citam teto. O ROAS 30 segue só por praticante. |
+| A25 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 (01-03-2026 (atualizado em 01/10/2026)) | Tabela CNPJ: até R$79,99 = 20% + R$4,50. A comissão já inclui a taxa de transação. |
+| A22 | PARCIAL | https://ads.shopee.com.br/ad-types/420 (s/d) | Confirma só que existem as vitrines Descobertas do Dia e Você Também Pode Gostar. As contagens (2 primeiros, 1 a cada 3, 26 de 55, 7 de 30) não aparecem em página oficial. |

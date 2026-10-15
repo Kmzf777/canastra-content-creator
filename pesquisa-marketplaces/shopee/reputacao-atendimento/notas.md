@@ -405,3 +405,22 @@ Sinais fracos encontrados:
 | A15-A16 | SEM FONTE OFICIAL | nenhuma (só UpSeller, sem link oficial) | Isenção abaixo de R$2.500 de GMV, 14 dias de contestação, 7 dias de reenvio e lançamento às segundas: apenas blog. Prioridade máxima para conferência. |
 
 **Pendência para o agente de navegador:** abrir as duas páginas oficiais acima com JavaScript e conferir, na ordem, A15-A16, A5, A17, A4/A7, A9-A10, A26.
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Chrome com JavaScript, só leitura, sem login. Fontes: Centro de Educação do Vendedor, Central de Ajuda, ads.shopee.com.br e blog oficial.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A3 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955 (20-02-2026 (atualizado em 09/09/2026)) | 3 pontos ou mais restringem vantagens. A contagem é trimestral e os pontos zeram no fim do trimestre. |
+| A4 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955 (20-02-2026 (atualizado em 09/09/2026)) | Quadro (imagem), faixa 3-5: 14 dias sem Indicado e campanhas, -5% de visibilidade, mantém frete grátis. |
+| A5 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955 (20-02-2026 (atualizado em 09/09/2026)) | Faixa 6-8: 14 dias, -10%, perde frete grátis, R$250. O valor de R$300 do UpSeller está errado; R$500 é a faixa 9-11. |
+| A7 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955 (20-02-2026 (atualizado em 09/09/2026)) | 15+ pontos = 28 dias de conta congelada e R$1.500. Faixa 4 (12-14) = 28 dias, -30%, R$1.000. Na faixa 5, a cada 3 pontos a mais o congelamento recomeça. |
+| A9-A10 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955; https://seller.shopee.com.br/edu/article/3280 (20-02-2026; 06-05-2026) | Quadro: não envio de 8% ou mais = 1 pt; com 90 ou mais = 2 pts. Atraso de 5% ou mais, com as mesmas contagens. TNE acima de 40% na semana = +1 ponto. |
+| A13 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955 (20-02-2026 (atualizado em 09/09/2026)) | Quadro de chat, 2 pontos: resposta abusiva ou que leva para fora da plataforma, pedir que o comprador cancele, resposta abusiva a avaliação. Se persistir, +4 pontos. |
+| A11-A12 | CONFIRMADA | https://seller.shopee.com.br/edu/article/3280 (06-05-2026) | Só conta o que for responsabilidade do vendedor; 'aparece na Central do Vendedor como Taxa de Não Cumprimento'. Resolve A38: o ponto vem com TNE acima de 8%, não 10% (os 10% do 7955 são só exemplo de recálculo em apelação). |
+| A17 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18456 (04-02-2026 (atualizado em 29/06/2026)) | Tabela (imagem): chat 60% ou mais (sai abaixo de 50%); TNE até 2% (sai acima de 3%); até 1 ponto (sai com 3 ou mais). Ressalvas: a nota de entrada é 4,5 ou mais, não acima de 4,5; a métrica é TNE, que a Central chama de TNC. |
+| A20 | CONFIRMADA | https://seller.shopee.com.br/edu/article/2713 (31-07-2025) | Janela de 30 dias; fins de semana e feriados contam. Peso maior para os 25% de chats mais recentes; precisa de no mínimo 2 chats. |
+| A25 | PARCIAL | https://seller.shopee.com.br/edu/article/23197; https://seller.shopee.com.br/edu/article/26370 (26-01-2026; 29-10-2025) | CNPJ confirmado (26370, rodada anterior). Nota acima de 4,5 e 5 pedidos/dia não aparecem; o 23197 lista requisitos por item (R$20, 10 ou 5 un./mês, 30 kg, dimensões). |
+| A26 | PARCIAL | https://seller.shopee.com.br/edu/article/26700 (22-04-2026 (atualizado em 17/08/2026)) | Confirmados R$0,49 por pedido, ativação automática e saída a qualquer momento. Divergência: ativação automática 'desde abril de 2026', com 30 dias grátis, não maio. Só para lojas elegíveis por métricas. |
+| A15-A16 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955 (20-02-2026 (atualizado em 09/09/2026)) | Isenção com VBM abaixo de R$2.500 no mês anterior; recurso em até 14 dias; 7 dias para reenvio; pontos atribuídos às segundas e penalização na segunda seguinte. |

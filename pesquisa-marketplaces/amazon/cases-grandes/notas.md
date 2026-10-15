@@ -457,3 +457,14 @@ Método: releitura das páginas oficiais de venda.amazon.com.br em 2026-10-14. A
 | R12 | CONFIRMADA | https://venda.amazon.com.br/cresca/fba | CNPJ ativo na Sefaz para NF-e; Simples Nacional ou Regime Normal; endereço e IE em SP, MG, PR, RJ, SC, RS, CE, DF, PE, BA, GO ou ES; Programa de Filiais para os demais. Há condições especiais para ES e SC, não descritas, e endereço de CD oferecido para filial em MG e RJ. |
 
 Resumo: 10 confirmadas, 0 contestadas, 2 sem fonte oficial (R2, R9). Nenhuma foi contestada por fonte oficial, mas R2 e R9 não devem ser citadas como regra até haver comunicado escrito.
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Método: Chrome renderizando JavaScript; leitura das páginas públicas de ajuda (amazon.com.br/gp/help e ajuda do Seller Central, só leitura), advertising.amazon.com/pt-br e venda.amazon.com.br. Sem captcha. Páginas sem data visível (s/d).
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| R2 | PARCIAL | https://sellercentral.amazon.com.br/help/hub/reference/G201112670 | Confirmado: o corte é para contas que usavam FBA antes de 1º/04/2026. A meta é 3,5% da receita em Ads ou +1 ponto sobre abril de 2026, com renovação mensal até 31/01/2027 e 1ª avaliação de 1 a 19/07. "Atingir 3,5% em 30 dias" não aparece: os 30 dias são a isenção total para novos vendedores do FBA. |
+| R9 | PARCIAL | https://sellercentral.amazon.com.br/help/hub/reference/GR467L2LLXHTQMYP | Confirmado: Mais Vantagens custa 2,5%, com tarifa promocional de 1,5% de 30/09 a 30/10/2026. O desconto de 5% no Pix é financiado pela Amazon e o vendedor recebe o preço cheio. O Amazon Vantagens custa 1,5%. Os termos não falam de efeito na oferta em destaque. |
+| R10 | CONFIRMADA | https://sellercentral.amazon.com.br/help/hub/reference/G202130410 ; https://venda.amazon.com.br/publicidade | Ressalva resolvida: a ajuda do Seller Central aceita pedido pendente como regra geral, sem o "em alguns casos" da página comercial. Sponsored Brands exige Brand Registry e 3 produtos (rodada anterior, /publicidade). |
+| R11 | CONTESTADA | https://sellercentral.amazon.com.br/help/hub/reference/GJHCPEFJ5JJQD52D ; https://sellercentral.amazon.com.br/help/hub/reference/G363YLQW4NB5L38V | Seller Central: o cupom padrão termina em até 30 dias (a página comercial diz 90) e o desconto na planilha vai de 5% a 50%. A base é o "preço anterior ou preço sugerido". Nota: vendedor com pelo menos 3,5 e produto com 5 ou mais avaliações com pelo menos 3 estrelas, então os dois números valem em níveis diferentes. Não reconfirmei a regra de 14 dias. |

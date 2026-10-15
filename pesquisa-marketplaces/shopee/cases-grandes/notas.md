@@ -376,3 +376,22 @@ Limite da verificação: a cota de WebSearch da sessão estava esgotada e as pá
 | A32 | SEM FONTE OFICIAL LIDA | canal Shopee Brasil, vídeos MfH07p4ZtT4 e fqDYuDPJsEg (não relidos) | Sem texto N1 lido. Não confirmar. |
 
 Resumo: 0 confirmadas, 0 contestadas, 12 sem fonte oficial lida. Próximo passo: repetir com cota de busca e acesso renderizado ao seller.shopee.com.br/edu.
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Método: Chrome renderizando JavaScript, páginas oficiais do Centro de Educação do Vendedor (seller.shopee.com.br/edu). Tabelas em imagem foram lidas por captura de tela. Sem login e sem captcha. Resumo: 8 confirmadas, 2 parciais, 2 contestadas.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A5 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 (01-03-2026, atualizado em 01/10/2026) | Até R$79,99: 20% + R$4,50 por item desde 01/10/2026 (antes R$4). Abaixo de R$8, o adicional é metade do preço. |
+| A5b | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 | Tabela (imagem): R$80 a R$99,99 = 14% + R$16; R$100 a R$199,99 = 14% + R$20; R$200 a R$499,99 e acima de R$500 = 14% + R$26. |
+| A31 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18484 (01-03-2026, atualizado em 01/10/2026) | +R$3 por item para CPF com mais de 450 pedidos em 90 dias. Abaixo de R$12 a taxa por item é regressiva. Sai em até 7 dias úteis ao migrar para CNPJ. |
+| A5c | CONFIRMADA | https://seller.shopee.com.br/edu/article/18483 | Pix: 5% de R$80 a R$499,99; acima de R$500 "até 8%" (o 18484 diz "8%"). O vendedor continua recebendo o mesmo valor. |
+| A6 | CONFIRMADA | https://seller.shopee.com.br/edu/article/27600 (19-05-2026, atualizado em 08/07/2026) | 40% a 70%: 0,5 p.p. (R$50 a R$79,99) e 1 p.p. (R$80+); 70% ou mais: 1 e 2 p.p. Automático; vale até dezembro de 2026. |
+| A30 | PARCIAL | https://seller.shopee.com.br/edu/article/26370; https://seller.shopee.com.br/edu/article/23197 | CNPJ confirmado (Simples, Real ou Presumido). Nota acima de 4,5 e 5 ou mais pedidos/dia não aparecem; os requisitos oficiais são por item (R$20, 10 ou 5 un./mês, 30 kg, dimensões). |
+| A6b | CONTESTADA | https://seller.shopee.com.br/edu/article/26581 (07-05-2026, atualizado em 12/08/2026) | A armazenagem não é grátis sem prazo: desde 01/03/2026 há cobrança por ociosidade (Supermercado a partir de 2 meses, Outros a partir de 3, Moda a partir de 4). Há também taxas de retirada, descarte e envio excepcional. |
+| A12 | CONTESTADA | https://seller.shopee.com.br/edu/article/18712 (23-04-2026, atualizado em 22/09/2026) | Campanhas de Destaque cobram 3,5% (desde 23/04/2026), não 2% a 3%. Confirmados: sobre todas as vendas da loja, inclusive produtos fora da campanha; renovação automática; saída por formulário até 10 dias antes do fim da campanha. |
+| A14 | CONFIRMADA | https://seller.shopee.com.br/edu/article/7955 (20-02-2026, atualizado em 09/09/2026) | Quadro (imagem): 3-5 pts = 14 dias, -5%, R$100; 15+ = conta congelada 28 dias, R$1.500. Zera por trimestre. Taxas desde 01/06/2026. |
+| A14b | PARCIAL | https://seller.shopee.com.br/edu/article/7955 | Divergência resolvida: não envio = 8% ou mais; atraso = 5% ou mais, não uma faixa de 5% a 8%. 1 ponto com 2 itens ou mais; 2 pontos com 90 ou mais. |
+| A33 | CONFIRMADA | https://seller.shopee.com.br/edu/article/18456 (04-02-2026, atualizado em 29/06/2026) | Tabela (imagem): sábado 20% ou mais, preparo até 1 dia útil, chat 60% ou mais, revisão semanal. Ressalva: a nota exigida é 4,5 ou mais, não "acima de 4,5". |
+| A32 | CONFIRMADA | https://seller.shopee.com.br/edu/article/2637 (15-10-2025); https://seller.shopee.com.br/edu/article/2618 (08-08-2025) | Diferença acima de 4x entre variações pode ser spam de preço; desconto enganoso é subir o preço antes da promoção. |

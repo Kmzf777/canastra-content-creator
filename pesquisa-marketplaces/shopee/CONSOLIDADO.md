@@ -27,28 +27,28 @@ A citação "(PRE §2.1)" remete à seção da nota. Ids de vídeo do YouTube ap
 
 **Regra de data:** regra de plataforma anterior a 2026-04-14, ou sem data, leva "(pode estar superada)". Os artigos da Central de Ajuda não mostram data, por isso tudo que vem deles leva essa marca.
 
-**Limite que vale para o mapa inteiro.** Em todas as frentes, a cota de busca na web se esgotou no início, e o Centro de Educação do Vendedor (seller.shopee.com.br/edu) e boa parte da Central de Ajuda não renderizaram sem JavaScript. Por isso a tabela de comissão, a tabela de pontos de penalidade, os critérios do Vendedor Indicado e as taxas do Full **não foram lidos na fonte oficial**. Eles vêm de praticantes que mostraram a tela ([OFICIAL via terceiro]). Na verificação cruzada das notas, só 10 afirmações foram confirmadas contra texto oficial lido e 1 foi contestada em parte; o restante ficou "sem fonte oficial lida", o que não significa que esteja errado. A observação direta (OBS-L) cobriu uma única página de busca ("café em grãos"), interrompida por exigência de login.
+**Limite que vale para o mapa inteiro.** Em todas as frentes, a cota de busca na web se esgotou no início, e o Centro de Educação do Vendedor (seller.shopee.com.br/edu) e boa parte da Central de Ajuda não renderizaram sem JavaScript. Por isso a tabela de comissão, a tabela de pontos de penalidade, os critérios do Vendedor Indicado e as taxas do Full **não foram lidos na fonte oficial**. Eles vêm de praticantes que mostraram a tela ([OFICIAL via terceiro]). Na verificação cruzada das notas, só 10 afirmações foram confirmadas contra texto oficial lido e 1 foi contestada em parte; o restante ficou "sem fonte oficial lida", o que não significa que esteja errado. **Atualização de 2026-10-15:** uma verificação por navegador leu o Centro de Educação, a FAQ do Shopee Ads e o blog oficial e confirmou a tabela de comissão, a de pontos, os critérios do Indicado e parte das taxas do Full; os itens tocados foram corrigidos ou marcados neste mapa, e o resumo está na seção 8. A observação direta (OBS-L) cobriu uma única página de busca ("café em grãos"), interrompida por exigência de login.
 
 ---
 
 ## 0. A plataforma em uma página
 
-**Modelo.** A Shopee Brasil é um marketplace 3P. Cada vendedor tem anúncio próprio e não há catálogo compartilhado nem buy box documentado: a disputa é anúncio contra anúncio (RAN §2.6; PRE §2.5). A plataforma declara mais de 3 milhões de vendedores brasileiros e 95% das vendas feitas por eles [OFICIAL] `yxG_g8vHZIc`, 2026-08-25 (MIX §1; CAS A20).
+**Modelo.** A Shopee Brasil é um marketplace 3P. Cada vendedor tem anúncio próprio e não há catálogo compartilhado nem buy box documentado: a disputa é anúncio contra anúncio (RAN §2.6; PRE §2.5). A plataforma declara mais de 3 milhões de vendedores brasileiros e 95% das vendas feitas por eles [OFICIAL] `yxG_g8vHZIc`, 2026-08-25 (MIX §1; CAS A20); confirmado na página institucional https://shopee.com.br/blog/sobre-nos/ (sem data; comunicados antigos falavam em 85% e 90%).
 
 **Para onde vai o dinheiro.** No 2T26, a receita core de marketplace da Shopee (comissões e anúncios) cresceu 65,6% a/a, contra 28,4% do GMV, e a receita de logística caiu 9% por mais subsídio de frete [DADO N2] Sea 6-K, 2026-08-11 (CAS §1 item 5; LOG §4). Os números são globais, sem recorte do Brasil. A leitura das notas é convergente: a plataforma subsidia frete e cobra mais por transação e por Ads.
 
-**Como o vendedor paga.** Comissão percentual mais taxa fixa **por item**, em faixas de preço. Desde 2026-10-01, item até R$79,99 paga 20% + R$4,50 e item de R$80 paga 14% + R$16, o que cria um degrau forte em R$79,99/R$80 [OFICIAL via terceiro] (PRE §2.1; MIX §2.3). O frete grátis passou a valer para todos em 2026, com subsídio da Shopee limitado por faixa (PRE §2.2; LOG §2.5). Ads é pré-pago e, em 2026, é configurado por meta de ROAS (GMV Max), não por lance por palavra-chave (ADS §2.2). Campanhas oficiais cobram taxa extra de 2% a 3% sobre todas as vendas da loja no período, segundo praticante com tela (PRE §1 item 8).
+**Como o vendedor paga.** Comissão percentual mais taxa fixa **por item**, em faixas de preço. Desde 2026-10-01, item até R$79,99 paga 20% + R$4,50 e item de R$80 paga 14% + R$16, o que cria um degrau forte em R$79,99/R$80 [OFICIAL, confirmado em https://seller.shopee.com.br/edu/article/18483] (PRE §2.1; MIX §2.3). O frete grátis passou a valer para todos em 2026, com subsídio da Shopee limitado por faixa (PRE §2.2; LOG §2.5); o artigo oficial https://seller.shopee.com.br/edu/article/23431 (16/03/2026) diz que todos os vendedores têm os benefícios do programa, com tetos de R$20/R$30/R$40. Ads é pré-pago e, em 2026, é configurado por meta de ROAS (GMV Max), não por lance por palavra-chave (ADS §2.2); o GMV Max com Lance Automático e Meta de ROAS está confirmado em https://ads.shopee.com.br/learn/faq/473/1527. As Campanhas de Destaque cobram 3,5% sobre todas as vendas da loja desde 2026-04-23, com renovação automática da inscrição [OFICIAL] https://seller.shopee.com.br/edu/article/18712 (atualizado em 2026-09-22). O valor de 2% a 3% citado por praticante (PRE §1 item 8) foi contestado na verificação.
 
 **Superfícies de exposição.** Busca com quatro ordenações (Relevância, Mais recente, Vendas Principais e Preço) e filtro só de Vendedores Indicados [OFICIAL] help 76162 e 76198, sem data (RAN §2.1); descoberta ("Você também pode gostar", "Descobertas do Dia"); banners e campanhas do calendário de datas duplas, uma por mês; Shopee Video e Live; afiliados; e Google Ads via Shopee (ADS §2.1, §2.4, §2.5; PRE §1 item 15).
 
 **Portões que decidem quem é visto** (síntese das notas, não regra declarada pela Shopee):
 
 1. **Vendedor Indicado.** Selo e filtro de busca. Perdê-lo tira a loja das campanhas e, segundo praticantes, derruba vendas e Ads (REP §2.4; ADS A24; RAN §3.1 item 6).
-2. **Pontos de penalidade.** São contados por trimestre e punem a partir de 3 pontos, com −5% a −30% de visibilidade, perda do Indicado, das campanhas e do frete grátis, e taxa de R$100 a R$1.500 [OFICIAL via terceiro] (REP §2.2).
+2. **Pontos de penalidade.** São contados por trimestre e punem a partir de 3 pontos, com −5% a −30% de visibilidade, perda do Indicado, das campanhas e do frete grátis, e taxa de R$100 a R$1.500, não cobrada de lojas com VBM abaixo de R$2.500 no mês anterior [OFICIAL, confirmado em https://seller.shopee.com.br/edu/article/7955] (REP §2.2).
 3. **Conversão do anúncio.** Capa, título, preço dentro da faixa do mercado, selos e avaliações formam o funil impressão → clique → venda, que os praticantes usam para diagnóstico (RAN §3.1).
 4. **Economia unitária sob a tarifa.** Ticket, kit e faixa de preço definem se sobra margem para Ads (MIX §2.3; PRE §3.1).
 5. **Ads com ROAS-alvo compatível com a margem.** Com alvo acima do que o leilão comporta, a plataforma simplesmente não gasta (ADS §2.3; SOC §1).
-6. **Capacidade de expedição e acesso à logística da plataforma.** O Full exige nota da loja >4,5 e ao menos 5 pedidos por dia [OFICIAL] `TUs6QYGqGrw` (LOG §2.2).
+6. **Capacidade de expedição e acesso à logística da plataforma.** O Full exige CNPJ no Simples, Lucro Real ou Presumido e mínimos por item (preço a partir de R$20; 10 un./mês até R$79,99; 5 un./mês a partir de R$80) [OFICIAL] https://seller.shopee.com.br/edu/article/26370 e https://seller.shopee.com.br/edu/article/23197. A nota da loja >4,5 e os 5 pedidos por dia citados em `TUs6QYGqGrw` (LOG §2.2) não aparecem em fonte oficial escrita.
 7. **Status negociado.** Loja Oficial (por convite) libera Display e outros formatos. O gerente de contas aparece como alavanca, sem critério público (ADS §2.1; CAS §3.2 item 6; ALI §2.3).
 
 **O que a Shopee não publica:** fórmula de ranqueamento, pesos de sinais, benchmark por categoria, share de categoria e efeito medido do Full ou do frete grátis na conversão (RAN §9; LOG §9; MIX §9).
@@ -57,77 +57,77 @@ A citação "(PRE §2.1)" remete à seção da nota. Ids de vídeo do YouTube ap
 
 ## 1. Regras e números que importam
 
-A coluna "Status" diz o grau de verificação: **N1 lida** (confirmada contra página oficial na verificação) · **vídeo oficial** (canal Shopee Brasil, não relido na verificação) · **via terceiro** (tela oficial mostrada por praticante, sem N1 lido) · **N2** (relatório regulatório ou de investidor).
+A coluna "Status" diz o grau de verificação: **N1 lida** (confirmada contra página oficial na verificação) · **vídeo oficial** (canal Shopee Brasil, não relido na verificação) · **via terceiro** (tela oficial mostrada por praticante, sem N1 lido) · **N2** (relatório regulatório ou de investidor) · **confirmado 2026-10-15** (lido no navegador na verificação de 2026-10-15, com a URL) · **parcial 2026-10-15** (parte confirmada, parte sem fonte ou divergente).
 
 ### 1.1 Tarifas e preço
 
 | Regra / número | Valor | Fonte e data | Status | Nota |
 |---|---|---|---|---|
-| Comissão até R$79,99 | 20% + R$4,50 por item (era R$4 até 2026-09-30) | `hEkVpRw_vNg` 2026-10-13; `9VOoazXt_aE` 2026-09-25; `H_QVxVF7FHs` 2026-09-23 | via terceiro (4 canais concordam) | PRE §2.1; MIX §2.3; CAS §2.1 |
-| Comissão a partir de R$80 | R$80–99,99: 14% + R$16; R$100–199,99: 14% + R$20; R$200 ou mais: 14% + R$26 | idem; `Zx8826q-qLk` 2026-05-22 | via terceiro | Faixas desde 2026-03-01 (PRE §2.1) |
-| Taxa fixa por item, não por pedido | 3 unidades avulsas pagam 3 taxas | `IYi2eifHqSY`; `hEkVpRw_vNg` | via terceiro | Kit contar como 1 item **não confirmado** (MIX §9 item 2) |
+| Comissão até R$79,99 | 20% + R$4,50 por item (era R$4 até 2026-09-30) | `hEkVpRw_vNg` 2026-10-13; `9VOoazXt_aE` 2026-09-25; `H_QVxVF7FHs` 2026-09-23; https://seller.shopee.com.br/edu/article/18483 (atualizado em 2026-10-01) | **confirmado 2026-10-15** | Já inclui a taxa de transação. PRE §2.1; MIX §2.3; CAS §2.1 |
+| Comissão a partir de R$80 | R$80–99,99: 14% + R$16; R$100–199,99: 14% + R$20; R$200 ou mais: 14% + R$26 | idem; `Zx8826q-qLk` 2026-05-22; https://seller.shopee.com.br/edu/article/18483 | **confirmado 2026-10-15** | Faixas desde 2026-03-01 (PRE §2.1) |
+| Taxa fixa por item, não por pedido | 3 unidades avulsas pagam 3 taxas; não é cobrada em cancelamento nem em devolução com retorno do produto | `IYi2eifHqSY`; `hEkVpRw_vNg`; https://seller.shopee.com.br/edu/article/18483 | **confirmado 2026-10-15** | Kit contar como 1 item **não confirmado**: o artigo oficial não trata disso (MIX §9 item 2) |
 | Taxa efetiva no degrau | 25,6% em R$79,99 e 34,0% em R$80; 42,6% em R$19,90 | cálculo sobre a tabela | depende da linha acima | MIX §2.3; CAS §2.1 |
-| Vendedor CPF | +R$3 por item depois de 450 pedidos em 90 dias | `9VOoazXt_aE`; `5j2y3UumtnI` | via terceiro | PRE §2.1 |
-| Subsídio Pix (pago pela Shopee) | 5% de R$80 a R$499,99; até 8% a partir de R$500; repasse igual ao vendedor | `hEkVpRw_vNg`; UpSeller-619 2026-02-25 | via terceiro; lado comprador em help 197770 (N1 lida, sem %) | PRE §1 item 6, §10 R6 |
-| Spam de preço entre variações | diferença >4x "pode ser" spam; armadilha do acessório | `MfH07p4ZtT4` 2026-08-27 | vídeo oficial | PRE §2.5; RAN §2.3 |
-| Desconto enganoso | subir o preço regular e logo descontar é infração | `fqDYuDPJsEg` 2026-09-03 | vídeo oficial | PRE §2.5 |
+| Vendedor CPF | +R$3 por item depois de 450 pedidos em 90 dias | `9VOoazXt_aE`; `5j2y3UumtnI`; https://seller.shopee.com.br/edu/article/18484 | **confirmado 2026-10-15** | Ao migrar para CNPJ, o adicional sai em até 7 dias úteis. PRE §2.1 |
+| Subsídio Pix (pago pela Shopee) | 5% de R$80 a R$499,99; até 8% a partir de R$500; repasse igual ao vendedor | `hEkVpRw_vNg`; UpSeller-619 2026-02-25; https://seller.shopee.com.br/edu/article/18483 | **confirmado 2026-10-15**; lado comprador em help 197770 (N1 lida, sem %) | Acima de R$500 o 18483 diz "até 8%" e o 18484 diz "8%". PRE §1 item 6, §10 R6 |
+| Spam de preço entre variações | diferença >4x "pode ser" spam; armadilha do acessório | `MfH07p4ZtT4` 2026-08-27; https://seller.shopee.com.br/edu/article/2637 | **confirmado 2026-10-15** | PRE §2.5; RAN §2.3 |
+| Desconto enganoso | subir o preço regular e logo descontar é infração | `fqDYuDPJsEg` 2026-09-03; https://seller.shopee.com.br/edu/article/2618 | **confirmado 2026-10-15** | PRE §2.5 |
 | Empilhamento de cupons | 1 cupom do vendedor + 1 da Shopee; loja e produto não se combinam | help 76177 (sem data, pode estar superada) | **N1 lida** (parcial) | PRE §10 R10 |
-| Taxa de campanha oficial | +2% a 3% sobre todas as vendas da loja; inscrição renova sozinha | `4oQLk8XXYP4` 2026-09-01 | prática com tela, fonte única | PRE §2.4; SOC §2 |
-| Full+ | −0,5 a −2 p.p. de comissão em itens ≥R$50 via Full, com ≥40% dos pedidos no Full | `0oRYednAlHY` 2026-08-04 | vídeo oficial | LOG §2.3 |
+| Taxa das Campanhas de Destaque | 3,5% sobre todas as vendas da loja desde 2026-04-23, inclusive produtos fora da campanha; inscrição renova sozinha; saída por formulário até 10 dias antes do fim | https://seller.shopee.com.br/edu/article/18712 (atualizado em 2026-09-22) | **corrigido 2026-10-15** (o "+2% a 3%" de `4oQLk8XXYP4` foi contestado) | Pode mudar em campanhas especiais. PRE §2.4; SOC §2 |
+| Full+ | −0,5 a −2 p.p. de comissão em itens ≥R$50 via Full, com ≥40% dos pedidos no Full (40–70%: 0,5 p.p. de R$50 a R$79,99 e 1 p.p. a partir de R$80; ≥70%: 1 e 2 p.p.); automático, até dez/2026 | `0oRYednAlHY` 2026-08-04; https://seller.shopee.com.br/edu/article/27600 | **confirmado 2026-10-15** | Crédito na carteira na 1ª semana do mês seguinte. LOG §2.3 |
 | Calendário | uma data dupla por mês; 10.10 de 2026 com R$18 milhões em cupons | blog Shopee "datas-duplas" 2026-09-30 | oficial (blog) | PRE §1 item 15 |
 
 ### 1.2 Frete e logística
 
 | Regra / número | Valor | Fonte e data | Status | Nota |
 |---|---|---|---|---|
-| Frete grátis obrigatório | todas as lojas desde 2026 (março ou maio, diverge); extinto o adicional de 6% | `j_2kh6auKiw` 2026-06-04; UpSeller-619 | via terceiro | PRE §2.2; LOG §2.5 |
-| Teto do subsídio de frete | R$20 / R$30 / R$40 por faixa de preço | `j_2kh6auKiw`; `9VOoazXt_aE` | via terceiro | Diverge do cupom do comprador (§4) |
+| Frete grátis obrigatório | todas as lojas desde 2026 (março ou maio, diverge); extinto o adicional de 6% | `j_2kh6auKiw` 2026-06-04; UpSeller-619; https://seller.shopee.com.br/edu/article/23431 (2026-03-16) | **parcial 2026-10-15**: "todos os vendedores têm os benefícios" confirmado, sem a palavra obrigatório; o fim do adicional de 6% e a data exata não aparecem em fonte oficial | O cupom pode ser limitado se houver penalidades ativas. PRE §2.2; LOG §2.5 |
+| Teto do subsídio de frete | R$20 (até R$79,99) / R$30 (R$80–199,99) / R$40 (acima de R$200) | `j_2kh6auKiw`; `9VOoazXt_aE`; https://seller.shopee.com.br/edu/article/23431 | **confirmado 2026-10-15** | Coparticipação do vendedor de 25% do desconto (teto R$10) só na logística própria, Intelipost ou API de Frete; a Shopee paga 75% (https://seller.shopee.com.br/edu/article/25794, confirmado) |
 | Cupom de frete do comprador | até R$20; 10 por semana; até 3 pacotes por cupom | help 76220 (sem data, pode estar superada) | N1 lida | LOG §10 |
-| Requisitos do Full | CNPJ; nota da loja >4,5; ≥5 pedidos/dia; mínimos por item | `TUs6QYGqGrw` 2026-08-04 | vídeo oficial | LOG §2.2 |
-| Envio ao CD, item <R$20 | R$1 / R$2,50 / R$6 / R$12,50 por unidade (P/M/G/XG) desde 2026-07-01 | `ty0iwe3dV1I` 2026-07-20 | prática com tela, fonte única | LOG §2.2 |
-| DTS (envio próprio) | 2 dias úteis; 7 a 30 dias corridos para pré-encomenda; cancelamento após >7 dias de inatividade | help 76324 (sem data, pode estar superada) | **N1 lida** (parcial) | LOG §10 A11 |
-| Perecível nos Pontos logísticos | vencido ou contaminado pode ser descartado na hora; bloqueado >7 dias passa à Shopee | help 124091, 2023-02-16 (pode estar superada) | **N1 lida** | Não se confirmou que vale para o Full atual (LOG §10 A27) |
+| Requisitos do Full | CNPJ; nota da loja >4,5; ≥5 pedidos/dia; mínimos por item | `TUs6QYGqGrw` 2026-08-04; https://seller.shopee.com.br/edu/article/26370; https://seller.shopee.com.br/edu/article/23197 | **parcial 2026-10-15**: CNPJ (Simples, Real ou Presumido, certificado do mesmo CNPJ) e mínimos por item confirmados (a partir de R$20; 10 un./mês até R$79,99; 5 un./mês a partir de R$80; até 30 kg); nota >4,5 e ≥5 pedidos/dia sem fonte oficial | LOG §2.2 |
+| Taxa de Envio Excepcional do Full | R$1 / R$2,50 / R$6 / R$12,50 por unidade (P/M/G/XG) desde 2026-07-01, para itens fora dos critérios (inclui os abaixo de R$20); a partir de R$20 só é grátis se o item cumprir pedidos em 30 dias e tamanho (R$20–29,99 só P; R$30–39,99 só P e M) | `ty0iwe3dV1I` 2026-07-20; https://seller.shopee.com.br/edu/article/26581 | **parcial 2026-10-15**: valores confirmados; o mínimo de 15 unidades não aparece | LOG §2.2 |
+| DTS (envio próprio) | 2 dias úteis; 7 a 30 dias corridos para pré-encomenda; cancelamento após >7 dias de inatividade | help 76324 (sem data, pode estar superada); https://seller.shopee.com.br/edu/article/16320 (2025-10-07) | **N1 lida** (parcial) | O 16320 confirma o cancelamento automático por não envio ou etiqueta expirada; a inatividade de 7 dias segue só no 76324. LOG §10 A11 |
+| Perecível nos Pontos logísticos | vencido ou contaminado pode ser descartado na hora; bloqueado >7 dias passa à Shopee | help 124091, 2023-02-16 (pode estar superada) | **N1 lida** | Não se confirmou que vale para o Full atual (LOG §10 A27). Para o Full, o Manual de Embalagens https://seller.shopee.com.br/edu/article/27632 (atualizado em 2026-06-17) exige validade e lote visíveis em alimentos |
 | Embalagem inadequada recorrente | pode reduzir visibilidade, remover anúncio e gerar penalidade | `9CxujZDsRCw` 2026-10-01 | vídeo oficial | LOG §1 item 14; REP §2.6 |
 
 ### 1.3 Reputação e integridade
 
 | Regra / número | Valor | Fonte e data | Status | Nota |
 |---|---|---|---|---|
-| Pontos de penalidade | trimestre civil; 1–2 pts = aviso; punição a partir de 3 | `ThPsYQpMxJE` 2026-08-05; `LLDUrAuF3qQ` 2026-05-14; UpSeller 946 | via terceiro | REP §2.2 |
-| Faixas | 3–5: 14 d, −5%, R$100 · 6–8: 14 d, −10%, sem frete grátis, R$250 · 9–11: 21 d, −20%, R$500 · 12–14: 28 d, −30%, R$1.000 · ≥15: conta congelada 28 d, R$1.500 | idem | via terceiro; R$300/R$600 na UpSeller | REP §2.2 |
-| Gatilhos de envio | não envio ≥8% e ≥2 pedidos = 1 pt (≥90 = 2); atraso ≥5% e ≥2 pedidos = 1 pt (≥90 = 2) | `ThPsYQpMxJE` | via terceiro | REP §2.3 |
-| Condutas que dão 2 pontos | chat abusivo; levar comprador para fora; pedir que cancele; resposta abusiva a avaliação | `ThPsYQpMxJE` | via terceiro | REP §2.3 |
+| Pontos de penalidade | trimestre civil; 1–2 pts = aviso; punição a partir de 3 | `ThPsYQpMxJE` 2026-08-05; `LLDUrAuF3qQ` 2026-05-14; UpSeller 946; https://seller.shopee.com.br/edu/article/7955 (atualizado em 2026-09-09) | **confirmado 2026-10-15** | Pontos atribuídos às segundas; recurso em até 14 dias. REP §2.2 |
+| Faixas | 3–5: 14 d, −5%, R$100 · 6–8: 14 d, −10%, sem frete grátis, R$250 · 9–11: 21 d, −20%, R$500 · 12–14: 28 d, −30%, R$1.000 · ≥15: conta congelada 28 d, R$1.500 | idem; https://seller.shopee.com.br/edu/article/7955 | **confirmado 2026-10-15**; o R$300 da UpSeller está errado | Taxas desde 2026-06-01; não cobradas de lojas com VBM abaixo de R$2.500 no mês anterior. REP §2.2 |
+| Gatilhos de envio | não envio ≥8% e ≥2 pedidos = 1 pt (≥90 = 2); atraso ≥5% e ≥2 pedidos = 1 pt (≥90 = 2) | `ThPsYQpMxJE`; https://seller.shopee.com.br/edu/article/7955 | **confirmado 2026-10-15** | TNE acima de 8% gera ponto (https://seller.shopee.com.br/edu/article/3280); a TNC da Central é a mesma TNE. REP §2.3 |
+| Condutas que dão 2 pontos | chat abusivo; levar comprador para fora; pedir que cancele; resposta abusiva a avaliação | `ThPsYQpMxJE`; https://seller.shopee.com.br/edu/article/7955 | **confirmado 2026-10-15** | Se persistir, +4 pontos. REP §2.3 |
 | Spam de anúncio | termos irrelevantes ou excessivos, preço inexato, duplicados (devem virar variação) | help 76225 (sem data, pode estar superada) | **N1 lida** | RAN §10 A3 |
 | Cota de anúncios | muitos pontos por violação de anúncio limitam a cota por 28 dias | help 76225 | **N1 lida**; "reenvio gera pontos extras" foi **contestado** em parte | RAN §10 A4 |
 | Avaliações | até 10 moedas por avaliação com imagem e vídeo; inflar a nota de forma não natural é fraude | help 76444, 88798 (sem data) | **N1 lida** | RAN §10 A15 |
-| Taxa de resposta do chat | 12 h; últimos 30 dias; fins de semana e feriados contam | `Arwxa4I9DgE` 2026-06-05 | via terceiro | REP §2.5 |
-| Vendedor Indicado | entrar: nota >4,5, chat ≥60%, TNC <2%, ≤1 pt, preparo ≤1 dia útil, sábado ≥20%, CNPJ, loja >90 dias; sair: nota <4,2, chat <50%, TNC >3%, ≥3 pts | `8cRhids_rNs` 2026-03-18 | via terceiro (**pode estar superada**) | REP §2.4 |
+| Taxa de resposta do chat | 12 h; últimos 30 dias; fins de semana e feriados contam | `Arwxa4I9DgE` 2026-06-05; https://seller.shopee.com.br/edu/article/2713 | **confirmado 2026-10-15** | Peso maior para os 25% de chats mais recentes; mínimo de 2 chats. REP §2.5 |
+| Vendedor Indicado | entrar: nota ≥4,5, chat ≥60%, TNE ≤2%, ≤1 pt, preparo ≤1 dia útil, sábado ≥20%, CNPJ, loja >90 dias, ≥30 pedidos em 30 dias, ≥10 compradores únicos; sair: nota <4,2, chat <50%, TNE >3%, ≥3 pts | `8cRhids_rNs` 2026-03-18; https://seller.shopee.com.br/edu/article/18456 (atualizado em 2026-06-29) | **confirmado 2026-10-15** | Entrada e saída semanais. A nota de entrada é 4,5 ou mais, não acima de 4,5; a métrica é a TNE, que a Central chama de TNC. REP §2.4 |
 
 ### 1.4 Ads e anúncio
 
 | Regra / número | Valor | Fonte e data | Status | Nota |
 |---|---|---|---|---|
 | Formatos | Busca de Produtos, Busca da Loja, Descoberta, Combinados, Display | ads.shopee.com.br (sem data, pode estar superada) | oficial (portal) | ADS §2.1 |
-| Cobrança | busca e descoberta por clique; Display por CPM, com reserva de datas | /ad-types/419 e /1414 | **N1 lida** | Diverge de relato de cobrança por impressão (§4) |
+| Cobrança | busca e descoberta por clique; Display por CPM, com reserva de datas; GMV Max - Anúncios de Produto por impressão (oCPM) desde 2026-05-07 | /ad-types/419 e /1414; https://ads.shopee.com.br/learn/faq/473/2205 | **N1 lida**; oCPM **confirmado 2026-10-15** | O oCPM vale só para GMV Max - Anúncios de Produto (Lance Automático, Meta de ROAS, Grupo de Anúncios, GMV Max da Loja), não para todo o Shopee Ads (§4 D1) |
 | Busca da Loja | automática para vendedores selecionados com bom histórico | /ad-types/421 | **N1 lida** | ADS §10 A4 |
 | Display só para Lojas Oficiais | lista de elegíveis | /ad-types/1414 | portal; exclusividade não reapareceu na releitura | ADS §10 A3 |
 | Google Ads via Shopee | ≥30 dias ativo; orçamento ±20%; pausa reinicia aprendizado; ≥5 produtos na seleção manual | `BZbrt87EAzs`, `M9Plk5F5144` 2026-07-06 | vídeo oficial, confirmado pelo verificador | ADS §2.4 |
-| GMV Max com meta de ROAS; orçamento mínimo R$10/dia; atribuição 7 d clique + 1 d visualização | — | praticantes com tela, 2026-05 a 09 | **sem N1** | ADS §2.2 |
-| Título | produto + marca + especificação; 36 primeiros caracteres decisivos no celular | `zSfe4Z0Ukbc` 2026-06-25 | vídeo oficial | RAN §2.3 |
-| Capa e vídeo | produto em ~70% da capa, ≥1.000 px; vídeo MP4 de 10 a 60 s, ≤30 MB | `fmcvIUvhE3Q`; `BjlJ3AnBHRM` | vídeo oficial | RAN §2.3 |
-| Atributos | EAN/GTIN e registros reais; dado inconsistente leva a remoção permanente | `S03qUnOmvek` 2026-07-23 | vídeo oficial | RAN §2.3 |
-| Variação x anúncio novo | cor, tamanho, voltagem e sabor no mesmo anúncio; muda função, proposta ou categoria → anúncio novo | `rcGxXjm76xE` 2026-07-30 | vídeo oficial | MIX §2.2 |
+| GMV Max com meta de ROAS; orçamento mínimo R$10/dia; atribuição 7 d clique + 1 d visualização | — | praticantes com tela, 2026-05 a 09; https://ads.shopee.com.br/learn/faq/473/1527; https://ads.shopee.com.br/learn/faq/473/2205 | **parcial 2026-10-15**: GMV Max com Meta de ROAS e 3 sugestões de ROAS confirmados; atribuição por clique de 7 dias vale para todos e a por impressão de 1 dia só para GMV Max Anúncios de Produto; o mínimo de R$10/dia segue sem fonte oficial (o artigo https://ads.shopee.com.br/learn/faq/323/1469 usa R$10 só como exemplo) | ADS §2.2 |
+| Título | produto + marca + especificação; 36 primeiros caracteres decisivos no celular | `zSfe4Z0Ukbc` 2026-06-25; https://seller.shopee.com.br/edu/article/17658; https://seller.shopee.com.br/edu/article/21806 | **parcial 2026-10-15**: estrutura e veto a termos excessivos ou irrelevantes confirmados; os 36 caracteres não aparecem em fonte oficial escrita (o 21806 só pede 10 caracteres ou mais) | RAN §2.3 |
+| Capa e vídeo | produto em ~70% da capa, ≥1.000 px; vídeo MP4 de 10 a 60 s, ≤30 MB | `fmcvIUvhE3Q`; `BjlJ3AnBHRM`; https://seller.shopee.com.br/edu/article/2822; https://seller.shopee.com.br/edu/article/17411; https://seller.shopee.com.br/edu/article/18658 | vídeo **confirmado 2026-10-15** (resolução até 1280 x 1280); capa **parcial**: fundo branco ou neutro confirmado, ~70% e 1.000 px sem fonte oficial | Os artigos dizem até 9 imagens e arquivo de até 2 MB. RAN §2.3 |
+| Atributos | EAN/GTIN e registros reais; GTIN obrigatório, flexível ou opcional conforme a categoria; GTIN incorreto gera aviso que trava edições até a correção, com apelação | `S03qUnOmvek` 2026-07-23; https://seller.shopee.com.br/edu/article/16213 (atualizado em 2026-09-16) | **corrigido 2026-10-15**: "remoção permanente" não aparece na fonte oficial | RAN §2.3 |
+| Variação x anúncio novo | cor, tamanho, voltagem e sabor no mesmo anúncio; muda função, proposta ou categoria → anúncio novo | `rcGxXjm76xE` 2026-07-30; https://seller.shopee.com.br/edu/article/11907 | **parcial 2026-10-15**: opções do mesmo produto num anúncio e penalidade por mau uso confirmadas; o critério "função, proposta ou categoria" não aparece em palavras (o exemplo oficial é mochila e tênis) | MIX §2.2 |
 
 ### 1.5 Regulatório, alimentos e mercado
 
 | Regra / número | Valor | Fonte e data | Status | Nota |
 |---|---|---|---|---|
-| Atributo Anvisa | obrigatório em anúncios novos de 169 categorias desde 2026-09-21; legados "por enquanto" mantidos | `RvJiFGQiK3c` 2026-09-14 (integrador) | via terceiro, **sem N1** | ALI §2.1 |
+| Atributo Anvisa | obrigatório em anúncios novos de 169 categorias desde 2026-09-21; legados "por enquanto" mantidos | `RvJiFGQiK3c` 2026-09-14 (integrador); https://seller.shopee.com.br/edu/article/11602 (atualizado em 2026-09-16) | **parcial 2026-10-15**: campo "Código de Registro, Processo ou Notificação da ANVISA" confirmado ("00" se dispensado; anúncio sem código ou com código errado pode ser removido sem aviso); a data, as 169 categorias e a manutenção dos legados não aparecem | ALI §2.1 |
 | Retiradas da Anvisa | alegação de saúde não aprovada em anúncio online é o motivo mais frequente | atos Anvisa 2026-02-06, 03-19, 08-07 | **N2** | ALI §5.2 |
 | Fiscalização em CD | Anvisa fiscalizou o estoque Full do ML em Cajamar | Anvisa 2026-03-18 | **N2** (precedente, não Shopee) | ALI §1 item 3 |
 | Café torrado | Portaria SDA 570/2022 em vigor desde 2023-01-01; RDC 716/2022, 727/2022, 843/2024 | ABIC (2025) | oficial via ABIC | ALI §2.2 |
 | Lojas Oficiais | original com NF; dúvida de autenticidade → reembolso integral em cupom; devolução em 30 dias | blog Shopee "lojas-oficiais" 2026-06-02 | **N1 lida** | ALI §10 R7 |
-| Mercado Shopee | foco em não perecíveis; dias temáticos | blog Shopee 2026-06-02 | N1 lida (metade) | ALI §10 R12 |
+| Mercado Shopee | foco em não perecíveis; dias temáticos (segunda lavanderia, quarta mercearia, sexta happy hour) | blog Shopee 2026-06-02; https://shopee.com.br/blog/mercado-shopee-como-fazer-suas-compras/ | **confirmado 2026-10-15** | Faixa de temperatura não achada. ALI §10 R12 |
 | Monetização global | GMV 2T26 US$38,3 bi (+28,4%); receita core US$4,3 bi (+65,6%) | Sea 6-K 2026-08-11 | **N2** | CAS §4 |
 
 ---
@@ -156,7 +156,7 @@ A coluna "Status" diz o grau de verificação: **N1 lida** (confirmada contra p�
 - **Cupom com cesta mínima** de cerca de 2x o ticket. O cupom de seguidor (2% basta) é tratado como obrigatório (PRE §3.1).
 - **Preço cheio calculado, com "gordura" para campanha.** É orientação oficial e também prática (PRE §1 item 12, §3.2).
 - **Conciliação do repasse venda a venda via ERP ou API.** Nos grandes, um analista concilia a cada 30 minutos (PRE §3.1; CAS A18).
-- **Antes de aderir, calcular a taxa extra de campanha sobre a loja inteira.** O desconto da campanha substitui o do anúncio, não soma (PRE §3.4; SOC S22).
+- **Antes de aderir, calcular a taxa extra de campanha sobre a loja inteira** (3,5% nas Campanhas de Destaque, segundo https://seller.shopee.com.br/edu/article/18712). O desconto da campanha substitui o do anúncio, não soma (PRE §3.4; SOC S22).
 - **Hipóteses de fonte única:** reajustar em lotes de 5 a 7 anúncios a cada 3 ou 4 dias; escada de preço junto com o ROAS a cada patamar de cerca de 15 e 30 vendas (PRE §3.2; SOC S05).
 
 ### 2.3 Logística e estoque
@@ -172,7 +172,7 @@ A coluna "Status" diz o grau de verificação: **N1 lida** (confirmada contra p�
 
 ### 2.4 Ranqueamento e anúncio
 
-- **Seguir a trilha oficial de 2026:** título com produto + marca + especificação nos 36 primeiros caracteres; capa com ~70% de produto; galeria em sequência (visão geral → detalhe → variações → uso); vídeo de 10 a 60 s; categoria mais específica; atributos opcionais preenchidos com códigos reais (RAN §2.3).
+- **Seguir a trilha oficial de 2026:** título com produto + marca + especificação nos 36 primeiros caracteres; capa com ~70% de produto (os 36 caracteres e os ~70% vêm de vídeo e não aparecem em fonte oficial escrita, verificação de 2026-10-15); galeria em sequência (visão geral → detalhe → variações → uso); vídeo de 10 a 60 s; categoria mais específica; atributos opcionais preenchidos com códigos reais (RAN §2.3).
 - **Funil como ferramenta de diagnóstico:** exposição → CTR → conversão. A capa ganha a atenção; título, preço dentro da faixa, selos e frete ganham o clique (RAN §3.1).
 - **Coerência capa ↔ produto.** Capa enganosa gera devolução e penalidade (RAN §3.1 item 3).
 - **Avaliações como bola de neve, dentro da regra:** lembrete oficial "Lembrar compradores de avaliar" com moedas. A taxa observada foi de 55% a 72% das vendas em dois anúncios grandes (RAN A24, A25).
@@ -240,7 +240,7 @@ As quebras documentadas vêm de expedição, fornecedor único e configuração 
 | ACOS de produto | alvo de ~4–5%; alerta acima de 6–8% | uma conta | ADS §4 | PRÁTICA, C |
 | CTR | 2% a 5% "muito bom"; alunos de 1,5–2% para 5–8% | sem base | RAN §4 | PRÁTICA, C (não usar como meta) |
 | Conversão | 4% a 6% "muito bom" | sem base | RAN §4 | PRÁTICA, C |
-| "Produto bom" para Ads (oficial) | ROAS >7–10, >10 vendas, >100 visualizações; "bom ROAS" >2 | portal Ads, sem data (pode estar superada) | MIX §2.4 | OFICIAL, B |
+| "Produto bom" para Ads (oficial) | ROAS >7–10, >10 vendas, >100 visualizações; "bom ROAS" >2 | portal Ads, sem data (pode estar superada) | MIX §2.4 | sem fonte oficial achada na verificação de 2026-10-15 (Centro de Educação e https://seller.shopee.com.br/edu/article/19154; o portal de Ads não foi varrido para isso) |
 | Taxa efetiva de tarifa | 19,2% (R$499,99) a 42,6% (R$19,90); 34% em R$80 | cálculo | MIX §2.3 | cálculo |
 | Margem mínima citada | bruta ≥25–30% / MC ≥20% / MC pós-Ads 12–15% | bases diferentes | PRE §3.3; MIX §3.2 | PRÁTICA, C |
 | Margem pós-Ads (exemplo) | ~9%, contra 23% antes de Ads | um painel | PRE §3.1; MIX §3.5 | PRÁTICA, C |
@@ -266,17 +266,17 @@ Benchmarks de EUA e Amazon (Pacvue, Jungle Scout) não foram coletados e ficam f
 
 | # | Tema | Posição A | Posição B | O que medir para resolver |
 |---|---|---|---|---|
-| D1 | Cobrança do Shopee Ads | Por clique em busca e descoberta; CPM só no Display (portal oficial, N1 lida; ADS §2.1, §6) | Por impressão desde 2026-05-07 (dois praticantes; RAN A18) | Ler no extrato e no relatório de cada campanha se o custo acompanha impressões ou cliques; achar a página oficial de faturamento |
+| D1 | Cobrança do Shopee Ads | Por clique em busca e descoberta; CPM só no Display (portal oficial, N1 lida; ADS §2.1, §6) | Por impressão desde 2026-05-07 (dois praticantes; RAN A18) | **Resolvida (2026-10-15):** oCPM desde 2026-05-07 só para GMV Max - Anúncios de Produto; os demais seguem por clique (https://ads.shopee.com.br/learn/faq/473/2205) |
 | D2 | ROAS-alvo inicial | Começar alto (30) e descer a cada 2–3 dias (ADS §3.2) | Começar baixo (<5 ou "baixinho") e subir com as vendas (ADS §3.2; SOC S04) | Teste pareado em SKUs comparáveis, com a mesma janela de 7 dias, medindo margem pós-Ads e vendas totais do SKU, não só ROAS direto |
 | D3 | Ads antes ou depois do orgânico | Sem Ads não sai a 1ª venda (SOC S15) | Ads só após 4–5 dias de venda orgânica (RAN §3.3) | Holdout: lançar lotes de SKUs com e sem Ads e comparar tempo até N avaliações e posição |
 | D4 | Lance manual por palavra-chave em 2026 | O portal oficial ainda o descreve (/ad-types/419) | Os painéis de 2026 mostram só GMV Max (ADS §9 item 5) | Conferir no painel da própria conta quais métodos aparecem |
 | D5 | Incrementalidade do Ads | "Orgânico melhora com Ads" (ADS §6) | Ninguém mostrou teste de pausa; o ROAS "não direto" mistura vendas orgânicas (ADS §1 item 13) | Pausa controlada por SKU ou por semana; comparar ROAS direto com venda total do SKU |
-| D6 | Taxas das faixas 2 e 3 de penalidade | R$250 / R$500 (duas telas; REP §2.2) | R$300 / R$600 (UpSeller) | Ler a política oficial no Centro de Educação com navegador |
-| D7 | Gatilho de atraso | <5% (tela) | "8%" na fala do mesmo autor (REP §3.3) | Tratar 5% como teto operacional até a leitura do N1 |
-| D8 | TNC do Indicado | <2% para entrar e <3% para manter (card de mar/2026) | Só "<8%" (tela de mai/2026) | Provavelmente são réguas diferentes; monitorar as duas toda semana |
-| D9 | Teto do frete grátis | R$20/30/40 por faixa (lado vendedor; LOG D3) | Teto de R$20 no cupom (help 76220, lado comprador) | Comparar, no extrato de pedidos por faixa, quanto a Shopee cobriu |
+| D6 | Taxas das faixas 2 e 3 de penalidade | R$250 / R$500 (duas telas; REP §2.2) | R$300 / R$600 (UpSeller) | **Resolvida (2026-10-15):** R$250 / R$500 (https://seller.shopee.com.br/edu/article/7955) |
+| D7 | Gatilho de atraso | <5% (tela) | "8%" na fala do mesmo autor (REP §3.3) | **Resolvida (2026-10-15):** atraso ≥5%; não envio ≥8% (https://seller.shopee.com.br/edu/article/7955) |
+| D8 | TNC do Indicado | <2% para entrar e <3% para manter (card de mar/2026) | Só "<8%" (tela de mai/2026) | **Resolvida (2026-10-15):** são réguas diferentes da mesma métrica (TNE, chamada TNC na Central): ≤2% para entrar e >3% para sair do Indicado (https://seller.shopee.com.br/edu/article/18456); ponto de penalidade com TNE acima de 8% (https://seller.shopee.com.br/edu/article/3280) |
+| D9 | Teto do frete grátis | R$20/30/40 por faixa (lado vendedor; LOG D3) | Teto de R$20 no cupom (help 76220, lado comprador) | R$20/R$30/R$40 por faixa confirmado como teto dos cupons de frete grátis (https://seller.shopee.com.br/edu/article/23431); comparar, no extrato de pedidos por faixa, quanto a Shopee cobriu |
 | D10 | Data do frete grátis obrigatório | Março de 2026 (`j_2kh6auKiw`) | Maio de 2026 (UpSeller-619) | Irrelevante para a operação atual; registrar a data oficial |
-| D11 | Custo do Full | Envio e armazenagem grátis (abr/2026) | Taxa por unidade abaixo de R$20 (jul/2026); armazenagem sem tabela (LOG D2) | Ler a tabela atual; acompanhar se aparece cobrança por idade de estoque |
+| D11 | Custo do Full | Envio e armazenagem grátis (abr/2026) | Taxa por unidade abaixo de R$20 (jul/2026); armazenagem sem tabela (LOG D2) | **Resolvida (2026-10-15):** há cobrança por ociosidade desde 2026-03-01 (Supermercado a partir de 2 meses, Outros 3, Moda 4; de R$2,00 a R$72,30 por unidade), além de retirada, descarte e Taxa de Envio Excepcional (https://seller.shopee.com.br/edu/article/26581) |
 | D12 | Rede de CDs do Full | Uma tela mostrou um só CD disponível (LOG §9 item 7) | Blog oficial: 5 CDs de fulfillment (SP, PE, GO, RS, MG) em 2026-05 (ALI §2.5) | Ver no fluxo de envio quais CDs a conta pode escolher |
 | D13 | Full melhora ranking ou reputação | "Mais relevância" (praticantes, texto do painel) | Sem medição; relatos de atraso e perda no CD de SP (LOG D1, D4) | Comparar conversão e posição do mesmo SKU antes e depois do Full, com controle de preço |
 | D14 | Loja Oficial | Por convite; "não vejo vantagem" (2022) | Por proposta ao gerente; "+30% num dia" (2026) (ALI §3.2; CAS §2.7) | Sem página de critérios; o efeito precisa de antes e depois com base |
@@ -341,11 +341,11 @@ Tabela de tarifas e degraus; frete grátis obrigatório; pontos e Indicado; regr
 
 ### 6.1 Regras
 
-1. **Atributo Anvisa** obrigatório em anúncios novos de 169 categorias desde 2026-09-21. **Não se sabe se café, chá, cápsula e suplemento estão na lista** [OFICIAL via terceiro, C] (ALI §2.1; RAN §5).
+1. **Atributo Anvisa** obrigatório em anúncios novos de 169 categorias desde 2026-09-21. **Não se sabe se café, chá, cápsula e suplemento estão na lista** [OFICIAL via terceiro, C] (ALI §2.1; RAN §5). Na verificação de 2026-10-15, o campo "Código de Registro, Processo ou Notificação da ANVISA" foi confirmado em https://seller.shopee.com.br/edu/article/11602 ("00" se dispensado; remoção sem aviso se faltar ou estiver errado); a data e as 169 categorias não aparecem em fonte oficial.
 2. **Alegação de saúde é o principal gatilho de retirada.** A Anvisa age sobre o anúncio online onde quer que esteja, e em 2026 abriu revisão das normas de propaganda de alimentos citando marketplaces e influenciadores [N2, A] (ALI §5.2).
 3. **Café torrado:** Portaria SDA 570/2022 (classificação e rotulagem, com declaração de arábica ou canéfora), RDC 716/2022 e RDC 727/2022; tabela nutricional não obrigatória para café [oficial via ABIC] (ALI §2.2).
 4. **Elegibilidade:** alimento precisa ser embalado ou selado; frescos, caseiros e laticínios não pasteurizados são proibidos na política da Shopee Video [OFICIAL] help 188364, sem data (RAN §5). Medicamento é proibido, inclusive "natural"; suplemento é para vendedores selecionados (LOG §5; ALI §2.1).
-5. **Perecível na logística:** o vendedor responde pela validade. Item vencido ou contaminado pode ser descartado sem indenização e item bloqueado por mais de 7 dias passa à Shopee [OFICIAL, N1 lida, termos de 2023, pode estar superada] (LOG §5). **Validade mínima no recebimento do Full, lote, FEFO e temperatura: sem evidência** (LOG §9; ALI §9).
+5. **Perecível na logística:** o vendedor responde pela validade. Item vencido ou contaminado pode ser descartado sem indenização e item bloqueado por mais de 7 dias passa à Shopee [OFICIAL, N1 lida, termos de 2023, pode estar superada] (LOG §5). No Full, o Manual de Embalagens exige que alimentos tragam data de validade e número do lote visíveis e legíveis, e há Relatório de Validade [OFICIAL] https://seller.shopee.com.br/edu/article/27632 (atualizado em 2026-06-17). **Validade mínima no recebimento, FEFO e temperatura: sem evidência** (LOG §9; ALI §9).
 6. **Promoção bloqueada** só para leite em pó e comida de bebê; não há restrição equivalente achada para café ou alimentos em geral (PRE §2.4). Em Ads, fórmulas infantis, mamadeiras e suplementos aparecem como proibidos [via terceiro, 2025, pode estar superada] (ADS §2.6).
 7. **Vídeo:** sabor diferente entre o vídeo e o link é "irrelevante" e gera penalidade. Promessa de cura ou resultado gera alerta (RAN §5 itens 4 e 5).
 8. **Spam de preço x escada de peso:** variações 250g → 3kg com preço proporcional passam de 4x. Por isso os líderes separam tamanhos em anúncios próprios. Isso é inferência, não regra declarada para alimentos (RAN §5 item 3; MIX §5).
@@ -354,7 +354,7 @@ Tabela de tarifas e degraus; frete grátis obrigatório; pontos e Indicado; regr
 
 - **Pacote de 250g a 500g na faixa de R$20 a R$40** paga de 31% a 43% de comissão mais taxa fixa, antes de frete, imposto e Ads [cálculo] (CAS §5; PRE §5).
 - **Pacote de 1kg logo abaixo de R$80** fica na faixa de 20% + R$4,50, sem subsídio Pix. Acima de R$80, a taxa fixa sobe para R$16 e o Pix passa a ser subsidiado (PRE §5).
-- **Item abaixo de R$20 no Full** paga envio por unidade, com mínimo de 15 unidades na tela observada (ALI §1 item 12).
+- **Item abaixo de R$20 no Full** paga a Taxa de Envio Excepcional por unidade (R$1 a R$12,50 por tamanho, desde 2026-07-01) [OFICIAL] https://seller.shopee.com.br/edu/article/26581. O mínimo de 15 unidades da tela observada não aparece na fonte oficial (ALI §1 item 12). A armazenagem também não é grátis sem prazo: Supermercado paga ociosidade a partir de 2 meses.
 - **Recompra:** não há assinatura oficial nem compra programada para o comprador. As ferramentas de recompra são cupons (de seguidor, para compradores específicos, de live) e moedas. O ShopeeVIP (R$9,90/mês) é um clube de cupons do comprador (ALI §5.6).
 
 ### 6.3 O que a prateleira de café mostra [OBS, uma página, 2026-10-14]
@@ -389,13 +389,13 @@ Fontes: ALI §3.1, §5.3; OBS-L; ADS §5.
 
 **Regra oficial a confirmar no N1, com navegador e sem login de terceiros:**
 
-1. A tabela de comissão de 2026-10-01 está como os praticantes mostram? O kit paga uma taxa fixa só? A regra de item abaixo de R$8 existe? (PRE §9; MIX §9)
-2. Qual é a política oficial de pontos? Quais são as taxas das faixas 2 e 3, qual é o gatilho de atraso e existe isenção abaixo de R$2.500 de GMV? (REP §9)
-3. Quais são os critérios atuais do Vendedor Indicado, que só aparecem num card de mar/2026? (REP §9)
-4. O Ads cobra por clique ou por impressão em 2026? Ainda existe lance por palavra-chave? Qual é a atribuição oficial? (ADS §9; RAN §9)
-5. Existe cobrança de armazenagem ou de estoque antigo no Full? Quais são as faixas P/M/G/XG, a multa por medida errada e os CDs disponíveis por região? (LOG §9)
-6. A planilha das 169 categorias com atributo Anvisa inclui café, chá, cápsula e suplemento? Que número a Shopee aceita para café dispensado de registro? (ALI §9)
-7. Há regras de alimento no Full: validade mínima no recebimento, lote, FEFO, descarte, categorias aceitas? (LOG §9; ALI §9)
+1. A tabela de comissão de 2026-10-01 está como os praticantes mostram? O kit paga uma taxa fixa só? A regra de item abaixo de R$8 existe? (PRE §9; MIX §9) *Em 2026-10-15: tabela e regra abaixo de R$8 confirmadas em https://seller.shopee.com.br/edu/article/18483; o kit segue sem resposta.*
+2. Qual é a política oficial de pontos? Quais são as taxas das faixas 2 e 3, qual é o gatilho de atraso e existe isenção abaixo de R$2.500 de GMV? (REP §9) *Em 2026-10-15: R$250 e R$500; atraso ≥5%; isenção para VBM abaixo de R$2.500 no mês anterior (https://seller.shopee.com.br/edu/article/7955).*
+3. Quais são os critérios atuais do Vendedor Indicado, que só aparecem num card de mar/2026? (REP §9) *Em 2026-10-15: confirmados em https://seller.shopee.com.br/edu/article/18456, com nota ≥4,5.*
+4. O Ads cobra por clique ou por impressão em 2026? Ainda existe lance por palavra-chave? Qual é a atribuição oficial? (ADS §9; RAN §9) *Em 2026-10-15: oCPM só no GMV Max - Anúncios de Produto; clique 7 dias para todos, impressão 1 dia só no GMV Max Anúncios de Produto (https://ads.shopee.com.br/learn/faq/473/2205). O lance manual por palavra-chave não é tratado.*
+5. Existe cobrança de armazenagem ou de estoque antigo no Full? Quais são as faixas P/M/G/XG, a multa por medida errada e os CDs disponíveis por região? (LOG §9) *Em 2026-10-15: há cobrança por ociosidade desde 2026-03-01 e Taxa de Envio Excepcional P/M/G/XG (https://seller.shopee.com.br/edu/article/26581); multa por medida errada e CDs seguem em aberto.*
+6. A planilha das 169 categorias com atributo Anvisa inclui café, chá, cápsula e suplemento? Que número a Shopee aceita para café dispensado de registro? (ALI §9) *Em 2026-10-15: o produto dispensado usa "00" (https://seller.shopee.com.br/edu/article/11602); a lista de categorias não foi achada.*
+7. Há regras de alimento no Full: validade mínima no recebimento, lote, FEFO, descarte, categorias aceitas? (LOG §9; ALI §9) *Em 2026-10-15: validade e lote visíveis são exigidos (https://seller.shopee.com.br/edu/article/27632); validade mínima e FEFO seguem em aberto.*
 8. Quais são os critérios e benefícios mensuráveis da Loja Oficial, e existe programa de associação de marca (help 182821) equivalente a Brand Registry? (ALI §9; RAN §5)
 
 **Efeitos que ninguém mediu:**
@@ -417,4 +417,54 @@ Fontes: ALI §3.1, §5.3; OBS-L; ADS §5.
 17. Que régua interna usar como meta: a do Indicado ou a de pontos? E com que folga semanal? (REP §4)
 18. Como conciliar o preço igual entre canais (pressão do ML) com kits e tamanhos exclusivos por canal? (CAS A27, A28)
 19. Que métrica de margem os agentes devem otimizar, dado que as fontes misturam margem bruta, MC e MC pós-Ads? (PRE §3.3)
-20. Como a taxa de campanha (2–3% sobre a loja inteira) e a renovação automática entram na decisão de aderir a cada data dupla? (PRE §1 item 8)
+20. Como a taxa de campanha (3,5% sobre a loja inteira nas Campanhas de Destaque, segundo https://seller.shopee.com.br/edu/article/18712; antes citada como 2–3%) e a renovação automática entram na decisão de aderir a cada data dupla? (PRE §1 item 8)
+
+---
+
+## 8. Verificação por navegador (2026-10-15)
+
+**Método.** Leitura no Chrome, com JavaScript, sem login e sem captcha, do Centro de Educação do Vendedor (seller.shopee.com.br/edu), da Central de Ajuda, da FAQ do Shopee Ads (ads.shopee.com.br/learn/faq) e do blog oficial. Tabelas publicadas como imagem foram lidas por captura de tela. Resultado completo em `pesquisa-marketplaces/verificacao/resultado-shopee.tsv` e nas seções 11 de cada nota.
+
+**Números (89 afirmações verificadas):**
+
+| Veredito | Total |
+|---|---|
+| Confirmadas | 49 |
+| Contestadas | 4 |
+| Parciais | 28 |
+| Sem fonte oficial | 8 |
+| Inacessíveis | 0 |
+
+Duas parciais trazem uma parte contestada: ALI R6 (armazenagem grátis) e ALI R12 (Full sem regra de validade).
+
+| Frente | Confirmadas | Contestadas | Parciais | Sem fonte |
+|---|---|---|---|---|
+| Ads | 3 | 0 | 3 | 3 |
+| Preço e promoção | 8 | 0 | 2 | 2 |
+| Logística e estoque | 4 | 1 | 6 | 0 |
+| Ranqueamento e anúncio | 5 | 0 | 5 | 0 |
+| Produto e mix | 7 | 0 | 3 | 2 |
+| Reputação e atendimento | 10 | 0 | 2 | 0 |
+| Alimentos e marca própria | 4 | 1 | 5 | 1 |
+| Cases grandes | 8 | 2 | 2 | 0 |
+
+**Correções aplicadas neste mapa:**
+
+1. **Taxa de campanha** (CAS A12; ALI R11; PRE R8): as Campanhas de Destaque cobram 3,5% sobre todas as vendas da loja desde 2026-04-23, e não 2% a 3%. A renovação automática e a incidência sobre a loja inteira estão confirmadas; a saída exige formulário até 10 dias antes do fim. https://seller.shopee.com.br/edu/article/18712 (atualizado em 2026-09-22). Os artigos gerais de Campanhas Oficiais (11533, 3757) não citam taxa.
+2. **Armazenagem no Full** (CAS A6b; ALI R6): não é grátis sem prazo. Há cobrança por ociosidade desde 2026-03-01 (Supermercado a partir de 2 meses), além de retirada e descarte. A Taxa de Envio Excepcional de R$1 / R$2,50 / R$6 / R$12,50 (P/M/G/XG), em vigor desde 2026-07-01, vale para itens fora dos critérios; a partir de R$20, o envio só é grátis se o item cumprir o mínimo de pedidos em 30 dias e o tamanho. O mínimo de 15 unidades não aparece. https://seller.shopee.com.br/edu/article/26581
+3. **Validade no Full** (ALI R12): a lacuna "sem regra oficial de validade" foi contestada. O Manual de Embalagens exige validade e lote visíveis em alimentos. https://seller.shopee.com.br/edu/article/27632
+4. **Shopee Turbo** (LOG A22, contestada): o raio é de até 7 km, e não 10 km. Estão confirmados a entrega em até 4 h, a coleta pela Uber Direct ou pela própria Shopee, o limite de pedidos por hora definido pelo vendedor e a etiqueta em 30 min ou 1 h. https://seller.shopee.com.br/edu/article/27255 (2026-05-28). Este tema não constava do corpo do mapa.
+5. **Cobrança do Ads** (RAN A18; ADS A11; D1): o oCPM, em vigor desde 2026-05-07, vale só para GMV Max - Anúncios de Produto, e não para todo o Shopee Ads. A atribuição por impressão de 1 dia vale só nesse formato; a por clique de 7 dias vale para todos. https://ads.shopee.com.br/learn/faq/473/2205
+6. **Pontos de penalidade** (REP A3–A16; LOG A12–A13; D6, D7): a tabela foi confirmada. A faixa 2 custa R$250, e o R$300 da UpSeller está errado. O gatilho de atraso é 5% ou mais, e o de não envio é 8% ou mais (não há faixa de 5% a 8%). As taxas de R$100 a R$1.500 valem desde 2026-06-01 e não são cobradas de lojas com VBM abaixo de R$2.500 no mês anterior. https://seller.shopee.com.br/edu/article/7955
+7. **TNE/TNC** (REP A11–A12, A38; D8): a TNC da Central é a mesma TNE. O ponto de penalidade vem com mais de 8%, e não 10%. https://seller.shopee.com.br/edu/article/3280
+8. **Vendedor Indicado** (REP A17; RAN A26; CAS A33): os critérios foram confirmados. A nota de entrada é 4,5 ou mais, e não acima de 4,5; o limite de 2% para entrar e 3% para sair é da TNE. https://seller.shopee.com.br/edu/article/18456
+9. **Requisitos do Full** (LOG A2; REP A25; ALI R4; CAS A30): só o CNPJ (Simples, Real ou Presumido) e os mínimos por item estão confirmados. A nota acima de 4,5 e os 5 pedidos por dia não aparecem em fonte oficial. https://seller.shopee.com.br/edu/article/26370; https://seller.shopee.com.br/edu/article/23197
+10. **Frete grátis** (PRE R7; LOG A16–A18): estão confirmados os tetos de R$20 / R$30 / R$40 e a coparticipação de 25% (teto de R$10, só na logística própria). O fim do adicional de 6% e a data exata não aparecem em fonte oficial. https://seller.shopee.com.br/edu/article/23431; https://seller.shopee.com.br/edu/article/25794
+11. **No-show no Full** (LOG A7, parcial): estão confirmadas as cobranças de R$5 e R$3 por unidade. O cancelamento sem custo vai até 2 dias úteis antes, para coleta, e até 1 dia útil antes, para entrega no armazém. Há tolerância de 5% por SKU e teto de R$5.000 por ASN. https://seller.shopee.com.br/edu/article/26581. Este tema não constava do corpo do mapa.
+12. **Devolução Fácil** (REP A26; ALI R10, parciais): a taxa de R$0,49 por pedido confirmado está confirmada. A ativação automática vale desde abril de 2026, com 30 dias grátis, e não desde maio. https://seller.shopee.com.br/edu/article/26700. Este tema não constava do corpo do mapa.
+13. **GTIN** (RAN A12): o GTIN incorreto trava as edições até ser corrigido, com direito a apelação. A fonte oficial não fala em remoção permanente. https://seller.shopee.com.br/edu/article/16213
+14. **Comissão, CPF e Pix** (PRE R1–R6; MIX A8–A10, A30; ALI R2–R3; CAS A5, A5b, A5c, A31): confirmados, inclusive a regra de item abaixo de R$8. Acima de R$500, o subsídio Pix é "até 8%" no 18483 e "8%" no 18484. https://seller.shopee.com.br/edu/article/18483; https://seller.shopee.com.br/edu/article/18484
+15. **Full+, spam de preço, desconto enganoso, vídeo, avaliações, chat e 95% de vendedores locais:** confirmados (27600, 2637, 2618, 18658, help 76444, 2713, blog sobre-nos).
+16. **Anvisa** (ALI R1; RAN A30; LOG A31, parciais): o campo existe e o anúncio pode ser removido sem aviso se o código faltar ou estiver errado. A data de 2026-09-21 e as 169 categorias não aparecem em fonte oficial. https://seller.shopee.com.br/edu/article/11602
+
+**Sem fonte oficial (8):** orçamento mínimo de R$10 no Ads (ADS A7); definição de vendas "diretas" e "não diretas" (ADS A12); teto de ROAS 30 (ADS A13); taxa e regras de campanha específica (PRE R8, R9); regras de Produtos Recomendados e a faixa de ROAS 7–10 (MIX A14); verba, ACOS e CTR acima de 1,5% (MIX A15); como se tornar Loja Oficial (ALI R8). A verificação também não achou fonte oficial para os 36 caracteres do título nem para a capa com 70% do produto e 1.000 px (itens marcados como parciais).
