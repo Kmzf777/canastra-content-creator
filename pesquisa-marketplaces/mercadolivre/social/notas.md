@@ -337,3 +337,54 @@ Fonte: `observacao/lideres.md` e `lideres.tsv`. São 13 páginas visitadas com s
 | O10 | Top 20 de Alimentos e Bebidas só com marcas nacionais líderes; União 500 g em 6º e Melitta 500 g em 12º | [OBS] | mercadolivre.com.br/mais-vendidos/MLB1403 | 2026-10-14 |
 | O11 | Marca própria de importado usa título de cerca de 200 caracteres e "de/por" agressivo (Redfin R$114,90 → R$41,32) — específico de importação | [OBS] | mercadolivre.com.br/p/MLB39960346; MLB20306137 | 2026-10-14 |
 | O12 | Nota e avaliações pertencem ao catálogo: buy box do Mondial estava com vendedor de "Atendimento ruim" | [OBS] | mercadolivre.com.br/p/MLB18932156 | 2026-10-14 |
+
+---
+
+## Observação com protocolo (2026-10-15)
+
+Fonte: `rodada2/nav-observacao.md` e `rodada2/nav-observacao.tsv` (168 linhas: 6 termos × 24 posições, mais uma 2ª passada de "café em grãos 1kg"). Acesso em 2026-10-15, das 13:47 às 13:57, com sessão de comprador logada, ordenação "Mais relevantes" e sem captcha. Termos: "café em grãos 1kg", "café moído", "cápsulas nespresso compatível", "fone bluetooth", "garrafa térmica" e "ração gato 10kg". Todas as afirmações abaixo são [OBS], de 2026-10-15. Os números por termo foram recontados no TSV e batem com o relatório.
+
+### O que foi observado
+
+1. **Como reconhecer o patrocinado.** O rótulo visível no card é "Ad", e não "Patrocinado". Três sinais coincidem:
+   - `a.poly-component__ads-promotions` (texto "Ad") dentro de `.poly-card__footer`;
+   - `aria-label="Patrocinado"` no card;
+   - link para `click1.mercadolivre.com.br/mclics/...`.
+   - O banner de marca (Brand Ads) usa outro seletor: `.bads-brand-wrapper .bads-top-search-no-image__promoted-text`, também com "Ad".
+2. **Posições dos patrocinados.** Padrão fixo nos 6 termos: posições **1–4 e 13–16**, com blocos de 4 a cada 12 posições na página (25–28, 37–40, 49–52). Isso dá 8 de 24 (33%) no topo. Exceção: em "ração gato 10kg" a posição 15 veio orgânica (7 de 24). Na 2ª passada de café em grãos, 10 minutos depois, os slots foram os mesmos, mas os ocupantes das posições 13 e 16 mudaram.
+3. **Banner de marca.** Houve 1 banner de Brand Ads ("Ir para a loja") acima da grade nas 6 buscas, fora da contagem das 24 posições.
+4. **Pago e orgânico ao mesmo tempo.** O mesmo produto aparece patrocinado e também orgânico no top 24: café em grãos 4 vezes, cápsulas 3, ração 3, café moído 1; fone e garrafa nenhuma. A identidade foi casada por título e preço, sem ID do item.
+5. **Composição do top 24 por termo:**
+
+| Termo | Patrocinados | % FULL (tipo) | % frete grátis no card | % loja oficial |
+|---|---|---|---|---|
+| café em grãos 1kg | 8 (1–4, 13–16) | 83% (Full Super) | 17% (os 4 são patrocinados) | 4% |
+| café moído | 8 (1–4, 13–16) | 83% (Full Super) | 17% | 0% |
+| cápsulas nespresso compatível | 8 (1–4, 13–16) | 92% (Full Super) | 8% | 8% |
+| fone bluetooth | 8 (1–4, 13–16) | 88% ("Enviado pelo FULL") | 92% | 67% |
+| garrafa térmica | 8 (1–4, 13–16) | 42% (FULL) | 100% | 29% |
+| ração gato 10kg | 7 (1–4, 13, 14, 16) | 38% (FULL) | 100% | 33% |
+
+   - FULL entre patrocinados x orgânicos: café em grãos 4/8 x 16/16; café moído 4/8 x 16/16; cápsulas 7/8 x 15/16; fone 7/8 x 14/16; garrafa 2/8 x 8/16; ração 3/7 x 6/17.
+   - Em café, os cards são do formato supermercado (`poly-card--CPG`, selo "Full Super"), com prazo "Chegará sábado" e sem nota, vendidos, vendedor nem "frete grátis". Por isso o frete grátis baixo em café (8–17%) reflete o formato do card, e não frete pago. Só 2 a 4 dos 24 cards de café mostram nota, contra 21 a 23 nas outras categorias. Há ainda um carrossel "Adicione mais de FULL SUPER" abaixo do banner.
+   - Fora de café, itens abaixo de R$79 exibiram frete grátis no card (o relatório cita R$19,40 no fone e R$23,99 na garrafa; no TSV, 20 de 21 itens abaixo de R$79 em fone e garrafa mostram "Frete grátis", "Frete grátis ou rápido" ou "Chegará grátis"). Não se apurou se é benefício da conta, campanha ou regra.
+6. **Seletores que funcionaram** (para repetir a coleta): grade `li.ui-search-layout__item`; título `.poly-component__title`; preço `.poly-price__current .andes-money-amount__fraction` e `__cents`; patrocinado como no item 1; FULL por `[aria-label]` contendo "Full Super" ou "Enviado pelo FULL"; frete `.poly-component__shipping-v2`; loja oficial `.poly-component__seller svg[aria-label="Loja oficial"]`; nota e vendidos `.poly-component__review-compacted`; banner `.bads-brand-wrapper`.
+
+### Limites
+
+- Um único horário (a 2ª passada, 10 minutos depois, não conta como segundo turno) e uma única conta logada. Não se sabe quanto do orgânico e dos anúncios é personalizado; falta sessão deslogada.
+- O topo não exibe CEP para o comprador logado, só "Enviar para" com o endereço salvo; a localidade não ficou registrada como CEP.
+- Na 1ª passada dos três cafés só os sinais "Ad" e `mclics` foram checados (`aria-label` não foi testado). O relatório diz que os três sinais coincidiram em "45 de 45" cards, mas o TSV marca os três sinais (ARL) em 31 cards patrocinados (fone, garrafa, ração e a 2ª passada de café) e só dois sinais (AL) nos 24 da 1ª passada dos cafés. A coincidência dos três vale, portanto, para 31 de 31.
+- A medalha MercadoLíder não aparece no card da busca (n/d). Os prints de fone e ração mostram só o cabeçalho; a grade veio do DOM.
+- Repetições pago/orgânico casadas por título e preço; o ID do anúncio patrocinado fica atrás do link `mclics`.
+
+### O que confirma ou contradiz na nota social
+
+- **Fecha uma limitação da observação de 2026-10-14.** Lá o rótulo "Patrocinado" não foi capturado; agora se sabe que o rótulo é "Ad" e que um terço do topo da busca é patrocinado em slots fixos. Ressalva para o item 1 da Observação dos líderes (FULL em 26/40, 21/30, 22/25 de café): aquela contagem misturava pagos e orgânicos sem distingui-los.
+- **Confirma, com ajuste, "o FULL domina a primeira página de café" (O01).** Em 2026-10-15 o FULL fica em 83–92% do top 24 de café, e o orgânico de café é 100% FULL em grãos e moído. O ajuste é que se trata de **Full Super** (vitrine de supermercado), tipo de card que a nota de 2026-10-14 não distinguia. Os termos não são idênticos ("cafe em graos" x "café em grãos 1kg"; "cafe capsulas" x "cápsulas nespresso compatível"). Continua sem separar causa de efeito.
+- **Reforça, sem provar, "FULL converte" (S14, item 3 da nota).** O orgânico é mais FULL que o patrocinado em café (16/16 x 4/8), ou seja, o slot pago é o que abre espaço a quem não está no FULL. Em garrafa e ração o FULL é minoria (38–42%), então o domínio do FULL varia por categoria e não é regra geral.
+- **Dialoga com as receitas de Ads (S03–S05) e com "Ads não é obrigatório" (S07).** A observação mostra quanto do topo é vendido (33%, mais um banner de marca), mas não mede retorno. O mesmo produto aparecer pago e orgânico no top 24 (até 4 vezes num termo) é indício de que parte do gasto em Ads compra exposição que o orgânico já daria, o que é coerente com a crítica de S07 e com "Ads só amplifica o que já converte" (Divergências da seção 1). Não há medida de incrementalidade.
+- **Relativiza a prova social no card (O06, seção 4).** Na página do produto os líderes de café exibem nota e vendidos; no card de busca de café (Full Super) esses sinais quase não aparecem (2 a 4 de 24). Fora de café aparecem em quase todos os cards.
+- **Ajusta "lojas oficiais ocupam várias posições" (O04, item 3).** No top 24 de 2026-10-15 a loja oficial é rara em café (0–8%) e comum em fone (67%). Com termos diferentes, não chega a contradizer o caso Orfeu em "cafe em graos", mas indica que a presença de loja oficial no card de café é baixa.
+- **Levanta pergunta sobre S12 (degraus de R$79).** Quase todos os itens abaixo de R$79 em fone e garrafa exibiram frete grátis ao comprador. S12 trata da tarifa paga pelo vendedor, e o card não mostra quem paga o frete, então não há contradição demonstrada; a regra de frete por faixa segue a confirmar na fonte oficial.
+- **Sem relação direta:** comissões (S10, S11), custos de armazenagem (S15, S16), capacidade de envio (S17), indexação da descrição (S20, S21) e funil de métricas (S22) não são testáveis por esta observação.

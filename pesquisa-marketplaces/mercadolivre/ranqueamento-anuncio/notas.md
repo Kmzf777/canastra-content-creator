@@ -569,3 +569,211 @@ Método: leitura direta das páginas oficiais (developers.mercadolivre.com.br, C
 | A20 | SEM FONTE OFICIAL (escrita) | nenhuma; webinar MFYKfOYs0iE não reverificado | Nenhuma página oficial lida diz que alterar título, fotos ou estrutura faz o algoritmo tratar o anúncio como novo. A doc developers de imagens só avisa que, ao substituir uma foto, é preciso usar novo nome de source para a imagem atualizar. A página de experiência de compra até recomenda melhorar título, fotos e ficha técnica quando o anúncio perdeu exposição, o que não sustenta nem refuta A20. Tratar como [PRÁTICA] ou fala de webinar, sem regra publicada. |
 
 Resumo: 9 confirmadas (A4, A6, A8, A9, A2, A13, A14, A16, A21; várias com ressalvas relevantes), 0 contestadas, 3 sem fonte oficial escrita (A23, A30, A20).
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Método: leitura das páginas oficiais no Chrome (renderiza JavaScript), sem login, captcha ou aceite de termos. Datas: "sem data" quando a página não traz data de atualização.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A8 | CONFIRMADA | https://vendedores.mercadolivre.com.br/nota/como-proporcionar-a-melhor-experiencia-de-compra (sem data (lida 15/10/2026)) | Boa 75-100, Mediana 50-74, Ruim 30 ou menos; ruim corre risco de ser cancelado. Ressalva: o infográfico da mesma página mostra "Média 65" e a faixa 31-49 não é classificada. |
+| A2 | CONFIRMADA | https://vendedores.mercadolivre.com.br/nota/como-posicionar-seus-produtos-nos-resultados-de-busca-nuevo (sem data (lida 15/10/2026)) | Frase de dica, sem critério técnico. Continua a ressalva da rodada anterior: na página de produto só o vencedor tem visibilidade máxima. |
+| A21 | CONFIRMADA | https://vendedores.mercadolivre.com.br/nota/anuncios-duplicados-o-que-sao-e-como-evita-los (sem data (lida 15/10/2026)) | A mesma página diz que duplicados "são automaticamente cancelados" e depois que são ocultados (dois tratamentos). Recomenda variações no mesmo anúncio. |
+| A23 | PARCIAL | https://vendedores.mercadolivre.com.br/nota/confira-os-requisitos-para-aprovar-seus-clips (sem data (lida 15/10/2026)) | Formato e duração confirmados. Clipes ilimitados, exibição uma vez por usuário e moderação de até 48h não aparecem (a busca cita "2 dias úteis" em outra nota, que é só vídeo). |
+| A30 | PARCIAL | https://vendedores.mercadolivre.com.br/nota/como-o-sistema-de-leilao-de-product-ads-funciona ; https://developers.mercadolivre.com.br/pt_br/ads-brand-ads (nota sem data; Brand Ads 09/06/2026) | Product Ads: ROAS objetivo + relevância (probabilidade de compra; qualidade e quantidade de vendas). Ad Score x CPC máx só em Brand Ads. Fatores título, avaliação, Full, foto e posicionamento não confirmados. |
+| A20 | SEM FONTE OFICIAL | https://developers.mercadolivre.com.br/pt_br/produto-sincronizacao-de-publicacoes (24/03/2026) | Nenhuma página diz que trocar título ou fotos derruba a performance. A doc developers diz que, com vendas, o título nem pode ser alterado (fotos podem). Procurei também na Ajuda e na Central de Vendedores. |
+
+---
+
+## 12. Rodada 2 e estado final (2026-10-15)
+
+Método: só leitura das seções 8, 10 e 11 desta nota, das linhas `ranqueamento-anuncio` de `verificacao/resultado-mercadolivre.tsv` (e de linhas de outras frentes do ML que tocam esta), de LACUNAS §1.4, §1.9 e §4, e dos nove arquivos de `mercadolivre/rodada2/`. Não houve navegador, coleta nova nem WebFetch. As seções 1 a 11 ficam como estavam; onde divergem desta seção, vale esta.
+
+**Convenção de status.**
+- **CONFIRMADA:** a fonte oficial atual diz o mesmo. A coluna "fonte" diz se é texto escrito (URL) ou fala ou vídeo do canal oficial, reassistido com minuto ("fala").
+- **PARCIAL:** parte confirmada e parte sem fonte, ou fontes oficiais em conflito.
+- **CONTESTADA→:** a fonte oficial diz outra coisa; o valor correto vem na coluna.
+- **SEM FONTE OFICIAL:** só praticante ou observação.
+- **ABERTA:** há fonte oficial que afirma, mas sem evidência, e a evidência externa diverge.
+
+### 12.1 Estado final das afirmações
+
+Mudaram de status ou seguem sem fonte oficial:
+
+| id | status final | valor correto | fonte | de onde veio |
+|---|---|---|---|---|
+| A2 | PARCIAL | O texto "anúncios do catálogo sempre aparecem primeiro" existe, mas é dica sem critério técnico. Outra nota oficial diz que a página de produto aparece "sempre nos primeiros resultados de busca" (não em 1º) e que o vencedor depende da localização e dos parâmetros de busca. Na página de produto, só o vencedor tem `visit_share` maximum. Em fala de nov/2025, o ML disse que só vencer o catálogo dá presença em 4% das posições de busca possíveis, contra 53% vencendo com Ads ([DADO] sem método). Não tratar como regra mecânica. | vendedores.mercadolivre.com.br/nota/como-posicionar-seus-produtos-nos-resultados-de-busca-nuevo; vendedores.mercadolivre.com.br/nota/como-a-concorrencia-funciona-no-catalogo (ambas sem data, lidas em 15/10/2026); b-ZNQktRHjc 41:54–42:26 | seção 10; seção 11; reconciliação (TSV, cases A27); rodada2/webinars.md (R2-WEB-19) |
+| A4 | CONFIRMADA | O algoritmo decide por preço, parcelamento sem juros, Full, frete grátis e envio no mesmo dia. Ressalvas: existe o estado `sharing_first_place` (medium); o vencedor pode valer só para o público geral; depende da localização e dos parâmetros de busca; reputação laranja ou vermelha participa mas não ganha. | developers.mercadolivre.com.br/pt_br/concorrencia-em-catalogo (21/07/2026); nota como-a-concorrencia-funciona-no-catalogo | seção 10; reconciliação (TSV, cases A27) |
+| A5 | PARCIAL | `winning` = maximum ("todas as vendas e visibilidade" só quando não há primeiro lugar compartilhado); `sharing_first_place` = medium; `competing` = minimum. O clique no clipe de quem não vence leva ao catálogo, onde vende o vencedor ("o catálogo é soberano", fala de dez/2025). | developers concorrencia-em-catalogo (21/07/2026); zvYqyQeITts 44:01 | seção 10 (ressalva de A4); rodada2/webinars.md (R2-WEB-20) |
+| A6 | CONFIRMADA | Todos os motivos citados existem. A lista completa tem também `non_trusted_seller`, `item_not_opted_in` e os estados temporários (`temporarily_winning`/`competing_*`), em que quem não tem reputação verde, ou tem manufacturing time, ganha se não houver concorrente melhor. | developers concorrencia-em-catalogo (21/07/2026) | seção 10 |
+| A8 | CONFIRMADA | Boa 75–100, Mediana 50–74, Ruim 30 ou menos. Mediana perde exposição e pode ser pausada; Ruim pode ser cancelada sem recuperação. Ressalvas: a faixa 31–49 não é classificada; o infográfico mostra "Média 65"; os congelamentos "Benefício de reputação" e "Verde claro" impedem perda de exposição e pausa. | vendedores.mercadolivre.com.br/nota/como-proporcionar-a-melhor-experiencia-de-compra (lida 15/10/2026); developers.mercadolivre.com.br/pt_br/experiencia-de-compra (03/02/2026) | seções 10 e 11; rodada2/nav-preco-reputacao.md (R2-PR-10) |
+| A9 | CONFIRMADA | Com 100 vendas do anúncio em 60 dias, usa esse período; senão, o último ano. Com menos de 100, completa com os anúncios da categoria (mínimo de 200 vendas); senão, fica sem indicador. Os "180 dias" da developers são a janela das vendas com problema exibidas na API e nas telas, e não o período de cálculo. Essa leitura não tem frase oficial explícita. Resíduo: o fluxograma da nota é mais permissivo que o texto. | nota como-proporcionar-a-melhor-experiencia-de-compra (lida 15/10/2026); developers experiencia-de-compra (03/02/2026) | seção 10; rodada2/nav-preco-reputacao.md (R2-PR-8, R2-PR-9); rodada2/sinais-recentes.md (R2-SIN-25, [PRÁTICA], coerente com o fluxograma) |
+| A11 | CONFIRMADA | Com o congelamento "Benefício de reputação" ou "Verde claro", a publicação "não perderá exposição, nem será pausada" por experiência ruim ou média. No Brasil, os termos do Benefício apontam para a ajuda/29528, "Reputação Protegida". Provavelmente é o mesmo programa (inferência pelo link e pelo id). | developers experiencia-de-compra (03/02/2026); developers.mercadolivre.com.br/pt_br/recuperacao-de-reputacao (04/02/2025); mercadolivre.com.br/ajuda/29528 | seção 10 (ressalva de A8); rodada2/nav-preco-reputacao.md (R2-PR-10 a 12); rodada2/sinais-recentes.md (R2-SIN-5) |
+| A12 | CONFIRMADA (pode estar superada) | Score de 0 a 100; níveis Básica, Satisfatória e Profissional. A página é de 31/01/2025 e o exemplo é do MLA. Em fala de dez/2025, o time de clips disse que sem vídeo não há qualidade de 100%. | developers.mercadolivre.com.br/pt_br/qualidade-das-publicacoes (31/01/2025); zvYqyQeITts 05:58 | seção 10 (A13); rodada2/webinars.md (R2-WEB-30) |
+| A13 | CONFIRMADA (pode estar superada) | As regras citadas existem. Falta na nota o tempo de disponibilidade do estoque (`STOCK_AVAILABILITY_TIME`), que também pontua. A lista pode variar por categoria. | developers qualidade-das-publicacoes (31/01/2025) | seção 10 |
+| A14 | CONFIRMADA | 60 caracteres, reconferidos em MLB1403, MLB1055, MLB1002 e MLB1430 e nas folhas de café: MLB247538 (Moído e em Grão), MLB247540 (Cápsulas, fora do nó Café) e MLB247537 (Solúvel). As folhas de café têm preço mínimo de R$8. O limite é configuração da categoria: conferir caso a caso. | api.mercadolibre.com/categories/{id} (14 e 15/10/2026) | seção 10; rodada2/balancos-api.md (R2-BA-3) |
+| A15 | CONFIRMADA | 12 fotos por anúncio, 10 por variação e descrição de até 50.000 caracteres, reconferidos em 4 categorias. | api.mercadolibre.com/categories/{id} (14/10/2026) | seção 10 |
+| A16 | CONFIRMADA | Além do registrado: formatos JPG, JPEG e PNG; a imagem deve ocupar 95% do espaço. | developers.mercadolivre.com.br/pt_br/trabalhar-com-imagens (24/03/2026) | seção 10 |
+| A17 | CONFIRMADA (pode estar superada) | Sem categoria válida, o diagnóstico só avalia o tamanho mínimo. A lista de categorias que exigem fundo branco não é publicada. | developers.mercadolivre.com.br/pt_br/diagnostico-de-imagens (14/07/2025) | seção 10 |
+| A20 | PARCIAL | Confirmada literalmente como fala oficial: trocar foto, título e descrição de um anúncio que performa faz o algoritmo "ler como um novo anúncio" e a performance cair. Quando a troca é estrutural, a sugestão é pausar e criar um novo. Limites: não há página escrita, mecanismo nem dado; quem fala é do time de experiência do vendedor, não de busca; o mesmo webinar erra o limite de fotos. Conflito: a developers diz que, com vendas, o título não pode ser alterado (pela API), e a fala diz que "é possível alterar títulos com vendas" (65:18). | MFYKfOYs0iE 60:26–62:03, 65:18; developers.mercadolivre.com.br/pt_br/produto-sincronizacao-de-publicacoes (24/03/2026) | seções 10 e 11; rodada2/webinars.md (R2-WEB-16) |
+| A21 | CONFIRMADA | Duplicado é o mesmo produto com as mesmas condições de venda. Há três tratamentos escritos: a Central diz que o duplicado é cancelado automaticamente e também que é ocultado (fica o de melhor visibilidade); a ajuda/2517 diz que os anúncios são excluídos e que a conta pode ser desativada. Também é vedado separar produtos idênticos só por variação (cor): usar variações no mesmo anúncio. | vendedores.mercadolivre.com.br/nota/anuncios-duplicados-o-que-sao-e-como-evita-los (lida 15/10/2026); mercadolivre.com.br/ajuda/2517 (a 2518 redireciona para ela) | seções 10 e 11; rodada2/nav-full-supermercado.md (R2-FS-17) |
+| A22 | CONFIRMADA | É permitido o mesmo produto em mais de um anúncio "para oferecer diferentes formas de envio ou condições de pagamento". Antes vinha só de resumo de busca. | mercadolivre.com.br/ajuda/2517 | rodada2/nav-full-supermercado.md (R2-FS-17) |
+| A23 | CONFIRMADA (texto + fala) | **Texto:** vertical 9:16, de 10 s a 1 min. **Fala e vídeo oficiais:** aprovação em até 48 h (IA mais revisão manual), até 280 MB, vídeos ilimitados por anúncio e cada usuário vê um clipe uma vez no feed. **Ressalvas:** uma busca citou "2 dias úteis" em outra nota, só de vídeo; o webinar de anúncios dá 30–60 s como "ideal", o que é recomendação dentro do limite técnico. | vendedores.mercadolivre.com.br/nota/confira-os-requisitos-para-aprovar-seus-clips (lida 15/10/2026); tJLgMpKRe8s 00:05–00:40; QuOP9KeKnk8 04:57, 07:09, 12:15, 22:47, 59:59 | seção 11; rodada2/webinars.md (R2-WEB-13, R2-WEB-15) |
+| A24 | CONFIRMADA (fala) | O clipe é critério de qualidade do anúncio, e o anúncio com clipe "apareça ali melhor ranqueado". Não há peso nem página escrita. | QuOP9KeKnk8 15:35; hyMVjccuL24 07:30 (jun/2025, pode estar superada); zvYqyQeITts 05:58 | rodada2/webinars.md (R2-WEB-30) |
+| A25 | CONFIRMADA (como declaração do ML) | 3x mais visitas (15:00) e 2x mais vendas (17:14), sem método. Divergência entre falas oficiais: "mais de 38%" de conversão para quem assiste clipes (dados de 2025) contra "cerca de 27% a mais" (dez/2025). O viés de seleção continua. Confiança baixa. | QuOP9KeKnk8 14:27–17:14; zvYqyQeITts 09:11 | rodada2/webinars.md (R2-WEB-26) |
+| A26 | CONFIRMADA (como dito) | +10% a 15% de conversão ao levar o clipe da 2ª para a 1ª posição em "alguns anúncios". Não há amostra, período, categoria nem controle declarado, e o recurso estava "em desenvolvimento" no Android em maio/2026. Confiança média na direção e baixa na magnitude. | QuOP9KeKnk8 35:03–35:37 | rodada2/webinars.md (R2-WEB-17) |
+| A27 | CONFIRMADA (fala e vídeo) | **Logo:** o vídeo de jan/2026 pede "menos de 10% da tela" **e** "menos de 10%" do tempo; o webinar de maio/2026 diz "do tempo ou da tela". Na dúvida, cumprir as duas condições. **Reuso:** o mesmo vídeo pode ir para vários anúncios do mesmo produto, mas não duas vezes no mesmo anúncio. | tJLgMpKRe8s 00:40, 01:13, 01:44; QuOP9KeKnk8 26:43–28:25 | rodada2/webinars.md (R2-WEB-14, R2-WEB-15) |
+| A28 | CONFIRMADA (fala) | Ordem de exibição do clipe na página de catálogo: marca (mesmo sem vencer), depois 1P, depois agência certificada, depois o vencedor. Sem nenhum desses, não há vídeo (dez/2025). Em maio/2026 a fala confirma a marca e o vencedor, sem citar 1P nem agência. | zvYqyQeITts 41:15–43:27; QuOP9KeKnk8 61:06–62:47 | rodada2/webinars.md (R2-WEB-20) |
+| A29 | CONFIRMADA (vídeo oficial; antes via terceiro) | **Proibido no clipe:** telefone, endereço e redes sociais; preço, promoção, cupom ou condições de venda; imagens estáticas ou capturas de tela; material de terceiros; marca d'água; música de terceiros sem permissão. **Seguem só via terceiro (7fkFXNudq0Q):** sorteios, menores de idade, comparações sem critério, legenda de bebida alcoólica e proibição em sex shop. | tJLgMpKRe8s 01:13; QuOP9KeKnk8 07:44–08:51 | rodada2/webinars.md (R2-WEB-14) |
+| A30 | PARCIAL | **Fala de maio/2026:** Ad Score (título, avaliação, Full, qualidade da foto, posicionamento) × CPC máximo (derivado do ROAS objetivo) = rank; o Ad Score não é visível. **Fala de 30/09/2026:** três variáveis (qualidade, que inclui reputação do vendedor e pós-venda; relevância; ROAS objetivo), sem fórmula fechada. **Texto:** o leilão do Product Ads considera ROAS objetivo e relevância; Ad Rank = Ad Score × CPC só está escrito para Brand Ads. O "segundo preço" tem uma única fonte oral. Os 15 a 30 produtos por campanha são recomendação repetida em 3 webinars de 2026, não limite (já usaram 100). | JzejZyVeauE 30:46–31:54, 57:16, 58:53; LOZL-QmsGL4 16:28–17:32; vendedores.mercadolivre.com.br/nota/como-o-sistema-de-leilao-de-product-ads-funciona; developers.mercadolivre.com.br/pt_br/ads-brand-ads (09/06/2026) | seções 10 e 11; rodada2/webinars.md (R2-WEB-1 a 4, R2-WEB-7); reconciliação (TSV, ads A4) |
+| A31 | PARCIAL | **Confirmado:** candidatos atualizados diariamente. **Corrigido:** há duas modalidades, PRICE_MATCHING (cofinanciada) e PRICE_MATCHING_MELI_ALL (100% ML), com duração máxima de 10 dias e comparação com outros sites e marketplaces. **Só no webinar W1hgC6snin4:** "pode ajudar a ganhar catálogo" e "o aporte só cai sozinho". | developers.mercadolivre.com.br/pt_br/campanhas-smart-price-matching (09/06/2026) | reconciliação (TSV, preco-promocao R11, CONTESTADA "sempre cofinanciado"); rodada2/nav-preco-reputacao.md (R2-PR-17) |
+| A34 | CONFIRMADA (ampliada) | **Fechado sem token:** `/sites/MLB/search`, `/trends`, `/sites/MLB/categories` e `/listing_prices` (403); `/products`, `/items` e `/highlights` (401). **Abertos:** `/categories/{id}` e `domain_discovery`. **Regras:** trends, highlights e visits exigem a permissão funcional "Métricas do negócio"; um app só de leitura pode ser bloqueado (INTEGRATORS_DATA_INFRACTION); o estoque público vem em faixas. | curl api.mercadolibre.com (15/10/2026); developers.mercadolivre.com.br/pt_br/permissoes-funcionais (21/11/2025), /bloqueio-de-aplicacoes (15/04/2026), /itens-e-buscas (31/08/2026) | rodada2/balancos-api.md (R2-BA-20, 21, 24, 26); rodada2/dados-mercado.md (R2-DAD-25) |
+| A35 | CONFIRMADA (direção); valor atualizado | **Contexto:** 15/10/2026, sessão logada, sem CEP visível. **Nas 24 primeiras posições:** 83% ("café em grãos 1kg"), 83% ("café moído") e 92% ("cápsulas nespresso compatível") são cards "Full Super". **Entre os orgânicos:** 16/16, 16/16 e 15/16 têm Full. **Ressalva:** a medição de 14/10 (26/40, 21/30, 22/25) usou outros termos e contava "FULL" sem separar o Full Super nem o patrocinado. | lista.mercadolivre.com.br/cafe-em-graos-1kg, /cafe-moido, /capsulas-nespresso-compativel (15/10/2026, 13:47–13:57) | rodada2/nav-observacao.md (R2-OBS-5) |
+| A38 | SEM FONTE OFICIAL | O funil de diagnóstico continua sendo prática. As ferramentas oficiais que o sustentam foram confirmadas em texto: "Análise de concorrência" (até 50 anúncios, conversão aproximada) e as 3 métricas de competitividade do Product Ads. Nenhuma página oficial descreve o diagnóstico por etapa. | nota analise-de-concorrencia-como-fazer-e-para-que-serve; nota conheca-as-3-novas-metricas-de-competitividade-em-product-ads (ambas lidas em 15/10/2026) | reconciliação (TSV, cases A8 e A28; LACUNAS §1.9) |
+| A39 | SEM FONTE OFICIAL | **Conversão do ML:** a absoluta e a por categoria não são públicas; só há +1,1 p.p. a/a no Brasil no 2T26 (call, transcrição de terceiro). **Case:** o único no ML com número é o Ypê/Lett, 1 SKU, de 15% para 43% em 6 meses, sem controle ([CASE] C); não serve de benchmark. | call 2T26 (via roic.ai); gironews.com, 16/01/2026 | rodada2/balancos-api.md (R2-BA-28); rodada2/dados-mercado.md (R2-DAD-20) |
+| A40 | SEM FONTE OFICIAL | Observação de praticante (R$141 no Full ganha de R$139), coerente com os boosts de A4. Não há N1 sobre o caso. | WF333Qri_i8 | — (sem mudança) |
+| A41 | SEM FONTE OFICIAL | Nada novo na rodada 2. | ZAa89f0ERE8 | — |
+| A42 | ABERTA | **O que o ML diz:** em fala, que Ads "traz o posicionamento de orgânico muito maior" e que ligar Ads dá +21% de cliques e +39% de vendas (atribuição, sem holdout). **Literatura externa:** o anúncio tende a substituir o orgânico (eBay, holdout de 3%, Flipkart em eletrônicos); o efeito positivo sobre o orgânico só aparece com ranking movido por volume (app store) ou com item novo sem histórico (JD.com). **No ML:** nenhum teste publicado. | JzejZyVeauE 52:48, 55:00; b-ZNQktRHjc 10:29; nber.org/papers/w20171; arxiv.org/abs/2504.16151; gsb.stanford.edu (Yang, Sahni e Nair) | rodada2/webinars.md (§10 do arquivo); rodada2/evidencias-cases.md (R2-EVC-1 a 5, R2-EVC-16) |
+| A43 | SEM FONTE OFICIAL | Nada novo. Continua [PRÁTICA] C. | Pv0wKI4OOMQ | — |
+| A44 | CONFIRMADA (ampliada) | **Requisitos:** reputação verde, produto habilitado, sem reclamações, experiência de compra de 75 ou mais, código universal impresso, novo, no catálogo e sem data de validade. **Exclusões:** Alimentos e Bebidas, entre outras categorias. Para alimentos, a exclusão é dupla (categoria e validade). | mercadolivre.com.br/ajuda/42159; mercadolivre.com.br/ajuda/42158 | reconciliação (TSV, logistica-estoque R9); rodada2/nav-full-supermercado.md (R2-FS-15, R2-FS-16) |
+
+**Sem mudança** (não reabertas; valem a fonte e a confiança da tabela 8):
+- **Texto oficial lido na rodada 1:** A1, A3, A7, A10, A33.
+- **Fala de webinar não reconferida:** A18, A19 (o limite de 60 está confirmado por A14), A32.
+- **Observação de 14/10/2026:** A36, A37.
+- **Fora do escopo:** A45, da Amazon, fora do escopo da rodada 2 do ML.
+
+**Números da seção 4 tocados pela rodada 2:**
+- "Ads: produtos por campanha 15 a 30": confirmado como recomendação (R2-WEB-7).
+- "Clipe: moderação até 48h": confirmado em fala e vídeo (R2-WEB-13).
+- "Conversão de quem assiste clipe >38%": confirmado como dito, mas diverge de "cerca de 27%" (R2-WEB-26).
+- "Clipe: efeito (outro webinar) 5x / +143% / +11%": não reconferido.
+
+### 12.2 Reconciliações aplicadas
+
+**Da tabela §1.9 da LACUNAS que tocam esta frente:**
+
+| Linha de §1.9 | O que muda nesta frente | Fonte |
+|---|---|---|
+| MercadoLíder e reputação [cases A25–A26] ← [rep A2–A6] | A ajuda/864 diz que a medalha dá "mais visibilidade nas buscas": é um segundo texto oficial ligando reputação à exposição, ao lado de A1 e A3. A partir de 10/09 (ano inferido 2026), o corte para medir a reputação pelos últimos 60 dias passou de 60 para 101 vendas; abaixo disso, a medição é de 365 dias, com limites próprios. Isso define a cor que entra em A3 e no motivo `reputation_below_threshold` de A6. | mercadolivre.com.br/ajuda/864; /ajuda/866; vendedores.mercadolivre.com.br/aprender/nota/vamos-mudar-a-forma-como-calculamos-sua-reputacao (TSV cases A25 e A26; R2-PR-4; R2-SIN-1) |
+| Full Super [log R8] ← [alim A5–A7] | A ajuda/16449 declara como vantagem da loja Full Super o "destaque nas buscas dos compradores". Isso é coerente com A35 e R2-OBS-5: em café, o topo orgânico é quase todo Full Super. | mercadolivre.com.br/ajuda/16449 (R2-FS-7) |
+| Painel Concorrência [cases A8] ← [mix R6] | A ferramenta oficial "Análise de concorrência" lista até 50 anúncios concorrentes, com apelido e números aproximados. Ela mostra o % de vendas com frete grátis, parcelamento, Full, Flex, promoções, cupons, publicidade, clips ou catálogo, e as vendas brutas e a conversão aproximadas. É o insumo oficial para o diagnóstico de funil (Q6) e a engenharia reversa do líder (§3.1). Exige login. | vendedores.mercadolivre.com.br/nota/analise-de-concorrencia-como-fazer-e-para-que-serve (TSV cases A8) |
+| Tarifa Clássico e Premium [pre R1; cases A29] ← [mix R2] | O Premium (15% a 19%; no café, 19%) é o tipo que dá parcelamento sem juros. Esse é o boost `free_installments` do catálogo (A4) e a regra FINANCING/BEST_FINANCING da qualidade (A13). | mercadolivre.com.br/ajuda/870; landing custos-de-venda (R2-PR-1) |
+
+As outras linhas de §1.9 (tabela de envio, estoque antigo, refrigerados no Full, 180 dias para SKUs Estrela) não mudam afirmação desta frente.
+
+**Outras reconciliações entre frentes aplicadas aqui (fora da tabela §1.9):**
+- **[ads A4/A10] ↔ A30:** mesma lacuna. O webinar reassistido fecha o lado "não reassistido". O escrito continua só ROAS mais relevância para o Product Ads.
+- **[pre R11] ↔ A31:** "sempre cofinanciado" é falso; o prazo é de 10 dias.
+- **[log R9] ↔ A44:** requisitos do estoque compartilhado em texto.
+- **[cases A27] ↔ A2, A4 e A6:** nota de concorrência no catálogo.
+- **[cases A28] ↔ seção 2.8:** o painel do Product Ads mostra impressões ganhas, perdidas por orçamento e perdidas por classificação (Ad Rank). O nome oficial é "perdidas por classificação", e não "perdidas por qualidade", que é como o webinar de Natal disse.
+- **[rep A20] / R2-SIN-25 ↔ A9:** coerentes com o fluxograma oficial.
+- **Seção 2.8, "exibição duplicada" ↔ R2-OBS-4:** o que era [PRÁTICA] agora tem [OBS]. Ver 12.3.
+
+### 12.3 Achados novos da rodada 2 desta frente
+
+**Busca observada: orgânico × patrocinado (rodada2/nav-observacao.md; 15/10/2026, sessão logada, um horário).**
+- **R2-OBS-1:** o patrocinado leva o rótulo visível "Ad". Os três sinais coincidiram em 45 de 45 cards: `a.poly-component__ads-promotions`, `aria-label="Patrocinado"` e link `click1.mercadolivre.com.br/mclics`.
+- **R2-OBS-2:** os patrocinados ocupam as posições 1–4 e 13–16, em blocos de 4 a cada 12 posições. Isso deu 8 de 24 (33%) em 6 de 6 termos; em ração, a posição 15 veio orgânica. Na prática, a 1ª posição orgânica da grade foi a 5ª. Isso é coerente com o dado do ML de que, no orgânico, menos de 4% das impressões ficam nas 2 primeiras posições, contra 27% com Ads (R2-WEB-27, sem método).
+- **R2-OBS-3:** há 1 banner de Brand Ads acima da grade em todas as buscas.
+- **R2-OBS-4:** o mesmo produto apareceu pago e orgânico no top 24: café em grãos 4 vezes, cápsulas 3, ração 3, café moído 1; fone e garrafa nenhuma. A identidade foi casada por título e preço, sem ID. Confirma por observação a "exibição duplicada" que a seção 2.8 trazia só como prática.
+- **R2-OBS-5:** em café, 83% a 92% do top 24 são cards Full Super (formato supermercado). Esses cards não mostram nota, vendidos, vendedor nem "frete grátis". Só 2 a 4 dos 24 cards de café mostram nota, contra 21 a 23 nas outras categorias. Para café, o sinal social no card da busca quase não existe; a avaliação aparece na página do produto.
+- **R2-OBS-6:** fora de café, o FULL vai de 38% a 88% do topo, o frete grátis de 92% a 100% e a loja oficial de 29% a 67%. Em café, a loja oficial fica entre 0% e 8%.
+- **Limites:** sessão logada e possivelmente personalizada, CEP não exibido (R2-OBS-7), um único horário e sem série temporal.
+
+**Clips (rodada2/webinars.md).**
+- **R2-WEB-13 a 15:** especificações, na linha A23 e A27.
+- **R2-WEB-17:** teste da 1ª posição, na linha A26.
+- **R2-WEB-20:** ordem do clipe no catálogo e destino do clique, nas linhas A5 e A28.
+- **R2-WEB-26:** números de conversão divergentes, na linha A25.
+- **R2-WEB-30:** clipe como critério de qualidade, nas linhas A12 e A24.
+- **Novidades das falas:**
+  - sem áudio, o ML adiciona música;
+  - em kit, o vídeo deve mostrar todos os itens;
+  - o painel de clips mede visualizações, retenção, interações e seguidores, e a retenção baixa é atribuída aos "primeiros 5 segundos" (VflrqpiLfJ0 00:39–01:43);
+  - clips passaram a se chamar "vídeos" (QuOP9KeKnk8 02:45).
+
+**Editar anúncio (R2-WEB-16).** Na linha A20. Para queda de vendas, a mesma fonte sugere abrir um anúncio novo e pausar o antigo (MFYKfOYs0iE 54:54–55:32). Isso precisa conviver com a regra de duplicados (A21): o antigo tem de sair.
+
+**Catálogo e Ads.**
+- **R2-WEB-18** ([OFICIAL via canal], nov/2025, pode estar superada): o anúncio de catálogo só imprime com Product Ads se estiver vencendo o catálogo; sem vencer, a campanha fica ativa e sem impressões. Não foi reconfirmado depois da reestruturação de Ad Groups (CATALOG/FAMILY/ITEM) de 2026.
+- **R2-WEB-19:** 4% contra 53% das posições, na linha A2.
+- **R2-PR-18:** a automação de preços pode render a etiqueta "Recomendado" e a distinção VIP. No catálogo, ela exige reputação amarela ou melhor, item novo e produto com "oportunidades". Ela é pausada quando o item entra em promoção (developers automatizacoes-de-precos, 01/10/2026).
+
+**Leilão de Ads.** R2-WEB-1 a 4 e R2-WEB-7, na linha A30. Também R2-WEB-11: produto novo tem score pior, não deve entrar em campanha que já roda e deve ficar de 20 a 30 dias numa campanha nova (fonte oral única, JzejZyVeauE 49:33–50:07). É a única fala oficial sobre "tempo" de produto novo, e é do Ads, não do orgânico.
+
+**Experiência de compra.** R2-PR-8 a 10, nas linhas A8, A9 e A11.
+
+**Duplicados.** R2-FS-17, nas linhas A21 e A22.
+
+**Preço externo como fator (Q1/Q9).**
+- **R2-SIN-17** ([OFICIAL]): o ML compara preço com concorrentes "internos ou externos" (developers referencias-de-precos, 17/12/2025, status `with_benchmark_high`/`_highest`).
+- **R2-SIN-18:** perda de visibilidade, campanhas e Ads por preço externo, aviso e prazo de 3 dias aparecem só na imprensa (24/10/2025) [OFICIAL via terceiro]. Não entra como regra de ranqueamento.
+
+**API e ferramentas de terceiros.**
+- **R2-BA-3, 20, 21, 24 e 26:** na linha A34.
+- **Consequência:** ferramentas externas de ranking, mais vendidos e tendências dependem do token de um vendedor que autorizou o app. Estimativas N5 de posição e vendas perdem base pública.
+
+**Literatura (rodada2/evidencias-cases.md).**
+- **R2-EVC-7:** na Expedia, com ranking aleatório, a posição muda o que é examinado e não a compra condicionada à busca.
+- **R2-EVC-8:** no eBay, destacar a melhor oferta em bem homogêneo pode ser pró-competitivo. Isso dá lógica externa ao catálogo e à buy box.
+- **R2-EVC-9:** no eBay, um ranking que promove vendedores de maior qualidade elevou em 0,3 p.p. a volta do comprador. Isso explica por que o marketplace pesa experiência e reputação.
+- **R2-EVC-4:** na JD.com, a propensão a anunciar é usada como sinal no cold start de produto novo.
+- **R2-EVC-16:** o ML não publicou experimento de busca, Ads ou Full.
+- **Escopo:** nenhum desses estudos mede o ML.
+
+**Conteúdo e conversão.** R2-DAD-20 (Ypê/Lett) é [CASE] C de 1 SKU. As mudanças foram título com palavra-chave, descrição de até 251 palavras, imagem principal e secundárias e vídeo, com "qualidade de conteúdo +8%". É ilustrativo e não causal.
+
+**Anúncio de alimento: regras legais que valem para título, descrição e imagens (rodada2/regulatorio.md).**
+- **R2-REG-20:** as regras de rotulagem valem para a propaganda de alimento em qualquer veículo (DL 986/1969, art. 23). Alegação vedada no rótulo também é vedada no anúncio.
+- **R2-REG-17:** no café, atribuir função terapêutica ou funcional não autorizada é enganoso (Portaria SDA 570/2022, art. 47).
+- **R2-REG-21 a 23:** a oferta deve informar, em português, composição, validade, origem e riscos (CDC art. 31). Devem aparecer em destaque CNPJ ou CPF, endereço e características essenciais (Decreto 7.962/2013). O preço à vista deve vir junto à imagem (Lei 10.962/2004).
+- **R2-REG-19:** não há norma sanitária específica sobre o que o anúncio online deve reproduzir do rótulo.
+- **R2-REG-2 e 5:** a Anvisa mandou retirar anúncios fora da regra sanitária (18/03/2026) e proibiu a divulgação de suplementos por alegação (RE 1.045/2026).
+
+### 12.4 Perguntas do protocolo (§7.4)
+
+| Q | Estado | Motivo |
+|---|---|---|
+| Q1 Declaração oficial sobre a ordenação | R | **Fontes:** a declaração está lida em texto: nota de posicionamento (relida em 15/10/2026), experiência de compra, qualidade das publicações, ajuda/864 ("mais visibilidade nas buscas" para MercadoLíder) e ajuda/16449 ("destaque nas buscas" para Full Super). Há ainda a fala oficial de que o clipe melhora o ranqueamento. **Pesos:** o ML não publica fórmula nem pesos; isso fica registrado como resposta verificada por ausência, não como falta de busca. **Ressalvas:** as notas não têm data; a observação mostra que os 4 primeiros slots da grade são patrocinados (R2-OBS-2), e a parte orgânica pode ser personalizada (sessão logada). |
+| Q2 Indicadores de qualidade expostos | R | **Indicadores:** `/performance` (score de 0 a 100, níveis, regras), experiência de compra (faixas, janela 60/365 e congelamentos) e métricas de competitividade do Product Ads (impressões perdidas por classificação). **Ressalvas:** a página de qualidade é de 31/01/2025 (pode estar superada); a divergência dos 180 dias está explicada só por leitura. |
+| Q3 Pesquisa de palavra-chave | R | **Fontes:** práticas convergentes e ferramentas oficiais (palavras mais buscadas, Tendências, Análise de mercado e Análise de concorrência). **Mudança:** a API `/trends` fechou sem token (R2-BA-26), e as ferramentas externas dependem de token e permissão "Métricas do negócio". **Limites:** volume de busca por termo não é público; o Product Ads não expõe o termo de busca. |
+| Q4 Título, atributos, imagens, vídeo, descrição, variações (regra × tática) | R | **Regras com N1:** 60 caracteres, 12/10 fotos, 50.000 caracteres, especificações de imagem, clipe (texto 9:16 e 10–60 s; o resto em fala oficial), duplicados e variações (ajuda/2517). **Subitens abertos:** lista de categorias que exigem fundo branco (não publicada); preço por variação contra "sem aumento de preço"; se a descrição indexa na busca (sem fonte); conflito sobre editar título com vendas (A20). |
+| Q5 Catálogo e buy box | R | **Fontes:** developers 21/07/2026 (algoritmo, boosts, estados, motivos, `price_to_win`), nota de concorrência no catálogo (laranja ou vermelha não ganha; o vencedor depende de localização e parâmetros) e falas sobre clipe e Ads no catálogo. **Limites:** não há peso relativo entre preço e Full (só observação de praticante, A40), e "só imprime com Ads quem vence" é de nov/2025. |
+| Q6 Diagnóstico de queda pelo funil | P | **Respondido:** o método (A38) é prática convergente, e as ferramentas oficiais foram confirmadas em texto (Análise de concorrência com conversão aproximada; métricas de competitividade do Ads). **Falta:** benchmark de CTR e conversão por categoria com método, e share por etapa. A conversão absoluta do ML não é pública (R2-BA-28, R2-DAD-20). |
+| Q7 Avaliações e perguntas | P | **Respondido em N1:** perguntas, respostas e opiniões entram na experiência de compra; o ML aplica mudanças por IA com base nas perguntas. **Em fala:** a avaliação compõe o Ad Score (maio/2026) e a qualidade do Ad Rank (setembro/2026). **Falta:** página oficial sobre incentivo a avaliações (cartão, brinde), que a rodada 2 não encontrou; o efeito da avaliação no orgânico não tem peso nem teste. Na busca de café, o card quase não mostra nota (R2-OBS-5). |
+| Q8 Tempo para ranquear e alavancas | S | **Sem fonte:** nenhuma fonte, oficial ou de dado, dá prazo para ranquear no orgânico; o ML "não informa prazo". **O que existe é indireto:** a "regra de ouro" de 7 dias sem mexer vale para campanha de Ads (R2-WEB-10); os 20 a 30 dias de produto novo são em campanha de Ads, de fonte única (R2-WEB-11); a literatura explica o mecanismo de posição e o cold start, não o prazo (R2-EVC-4, 7 a 9). **Alavancas:** as de praticantes seguem N7, e Ads × orgânico está ABERTA (A42). |
+| Q9 Práticas proibidas ou punidas | P | **Com fonte oficial:** duplicados (exclusão e possível desativação da conta, ajuda/2517); conteúdo proibido em clipe (vídeo oficial); capa com texto ou marca d'água conforme a categoria (diagnóstico de imagem); alegação terapêutica ou de saúde em anúncio de alimento (DL 986, art. 23; Portaria SDA 570, art. 47). **Sem página oficial lida:** palavra-chave de marca alheia no título, manipulação ou incentivo de avaliação, e punição por preço externo (só imprensa, R2-SIN-18). |
+
+### 12.5 Contaminação verificada
+
+**Resultado:** nenhuma afirmação contaminada foi encontrada nas fontes usadas nesta seção.
+
+**O que foi conferido.** Todas as URLs das linhas desta frente na seção 11 e no TSV (A8, A2, A21, A23, A30, A20) são de domínios do ML: vendedores.mercadolivre.com.br e developers.mercadolivre.com.br. O conteúdo citado bate com o título de cada página:
+- requisitos de clips, com 9:16 e 10 s a 1 min;
+- leilão do Product Ads, com ROAS objetivo e relevância;
+- Brand Ads, com Ad Score × CPC;
+- sincronização de publicações, com título bloqueado quando há vendas;
+- duplicados;
+- experiência de compra;
+- posicionamento.
+
+As linhas da seção 11 são idênticas às do TSV.
+
+**Rodada 2:**
+- **Amazon:** as menções à Amazon em evidencias-cases.md (R2-EVC-11 e 12) e dados-mercado.md (R2-DAD-22, R2-DAD-23) estão rotuladas como Amazon e não foram usadas para o ML.
+- **Shopee:** as menções à Shopee em regulatorio.md (RE 3.056/2026, Operação Páscoa) são de outra plataforma e não foram usadas.
+- **URLs de busca:** as URLs observadas em nav-observacao.md são todas `lista.mercadolivre.com.br`, com itens coerentes com o termo buscado.
+
+**Fora desta frente.** A observação da verificação anterior sobre "Subscribe and Save da Amazon" refere-se a [alim A12]; o próprio TSV já registra que ela não tinha a ver com aquela afirmação. Nada foi usado aqui.
+
+**Artefatos de sessão compartilhada que não são contaminação, mas limitam o uso:**
+- a trilha de links da Central de Ajuda acumula o histórico da sessão e não indica hierarquia (R2-FS-21);
+- a observação da busca foi feita numa conta logada, sem CEP visível, com possível personalização (R2-OBS-7);
+- os prints de fone e ração mostram só o cabeçalho, e a grade foi lida pelo DOM.
+
+**Divergências internas, sem descarte:**
+- regra do logo no clipe: "e" (tJLgMpKRe8s) contra "ou" (QuOP9KeKnk8), na linha A27;
+- conversão com clipe: 38% contra 27%, na linha A25;
+- edição de título com vendas: developers contra fala, na linha A20.

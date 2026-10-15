@@ -485,3 +485,180 @@ Método: leitura direta das páginas oficiais em 14/10/2026. A busca na web esta
 | R10 | CONFIRMADA (parcial) | https://vendedores.mercadolivre.com.br/nota/como-usar-flex-e-full-no-mesmo-anuncio | [OFICIAL] Sem estoque no centro de distribuição o anúncio é pausado; o estoque exibido é o do Full e a variação esgotada aparece como "Sem estoque" mesmo com unidades no depósito próprio. A página recomenda repor com antecedência e permite desvincular o Full e vender só por Flex. Não confirmado: queda da recomendação de reposição após a ruptura e prazo de até 2 semanas (só vídeo). |
 | R11 | SEM FONTE OFICIAL | https://vendedores.mercadolivre.com.br/nota/revise-suas-metricas-e-melhore-a-qualidade-do-seu-estoque-no-full | Só vídeo. A página oficial confirma apenas que estrelas ficam fora de 3 métricas. Isenção de 180 dias do estoque antigo e a regra da distribuição entre CDs (cerca de 4 semanas) não aparecem em fonte oficial lida. |
 | R12 | CONFIRMADA | https://vendedores.mercadolivre.com.br/nota/despache-suas-vendas-no-prazo-a-chave-para-uma-boa-reputacao ; https://vendedores.mercadolivre.com.br/nota/como-enviar-suas-vendas-usando-o-envios-coleta ; https://vendedores.mercadolivre.com.br/nota/como-entender-o-fluxo-financeiro-do-envios-flex | [OFICIAL] Atrasos até 10% em 60 dias e até 13% em 365 dias para manter a reputação verde. "Chegará amanhã" na coleta exige ao menos 97% das vendas no prazo. Flex em produto novo a partir de R$ 79: bônus de 10% da tarifa, só com reputação verde. Detalhe: com 100 ou menos vendas no período a análise usa 365 dias. |
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Método: leitura das páginas oficiais no Chrome (renderiza JavaScript), sem login, captcha ou aceite de termos. Datas: "sem data" quando a página não traz data de atualização.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| R2 | CONFIRMADA | https://www.mercadolivre.com.br/ajuda/quais-custos-estoque-antigo_15731 (sem data (lida 15/10/2026)) | Geral: P R$ 1/12/28; M R$ 2/15,90/35; G R$ 6/40/92; XG R$ 8/52/145. Supermercado a partir de 2 meses: de R$ 2,00 (P) a R$ 83,50 (XG, mais de 12 meses). |
+| R5 | CONFIRMADA | https://www.mercadolivre.com.br/ajuda/_15573 ; https://www.mercadolivre.com.br/ajuda/5200 (sem data (lidas 15/10/2026)) | /5200 proíbe produtos que requerem controle de umidade e temperatura ou refrigeração controlada. Exceção: CD Cajamar SP09 recebe grandes e pesados. |
+| R6 | PARCIAL | https://www.mercadolivre.com.br/ajuda/44922 (sem data (lida 15/10/2026)) | Limites 20 kg, 80 cm, 125 L e exceção por preço mínimo confirmados para os extragrandes da lista. A data 20/05/2026 e os valores R$ 100/200 não ficaram visíveis (tabela de preço mínimo recolhida). |
+| R7 | CONFIRMADA | https://www.mercadolivre.com.br/ajuda/custos-envio-reputacao-verde-mercado-lider_40538 (sem data (lida 15/10/2026)) | Mesma tabela para Full, Coleta e Agência; até 50% de desconto por reputação verde já embutido; frete grátis rápido abaixo de R$ 79 a partir de R$ 12,95. |
+| R8 | PARCIAL | https://www.mercadolivre.com.br/ajuda/16449 ; https://www.mercadolivre.com.br/ajuda/49972 (sem data (lidas 15/10/2026)) | Confirmados: preço acima de R$ 8, reputação verde, P/M sem armazenagem diária, frete grátis a partir de R$ 199, tabela separada de "produtos selecionados". Não aparecem a data 24/08/2026 nem o reajuste de +20% a 40%. |
+| R9 | CONFIRMADA | https://www.mercadolivre.com.br/ajuda/42159 (sem data (lida 15/10/2026)) | Reputação verde; categorias excluídas incluem Alimentos e Bebidas; produto não pode ter data de validade; exige catálogo e código universal. |
+| R10 | PARCIAL | https://vendedores.mercadolivre.com.br/nota/como-usar-flex-e-full-no-mesmo-anuncio (sem data) | Mantida a parte oficial da rodada anterior (pausa sem estoque no CD). A queda da recomendação após ruptura e o prazo de até 2 semanas seguem sem fonte escrita; nenhuma página nova encontrada. |
+| R11 | SEM FONTE OFICIAL | - | Procurei em /ajuda/21793, /15731, /42158 e /42159 e em busca restrita a mercadolivre.com.br e vendedores.mercadolivre.com.br: nenhuma página fala em isenção de 180 dias do estoque antigo para estrelas nem em distribuição entre CDs de ~4 semanas. |
+
+## 12. Rodada 2 e estado final (2026-10-15)
+
+Método: só leitura dos arquivos já produzidos (seções 10 e 11 desta nota; `verificacao/resultado-mercadolivre.tsv`; `LACUNAS.md` §1.3, §1.9 e §4; e os arquivos de `mercadolivre/rodada2/`). Nenhuma coleta nova, nenhum navegador. As seções 1 a 11 não foram alteradas: onde o valor delas mudou, vale o que está aqui. Nenhuma página de ajuda do Mercado Livre traz data de publicação. Por isso, toda regra abaixo vale como "vigente na leitura de 15/10/2026".
+
+Correspondência entre os ids de verificação (seções 10 e 11) e a tabela 8:
+- R1 = A1; R2 = A2 e A3; R3 = A4 e parte de A5; R4 = A6;
+- R5 = A7 e A8; R6 = A9; R7 = A10 e A11; R8 = A21 e A25;
+- R9 = A22; R10 = A12, A13 e A16; R11 = parte de A5 e A14; R12 = A23 e A24.
+
+Os vídeos do canal oficial não têm marcação de tempo nas transcrições locais (`mercadolivre/transcricoes/`). Por isso, eles são citados por id e data, e não por minuto. Os webinars da rodada 2 têm minuto.
+
+### 12.1 Estado final das afirmações
+
+| id | Status final | Valor correto / o que vale | Fonte | De onde veio |
+|---|---|---|---|---|
+| A1 | CONFIRMADA | P R$ 0,007, M R$ 0,015, G R$ 0,050 e XG R$ 0,107 por unidade e por dia. Vale também para unidades **não aptas**. No Supermercado: P e M grátis, **G R$ 0,014, XG R$ 0,025** | envios.mercadolivre.com.br/mercado-envios-full; mercadolivre.com.br/ajuda/24253 | seção 10 (R1); rodada2/nav-full-supermercado (R2-FS-11) |
+| A2 | CONFIRMADA | Estoque antigo a partir de 4 meses (geral) e de 2 meses (Supermercado). Conta também unidades não aptas e pendentes de retirada | mercadolivre.com.br/ajuda/quais-custos-estoque-antigo_15731; mercadolivre.com.br/ajuda/15373 | seção 11 (R2); rodada2/nav-full-supermercado (R2-FS-14); reconciliação §1.9 |
+| A3 | CONFIRMADA | Geral: P R$ 1/12/28; M R$ 2/15,90/35; G R$ 6/40/92; XG R$ 8/52/145. Supermercado: de R$ 2,00 (P, 2–4 meses) a R$ 83,50 (XG, mais de 12 meses) | ajuda/15731; ajuda/15373 | seção 11 (R2); rodada2/nav-full-supermercado; reconciliação §1.9 |
+| A4 | CONFIRMADA | 40/30/20/10; nota do dia 15 define o espaço do mês seguinte; 70 ou mais = espaço estendido | vendedores.mercadolivre.com.br/nota/revise-suas-metricas-e-melhore-a-qualidade-do-seu-estoque-no-full | seção 10 (R3) |
+| A5 | PARCIAL | Confirmado em texto: estrelas ficam fora de tempo de estoque, vendas por estoque e rotatividade. A isenção de estoque antigo por até 180 dias está só em vídeo oficial; nenhuma página escrita a cita (15373, 15731, 24253, 21793, 42158 e 42159 foram lidas) | O4 (texto); V-tGWTaeqbsmU, 23/07/2026 (gerente de reposição: "a gente exenta esse custo em até 180 dias") | seção 10 (R3); seção 11 (R11); rodada2/nav-full-supermercado (Aberto 7); reconciliação §1.9 |
+| A6 | CONFIRMADA | R$ 5 / R$ 3 / R$ 9 por unidade; tolerância de 5%. O abono trimestral vale só para cancelamento tardio e não comparecimento, **não** para diferença de quantidade | vendedores.mercadolivre.com.br/nota/custos-por-inconformidade-nos-seus-envios-ao-full | seção 10 (R4) |
+| A7 | CONFIRMADA | Menos de 25 kg, um lado de até 120 cm e soma dos lados de até 260 cm, medidos na embalagem principal. Grande ou pesado enviado deve ser retirado em 30 dias, ou é descartado com custo. O CD Cajamar SP09 é exceção. Validade acima de 90 dias no envio | mercadolivre.com.br/ajuda/15573; envios.mercadolivre.com.br/mercado-envios-full | seção 10 (R5, validade); seção 11 (R5); rodada2/nav-full-supermercado (R2-FS-18) |
+| A8 | CONFIRMADA (confiança sobe para alta) | Proibidos no Full os produtos "que requerem controle de umidade e temperatura ou refrigeração controlada" | mercadolivre.com.br/ajuda/5200 | seção 11 (R5); rodada2/nav-full-supermercado (1.3); rodada2/sinais-recentes (1.5); reconciliação §1.9 |
+| A9 | PARCIAL | Limites e preços mínimos confirmados: para os itens da lista, **igual ou maior que** 20 kg, lado igual ou maior que 80 cm ou volume igual ou maior que 125 L. Exceção se o preço for igual ou maior que o mínimo da subcategoria: R$ 100 (26 subcategorias), R$ 200 (4) ou "Sem exceção" (258). Nenhuma subcategoria de Alimentos, Bebidas ou Supermercado; Ração para cães e gatos está na lista, "Sem exceção". A data de 20/05/2026 segue **sem fonte oficial** (só hz-H-lBm390 e o blog UpSeller de 26/05/2026). O metadado da página diz "a partir de 15 de outubro", sinal de uma onda nova não confirmada | mercadolivre.com.br/ajuda/44922 | seção 11 (R6); rodada2/nav-full-supermercado (R2-FS-19); rodada2/sinais-recentes (R2-SIN-13 a 15) |
+| A10 | CONFIRMADA | Mesma tabela para Full, Coleta e Agências. R$ 19–78,99: frete grátis padrão pago pelo ML. A partir de R$ 79: frete grátis rápido pago pelo vendedor. Abaixo de R$ 79 o rápido é opcional, a partir de R$ 12,95. Abaixo de R$ 19, o custo é no máximo metade do preço. Ver a divergência com a ajuda/16449 em 12.2 | mercadolivre.com.br/ajuda/custos-envio-reputacao-verde-mercado-lider_40538 | seção 11 (R7); rodada2/nav-preco-reputacao (R2-PR-19); reconciliação §1.9 |
+| A11 | CONFIRMADA | Verde: até 50%, já embutido na tabela. Amarela: até 40%. Laranja ou vermelha: sem desconto. O "até 70%" de vídeo de maio/2026 não aparece em página pública | ajudas 40538, 40545 e 40547 | seção 11 (R7); rodada2/sinais-recentes (R2-SIN-9, R2-SIN-10) |
+| A12 | CONFIRMADA | Sem estoque no CD, o anúncio é pausado; a variação esgotada aparece "Sem estoque" mesmo com unidades no depósito próprio; é possível desvincular o Full e vender só por Flex | vendedores.mercadolivre.com.br/nota/como-usar-flex-e-full-no-mesmo-anuncio | seção 10 (R10); seção 11 (R10) |
+| A13 | SEM FONTE OFICIAL (escrita) | O cálculo da recomendação (tendência, estoque, eventos) e a queda da recomendação depois da ruptura estão só em vídeo oficial. Nenhuma página escrita foi encontrada | V-8IZoOdsiT0s, 17/08/2026 | seção 10 (R10); seção 11 (R10) |
+| A14 | SEM FONTE OFICIAL (escrita) | A distribuição entre CDs acima do mínimo sugerido e a referência de "quatro semanas pelo menos" para estrelas estão só em vídeo oficial | V-900tq-i0qic, 26/08/2026; V-xEU0AIoVdqg, 22/09/2026 | seção 10 (R11); seção 11 (R11) |
+| A15 | ABERTA | Não reverificada. Segue a divergência entre fontes oficiais: "30 a 45 dias no máximo" (vídeo) contra "não ultrapassem 2 meses" (texto da ajuda, citado na rodada 1 e não relido nas seções 10 e 11) | V-8Y32h5rDYA4, 09/07/2026; O1 | nenhuma leitura nova |
+| A16 | SEM FONTE OFICIAL (escrita) | "Até duas semanas" para o estoque voltar a ficar disponível só aparece em fala do episódio oficial | V--3BhgxvPFsM, 17/07/2026 | seção 10 (R10); seção 11 (R10) |
+| A17 | ABERTA | A alegação "até 2x" e "70% dos anúncios +150%" continua sem método. O ML não publicou experimento sobre o Full (posts do MELI Tech de ago/2025 a mar/2026). Ordem de grandeza externa: cerca de **+1,45% nas vendas online por dia útil a menos** de prazo (quase-experimento, varejo de vestuário nos EUA). Não há estimativa causal do selo Full | O2, O12; R2-EVC-10 (ama.org, resumo de JMR 2019); R2-EVC-16 | rodada2/evidencias-cases |
+| A18 | CONFIRMADA | 55% dos envios regionais pela rede de fulfillment e mais de 50 instalações (1T26); "mais da metade dos envios" (10-Q 2T26); México perto de 80% (4T25). O número só do Brasil **não é divulgado** | sec.gov, 8-K de 07/05/2026 e 10-Q de 06/08/2026 | rodada2/balancos-api (R2-BA-17) |
+| A19 | CONTESTADA → valor correto | Os **+56% de itens vendidos no Brasil são do 2T26** (Carta 2T26, 05/08/2026), e não do 1T26. A atribuição ao frete grátis desde R$ 19 é antes/depois, não causal: no 3T25 o México teve os mesmos +42% de itens e +34% de GMV sem essa mudança. Os números seguem N2; a causalidade fica com confiança baixa | sec.gov 8-K de 05/08/2026; release do 3T25 (29/10/2025) | rodada2/balancos-api; rodada2/evidencias-cases (R2-EVC-15); cases-grandes A5 |
+| A20 | CONFIRMADA (observação repetida, não causal) | Nova amostra de 15/10/2026: em café, 83% a 92% dos 24 primeiros resultados são cards "Full Super" (formato supermercado), com carrossel "Adicione mais de FULL SUPER". Fora de café, o FULL comum vai de 38% a 88%. Conta logada e um único horário | lista.mercadolivre.com.br (6 termos, 13:47–13:57) | rodada2/nav-observacao (R2-OBS-5, R2-OBS-6) |
+| A21 | CONFIRMADA | Preço acima de R$ 8 (com exceções comerciais possíveis), reputação verde, categoria de supermercado e estoque no Full. P e M sem armazenagem diária. Frete grátis a partir de R$ 199 na loja. O ML pode abrir exceções por marca, e quem deixa de cumprir pode sair da loja | mercadolivre.com.br/ajuda/16449 | seção 11 (R8); rodada2/nav-full-supermercado (R2-FS-7); reconciliação §1.9 |
+| A22 | CONFIRMADA | Reputação verde; produto habilitado, sem reclamações, experiência de compra de 75 ou mais, código universal impresso, novo, de catálogo e **sem validade**. Exclui Alimentos e Bebidas, Celulares, Cuidados pessoais, Brinquedos, Bebês e Livros, "entre outros". Ganho de cerca de 1,5 dia no prazo; ativação automática com opção de desligar | mercadolivre.com.br/ajuda/42158 e 42159 | seção 11 (R9); rodada2/nav-full-supermercado (R2-FS-15, R2-FS-16) |
+| A23 | CONFIRMADA | Envios com problema: verde até 10% (60 dias) e até 13% (365 dias). Desde 10/09 (ano inferido: 2026), a janela de 60 dias vale para quem tem 101 vendas ou mais nesse período; abaixo disso, 365 dias. "Chegará amanhã" na coleta: 97% no prazo | nota "despache-suas-vendas-no-prazo"; nota "vamos-mudar-a-forma-como-calculamos-sua-reputacao"; ajuda/866 | seção 10 (R12); rodada2/nav-preco-reputacao (R2-PR-4, R2-PR-7); rodada2/sinais-recentes (R2-SIN-1, R2-SIN-2) |
+| A24 | PARCIAL | Bônus Flex de 10% da tarifa em produto novo a partir de R$ 79, só com reputação verde: confirmado. O pagamento do Flex por peso e área desde 24/08/2026 segue só via terceiro e em e-mail mostrado em vídeo. A ajuda/48578 confirma "24 de agosto" (sem ano) só para a tabela geral de envio | nota "como-entender-o-fluxo-financeiro-do-envios-flex"; ajuda/48578; KvVyJlYt6w0; Mj-oOzE0ZuE (~1:00–3:00) | seção 10 (R12); rodada2/nav-full-supermercado (R2-FS-10); rodada2/sinais-recentes (R2-SIN-28) |
+| A25 | PARCIAL | A divisão "produtos selecionados" contra "demais" está confirmada. Até 1 kg, na mesma faixa de preço, os demais pagam de 40% a 50% a mais (exemplo: R$ 1,60 contra R$ 2,40 entre R$ 29 e R$ 48,99). As tabelas ficam iguais a partir de 8 kg e a partir de R$ 199. O benefício vale automaticamente para anúncios ligados ao catálogo; a lista é um PDF não lido e o critério não é publicado. **Sem fonte oficial**: a data de 24/08/2026 para essa divisão e o "+20% a 40%" sobre a tabela anterior | mercadolivre.com.br/ajuda/49972; ajuda/48578 | seção 11 (R8); rodada2/nav-full-supermercado (R2-FS-8 a R2-FS-10) |
+| A26 | CONFIRMADA (com valores) | Retirada: R$ 98 até 0,01 m³, caindo a R$ 1.121/m³ (1–2 m³) e a cerca de R$ 576–583/m³ acima de 20 m³. Descarte: R$ 1 até 0,01 m³ e de R$ 18/m³ a R$ 6/m³ nos volumes maiores; destino em doação, reciclagem ou destruição. A página tem duas incoerências internas (ver 12.3) | mercadolivre.com.br/ajuda/16645 | rodada2/nav-full-supermercado (R2-FS-13) |
+| A27 | SEM FONTE OFICIAL | Relato de um praticante, com tela; não verificável em página oficial | XETb71Rn4dM | sem mudança |
+| A28 | SEM FONTE OFICIAL | Prática de ferramenta de BI | _2uE4SCRFvc | sem mudança |
+| A29 | SEM FONTE OFICIAL | Prática. Apoio parcial em webinar oficial de Ads: ruptura da variação que mais vende "acaba afetando" o anúncio; a orientação é subir o ROAS e isolar o produto, em vez de cortar orçamento | _2uE4SCRFvc; JzejZyVeauE 36:53–37:25 | rodada2/webinars (§3) |
+| A30 | SEM FONTE OFICIAL | Prática de um vendedor e um consultor | V-xEU0AIoVdqg | sem mudança |
+| A31 | SEM FONTE OFICIAL | Prática de consultor | V-hvXa7Pr0mp4 | sem mudança |
+| A32 | ABERTA | Vídeo oficial, não reverificado | V-8Y32h5rDYA4 | sem mudança |
+| A33 | SEM FONTE OFICIAL | Dado sem amostra informada | NUVEM | sem mudança |
+| A34 | CONTESTADA → valor correto | O estoque antigo é cobrado em valor fixo por unidade e por mês, por tamanho e faixa de tempo (tabela de A3). Não existe "+6,4%" | ajuda/15731; ajuda/15373 | seção 11 (R2); rodada2/nav-full-supermercado |
+| A35 | ABERTA | Amazon: fora do escopo da rodada 2 do ML; não reverificada aqui | AMZ1 | — |
+| A36 | ABERTA | Amazon: idem | AMZ1 | — |
+| A37 | ABERTA | Shopee: fora do escopo da rodada 2 do ML; não reverificada aqui | SHP1, SHP2 | — |
+| A38 | PARCIAL | Confirmado: kits e packs de supermercado sem código universal de fábrica são proibidos no Full. O pallet de "produtos iguais" (O20) e a regra de embalagem primária dos packs não foram relidos | mercadolivre.com.br/ajuda/5200; O20 | rodada2/nav-full-supermercado (R2-FS-6) |
+
+**Ajustes em números das seções 1 a 9 que não estão na tabela 8:**
+- **Retirada pelos praticantes (§2.2):** os valores citados não são "sem base". Os R$ 98 coincidem com a primeira faixa da ajuda/16645, e os "cerca de R$ 1.100/m³" com a faixa de 1 a 2 m³ (R$ 1.121/m³). Ver A26.
+- **"+1,1 p.p. de conversão" (§4):** é do **Brasil**, segundo a call do 2T26, e não do marketplace inteiro (R2-BA-28). A transcrição é de terceiro.
+- **Custo unitário de frete no Brasil (§4):** −8% (3T25, call), −11% (4T25) e −17% (1T26). Fonte: R2-BA-30 e rodada2/balancos-api.
+- **Identificador de O1:** as seções 10 e 11 leram a ajuda/15731 ("quais custos estoque antigo"), e a rodada 2 leu a ajuda/15373 ("custos mensais por estoque antigo"). As duas mostram a mesma tabela. São dois ids do mesmo domínio com o mesmo conteúdo, e não um conflito.
+
+### 12.2 Reconciliações aplicadas (LACUNAS §1.9 e afins)
+
+| Reconciliação | Resultado | Afirmações |
+|---|---|---|
+| Estoque antigo de Supermercado e valores [log R2] ↔ [alim A4] (ajuda/15373) | Aplicada. A tabela foi confirmada por três leituras: 15731 (seção 11), 15373 (alimentos e rodada 2) e a releitura da rodada 2 | A2, A3, A34 |
+| Full Super: R$ 8, P/M sem armazenagem, R$ 199 [log R8] ↔ [alim A5–A7] (ajudas 16449 e 49972) | Aplicada para requisitos, isenção e frete. Fica fora o que nenhuma página oficial mostra: a data de 24/08/2026 da divisão "selecionados" e o "+20% a 40%" | A21, A25 |
+| Proibição de refrigerados no Full [log R5] ↔ [alim A2] (ajuda/5200) | Aplicada. CONFIRMADA | A8 |
+| Isenção de 180 dias para SKUs Estrela [log R11] ↔ [mix R9] (vídeo oficial) | Uniformizada. O veredito é "vídeo oficial, sem página escrita", nas duas notas. Aqui ela fica como a parte não confirmada de A5 (PARCIAL) | A5 |
+| Tabela de envio e desconto de até 50% [pre R1–R4] ↔ [alim A8] (ajuda/40538) | Aplicada também nesta frente. A amarela tem até 40% (ajuda/40545) | A10, A11 |
+| LACUNAS §1.3: "a página oficial ainda fala em mais de 18 kg e até 25 kg" (contestação de [log R6]) | Resolvida, sem contradição. Até 25 kg é o limite geral de entrada (15573). 18 kg é o corte do tamanho de **armazenagem** XG (24253 e 15373). 20 kg, 80 cm e 125 L é a restrição por lista de categorias (44922). As três regras convivem | A1, A7, A9 |
+| §1.7: ajuda/23329 (vendedores autorizados) contra a entrada "automática" no Supermercado | Resolvida no texto. A 23329 restringe **alguns produtos** de supermercado, e não a categoria inteira. A 5200 põe esses produtos na lista de proibidos para quem não é autorizado. A entrada automática vale para os demais. Não entram novos vendedores autorizados. Qual produto está na lista restrita **não é público** (inferência da rodada 2, confiança média) | §2.1 e §5 (vendedor autorizado) |
+| Nova divergência interna: frete grátis "a partir de R$ 79 fora da loja" (ajuda/16449) contra R$ 19 (ajuda/40538) | **Não resolvida.** Leituras possíveis, sem comprovação: o R$ 79 da 16449 se refere ao frete grátis rápido, ou o texto é anterior a junho de 2025. Para custo, vale a tabela da 40538 | A10, A21 |
+
+### 12.3 Achados novos da rodada 2 desta frente
+
+**Custos e regras do Full (N1, sem data, lidos em 15/10/2026)**
+- **R2-FS-11:** armazenagem diária no Supermercado: P e M grátis, G R$ 0,014 e XG R$ 0,025. O custo vale para unidades aptas **e não aptas**, desde a entrada no CD (ajuda/24253).
+- **R2-FS-12:** ficam isentas de armazenagem, temporariamente, as unidades extraviadas, em revisão, devolvidas, canceladas, em revisão fiscal e em transferência entre CDs. A unidade extraviada que não volta à venda em 30 dias é paga ao vendedor (ajuda/26342).
+- **R2-FS-13:** a tabela completa de retirada e descarte por volume está em A26 (ajuda/16645). A página tem duas incoerências, transcritas como estão:
+  - a faixa de 0,01 a 0,025 m³ começa em R$ 80, abaixo dos R$ 98 da faixa anterior;
+  - o preço por m³ acima de 50 m³ (R$ 583) é maior que o de 20 a 50 m³ (R$ 576).
+
+  Convém reler a página em outro dia.
+- **R2-FS-17:** a ajuda/2518 redireciona para a 2517 ("Anúncios duplicados"). Ela permite o mesmo produto em mais de um anúncio "para oferecer diferentes formas de envio". Isso serve de base escrita para separar Full e Flex ou coleta em anúncios distintos.
+- **R2-FS-6, R2-SIN-24:** a ajuda/5200 também proíbe no Full:
+  - kits e packs de supermercado sem código universal de fábrica;
+  - consumo recorrente com validade próxima;
+  - validade ilegível, em outro idioma ou escrita à mão;
+  - itens com pragas ou fungos, ou sem embalagem primária adequada.
+
+  Produto restrito enviado ao CD não fica à venda e precisa ser retirado.
+- **R2-SIN-16:** a ajuda/5200 traz uma lista de itens proibidos sem condição de tamanho (assadeiras, cabides, copos e taças, mops etc.). Segundo um vídeo, ela foi anunciada em 03/09 e passou a valer em 16/09/2026. A lista é [OFICIAL]; a data é [PRÁTICA] (ZYce3H1naP4, ~0:40).
+- **R2-FS-1, R2-FS-2, R2-FS-5:** a 23329 restringe alguns produtos de Supermercado a vendedores autorizados e não aceita novos autorizados; o estoque restrito já armazenado continua à venda até acabar. A ajuda/33536 exclui do Supermercado os alimentos preparados, congelados, refrigerados, instantâneos, embutidos, de confeitaria e corantes; a lista "está sujeita a alterações".
+- **R2-BA-5:** desde 02/03/2026, abaixo do limite de frete grátis obrigatório, o **Full não cobra custo fixo**. Entre os modos ME2, só o Flex cobra (developers "comissao-por-vender", atualizada em 03/09/2026). O valor numérico desse limite no Brasil não foi localizado em página pública.
+
+**Balanços (N2)**
+- **R2-BA-17:** o volume pela rede de fulfillment cresceu 39% a/a no 1T26. O 10-Q do 2T26 registra que a armazenagem ("storage fees") é cobrada do vendedor. A penetração do Full só no Brasil não é divulgada.
+- **R2-BA-11:** o frete grátis e lento tem contribuição variável positiva em metade das faixas de preço médio entre R$ 19 e R$ 79 (2T26).
+- **R2-BA-8:** desde out/2025, assinantes MELI+ têm entrega rápida a partir de R$ 19. Quem não assina recebe entrega lenta entre R$ 19 e R$ 79.
+- **R2-BA-13:** houve redução da tarifa de envio para vendedores no fim do 1T26 (call, transcrição de terceiro).
+- **R2-SIN-29:** um e-mail oficial mostrado em vídeo indica aumento de cerca de R$ 0,90 por envio desde 24/08/2026 (Mj-oOzE0ZuE, ~0:30). Não há página pública com o número.
+
+**Exposição, Ads e ruptura**
+- **R2-WEB-1:** no Product Ads, o Ad Score inclui o Full entre seus componentes, ao lado de título, avaliação, qualidade da foto e posição já conquistada (JzejZyVeauE 30:46, webinar oficial de 12/05/2026). É o único registro oficial, nesta pesquisa, do Full como fator explícito do leilão de Ads. Não há peso nem fórmula.
+- **JzejZyVeauE 51:12 (sem id):** ter só Correios "é uma das coisas que mais limita" o Ads (oficial via canal).
+- **R2-OBS-8:** itens de R$ 19,40 e R$ 23,99 exibiram "Frete grátis ou rápido" no card, numa conta logada. Pode ter relação com o MELI+ (R2-BA-8), mas isso não foi apurado.
+- **R2-DAD-17:** estudo de painel da Lett, sem nome de marketplace e sem amostra declarada no resumo (confiança C):
+  - um dia de ruptura tira do top 30 46% dos itens que estavam no top 5;
+  - em café, limpeza, snacks e bebidas, mais de 64%; em marketplaces e pure players, 39%;
+  - na volta do estoque, 37,9% retornam ao top 5 no 1º dia e 59% no 2º;
+  - em cerca de 7% dos dias havia anúncio pago de produto indisponível.
+
+  É o primeiro número de tempo de recuperação desta pesquisa, mas **não é do Mercado Livre**.
+- **R2-DAD-16, R2-DAD-18:** dados da Lett (N4, confiança B/C):
+  - ruptura no e-commerce de 30,5% em jan–set/2024, com a maior alta em Alimentos e Bebidas;
+  - ruptura média de 30% na Black Friday e de até 50% no Carnaval e na Páscoa;
+  - duração média do estoque: 5,85 dias em Alimentos e 6,68 dias em Bebidas.
+
+**Evidência externa sobre prazo e frete (N4, fora do ML)**
+- **R2-EVC-10:** cerca de +1,45% nas vendas online por dia útil a menos de prazo.
+- **R2-EVC-11:** a Amazon relatou +79 bps de receita num A/B de envio aéreo seletivo.
+- **R2-EVC-13 e R2-EVC-14:** frete grátis incondicional eleva a conversão em 2,2% ou mais. Frete grátis acima de um mínimo vende mais que a taxa fixa, mas também gera mais devoluções.
+- **R2-EVC-16:** o ML não publicou experimento sobre Full, busca ou Ads.
+
+**Regulatório**
+- **R2-REG-1, R2-REG-2:** a Anvisa inspecionou o CD de Cajamar em 18/03/2026. O foco eram produtos de pronta entrega ("entrega Full"): dispositivos médicos, cosméticos e alimentos. Os fiscais mandaram retirar anúncios na hora, e o ML ficou como fiel depositário dos itens retidos. Isso mostra que o estoque no Full está sujeito a fiscalização sanitária no próprio CD (gov.br/anvisa).
+
+**Sinais N8 (só levantam pergunta, sem N1)**
+- **R2-SIN-26:** em set/2026, anúncios ficaram indisponíveis para RS e SC por cerca de 2 semanas, e houve falha no multiestoque (Full, Flex e agência no mesmo anúncio).
+- **R2-SIN-27:** relato de restrição nova a bebidas alcoólicas no Full (só autorizados; retirada em poucos dias).
+- **R2-SIN-28:** relatos de Full mais caro para quem não gira.
+- **w2izIQTFXi0 (01/10/2026):** relato de capacidade de envio configurada automaticamente e de espaço reduzido no Full.
+
+**Método**
+- **R2-FS-21:** a trilha de links no topo das páginas da Central de Ajuda acumula o histórico da sessão. Ela não serve para inferir que uma página é "filha" de outra.
+
+### 12.4 Perguntas do protocolo (§7.3)
+
+| Q | Estado | Motivo |
+|---|---|---|
+| Q1. Modalidades e regras de entrada | **R** (ML) | Full, Flex, Coleta, Agências e estoque compartilhado têm regras lidas em N1: 15573, 5200, 44922, 42159, 23329 e as notas O14 e O17. Shopee e Amazon ficam nas notas próprias de cada plataforma |
+| Q2. Custos de armazenagem, permanência e multas, com data | **R**, com ressalva | Todos lidos em N1: armazenagem (24253), isenções (26342), estoque antigo (15731/15373), retirada e descarte (16645) e inconformidade (O5). Ressalva: nenhuma página traz data de vigência, e a coleta ao Full (por m³ e distância) continua sem tabela pública |
+| Q3. Efeito da modalidade na exposição e na conversão | **P** (S para o tamanho do efeito no ML) | Há três tipos de evidência: o mecanismo declarado pelo ML (O2: Full sobe na busca; Ad Score inclui Full, JzejZyVeauE 30:46), a observação de que o FULL domina o topo em café (R2-OBS-5) e a ordem de grandeza externa de cerca de 1,45% por dia útil (R2-EVC-10). Não há estimativa causal do Full no ML: os números "2x", "+150%" e "5x" seguem sem método, e o ML não publica experimentos |
+| Q4. O que vai para o fulfillment | **R** | Consenso entre fontes oficiais (curva A e estrelas no Full; produto novo em lote pequeno) e praticantes (curva por unidades, cubagem, caixa). Nada novo na rodada 2 |
+| Q5. Métricas de saúde de estoque | **R** (métricas); benchmarks ausentes | Índice 40/30/20/10 (N1), cobertura, idade de estoque e % do faturamento saudável (prática). Não há benchmark N4/N5 de cobertura ou sell-through no ML. A Lett dá ruptura e duração de estoque de alimentos sem recorte do ML (R2-DAD-16 e 18) |
+| Q6. Reposição para picos | **R** | Lead time, estoque de segurança e calendário de BF em fontes oficiais (vídeo) e práticas. O limite de envio ao CD é o espaço pelo índice (N1). A capacidade automática de envio é só sinal N8 |
+| Q7. Ruptura, ranking, Ads e tempo de recuperação | **P** | Confirmados: a pausa automática (O12) e o efeito da ruptura de variação no Ads (JzejZyVeauE 36:53). A queda da recomendação e o prazo de 2 semanas estão só em vídeo oficial. O único número de recuperação (37,9% no 1º dia e 59% no 2º voltam ao top 5) é da Lett, sem nome de marketplace e sem amostra declarada. Não há medida no ML |
+| Q8. Exigências regulatórias e de embalagem | **P** | Confirmados em N1: validade acima de 90 dias, validade legível e não manuscrita, recusa de validade próxima, proibição de itens com controle de temperatura, código universal em kits de supermercado e bloqueio de itens sem Anvisa, Inmetro ou Mapa. A inspeção da Anvisa no CD do Full é N2 (R2-REG-1). Continuam sem página: alerta de vencimento, descarte por validade e regra de saída (FEFO) dentro do Full, além das páginas do Inmetro e do Mapa por categoria |
+
+### 12.5 Contaminação verificada
+
+**Nenhuma.** Foram feitas três checagens:
+- **Domínio das fontes.** Toda afirmação da seção 11 e da rodada 2 usada aqui cita domínios coerentes com o conteúdo: mercadolivre.com.br/ajuda, vendedores.mercadolivre.com.br, envios.mercadolivre.com.br, developers.mercadolivre.com.br, lista.mercadolivre.com.br, sec.gov, gov.br, YouTube do canal oficial e periódicos acadêmicos. Nenhuma cita URL de Shopee ou Amazon como fonte de regra do ML.
+- **Menções a outras plataformas.** As que aparecem nos arquivos da rodada 2 são contexto legítimo e batem com as URLs citadas: estudo da Amazon Science sobre envio aéreo, RE da Anvisa sobre medicamentos na Shopee, participação de GMV e o "não encontrado" sobre FBA. Elas foram usadas só como evidência externa, marcada como tal (R2-EVC-11).
+- **Conteúdo contra URL.** Os valores atribuídos a cada ajuda na seção 11 (15731, 15573, 5200, 44922, 40538, 16449, 49972, 42159) batem com as releituras independentes da rodada 2: nav-full-supermercado no Chrome, e sinais-recentes e balancos-api por curl.
+
+Divergências que **não** são contaminação e ficam registradas:
+1. **Ids do estoque antigo:** 15731 e 15373 mostram a mesma tabela.
+2. **Data da ajuda/44922:** o metadado "a partir de 15 de outubro" foi lido por curl. A leitura no Chrome não mostrou data no corpo da página.
+3. **Observação de busca logada:** a amostra de 15/10/2026 (R2-OBS) foi feita numa conta logada, sem CEP visível. A personalização pode influir, e isso limita a comparação com a observação da rodada 1 (CEP em MG).
+4. **Contas conectadas:** duas páginas lidas no Chrome continham dados da conta conectada no navegador. Esses dados não foram lidos nem usados (nav-full-supermercado 1.2; nav-preco-reputacao, busca da Central).

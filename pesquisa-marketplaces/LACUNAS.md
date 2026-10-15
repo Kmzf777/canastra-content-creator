@@ -69,145 +69,209 @@ No fim vem a lista priorizada da próxima rodada. A pesquisa segue neutra: aqui 
 
 ## 1. Mercado Livre
 
+**Atualização de 2026-10-15.** Esta seção foi revista depois da rodada 2. Base: a §12 (estado final) das oito notas de frente em `mercadolivre/<frente>/notas.md` e o `mercadolivre/CONSOLIDADO.md` (versão final de 15/10). Não houve coleta nova nesta revisão: só leitura de arquivos. O texto original de 14/10 foi mantido em cada item. A marca de estado vem antes dele, e a fonte ou o motivo vem depois de "→".
+
+**Legenda do estado (só nesta seção).**
+- **FECHADO:** respondido com fonte, que vai citada. Inclui a resposta negativa documentada, quando uma fonte oficial confirma que o dado não é divulgado ou que a regra não existe.
+- **PARCIAL:** parte respondida e parte pendente; o resíduo é indicado.
+- **ABERTO:** sem resposta. O motivo é um destes: exige login de vendedor; sem fonte pública; precisa de medição própria ou série temporal; não foi relido.
+
+Todas as páginas da Central de Ajuda e da Central de Vendedores seguem sem data. Toda regra dada como FECHADA vale como "vigente na leitura de 14 e 15/10/2026".
+
+### Quadro-resumo da §1 (estado em 15/10/2026)
+
+| Bloco | Itens | FECHADO | PARCIAL | ABERTO |
+|---|---|---|---|---|
+| 1.1 ads | 13 | 2 | 8 | 3 |
+| 1.2 preco-promocao | 11 | 5 | 4 | 2 |
+| 1.3 logistica-estoque | 8 | 3 | 3 | 2 |
+| 1.4 ranqueamento-anuncio | 10 | 4 | 3 | 3 |
+| 1.5 produto-mix | 8 | 1 | 0 | 7 |
+| 1.6 reputacao-atendimento | 7 | 2 | 1 | 4 |
+| 1.7 alimentos-marca-propria | 10 | 5 | 3 | 2 |
+| 1.8 cases-grandes | 8 | 2 | 3 | 3 |
+| **Subtotal das lacunas (1.1 a 1.8)** | **75** | **24** | **25** | **26** |
+| 1.9 reconciliações internas | 8 | 8 | 0 | 0 |
+| **Total da §1** | **83** | **32** | **25** | **26** |
+
+**Leitura.** Fecharam sobretudo as regras escritas da plataforma: tarifas, envio, custo fixo, Full, reputação, experiência de compra e regulatório do café. O que segue aberto tem três causas. A primeira é a medição de efeito: Ads, Full, medalha, edição de anúncio e ruptura. A segunda são os painéis logados. A terceira são números que a plataforma não publica. Nenhum item aberto se resolve com mais leitura de página pública.
+
+**Só se resolve com acesso logado de vendedor**
+1. Janela de atribuição do Product Ads, 14 × 15 dias (painel do Ads) [ads A10].
+2. Requisitos do Product Ads, texto × fala, testados na elegibilidade de uma conta nova [ads A6; rep A16].
+3. Benchmarks de Ads por categoria no Brasil (Ads Center e portal do Mercado Ads) [ads Q7].
+4. Painel Concorrência aplicado a café: share por vendedor e uso de Ads, Full e promoções pelos líderes [cases Q1, Q2].
+5. Aba "Oportunidades" e requisito de acesso ao detalhe do painel de mercado (R$300 × R$1.500 a R$2.000) [mix §9].
+6. Tendências, mais vendidos e visitas: a API exige token e a permissão "Métricas do negócio" [mix A10; rank A34].
+7. Tarifa da seção Supermercado e percentual-base de Cápsulas: o simulador e o `listing_prices` exigem login ou token [cases A29; R2-PR-2].
+8. Valor do TH do custo fixo (faturas por faixa) e frete grátis fora da loja Full Super, R$19 × R$79 (simulador) [mix A37; R2-BA-29].
+9. Separação de subsídio do ML e desconto do vendedor por item (`meli_percentage` e `seller_percentage` com token) [pre Q6]. O efeito da promoção também exige medição própria.
+10. Lista de produtos de Supermercado restritos a autorizados (fluxo de envio ao Full) [alim A3].
+11. Benefício de Reputação × Reputação Protegida (`/reputacao/beneficio_reputacao`) [rep A23].
+12. Quem opera cada conta de grupo multimarca e se o ML vende essas marcas em 1P ("Vendido por" bloqueado) [alim Q9].
+13. Calendário promocional de 2026 com prazos de adesão (Central de Promoções), que não tem página pública [pre Q8].
+14. Datas sem fonte: ano de 10/09 e data de 20/05 dos extragrandes (Novidades da Central) [rep A2; log A9].
+
+**Só se resolve com medição própria ao longo do tempo**
+1. Incrementalidade de Ads, inclusive em termos da própria marca, e efeito de Ads sobre o orgânico (holdout ou pausa por SKU pareado) [ads Q5, Q6; rank A42].
+2. Efeito do Full na exposição e na conversão (antes e depois com SKUs pareados) [log Q3, A17].
+3. Tempo para recuperar a posição depois de uma ruptura (série de posição) [log Q7].
+4. Tempo para um anúncio novo ganhar posição orgânica [rank Q8].
+5. Efeito de editar título ou fotos de um anúncio que vende ("lido como novo") [rank A20].
+6. Magnitude do efeito do clipe na conversão [rank A25, A26].
+7. Se a descrição indexa na busca (busca por termo presente só na descrição) [soc S20–S21].
+8. Efeito da medalha MercadoLíder na exposição (impressões antes e depois da troca) [rep A38].
+9. Concentração por categoria (CR3, CR5, HHI) e ranking de vendedores com mudança em 12 meses (observação com protocolo, em série) [mix Q3; cases Q1].
+10. Índice de preço par a par e % de buy box de portfólio [pre Q4].
+11. Share contra a categoria [cases Q7].
+12. Canibalização entre kit e avulso [mix §9].
+13. Teste de formato: multipack × unitário [alim Q8].
+14. Observação de busca com segundo horário, sessão deslogada e CEP explícito [R2-OBS].
+
 ### 1.0 Camadas por frente
 
-| Frente | Oficial | Dados | Obs. | Social |
-|---|---|---|---|---|
-| ads | OK (developers; 8 de 12 conf.) | ausente (ACOS 5–25% sem método) | fraca (sem "Patrocinado") | OK |
-| preco-promocao | fraca na verificação (403; 1 de 12 conf.), mas páginas lidas por outras frentes; N2 OK | ausente | parcial (preço em camadas, só café) | OK |
-| logistica-estoque | parcial (Ajuda por JS; 5 de 12 conf.) | ausente | parcial (FULL só nos cards) | OK |
-| ranqueamento-anuncio | OK (9 de 12 conf.) | ausente | parcial | OK |
-| produto-mix | OK (10 de 12 conf.) | fraca (Nubimetrics sem método nem data) | parcial | OK |
-| reputacao-atendimento | OK (10 de 12 conf.) | ausente | parcial (só a medalha dos líderes) | parcial |
-| alimentos-marca-propria | OK (11 de 12 conf.); N2 Anvisa só via imprensa | ausente | OK em café | parcial |
-| cases-grandes | fraca (403; só o 8-K relido) | fraca (XP, Santander e Avenue via imprensa) | parcial | OK |
+A coluna "Rodada 2" resume o que mudou em 15/10, segundo a §12 de cada nota.
+
+| Frente | Oficial | Dados | Obs. | Social | Rodada 2 (15/10) |
+|---|---|---|---|---|---|
+| ads | OK (developers; 8 de 12 conf.) | ausente (ACOS 5–25% sem método) | fraca (sem "Patrocinado") | OK | Oficial reforçada: 21 das 42 afirmações confirmadas, 8 delas só em fala de webinar reassistido com minuto; N2 (cartas e 10-Q) relido. Obs.: o patrocinado foi medido com rótulo e slots fixos (R2-OBS-1 a 3). Dados segue ausente |
+| preco-promocao | fraca na verificação (403; 1 de 12 conf.), mas páginas lidas por outras frentes; N2 OK | ausente | parcial (preço em camadas, só café) | OK | Oficial passa a OK: tarifa do café, 51251, 40538, gerenciar-ofertas, price matching e automação lidos. Regulatório do "de/por" lido na fonte. Dados segue ausente |
+| logistica-estoque | parcial (Ajuda por JS; 5 de 12 conf.) | ausente | parcial (FULL só nos cards) | OK | Oficial passa a OK: 24253, 16645, 15373, 44922, 42158 e 42159 lidas. Dados: só Lett, sem recorte de marketplace (N4 C). Obs.: Full Super no topo de café |
+| ranqueamento-anuncio | OK (9 de 12 conf.) | ausente | parcial | OK | Oficial reforçada (clips, experiência de compra, API). Obs.: busca com protocolo em 6 termos. Dados segue ausente |
+| produto-mix | OK (10 de 12 conf.) | fraca (Nubimetrics sem método nem data) | parcial | OK | Oficial OK. Dados ficou mais fraca: a API pública de busca, tendências e mais vendidos fechou (token) |
+| reputacao-atendimento | OK (10 de 12 conf.) | ausente | parcial (só a medalha dos líderes) | parcial | Oficial completa: tabela por cor em 60 e 365 dias, corte de 101 vendas, Decola e Protegida. Dados: só Reclame Aqui (N8, amostra pequena) |
+| alimentos-marca-propria | OK (11 de 12 conf.); N2 Anvisa só via imprensa | ausente | OK em café | parcial | N2 lido na fonte: Anvisa, IN 281, RDC 843, Portaria 570, INPI. Dados: NIQ e Worldpanel (N4 B) |
+| cases-grandes | fraca (403; só o 8-K relido) | fraca (XP, Santander e Avenue via imprensa) | parcial | OK | N2 relido: 4 cartas, 4 calls e o 10-Q 2T26. Busca dirigida não achou case de vendedor com medição de terceiro |
 
 ### 1.1 ads
 **Perguntas do protocolo**
-- Q1 **P**: os requisitos de Display self-service e do canal Top Brands não são públicos [ads §9].
-- Q2 **P**: Ad Rank = Ad Score × CPC está escrito só para Brand Ads. Para Product Ads, a fórmula, o "segundo preço" e o CPC derivado do ROAS vêm só do webinar JzejZyVeauE, não reassistido [ads A4, rank A30].
-- Q5 **S**: não há incrementalidade. O Product Ads não expõe termo de busca, então a fatia do gasto em termos da própria marca não é mensurável [ads §9].
-- Q6 **S** em fonte oficial: só praticantes e um suposto "score de TACOS" [ads A33].
-- Q7 **S** para o BR: só ACOS de 5% a 25% sem método [ads A37] e Amazon EUA [ads A38].
-- Q9 **S**: não há integração confirmada de Pacvue, Flywheel, Perpetua ou Skai com o Mercado Ads. A participação de Ads por concorrente no painel Concorrência não foi verificada.
+- **PARCIAL.** Q1 **P**: os requisitos de Display self-service e do canal Top Brands não são públicos [ads §9]. → Os formatos e a cobrança por formato estão documentados (10-Q 2T26), e há teste grátis de 10 dias [ads §12.4 Q1]. Os requisitos de Display e Top Brands seguem não públicos (sem fonte pública), e o desempate dos requisitos do Product Ads exige login (ver abaixo).
+- **PARCIAL.** Q2 **P**: Ad Rank = Ad Score × CPC está escrito só para Brand Ads. Para Product Ads, a fórmula, o "segundo preço" e o CPC derivado do ROAS vêm só do webinar JzejZyVeauE, não reassistido [ads A4, rank A30]. → O webinar foi reassistido com minuto (JzejZyVeauE 30:46–31:54, 57:16, 58:53), e a fala de 30/09/2026 descreve três variáveis (LOZL-QmsGL4 16:28). Em texto, o Product Ads segue só com "ROAS objetivo + relevância", e o "segundo preço" tem uma única fonte oral [ads A4, R2-WEB-1 a 4]. Resíduo: página escrita.
+- **ABERTO.** Q5 **S**: não há incrementalidade. O Product Ads não expõe termo de busca, então a fatia do gasto em termos da própria marca não é mensurável [ads §9]. → Motivo: precisa de medição própria (holdout ou pausa por SKU pareado). O ML não publicou experimento (R2-EVC-16). A literatura externa indica que a atribuição superestima (R2-EVC-1 a 3), e a duplicação pago + orgânico (R2-OBS-4) é só indício.
+- **ABERTO.** Q6 **S** em fonte oficial: só praticantes e um suposto "score de TACOS" [ads A33]. → Motivo: sem fonte oficial e precisa de medição própria. A fala do ML ("+21% de cliques e +39% de vendas") é atribuição, sem holdout [rank A42]. O "score de TACOS" segue sem fonte.
+- **ABERTO.** Q7 **S** para o BR: só ACOS de 5% a 25% sem método [ads A37] e Amazon EUA [ads A38]. → Motivo: exige login (portal do Mercado Ads com 403; Ads Center logado) e não há estudo de agência BR com amostra. A rodada 2 achou só heurística de blog (R2-DAD-28).
+- **PARCIAL.** Q9 **S**: não há integração confirmada de Pacvue, Flywheel, Perpetua ou Skai com o Mercado Ads. A participação de Ads por concorrente no painel Concorrência não foi verificada. → O painel Concorrência mostra o % de vendas com publicidade por concorrente (nota oficial, [ads §12.2]). Há método público de medição do patrocinado: rótulo, slots 1–4 e 13–16, 33% do top 24 (R2-OBS-1 a 3). Resíduo: integração das ferramentas citadas (sem fonte pública) e série temporal.
 
 **Sem fonte oficial ou contestado**
-- Faixa de ROAS objetivo de 1x a 35x [ads A2]: o consolidado a usa como benchmark [OFICIAL], mas não foi reconferida.
-- Orçamento compartilhado e cobrança pós-paga [ads A15].
-- Janela de atribuição: 14 dias na API contra 15 no webinar [ads A10].
-- Requisitos do Product Ads: a nota oficial contesta o webinar (15 dias de conta, fatura vencida) [rep A16, CONTESTADA].
-- Ads/GMV do MELI em cerca de 2,6%: só fonte secundária.
-- Fase de aprendizado oficial: não documentada.
-- Quem recebe a venda quando o clique pago cai num catálogo ganho por outro vendedor: não documentado.
+- **FECHADO.** Faixa de ROAS objetivo de 1x a 35x [ads A2]: o consolidado a usa como benchmark [OFICIAL], mas não foi reconferida. → developers `product-ads-para-catalogo-e-user-products-leitura` (06/07/2026), trecho literal na seção 11 [ads A2]. Ressalva: o desempate por WebFetch deu 403.
+- **PARCIAL.** Orçamento compartilhado e cobrança pós-paga [ads A15]. → O orçamento compartilhado está confirmado em texto (nota de redistribuição automática; exclui campanhas com menos de 7 dias) [ads A15]. A cobrança só por clique, na fatura do Mercado Pago, está em fala oficial e no 10-Q 2T26 [ads A17]. Resíduo: o texto N1 do "pós-pago" não foi lido.
+- **PARCIAL.** Janela de atribuição: 14 dias na API contra 15 no webinar [ads A10]. → O texto técnico de 06/07/2026 (14 dias) pesa mais que a fala de maio (15 dias); nenhum webinar de setembro cita prazo. Motivo do resíduo: o desempate final exige o painel, com login.
+- **PARCIAL.** Requisitos do Product Ads: a nota oficial contesta o webinar (15 dias de conta, fatura vencida) [rep A16, CONTESTADA]. → As frentes uniformizaram o estado: o texto da Central fica CONFIRMADO como leitura, e a divergência com três falas de 2026 fica aberta [ads A6, §12.2-2; rep A16 PARCIAL]. Motivo do resíduo: nenhuma fonte tem data que desempate. Exige teste numa conta nova (login).
+- **FECHADO.** Ads/GMV do MELI em cerca de 2,6%: só fonte secundária. → Resposta negativa documentada: o MELI não divulga Ads/GMV, e a call do 4T25 diz só "still small compared to its potential" (R2-BA-15) [ads §12.1]. Os 2,6% não devem ser usados.
+- **PARCIAL.** Fase de aprendizado oficial: não documentada. → Não há página que defina a fase. Os 7 dias sem mexer são "regra de ouro" em duas falas de set/2026 (5UhmqSFuX7U; LOZL-QmsGL4), coerentes com a exclusão de campanhas com menos de 7 dias da redistribuição [ads §9 → §12.1].
+- **PARCIAL.** Quem recebe a venda quando o clique pago cai num catálogo ganho por outro vendedor: não documentado. → Fala de nov/2025: Product Ads de catálogo só imprime para quem vence o catálogo (b-ZNQktRHjc 41:54) [ads §12.1; R2-WEB-18]. Resíduo: falta texto escrito, reconfirmação em 2026 e regra para venda indireta.
 
 ### 1.2 preco-promocao
 **Perguntas**
-- Q1 **P**: a tarifa percentual exata por categoria (Alimentos, café) não foi lida. A tabela de tarifa competitiva (ajuda/51251: −3 a −5 p.p. entre R$150 e R$700) e o reajuste de envio de +1,6% em 24/08/2026 não foram reconferidos [pre A7, A8].
-- Q2 **P**: não há regra oficial de paridade. A punição por preço externo desde out/2025 vem só de imprensa [cases A3]. O índice de competitividade citado na carta 2T26 não tem fórmula.
-- Q4 **S**: não há índice par a par ou ponderado, % de buy box de portfólio nem preço contra a mediana da 1ª página praticados no BR.
-- Q5 **P**: os 12 tipos de promoção, as cofinanciadas e quem paga cada parte vêm de developers não reconferido [pre A14–A16, R10–R12].
-- Q6 **S**: nada separa o subsídio do ML do desconto do vendedor.
-- Q8 **P**: não há calendário oficial de 2026 com prazos de adesão. A data da Black Friday é cálculo [pre §9.6].
+- **PARCIAL.** Q1 **P**: a tarifa percentual exata por categoria (Alimentos, café) não foi lida. A tabela de tarifa competitiva (ajuda/51251: −3 a −5 p.p. entre R$150 e R$700) e o reajuste de envio de +1,6% em 24/08/2026 não foram reconferidos [pre A7, A8]. → Fechados: tarifa do café (Clássico 14%, Premium 19%; landing custos-de-venda, R2-PR-1) [pre A1]; a 51251, ampliada a Cápsulas, Solúvel, Infusões e Cremes [pre A8; R2-BA-4]; a data de 24 de agosto (ajuda/48578) [pre A7]. Resíduos: o "+1,6%" segue sem fonte oficial. A tarifa da seção Supermercado e o valor do TH exigem login.
+- **PARCIAL.** Q2 **P**: não há regra oficial de paridade. A punição por preço externo desde out/2025 vem só de imprensa [cases A3]. O índice de competitividade citado na carta 2T26 não tem fórmula. → A comparação com preço externo é oficial: developers `referencias-de-precos` (17/12/2025) e automação INT_EXT, que inclui o Google (01/10/2026) [pre A23, A24; cases A3]. Resíduo: aviso, prazo de 3 dias e perda de visibilidade seguem só na imprensa (R2-SIN-18). A fórmula do índice não é publicada (sem fonte pública).
+- **ABERTO.** Q4 **S**: não há índice par a par ou ponderado, % de buy box de portfólio nem preço contra a mediana da 1ª página praticados no BR. → Motivo: sem prática documentada e precisa de medição própria em série. O painel Concorrência mostra o uso de alavancas, não preço relativo [pre §12.4 Q4].
+- **FECHADO.** Q5 **P**: os 12 tipos de promoção, as cofinanciadas e quem paga cada parte vêm de developers não reconferido [pre A14–A16, R10–R12]. → developers `gerenciar-ofertas` (09/06/2026): 12 tipos; com bonificação MARKETPLACE_CAMPAIGN, VOLUME, PRE_NEGOTIATED, SMART, PRICE_MATCHING e UNHEALTHY_STOCK; aporte separado por `meli_percentage` e `seller_percentage` [pre A14, A15; R2-PR-15, 16]. Resíduo menor: VOLUME tem contradição interna entre a tabela de 2026 e a doc de 2025 [pre A18].
+- **ABERTO.** Q6 **S**: nada separa o subsídio do ML do desconto do vendedor. → Motivo: exige login e medição própria. A API separa os aportes por item (R2-PR-16), mas só com token do vendedor, e não há estudo nem holdout público de efeito [pre §12.4 Q6].
+- **PARCIAL.** Q8 **P**: não há calendário oficial de 2026 com prazos de adesão. A data da Black Friday é cálculo [pre §9.6]. → Acréscimos: moldura legal do "de/por" (R2-REG-25 a 29) e peso de Alimentos e Bebidas na Black Friday de 2024 (R2-DAD-04). Resíduo: calendário e prazos de adesão sem página pública (provável só na Central logada).
 
 **Sem fonte oficial ou contestado**
-- Desconto de frete por reputação: 50% (página atual) contra 70% (vídeo de maio) [pre A5; rep A15].
-- Custo fixo abaixo de R$79: a página atual mostra só degraus de envio; blogs e um vídeo de maio falam em corte de R$12,50 [mix R12, SEM FONTE].
-- Automação de preços (INT/INT_EXT, piso, 60 dias) [pre A23]: não reconferida.
-- Duração e desconto mínimo de relâmpago e oferta do dia: só praticantes.
-- Legalidade de "de/por" e a suposta regra de 60 dias antes da Black Friday (CDC, Senacon): não verificadas.
+- **FECHADO.** Desconto de frete por reputação: 50% (página atual) contra 70% (vídeo de maio) [pre A5; rep A15]. → Verde até 50%, já embutido; amarela até 40%; laranja e vermelha 0%. Fonte: ajudas 40538, 40545 e 40547. Os 70% estão superados [pre A5; rep A15; R2-SIN-9, 10].
+- **FECHADO.** Custo fixo abaixo de R$79: a página atual mostra só degraus de envio; blogs e um vídeo de maio falam em corte de R$12,50 [mix R12, SEM FONTE]. → developers "Custos por vender" (03/09/2026): desde 02/03/2026, abaixo do TH, só Flex, ME1 e envio personalizado cobram custo fixo; Full, Coleta, Places, Drop off e Turbo não cobram. Os R$12,50 são a regra anterior [mix A37; R2-BA-5]. Ressalvas: leitor único (WebFetch de desempate com 403) e valor do TH não publicado.
+- **FECHADO.** Automação de preços (INT/INT_EXT, piso, 60 dias) [pre A23]: não reconferida. → developers `automatizacoes-de-precos` (01/10/2026). Acréscimos: pausa quando o item entra em promoção; no catálogo, reputação amarela ou melhor [pre A23; R2-PR-18].
+- **PARCIAL.** Duração e desconto mínimo de relâmpago e oferta do dia: só praticantes. → Oficial: a LIGHTNING exige estoque, não tem bonificação padrão, e o vendedor define o preço entre um mínimo e um máximo (gerenciar-ofertas) [pre A16]. Resíduo: a duração (cerca de 12 h) segue só em praticante [pre N15], e o mínimo numérico não está em página lida.
+- **FECHADO.** Legalidade de "de/por" e a suposta regra de 60 dias antes da Black Friday (CDC, Senacon): não verificadas. → Lidos na fonte: CDC, arts. 37 e 38; Decreto 5.903/2006. Os "60 dias" são recomendação do Procon-SP (desconto sobre o menor preço de 60 dias), não lei. O PL 5925/2025 não é lei [R2-REG-25 a 29; pre §12.1].
 
 ### 1.3 logistica-estoque
 **Perguntas**
-- Q2 **P**: custos oficiais de retirada e descarte por m³ (ajuda/16645), coleta ao Full e armazenagem diária (ajuda/24253, que redirecionou) não foram lidos.
-- Q3 **S** quantitativo: o efeito do Full ou do frete na exposição tem só "2x", "+150%" e "5x", sem método [log A17].
-- Q7 **P**: o anúncio pausa sem estoque (conf.), mas o tempo para recuperar a posição não foi medido.
-- Q8 **P**: procedimento de validade dentro do Full (alerta, descarte, FEFO) não documentado; páginas do Inmetro e do MAPA por categoria não lidas.
+- **PARCIAL.** Q2 **P**: custos oficiais de retirada e descarte por m³ (ajuda/16645), coleta ao Full e armazenagem diária (ajuda/24253, que redirecionou) não foram lidos. → Lidas: ajuda/16645 (retirada a partir de R$98; descarte de R$1 a R$18 por m³) [log A26] e ajuda/24253 (armazenagem geral e do Supermercado) [log A1]. Resíduo: a coleta ao Full (por m³ e distância) segue sem tabela pública. A 16645 tem duas incoerências internas e leitor único.
+- **ABERTO.** Q3 **S** quantitativo: o efeito do Full ou do frete na exposição tem só "2x", "+150%" e "5x", sem método [log A17]. → Motivo: precisa de medição própria (antes e depois com SKUs pareados). O ML não publica experimento sobre o Full (R2-EVC-16). Há só a ordem de grandeza externa de cerca de +1,45% por dia útil a menos de prazo (R2-EVC-10) e a observação do Full Super no topo de café (R2-OBS-5).
+- **ABERTO.** Q7 **P**: o anúncio pausa sem estoque (conf.), mas o tempo para recuperar a posição não foi medido. → Motivo: precisa de série temporal própria. O único número (37,9% voltam no 1º dia, 59% no 2º) é da Lett, sem nome de marketplace nem amostra (R2-DAD-17). A queda da recomendação de reposição está só em vídeo oficial [log A13].
+- **PARCIAL.** Q8 **P**: procedimento de validade dentro do Full (alerta, descarte, FEFO) não documentado; páginas do Inmetro e do MAPA por categoria não lidas. → Confirmados em N1: validade acima de 90 dias (15737), validade legível e não manuscrita, recusa de validade próxima (5200), código universal em kits de supermercado. A inspeção da Anvisa no CD do Full é N2 (R2-REG-1). Resíduo: alerta de vencimento, descarte por validade e FEFO seguem sem página (sem fonte pública). As páginas do Inmetro e do MAPA por categoria não foram lidas, e as operações do MAPA exigem login.
 
 **Sem fonte oficial ou contestado**
-- Restrição de extragrandes de 20/05/2026 (20 kg, 80 cm, 125 L, preço mínimo) [log R6]: a página oficial ainda fala em mais de 18 kg e até 25 kg.
-- Estoque compartilhado: reputação verde, experiência 75, exclusão de alimentos e de itens com validade [log R9; ajuda 42158/42159 não carregaram].
-- Lado de até 120 cm, soma de até 260 cm e proibição de itens com controle de temperatura [log R5]. A frente de alimentos confirmou a proibição na ajuda/5200 [alim A2]: ver reconciliação.
-- Penetração do Full só no Brasil: o 8-K dá 55% regional.
+- **PARCIAL.** Restrição de extragrandes de 20/05/2026 (20 kg, 80 cm, 125 L, preço mínimo) [log R6]: a página oficial ainda fala em mais de 18 kg e até 25 kg. → O conflito está resolvido: 25 kg é o limite de entrada (15573), 18 kg é o tamanho XG de armazenagem (24253) e 20 kg / 80 cm / 125 L é a lista de extragrandes (44922). Nenhuma subcategoria de alimentos está na lista [log A9, §12.2]. Resíduo: a data de 20/05 segue sem fonte oficial, e o metadado "a partir de 15 de outubro" da 44922 não foi confirmado.
+- **FECHADO.** Estoque compartilhado: reputação verde, experiência 75, exclusão de alimentos e de itens com validade [log R9; ajuda 42158/42159 não carregaram]. → ajudas 42158 e 42159 lidas na rodada 2 [log A22; alim A32; R2-FS-15, 16].
+- **FECHADO.** Lado de até 120 cm, soma de até 260 cm e proibição de itens com controle de temperatura [log R5]. A frente de alimentos confirmou a proibição na ajuda/5200 [alim A2]: ver reconciliação. → ajuda/15573 (menos de 25 kg, um lado até 120 cm, soma até 260 cm) e ajuda/5200 (proibição de itens com controle de temperatura ou umidade) [log A7, A8].
+- **FECHADO.** Penetração do Full só no Brasil: o 8-K dá 55% regional. → Resposta negativa documentada: o número do Brasil não é divulgado. O regional é de 55% (1T26) e "mais da metade" no 10-Q 2T26 [log A18; R2-BA-17].
 
 ### 1.4 ranqueamento-anuncio
 **Perguntas**
-- Q1 **P**: não há fórmula nem pesos.
-- Q7 **P**: não há página oficial sobre incentivo a avaliações (cartão na embalagem, brinde) [rank §9].
-- Q8 **S**: o próprio ML "não informa prazo" para um anúncio ganhar posição.
+- **FECHADO.** Q1 **P**: não há fórmula nem pesos. → Resposta verificada por ausência: o ML não publica fórmula nem pesos. As declarações oficiais de ordenação foram lidas em texto: nota de posicionamento, experiência de compra, qualidade, ajuda/864 ("mais visibilidade" para MercadoLíder) e ajuda/16449 ("destaque nas buscas" para Full Super) [rank §12.4 Q1].
+- **PARCIAL.** Q7 **P**: não há página oficial sobre incentivo a avaliações (cartão na embalagem, brinde) [rank §9]. → Em N1, perguntas, respostas e opiniões entram na experiência de compra. Em fala, a avaliação entra no Ad Score e na qualidade do Ad Rank [rank §12.4 Q7]. Resíduo: a página sobre incentivo a avaliações não foi encontrada (sem fonte pública), e o efeito da avaliação no orgânico não tem peso nem teste.
+- **ABERTO.** Q8 **S**: o próprio ML "não informa prazo" para um anúncio ganhar posição. → Motivo: precisa de série temporal própria. As referências que existem são de campanhas de Ads: 7 dias sem mexer (R2-WEB-10) e 20 a 30 dias para produto novo (R2-WEB-11) [rank §12.4 Q8].
 
 **Sem fonte oficial ou contestado**
-- "Trocar título ou fotos faz o anúncio ser lido como novo" [rank A20]: só webinar MFYKfOYs0iE. O consolidado trata como prática dos melhores.
-- Especificações de Clips (duração, moderação em 48 h, logo) [rank A23]: sem página escrita.
-- Teste de +10% a 15% de conversão com clipe na 1ª posição: único número com desenho experimental declarado, mas só falado em webinar, sem amostra nem período.
-- Janela da experiência de compra: 60/365 dias contra 180 dias, divergência oficial interna [rank A9].
-- Frase "catálogo sempre primeiro" contra `visit_share` mínimo para quem perde a buy box [rank A2].
-- Lista de categorias que exigem fundo branco: não publicada.
-- A descrição indexa na busca? [soc S20–S21]: sem fonte.
+- **PARCIAL.** "Trocar título ou fotos faz o anúncio ser lido como novo" [rank A20]: só webinar MFYKfOYs0iE. O consolidado trata como prática dos melhores. → Confirmado literalmente como fala oficial (MFYKfOYs0iE 60:26–62:03). Conflito: a developers diz que, pela API, o título não é editável com vendas, e a fala diz que é possível (65:18) [rank A20]. Resíduo: não há página nem dado; precisa de medição própria (série de posição antes e depois de uma edição controlada).
+- **FECHADO.** Especificações de Clips (duração, moderação em 48 h, logo) [rank A23]: sem página escrita. → Texto da Central: 9:16, de 10 s a 1 min. Vídeo oficial: aprovação em até 48 h, até 280 MB, logo abaixo de 10% e lista de proibidos (tJLgMpKRe8s; QuOP9KeKnk8) [rank A23, A27, A29]. Ressalva: logo "e" × "ou" entre falas; na dúvida, cumprir as duas condições.
+- **PARCIAL.** Teste de +10% a 15% de conversão com clipe na 1ª posição: único número com desenho experimental declarado, mas só falado em webinar, sem amostra nem período. → A fala foi reconferida com minuto (QuOP9KeKnk8 35:03–35:37). Continuam sem amostra, período, categoria e controle [rank A26]. A magnitude só se resolve com medição própria.
+- **FECHADO.** Janela da experiência de compra: 60/365 dias contra 180 dias, divergência oficial interna [rank A9]. → 60 dias com 100 vendas, senão o último ano. Os 180 dias são a janela de exibição das vendas com problema. Fontes: nota "como proporcionar a melhor experiência de compra" e developers `experiencia-de-compra` (03/02/2026) [rank A9; rep A18]. Ressalva: a função dos 180 dias vem de leitura cruzada, sem frase oficial explícita.
+- **FECHADO.** Frase "catálogo sempre primeiro" contra `visit_share` mínimo para quem perde a buy box [rank A2]. → Conciliada: a frase é dica sem critério técnico. Outra nota oficial diz "sempre nos primeiros resultados", e o vencedor depende de localização e parâmetros. Só o vencedor tem `visit_share` maximum (developers `concorrencia-em-catalogo`, 21/07/2026) [rank A2, A4, A5]. Não é regra mecânica.
+- **ABERTO.** Lista de categorias que exigem fundo branco: não publicada. → Motivo: sem fonte pública. A developers `diagnostico-de-imagens` (14/07/2025) não publica a lista [rank A17].
+- **ABERTO.** A descrição indexa na busca? [soc S20–S21]: sem fonte. → Motivo: sem fonte oficial; resolve-se com teste próprio (buscar um termo presente só na descrição) [CONSOLIDADO §4.1 #21].
 
 ### 1.5 produto-mix
 **Perguntas**
-- Q3 **P**: não há CR3, CR5 nem HHI para nenhuma categoria do ML-BR.
-- Q4 **P**: não há dado de sortimento ML × Shopee dos mesmos vendedores.
-- Q6 **S**: não há equivalente público a Market Basket ou Traffic Graph.
-- Q7 **P**: share of search no Google sem evidência.
+- **ABERTO.** Q3 **P**: não há CR3, CR5 nem HHI para nenhuma categoria do ML-BR. → Motivo: sem fonte pública e precisa de medição própria em série. A API pública de busca e de mais vendidos fechou (token), e a Nubimetrics só dá a faixa de cerca de 63–74% de Platinum, sem método [mix A24; §12.4 Q3]. Só observação com protocolo daria uma estimativa.
+- **ABERTO.** Q4 **P**: não há dado de sortimento ML × Shopee dos mesmos vendedores. → Motivo: sem fonte pública. A rodada 2 só acrescentou o lado do ML: anúncio separado por envio e várias lojas oficiais por conta (R2-MIX-9, 10) [mix §12.4 Q4].
+- **ABERTO.** Q6 **S**: não há equivalente público a Market Basket ou Traffic Graph. → Motivo: sem fonte pública. Há só proxies agregados de recompra no N2 (itens por comprador +19%; +10 p.p. de usuários em 3 ou mais categorias), sem taxa por categoria [mix A17; §12.4 Q6].
+- **ABERTO.** Q7 **P**: share of search no Google sem evidência. → Motivo: sem fonte lida; precisa de medição própria. A API de tendências do ML agora exige token e permissão [mix A10; R2-MIX-1].
 
 **Sem fonte oficial ou contestado**
-- "Sem entrega diferente por variante" no modelo User Products [mix R3, CONTESTADA em parte].
-- Conteúdo atual da aba "Oportunidades" (medalhas, sazonalidade, top 100): precisa de checagem logada, que fica fora do escopo sem login.
-- Requisito de acesso ao detalhe do painel: R$300 contra R$1.500 a R$2.000 em 60 dias (estado-da-arte §2.1, pode estar superada).
-- Canibalização entre kit e avulso: nenhuma medição.
+- **FECHADO.** "Sem entrega diferente por variante" no modelo User Products [mix R3, CONTESTADA em parte]. → CONTESTADA → corrigida: o UP permite preço e condições por variação (até 30). A limitação de entrega é do modelo antigo, e a alternativa escrita é o anúncio separado por forma de envio (developers `preco-variacao`, 17/09/2026; `user-products`, 17/06/2026; ajuda/2517) [mix A5, A3].
+- **ABERTO.** Conteúdo atual da aba "Oportunidades" (medalhas, sazonalidade, top 100): precisa de checagem logada, que fica fora do escopo sem login. → Motivo: exige login de vendedor [mix §9].
+- **ABERTO.** Requisito de acesso ao detalhe do painel: R$300 contra R$1.500 a R$2.000 em 60 dias (estado-da-arte §2.1, pode estar superada). → Motivo: exige login; não foi relido na rodada 2 [mix §12].
+- **ABERTO.** Canibalização entre kit e avulso: nenhuma medição. → Motivo: precisa de medição própria. R2-OBS-4 mostra pago e orgânico do mesmo produto lado a lado, o que é indício e não medida [mix §12.4 Q5].
 
 ### 1.6 reputacao-atendimento
 **Perguntas**
-- Q2 **P**: o efeito da medalha na exposição tem a afirmação oficial contra um praticante que não viu efeito [rep D2].
-- Q3 **P**: o número de recursos na contestação vem de N7.
-- Q8 **P**: há divergências internas da Ajuda sobre o Full (retirada de não aptos em 20 ou 30 dias; contestação em 60 dias corridos ou úteis).
+- **ABERTO.** Q2 **P**: o efeito da medalha na exposição tem a afirmação oficial contra um praticante que não viu efeito [rep D2]. → Motivo: precisa de medição própria (impressões antes e depois da troca de medalha) [rep A38]. As outras consequências de cada cor ficaram oficiais: frete 50/40/0%, Ads a partir de amarela, catálogo sem vitória para laranja e vermelha, cupons, Full Super e estoque compartilhado só no verde [rep §12.4 Q2].
+- **ABERTO.** Q3 **P**: o número de recursos na contestação vem de N7. → Motivo: sem fonte pública. Não há página oficial com o fluxo nem o número de recursos, e a rodada 2 não trouxe fonte nova [rep §12.4 Q3]. As exclusões estão em N1.
+- **ABERTO.** Q8 **P**: há divergências internas da Ajuda sobre o Full (retirada de não aptos em 20 ou 30 dias; contestação em 60 dias corridos ou úteis). → Motivo: as páginas não foram relidas na rodada 2, e não há dado que compare reclamações entre Full e envio próprio. Novo em N1: o vendedor não responde por produto de outro no estoque compartilhado (ajuda/42158) [rep §12.4 Q8].
 
 **Sem fonte oficial ou contestado**
-- Faixas de 365 dias para amarelo, laranja e vermelho: só via Terazi.
-- Benefício de Reputação (R$75 a R$250 mil, 120 dias): só terceiros. Não se sabe se coexiste com a Reputação Protegida.
-- Corte da janela de reputação: 101 (oficial, sem data) contra 68 (vídeo, "desde 10/09/2026") contra 60 (developers 2025) [rep A2; cases A26].
-- Benchmark de reclamação, devolução e tempo de resposta por categoria: ausente.
+- **FECHADO.** Faixas de 365 dias para amarelo, laranja e vermelho: só via Terazi. → Nota oficial "vamos mudar a forma como calculamos sua reputação". Canceladas: verde até 2,5%, amarelo até 5,5%, laranja até 6,5%. Envios incorretos: 13 / 23,5 / 28,5%. Reclamações: iguais às de 60 dias [rep §12.1 "§4 Faixas de 365 dias"; R2-PR-7].
+- **PARCIAL.** Benefício de Reputação (R$75 a R$250 mil, 120 dias): só terceiros. Não se sabe se coexiste com a Reputação Protegida. → Os valores de R$75 a R$250 mil e os 120 dias não estão em página oficial: não usar [rep A23]. No Brasil, os termos do Benefício (`RECOVERY_GRNTEE`) apontam para a ajuda/29528, "Reputação Protegida", o que é indício forte de que são o mesmo programa (R2-PR-11). Motivo do resíduo: a página `/reputacao/beneficio_reputacao` exige login.
+- **FECHADO.** Corte da janela de reputação: 101 (oficial, sem data) contra 68 (vídeo, "desde 10/09/2026") contra 60 (developers 2025) [rep A2; cases A26]. → Desde 10 de setembro, 101 vendas em 60 dias; o corte anterior era 60, e o "68" é erro do vídeo. Fontes: nota "vamos mudar…" e ajuda/866 [rep A2; cases A26]. Ressalva: o ano de 2026 vem de tela de vídeo (6QFwvsIPSkQ).
+- **ABERTO.** Benchmark de reclamação, devolução e tempo de resposta por categoria: ausente. → Motivo: sem fonte pública; o ML não publica. Há só o Reclame Aqui (N8, amostra pequena e sem taxa por pedido) [rep A37; R2-SIN-19 a 23].
 
 ### 1.7 alimentos-marca-propria
 **Perguntas**
-- Q2 **P**: o comunicado oficial gov.br da inspeção da Anvisa em Cajamar (18/03/2026) não foi lido; o dado vem de imprensa. Não se procuraram inspeções do MAPA em CDs.
-- Q3 **S**: o case 3 Corações/Lett (2025) que o protocolo cita não foi encontrado nem buscado. Não há share of search, content score ou ruptura com case brasileiro.
-- Q4 **P**: não há assinatura no ML (confirmado por ausência). Não há dado público do botão de recompra.
-- Q8 **P**: não há teste de formato (multipack contra unitário).
-- Q9 **S**: a organização 1P/3P de Nestlé, Ambev, Unilever e 3 Corações em 2026 tem só o caso Nestlé/Brasil CT, de 2019.
+- **FECHADO.** Q2 **P**: o comunicado oficial gov.br da inspeção da Anvisa em Cajamar (18/03/2026) não foi lido; o dado vem de imprensa. Não se procuraram inspeções do MAPA em CDs. → Nota da Anvisa lida (gov.br/anvisa, 18/03/2026). O 0,34% é declaração do ML à imprensa e não está na nota [alim A13; R2-REG-1 a 4]. Busca do MAPA: nenhuma inspeção em CD de marketplace encontrada; 1 lote de café em alerta em 2026, sem marketplace [alim §12.4 Q2]. Resíduo menor: as REs não foram lidas no DOU.
+- **PARCIAL.** Q3 **S**: o case 3 Corações/Lett (2025) que o protocolo cita não foi encontrado nem buscado. Não há share of search, content score ou ruptura com case brasileiro. → O case 3 Corações/Lett foi achado, mas não é do ML nem auditável. Há o case Ypê/Lett no ML (1 SKU, sem controle, R2-DAD-20) e dado de ruptura da Lett (R2-DAD-17) [alim §12.4 Q3]. Resíduo: share of search e content score de alimentos no ML (sem fonte pública).
+- **ABERTO.** Q4 **P**: não há assinatura no ML (confirmado por ausência). Não há dado público do botão de recompra. → Motivo: sem fonte pública. A ausência de assinatura se mantém, e o MELI+ exclui Supermercado (ajuda/30487) [cases A31]. Não há taxa de recompra por categoria nem dado de uso do botão [alim §12.4 Q4].
+- **ABERTO.** Q8 **P**: não há teste de formato (multipack contra unitário). → Motivo: precisa de teste próprio. A regra está confirmada (kit e pack no Full com código universal; sem economia por kit no Supermercado), mas nenhuma fonte tem número por formato [alim §12.4 Q8].
+- **PARCIAL.** Q9 **S**: a organização 1P/3P de Nestlé, Ambev, Unilever e 3 Corações em 2026 tem só o caso Nestlé/Brasil CT, de 2019. → Estrutura observada: uma conta por grupo com várias lojas oficiais (R2-EVC-23 a 25); 1P abaixo de 10% do GMV (10-Q 2T26) [alim §12.4 Q9]. Motivo do resíduo: quem opera cada conta e o "Vendido por" exigem login.
 
 **Sem fonte oficial ou contestado**
-- Convivência da ajuda/23329 (Full fechado a novos autorizados de Supermercado) com a nota que coloca automaticamente em Supermercado quem tem estoque no Full [alim §2.4]. O consolidado a chama de ponto mais crítico; não há leitura que concilie.
-- Lista e critério dos "produtos selecionados" do Full Super (envio de R$1,60 contra R$2,40) e a data de 24/08/2026: não lidos.
-- Classe do INPI exigida para loja oficial (35 ou classe do produto): sem regra.
-- Enquadramento do café na IN 281/2024: não confirmado no DOU.
-- Norma de exibição do rótulo no anúncio online: não encontrada.
+- **FECHADO.** Convivência da ajuda/23329 (Full fechado a novos autorizados de Supermercado) com a nota que coloca automaticamente em Supermercado quem tem estoque no Full [alim §2.4]. O consolidado a chama de ponto mais crítico; não há leitura que concilie. → Conciliada no texto: a 23329 restringe "alguns produtos", não a categoria. A 5200 põe esses produtos entre os proibidos no Full para quem não é autorizado, e os demais entram automaticamente (inferência média) [alim A3; log §12.2; R2-FS-1 a 4]. Resíduo: a lista de produtos restritos não é pública e só se vê no fluxo de envio, com login.
+- **PARCIAL.** Lista e critério dos "produtos selecionados" do Full Super (envio de R$1,60 contra R$2,40) e a data de 24/08/2026: não lidos. → Valores confirmados na ajuda/49972; a diferença existe só até 8 kg; vale automaticamente para anúncio de catálogo [alim A7; log A25]. Resíduos: a lista é um PDF no CDN do ML, não aberto; o critério não é publicado; a data de 24/08 só está confirmada para a tabela geral (ajuda/48578); o rótulo de peso diverge entre notas ("até 1 kg" × "até 0,3 kg").
+- **FECHADO.** Classe do INPI exigida para loja oficial (35 ou classe do produto): sem regra. → O ML não exige classe (Lojas Oficiais e BPP não citam). Pela NCL 13-2026, o café é classe 30, e na classe 35 a venda de produtos não é serviço [alim A27; R2-REG-33, 34]. Resíduo menor: o que o painel "Minhas Marcas" aceita na prática exige login.
+- **FECHADO.** Enquadramento do café na IN 281/2024: não confirmado no DOU. → Anexo III, item 5, da IN 281/2024 (Anvisa Legis): comunicação de início de fabricação ou importação, não registro nem notificação. O prazo de 01/09/2026 não é do café [alim A15, A16; R2-REG-11, 12, 14].
+- **FECHADO.** Norma de exibição do rótulo no anúncio online: não encontrada. → Resposta negativa documentada: não há norma sanitária específica para o anúncio online (RDC 727/2022 define rotulagem como a embalagem). O dever vem do CDC, art. 31; do Decreto 7.962/2013, art. 2º; da Lei 10.962/2004, art. 2º, III; e do Decreto-Lei 986/1969, art. 23 [R2-REG-19 a 24; CONSOLIDADO §6.2].
 
 ### 1.8 cases-grandes
 **Perguntas**
-- Q1 **S**: não há ranking público. O painel Concorrência exige login, e as ferramentas N5 não tiveram relatório de 2026 encontrado.
-- Q2 **P**: o painel Concorrência aplicado a café (share por vendedor, % de Ads) não foi visto.
-- Q5 **P**: Shopee e Amazon só aparecem pelos cases.
-- Q7 **S**: nenhum case mede share contra a categoria.
+- **ABERTO.** Q1 **S**: não há ranking público. O painel Concorrência exige login, e as ferramentas N5 não tiveram relatório de 2026 encontrado. → Motivo: exige login e série temporal própria. A API pública fechou busca, mais vendidos e tendências (R2-BA-26) e mostra o estoque em faixas (R2-BA-24) [cases §12.4 Q1].
+- **PARCIAL.** Q2 **P**: o painel Concorrência aplicado a café (share por vendedor, % de Ads) não foi visto. → Observação com protocolo em 6 termos: Ads em 33% do topo, Brand Ads em toda busca e Full Super dominante em café (R2-OBS-2 a 6) [cases §12.4 Q2]. Motivo do resíduo: o painel aplicado a café exige login. Faltam ainda um segundo horário, uma sessão deslogada e o CEP exibido.
+- **ABERTO.** Q5 **P**: Shopee e Amazon só aparecem pelos cases. → Motivo: sem fonte pública além de praticantes. O lado oficial do ML se limita à comparação com preço externo [cases A3, §12.4 Q5]. Shopee e Amazon ficam com as frentes próprias.
+- **ABERTO.** Q7 **S**: nenhum case mede share contra a categoria. → Motivo: sem fonte pública e precisa de medição própria. Os dados de tendência exigem login ou token (R2-BA-20) [cases §12.4 Q7].
 
 **Sem fonte oficial ou contestado**
-- Pacote de preço competitivo de abril de 2026 no nível de detalhe (−1 p.p., armazenagem grátis no Full, campanhas bancadas pelo ML) [cases A2]: só InfoMoney.
-- MELI+ com frete rápido abaixo de R$79 a R$9,90 [cases A31]: o 8-K 2T26 não cita; os 8-K de 1T26 e 4T25 não foram relidos.
-- Critérios de Polos, Meli Pro, gerente de conta e contêiner direto no Full: só relatos.
-- Restrição da API para ferramentas externas: só relato de usuário.
+- **PARCIAL.** Pacote de preço competitivo de abril de 2026 no nível de detalhe (−1 p.p., armazenagem grátis no Full, campanhas bancadas pelo ML) [cases A2]: só InfoMoney. → N2 confirma a parte geral: desconto no Pix, desconto de take rate por categoria e faixa de preço e corte da tarifa de envio no fim do 1T26 (carta 2T26; call 1T26) [cases A1, A2; R2-BA-12 a 14]. Resíduo: nenhum N2 cita "−1 p.p.", armazenagem grátis no Full nem campanhas bancadas.
+- **FECHADO.** MELI+ com frete rápido abaixo de R$79 a R$9,90 [cases A31]: o 8-K 2T26 não cita; os 8-K de 1T26 e 4T25 não foram relidos. → Carta 3T25 (entrega rápida a partir de R$19 desde out/2025); carta 4T25 e página de planos (Essencial a R$9,90). Os termos (ajuda/30487) excluem Supermercado e limitam o subsídio a R$20 [cases A31; R2-BA-8 a 10].
+- **PARCIAL.** Critérios de Polos, Meli Pro, gerente de conta e contêiner direto no Full: só relatos. → A existência do Meli Pro está em fala oficial: teste grátis de Product Ads de 20 dias no Meli Pro, contra 10 para os demais (5UhmqSFuX7U 26:26) [cases A20]. Resíduo: critérios de acesso, Polos e contêiner direto da China sem fonte oficial [cases A21].
+- **FECHADO.** Restrição da API para ferramentas externas: só relato de usuário. → developers `permissoes-funcionais` (21/11/2025), `bloqueio-de-aplicacoes` (15/04/2026) e `itens-e-buscas` (31/08/2026), mais teste curl de 15/10/2026: busca, tendências, mais vendidos, visitas e `listing_prices` exigem token e permissão; um app só de leitura pode ser bloqueado [rank A34; mix A18; R2-BA-20 a 26].
 
 ### 1.9 Reconciliações internas pendentes (sem coleta nova)
-| Afirmação dada como "não reconf." | Onde já está confirmada | Ação |
-|---|---|---|
-| Tabela de envio, R$6,95 e desconto de até 50% [pre R1–R4] | [alim A8] leu a ajuda/40538 | Atualizar [pre] e o consolidado §1 |
-| Tarifa Clássico e Premium [pre R1; cases A29] | [mix R2] leu a ajuda/870 | Atualizar |
-| MercadoLíder e reputação [cases A25–A26] | [rep A2–A6] leu as ajudas 864 e 866 | Atualizar |
-| Estoque antigo de Supermercado e valores [log R2] | [alim A4] leu a ajuda/15373 | Atualizar a tabela de [log] |
-| Full Super: R$8, sem armazenagem P/M, R$199 [log R8] | [alim A5–A7] leu as ajudas 16449 e 49972 | Atualizar |
-| Proibição de refrigerados no Full [log R5] | [alim A2] leu a ajuda/5200 | Atualizar |
-| Isenção de 180 dias para SKUs Estrela [log R11] | [mix R9] confirmou por vídeo oficial | Uniformizar o veredito: é vídeo oficial, sem página escrita |
-| Painel Concorrência [cases A8] | [mix R6] leu a nota oficial | Atualizar |
+
+Todas foram aplicadas nas §12.2 das notas em 15/10. A coluna "Estado" registra o resultado.
+
+| Afirmação dada como "não reconf." | Onde já está confirmada | Ação | Estado (15/10) |
+|---|---|---|---|
+| Tabela de envio, R$6,95 e desconto de até 50% [pre R1–R4] | [alim A8] leu a ajuda/40538 | Atualizar [pre] e o consolidado §1 | **FECHADO**: aplicada e superada por leitura direta (ajudas 40538, 40545, 40547) [pre A2–A5, §12.2] |
+| Tarifa Clássico e Premium [pre R1; cases A29] | [mix R2] leu a ajuda/870 | Atualizar | **FECHADO**: ajuda/870 relida; café 14% e 19% [pre A1; cases A29] |
+| MercadoLíder e reputação [cases A25–A26] | [rep A2–A6] leu as ajudas 864 e 866 | Atualizar | **FECHADO**: corte de 101 vendas; "68" contestado [cases A25, A26; rep §12.2] |
+| Estoque antigo de Supermercado e valores [log R2] | [alim A4] leu a ajuda/15373 | Atualizar a tabela de [log] | **FECHADO**: 2 meses no Supermercado, 4 nos demais; 15373 e 15731 com a mesma tabela [log A2, A3] |
+| Full Super: R$8, sem armazenagem P/M, R$199 [log R8] | [alim A5–A7] leu as ajudas 16449 e 49972 | Atualizar | **FECHADO**: aplicada [log A21, A25]. Divergência nova registrada: "R$79 fora da loja" (16449) × R$19 (40538) |
+| Proibição de refrigerados no Full [log R5] | [alim A2] leu a ajuda/5200 | Atualizar | **FECHADO** [log A8] |
+| Isenção de 180 dias para SKUs Estrela [log R11] | [mix R9] confirmou por vídeo oficial | Uniformizar o veredito: é vídeo oficial, sem página escrita | **FECHADO** (uniformizada): fala oficial tGWTaeqbsmU, sem página escrita; a afirmação segue PARCIAL [log A5; mix A12] |
+| Painel Concorrência [cases A8] | [mix R6] leu a nota oficial | Atualizar | **FECHADO**: nota "análise de concorrência" [cases A8; ads §12.2] |
 
 ---
 

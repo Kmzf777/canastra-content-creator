@@ -545,3 +545,175 @@ Método: leitura direta das páginas oficiais da Central de ajuda do Mercado Liv
 | A12 | SEM FONTE OFICIAL (parte Brasil); parte EUA CONFIRMADA | https://sell.amazon.com/blog/subscribe-and-save | EUA (publicado em 25/08/2025): vendedor escolhe 0, 5 ou 10% de base; acima de 5 itens (5+) a Amazon soma 5%, a seu critério ("Amazon will add a 5% discount"); exige ser representante de marca no Brand Registry e taxa de estoque disponível acima de 90%, além de histórico de atendimento. Brasil: os 10% (Prime até 15%) do Programe e Poupe vêm só do InfoMoney (07/07/2020), imprensa e com mais de 6 anos; nenhuma página oficial da Amazon Brasil foi lida. Não confirmar a parte brasileira. |
 
 Resumo: 11 confirmadas (A6, A7 e A11 com ressalvas; A12 conta como sem fonte pela parte Brasil), 0 contestadas. Pendências: ler a ajuda 24253 logado (redirecionou), a nota de lojas oficiais (403), a lista de "produtos selecionados" do Full Super e a data de início da divisão de custo de A7.
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A6 | CONFIRMADA | https://www.mercadolivre.com.br/ajuda/16449 | Preço acima de R$ 8, reputação verde, categorias de supermercado. Mantém a ressalva: é a loja Full Super, não a categoria inteira. |
+| A11 | CONFIRMADA | https://vendedores.mercadolivre.com.br/nota/conheca-os-termos-e-condicoes-das-lojas-oficiais ; https://www.mercadolivre.com.br/ajuda/1087 | Termos de Lojas Oficiais pedem documento vigente aprovado pelo INPI enviado em Minhas Marcas, sem protocolo; segunda etapa é ativar Minha Página. Sem exclusividade e requisitos da Minha Página já confirmados na /ajuda/1087 (rodada anterior). |
+| A12 | CONFIRMADA | https://www.mercadolivre.com.br/brandprotection/enforcement/faqs ; https://www.mercadolivre.com.br/ajuda/17757 | FAQ do BPP: protege marca, autoria, modelos e desenhos industriais, patentes e modelos de utilidade; para marcas pede cópia do certificado expedido; exige cadastrar direitos vigentes em cada país. Para os outros tipos a documentação 'varia' (página de documentos por tipo não aberta). A observação da rodada anterior (Subscribe and Save da Amazon) não tinha a ver com esta afirmação. |
+
+## 12. Rodada 2 e estado final (2026-10-15)
+
+Base desta seção: seções 10 e 11 desta nota; `verificacao/resultado-mercadolivre.tsv` (linhas desta frente e linhas de outras frentes que leram as mesmas páginas); LACUNAS §1.7, §1.9 e §4; e os arquivos de `mercadolivre/rodada2/`. Não houve coleta nova nesta seção: só leitura dos arquivos. As seções 1 a 11 ficam como estavam. Quando esta seção diverge delas, vale esta seção.
+
+Siglas de origem: S10 = seção 10; S11 = seção 11; TSV = `resultado-mercadolivre.tsv`; REG = `rodada2/regulatorio.md`; FS = `rodada2/nav-full-supermercado.md`; BA = `rodada2/balancos-api.md`; PR = `rodada2/nav-preco-reputacao.md`; OBS = `rodada2/nav-observacao.md`; DAD = `rodada2/dados-mercado.md`; EVC = `rodada2/evidencias-cases.md`; SIN = `rodada2/sinais-recentes.md`; WEB = `rodada2/webinars.md`; REC = reconciliação de LACUNAS §1.9.
+
+### 12.1 Estado final das afirmações
+
+Todas as páginas da Central de Ajuda e da Central de Vendedores seguem **sem data visível**. Toda regra de plataforma abaixo vale como foto de 14 e 15/10/2026 e "pode estar superada".
+
+| id | status final | valor correto / observação | fonte | de onde veio |
+|---|---|---|---|---|
+| A1 | CONFIRMADA | Validade superior a 90 dias, rótulo em português legível e não manuscrito, cadastro Anvisa ou MAPA. Ressalva: a página cita a RDC 259/2002, revogada pela RDC 727/2022 (art. 40, I). A ajuda/5200, relida, só fala em validade "próxima do vencimento", sem número de dias; o prazo em dias está só na 15737. | https://www.mercadolivre.com.br/ajuda/15737 ; https://www.in.gov.br/en/web/dou/-/resolucao-rdc-n-727-de-1-de-julho-de-2022-413249279 | S10; REG (R2-REG-18); FS (Aberto 8) |
+| A2 | CONFIRMADA | Proibidos no Full: refrigerados ou com controle de temperatura ou umidade; kits e packs de supermercado sem código universal; consumo recorrente perto do vencimento. | https://www.mercadolivre.com.br/ajuda/5200 | S10; FS (R2-FS-6); SIN (R2-SIN-24); TSV logistica R5 |
+| A3 | CONFIRMADA (texto literal) | "Não incluiremos mais vendedores autorizados de Supermercado no Full." O estoque restrito já armazenado segue à venda até acabar. | https://www.mercadolivre.com.br/ajuda/23329 | S10; FS (R2-FS-1) |
+| A3 (leitura do §1 item 2, §3.1 P2 e §6) | CONTESTADA → escopo correto | A restrição vale para **alguns produtos** de Supermercado ("alguns produtos estarão habilitados somente para vendedores autorizados"), não para a categoria. A ajuda/5200 lista esses produtos entre os proibidos no Full para quem não é autorizado. Produto de categoria de supermercado **fora** da lista pode ir ao Full e entra "automaticamente" no Supermercado (inferência R2-FS-4, confiança média). A lista restrita e o critério **não são públicos**. | https://www.mercadolivre.com.br/ajuda/23329 ; https://www.mercadolivre.com.br/ajuda/5200 ; https://vendedores.mercadolivre.com.br/aprender/nota/supermercado-aprenda-a-vender-esses-produtos-e-junte-se-a-uma-categoria-em-crescimento | FS (R2-FS-1 a 4) |
+| A4 | CONFIRMADA | Supermercado a partir de 2 meses (P R$ 2,00 / 4,40 / 9,20 / 14,20; XG até R$ 83,50); demais produtos a partir de 4 meses (P R$ 1 / 12 / 28). Conta também unidades não aptas e pendentes de retirada. A mesma tabela aparece nas ajudas 15373 e 15731. | https://www.mercadolivre.com.br/ajuda/15373 ; https://www.mercadolivre.com.br/ajuda/quais-custos-estoque-antigo_15731 | S10; FS (R2-FS-14); TSV logistica R2, preco-promocao R9; REC |
+| A5 | CONFIRMADA (pendência fechada) | A ajuda 24253, que redirecionou na S10, agora carregou. Supermercado: P e M grátis, G R$ 0,014 e XG R$ 0,025 por unidade e por dia. Geral: P R$ 0,007, M 0,015, G 0,050, XG 0,107. Vale para unidades aptas e não aptas. | https://www.mercadolivre.com.br/ajuda/24253 ; https://www.mercadolivre.com.br/ajuda/16449 | S10; FS (R2-FS-11); TSV preco-promocao R9 |
+| A6 | CONFIRMADA, com ressalva e divergência | Confirmados: preço acima de R$ 8, com exceções comerciais e por marca; reputação verde; estoque no Full; frete grátis "a partir de R$ 199" na **loja** Full Super (padrão, não fixo, segundo a 40538). Quem deixa de cumprir pode sair da loja. Divergência oficial interna: a 16449 diz "fora da loja, o frete é grátis a partir de R$ 79", mas a 40538 dá frete grátis padrão de R$ 19 a R$ 78,99 (R2-BA-29). Não usar R$ 79 como regra de frete fora da loja. | https://www.mercadolivre.com.br/ajuda/16449 ; https://www.mercadolivre.com.br/ajuda/40538 | S10; S11; FS (R2-FS-7); BA (R2-BA-29); TSV |
+| A7 | CONFIRMADA (valores); PARCIAL (data e critério) | Até 1 kg, R$ 29–48,99: selecionados R$ 1,60, demais R$ 2,40. A diferença existe só até 8 kg; a partir de R$ 199 as tabelas são iguais; abaixo de R$ 29, no máximo 25% do preço. O benefício vale automaticamente para publicações ligadas ao catálogo. A lista é um PDF no CDN do ML, **não aberto**. O critério não é publicado: a "lista por EAN" do §2.4 **não tem fonte**. A ajuda/48578 confirma "24 de agosto" (sem ano) para a tabela geral de envio, mas não para a divisão do Full Super. Os "10% a 20% mais baratos" (KvVyJlYt6w0) seguem como PRÁTICA. | https://www.mercadolivre.com.br/ajuda/49972 ; https://www.mercadolivre.com.br/ajuda/48578 ; Mj-oOzE0ZuE ~1:00–3:00 (e-mail na tela) | S10; FS (R2-FS-8 a 10); SIN (R2-SIN-28); TSV preco-promocao R5, logistica R8 |
+| A8 | CONFIRMADA | 0,3–0,5 kg, R$ 19–48,99, reputação verde: R$ 6,95. Abaixo de R$ 19, no máximo metade do preço. A tabela já embute "até 50%" de desconto por reputação verde (amarela, até 40%). | https://www.mercadolivre.com.br/ajuda/40538 | S10; PR (R2-PR-19); SIN (R2-SIN-9); TSV preco-promocao R2–R4; REC |
+| A9 | CONFIRMADA | A economia por quantidade ou kit não vale para Supermercado; kit paga um custo de envio por kit. | https://www.mercadolivre.com.br/ajuda/45023 ; https://www.mercadolivre.com.br/ajuda/40538 | S10; TSV preco-promocao R8 |
+| A10 | CONFIRMADA | Sem mudança. | https://www.mercadolivre.com.br/ajuda/Alimentos_2274 | S10 |
+| A11 | CONFIRMADA | Registro vigente aprovado pelo INPI em "Minhas Marcas"; o ML "não aceitará protocolos"; Minha Página sem dívidas e com produto novo publicado; sem exclusividade. A página **não cita classe**. Na rodada 2 a ajuda/1087 voltou vazia, mas o conteúdo já estava confirmado na S10. | https://vendedores.mercadolivre.com.br/nota/conheca-os-termos-e-condicoes-das-lojas-oficiais ; https://www.mercadolivre.com.br/ajuda/1087 | S11; REG (R2-REG-34); TSV |
+| A12 | CONFIRMADA | BPP gratuito; cobre marca, autoria, desenhos industriais, patentes e modelos de utilidade; para marca, pede cópia do certificado expedido, vigente em cada país; não cita classe. A linha A12 da S10 foi **descartada** (ver 12.5). | https://www.mercadolivre.com.br/brandprotection/enforcement/faqs ; https://www.mercadolivre.com.br/ajuda/17757 | S11; REG (R2-REG-34); TSV |
+| A13 | CONFIRMADA em N2, com correção de atribuição | A nota da Anvisa (18/03/2026) confirma a inspeção no CD de Cajamar, com foco em itens Full. Itens retidos: suplemento 19, probiótico e enzimas 270, entre outros. Houve termo de apreensão e retirada imediata de anúncios. O **0,34%** de mais de 1 milhão de itens é declaração do ML à imprensa e **não está** na nota da Anvisa. | https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-apreende-produtos-irregulares-em-deposito-do-mercado-livre ; Mercado & Consumo, 19/03/2026 | REG (R2-REG-1 a 4) |
+| §1 item 8 (motivos) | CONTESTADA → valor correto | Na nota da Anvisa, a "rotulagem em idioma estrangeiro" vem ligada a **produtos de saúde**, não a alimentos. Para alimentos e suplementos, os motivos listados são falta de regularização, composição irregular e alegações funcionais ou de saúde não aprovadas. | mesma URL da Anvisa | REG (R2-REG-4) |
+| A14 | CONFIRMADA na fonte (DOU) | Art. 41 da Portaria SDA 570/2022: grupo, "fora de tipo" quando couber, espécie ("100%" ou "predominantemente"), "café" + marca, lote, CNPJ ou CPF e endereço, torra; moagem opcional; vigência em 01/01/2023. "Sem 'Arábica e Conilon' lado a lado" **não está literal** na portaria: é interpretação da FAQ do MAPA. | https://www.in.gov.br/en/web/dou/-/portaria-sda-n-570-de-9-de-maio-de-2022-398971389 | REG (R2-REG-15 e 17) |
+| A15 | CONFIRMADA (antes: baixa) | O café está no Anexo III, item 5, da IN 281/2024: comunicação de início de fabricação ou importação à VISA local. Não é registro nem notificação. O produto pode ir ao mercado após o protocolo; o comunicado não aprova o produto e vale por prazo indeterminado (RDC 843/2024, art. 26). | Anvisa Legis, IN 281/2024 consolidada e RDC 843/2024 (https://anvisalegis.datalegis.net) | REG (R2-REG-11 e 12) |
+| A16 | CONTESTADA → escopo correto | A data de 01/09/2026 está certa, mas só para (a) adequar produtos registrados do Anexo I e (b) notificar suplementos e alimentos para controle de peso (arts. 30 e 32, redação da RDC 990/2025). **Não é prazo do café** nem das categorias do Anexo III. | RDC 843/2024, arts. 30–33 (Anvisa Legis) | REG (R2-REG-14) |
+| A17 | SEM FONTE OFICIAL | Amazon BR: nenhuma página oficial lida nesta rodada. A frente regulatória deixou a Amazon fora do escopo. Pendente na frente Amazon. | — | REG (Aberto 10) |
+| A18 | SEM FONTE OFICIAL | Só InfoMoney (07/07/2020). Nenhuma página da Amazon Brasil lida. | — | S10 |
+| A19 | CONFIRMADA (EUA), com ressalva de origem | Vendedor 0, 5 ou 10%; a Amazon soma 5% com 5 ou mais itens; exige Brand Registry e estoque disponível acima de 90%. A leitura está na S10, mas sob o id A12; foi reatribuída a A19 porque URL, data (25/08/2025) e conteúdo coincidem com a fonte original desta afirmação (ver 12.5). | https://sell.amazon.com/blog/subscribe-and-save | S10 (linha rotulada A12) |
+| A20 | CONFIRMADA (fatia); crescimento não relido | Alimentos foram 1,2% (2023) e 1,4% (2024) do valor online da cesta FMCG; o total FMCG, 4,3%. A&B cresceram 41,9% nos pure players e caíram 11,3% nos brick & click. O PDF exclui Meli não FMCG e Amazon 3P em parte das análises. Os +17,8% de GMV e +28,1% de pedidos não foram relidos. | https://develop.nielseniq.com/wp-content/uploads/sites/4/2025/04/NIQ-E-commerce-Webshoppers_Free_-Ed.51.pdf | DAD (R2-DAD-02 e 03) |
+| A21 | SEM FONTE OFICIAL (escrita) | Segue como declaração de executiva do ML à imprensa: +77%, 18 milhões de buscas, 1 em cada 4 compradores novo, sortimento +74%. Sobre o BBB25, a matéria diz +82% no corpo e +84% no título. | Meio & Mensagem e Mercado & Consumo, 25/02/2025 | DAD (R2-DAD-15); EVC (R2-EVC-18) |
+| A22 | CONFIRMADA (N2) | Brasil 2T26: GMV +39% em moeda constante, itens +56%, itens por comprador +19%. Ads +62% a/a. O Ads/GMV não é divulgado. | https://www.sec.gov/Archives/edgar/data/1099590/000109959026000021/meli-20260805xex991.htm | BA (R2-BA-16); DAD (R2-DAD-10 e 11) |
+| A23 | ABERTA | A observação de buy box (14/10) não foi refeita: na rodada 2, as páginas de produto pediram verificação de conta. Novo dado: em buscas de café, os cards Full Super não mostram vendedor, nota nem vendidos. | lista.mercadolivre.com.br/cafe-em-graos-1kg (e outros 2 termos) | OBS (R2-OBS-5); EVC (R2-EVC-26) |
+| A24 | CONFIRMADA (direção), novo recorte | Em 15/10, sessão logada, sem CEP exibido, 24 primeiras posições: 83% em "café em grãos 1kg" e em "café moído" e 92% em "cápsulas nespresso compatível" eram cards **Full Super**. Patrocinados ("Ad") nas posições 1–4 e 13–16 (8 de 24); entre os patrocinados, eram Full Super 4 de 8 em grão e em moído e 7 de 8 em cápsulas. Os números não são comparáveis um a um com os de 14/10 (termos, posições e sessão diferentes). | https://lista.mercadolivre.com.br/cafe-em-graos-1kg ; /cafe-moido ; /capsulas-nespresso-compativel | OBS (R2-OBS-1, 2 e 5) |
+| A25 | sem mudança (OBS + PRÁTICA) | Nenhuma fonte nova. | lideres.md; G2yX8TYX_5A | — |
+| A26 | PARCIAL | Confirmados na RPI 2.884: a Portaria INPI 66/2026 (art. 2º, VIII; art. 10) cria trâmite prioritário para quem depende de marca registrada para vender em plataforma, em vigor desde 01/05/2026. A Portaria 67/2026 fixa 1.500 pedidos **por quadrimestre** (dois em 2026), mínimo de 100 por modalidade e máximo de 10 por requerente. **Sem fonte oficial:** "90–180 dias", taxa de R$ 445 ou R$ 890 e o prazo de 18–24 meses do rito normal. | https://revistas.inpi.gov.br/pdf/Comunicados2884.pdf | REG (R2-REG-31 e 32) |
+| A27 | CONTESTADA → valor correto | O ML não publica exigência de classe (Lojas Oficiais e BPP não citam classe). Pela NCL 13-2026, café é **classe 30**; na classe 35, "a venda de produtos não é considerada um serviço". "A 35 dá a loja oficial" não tem respaldo. "A classe do produto protege o produto" é coerente com a NCL, mas não é regra do ML. O que o painel "Minhas Marcas" aceita na prática não foi verificado (exige login). | https://www.gov.br/inpi/pt-br/servicos/marcas/classificacao-marcas/Caputs_enotas_NCL_13_2026.pdf ; páginas de A11 e A12 | REG (R2-REG-33 e 34) |
+| A28 | SEM FONTE OFICIAL (Basics) | A marca "Basics" não foi verificada em N1 nem em N2. Contexto N2: o 1P é menos de 10% do GMV (10-Q 2T26); passou de US$ 4 bi em 2025 (+80%); "preenche lacunas de seleção ou preço" que o 3P não preenche. | https://www.sec.gov/Archives/edgar/data/1099590/000109959026000023/meli-20260630.htm ; Carta 4T25; call 3T25 | BA (R2-BA-18 e 19) |
+| A29 | SEM FONTE OFICIAL | PRÁTICA, sem fonte nova. | 0zdA5y8Y8B4 | — |
+| A30 | SEM FONTE OFICIAL | PRÁTICA, sem fonte nova. | JRx32XZkgQA | — |
+| A31 | SEM FONTE OFICIAL | PRÁTICA, sem fonte nova. | G2yX8TYX_5A | — |
+| A32 | CONFIRMADA em N1 (antes: baixa) | A ajuda/42159 exclui do estoque compartilhado a categoria "Alimentos e Bebidas" e todo produto com data de validade (dupla exclusão para alimentos). Exige reputação verde, experiência de 75 ou mais, catálogo e código universal. "Produtos Anvisa" não aparece literal: a página lista Cuidados pessoais, Bebês, Brinquedos e outros, "entre outros". | https://www.mercadolivre.com.br/ajuda/42159 ; https://www.mercadolivre.com.br/ajuda/42158 | FS (R2-FS-15 e 16); TSV logistica R9 |
+| A33 | SEM FONTE OFICIAL | A suspensão de destilados em out/2025 segue só na imprensa. Sinal N8 novo (01/10/2026): restrição de bebidas alcoólicas no Full só para autorizados, com prazo curto de retirada. A ajuda/5200 diz apenas que bebidas fora dos regulamentos são proibidas no Full. A política vigente continua sendo a de A10. | w2izIQTFXi0 ~10:30; ajuda/5200 | SIN (R2-SIN-27) |
+| §4 "Tarifa de venda geral" (hunterhub, C) | CONFIRMADA em N1; valor da categoria lido | Clássico 10–14% e Premium 15–19% (ajuda/870). Para Café Moído e em Grão (MLB247538), o buscador da landing deu **Clássico 14% e Premium 19%**. Entre R$ 150 e R$ 700 há redução de 3 pp (Clássico) e 5 pp (Premium) em Café, Café Moído e em Grão, Solúvel, **Cápsulas**, Infusões e Cremes. A tarifa da seção Supermercado ("paga outras tarifas") segue sem leitura. | https://www.mercadolivre.com.br/ajuda/870 ; https://vendedores.mercadolivre.com.br/landing/custos-de-venda ; https://www.mercadolivre.com.br/ajuda/51251 | PR (R2-PR-1 e 3); BA (R2-BA-4); TSV preco-promocao R1 e R6; REC |
+| §2.3 retirada e descarte (16645 "não lida") | CONFIRMADA (pendência fechada) | Retirada de R$ 98 até 0,01 m³, caindo para R$ 583–1.121 por m³ em volumes grandes. Descarte de R$ 1 a R$ 18 por m³, com destino a doação, reciclagem ou destruição. A página tem duas incoerências internas, transcritas como estão. | https://www.mercadolivre.com.br/ajuda/16645 | FS (R2-FS-13) |
+| §5.7 custo fixo por unidade | CONFIRMADA (regra nova) | Desde 02/03/2026, no Brasil, abaixo do limite de frete grátis obrigatório (TH) só o Flex cobra custo fixo entre os modos ME2. Full, Coleta, Places, Drop off e Turbo não cobram. ME1 e envio personalizado cobram. O valor numérico do TH não foi lido. A nota educativa com "50% abaixo de R$ 12,50" segue no ar e conflita com essa regra; é provável que esteja desatualizada. | https://developers.mercadolivre.com.br/pt_br/comissao-por-vender (03/09/2026) | BA (R2-BA-5 e 6); PR (R2-PR-20); SIN (R2-SIN-11 e 12) |
+
+### 12.2 Reconciliações aplicadas (LACUNAS §1.9)
+
+Nas linhas de §1.9, esta nota é a fonte ([alim A2, A4, A5–A8]). A rodada 2 e a verificação de outras frentes releram as mesmas páginas.
+
+1. **Tabela de envio, R$ 6,95 e desconto de até 50% [pre R1–R4] ← [alim A8].** As linhas preco-promocao R2–R4 do TSV, R2-PR-19 e R2-SIN-9 releram a ajuda/40538 e batem com A8. Também batem os degraus 0,5–1 kg do §2.5 (R$ 6,05 / 7,15 / 8,45 / 14,45). Os 70% de desconto citados em vídeo ficam superados (R2-SIN-10). Nada muda nesta nota.
+2. **Tarifa Clássico e Premium [pre R1; cases A29] ← [mix R2].** No sentido inverso, esta nota herda a confirmação. A linha do §4 que vinha de terceiro (hunterhub, C) passa a ser OFICIAL (ajuda/870). O valor de café vem de R2-PR-1 (ver 12.1). No §5.7, a tarifa Clássico do café fica no teto da faixa (14%): R$ 4,90 no café de R$ 35 e R$ 11,90 no de R$ 85.
+3. **Estoque antigo de Supermercado [log R2] ← [alim A4].** As linhas logistica R2 e preco-promocao R9 do TSV e R2-FS-14 batem com a tabela do §2.3. As ajudas 15373 e 15731 trazem a mesma tabela. A linha cases A36 do TSV confirma a divergência do §3.2: R$ 1 / 12 / 28 é a tabela **geral**, não a de Supermercado.
+4. **Full Super: R$ 8, sem armazenagem P/M, R$ 199 [log R8] ← [alim A5–A7].** As linhas logistica R8 e preco-promocao R8 do TSV e R2-FS-7 e 8 batem. Nenhuma das leituras achou a data de 24/08/2026 para a divisão "selecionados/demais". A rodada 2 acrescenta a divergência dos R$ 79 "fora da loja" (R2-BA-29).
+5. **Proibição de refrigerados no Full [log R5] ← [alim A2].** A linha logistica R5 do TSV e R2-FS-6 batem.
+6. **Painel Concorrência [cases A8] ← [mix R6].** Esta nota herda. A nota oficial "Análise de concorrência" (linha cases A8 do TSV, CONFIRMADA) mostra até 50 anúncios concorrentes com % de vendas por Full, Flex, frete grátis, promoções, cupons, publicidade, clips e catálogo, além de vendas e conversão aproximadas. Isso corrige em parte o §5.3: o painel existe e cobre essas métricas para qualquer categoria. Continua sem fonte o painel aplicado a alimentos com número publicado. URL: https://vendedores.mercadolivre.com.br/nota/analise-de-concorrencia-como-fazer-e-para-que-serve
+7. **Linhas de §1.9 que não tocam esta frente:** MercadoLíder e reputação [cases A25–A26]; isenção de 180 dias para SKUs Estrela [log R11]. Nada a aplicar aqui.
+
+### 12.3 Achados novos da rodada 2 que pertencem a esta frente
+
+**Regras do Full e do Supermercado (FS)**
+- **R2-FS-1 a 4:** conciliação 23329 × entrada automática (ver A3 em 12.1). Lacuna nova, menor: quais produtos estão na lista restrita. Só se verifica no painel do vendedor.
+- **R2-FS-5:** as categorias de Supermercado (ajuda/33536) excluem preparados, congelados, refrigerados, instantâneos, embutidos, confeitaria, corantes e lúpulos. A lista "está sujeita a alterações".
+- **R2-FS-9:** a lista de "produtos selecionados" do Full Super é um PDF no CDN do ML. Não foi aberto, porque baixar arquivo exige autorização.
+- **R2-FS-19 e R2-SIN-14:** nenhuma categoria de alimentos está na lista de extragrandes restritos (ajuda/44922).
+- **R2-FS-21:** a trilha de links da Central de Ajuda reflete o histórico da sessão, não a hierarquia das páginas. Não usar para inferir que uma página é "filha" de outra.
+
+**Tarifas e custos (BA, PR)**
+- **R2-BA-3:** ids de categoria: Café Moído e em Grão MLB247538; Cápsulas MLB247540, fora do nó "Café"; Solúvel MLB247537. O nó Café (MLB247520) não aceita anúncio direto. As três folhas têm preço mínimo de R$ 8 e título de até 60 caracteres.
+- **R2-BA-1, R2-PR-2:** `listing_prices` exige token (403 PolicyAgent). A tarifa por categoria só se lê pelo buscador da landing.
+- **R2-BA-6:** o `percentage_fee` varia por "parâmetros objetivos" além de categoria e tipo; o mesmo produto pode ter comissão diferente em momentos distintos.
+- **R2-PR-21:** o valor recebido por venda exclui publicidade, custos do Full e "Minha página"; o ML não retém impostos (ajuda/44007).
+
+**Regulatório (REG)**
+- **R2-REG-5 e 6:** a Anvisa age sobre a **propaganda** de alimento e suplemento, não só sobre o produto. Exemplos: RE 1.045/2026 proibiu a divulgação de suplementos em sites; RE 521 e 200/2026 mandaram recolher uma bebida de café sem regularização e mixes com promessa de saúde.
+- **R2-REG-7 e 8:** a Anvisa já editou RE dirigida a marketplace (medicamentos, depois revogada). Senacon e Anvisa preparam acordo de cooperação contra suplementos adulterados em marketplaces.
+- **R2-REG-10:** o alerta de risco do MAPA tem 1 lote de café em 2026 e nenhum marketplace como varejista. Nenhuma inspeção do MAPA em CD de marketplace foi encontrada. As páginas das operações de 2026 exigem login.
+- **R2-REG-13:** o formulário de comunicado (IN 281, Anexo XI) pede os dados do **detentor da marca** quando ele é diferente do detentor da regularização. Isso toca diretamente a marca própria terceirizada.
+- **R2-REG-16:** na venda direta por comércio eletrônico, o Documento de Classificação do café é dispensado, desde que o produto esteja conforme (Portaria SDA 570, art. 48).
+- **R2-REG-17:** é enganoso atribuir ao café função terapêutica ou funcional não autorizada (art. 47). Leitura do analista, não confirmada pela Anvisa: café com alegação funcional sairia da via comunicação e cairia na notificação (IN 281, Anexo II).
+- **R2-REG-19 a 24:** não existe norma sanitária específica sobre o que o anúncio online de alimento deve mostrar. O dever vem de quatro textos:
+  - CDC, art. 31;
+  - Decreto 7.962/2013, art. 2º;
+  - Lei 10.962/2004, art. 2º, III (preço junto à imagem, fonte de no mínimo 12);
+  - Decreto-Lei 986/1969, art. 23 (as regras de rotulagem valem para a propaganda em qualquer veículo).
+
+  A revisão de rotulagem aberta em 2025 (Voto 311/2025) não trata de comércio eletrônico. Fecha a lacuna do §9 "norma de exibição do rótulo no anúncio", no sentido de que ela não existe.
+
+**Observação da busca (OBS, 15/10/2026)**
+- **R2-OBS-1:** o patrocinado agora é identificável pelo rótulo "Ad", por `aria-label="Patrocinado"` e pelo link `mclics`. Fecha em parte a limitação do §9 ("lideres.md não capturou 'Patrocinado'").
+- **R2-OBS-2:** 8 de 24 posições patrocinadas (1–4 e 13–16).
+- **R2-OBS-4:** o mesmo produto aparece pago e orgânico no topo: 4 vezes em café em grãos, 3 em cápsulas e 1 em café moído.
+- **R2-OBS-5:** em café, o topo é quase todo Full Super, com carrossel "Adicione mais de FULL SUPER". O card não mostra nota, vendidos nem vendedor. Por isso o "frete grátis no card" (8–17%) não indica frete pago.
+- **R2-OBS-6:** loja oficial em 0–8% do topo de café, contra 29–67% nas outras categorias medidas.
+- **R2-OBS-7:** o topo não exibe CEP para comprador logado.
+- Limites: uma sessão logada, um horário, sem comparação deslogada.
+
+**Webinars oficiais (WEB)**
+- **R2-WEB-20:** na página de catálogo, o clipe exibido segue a ordem marca, depois 1P, depois agência certificada, depois o vencedor. O clique no clipe de quem não vence leva ao catálogo, onde vende o vencedor. Fontes: zvYqyQeITts 41:15–44:01 (dez/2025, pode estar superada) e QuOP9KeKnk8 61:06–62:47 (mai/2026, confirma a prioridade da marca). Toca Q6: a marca tem prioridade no conteúdo do catálogo mesmo sem vencer a buy box.
+- **R2-WEB-18:** o anúncio de catálogo só imprime com Product Ads se estiver vencendo o catálogo (b-ZNQktRHjc 41:54 e 52:09–52:41, nov/2025, pode estar superada).
+
+**Dados e cases (DAD, EVC)**
+- **R2-DAD-12 e 13:** e-commerce de FMCG +58% em 12 meses até jun/2026, mas só 2% das ocasiões de compra. Online em 45,4% dos lares em 2025. O desafio declarado é "transformar experimentação em recorrência". Fontes: Worldpanel, painéis com mais de 10 mil e mais de 11.300 lares.
+- **R2-DAD-14:** café no Brasil: consumo −2,31%; preço de cápsula −16,8% e gourmet +20,1% em 2025 (ABIC). Sem recorte por canal.
+- **R2-DAD-16 a 18:** ruptura (Lett).
+  - Um dia sem estoque tira do top 30 mais de 64% dos itens de café que estavam no top 5.
+  - Recuperação: 37,9% voltam no 1º dia e 59% no 2º.
+  - Duração média do estoque em Alimentos: 5,85 dias.
+  - Amostra não declarada (C).
+- **R2-DAD-19 e R2-EVC-17:** o case 3 Corações/Lett existe, mas não serve como case de ML. Não tem canal nem base, e as duas versões publicadas não batem entre si.
+- **R2-DAD-20:** case Ypê/Lett no ML. A conversão de 1 SKU passou de 15% para 43% em 6 meses, após mudar título, descrição, imagens e vídeo. Sem grupo de controle (C).
+- **R2-DAD-25:** a API pública mostra cerca de 39 a 40 mil anúncios em Café e 16 a 17 mil em Cápsulas. Não dá para medir concentração sem login.
+- **R2-EVC-23 a 26 e 29:** padrão de organização observado. Grupos multimarca de alimentos usam **uma conta de vendedor com várias lojas oficiais**, uma por marca. Marcas de grupo único têm conta própria. Quem opera cada conta não é visível sem login. O `official_store_id` não serve para datar lojas.
+- **R2-EVC-27 e 28:** a única terceirização documentada continua sendo a de 2019 (já no §5.9). Há outra, de 2017, mas é de site próprio, não do ML. Nada de 2025–2026.
+
+**Sinais e reclamações (SIN)**
+- **R2-SIN-19 a 22:** no Reclame Aqui, de 27/09 a 15/10/2026, houve 6 reclamações de alimento ou suplemento entre 63 registros (N8, amostra pequena). Padrões:
+  - validade curta ou vencido;
+  - data adulterada;
+  - avaria;
+  - exigência de devolver o produto vencido para receber o estorno.
+
+  O atraso não aparece ligado a alimento. Não há taxa por pedido.
+- **R2-SIN-28:** e-mail oficial mostrado em vídeo cita "produtos selecionados" de Supermercado com tarifa menor (PRÁTICA com tela, 02/09/2026). Coerente com A7.
+
+**Recorrência (de outra frente, toca esta)**
+- Os termos do MELI+ **excluem Supermercado** do frete grátis do plano (linha cases A31 do TSV: https://www.mercadolivre.com.br/ajuda/Termos-e-condicoes-do-Meli-mais_30487). O MELI+ é assinatura de frete do comprador, não assinatura de produto.
+- N2: MELI+ com entrega rápida a partir de R$ 19 desde out/2025; Essencial a R$ 9,90; assinantes +72% a/a no 2T26 (R2-BA-8 a 10).
+- Proxies de frequência (R2-DAD-11): itens por comprador +19% a/a; usuários em 3 ou mais categorias +10 p.p.; coortes novas com retenção maior.
+
+### 12.4 Perguntas do protocolo (§7.7)
+
+| Q | estado | motivo |
+|---|---|---|
+| Q1 regras de categoria | **R** (ML) | Em N1: política de Alimentos, entrada no Full (validade acima de 90 dias, rótulo, refrigerados, EAN), categorias de Supermercado e restrição por lista (23329 e 5200). Em N2, lido na fonte: RDC 843 e IN 281 (café na via comunicação) e Portaria SDA 570. Resíduos: a lista de produtos restritos a autorizados não é pública; a ajuda 15737 cita norma revogada. Shopee e Amazon seguem sem N1 nesta nota (são das frentes próprias). |
+| Q2 fiscalização | **R** (antes: P) | A nota oficial da Anvisa sobre Cajamar foi lida (R2-REG-1 a 4). A Anvisa age sobre propaganda com alegação (RE 1.045, 521 e 200/2026). O MAPA não tem inspeção em CD de marketplace encontrada e tem 1 lote de café em 2026 sem marketplace listado. Há padrão N8 de reclamação (validade). Resíduos: REs não lidas no DOU; páginas de operações do MAPA exigem login. |
+| Q3 medição de desempenho | **P** (antes: S) | O case 3 Corações/Lett foi achado, mas não é do ML nem auditável. Há o case Ypê/Lett no ML (1 SKU, sem controle) e dado de ruptura com recuperação (Lett, C). O painel Concorrência oficial existe, com % de Full, Ads e catálogo dos concorrentes (REC 6). Faltam share of search e content score com número em alimentos no ML, além de índice de preço publicado. |
+| Q4 recorrência e assinatura | **P** | Não há assinatura de produto no ML (ausência mantida). O MELI+ é assinatura de frete e exclui Supermercado. Há só proxies: itens por comprador, retenção de coortes, multicategoria e Worldpanel (online em 45,4% dos lares, 2% das ocasiões). Não há taxa de recompra por categoria nem dado de uso do botão de recompra. O lado Amazon BR (A18) segue sem N1. |
+| Q5 loja oficial, Brand Registry, Mall | **R** (ML); Amazon e Shopee sem N1 | No ML: INPI vigente sem protocolo, sem exclusividade, BPP gratuito com certificado, nenhuma regra de classe (NCL: café classe 30) e prioridade do clipe da marca no catálogo (fala oficial). O painel de mercado vale para todo vendedor. As APIs de métricas exigem token e permissão funcional (R2-BA-20). Amazon (A17) e Shopee seguem B/C. |
+| Q6 marca própria × revendedor | **R**, com níveis mistos | Oficial: no catálogo, a nota é do produto; dentro da loja oficial só vendem revendedores convidados; BPP; clipe da marca exibido primeiro mesmo sem vencer (WEB); Product Ads de catálogo só imprime para o vencedor (WEB, nov/2025); é permitido o mesmo produto em outro anúncio para forma de envio diferente (R2-FS-17). Observado: em café, cards Full Super sem vendedor visível. Controle de preço, autorização de revenda e kits exclusivos seguem só PRÁTICA. |
+| Q7 escada de margem | **R** | Lidos em N1: tarifa de café (14% e 19%; −3 e −5 pp entre R$ 150 e R$ 700), envio fora do Super e no Full Super, sem custo fixo para Full e Coleta desde 02/03/2026, armazenagem diária, estoque antigo e retirada e descarte por m³. Resíduos: tarifa da seção Supermercado ("outras tarifas") não lida; valor do TH não lido; devolução de alimento sem regra oficial lida (só o padrão N8 de devolução física exigida). |
+| Q8 embalagem e kit | **P** | A regra está confirmada: kit e pack de supermercado no Full precisam de código universal; a economia por quantidade não vale no Supermercado; kit paga um envio. Os líderes usam multipack (OBS de 14/10). Não há teste nem número por formato em nenhuma fonte. |
+| Q9 organização dos grandes | **P** (antes: S) | Estrutura observada: uma conta por grupo com várias lojas oficiais (R2-EVC-23 a 25). 1P abaixo de 10% do GMV (10-Q). Faltam: quem opera cada conta (exige login ou API autenticada), se o ML vende essas marcas em 1P ("Vendido por" bloqueado nesta rodada) e qual agência de *full commerce* atende alimentos no ML em 2026. |
+
+Métricas do protocolo ainda sem número público para alimentos no ML: taxa de recompra, % de assinatura, ruptura por marca, nota média por categoria e % de avaliações sobre sabor contra entrega. Agora há número para custo logístico por unidade (tabelas oficiais) e para a fatia de alimentos no online (Webshoppers 51).
+
+### 12.5 Contaminação verificada
+
+Checagem feita: (a) busca por URLs de Shopee e Amazon nos arquivos da rodada 2 e nas seções 10 e 11; (b) conferência de cada URL das seções 10 e 11 e das afirmações da rodada 2 usadas aqui contra o conteúdo descrito, cruzando leitores diferentes da mesma página (curl, Chrome e verificação).
+
+- **Descartado: linha A12 da seção 10.** Ela cita https://sell.amazon.com/blog/subscribe-and-save e descreve o Subscribe & Save da Amazon EUA sob o id de uma afirmação sobre o Brand Protection Program do ML. O conteúdo não tem relação com A12; a própria seção 11 já apontou isso. Não foi usada como verificação de A12, que se apoia só na seção 11 e em R2-REG-34. O que se registra: URL, data e conteúdo dessa linha coincidem com a fonte original de **A19**. Por isso a leitura foi reatribuída a A19 (12.1), com a origem marcada. É troca de id dentro da verificação, não resposta de outra sessão: não há sinal de conteúdo de outra plataforma atribuído a uma URL do ML.
+- **Amazon citada na rodada 2, sem contaminação e não usada como evidência de ML:** advertising.amazon.com (R2-DAD-23), amazon.science (R2-EVC-11 e 12) e o case Nestlé Cafés/Lett na Amazon (R2-DAD-22). Todos vêm rotulados como Amazon. Nenhuma URL de Shopee aparece como fonte de afirmação de ML. A RE 3.056/2026 (R2-REG-7) cita a Shopee como alvo de uma resolução da Anvisa, o que é coerente com a URL da Anvisa citada.
+- **Seção 11 conferida:** as três URLs (16449; nota de Lojas Oficiais e ajuda 1087; FAQ do BPP e ajuda 17757) batem com o conteúdo descrito e com leituras independentes da rodada 2 (R2-FS-7, R2-BA-29 e REG item c).
+- **Divergências que não são contaminação, mantidas com ressalva:**
+  - **Landing de custos.** A tarifa de café 14% e 19% (R2-PR-1) veio do buscador da landing, numa sessão do Chrome já logada. Pelo curl, a landing de tarifas redirecionou para login (R2-BA-2). São acessos e URLs diferentes (`/landing/custos-de-venda` contra `/landing/custos-de-venda/tarifas-de-venda`), e o valor bate com o teto da faixa oficial da ajuda/870. Mantido.
+  - **Frete fora da loja.** O "R$ 79 fora da loja" da 16449 foi lido igual por curl (BA) e pelo Chrome (FS e S10). É texto da página, em conflito com a 40538. Mantido como divergência oficial interna.
+  - **Prazo de validade em dias.** Para FS, "nenhuma página traz prazo mínimo em dias". FS não leu a 15737, que traz "superior a 90 dias" (S10). Vale a 15737.
+  - **Incoerências da ajuda/16645.** Têm um só leitor (FS) e foram transcritas como estão na página. Reler em outro dia antes de usar os valores de faixa.

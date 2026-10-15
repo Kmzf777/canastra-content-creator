@@ -8,6 +8,13 @@
 > **Substitui** a rodada v1 (`mercadolivre/16-estrategia-competir.md`, `shopee/`, `amazon/`),
 > que partiu do estado da conta da Canastra e ficou enviesada.
 
+## Mercado Livre: versão final (15/10/2026)
+
+- `mercadolivre/CONSOLIDADO.md` reescrito como mapa final; cada nota ganhou a **§12 Rodada 2 e estado final** (status final de cada afirmação, reconciliações, perguntas do protocolo R/P/S).
+- `mercadolivre/rodada2/`: regulatório (Anvisa, IN 281, Portaria 570, INPI), balanços e API, webinars oficiais com minuto, camada de dados, evidência causal e cases, sinais recentes, e três leituras no Claude in Chrome (Full/Supermercado, tarifas/promoções/reputação, observação orgânico × patrocinado com prints).
+- `verificacao/resultado-mercadolivre.tsv`: as 46 afirmações reverificadas no navegador (27 confirmadas, 16 parciais, 1 contestada, 2 sem fonte).
+- `LACUNAS.md` §1: 83 itens — 32 fechados, 25 parciais, 26 abertos; os abertos dependem de painel logado de vendedor, de medição própria ou de dado que o ML não publica.
+
 ## Por onde começar
 
 1. `<plataforma>/CONSOLIDADO.md` — o mapa da plataforma (regras, o que decide quem vende, por

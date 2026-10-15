@@ -462,3 +462,179 @@ Método: leitura direta das páginas oficiais (Central de Vendedores e doc devel
 | A15 | SEM FONTE OFICIAL (não conferida) | webinar YouTube JzejZyVeauE (12/05/2026), não acessado nesta rodada | Orçamento compartilhado e cobrança pós-paga na fatura não aparecem na doc developers nem nas notas da Central lidas. Fica pendente de conferir o vídeo ou a Central de ajuda de Mercado Ads. |
 
 Placar: 8 confirmadas, 0 contestadas, 4 sem fonte oficial verificada (A2, A4, A10, A15).
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+Método: leitura das páginas oficiais no Chrome (renderiza JavaScript), sem login, captcha ou aceite de termos. Datas: "sem data" quando a página não traz data de atualização.
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A2 | CONFIRMADA | https://developers.mercadolivre.com.br/pt_br/product-ads-para-catalogo-e-user-products-leitura (06/07/2026) | Faixa 1x–35x do roas_target está na doc developers (Product Ads). A fórmula ACOS = 1/ROAS x 100 está na mesma página. |
+| A4 | PARCIAL | https://developers.mercadolivre.com.br/pt_br/ads-brand-ads ; https://vendedores.mercadolivre.com.br/nota/como-o-sistema-de-leilao-de-product-ads-funciona (09/06/2026 (Brand Ads); nota sem data) | Ad Score x CPC máx = Ad Rank só consta na doc de Brand Ads. Para Product Ads a Central diz que o leilão considera ROAS objetivo e relevância (qualidade e quantidade de vendas). "Paga-se o 2º preço" não aparece em nenhuma página oficial lida. |
+| A10 | PARCIAL | https://developers.mercadolivre.com.br/pt_br/product-ads-para-catalogo-e-user-products-leitura (06/07/2026) | 14 dias confirmado de novo na doc. Os 15 dias do webinar não têm fonte oficial escrita; o painel exige login e não foi aberto. |
+| A15 | CONFIRMADA | https://vendedores.mercadolivre.com.br/aprender/nota/otimize-seu-investimento-entre-campanhas-de-product-ads-com-a-redistribuicao-automatica-de-orcamento (sem data (lida 15/10/2026)) | Redistribuidor Automático de Orçamento: opção "Compartilhar o orçamento entre minhas campanhas"; redistribui sem somar orçamento; campanhas com menos de 7 dias ficam fora. Cobrança pós-paga na fatura não verificada. |
+
+## 12. Rodada 2 e estado final (2026-10-15)
+
+Método: só leitura dos arquivos já coletados (seções 10 e 11 desta nota, `verificacao/resultado-mercadolivre.tsv`, LACUNAS §1.1, §1.9 e §4, e os nove arquivos de `mercadolivre/rodada2/`). Sem navegador e sem coleta nova. Houve duas tentativas de desempate por WebFetch de URLs já citadas:
+- doc developers do Product Ads (OF1): HTTP 403, sem leitura;
+- carta 2T26 (OF9, sec.gov): lida, usada só para conferir A35 e A34.
+
+Os vídeos são citados por id + minuto da legenda (mm:ss), conforme `rodada2/webinars.md`. "Fala oficial" = webinar ou vídeo do canal oficial "Vendedores Mercado Livre Brasil", sem página escrita equivalente.
+
+### 12.1 Estado final das afirmações
+
+Tabela completa (A1 a A42), mais quatro lacunas da §9 cujo estado mudou. "Mudou?" compara com a tabela 8 e com a seção 10.
+
+| id | status final | valor correto / ressalva | fonte | de onde veio | mudou? |
+|---|---|---|---|---|---|
+| A1 | CONFIRMADA | Product Ads configurado por ROAS objetivo; campanhas por ACOS migradas para o ROAS equivalente | developers.mercadolivre.com.br/pt_br/product-ads-para-catalogo-e-user-products-leitura (06/07/2026); vendedores.mercadolivre.com.br/nota/de-acos-a-roas-entenda-o-retorno-real-da-sua-publicidade | seção 10 (verificação de A3 e A13); reconciliação | sim (não verificada → confirmada) |
+| A2 | CONFIRMADA | `roas_target` de 1x a 35x ("maior ou igual a 1x e inferior ou igual a 35x"); ACOS = 1/ROAS × 100. Ressalva: a seção 10 não achou a faixa na mesma página, e o desempate por WebFetch deu 403. Vale o trecho literal da seção 11 | developers …/product-ads-para-catalogo-e-user-products-leitura (06/07/2026) | seção 11; TSV | sim (sem fonte → confirmada) |
+| A3 | CONFIRMADA | `acos_target` opcional até 30/03/2026; a data já passou, então o campo pode ter sumido | idem | seção 10 | não |
+| A4 | PARCIAL | Texto escrito do Product Ads: o leilão considera ROAS objetivo e relevância (qualidade e quantidade de vendas). Ad Score × CPC máx. = Ad Rank está escrito só para Brand Ads. Para o Product Ads, a fórmula e o "CPC máximo derivado do ROAS" aparecem só em fala oficial (JzejZyVeauE 30:46–31:54; 57:16). O "segundo melhor preço" tem uma única ocorrência oral (JzejZyVeauE 58:53). A fala de 30/09/2026 descreve três variáveis: qualidade (com reputação do vendedor), relevância e ROAS objetivo (LOZL-QmsGL4 16:28) | vendedores.mercadolivre.com.br/nota/como-o-sistema-de-leilao-de-product-ads-funciona (s/d); developers …/ads-brand-ads (09/06/2026); JzejZyVeauE; LOZL-QmsGL4 | seção 11; rodada2/webinars.md (R2-WEB-1 a 4) | sim (sem fonte → parcial) |
+| A5 | CONFIRMADA (fala oficial) | Ad Score: título, avaliação, Full, foto e posicionamento; não visível ("nem eu tenho essa nota"). Em 30/09/2026 a "qualidade" inclui reputação do vendedor, pós-venda e avaliações. Não há página escrita | JzejZyVeauE 30:46–31:20; LOZL-QmsGL4 16:28–17:32 | rodada2/webinars.md | sim |
+| A6 | CONFIRMADA | Texto da Central (s/d): conta ativa, reputação amarela (calculada a partir de 10 vendas), sem verificação de pagamento pendente, sem dívidas, sem restrição por falsificação, ≥1 anúncio ativo no catálogo, país com Publicidade. Três falas oficiais de 2026 acrescentam 15 dias de conta e nenhuma fatura vencida. A divergência texto × fala segue sem desempate (ver 12.2) | vendedores.mercadolivre.com.br/nota/quais-requisitos-devo-cumprir-para-usar-o-product-ads; JzejZyVeauE 10:05; 5UhmqSFuX7U 23:09; LOZL-QmsGL4 10:54 | seção 10; rodada2/webinars.md (R2-WEB-12) | não (só a nota sobre o conflito) |
+| A7 | CONFIRMADA | Decola ativo: dispensa reputação e vendas; Decola pausado: objetivo indisponível; garantia de cerca de USD 50 (> R$250) | mesma nota da Central | seção 10 | não |
+| A8 | CONFIRMADA | Requisitos e mecânica do Brand Ads. Campanha custom: 3 a 10 itens e 1 a 200 palavras-chave. O banner aparece acima da grade em 6 de 6 buscas observadas | developers …/ads-brand-ads (09/06/2026); rodada2/nav-observacao.md (R2-OBS-3) | seção 10; rodada2 | não |
+| A9 | CONFIRMADA | Migração de Brand Ads para PAds desde 17/06/2026 para um conjunto não público de sellers; histórico mantido por 30 dias | developers …/ads-brand-ads | seção 10 | não |
+| A10 | PARCIAL | 14 dias no texto técnico (N1, 06/07/2026), que pesa mais pelo protocolo. Os 15 dias aparecem só em fala de 12/05/2026 (JzejZyVeauE 13:29), e nenhum webinar de setembro cita prazo. O desempate final exige o painel, que pede login | developers …/product-ads-para-catalogo-e-user-products-leitura; JzejZyVeauE 13:29 | seção 11; rodada2/webinars.md (R2-WEB-9) | sim (sem fonte → parcial) |
+| A11 | CONFIRMADA | `sov` = % de vendas por publicidade sobre o total | developers …/product-ads-para-catalogo-e-user-products-leitura | seção 10 | não |
+| A12 | CONFIRMADA | Impression share, top IS e IS perdido por orçamento e por classificação (Ad Rank), que somam 100%. A Central recomenda pausar o que não vende bem também no orgânico | developers (idem); vendedores.mercadolivre.com.br/nota/conheca-as-3-novas-metricas-de-competitividade-em-product-ads | seção 10 (dentro de A11); TSV (cases-grandes A28); reconciliação | sim (não verificada → confirmada) |
+| A13 | CONFIRMADA | 3 opções de ROAS com "% de concorrentes"; não vale na automática. Nova data: o ROAS Dinâmico com comparação contra a categoria foi apresentado como lançamento de setembro de 2026 | nota "De ACOS a ROAS" (s/d); LOZL-QmsGL4 41:51–43:30 | seção 10; rodada2/webinars.md (R2-WEB-21) | não (ganhou data) |
+| A14 | CONFIRMADA | Variantes unificadas por `family_id`/`catalog_product_id` | developers (idem) | seção 10 | não |
+| A15 | CONFIRMADA | Redistribuição automática ("Compartilhar o orçamento entre minhas campanhas"): move sobra de doadoras para receptoras sem somar orçamento nem custo extra; campanhas com menos de 7 dias ficam de fora; há limites (não move todo o orçamento de uma campanha) | vendedores.mercadolivre.com.br/aprender/nota/otimize-seu-investimento-entre-campanhas-de-product-ads-com-a-redistribuicao-automatica-de-orcamento; JzejZyVeauE 17:22–18:35, 44:33–45:40; LOZL-QmsGL4 40:42–41:51 | seção 11; rodada2/webinars.md (R2-WEB-8) | sim (sem fonte → confirmada) |
+| A16 | CONFIRMADA (fala oficial) | A bonificação da campanha relâmpago é um valor fixo, não diário, consumido antes do orçamento normal | JzejZyVeauE 16:50–17:22 | rodada2/webinars.md (R2-WEB-24) | sim |
+| A17 | CONFIRMADA (fala oficial + N2) | Cobrança só por clique (impressão não é cobrada no Product Ads), lançada na fatura do Mercado Pago com as tarifas do ML. O 10-Q 2T26 registra Product Ads e Brand Ads por clique e display e vídeo por impressão. O valor estimado por venda não inclui publicidade (ajuda/44007). O texto N1 do "pós-pago" não foi lido | JzejZyVeauE 33:01–33:37; 5UhmqSFuX7U 10:27; LOZL-QmsGL4 06:34; 10-Q 2T26 (sec.gov …000109959026000023); mercadolivre.com.br/ajuda/44007 | rodada2/webinars.md (R2-WEB-5, 6); rodada2/balancos-api.md; rodada2/nav-preco-reputacao.md (R2-PR-21) | sim |
+| A18 | CONFIRMADA (fala oficial) | 15 a 30 produtos por campanha, como recomendação e não limite (já houve 100 em autopeças; o que pesa é a homogeneidade de conversão) | JzejZyVeauE 10:38, 55:35–56:09; 5UhmqSFuX7U 21:34; LOZL-QmsGL4 62:46–63:18 | rodada2/webinars.md (R2-WEB-7) | sim |
+| A19 | CONFIRMADA (fala oficial, fonte única) | Produto novo tem "score pior"; não entra em campanha em andamento; deve "crescer entre 20 a 30 dias em uma campanha nova" | JzejZyVeauE 49:33–50:07 | rodada2/webinars.md (R2-WEB-11) | sim |
+| A20 | CONFIRMADA como dito (DADO do ML sem método) | 70% das impressões com Ads no top 8; posições 1–2 com até 3x cliques. Atualização: 4% das impressões orgânicas nas 2 primeiras posições, contra 27% com Ads | JzejZyVeauE 07:42; 5UhmqSFuX7U 15:32 | rodada2/webinars.md (R2-WEB-27) | sim |
+| A21 | CONFIRMADA (fala oficial) | Ter só Correios "é uma das coisas que mais limita" o Ads | JzejZyVeauE 51:12 | rodada2/webinars.md | sim |
+| A22 | SEM FONTE OFICIAL (PRÁTICA, método aritmético) | Sem mudança | POjujir152o; T-LT1FX7xkM; D1 | tabela 8 | não |
+| A23 | SEM FONTE OFICIAL (PRÁTICA) | Sem mudança. A fala oficial dá só direção (ROAS mais alto para curva A) | Y5e1hvRvGEo; OF8 | tabela 8 | não |
+| A24 | SEM FONTE OFICIAL (PRÁTICA) | As falas oficiais de partida divergem entre si: ROAS 10, com casos de 3 a 40 (JzejZyVeauE 34:46); ROAS 5 "normalmente funciona bem" (5UhmqSFuX7U 31:18); seguir o recomendado (LOZL-QmsGL4 23:32–24:41) | qMRuA4FGYfQ; At3LwM-am3Q; mFveJvM0zOM | tabela 8; rodada2/webinars.md | não (ganhou contexto oficial divergente) |
+| A25 | PARCIAL | Os 7 dias sem pausar nem alterar viraram "regra de ouro" em duas falas oficiais de setembro de 2026. Os 15 a 20 dias até o 1º ajuste e o "ROAS +2 a cada 7 a 15 dias" seguem só prática | 5UhmqSFuX7U 39:10–39:43, 44:38; LOZL-QmsGL4 10:21, 34:31; qMRuA4FGYfQ | rodada2/webinars.md (R2-WEB-10) | sim |
+| A26 | SEM FONTE OFICIAL (PRÁTICA) | Sem mudança | T-LT1FX7xkM; At3LwM-am3Q | tabela 8 | não |
+| A27 | SEM FONTE OFICIAL (PRÁTICA) | Sem mudança. A fala oficial recomenda agrupar por margem, ROAS e curva, sem percentuais de verba | LOZL-QmsGL4 19:43–21:21 | tabela 8; rodada2/webinars.md | não |
+| A28 | SEM FONTE OFICIAL (PRÁTICA) | Sem mudança | vários | tabela 8 | não |
+| A29 | SEM FONTE OFICIAL (CASE/PRÁTICA) | Sem mudança | 72nX2ogs8xE; Y5e1hvRvGEo; PzGDcQkNSFQ | tabela 8 | não |
+| A30 | PARCIAL | Lado oficial confirmado: com variação de estoque baixo, subir o ROAS e isolar o produto em vez de baixar o orçamento; ruptura da variação que mais vende afeta o anúncio. "Não anunciar com estoque baixo" segue prática. Não confundir com rank A30 do TSV, que é outra afirmação | JzejZyVeauE 36:53–37:25 | rodada2/webinars.md | sim |
+| A31 | SEM FONTE OFICIAL (PRÁTICA) | Sem mudança | sGv6SB067AQ | tabela 8 | não |
+| A32 | SEM FONTE OFICIAL (PRÁTICA) | Sem mudança | _2uE4SCRFvc | tabela 8 | não |
+| A33 | SEM FONTE OFICIAL | Nenhuma fonte oficial nem estudo confirma um "score de TACOS". O que existe é mecanismo externo: venda paga sobe o ranking quando o ranking é movido por volume, e o anúncio ajuda produto novo (R2-EVC-4, R2-EVC-5). Nada disso vem do ML | sGv6SB067AQ; Y5e1hvRvGEo | rodada2/evidencias-cases.md | não |
+| A34 | CONFIRMADA (N2) | Receita de Ads +62% FX-neutro no 2T26; "surpassed 10% share of the digital advertising market in Latin America" pela primeira vez; +63% no 3T25 e no 1T26 | sec.gov …000109959026000021 (carta 2T26, 05/08/2026) | rodada2/balancos-api.md (R2-BA-16); rodada2/dados-mercado.md (R2-DAD-10); WebFetch de desempate | sim (relida) |
+| A35 | CONFIRMADA (N2) | Valor exato: o número de sellers que adotam o orquestrador de orçamento por IA cresceu 63% contra o trimestre anterior no 2T26. O AI Advisor no WhatsApp atende "tens of thousands of sellers per month", e 1 em cada 3 que interagem altera a campanha na conversa. A mesma carta registra melhora do ranking de anúncios na página de produto | sec.gov …000109959026000021; LOZL-QmsGL4 54:00–55:06 (IA de Ads gratuita no WhatsApp) | WebFetch de desempate; rodada2/webinars.md | sim (relida, com valor exato) |
+| A36 | PARCIAL | Busca como principal fonte de receita de Ads: confirmada na releitura (carta 4T25). As "campanhas de 1 clique" do 4T25 não foram relidas; a call 4T25 cita orquestrador, *budget boost* sazonal e agentes de IA | carta 4T25 (sec.gov …000109959026000003); call 4T25 | rodada2/balancos-api.md (R2-BA-16) | sim |
+| A37 | SEM FONTE OFICIAL | Sem benchmark com método. A rodada 2 achou só heurística de blog (ACOS de 5% "excelente", 15% "bom", 50% "preocupante"; dispersão de cerca de 3% a 40%) | jaguarsheet.com/pt/blog (R2-DAD-28) | rodada2/dados-mercado.md | não |
+| A38 | SEM FONTE OFICIAL (DADO de compilação, Amazon EUA) | Sem mudança; só ordem de grandeza | D3 | tabela 8 | não |
+| A39 | ABERTA | Amazon BR: não reverificada nesta frente (pertence à frente Amazon) | D7 | tabela 8 | não |
+| A40 | ABERTA | Amazon BR: não reverificada nesta frente | D7 | tabela 8 | não |
+| A41 | SEM FONTE OFICIAL (para o BR) | Documento de Singapura; sem página da Shopee BR | D6 | tabela 8 | não |
+| A42 | CONFIRMADA (nova observação, outra métrica) | Em 3 buscas de café (2026-10-15, sessão logada, um horário), de 83% a 92% dos 24 primeiros resultados são cards "Full Super". Entre os patrocinados de café, de 4 a 7 em 8 têm Full | lista.mercadolivre.com.br/cafe-em-graos-1kg, /cafe-moido, /capsulas-nespresso-compativel | rodada2/nav-observacao.md (R2-OBS-5) | sim (atualizada) |
+| §9 Fase de aprendizado | PARCIAL | Não há página que defina a fase. Os 7 dias são recomendação oficial falada e repetida em 2026, e uma página escrita é coerente com eles: a redistribuição exclui campanhas com menos de 7 dias | 5UhmqSFuX7U; LOZL-QmsGL4; nota de redistribuição (A15) | rodada2/webinars.md; seção 11 | sim (sem documento → parcial) |
+| §9 Buy box × clique pago | PARCIAL | Product Ads de catálogo só imprime para quem vence o catálogo; quem não vence fica com a campanha ativa e sem impressões. A fonte é de nov. de 2025 (pode estar superada). A doc expõe o campo `buy_box_winner`. Falta texto escrito, reconfirmação em 2026 e regra para venda indireta | b-ZNQktRHjc 41:54, 52:09–52:41; developers (06/07/2026) | rodada2/webinars.md (R2-WEB-18) | sim (lacuna → parcial) |
+| §9 Painel Concorrência | CONFIRMADA | O painel mostra, por concorrente (com apelido e números aproximados), o % de vendas com publicidade, entre outros cortes | vendedores.mercadolivre.com.br/aprender/nota/analise-de-concorrencia-como-fazer-e-para-que-serve | reconciliação §1.9 ([cases A8], [mix R6]) | sim (não verificado → confirmado) |
+| §9 Ads/GMV do MELI | SEM FONTE OFICIAL | Não divulgado. A call do 4T25 diz só que é "still small compared to its potential". Os cerca de 2,6% seguem só em fonte secundária | call 4T25; carta 2T26 | rodada2/balancos-api.md (R2-BA-15); rodada2/dados-mercado.md (R2-DAD-10) | não (agora com motivo: não divulgado) |
+
+Placar das 42 afirmações:
+- 21 CONFIRMADAS, das quais 8 em fala oficial ou como dito, sem texto N1;
+- 5 PARCIAIS (A4, A10, A25, A30, A36);
+- 14 SEM FONTE OFICIAL (12 de prática ou dado sem método, mais A33 e A41);
+- 2 ABERTAS (A39 e A40, da frente Amazon);
+- 0 CONTESTADAS.
+
+19 afirmações mudaram de estado nesta rodada.
+
+### 12.2 Reconciliações aplicadas
+
+Da §1.9, só um item toca esta frente. Os demais tratam de envio, tarifas, reputação e Full, e não mudam nada aqui.
+
+1. **Painel Concorrência** ([cases A8] e [mix R6] leram a nota oficial). Fecha o trecho da §9 "painel Concorrência … não foi verificado nesta frente". A nota oficial confirma que o painel traz o % de vendas com publicidade de cada concorrente, com apelido e números aproximados. É um dado de mix de vendas, não de share of voice por termo.
+
+Reconciliações internas entre frentes e entre rodadas, sem coleta nova:
+
+2. **Requisitos do Product Ads: [ads A6] CONFIRMADA × [rep A16] CONTESTADA.** As duas notas descrevem o mesmo conflito com rótulos diferentes.
+   - Texto da Central (sem data): sem os 15 dias de conta, com "anúncio ativo no catálogo" e a dispensa do Decola.
+   - Três falas oficiais de 2026 (12/05, 16/09 e 30/09): 15 dias de conta e nenhuma fatura vencida.
+   - Estado uniforme proposto: ads A6 fica CONFIRMADA como leitura do texto, e a divergência texto × fala fica ABERTA. Nenhuma das duas versões tem data que desempate. A fala é mais recente; o texto é N1 escrito.
+3. **[ads A4] = [rank A30].** Mesmo conteúdo e mesmo estado final, PARCIAL. A ressalva de "não reassistido" cai nas duas: o webinar foi relido na rodada 2.
+4. **[ads A12] = [cases A28].** A nota da Central sobre as 3 métricas de competitividade, lida pela frente cases-grandes, confirma em texto N1 que as métricas somam 100%.
+5. **Seção 10 × seção 11 em A2.** A seção 10 não achou a faixa 1x–35x; a seção 11 traz o trecho literal na mesma URL. Vale a seção 11. O desempate por WebFetch não foi possível (403).
+6. **A35.** O "+63%" de adoção do orquestrador não era confusão com o crescimento de receita de Ads de +63% (3T25 e 1T26). A carta 2T26 diz literalmente "grew 63% QoQ" para o número de sellers que adotam o orquestrador.
+
+### 12.3 Achados novos da rodada 2 que pertencem a esta frente
+
+| id | achado | tipo | fonte | confiança |
+|---|---|---|---|---|
+| R2-WEB-1 | Product Ads: Ad Score × CPC máximo = rank; vence a maior nota final | OFICIAL via canal | JzejZyVeauE 30:46–31:54 (12/05/2026) | média-alta |
+| R2-WEB-2 | O ROAS objetivo funciona como CPC máximo do lance | OFICIAL via canal | JzejZyVeauE 31:20; 57:16 | média-alta |
+| R2-WEB-3 | O Ad Rank combina qualidade (com reputação do vendedor e pós-venda), relevância e ROAS objetivo, sem fórmula fechada. O "lance" também é descrito como orçamento ÷ itens (18:06), o que é ambíguo | OFICIAL via canal | LOZL-QmsGL4 16:28–18:39 (30/09/2026) | média |
+| R2-WEB-4 | Paga-se o "segundo melhor preço do leilão" | OFICIAL via canal, fonte única | JzejZyVeauE 58:53–59:25 | média |
+| R2-WEB-5 | Cobrança só por clique; impressão não é cobrada | OFICIAL via canal | 5UhmqSFuX7U 10:27; LOZL-QmsGL4 06:34 | alta |
+| R2-WEB-6 | Gasto na fatura do Mercado Pago, com as tarifas do ML | OFICIAL via canal | JzejZyVeauE 33:01–33:37 | alta |
+| R2-WEB-7 | 15 a 30 produtos por campanha, como recomendação | OFICIAL via canal | 3 webinars de 2026 | alta |
+| R2-WEB-8 | Orçamento compartilhado sem aumento de gasto nem custo extra, com limites | OFICIAL via canal | JzejZyVeauE; LOZL-QmsGL4 | alta |
+| R2-WEB-9 | Atribuição: 15 dias (fala de maio) × 14 dias (developers, 06/07/2026) | conflito oficial | JzejZyVeauE 13:29; developers | média |
+| R2-WEB-10 | "Regra de ouro": 7 dias sem pausar nem alterar | OFICIAL via canal | 5UhmqSFuX7U; LOZL-QmsGL4 | média-alta |
+| R2-WEB-11 | Produto novo: score pior; campanha nova por 20 a 30 dias | OFICIAL via canal | JzejZyVeauE 49:33–50:07 | média |
+| R2-WEB-12 | Requisitos orais: amarela, 10 vendas, 15 dias de conta, sem fatura vencida | OFICIAL via canal | 3 webinars de 2026 | média |
+| R2-WEB-18 | Product Ads de catálogo só imprime para quem vence o catálogo | OFICIAL via canal (nov. 2025, pode estar superada) | b-ZNQktRHjc 41:54, 52:09–52:41 | média |
+| R2-WEB-19 | Vencer o catálogo dá 4% das posições de busca; vencer com Ads, 53% | DADO do ML sem método | b-ZNQktRHjc 41:54–42:26 | baixa-média |
+| R2-WEB-21 | ROAS Dinâmico com comparação contra a categoria, lançado em set. de 2026 | OFICIAL via canal | LOZL-QmsGL4 41:51–43:30 | média-alta |
+| R2-WEB-22 | Teste gratuito de Product Ads: 10 dias (20 no Meli Pro), em campanha automática | OFICIAL via canal | 5UhmqSFuX7U 26:26; LOZL-QmsGL4 09:16 | alta |
+| R2-WEB-23 | Abaixo de cerca de R$50 por campanha "pode dificultar"; o painel sugere valores mínimos (não é regra) | OFICIAL via canal | LOZL-QmsGL4 21:53; 5UhmqSFuX7U 35:14 | baixa-média |
+| R2-WEB-24 | Bonificação relâmpago: valor fixo consumido antes do orçamento | OFICIAL via canal | JzejZyVeauE 16:50–17:22 | média |
+| R2-WEB-25 | Mercado Ads Partners: 3 níveis (base, avançado, Premiere), mais de 30 Premiere na América Latina, mais de 8.000 vendedores; "+70%" autodeclarado | OFICIAL via canal + DADO autodeclarado | jeQCOGs7gvo 01:42–02:46 | média / baixa |
+| R2-WEB-27 | 4% das impressões orgânicas nas 2 primeiras posições contra 27% com Ads | DADO do ML sem método | 5UhmqSFuX7U 15:32 | baixa-média |
+| R2-WEB-28 | 40% das vendas de Ads vêm de fora da busca (página de produto, relacionados, carrosséis) | DADO do ML (nov. 2025) | b-ZNQktRHjc 08:47 | baixa-média |
+| R2-WEB-29 | O orçamento diário é teto, não meta; com ROAS alto a campanha pode não gastá-lo | OFICIAL via canal | 5UhmqSFuX7U 35:48–38:03 | alta |
+| R2-OBS-1 | O card patrocinado na busca tem o rótulo visível "Ad", `aria-label="Patrocinado"` e link `click1.mercadolivre.com.br/mclics` (45 de 45) | OBS | lista.mercadolivre.com.br (6 termos), 2026-10-15 | alta |
+| R2-OBS-2 | Patrocinados nas posições 1–4 e 13–16 (blocos de 4 a cada 12): 8 de 24 (33%) no topo, igual nos 6 termos | OBS | idem, 13:47–13:57, sessão logada, um horário | alta para a sessão |
+| R2-OBS-3 | 1 banner de Brand Ads acima da grade em todas as buscas | OBS | idem | alta |
+| R2-OBS-4 | Mesmo produto pago e orgânico no top 24: café em grãos 4×, cápsulas 3×, ração 3×, café moído 1×; fone e garrafa 0× | OBS | nav-observacao.tsv | média (casado por título e preço) |
+| R2-BA-15 | Ads/GMV não é divulgado ("still small") | N2 via transcrição | call 4T25 | alta |
+| R2-BA-16 | Ads +63% (3T25), +63% (1T26), +62% (2T26) FX-neutro; mais de 10% da publicidade digital na América Latina; busca é a principal fonte | N2 | cartas 3T25 a 2T26 | alta |
+| R2-BA (10-Q) | Product Ads e Brand Ads cobrados por clique; display e vídeo por impressão (sem id próprio no arquivo de origem) | N2 | 10-Q 2T26 | alta |
+| R2-BA (permissões) | A permissão funcional "Publicidade" dá acesso às APIs de Product Ads e Brand Ads; sem ela, 403 PolicyAgent. É o caminho formal para ferramentas de terceiros (sem id próprio; ao lado de R2-BA-20) | OFICIAL | developers …/permissoes-funcionais (21/11/2025) | alta |
+| R2-DAD-17 (parte) | Em cerca de 7% dos dias havia anúncio pago de item indisponível (Lett, sem recorte de plataforma) | DADO N4 | Lett EQI | média |
+| R2-DAD-23 | Amazon Ads tem benchmarks por categoria no Brasil (CTR, CPC, CPM, new-to-brand), só no console | OFICIAL (Amazon) | advertising.amazon.com/pt-br/resources/whats-new/benchmarks-reporting-now-generally-available-worldwide | alta (existência) |
+| R2-DAD-26 | Mercado Ads autodeclarado: cerca de 100 mil anunciantes; Kantar +52% de awareness (dados de 2021) | OFICIAL, conteúdo pago | Meio & Mensagem | baixa |
+| R2-DAD-28 | Heurística de ACOS de blog (5%, 15%, 50%) | PRÁTICA | jaguarsheet.com/pt/blog | baixa |
+| R2-EVC-1 a 6 | Experimentos externos: anúncio em termo de marca recupera 99,5% dos cliques pelo orgânico (eBay); holdout de 3% mostra desvio do orgânico e queda do volume total; Flipkart com efeito por categoria; JD.com e app store mostram ganho só com produto novo ou ranking por volume. Nenhum é do ML | DADO | nber.org w20171; DOI 10.1287/mnsc.2024.04792; DOI 10.1287/isre.2022.0188; arxiv 2504.16151 e 2607.14418; Stanford GSB | alta no contexto; média na transferência |
+| R2-EVC-16 | O ML não publicou experimento de busca, Ads ou Full | OFICIAL (ausência) | MELI Tech no Medium; buscas | média |
+| R2-EVC-22 | O Mercado Ads não tem página pública de cases; o "9x" é declarado com base em dados internos | OBS | ads.mercadolivre.com.br (verificação de conta); /cases (404) | média |
+
+Ficam fora desta frente:
+- os clips: R2-WEB-13 a 17, 20, 26 e 30, da frente ranqueamento;
+- R2-SIN-18 (preço externo e perda de Ads), da frente cases (A3);
+- os itens regulatórios de publicidade de alimentos, CDC e Anvisa, das frentes alimentos e preço.
+
+### 12.4 Perguntas do protocolo (§7.1)
+
+| Q | estado | motivo |
+|---|---|---|
+| Q1 Formatos e requisitos | **P** | Formatos documentados: Product Ads, Brand Ads (banner observado), seguidores, vídeo/CTV, display, DSP para CBT e afiliados. Cobrança por formato em N2 (10-Q). Teste gratuito de 10 dias. Faltam: (a) desempate dos requisitos do Product Ads (texto sem data × três falas de 2026); (b) requisitos de Display self-service e do canal Top Brands, que não são públicos |
+| Q2 Leilão e métrica-alvo | **P** | A métrica-alvo está R em texto: ROAS objetivo de 1x a 35x, orçamento automático e redistribuição. O leilão do Product Ads está R só em fala oficial (Ad Score × CPC; três variáveis em set.). Em texto há só "ROAS objetivo + relevância", e o "segundo preço" tem fonte oral única |
+| Q3 Definição de meta | **R** | Equilíbrio pela margem é método de prática com aritmética verificável. Metas de lançamento, escala e defesa vêm de prática, com direção oficial (OF8). As falas oficiais divergem no ROAS de partida (10 × 5) |
+| Q4 Estrutura de campanhas | **R** | Por margem, curva, ticket e estratégia, em prática e em fala oficial (agrupar por margem, ROAS e curva; não misturar conversões muito diferentes). Ressalva: marca × genérico × concorrente não se aplica ao Product Ads, que não tem palavra-chave, e não há dado de Brand Ads |
+| Q5 Incrementalidade e termo de marca | **S** (para o ML) | Não há teste de pausa ou holdout publicado no ML, e o ML não publicou experimento (R2-EVC-16). A evidência externa (R2-EVC-1 a 3) indica que a atribuição superestima, sobretudo em termo de marca. O termo de busca do Product Ads não é exposto, e a duplicação pago + orgânico observada (R2-OBS-4) é só indício, sem medição |
+| Q6 Ads × orgânico documentado | **S** (fonte oficial do ML) | As falas oficiais afirmam que Ads "traz posicionamento orgânico" e dão +21% cliques e +39% vendas, mas por atribuição comparada, sem holdout. O mecanismo externo (ranking movido por volume; produto novo) não foi testado no ML. "Score de TACOS" sem fonte (A33) |
+| Q7 Benchmarks por categoria no BR | **S** | Portal do Mercado Ads com 403 e Ads Center com login; Pacvue só cobre os EUA; sem estudo de agência BR com amostra. Amazon Ads tem benchmark BR só no console (R2-DAD-23). Os números de 5% a 25% (D1) e a heurística R2-DAD-28 não têm método |
+| Q8 Pré-requisitos (retail readiness) | **R** | Consenso entre prática e fala oficial: estoque, Full/Flex (só Correios limita), conversão, foto e clips, preço e reputação. A reputação aparece como componente de "qualidade" no Ad Rank (R2-WEB-3) |
+| Q9 Share of voice pago e orgânico | **P** (era S) | Agora há método de medição pública: rótulo e seletores do patrocinado, slots fixos e 33% do top 24 em 6 termos (R2-OBS-1 a 3). O painel Concorrência mostra o % de vendas com publicidade por concorrente (reconciliação 12.2-1). A API exige a permissão "Publicidade". Falta: integração confirmada de Pacvue, Flywheel, Perpetua ou Skai (o canal mostra só agências Partners); 2º horário, sessão deslogada e série temporal |
+
+### 12.5 Contaminação verificada
+
+Conferi cada afirmação da seção 11 e da rodada 2 usada acima: a plataforma da URL citada e se o conteúdo bate com a URL.
+
+- **Seção 11 (A2, A4, A10 e A15):** todas as URLs são de `developers.mercadolivre.com.br` ou `vendedores.mercadolivre.com.br`, e os trechos falam de Product Ads ou Brand Ads do ML. Nenhum sinal de Shopee ou Amazon.
+  - Único ponto de atenção: em A2, a seção 10 não achou "1x–35x" na mesma página em que a seção 11 cita o trecho literal. O conteúdo é coerente com a URL (campo `roas_target`, em português, mesma página da fórmula do ACOS), mas o desempate falhou (WebFetch 403). Mantido como CONFIRMADA, com a ressalva registrada.
+- **TSV:** a linha cases-grandes A28 cita uma nota do ML sobre métricas de Product Ads, e o conteúdo bate com a afirmação A28 daquela frente. As linhas ranqueamento A30 e cases-grandes A30 são de outras frentes e foram usadas só como reconciliação; o mesmo id não significa a mesma afirmação.
+- **Rodada 2:**
+  - `webinars.md`: todos os ids são do canal oficial do ML, e os trechos tratam de Ads do ML.
+  - `nav-observacao.md`: URLs `lista.mercadolivre.com.br` e seletores com domínio `mercadolivre` (`mclics`). Conteúdo coerente.
+  - `balancos-api.md` e `dados-mercado.md`: SEC, MELI e developers ML.
+- **Fontes de outras plataformas:** as URLs de Amazon e Shopee que aparecem são comparações rotuladas como tal: R2-DAD-23 (Amazon Ads), R2-EVC-12 (Amazon, não usada aqui) e D6/D7 desta nota. Nenhuma sustenta afirmação sobre o ML.
+- **Descartado:** nada por contaminação.
+- **Não usado, por outro motivo:** a ambiguidade de LOZL-QmsGL4 18:06 ("lance = orçamento ÷ itens") ficou registrada, mas não foi usada para alterar A4. A observação de busca é de sessão logada e de um único horário, o que limita a generalização, mas não indica contaminação.
+
+Conclusão: nenhuma contaminação verificada.

@@ -316,3 +316,152 @@ Limites da verificação: as páginas oficiais da Central de Vendedores e da Cen
 | A36 | SEM FONTE OFICIAL | (nenhuma lida) | Só vídeo de prestador com CTA. Tabela oficial do Full não lida. O 8-K 2T26 não menciona armazenagem no Full. |
 
 Pendência: reler as páginas oficiais por navegador (agente de navegador) e repetir buscas quando houver cota, começando por A25, A26, A29, A30 e A31.
+
+## 11. Verificação pelo navegador (2026-10-15)
+
+| id | veredito | fonte oficial | observação |
+|---|---|---|---|
+| A2 | PARCIAL | 8-K MELI (lido na rodada de 14/10) | Sem nova fonte. Busquei em mercadolivre.com.br e vendedores.mercadolivre.com.br (programa de preço competitivo, desconto de comissão, armazenagem grátis): nada oficial com o pacote -1 p.p. + armazenagem diária grátis no Full + campanhas bancadas. Parte oficial segue sendo só Pix e desconto de take rate do 8-K. Restante só InfoMoney. |
+| A3 | PARCIAL | https://developers.mercadolivre.com.br/pt_br/referencias-de-precos | Confirmado só que o ML compara preços com concorrentes internos e externos (referências de preço com status de benchmark; o smart price matching também compara com outros sites). Aviso, prazo de 3 dias, perda de visibilidade, campanhas e Ads não aparecem em nenhuma página oficial; segue só imprensa (24/10/2025). |
+| A30 | PARCIAL | https://www.mercadolivre.com.br/ajuda/custos-envio-reputacao-verde-mercado-lider_40538 | R$19 confirmado como regra atual; lojas de supermercado têm regra própria de frete grátis por valor mínimo do carrinho (nota ** da página). A data jun/2025, a exclusão de importados e o envio 40% mais barato para vendedores antigos (R$79 a 199,99) não aparecem. |
+| A31 | PARCIAL | https://www.mercadolivre.com.br/assinaturas/melimaisv2/planos ; https://www.mercadolivre.com.br/ajuda/Termos-e-condicoes-do-Meli-mais_30487 | Essencial a R$9,90/mês e frete grátis (full e cross docking) a partir de R$19 confirmados; termos excluem Supermercado e Compras Internacionais e limitam o subsídio a R$20 de frete. 'Desde out/2025' e '+49% de assinantes' não conferidos (8-K de 1T26 e 4T25 não relidos). |
+| A25 | CONFIRMADA | https://www.mercadolivre.com.br/ajuda/864 (redirect de _1359) | Faturamento R$37.000 / R$118.400 / R$296.000; reclamações <1%, mediadas <0,5%, canceladas <0,5%, envios incorretos <6%; medido nos 3 meses mais os dias do mês vigente; mais visibilidade nas buscas. |
+| A26 | CONFIRMADA | https://www.mercadolivre.com.br/ajuda/866 (redirect de _1382) ; https://vendedores.mercadolivre.com.br/aprender/nota/vamos-mudar-a-forma-como-calculamos-sua-reputacao | Variáveis: reclamações, canceladas pelo vendedor, envios incorretos. A nota diz que a partir de 10 de setembro o corte subiu de 60 para 101 vendas: o '68 vendas desde 10/09/2026' do vídeo está errado (60 era o corte antigo). |
+| A29 | CONFIRMADA | https://vendedores.mercadolivre.com.br/landing/custos-de-venda ; https://www.mercadolivre.com.br/ajuda/870 ; https://www.mercadolivre.com.br/ajuda/51251 | Clássico 10-14%, Premium 15-19% com parcelamento sem juros; tarifa menor em categorias selecionadas de R$150 a R$700; kit com a mesma tarifa. 'Supermercado com tabela própria' só se vê nos custos de envio do Full Super e na menção a tarifas reduzidas em Supermercados. |
+| A27 | CONFIRMADA | https://vendedores.mercadolivre.com.br/nota/como-a-concorrencia-funciona-no-catalogo | Página de produto aparece 'sempre nos primeiros resultados de busca' (não literalmente sempre em 1º); vencedor depende da localização e dos parâmetros de busca. |
+| A28 | CONFIRMADA | https://vendedores.mercadolivre.com.br/nota/conheca-as-3-novas-metricas-de-competitividade-em-product-ads | Impressões ganhas, perdidas por orçamento e perdidas por classificação (Ad Rank); recomenda pausar os que não vendem bem também de forma orgânica. |
+| A8 | CONFIRMADA | https://vendedores.mercadolivre.com.br/nota/analise-de-concorrencia-como-fazer-e-para-que-serve | Apelidos no lugar dos nomes, números aproximados; % de vendas com frete grátis, parcelamento, Full, Flex, promoções, cupons, publicidade, clips ou catálogo; vendas brutas e conversão aproximadas. |
+| A36 | PARCIAL | https://www.mercadolivre.com.br/ajuda/quais-custos-estoque-antigo_15731 ; https://www.mercadolivre.com.br/ajuda/21793 | Armazenagem diária grátis P/M de Supermercado confirmada (/21793). R$1/12/28 é a tabela geral do tamanho Pequeno (4-6, 6-12, >12 meses), não a de Supermercado, que começa aos 2 meses com outra tabela (P a partir de R$2,00). Descarte de vencidos: nenhuma página oficial achada; a /15731 só pede não passar de 2 meses de armazenagem. |
+
+## 12. Rodada 2 e estado final (2026-10-15)
+
+**Base.** Seções 10 e 11 desta nota; `verificacao/resultado-mercadolivre.tsv` (linhas cases-grandes); LACUNAS §1.8, §1.9 e §4; arquivos `../rodada2/` (balancos-api, evidencias-cases, dados-mercado, sinais-recentes, nav-preco-reputacao, nav-full-supermercado, nav-observacao, webinars, regulatorio).
+
+**Coleta.** Não houve coleta nova, com uma exceção: um WebFetch de desempate na Carta 3T25 da SEC (URL já citada em rodada2/balancos-api), para conferir R2-EVC-15. Regras sem data na página continuam com "(pode estar superada)".
+
+### 12.1 Estado final das afirmações
+
+| id | status final | valor correto | fonte | de onde veio |
+|---|---|---|---|---|
+| A1 | CONFIRMADA | Desde abr/2026, desconto no Pix para o comprador e desconto de take rate para o vendedor, em certas categorias e faixas de preço, condicionados a preço competitivo. Na call do 1T26, o corte é "por categoria e faixa de preço", não da plataforma toda; os cortes começaram em 2024 | sec.gov …000109959026000021/meli-20260805xex991.htm; call 1T26 (roic.ai, transcrição não oficial) | seção 10; rodada2/balancos-api (R2-BA-12, R2-BA-14) |
+| A2 | PARCIAL | Parte oficial (N2): Pix, desconto de take rate e redução da tarifa de envio do vendedor no fim do 1T26. Nenhum documento N2 (4 cartas, 4 calls, 10-Q) cita "−1 p.p.", "armazenagem diária grátis no Full" ou campanhas bancadas; esses itens seguem só no InfoMoney (09/04/2026). Não confundir com a armazenagem grátis P/M do Supermercado (ajuda/24253), que é regra permanente e não faz parte do pacote | Cartas 3T25–2T26; call 1T26 (CFO); 10-Q 2T26 | seção 11; rodada2/balancos-api (R2-BA-13, R2-BA-14) |
+| A3 | PARCIAL | Oficial: o ML compara preço com concorrentes "internos ou externos" (referências de preço) e oferece automação "dentro e fora do Mercado Livre", que considera outros sites e o Google. Aviso, prazo de 3 dias e perda de visibilidade, campanhas e Ads: só imprensa (desde 23–24/10/2025). Nenhum comunicado novo nos últimos 60 dias. Pode estar superada | developers.mercadolivre.com.br/pt_br/referencias-de-precos (17/12/2025); developers …/automatizacoes-de-precos (01/10/2026); mercadoeconsumo.com.br 24/10/2025 | seção 11; rodada2/sinais-recentes (R2-SIN-17, R2-SIN-18); rodada2/nav-preco-reputacao (R2-PR-18) |
+| A5 | CONFIRMADA (números) · atribuição causal rebaixada | Números do 2T26 mantidos: GMV +39% em moeda constante, itens +56%, itens por comprador +19%. A atribuição da aceleração ao limite de R$19 é antes/depois: no 3T25, o Brasil teve itens +42% e GMV +34%, e o México, sem essa mudança, teve os mesmos +42% e +34%. Causalidade com confiança baixa | 8-K 2T26; Carta 3T25 (sec.gov …000109959025000048/meli-20251029xex991.htm, conferida por WebFetch em 2026-10-15) | rodada2/evidencias-cases (R2-EVC-15) + desempate |
+| §4, linha "Conversão (empresa toda)" | CONTESTADA→Brasil | O +1,1 p.p. a/a de conversão do 2T26 é do Brasil ("Conversion in Brazil is up 1.1 percentage points"), não da empresa toda. A fonte é transcrição não oficial: conferir no webcast antes de usar como base | call 2T26 (roic.ai) | rodada2/balancos-api (R2-BA-28) |
+| A6 | CONFIRMADA (OBS, direção) | Nova observação com protocolo melhor (hora, URL, DOM e print parcial; sessão logada, sem CEP exibido, um só horário). Nas 3 buscas de café, 20/24, 20/24 e 22/24 dos primeiros resultados são cards "Full Super". Entre os orgânicos, 16/16, 16/16 e 15/16 têm Full. Os números de 14/10 (26/40, 21/30, 22/25) não se comparam um a um com estes: base e formato são diferentes | lista.mercadolivre.com.br/cafe-em-graos-1kg, /cafe-moido, /capsulas-nespresso-compativel (15/10/2026, 13:47–13:57) | rodada2/nav-observacao (R2-OBS-5, R2-OBS-6) |
+| A7 | SEM FONTE OFICIAL | Segue [PRÁTICA] C. A MELI não divulga a penetração do Full no Brasil. No regional, são 55% dos envios (1T26) e "mais da metade" (10-Q 2T26) | Carta 1T26; 10-Q 2T26 | rodada2/balancos-api (R2-BA-17) |
+| A8 | CONFIRMADA | Sem mudança de valor | vendedores.mercadolivre.com.br/nota/analise-de-concorrencia-como-fazer-e-para-que-serve | seção 11; reconciliação §1.9 ([mix R6]) |
+| A9 | CONFIRMADA (reforçada) | Busca dirigida por cases com período e base: nenhum case de vendedor do ML tem medição de terceiro. O melhor disponível tem medição do fornecedor (3 Corações/Lett, sem canal nem base; Ypê/Lett no ML, 1 SKU, sem controle) ou da plataforma (Supermercado no BBB25). O Effie não tem case de vendedor do ML, e o Mercado Ads não tem página pública de cases | ver R2-EVC-17 a 22, R2-DAD-19 e 20 | rodada2/evidencias-cases; rodada2/dados-mercado |
+| A10–A18, A40, A42, A44, A45, A47 | SEM FONTE OFICIAL | Seguem [PRÁTICA] autodeclarada, confiança C. Não são verificáveis por natureza (A9). A rodada 2 não trouxe nada que as confirme ou conteste | vídeos da seção 3.1 | rodada2/evidencias-cases (conclusão do item 35) |
+| A19 | ABERTA | OBS única de 14/10, não repetida. Na busca de café de 15/10, o card Full Super não mostra o vendedor, então a buy box não se lê na lista | lideres.md (MLB35944622) | rodada2/nav-observacao (limite) |
+| A20 | PARCIAL | A existência do Meli Pro aparece em fala oficial: o teste gratuito de Product Ads dura 20 dias "no Meli Pro", contra 10 dias para os demais. Critérios de acesso, Polos, Meli Pro Lite, comissão menor e crédito de Ads seguem sem fonte oficial | YouTube oficial 5UhmqSFuX7U 26:26 (16/09/2026); LOZL-QmsGL4 09:16 | rodada2/webinars (R2-WEB-22) |
+| A21 | SEM FONTE OFICIAL | O piloto de contêiner direto da China no Full segue só no relato. Os balanços citam apenas o crescimento do centro de fulfillment na China (+170% contra o trimestre anterior, 2T26), o que não confirma o piloto | Carta 2T26 | rodada2/balancos-api (contexto) |
+| A22 | CONFIRMADA (relida) | 1P +69% a/a e Ads +63% a/a no 1T26, em moeda constante. Acréscimos: 1P "less than 10% of GMV" (10-Q 2T26); quase US$5 bi de GMV em 12 meses; Ads +62% no 2T26; mais de 10% de share da publicidade digital na América Latina | Carta 1T26; Carta 2T26; 10-Q 2T26 | rodada2/balancos-api (R2-BA-16, R2-BA-18) |
+| A23 | SEM FONTE OFICIAL | Segue [PRÁTICA] C. Contexto N2 sobre o ML: o 1P "preenche lacunas de seleção ou preço" que o 3P não preenche (call 3T25). Isso não confirma nem contesta o relato sobre o nicho | call 3T25 (roic.ai) | rodada2/balancos-api (R2-BA-19) |
+| A24 | ABERTA | N1 lido na rodada 1 e não reconferido nas seções 10 e 11 nem na rodada 2. Pode estar superada | vendedores.mercadolivre.com.br/nota/conheca-3-metricas-chave-para-os-seus-negocios | — |
+| A25 | CONFIRMADA | Valores mantidos. Também confirmados: "mais de 4 meses de cadastro" e reputação só a partir de 10 vendas em 365 dias | mercadolivre.com.br/ajuda/864 (redirect de _1359); ajuda/866 | seção 11; rodada2/nav-preco-reputacao (R2-PR-14); reconciliação §1.9 ([rep A2–A6]) |
+| A26 | CONFIRMADA (parte oficial) · CONTESTADA→ na parte do vídeo | A partir de 10 de setembro, o corte para medir em 60 dias subiu de 60 para 101 vendas; abaixo disso, a medição é em 365 dias. A nota não escreve o ano; pelo contexto, é 2026. "68 vendas" não aparece em nenhuma fonte oficial: é erro do vídeo. Com isso, a divergência "68 a 101" de §2.1, §4 e §6 fica resolvida. Novo na janela de 365 dias: canceladas verde até 2,5% (era 1,5%); envios incorretos verde até 13% (era 10%); reclamações iguais nas duas janelas. O developers (11/08/2025) ainda mostra 60 e está desatualizado | vendedores.mercadolivre.com.br/aprender/nota/vamos-mudar-a-forma-como-calculamos-sua-reputacao; ajuda/866 | seção 11; rodada2/sinais-recentes (R2-SIN-1 a 4); rodada2/nav-preco-reputacao (R2-PR-4 a 7); reconciliação §1.9 |
+| A27 | CONFIRMADA | Vale a nuance da seção 11: "sempre nos primeiros resultados", não literalmente em 1º | vendedores.mercadolivre.com.br/nota/como-a-concorrencia-funciona-no-catalogo | seção 11 |
+| A28 | CONFIRMADA | Sem mudança. Complemento em fala oficial: rank do leilão = Ad Score × CPC máximo (JzejZyVeauE 30:46–31:54) | vendedores…/conheca-as-3-novas-metricas-de-competitividade-em-product-ads | seção 11; rodada2/webinars (R2-WEB-1, complemento) |
+| A29 | CONFIRMADA | Faixas mantidas. "Supermercado com tabela própria" agora tem texto: a ajuda/870 diz que os produtos da seção Supermercado "pagam outras tarifas", com link para a 16449 e sem percentual público. Exemplo de categoria: Café Moído e em Grão, Clássico 14% e Premium 19% | ajuda/870; landing custos-de-venda (buscador); ajuda/51251 | seção 11; rodada2/balancos-api; rodada2/nav-preco-reputacao (R2-PR-1); reconciliação §1.9 ([mix R2]) |
+| A30 | PARCIAL | Confirmados: R$19 como regra atual (ajuda/40538) e a redução em jun/2025 (8-K 2T26; a Carta 3T25 fala da extensão do frete grátis a todos em junho). O Supermercado tem regra própria: frete grátis a partir de R$199 na loja Full Super, e a ajuda/16449 diz "fora da loja, a partir de R$79", o que conflita com os R$19 da 40538 (divergência oficial interna, aberta). Sem fonte oficial: exclusão de importados na regra geral e "envio 40% mais barato para vendedores antigos (R$79–199,99)" | ajuda/40538; ajuda/16449; Cartas 3T25 e 2T26 | seção 10; seção 11; rodada2/balancos-api (R2-BA-29); rodada2/nav-full-supermercado (R2-FS-7) |
+| A31 | CONFIRMADA | Out/2025: o MELI+ passa a ter entrega rápida a partir de R$19; quem não assina recebe entrega lenta de R$19 a R$79 (Carta 3T25). Essencial a R$9,90 por mês (Carta 4T25 e página de planos). Assinantes +49% desde o 3T25 (Carta 1T26) e +72% a/a (2T26). Os termos excluem Supermercado e Compras Internacionais e limitam o subsídio a R$20 de frete | Cartas 3T25, 4T25, 1T26 e 2T26; mercadolivre.com.br/assinaturas/melimaisv2/planos; ajuda/Termos-e-condicoes-do-Meli-mais_30487 | seção 11; rodada2/balancos-api (R2-BA-8 a 10) |
+| A32 | CONFIRMADA (relida) | −11% (4T25) e −17% (1T26) relidos, mais −8% no 3T25 (call). Houve cortes de tarifa de envio do vendedor em 2024 e 2025, repetidos no fim do 1T26 (call) | Cartas 4T25 e 1T26; calls 3T25, 1T26 e 2T26 (roic.ai) | rodada2/balancos-api (R2-BA-13, R2-BA-30) |
+| A33, A34 | ABERTA | N1 lido na rodada 1, não reconferido. Pode estar superada. Os endpoints de tendências da API exigem token e a permissão "Métricas do negócio". Isso não afeta o painel, mas impede reproduzir os dados de fora | vendedores…/como-aproveitar-suas-metricas…; vendedores…/explore-oportunidades…; developers …/permissoes-funcionais | rodada2/balancos-api (R2-BA-20, contexto) |
+| A35 | ABERTA | OBS única de 14/10, não repetida. Sinal compatível de 15/10: loja oficial em 0–8% do topo das buscas de café | lideres.md; nav-observacao | rodada2/nav-observacao (R2-OBS-6) |
+| A36 | PARCIAL (parte CONTESTADA) | Armazenagem diária grátis para P e M de Supermercado: confirmada como regra permanente, e não como incentivo de ago/2026 (G R$0,014 e XG R$0,025 por dia). CONTESTADA→ "R$1 / R$12 / R$28" é a tabela geral do tamanho P (4–6, 6–12 e mais de 12 meses). O Supermercado começa aos 2 meses, com outra tabela (P R$2,00 / 4,40 / 9,20 / 14,20). Descarte: há serviço de descarte a pedido (doação, reciclagem ou destruição, de R$1 a R$18 por m³) e descarte de item grande e pesado não retirado em 30 dias; o Full recusa consumo recorrente com validade próxima. "Vencidos descartados pelo ML": sem página oficial | ajudas 24253, 15373 (a seção 11 citou _15731, com o mesmo conteúdo), 16645, 15573, 5200 e 21793 | seção 11; rodada2/nav-full-supermercado (R2-FS-11, 13, 14, 18); rodada2/sinais-recentes (R2-SIN-24); reconciliação §1.9 ([log R2]) |
+| A48 | CONFIRMADA (dado, método não publicado) | R$208,4 bi (+16,9%), pedidos +34,8%, tíquete −13,3%. Acréscimos: 756,7 mi de pedidos, itens por pedido de 2,25 para 1,97 e projeção de R$462,5 bi em 2026. Dois veículos concordam; a confiança segue C/média por falta de método | GiroNews 29/07/2026; Portal IN 28/07/2026 | rodada2/dados-mercado (R2-DAD-05) |
+| A50 | SEM FONTE OFICIAL | Segue [OFICIAL via terceiro] de 2023; não foi tocada. Pode estar superada | mercadoeconsumo.com.br 03/07/2023 | — |
+| A4 | SEM FONTE OFICIAL | Segue [PRÁTICA] C. O lado da plataforma (comparação com preço externo) está em A3 | iMR4J6w9woA | — |
+
+### 12.2 Reconciliações aplicadas (LACUNAS §1.9)
+
+| Linha de §1.9 | Onde já estava confirmada | Aplicação nesta nota |
+|---|---|---|
+| Tarifa Clássico e Premium [cases A29] | [mix R2], ajuda/870 | A29 fica CONFIRMADA (também pela seção 11 e pela releitura da 870 na rodada 2) |
+| MercadoLíder e reputação [cases A25–A26] | [rep A2–A6], ajudas 864 e 866 | A25 CONFIRMADA. A26 CONFIRMADA na parte oficial, com o corte 60→101, e "68" contestado |
+| Painel Concorrência [cases A8] | [mix R6], nota oficial | A8 CONFIRMADA |
+| Estoque antigo de Supermercado [log R2] (indireta) | [alim A4], ajuda/15373 | Aplicada a A36: R$1/12/28 é a tabela geral; o Supermercado tem tabela própria a partir de 2 meses |
+| Full Super: R$8, sem armazenagem P/M, R$199 [log R8] (indireta) | [alim A5–A7], ajudas 16449 e 49972 | Aplicada a A36 (P/M grátis) e a A30 (frete grátis da loja Full Super a partir de R$199) |
+
+### 12.3 Achados novos da rodada 2 que pertencem a esta frente
+
+| id | achado | efeito nesta nota |
+|---|---|---|
+| R2-BA-8 a R2-BA-11 | MELI+ com entrega rápida desde R$19 (out/2025), a R$9,90, com +49% e +72% de assinantes. O frete grátis lento tem contribuição positiva em metade das faixas de R$19 a R$79 (2T26) | Fecha A31; Q8 |
+| R2-BA-12 a R2-BA-14 | O corte de take rate é por categoria e faixa de preço e depende de preço competitivo. A tarifa de envio caiu no fim do 1T26. O pacote reduziu receita e margem bruta e acelerou os vendedores ativos (+29% a/a) | Reforça A1; A2 segue PARCIAL; Q8 |
+| R2-BA-15, R2-BA-16 | Ads/GMV não é divulgado ("still small"). Ads cresce +62% a +63% a/a, com mais de 10% de share da publicidade digital na América Latina | Q8; §9 lacuna 3 (gasto de Ads segue sem número) |
+| R2-BA-17 | A penetração do Full no Brasil não é divulgada; no regional, é de 55% | Contexto de A7; confirma a linha "Shipments… 55%" de §4 |
+| R2-BA-18, R2-BA-19 | 1P abaixo de 10% do GMV, com mais de US$4 bi em 2025 (+80%); preenche lacunas de seleção ou preço | A22; Q8 (mudança de liderança só indireta) |
+| R2-BA-20 a R2-BA-27 | A restrição de API agora tem fonte oficial (detalhe abaixo da tabela) | Fecha em parte §2.3 e a lacuna 9 de §9 (a data de cada fechamento segue sem fonte pública). Explica por que as ferramentas N5 não publicam ranking por vendedor (Q1) |
+| R2-BA-28 | O +1,1 p.p. de conversão é do Brasil | Corrige §4 (ver 12.1) |
+| R2-BA-30 | Custo unitário de envio no Brasil −8% no 3T25 | A32 |
+| R2-EVC-15 | Brasil e México com os mesmos +42% (itens) e +34% (GMV) no 3T25; só o Brasil tinha o novo limite | A5: causalidade rebaixada |
+| R2-EVC-16 | O ML não publicou nenhum experimento sobre busca, Ads ou Full | A causalidade dos cases (sinal 11) segue sem teste, agora como "procurado e inexistente em público" |
+| R2-EVC-17 a R2-EVC-22; R2-DAD-19, R2-DAD-20 | Cases com período, nenhum com medição de terceiro (detalhe abaixo da tabela) | A9; Q3 |
+| R2-EVC-23 a R2-EVC-26, R2-EVC-29 | Grupos multimarca de alimentos operam várias lojas oficiais numa só conta de vendedor. Por inferência, dividem a mesma reputação. Quem opera cada conta não é visível sem login, e o id da loja oficial não serve para datar | Q1 e Q4 (estrutura observada, operador desconhecido) |
+| R2-DAD-06, R2-DAD-07, R2-DAD-09 | Peso das plataformas: ML com cerca de 42% (UBS BB, 2025) e R$138,9 bi (IRTT, 2024). O tamanho do mercado vai de R$235,5 bi a R$450 bi, conforme o método | Substitui, como contexto, o "share de audiência" de out/2024 de §4, que segue como superado; confiança C |
+| R2-DAD-24, R2-DAD-25 | Nubimetrics: de 63% a 72% de vendedores Platinum em categorias "saturadas", sem método. A API pública só dá contagem de anúncios (café com cerca de 39–40 mil) e não permite medir CR3, CR5 nem HHI | Q1, Q7 |
+| R2-OBS-2, R2-OBS-3, R2-OBS-4 | Patrocinados nas posições 1–4 e 13–16 (33% do topo) nos 6 termos; 1 banner de Brand Ads por busca; o mesmo item aparece pago e orgânico no topo em café e ração | Q2 (alavancas visíveis ao comprador) |
+| R2-OBS-5, R2-OBS-6 | Café: 83–92% do topo em cards Full Super, sem nota, vendidos nem vendedor. Fora de café: FULL de 38% a 88%, frete grátis de 92% a 100% e loja oficial de 29% a 67% | A6; A35; Q2 |
+| R2-WEB-22, R2-WEB-25 | Meli Pro citado em fala oficial. Mercado Ads Partners: agências certificadas em 3 níveis, com "+70%" autodeclarado | A20 PARCIAL; Q4 (agência certificada contra time interno) |
+| R2-SIN-1 a R2-SIN-4; R2-PR-4 a R2-PR-7 | Corte da reputação de 60 para 101 vendas desde 10/09; tabela de 365 dias; "68" sem respaldo | A26 |
+| R2-SIN-17, R2-SIN-18; R2-PR-18 | A comparação com preço externo é oficial; a punição com prazo de 3 dias segue só na imprensa | A3 |
+| R2-FS-11, R2-FS-13, R2-FS-14 | Armazenagem diária, retirada e descarte, estoque antigo geral e de Supermercado | A36 |
+| R2-BA-29 | A ajuda/16449 diz "fora da loja, frete grátis a partir de R$79", contra os R$19 da 40538 | A30 (nova divergência oficial interna) |
+| R2-REG-1, R2-REG-2 | Inspeção da Anvisa num CD do Full (18/03/2026), com retirada imediata de anúncios fora da regra sanitária | Q6: retirada regulatória documentada no nível da plataforma, sem case de vendedor com número |
+
+**Detalhe de R2-BA-20 a R2-BA-27 (API):**
+- trends, mais vendidos e visitas exigem token e permissão funcional;
+- um app pode ser bloqueado por uso só de leitura (INTEGRATORS_DATA_INFRACTION, página de 15/04/2026);
+- os termos proíbem scraping e uso para concorrer com o ML;
+- o estoque público aparece em faixas;
+- o Developer Partner Program exige GMVe mínimo de US$2,5 mi por mês no Brasil;
+- search, trends e listing_prices não respondem sem token.
+
+**Detalhe de R2-EVC-17 a R2-EVC-22 e R2-DAD-19, R2-DAD-20 (cases com período):**
+- 3 Corações/Lett: sem canal nem base, com versões divergentes (+56% contra +11% e +81%);
+- Ypê/Lett no ML: 1 SKU, conversão de 15% para 43% em 6 meses;
+- Supermercado do ML no BBB25: GMV +82% (o título da matéria diz 84%);
+- Orfeu: +40% projetado;
+- Effie e Mercado Ads: sem cases utilizáveis.
+
+**Pontos de §4 que a rodada 2 não tocou e que seguem como estavam:**
+- "Centros de fulfillment (BR) ML 28": método não publicado. A Carta 1T26 fala em "mais de 50 instalações" regionais, com outra base; não comparar.
+- "14,1 milhões de anúncios internacionais": sem nova fonte.
+
+### 12.4 Perguntas do protocolo (§7.8)
+
+| Q | Estado | Motivo |
+|---|---|---|
+| Q1 Maiores vendedores e marcas por categoria e mudança em 12 meses | S | O ML não publica ranking por vendedor, e os painéis Concorrência e Tendências exigem login. A API pública fechou busca, mais vendidos e tendências (R2-BA-26, R2-DAD-25) e mostra o estoque em faixas (R2-BA-24). As fontes N5 só dão proxies sem método (R2-DAD-24). Há apenas o peso das plataformas (R2-DAD-06/07, C) e a estrutura de contas de alguns grupos (R2-EVC-23 a 25). A série temporal de observação (LACUNAS §4 item 33) não começou |
+| Q2 Combinação de alavancas dos líderes | P | Observação com protocolo melhor, em 6 termos (R2-OBS-2 a 6): Ads em 33% do topo, Brand Ads em toda busca e Full Super dominante em café. Fora de café, FULL, frete grátis e loja oficial foram medidos. Falta o painel Concorrência aplicado a café (exige login), um segundo horário, uma sessão deslogada e o CEP exibido |
+| Q3 Cases com números verificáveis | R | Resposta negativa, fundamentada em busca dirigida: nenhum case de vendedor do ML tem período, base e medição de terceiro. Os melhores têm medição do fornecedor ou da plataforma (R2-EVC-17 a 22; R2-DAD-19 e 20). Todo faturamento de case segue [PRÁTICA] C (A9) |
+| Q4 Equipe e processo dos grandes | P | Só há praticantes autodeclarados (seção 3, C). A rodada 2 acrescenta o programa oficial de agências certificadas (R2-WEB-25) e a estrutura de contas dos grupos de alimentos, sem saber quem opera cada conta (R2-EVC-26) |
+| Q5 Operação em várias plataformas | P | Só há praticantes (A4, §3.5). O lado oficial do ML se limita à comparação com preço externo (A3 PARCIAL). A punição com prazo de 3 dias segue sem N1 |
+| Q6 Erros e quedas documentados | P | Os erros de vendedor são só autodeclarados (seção 6). No nível da plataforma, há retirada regulatória documentada (R2-REG-1, 2), punição por preço só via imprensa (A3) e um dado de mercado sobre ruptura (Lett, R2-DAD-17, amostra não declarada). Nenhum case de perda de reputação ou de ruptura em pico tem número |
+| Q7 Medição de share contra a categoria | S | Nenhum case mede ou divulga share. Só existe a recomendação oficial (A24, não reconferida). A Nubimetrics não publica método, e os dados de tendência exigem login ou token (R2-BA-20) |
+| Q8 O que os balanços revelam e como os grandes se ajustaram | R | O lado da plataforma está em N2 lido: frete desde R$19 (A5), MELI+ (A31), pacote de preço competitivo (A1; os detalhes de A2 seguem sem N2), 1P abaixo de 10% do GMV (R2-BA-18), Ads +62–63% sem Ads/GMV (R2-BA-15, 16) e Full regional em 55% (R2-BA-17). O ajuste dos grandes (preço único, Full em 95–97%) continua só [PRÁTICA] C (A4, A7) |
+
+### 12.5 Contaminação verificada
+
+**Resultado: nenhuma contaminação nas afirmações usadas nesta frente.** Nada foi descartado por esse motivo. O que foi conferido:
+
+1. **URLs da seção 11 e da TSV (linhas cases-grandes).** Todas são de mercadolivre.com.br, vendedores.mercadolivre.com.br ou developers.mercadolivre.com.br; nenhuma é de Shopee ou Amazon. O conteúdo bate com leituras independentes de outras sessões, algumas por curl, fora do Chrome compartilhado:
+   - A25 e A26: R2-PR-14 e R2-SIN-1;
+   - A30: ajuda/40538, lida em nav-preco-reputacao e em sinais-recentes;
+   - A3: R2-SIN-17;
+   - A29: ajuda/870, relida em balancos-api;
+   - A36: ajudas 15373 e 24253, em nav-full-supermercado.
+2. **A36, id de página.** A seção 11 cita a ajuda `quais-custos-estoque-antigo_15731`, e a rodada 2 cita a 15373, com o mesmo conteúdo (Supermercado a partir de 2 meses). Provavelmente é o mesmo padrão de redirect visto em _1359→864. Não é contaminação; a divergência de id fica registrada.
+3. **R2-EVC-15 (números idênticos de Brasil e México no 3T25).** Parecia erro de cópia. A Carta 3T25 na SEC, conferida por WebFetch, traz os dois países com +42% e +34%. O dado é real e foi usado.
+4. **Menções a Amazon e Shopee na rodada 2.** Aparecem em UBS e IRTT (participações), Amazon Ads (benchmarks), amazon.science (experimentos) e REs da Anvisa. São intencionais, estão rotuladas e o conteúdo bate com as URLs. Nesta nota, só as participações entram, como contexto de mercado.
+5. **Sinais de sessão compartilhada, sem efeito nos dados usados aqui.**
+   - A trilha de links da Central de Ajuda acumula o histórico da sessão (R2-FS-21); não foi usada.
+   - A observação de busca foi feita numa conta logada, com possível personalização (nav-observacao). Isso entra só como ressalva em A6 e Q2.
+6. **Divergência que não é contaminação.** A landing de tarifas redireciona ao login por curl (balancos-api), mas foi lida no Chrome com sessão aberta (nav-preco-reputacao, 14%/19%). A diferença se explica pelo método de acesso.
+7. **Erros de referência, que também não são contaminação.**
+   - rodada2/balancos-api cita "[cases A56]", id que não existe na tabela 8; o assunto está em §2.3 e na lacuna 9 de §9.
+   - O mesmo arquivo cita "[cases §3.3]" para a conversão, que está em §4.
+   - O case 3 Corações/Lett é atribuído ao Mundo do Marketing em evidencias-cases e ao Baguete em dados-mercado, com os mesmos números.
+8. **Fora desta frente.** A linha 36 da TSV (alimentos-marca-propria, A12) registra que uma observação da rodada anterior tratava do "Subscribe and Save" da Amazon, e não da afirmação do ML. É indício de contaminação em outra frente e não toca nenhuma afirmação desta nota.
