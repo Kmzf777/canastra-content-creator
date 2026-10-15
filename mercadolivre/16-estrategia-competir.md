@@ -1,5 +1,7 @@
 # Estratégia para competir no Mercado Livre como fábrica
 
+> **Rodada v1, enviesada (15/10/2026):** partiu do estado da conta da Canastra (reputação vermelha, frete de R$ 34,30). A pesquisa neutra que a substitui está em [`pesquisa-marketplaces/`](../pesquisa-marketplaces/LEIA-ME.md).
+
 > **14/10/2026.** Pesquisa de 63 vídeos do YouTube (últimos 90 dias, mais o canal do Hugo
 > Vasconcelos sem corte de data), reels e TikToks do @hugovasc_ e da busca do Instagram, as
 > lives oficiais do canal "Vendedores Mercado Livre", a busca de café de 08/10/2026 (588

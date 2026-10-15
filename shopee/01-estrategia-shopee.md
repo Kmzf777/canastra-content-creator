@@ -1,5 +1,7 @@
 # Shopee — estratégia para o Café Canastra (pesquisa de outubro/2026)
 
+> **Rodada v1, enviesada (15/10/2026):** partiu do estado da conta da Canastra (reputação vermelha, frete de R$ 34,30). A pesquisa neutra que a substitui está em [`pesquisa-marketplaces/`](../pesquisa-marketplaces/LEIA-ME.md).
+
 > **14/10/2026.** Pesquisa feita com o mesmo método da do Mercado Livre: 58 vídeos do YouTube
 > dos últimos 90 dias (21 deles do canal **oficial Shopee Brasil**), reels do Instagram e busca
 > no TikTok, destilados em 5 notas por tema e cruzados com o **CMV real** da Canastra

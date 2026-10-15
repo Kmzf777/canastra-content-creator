@@ -1,5 +1,7 @@
 # Amazon Brasil — estratégia para o Café Canastra (FBA e venda "normal")
 
+> **Rodada v1, enviesada (15/10/2026):** partiu do estado da conta da Canastra (reputação vermelha, frete de R$ 34,30). A pesquisa neutra que a substitui está em [`pesquisa-marketplaces/`](../pesquisa-marketplaces/LEIA-ME.md).
+
 > **14/10/2026.** Pesquisa no mesmo molde da de Mercado Livre: 56 vídeos do YouTube
 > transcritos (16 do canal **oficial** "Venda com a Amazon Brasil", o resto de praticantes
 > brasileiros, maioria de jul–out/2026), busca de café na própria Amazon (528 resultados em 8
