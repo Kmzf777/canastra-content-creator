@@ -1,0 +1,9 @@
+[watch] working dir: C:\Users\rafae\AppData\Local\Temp\claude\C--Users-rafae-OneDrive-Desktop-Canastra-Inteligencia-Agentes-AI-central-claude\6f39a7e7-bf58-4ccb-8d5b-41b961923289\scratchpad\watch\watch-q965gffq
+[watch] checking metadata/captions via yt-dlp…
+[watch] captions unavailable: yt-dlp failed (exit 1): ERROR: [TikTok] 7667315961300651284: Unable to download webpage: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+No generic fix for a 403; update yt-dlp to its latest release and retry once.
+[watch] downloading media…
+[watch] yt-dlp failed (exit 1): ERROR: [TikTok] 7667315961300651284: Unable to download webpage: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+No generic fix for a 403; update yt-dlp to its latest release and retry once.
+[watch] Media unavailable: yt-dlp failed (exit 1): ERROR: [TikTok] 7667315961300651284: Unable to download webpage: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+No generic fix for a 403; update yt-dlp to its latest release and retry once.

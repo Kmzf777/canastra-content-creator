@@ -31,6 +31,22 @@ técnica e descrição.
 
 ---
 
+### O agente e as skills (desde 14/10/2026)
+
+O trabalho de ML tem um agente próprio: **`.claude/agents/mercadolivre.md`** (subagente
+`mercadolivre`). Ele carrega a skill certa por tarefa:
+
+| Skill | Para |
+|---|---|
+| `canastra-mercadolivre` | mecânica do painel pelo Claude in Chrome |
+| `canastra-ml-precificacao` | preço, margem, atacado, kit — com `scripts/precificar.py` |
+| `canastra-ml-concorrencia` | busca e anúncios líderes |
+| `canastra-ml-anuncio` | criar e configurar anúncio, campo a campo |
+| `canastra-ml-ads` | Mercado Ads |
+
+**Custo tem fonte única: [`custos.md`](custos.md)** (CMV 1 kg R$ 47 · 500 g R$ 26 · 250 g
+R$ 14, + 9% de imposto sobre o preço).
+
 ### Antes de mexer no ML pelo navegador, carregue a skill
 **`canastra-mercadolivre`** tem a mecânica medida: a receita de edição que funciona,
 o que falha em silêncio, os seletores e como conferir se gravou de verdade.
@@ -284,6 +300,8 @@ de culpar a plataforma — eu cheguei a escrever no repositório que era limita�
 | [`11-folha-de-aplicacao.md`](11-folha-de-aplicacao.md) | Campo a campo dos 7 e a mecânica de edição |
 | [`12-precos-de-atacado.md`](12-precos-de-atacado.md) | Atacado (ML Negócios): sim nos kits, não nas caixas, e só depois do verde |
 | [`13-o-que-falta.md`](13-o-que-falta.md) | **COMECE AQUI para executar.** O que falta em cada anúncio, em sequência, com o estado lido do formulário |
+| [`15-preco-1kg-suave-classico.md`](15-preco-1kg-suave-classico.md) | **Preço do Suave e Clássico 1 kg com CMV real** (14/10/2026): lucro hoje R$ 3,32, proposta R$ 129,90, atacado no teto, Ads só depois |
+| [`custos.md`](custos.md) | **CMV e fretes — fonte única de custo** |
 | [`99-historico-estrategia-v1.md`](99-historico-estrategia-v1.md) | Primeira versão. **Contém números superados** |
 | `pesquisa/` | 16 transcrições, scripts de busca e `ACHADOS.md` |
 | `scripts/` | Cálculos em Python que geraram cada número. `matriz.py` = teto de estoque; `teto.py` = teto de rentabilidade |

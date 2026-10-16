@@ -1,0 +1,9 @@
+[watch] working dir: C:\Users\rafae\AppData\Local\Temp\claude\C--Users-rafae-OneDrive-Desktop-Canastra-Inteligencia-Agentes-AI-central-claude\6f39a7e7-bf58-4ccb-8d5b-41b961923289\scratchpad\watch\watch-sj_vypxu
+[watch] checking metadata/captions via yt-dlp…
+[watch] captions unavailable: yt-dlp failed (exit 1): ERROR: [TikTok] 7678317043149475093: Unable to download webpage: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+No generic fix for a 403; update yt-dlp to its latest release and retry once.
+[watch] downloading media…
+[watch] local WhisperX small transcription; CPU runs may take several minutes.
+[whisperx] Using cache found in C:\Users\rafae/.cache\torch\hub\snakers4_silero-vad_master
+[watch] yt-dlp failed (exit 1): ERROR: [TikTok] 7678317043149475093: Unable to download webpage: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+No generic fix for a 403; update yt-dlp to its latest release and retry once.

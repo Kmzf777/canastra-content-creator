@@ -382,6 +382,8 @@ acima do Coffee++) que um sorteio dilui **[medido]**. **Não transfere.**
 | Preciso de | Vá para |
 |---|---|
 | qual peça produzir, e o que ela exige de matéria-prima | `05-formatos.md` |
+| de que anel do público é cada peça, e o mix 4 · 2 · 2 do ciclo | `09-publico.md` §3 |
+| como a peça fala e escreve | `10-voz.md` |
 | a primeira frase da peça | `02-ganchos.md` |
 | o esqueleto e os segundos | `03-roteiro.md` |
 | por que os sinais do dia 30 são esses | `01-ranking.md` |

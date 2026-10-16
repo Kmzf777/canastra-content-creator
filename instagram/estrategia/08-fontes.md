@@ -151,3 +151,30 @@ E a lição de método, que já está catalogada no `CLAUDE.md` deste repositór
 vez aqui: **não transforme em garantia escrita aquilo que você não mediu no arquivo
 real.** A próxima sessão de pesquisa salva a transcrição e a URL **antes** de escrever a
 conclusão.
+
+---
+
+## 8. Tamanho dos anéis de público — [terciário]
+
+Levantado por pesquisa na web aberta em **15/10/2026**, para `09-publico.md` §2. Ao contrário
+da pesquisa de 30/09, **as URLs foram registradas** — a regra da seção 7 aplicada. Todos são
+**[terciário]**: estudo de terceiro que a pesquisa leu, ou citação dele, sem auditoria nossa.
+Dão ordem de grandeza entre os anéis; não sustentam meta.
+
+| Anel | Número | O que mede | Fonte | URL |
+|---|---|---|---|---|
+| 1 | ~1% | participação do café Especial no volume vendido no varejo | ABIC, *Indicadores da Indústria 2025* (PDF, 2026) | https://www.abic.com.br/wp-content/uploads/2026/01/2026.02.Indicadores-da-Industria-2025_-Site.pdf |
+| 2 | 34,2% dos lares (26,9% em 2024) | lares que compraram café da categoria "premium"; termo não definido pela fonte | Worldpanel by Numerator, citado pelo Jornal do Brás (2025) | https://jornaldobras.com.br/noticia/125985/cafes-premium-conquistam-novos-publicos-no-mercado-brasileiro |
+| 3 | 98% dos lares | presença do hábito de tomar café | ABIC, mesmo PDF do anel 1 | idem |
+| 3 | 72,5 mi | domicílios particulares ocupados, Censo 2022 | IBGE, citado por Agência Brasil/Sul21 (2024) | https://sul21.com.br/?p=255549 |
+| 3 | coador de pano 55% · espresso 38% · coador de papel 33% · cafeteira elétrica 32% · sachê ou cápsula 17% | método de preparo, até 2 respostas (n = 4.200) | ABIC/Axxus 2023; **PDF original fora do ar**, número lido em resumo | https://estatisticas.abic.com.br/wp-content/uploads/2023/11/2023_10_15_Pesquisa_Caf%C3%A9_H%C3%A1bitos_Preferencias_do_Consumidor2023.pdf |
+| — | 39% escolhem o mais barato · 24% reduziram consumo | comportamento do consumidor em 2025 | ABIC/Axxus, citado por Notícias Agrícolas | https://www.noticiasagricolas.com.br/noticia/408419 |
+| 4 | 7,5 mi de seguidores no Instagram | audiência do TudoGostoso, **autodeclarada** | TudoGostoso, *Quem somos* | https://www.tudogostoso.com.br/quem-somos |
+| 5 | 147 mi (69% da população) | alcance de anúncio do Instagram no Brasil — não é usuário ativo | DataReportal, *Digital 2026: Brazil* | https://datareportal.com/reports/digital-2026-brazil |
+
+**Recusado na mesma pesquisa:** contagem de posts de `#cafeespecial` (104,6 mi, IQHashtags,
+sem data) — não é plausível, a mesma página dá 32 mi para `#coffeelover`. E um *"35% preferem
+gourmet, 21% especial"* atribuído à ABIC sem ano. Nenhum dos dois entra em documento.
+
+**Lacuna:** não existe, em nenhuma fonte encontrada, contagem de **pessoas** que compram café
+especial no Brasil. Nem número de lares com cafeteira de cápsula.

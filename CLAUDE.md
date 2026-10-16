@@ -105,6 +105,7 @@ referência, prompt, Claude in Chrome no ChatGPT, conferência ampliada, registr
 | `canastra-estatico` | post estático de feed — o catálogo declarado e a escada de correção do rótulo |
 | `canastra-carrossel` | carrossel de feed — os 10 tipos de slide, o ritmo, os três portões e o **estilo aprovado "Céu a pino"** (Claude Design + `scripts/dc_render.py`) |
 | `canastra-direcao` | direção de foto — que chão, que luz, que prop, que paleta. Os looks nomeados |
+| `canastra-ganchos` | **todo gancho** — capa de carrossel, frase do estático, 1ª frase e tela do Reel. Nota de 0 a 100 pelo `scripts/ganchos.py checar`, mínimo 70 para mostrar |
 
 A regra que mais se perde, e que um agente de teste furou neste repositório:
 **só marque um campo como conferido se a referência permitir lê-lo.** Ilegível não
@@ -913,7 +914,7 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     narração acelerada, o movimento não compete com a voz (corrida ~15 px/quadro, tremor
     ≤ 14 px, carimbo de palavra ≤ 115%). Para mudança de linguagem, **teste num trecho de
     10 s e mostre antes de refazer 80 s.**
-69. **Ia publicar numa loja aberta dois packshots com pássaros inventados, e o gabarito
+74. **Ia publicar numa loja aberta dois packshots com pássaros inventados, e o gabarito
     para pegar isso já estava no disco há um mês** → ao montar o catálogo da Loja
     Integrada, tratei os 96 packshots de `saida-teste/catalogo-estudio/` como bloco
     aprovado (a lição 29 diz que foram aprovados, e estão). Mas `mercadolivre/LEIA-ME.md`

@@ -1,0 +1,61 @@
+{
+  "atualizado_em": "2026-10-16T01:24:22.143Z",
+  "handles": [
+    "orfeucafes",
+    "coffeemais",
+    "cafeitalle",
+    "cafezale.com.br",
+    "sebastianspecialtycoffee",
+    "zanellicoffee",
+    "cafeserradacanastra",
+    "cafedaserradacanastra",
+    "fazendacafeserradacanastra"
+  ],
+  "concorrentes": [
+    {
+      "handle": "orfeucafes",
+      "nome": "Orfeu",
+      "grupo": "especial"
+    },
+    {
+      "handle": "coffeemais",
+      "nome": "Coffee++",
+      "grupo": "especial"
+    },
+    {
+      "handle": "cafeitalle",
+      "nome": "Café Italle",
+      "grupo": "especial"
+    },
+    {
+      "handle": "cafezale.com.br",
+      "nome": "Cafezale",
+      "grupo": "especial"
+    },
+    {
+      "handle": "sebastianspecialtycoffee",
+      "nome": "Sebastian Specialty Coffee",
+      "grupo": "especial"
+    },
+    {
+      "handle": "zanellicoffee",
+      "nome": "Zanelli Coffee",
+      "grupo": "especial"
+    },
+    {
+      "handle": "cafeserradacanastra",
+      "nome": "Café Serra da Canastra",
+      "grupo": "homonimo"
+    },
+    {
+      "handle": "cafedaserradacanastra",
+      "nome": "Café da Serra da Canastra",
+      "grupo": "homonimo"
+    },
+    {
+      "handle": "fazendacafeserradacanastra",
+      "nome": "Fazenda Café Serra da Canastra",
+      "grupo": "homonimo"
+    }
+  ]
+}
