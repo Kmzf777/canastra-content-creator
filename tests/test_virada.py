@@ -34,7 +34,7 @@ INICIO = datetime(2026, 1, 1, 12, tzinfo=timezone.utc)
 HOJE = date(2026, 12, 31)
 
 
-def _linhas(valores, passo=3, tipo="REEL", legendas=None, inicio=INICIO, views=None, prefixo="p"):
+def _linhas(valores, passo=3, tipo="reel", legendas=None, inicio=INICIO, views=None, prefixo="p"):
     linhas = []
     for n, valor in enumerate(valores):
         data = inicio + timedelta(days=passo * n)
@@ -116,6 +116,38 @@ def test_proprios_e_arroba_no_nome(tmp_path):
     assert v.localizar("zanellicoffee", tmp_path) == arroba
 
 
+def test_tipo_normalizado_para_o_contrato(tmp_path):
+    # o contrato do fluxo 1 usa reel | carrossel | estatico; proprios.jsonl chama o campo de `formato`
+    linhas = _linhas([1] * 5)
+    for linha, tipo in zip(linhas, ["REEL", "CAROUSEL_ALBUM", "IMAGE", "VIDEO", None]):
+        linha["tipo"] = tipo
+    del linhas[4]["tipo"]
+    linhas[4]["formato"] = "carrossel"
+    posts, _ = v.ler_jsonl(_grava(tmp_path / "s.jsonl", linhas))
+    assert [p.tipo for p in posts] == ["reel", "carrossel", "estatico", "reel", "carrossel"]
+
+
+def test_anotacoes_tema_formato_gancho(tmp_path):
+    # temas.json e formatos.json por id, ganchos.json por shortcode: o "tema e gancho" da virada
+    linhas = _linhas([50] * 20) + _linhas([200] * 20, inicio=INICIO + timedelta(days=60), prefixo="r")
+    metricas = tmp_path / "metricas"
+    metricas.mkdir()
+    temas = {l["id"]: ("lavoura" if l["id"].startswith("p") else "preparo") for l in linhas}
+    formatos = {l["id"]: "tutorial" for l in linhas if l["id"].startswith("r")}
+    (metricas / "temas.json").write_text(json.dumps(temas), encoding="utf-8")
+    (metricas / "formatos.json").write_text(json.dumps(formatos), encoding="utf-8")
+    (metricas / "ganchos.json").write_text(json.dumps({"R000": "O erro que todo mundo comete"}), encoding="utf-8")
+    posts, _ = v.ler_jsonl(_grava(tmp_path / "s.jsonl", linhas))
+    v.anotar(posts, metricas)
+    ad = v.antes_depois(posts, [p.engajamento for p in posts], 20, k=12, m=8)
+    assert [x["termo"] for x in ad["temas"]["surgiram"]] == ["preparo"]
+    assert [x["termo"] for x in ad["temas"]["sumiram"]] == ["lavoura"]
+    assert [x["termo"] for x in ad["formatos_narrativos"]["surgiram"]] == ["tutorial"]
+    assert ad["puxaram"][0]["gancho"] == "O erro que todo mundo comete"
+    assert ad["puxaram"][0]["tema"] == "preparo"
+    assert ad["puxaram"][1]["gancho"] is None
+
+
 def test_perfil_ausente_mensagens(tmp_path):
     def motivo(raiz, handle):
         try:
@@ -186,23 +218,94 @@ def test_sem_base_nos_primeiros():
 # --- o que mudou ao redor ------------------------------------------------------------------
 
 def test_antes_depois(tmp_path):
-    antes = _linhas([50] * 20, passo=7, tipo="IMAGE", legendas=["foto do dia no sítio"] * 20)
+    antes = _linhas([50] * 20, passo=7, tipo="estatico", legendas=["foto do dia no sítio da canastra"] * 20)
     inicio_depois = INICIO + timedelta(days=7 * 20)
-    gancho = "Você sabia? torra clara de verdade #torraclara"
-    depois = _linhas([200] * 20, passo=2, tipo="REEL", legendas=[gancho] * 20, inicio=inicio_depois, prefixo="r")
+    gancho = "Você sabia? torra clara de verdade na canastra #torraclara"
+    depois = _linhas([200] * 20, passo=2, tipo="reel", legendas=[gancho] * 20, inicio=inicio_depois, prefixo="r")
     posts, _ = v.ler_jsonl(_grava(tmp_path / "s.jsonl", antes + depois))
     valores = [p.engajamento for p in posts]
     ad = v.antes_depois(posts, valores, 20, k=12, m=8)
-    assert ad["antes"]["formatos"] == {"IMAGE": 12}
-    assert ad["depois"]["formatos"] == {"REEL": 8}
+    assert ad["antes"]["formatos"] == {"estatico": 12}
+    assert ad["depois"]["formatos"] == {"reel": 8}
     assert ad["antes"]["cadencia_semana"] == 1.0
     assert ad["depois"]["cadencia_semana"] == 3.5
-    novas = [x["termo"] for x in ad["palavras_novas"]]
-    assert {"torra", "clara", "sabia"} <= set(novas)
-    assert "você" not in novas  # stopword
-    assert [x["termo"] for x in ad["hashtags_novas"]] == ["torraclara"]
+    termos = lambda grupo: [x["termo"] for x in grupo]
+    assert {"torra", "clara", "sabia", "verdade"} <= set(termos(ad["palavras"]["surgiram"]))
+    assert "você" not in termos(ad["palavras"]["surgiram"])  # stopword
+    assert set(termos(ad["palavras"]["sumiram"])) == {"foto", "sítio"}
+    assert termos(ad["palavras"]["mantidos"]) == ["canastra"]
+    assert ad["palavras"]["mantidos"][0] == {"termo": "canastra", "antes": 1.0, "depois": 1.0}
+    assert termos(ad["hashtags"]["surgiram"]) == ["torraclara"]
+    assert termos(ad["tipos"]["surgiram"]) == ["reel"]
+    assert termos(ad["tipos"]["sumiram"]) == ["estatico"]
     assert len(ad["puxaram"]) == 8
     assert ad["puxaram"][0]["primeira_linha"] == gancho
+
+
+def test_assinatura_regra_15_40():
+    # surgiu = ≤ 15% antes e ≥ 40% depois; sumiu = o espelho; mantido = ≥ 40% nos dois.
+    # 2 de 10 antes (20%) não é "ausente": o termo fica fora das três listas.
+    antes = [v.Post(f"a{n}", "", INICIO, "IMAGE", "lavoura" if n < 2 else "", 1, 0, None, None, None)
+             for n in range(10)]
+    depois = [v.Post(f"d{n}", "", INICIO, "IMAGE", "lavoura", 1, 0, None, None, None) for n in range(5)]
+    sig = v._assinatura(v._palavras, antes, depois)
+    assert sig == {"surgiram": [], "sumiram": [], "mantidos": []}
+
+
+def test_janela_funil_cta_produto_colab(tmp_path):
+    legendas = [
+        "Comenta EU QUERO que eu te mando o cupom",
+        "Café em grãos 250g, link na bio",
+        "Colheita com @fulano.cafe na lavoura",
+        "Pôr do sol. Contato: contato@canastra.com.br",
+    ]
+    linhas = _linhas([100] * 4, legendas=legendas)
+    for linha, comentarios in zip(linhas, [10, 30, 0, 60]):
+        linha["curtidas"], linha["comentarios"] = 100, comentarios
+    posts, _ = v.ler_jsonl(_grava(tmp_path / "s.jsonl", linhas))
+    j = v._janela(posts)
+    assert j["comentarios_por_curtida"] == 0.25
+    assert j["cta_fatia"] == 0.5
+    assert j["produto_fatia"] == 0.25
+    assert j["colab_fatia"] == 0.25  # e-mail não conta como menção
+
+
+def test_puxaram_traz_comentarios_por_curtida(tmp_path):
+    linhas = _linhas([50] * 20 + [200] * 20)
+    for linha in linhas[20:]:
+        linha["curtidas"], linha["comentarios"] = 100, 100  # funil comentário→DM
+    posts, _ = v.ler_jsonl(_grava(tmp_path / "s.jsonl", linhas))
+    ad = v.antes_depois(posts, [p.engajamento for p in posts], 20, k=12, m=8)
+    assert ad["puxaram"][0]["comentarios_por_curtida"] == 1.0
+    assert ad["depois"]["comentarios_por_curtida"] == 1.0
+    assert ad["antes"]["comentarios_por_curtida"] == round(5 / 45, 3)
+
+
+def test_consistencia():
+    estavel = v._consistencia([50] * 20)
+    assert estavel["cv"] == 0.0
+    assert estavel["max_sobre_mediana"] == 1.0
+    assert estavel["faixa_central"] == 1.0
+    assert estavel["leitura"] == "estável"
+    pico = v._consistencia([50] * 19 + [1000])
+    assert pico["max_sobre_mediana"] == 20.0
+    assert pico["faixa_central"] == 0.95
+    assert pico["leitura"] == "dependente de pico"
+    assert v._consistencia([50] * 5) is None
+
+
+def test_confianca_do_degrau():
+    rng = random.Random(3)
+    valores = [round(50 * rng.uniform(0.8, 1.2)) for _ in range(20)] +               [round(200 * rng.uniform(0.8, 1.2)) for _ in range(20)]
+    ev = v.detectar(valores, **v.PADROES)["eventos"]
+    assert [e["tipo"] for e in ev] == ["degrau"]
+    assert ev[0]["n_antes"] == 12 and ev[0]["n_depois"] == 8
+    assert ev[0]["t_welch"] > 4
+    assert ev[0]["confianca"] == "forte"
+    # série constante: variância zero, o t não existe e o relatório diz isso
+    ev = v.detectar([50] * 20 + [200] * 20, **v.PADROES)["eventos"]
+    assert ev[0]["t_welch"] is None
+    assert ev[0]["confianca"] == "sem variância"
 
 
 # --- relatório -----------------------------------------------------------------------------
@@ -256,6 +359,10 @@ def test_main_grava_json_e_html(tmp_path, capsys):
     assert "<svg" in pagina
     assert "https://www.instagram.com/p/P020/" in pagina
     assert "Degrau sustentado" in pagina
+    assert "Comentários por curtida" in pagina
+    assert "Consistência" in pagina
+    assert "confiança" in pagina
+    assert rel["consistencia"]["leitura"] == "estável"
     assert "degrau" in capsys.readouterr().out
 
 

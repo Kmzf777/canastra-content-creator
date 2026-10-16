@@ -62,7 +62,7 @@ existe, o perfil está na watchlist mas ainda não foi coletado, ou ele não est
 
    ```json
    {"id": "<shortcode>", "url": "https://www.instagram.com/p/<shortcode>/", "data_publicacao": "2026-09-25T14:03:00+0000",
-    "tipo": "REEL", "legenda": "...", "curtidas": 120, "comentarios": 8, "views": null,
+    "tipo": "reel", "legenda": "...", "curtidas": 120, "comentarios": 8, "views": null,
     "seguidores": 10300, "coletado_em": "2026-10-15T10:00:00Z"}
    ```
 
@@ -100,16 +100,35 @@ Com menos de 30 posts maduros, os parâmetros padrão quase não deixam espaço 
 eventos. Perfil que posta pouco, como a @cafecanastra (um post a cada 42 dias em 30/09),
 precisa de `--dias 0`. Mesmo assim o resultado é fraco, e você diz isso.
 
+## Sinais além do salto
+
+Adaptados da skill "Creator Breakout" do Kallaway em 15/10/2026, com aprovação do Rafael.
+Ficaram de fora o outlier score e os créditos do Sandcastles, as palavras-chave fixas em
+inglês, a "vanity virality" (views de concorrente vem `null`) e o corte único por t máximo,
+que acharia uma virada só onde nós achamos várias.
+
+| Sinal | Onde está | Como ler |
+|---|---|---|
+| **Consistência do perfil** | `consistencia`, no topo do JSON e do HTML | CV, máximo ÷ mediana e fração dos posts entre 0,5× e 2× a mediana. **Estável** = CV < 1,2 e máximo < 6×: o perfil cresce por constância. **Dependente de pico** = vive de estouros, e então um degrau pesa mais que qualquer pico |
+| **Confiança do degrau** | `t_welch`, `confianca`, `n_antes`, `n_depois` em cada degrau e queda | t de Welch sobre `log1p` (depois − antes): **forte** ≥ 4, **moderada** ≥ 2,5, **fraca** abaixo. Com 12 × 8 posts a amostra é pequena: cite o t junto com os tamanhos. `sem variância` = série constante, coisa que não acontece em dado real |
+| **Comentários por curtida** | `antes_depois.antes/depois` e cada item de `puxaram` | sinal de funil comentário → DM. Uma razão que sobe junto com legenda pedindo comentário ("comenta EU QUERO") é o funil funcionando; cite os números |
+| **CTA, produto, colaboração** | `cta_fatia`, `produto_fatia`, `colab_fatia` | fração dos posts com chamada para ação ("comenta", "link na bio", "chama na DM", "cupom", "frete", "compre"), com vocabulário de produto de café (pacote, cápsula, em grãos, 250g, preço, loja) e com `@menção`. **É regex, não leitura**: abra as legendas antes de afirmar |
+| **Tema, formato narrativo, gancho de tela** | `temas`, `formatos_narrativos` em `antes_depois`; `tema`, `gancho` em `puxaram` | vêm de `temas.json`, `formatos.json` e `ganchos.json`, que o fluxo 1 grava em `instagram/metricas/`. Post sem classificação fica de fora da conta, então com poucos posts classificados a assinatura sai vazia. O gancho de tela vale mais que a 1ª linha da legenda |
+| **Surgiram, sumiram, mantidos** | `palavras`, `hashtags`, `tipos`, `temas`, `formatos_narrativos` em `antes_depois` | por fração de posts: surgiu = ≤ 15% antes e ≥ 40% depois; sumiu = o espelho; mantido = ≥ 40% nos dois. O mantido também conta: o que não mudou na virada sai da lista de explicações |
+
 ## Ler e entregar
 
 1. **Leia o JSON, não o resumo do terminal.** Para cada degrau e queda,
    `antes_depois` traz: formatos, cadência em posts por semana, intervalo mediano, tamanho
-   da legenda, hashtags, a 1ª linha da legenda dos posts que ficaram acima da base antiga e
-   as palavras e hashtags novas.
+   da legenda, hashtags, comentários por curtida, as fatias de CTA, produto e colaboração,
+   a 1ª linha da legenda dos posts que ficaram acima da base antiga, e o que surgiu, sumiu e
+   se manteve em palavras, hashtags e formatos.
 2. **Publique o HTML como Artifact** (privado), com título `Virada @<handle>`, e entregue o
    link junto com o caminho local. O HTML é autocontido, sem script nem CDN.
-3. Escreva a leitura em 3 blocos por virada: **o número** (data, razão, mediana antes →
-   depois), **o que mudou** (só o que o `antes_depois` mostra ou o que você viu abrindo o
+3. Abra a resposta pela consistência do perfil: ela diz se o perfil vive de constância ou de
+   pico, e isso muda o peso de cada evento.
+4. Escreva a leitura em 3 blocos por virada: **o número** (data, razão, mediana antes →
+   depois e a confiança com o t e os tamanhos), **o que mudou** (só o que o `antes_depois` mostra ou o que você viu abrindo o
    post) e **o que serve à Canastra**.
 
 ## Passo qualitativo: o porquê

@@ -82,6 +82,13 @@ o encontrar.
 `{ "<id>": "<tema>" }`, gravado pela leitura do relatório. Ela classifica só quem ainda não tem tema;
 corrigir à mão é permitido e é respeitado.
 
+### `formatos.json` — formato narrativo por post
+
+`{ "<id>": "<formato>" }`, gravado pela leitura do relatório junto com os temas, e com a mesma regra
+(só classifica quem ainda não tem; correção à mão é respeitada). É a **estrutura** da peça, não a
+mídia: um destes valores — `tutorial`, `bastidor`, `lista`, `opinião`, `comparação`, `receita`,
+`história`, `produto`, `pergunta e resposta`, `collab`.
+
 ### `coletas.json` — estado do agendador
 
 `{ ultima_coleta, ultimo_historico, ultimo_relatorio }` (ISO). Se o maior `coletado_em` dos `.jsonl`
@@ -91,6 +98,10 @@ tiver mais de 36 h, a coleta parou (token expirado, PC desligado às 2h).
 
 `<data>.html` (abrir no navegador), `<data>-resumo.json` (os números), `<data>-legendas.json` (o que a
 leitura recebeu) e `<data>-analise.md` (o texto da leitura).
+
+Cada post do relatório traz o **múltiplo** sobre a mediana do próprio perfil (2× no Orfeu e 2× na
+Canastra pesam o mesmo). Além de formato, tema e abertura, o relatório agrupa por formato narrativo e
+cruza tema × formato e abertura × tema, sempre com `n` e o aviso de amostra pequena (n < 3).
 
 ## Quando roda
 
@@ -105,3 +116,5 @@ leitura recebeu) e `<data>-analise.md` (o texto da leitura).
 
 - 2026-10-15: contrato inicial (fluxo 1). Acréscimos ao pedido original: `watchlist.json` ganhou
   `handles` (espelho, para o radar) e `grupo`; nasceram `ganchos.json`, `temas.json` e `coletas.json`.
+- 2026-10-15: nasceu `formatos.json` (formato narrativo); o relatório ganhou o múltiplo sobre a
+  mediana e os cruzamentos. Os arquivos `.jsonl` não mudaram.

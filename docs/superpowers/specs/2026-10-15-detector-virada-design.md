@@ -30,7 +30,7 @@ Fora do escopo: `instagram/metricas/` (fluxo 1, dono da coleta), `instagram/estr
   15/10/2026. Este fluxo assume o formato combinado:
 
 ```json
-{"id": "...", "url": "...", "data_publicacao": "2026-09-25T14:03:00+0000", "tipo": "REEL",
+{"id": "...", "url": "...", "data_publicacao": "2026-09-25T14:03:00+0000", "tipo": "reel",
  "legenda": "...", "curtidas": 120, "comentarios": 8, "views": null, "seguidores": 10300,
  "coletado_em": "2026-10-15T10:00:00Z"}
 ```
@@ -39,8 +39,12 @@ Leitura tolerante:
 - `id` repetido = a mesma postagem em coletas diferentes; fica o registro com `coletado_em`
   mais recente.
 - Datas em ISO 8601, com `Z`, `+0000` ou `+00:00`.
-- `tipo` normalizado em maiúsculas. Valores esperados: `REEL`, `IMAGE`, `CAROUSEL_ALBUM`,
-  `VIDEO`.
+- `tipo` (concorrentes) ou `formato` (`proprios.jsonl`) normalizado para o contrato do fluxo 1:
+  `reel | carrossel | estatico`. Os valores crus da Graph API (`REEL`, `VIDEO`, `CAROUSEL_ALBUM`,
+  `IMAGE`) são mapeados para esses.
+- `temas.json` e `formatos.json` (por `id`) e `ganchos.json` (por shortcode da URL), quando
+  existem em `instagram/metricas/`, anotam cada post com tema, formato narrativo e gancho de
+  tela. Entram como assinaturas (`temas`, `formatos_narrativos`) e nos itens de `puxaram`.
 - Uma linha inválida é contada e reportada, nunca derruba a leitura toda.
 - `curtidas`/`comentarios` ausentes ou `null` tiram o post da série principal, e esse post
   é contado.
@@ -194,3 +198,27 @@ Séries sintéticas no formato do contrato, geradas por função no próprio tes
 - views < 60% → só a série de engajamento;
 - `antes_depois`: formato, cadência e palavras novas no caso montado;
 - HTML gerado contém o SVG, os links e os cartões.
+
+## Acréscimos de 15/10/2026 (referência: skill "Creator Breakout" do Kallaway)
+
+Aprovados pelo Rafael. A referência foi lida como dado; nenhum script dela é executado.
+
+- **Consistência** (`consistencia`, topo do relatório, sobre o engajamento dos posts
+  maduros): CV, máximo ÷ mediana e a fração entre 0,5× e 2× a mediana. "Estável" quando
+  CV < 1,2 e máximo < 6×; senão, "dependente de pico". Com menos de 6 posts, `null`.
+- **Confiança por degrau e queda**: `n_antes`, `n_depois` e `t_welch`, o t de Welch de
+  (depois − antes) sobre `log1p`, ao lado de `contraste`. "forte" com |t| ≥ 4,
+  "moderada" com ≥ 2,5, "fraca" abaixo e "sem variância" quando os dois lados são
+  constantes (`t_welch: null`).
+- **Comentários por curtida** em cada janela e em cada post de `puxaram`: Σ comentários ÷
+  Σ curtidas, como sinal de funil comentário → DM.
+- **Fatias por janela**: `cta_fatia` (regex de CTA em pt-BR), `produto_fatia`
+  (vocabulário de produto de café) e `colab_fatia` (`@menção`, sem contar e-mail).
+- **Assinaturas** no lugar de `palavras_novas`/`hashtags_novas`: `palavras`, `hashtags` e
+  `tipos`, cada uma com `surgiram` (≤ 15% → ≥ 40% dos posts), `sumiram` (o espelho) e
+  `mantidos` (≥ 40% nos dois), e cada termo com a fração antes e depois.
+
+Ficam de fora: o outlier score e os créditos do Sandcastles, `lego_bricks` e
+`signature_diff` como scripts (pedem rótulos manuais), palavras-chave fixas em inglês,
+"vanity virality" (views de concorrente vem `null`) e o corte único por t máximo, que
+substituiria a detecção de vários eventos.
