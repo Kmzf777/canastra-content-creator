@@ -31,7 +31,7 @@ from collections import Counter
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from statistics import median
+from statistics import median, pstdev
 
 RAIZ_METRICAS = Path("instagram/metricas")
 RAIZ_SAIDA = Path("instagram/viradas")
@@ -43,6 +43,21 @@ MIN_DEPOIS = 5          # menos que isso adiante e não dá para dizer se o pata
 MIN_CONFIRMA_PICO = 3   # pico com menos seguintes ainda pode ser o começo de um degrau
 VOLTA_AO_PATAMAR = 1.5  # seguintes abaixo disso × base = o perfil voltou depois do pico
 FRACAO_VIEWS = 0.6      # views só vira série quando a maioria dos posts traz o número
+AUSENTE, PRESENTE = 0.15, 0.40  # assinatura: surgiu = ≤ 15% dos posts antes e ≥ 40% depois
+T_FORTE, T_MODERADA = 4.0, 2.5  # confiança do degrau pelo t de Welch sobre log1p
+CV_ESTAVEL, MAX_ESTAVEL = 1.2, 6.0  # perfil "estável": CV < 1,2 e máximo < 6× a mediana
+
+# Heurísticas de legenda em pt-BR. São regex, não leitura: confira as legendas na dúvida.
+CTA_RE = re.compile(
+    r"\bcoment(a|e|em|ar)\b|\blink na bio\b|\b(chama|manda|mande)\b[^.!?\n]{0,15}"
+    r"\b(dm|direct|inbox|whats(app)?|mensagem)\b|\bcupo(m|ns)\b|\bfrete\b|\bcompr(e|ar)\b"
+    r"|\bgaranta\b|\bpeça (já|o seu|a sua)\b|\bc[oó]digo\b",
+    re.I)
+PRODUTO_RE = re.compile(
+    r"\bpacotes?\b|\bc[aá]psulas?\b|\bem gr[aã]os?\b|\bmo[ií]do\b|\b\d+\s?(g|kg)\b|\bkits?\b|r\$"
+    r"|\bpre[cç]o\b|\bpromo|\bloja\b|\bnosso caf[eé]\b",
+    re.I)
+MENCAO_RE = re.compile(r"(?<![\w.])@[\w.]{2,}")  # @perfil; e-mail (a@b.com) não conta
 
 ESTADOS = ("sem_base", "normal", "degrau", "queda", "pico", "puxador", "imaturo")
 
@@ -204,6 +219,24 @@ def _log_media(valores) -> float:
     return sum(math.log1p(x) for x in valores) / len(valores)
 
 
+def _welch(antes: list[float], depois: list[float]) -> float | None:
+    """t de Welch de (depois − antes) sobre log1p. None quando os dois lados não variam."""
+    la, lb = [math.log1p(x) for x in antes], [math.log1p(x) for x in depois]
+    if len(la) < 2 or len(lb) < 2:
+        return None
+    ma, mb = sum(la) / len(la), sum(lb) / len(lb)
+    va = sum((x - ma) ** 2 for x in la) / (len(la) - 1)
+    vb = sum((x - mb) ** 2 for x in lb) / (len(lb) - 1)
+    erro = math.sqrt(va / len(la) + vb / len(lb))
+    return None if erro == 0 else (mb - ma) / erro
+
+
+def _confianca(t: float | None) -> str:
+    if t is None:
+        return "sem variância"
+    return "forte" if abs(t) >= T_FORTE else "moderada" if abs(t) >= T_MODERADA else "fraca"
+
+
 def _selecao_gulosa(candidatos: list[int], contraste: list, m: int, maior: bool) -> list[int]:
     """Candidatos vizinhos são o mesmo degrau visto de vários índices: fica o de contraste
     mais extremo, saem os que estão a menos de m posts dele, e repete."""
@@ -255,9 +288,13 @@ def detectar(valores: list[float], k: int = 12, m: int = 8, pico: float = 3.0, d
     for tipo, pontos in (("degrau", degraus), ("queda", quedas)):
         for i in pontos:
             estados[i] = tipo
+            anteriores, depois = valores[max(0, i - k):i], valores[i:i + m]
+            t = _welch(anteriores, depois)
             eventos.append({
                 "tipo": tipo, "i": i, "nivel": round(nivel[i], 2), "contraste": round(contraste[i], 3),
-                "base_antes": base[i], "mediana_depois": median(valores[i:i + m]),
+                "base_antes": base[i], "mediana_depois": median(depois),
+                "n_antes": len(anteriores), "n_depois": len(depois),
+                "t_welch": None if t is None else round(t, 2), "confianca": _confianca(t),
             })
     for i in degraus:
         for j in range(i + 1, min(n, i + m)):
@@ -299,12 +336,61 @@ def _palavras(texto: str) -> list[str]:
     return [p for p in re.findall(r"[^\W\d_]{4,}", limpo) if p not in STOPWORDS]
 
 
-def _novas(extrair, antes: list[Post], depois: list[Post], limite: int = 15) -> list[dict]:
-    """Termos presentes em ≥ 2 posts depois e em nenhum antes (conta post, não ocorrência)."""
-    vistos_antes = {t for p in antes for t in extrair(p.legenda)}
-    contagem = Counter(t for p in depois for t in set(extrair(p.legenda)))
-    return [{"termo": t, "posts": c} for t, c in contagem.most_common()
-            if c >= 2 and t not in vistos_antes][:limite]
+def _fatias(extrair, posts: list[Post], de) -> dict[str, float]:
+    """Fração dos posts em que cada termo aparece (conta post, não ocorrência)."""
+    contagem = Counter(t for p in posts for t in set(extrair(de(p))))
+    return {t: c / len(posts) for t, c in contagem.items()} if posts else {}
+
+
+def _assinatura(extrair, antes: list[Post], depois: list[Post], de=lambda p: p.legenda,
+                limite: int = 15) -> dict:
+    """O que surgiu (≤ 15% → ≥ 40% dos posts), sumiu (o espelho) e se manteve (≥ 40% nos dois).
+
+    O que se manteve é tão informativo quanto o que surgiu: o que o perfil NÃO mudou na
+    virada fica fora da explicação."""
+    fa, fd = _fatias(extrair, antes, de), _fatias(extrair, depois, de)
+    grupos = {"surgiram": [], "sumiram": [], "mantidos": []}
+    for termo in sorted(set(fa) | set(fd)):
+        a, d = fa.get(termo, 0.0), fd.get(termo, 0.0)
+        item = {"termo": termo, "antes": round(a, 2), "depois": round(d, 2)}
+        if a <= AUSENTE and d >= PRESENTE:
+            grupos["surgiram"].append(item)
+        elif a >= PRESENTE and d <= AUSENTE:
+            grupos["sumiram"].append(item)
+        elif a >= PRESENTE and d >= PRESENTE:
+            grupos["mantidos"].append(item)
+    for nome, chave in (("surgiram", "depois"), ("sumiram", "antes"), ("mantidos", "depois")):
+        grupos[nome] = sorted(grupos[nome], key=lambda x: -x[chave])[:limite]
+    return grupos
+
+
+def _comentarios_por_curtida(posts: list[Post]) -> float | None:
+    """Sinal de funil: legenda que pede comentário (comentário → DM) puxa a razão para cima."""
+    pares = [(p.curtidas, p.comentarios) for p in posts if p.curtidas is not None and p.comentarios is not None]
+    curtidas = sum(c for c, _ in pares)
+    return round(sum(x for _, x in pares) / curtidas, 3) if curtidas else None
+
+
+def _fatia(regex: re.Pattern, posts: list[Post]) -> float:
+    return round(sum(bool(regex.search(p.legenda)) for p in posts) / len(posts), 2)
+
+
+def _consistencia(valores: list[float]) -> dict | None:
+    """Perfil estável (faixa apertada em torno da mediana) × dependente de pico (vive de estouros)."""
+    if len(valores) < MIN_BASE:
+        return None
+    med, media = median(valores), sum(valores) / len(valores)
+    cv = pstdev(valores) / media if media else None
+    max_med = max(valores) / med if med else None
+    central = sum(0.5 * med <= x <= 2 * med for x in valores) / len(valores)
+    estavel = cv is not None and max_med is not None and cv < CV_ESTAVEL and max_med < MAX_ESTAVEL
+    return {
+        "n": len(valores), "mediana": med,
+        "cv": None if cv is None else round(cv, 2),
+        "max_sobre_mediana": None if max_med is None else round(max_med, 1),
+        "faixa_central": round(central, 2),
+        "leitura": "estável" if estavel else "dependente de pico",
+    }
 
 
 def _janela(posts: list[Post]) -> dict:
@@ -320,6 +406,10 @@ def _janela(posts: list[Post]) -> dict:
         "intervalo_mediano_dias": round(median(intervalos), 1) if intervalos else None,
         "legenda_mediana_chars": median(len(p.legenda) for p in posts),
         "hashtags_mediana": median(len(_hashtags(p.legenda)) for p in posts),
+        "comentarios_por_curtida": _comentarios_por_curtida(posts),
+        "cta_fatia": _fatia(CTA_RE, posts),
+        "produto_fatia": _fatia(PRODUTO_RE, posts),
+        "colab_fatia": _fatia(MENCAO_RE, posts),
     }
 
 
@@ -331,11 +421,13 @@ def antes_depois(posts: list[Post], valores: list[float], i: int, k: int, m: int
         "depois": _janela(depois),
         "puxaram": [
             {"id": p.id, "url": p.url, "data": p.data.date().isoformat(), "tipo": p.tipo, "valor": x,
-             "razao": round(x / max(base, 1), 2), "primeira_linha": primeira_linha(p.legenda)}
+             "razao": round(x / max(base, 1), 2), "comentarios_por_curtida": _comentarios_por_curtida([p]),
+             "primeira_linha": primeira_linha(p.legenda)}
             for p, x in zip(depois, valores[i:i + m]) if x > base
         ],
-        "palavras_novas": _novas(_palavras, antes, depois),
-        "hashtags_novas": _novas(_hashtags, antes, depois),
+        "palavras": _assinatura(_palavras, antes, depois),
+        "hashtags": _assinatura(_hashtags, antes, depois),
+        "tipos": _assinatura(lambda tipo: [tipo], antes, depois, de=lambda p: p.tipo),
     }
 
 
@@ -375,6 +467,7 @@ def analisar(perfil: str, fonte: Path, posts: list[Post], contagem: dict, params
     maduros = [p for p in janela if p.data <= limite]
     imaturos = [p for p in janela if p.data > limite]
     avisos = []
+    consistencia = _consistencia([p.engajamento for p in maduros if p.engajamento is not None])
 
     if contagem.get("invalidas"):
         avisos.append(f"{contagem['invalidas']} linha(s) inválida(s) no arquivo foram ignoradas.")
@@ -406,6 +499,7 @@ def analisar(perfil: str, fonte: Path, posts: list[Post], contagem: dict, params
             "imaturos": len(imaturos),
             "maduros": len(maduros),
         },
+        "consistencia": consistencia,
         "seguidores_coleta": None if ultimo is None else {
             "valor": ultimo.seguidores,
             "coletado_em": ultimo.coletado_em.isoformat() if ultimo.coletado_em else None,
@@ -429,13 +523,18 @@ def resumo(rel: dict) -> str:
     linhas = [f"{rel['perfil']}: {rel['contagens']['maduros']} posts maduros "
               f"({rel['contagens']['imaturos']} imaturos) em "
               f"{'todo o histórico' if rel['janela_dias'] <= 0 else str(rel['janela_dias']) + ' dias'}"]
+    c = rel["consistencia"]
+    if c:
+        linhas.append(f"  consistência: {c['leitura']} (CV {_num(c['cv'])}, máximo {_num(c['max_sobre_mediana'])}× "
+                      f"a mediana, {c['faixa_central']:.0%} dos posts entre 0,5× e 2×)")
     for nome, serie in rel["series"].items():
         tipos = Counter(e["tipo"] for e in serie["eventos"])
         linhas.append(f"  {nome}: {tipos['degrau']} degrau(s), {tipos['queda']} queda(s), {tipos['pico']} pico(s)")
         for e in serie["eventos"]:
             fator = e["nivel"] if "nivel" in e else e["razao"]
+            confianca = f"  confiança {e['confianca']}" if "confianca" in e else ""
             linhas.append(f"    {e['tipo']:<6} {e['post']['data'][:10]}  {_num(fator)}×  "
-                          f"{e['post']['tipo']:<14} {e['post']['url']}")
+                          f"{e['post']['tipo']:<14} {e['post']['url']}{confianca}")
     linhas += [f"  aviso: {a}" for a in rel["avisos"]]
     return "\n".join(linhas)
 
@@ -460,6 +559,10 @@ def _num(x) -> str:
 
 def _e(texto) -> str:
     return html.escape(str(texto), quote=True)
+
+
+def _pct(x) -> str:
+    return "—" if x is None else f"{x:.0%}"
 
 
 def _data_br(iso: str) -> str:
@@ -570,16 +673,25 @@ def _tabela_antes_depois(ad: dict) -> str:
         ("Intervalo mediano (dias)", _num(a["intervalo_mediano_dias"]), _num(d["intervalo_mediano_dias"])),
         ("Legenda mediana (caracteres)", _num(a["legenda_mediana_chars"]), _num(d["legenda_mediana_chars"])),
         ("Hashtags por post (mediana)", _num(a["hashtags_mediana"]), _num(d["hashtags_mediana"])),
+        ("Comentários por curtida", _num(a["comentarios_por_curtida"]), _num(d["comentarios_por_curtida"])),
+        ("Com chamada para ação (CTA)", _pct(a["cta_fatia"]), _pct(d["cta_fatia"])),
+        ("Sobre o produto", _pct(a["produto_fatia"]), _pct(d["produto_fatia"])),
+        ("Com colaboração (@menção)", _pct(a["colab_fatia"]), _pct(d["colab_fatia"])),
     ]
     corpo = "".join(f"<tr><th>{_e(r)}</th><td>{_e(x)}</td><td>{_e(y)}</td></tr>" for r, x, y in linhas)
     return f'<table><thead><tr><th></th><th>Antes</th><th>Depois</th></tr></thead><tbody>{corpo}</tbody></table>'
 
 
-def _termos(titulo: str, termos: list[dict], prefixo: str = "") -> str:
-    if not termos:
-        return ""
-    itens = "".join(f'<li>{_e(prefixo + t["termo"])} <span class="n">{t["posts"]}</span></li>' for t in termos)
-    return f'<h4>{_e(titulo)}</h4><ul class="termos">{itens}</ul>'
+def _assinatura_html(titulo: str, grupos: dict, rotulo=lambda termo: termo) -> str:
+    """Surgiram / sumiram / mantidos, cada termo com a fração de posts antes → depois."""
+    blocos = []
+    for nome, classe in (("surgiram", "surgiu"), ("sumiram", "sumiu"), ("mantidos", "manteve")):
+        if grupos[nome]:
+            itens = "".join(f'<li class="{classe}">{_e(rotulo(t["termo"]))} '
+                            f'<span class="n">{_pct(t["antes"])} → {_pct(t["depois"])}</span></li>'
+                            for t in grupos[nome])
+            blocos.append(f'<p class="grupo">{nome.capitalize()}</p><ul class="termos">{itens}</ul>')
+    return f"<h4>{_e(titulo)}</h4>" + "".join(blocos) if blocos else ""
 
 
 def _cartao(ev: dict, serie_nome: str) -> str:
@@ -592,7 +704,9 @@ def _cartao(ev: dict, serie_nome: str) -> str:
             sub += " · ainda não confirmado: poucos posts depois, pode ser o começo de um degrau"
     else:
         fator = f"{_num(ev['nivel'])}×"
-        sub = f"mediana antes {_num(ev['base_antes'])} → depois {_num(ev['mediana_depois'])}"
+        t = "" if ev["t_welch"] is None else f"t = {_num(ev['t_welch'])}; "
+        sub = (f"mediana antes {_num(ev['base_antes'])} → depois {_num(ev['mediana_depois'])} · "
+               f"confiança {ev['confianca']} ({t}{ev['n_antes']} posts antes × {ev['n_depois']} depois)")
     corpo = [f'<p class="sub">{_e(sub)}</p>',
              f'<p class="post"><a href="{_e(p["url"])}" target="_blank" rel="noopener">'
              f'{_e(NOMES_TIPO.get(p["tipo"], p["tipo"]))} de {_data_br(p["data"])}</a>'
@@ -604,11 +718,13 @@ def _cartao(ev: dict, serie_nome: str) -> str:
             itens = "".join(
                 f'<li><a href="{_e(x["url"])}" target="_blank" rel="noopener">{_data_br(x["data"])}</a> '
                 f'<span class="n">{_e(NOMES_TIPO.get(x["tipo"], x["tipo"]))} · {_num(x["valor"])} · '
-                f'{_num(x["razao"])}×</span> {_e(x["primeira_linha"])}</li>' for x in ad["puxaram"])
+                f'{_num(x["razao"])}× · {_num(x["comentarios_por_curtida"])} coment./curtida</span> '
+                f'{_e(x["primeira_linha"])}</li>' for x in ad["puxaram"])
             titulo = "Posts acima da base antiga" if tipo == "degrau" else "Posts que ainda ficaram acima da base"
             corpo.append(f"<h4>{titulo}</h4><ul class='puxaram'>{itens}</ul>")
-        corpo.append(_termos("Palavras novas na legenda", ad["palavras_novas"]))
-        corpo.append(_termos("Hashtags novas", ad["hashtags_novas"], "#"))
+        corpo.append(_assinatura_html("Formatos", ad["tipos"], lambda t: NOMES_TIPO.get(t, t)))
+        corpo.append(_assinatura_html("Palavras da legenda", ad["palavras"]))
+        corpo.append(_assinatura_html("Hashtags", ad["hashtags"], lambda t: "#" + t))
     return (f'<article class="cartao {tipo}"><header><span class="selo">{_e(TITULO_EVENTO[tipo])}</span>'
             f'<h3>{_data_br(p["data"])} · {_e(fator)}</h3><span class="serie">{_e(serie_nome)}</span></header>'
             + "".join(corpo) + "</article>")
@@ -660,6 +776,10 @@ tbody th{font-weight:500;color:var(--suave);width:38%}
 ul{margin:0;padding-left:18px}.puxaram li{margin:3px 0}.n{color:var(--suave);font-size:13px}
 .termos{display:flex;flex-wrap:wrap;gap:6px;padding:0;list-style:none}
 .termos li{background:var(--fundo);border:1px solid var(--linha);border-radius:99px;padding:1px 10px;font-size:13px}
+.termos li.surgiu{border-color:var(--degrau)}.termos li.sumiu{border-color:var(--queda);opacity:.8}
+.grupo{font-size:12px;color:var(--suave);margin:8px 0 4px}
+.consistencia{background:var(--papel);border:1px solid var(--linha);border-radius:10px;padding:10px 14px;margin:16px 0}
+.consistencia strong{font-size:16px}
 .vazio{color:var(--suave)}
 @media (max-width:560px){h1{font-size:21px}tbody th{width:auto}.serie{margin-left:0}
 .rolagem{overflow-x:auto}.rolagem svg{min-width:680px}}
@@ -679,6 +799,14 @@ def render_html(rel: dict) -> str:
              f"≥ {_num(p['degrau'])}× a base, com {p['sustentacao']:.0%} deles acima. Queda = ≤ {_num(p['queda'])}×. "
              f"Pico isolado = post ≥ {_num(p['pico'])}× a base, com o perfil voltando ao patamar depois.")
     avisos = "".join(f"<p>{_e(a)}</p>" for a in rel["avisos"])
+    cons = rel["consistencia"]
+    consistencia = "" if not cons else (
+        f"<div class='consistencia'><h4 style='margin-top:0'>Consistência do perfil</h4>"
+        f"<strong>{_e(cons['leitura'].capitalize())}</strong> "
+        f"<span class='meta'>· mediana {_num(cons['mediana'])} · CV {_num(cons['cv'])} · máximo "
+        f"{_num(cons['max_sobre_mediana'])}× a mediana · {_pct(cons['faixa_central'])} dos posts entre 0,5× e "
+        f"2× a mediana</span><p class='meta'>Estável = CV abaixo de {_num(CV_ESTAVEL)} e máximo abaixo de "
+        f"{_num(MAX_ESTAVEL)}× a mediana: o perfil cresce por constância, não por estouro.</p></div>")
     secoes = []
     for nome, serie in rel["series"].items():
         rotulo = "Engajamento (curtidas + comentários)" if nome == "engajamento" else "Views"
@@ -702,6 +830,7 @@ def render_html(rel: dict) -> str:
         f"<h1>Detector de virada · {_e(rel['perfil'])}</h1><p class='meta'>{_e(meta)}</p>"
         f"<p class='meta'>{_e(regra)} Clique num ponto para abrir o post.</p>"
         + (f"<div class='avisos'>{avisos}</div>" if avisos else "")
+        + consistencia
         + "".join(secoes)
         + f"<p class='meta' style='margin-top:32px'>Fonte: {_e(rel['fonte'])} · gerado em {_e(rel['gerado_em'])}</p>"
         "</main></body></html>"

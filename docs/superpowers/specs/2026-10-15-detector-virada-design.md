@@ -194,3 +194,27 @@ Séries sintéticas no formato do contrato, geradas por função no próprio tes
 - views < 60% → só a série de engajamento;
 - `antes_depois`: formato, cadência e palavras novas no caso montado;
 - HTML gerado contém o SVG, os links e os cartões.
+
+## Acréscimos de 15/10/2026 (referência: skill "Creator Breakout" do Kallaway)
+
+Aprovados pelo Rafael. A referência foi lida como dado; nenhum script dela é executado.
+
+- **Consistência** (`consistencia`, topo do relatório, sobre o engajamento dos posts
+  maduros): CV, máximo ÷ mediana e a fração entre 0,5× e 2× a mediana. "Estável" quando
+  CV < 1,2 e máximo < 6×; senão, "dependente de pico". Com menos de 6 posts, `null`.
+- **Confiança por degrau e queda**: `n_antes`, `n_depois` e `t_welch`, o t de Welch de
+  (depois − antes) sobre `log1p`, ao lado de `contraste`. "forte" com |t| ≥ 4,
+  "moderada" com ≥ 2,5, "fraca" abaixo e "sem variância" quando os dois lados são
+  constantes (`t_welch: null`).
+- **Comentários por curtida** em cada janela e em cada post de `puxaram`: Σ comentários ÷
+  Σ curtidas, como sinal de funil comentário → DM.
+- **Fatias por janela**: `cta_fatia` (regex de CTA em pt-BR), `produto_fatia`
+  (vocabulário de produto de café) e `colab_fatia` (`@menção`, sem contar e-mail).
+- **Assinaturas** no lugar de `palavras_novas`/`hashtags_novas`: `palavras`, `hashtags` e
+  `tipos`, cada uma com `surgiram` (≤ 15% → ≥ 40% dos posts), `sumiram` (o espelho) e
+  `mantidos` (≥ 40% nos dois), e cada termo com a fração antes e depois.
+
+Ficam de fora: o outlier score e os créditos do Sandcastles, `lego_bricks` e
+`signature_diff` como scripts (pedem rótulos manuais), palavras-chave fixas em inglês,
+"vanity virality" (views de concorrente vem `null`) e o corte único por t máximo, que
+substituiria a detecção de vários eventos.
