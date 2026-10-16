@@ -43,8 +43,8 @@ O que usar no lugar: **tempo médio assistido**, o sinal de ranking mais importa
 declarado pela própria plataforma **[oficial]**. É o que a frase da neuroquímica tenta
 descrever, com duas vantagens — é mensurável, e a plataforma disse que conta.
 
-> Regra de redação desta base: esta palavra não aparece em nenhum outro dos oito
-> arquivos. Se aparecer, é erro a corrigir, não citação a manter.
+> Regra de redação desta base: esta palavra não aparece em nenhum outro arquivo desta
+> pasta. Se aparecer, é erro a corrigir, não citação a manter.
 
 ### 1.2 "O cérebro processa imagem 60.000× mais rápido que texto" **[folclore]**
 
