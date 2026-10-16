@@ -4,7 +4,19 @@
     "acao-em-curso": {
       "nome": "Ação já em curso",
       "forma": "abre no meio do trabalho, com a matéria mudando na frente da câmera",
-      "descricao": "Sem preparação: a mão já está despejando, colhendo, torrando. O frame 1 responde 'do que se trata' sozinho, e a mudança da matéria segura o olho."
+      "descricao": "Sem preparação: a mão já está despejando, colhendo, torrando. O frame 1 responde 'do que se trata' sozinho, e a mudança da matéria segura o olho.",
+      "formulas": [
+        {
+          "id": "DbQPPv2PPVk",
+          "original": "(sem texto: plano de baixo, dentro do pé de café, o apanhador colhendo)",
+          "formula": "Frame 1 = [mão ou ferramenta] já [fazendo a tarefa] em [matéria que muda de estado]. Tela, se houver: [o nome da tarefa, em até 4 palavras]."
+        },
+        {
+          "id": "DFe7K8yM7rZ",
+          "original": "(sem texto: tremonha de cerejas vermelhas soltando grãos brancos)",
+          "formula": "Frame 1 = [a matéria entrando] e, no mesmo plano, [a matéria saindo transformada]. Sem fala no primeiro segundo."
+        }
+      ]
     },
     "objeto-impossivel": {
       "nome": "Um objeto fora do lugar",
@@ -14,32 +26,129 @@
     "situacao-reconhecivel": {
       "nome": "Situação que a pessoa reconhece",
       "forma": "'quando você…' / cena de vida real que o público já viveu",
-      "descricao": "Humor ou ternura de situação. Segura por identificação. Para marca só transfere quando a graça nasce do próprio café (07-nao-fazer §2.1)."
+      "descricao": "Humor ou ternura de situação. Segura por identificação. Para marca só transfere quando a graça nasce do próprio café (07-nao-fazer §2.1).",
+      "formulas": [
+        {
+          "id": "C8XugrWh_-n",
+          "original": "Hoje é dia de panhar café na pirambeira!",
+          "formula": "Hoje é dia de [tarefa dura e conhecida] [no lugar difícil, com a palavra local]."
+        },
+        {
+          "id": "Dc_LmZjR4rN",
+          "original": "Eu quando passo o dia sem encostar no café",
+          "formula": "Eu quando [situação de rotina que todo mundo já viveu com café]."
+        },
+        {
+          "id": "DcbH1Lhtiy0",
+          "original": "Oh, pumpkin spice latte?",
+          "formula": "[O nome da bebida/do hábito], [repetido com o tom de quem acha graça dele]?"
+        }
+      ]
     },
     "quem-faz-mostra": {
       "nome": "Quem faz, mostrando",
       "forma": "'Essa aqui é a…' / 'Hoje eu vou…' dito por quem trabalha naquilo",
-      "descricao": "Autoridade de ofício: a pessoa que faz apresenta a coisa no lugar onde ela acontece. A frase é simples; o crédito vem de quem fala e de onde."
+      "descricao": "Autoridade de ofício: a pessoa que faz apresenta a coisa no lugar onde ela acontece. A frase é simples; o crédito vem de quem fala e de onde.",
+      "formulas": [
+        {
+          "id": "DYVG9iFxLp6",
+          "original": "Essa aqui é a via úmida do café.",
+          "formula": "Essa aqui é [a etapa/o lugar], [dito por quem trabalha nela, com o termo traduzido em seguida]."
+        },
+        {
+          "id": "Dbtvw4eB5Cz",
+          "original": "Hoje eu vou tirar o boia desse café, galera.",
+          "formula": "Hoje [eu/a gente] vai [tarefa concreta, com a palavra da roça] [desse/nesse] [objeto na tela]."
+        },
+        {
+          "id": "CqGC2e7g5nf",
+          "original": "As duas informações mais importantes que eu trago aqui sempre são…",
+          "formula": "As [número contado] [coisas] que [eu/a gente] [olha/confere] sempre [no lugar de escolha] são…"
+        }
+      ]
     },
     "veredito-direto": {
       "nome": "Veredito que contraria",
       "forma": "uma afirmação curta que contraria o que a pessoa acha (com a prova à vista)",
-      "descricao": "'Não é CHAFÉ!', 'Coffee is 98.5% water', 'Ambos são o mesmo café'. Contraste na própria frase; quase sempre há um objeto na tela que a sustenta."
+      "descricao": "'Não é CHAFÉ!', 'Coffee is 98.5% water', 'Ambos são o mesmo café'. Contraste na própria frase; quase sempre há um objeto na tela que a sustenta.",
+      "formulas": [
+        {
+          "id": "DFFc826SxPF",
+          "original": "Ambos são o mesmo café.",
+          "formula": "[Os dois / Esses dois] [objetos que parecem diferentes, na tela] são o mesmo [coisa]."
+        },
+        {
+          "id": "DVobHGpAW2Y",
+          "original": "Não é CHAFÉ! Esses dois cafés foram produzidos aqui na roça.",
+          "formula": "Não é [o rótulo que a pessoa usa para julgar]. [Prova de origem, de quem fala, no lugar]."
+        },
+        {
+          "id": "DbgXMlIhWpw",
+          "original": "Coffee is 98.5% water.",
+          "formula": "[Coisa conhecida] é [número medido que surpreende] [unidade]."
+        }
+      ]
     },
     "resultado-antes": {
       "nome": "Resultado antes do processo",
       "forma": "mostra o fim primeiro (o produto pronto, o antes e depois) e depois volta",
-      "descricao": "Paga o olho no primeiro segundo e cria a pergunta 'como chegou nisso?'. É a estrutura 'resposta primeiro' em imagem."
+      "descricao": "Paga o olho no primeiro segundo e cria a pergunta 'como chegou nisso?'. É a estrutura 'resposta primeiro' em imagem.",
+      "formulas": [
+        {
+          "id": "DVqyHk-kefA",
+          "original": "3 Most Interesting Coffee Brewers",
+          "formula": "[Número contado] [coisas] mais [adjetivo verificável] [da categoria], com o resultado de cada uma já na tela."
+        },
+        {
+          "id": "DaTMYyYB1BJ",
+          "original": "The humble mocha is one of my favorite coffee drinks",
+          "formula": "[O produto pronto, na mão] é [o que ele é para quem fala]. Depois volta para como chegou nisso."
+        },
+        {
+          "id": "DMdH8NPgpSF",
+          "original": "Eu fiz esse projeto usando só Photoshop e After Effects",
+          "formula": "[A gente] fez [isso, mostrado pronto] usando só [o recurso simples]."
+        }
+      ]
     },
     "pergunta-diagnostico": {
       "nome": "Pergunta que a pessoa já se fez",
       "forma": "uma pergunta concreta, de uso, que a pessoa já tentou responder sozinha",
-      "descricao": "'Como separar o café de qualidade do inferior', 'Quanto eu ganhei em uma semana'. Não é pergunta retórica: a resposta existe e vem no vídeo."
+      "descricao": "'Como separar o café de qualidade do inferior', 'Quanto eu ganhei em uma semana'. Não é pergunta retórica: a resposta existe e vem no vídeo.",
+      "formulas": [
+        {
+          "id": "DZOC2OdJSgo",
+          "original": "Como separar o café de qualidade do café inferior?",
+          "formula": "Como separar [a coisa boa] [da coisa ruim] [no lugar onde a pessoa escolhe]?"
+        },
+        {
+          "id": "DYZx1JxOX45",
+          "original": "Quanto eu ganhei em uma semana trabalhando na apanha de café",
+          "formula": "Quanto [eu/a gente] [ganhei/gastei/levei] em [período] [fazendo a tarefa real]."
+        },
+        {
+          "id": "DcgT31-Bo5x",
+          "original": "What would happen if you brewed your coffee with milk instead of water?",
+          "formula": "O que acontece se você [fizer o gesto de sempre] com [um ingrediente trocado]?"
+        }
+      ]
     },
     "conflito-resposta": {
       "nome": "Resposta a um ataque ou prejuízo",
       "forma": "responder a comentário / contar o que esteve em jogo, com o valor",
-      "descricao": "Stakes reais e pessoais (um comentário ofensivo, um contrato de R$ 8.000). Funciona para criador; para marca, só risco real da lavoura (03-roteiro §4, guarda de tom)."
+      "descricao": "Stakes reais e pessoais (um comentário ofensivo, um contrato de R$ 8.000). Funciona para criador; para marca, só risco real da lavoura (03-roteiro §4, guarda de tom).",
+      "formulas": [
+        {
+          "id": "DdnPgzptYs2",
+          "original": "Eu vou responder ao comentário…",
+          "formula": "[A gente] vai responder [o comentário real, na tela]."
+        },
+        {
+          "id": "DKFHg5fuun9",
+          "original": "Quase tomei um prejuízo de R$ …",
+          "formula": "Quase [perdemos/estragamos] [valor ou lote medido] [por causa do risco real]."
+        }
+      ]
     },
     "marca-clima": {
       "nome": "Clima de marca, sem gancho",

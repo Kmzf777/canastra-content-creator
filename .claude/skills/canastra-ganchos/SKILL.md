@@ -6,15 +6,15 @@ description: Use when writing, choosing, scoring or approving a Café Canastra h
 # Ganchos: gerar e dar nota com base em dado
 
 Esta skill decide **a primeira coisa que a pessoa vê**: a manchete da capa do carrossel ou a
-1ª frase, a tela e o frame do Reel. A nota sai de uma rubrica de 17 regras tirada de 128
-ganchos virais reais, e não do gosto de quem escreve.
+1ª frase, a tela e o frame do Reel. A nota sai de uma rubrica de 18 regras e 1 bônus, tirada de
+128 ganchos virais reais, e não do gosto de quem escreve.
 
 | Arquivo | Para quê |
 |---|---|
-| [rubrica.md](rubrica.md) | **as 17 regras**, peso, como verificar e de onde veio cada uma |
+| [rubrica.md](rubrica.md) | **as 18 regras e o bônus**, peso, como verificar e de onde veio cada uma |
 | [vicios-ia.md](vicios-ia.md) | o léxico que denuncia texto de IA, com a incidência medida nos virais |
-| `instagram/ganchos/padroes.md` | os 9 padrões do corpus, com n, mediana de views e exemplos literais |
-| `scripts/ganchos.py` | `checar` (rubrica), `extrair`, `padroes`, `recalibrar` |
+| `instagram/ganchos/padroes.md` | os 9 padrões do corpus: n, perfis, mediana de views com e sem suspeitos de impulsionamento, e as **fórmulas de lacuna** de cada padrão |
+| `scripts/ganchos.py` | `checar` (rubrica), `ranking`, `contrastar`, `extrair`, `padroes`, `recalibrar` |
 
 ## Rotear primeiro
 
@@ -42,11 +42,20 @@ lista de desejos (`02-ganchos.md`, "Como usar este banco").
    anel 4, escreva para ela, não empurre um gancho de anel 1.
 1. **Junte os fatos citáveis** do tema, cada um com a fonte (arquivo, tabela, medição). Fato
    sem fonte não entra em gancho nenhum (P1).
-2. **Escreva 8 a 10 candidatos de padrões diferentes.** Use os 7 padrões que transferem
-   (J6): `veredito-direto`, `pergunta-diagnostico`, `resultado-antes`, `quem-faz-mostra`,
-   `acao-em-curso`, `situacao-reconhecivel`, `conflito-resposta`. Dez variações da mesma frase
-   não é gerar, é parafrasear. Para cada um, descreva em uma linha **a foto da capa** (ou o
-   frame 1), porque C1 e R1 julgam o par.
+2. **Escreva 8 a 10 candidatos de padrões diferentes**, partindo das **fórmulas de lacuna** de
+   `padroes.md` (cada uma saiu de um vencedor) e também de frases escritas do zero. Dez
+   variações da mesma frase não é gerar, é parafrasear. Antes de preencher uma fórmula, passe
+   pelo **filtro de compatibilidade**. Qualquer "não" corta a fórmula para este tema:
+   - **Estrutura:** a fórmula aceita este tema? Se ela pede número e o tema não tem número
+     medido, preencher seria inventar (P1). Corte.
+   - **Tom:** a energia da fórmula combina com o tema? Alarme num tema de ritual não combina,
+     e drama fabricado reprova em J5.
+   - **Voz alta:** lida em voz alta, com as palavras do tema nas lacunas, soa como alguém da
+     casa falando? Se tropeça, pede releitura ou só funciona escrita, corte. **Este é o filtro
+     que mais importa.**
+
+   Se só 3 fórmulas passarem, use 3. Não encha com encaixe ruim. Para cada candidato,
+   descreva em uma linha **a foto da capa** (ou o frame 1), porque C1 e R1 julgam o par.
 3. **Rode `checar` em todos**, antes de julgar:
 
    ```bash
@@ -55,28 +64,45 @@ lista de desejos (`02-ganchos.md`, "Como usar este banco").
    ```
 
    Corte quem reprovou em portão. Quem falhou em M3 (vício de IA), reescreva, não defenda.
-4. **Julgue as regras `claude`** (P4, J1–J6, C1–C2 ou R1), com **uma linha de motivo por
-   regra**. J1 exige escrever a pergunta exata que a pessoa faz depois de ler. P4 exige
+4. **Julgue as regras `claude`** (P4, J1–J7, C1–C2 ou R1, e o bônus B1), com **uma linha de
+   motivo por regra**. J1 exige escrever a pergunta exata que a pessoa faz depois de ler. J7
+   exige ler em voz alta, como quem não conhece a marca: se a 1ª frase deixa dúvida do que se
+   trata, ou tem jargão sem tradução (o `checar` marca como sinal amarelo V16), falha. P4 exige
    apontar o slide que paga a promessa.
 5. **Calcule a nota pelo script**, passando os julgamentos, e registre os finalistas:
 
    ```bash
    python scripts/ganchos.py checar --formato capa --manchete "..." --fonte "..." \
-     --julgamento P4=1,J1=1,J2=1,J3=0,J4=1,J5=1,J6=1,C1=1,C2=1 --registrar --tema "<tema>"
+     --julgamento P4=1,J1=1,J2=1,J3=0,J4=1,J5=1,J6=1,J7=1,C1=1,C2=1,B1=0 --registrar --tema "<tema>"
    ```
 
-   A nota é a do script, nunca uma estimada de cabeça.
-6. **Entregue os 3 melhores** no formato da resposta abaixo.
+   A nota é a do script, nunca uma estimada de cabeça. Se houver prova na 2ª camada (apoio ou
+   tela com número medido, fonte, arquivo), julgue também `B1=1`: é bônus, soma até 5 e nunca
+   tira.
+6. **Nota mínima: 70** (`NOTA_MINIMA`). Gancho gerado abaixo disso **não é mostrado**: reescreva
+   atacando a regra de maior peso que falhou e rode de novo. O `checar` avisa quando a nota fica
+   abaixo do mínimo.
+7. **Entregue os 3 melhores** no formato da resposta abaixo. `python scripts/ganchos.py ranking
+   --tema "<tema>"` lista todos os registrados do tema, da maior nota para a menor.
 
 ## Modo 2: dar nota a um gancho do Rafael e propor alternativas
 
-1. `checar` + julgamento: a nota decomposta regra por regra.
-2. Nomeie **as 2 regras de maior peso que falharam**: é ali que está o ganho.
-3. Escreva **3 alternativas**, cada uma consertando uma das regras falhas sem quebrar as que
-   passavam. Rode as três no `checar` com julgamento e registre.
-4. Mostre só alternativas com nota **maior** que a original. Se nenhuma superar, diga isso e
+1. `checar` + julgamento, **registrando com o mesmo `--tema`** dos gerados: a nota decomposta
+   regra por regra, sem inflar. O valor está na nota honesta, não em agradar.
+2. **Ranqueie junto:** `python scripts/ganchos.py ranking --tema "<tema>"` mostra em que posição o
+   gancho dele cai entre os gerados. Mostre essa posição.
+3. Nomeie **as 2 regras de maior peso que falharam**: é ali que está o ganho.
+4. Escreva **3 alternativas com abordagens diferentes**, não três variações do mesmo conserto:
+   - uma que **muda a estrutura** (outro padrão ou outra fórmula);
+   - uma que **reformula a promessa** (o que a pessoa ganha);
+   - uma que **acrescenta prova ou especificidade** (número medido, a fonte, o objeto, que
+     costuma render o bônus B1).
+
+   Rode as três no `checar` com julgamento e registre no mesmo tema. Cada uma vem com uma
+   linha de "por que é mais forte".
+5. Mostre só alternativas com nota **maior** que a original. Se nenhuma superar, diga isso e
    explique por que o original já está bom. Não force troca.
-5. Preserve a voz dele: mude a mecânica, não o vocabulário que ele escolheu.
+6. Preserve a voz dele: mude a mecânica, não o vocabulário que ele escolheu.
 
 ## Formato da resposta
 
@@ -113,6 +139,21 @@ reticências. *Perfeito* e *experiência* o cliente manteve. O resumo medido:
   ela é genérica. Troque o substantivo pelo objeto que só a Canastra tem (o GPS de 2017,
   `Desde 1985`, a tabela de 11/09, a lasquinha no pó).
 
+## Contraste vencedores × perdedores
+
+O corpus da rubrica só tem vencedores. Para ver o que separa um post bom de um ruim **dentro de um
+mesmo perfil**:
+
+```bash
+python scripts/ganchos.py contrastar            # grava instagram/ganchos/contraste-AAAA-MM-DD.md
+```
+
+- **Entrada:** `instagram/metricas/concorrentes/*.jsonl` e `proprios.jsonl`, do fluxo 1.
+- **Corte:** a grade inteira de cada perfil é cortada pela **mediana do próprio perfil**, não
+  pela média, e cada perfil é lido sozinho antes do cruzamento.
+- **Limite:** para concorrente, o gancho é a 1ª linha da legenda, porque a API não dá o texto da
+  capa. É hipótese para levar ao Rafael, não peso novo.
+
 ## Recalibração com resultado real
 
 Quando o fluxo 1 gravar `instagram/metricas/proprios.jsonl` com o campo `gancho` preenchido
@@ -138,6 +179,10 @@ aprende com ele.
 - O corpus é **só de vencedores** e **só de Reel**. Ele mostra o que os virais têm em comum,
   não o que separa viral de fracasso. As regras de capa (C1, C2) são transferência do Reel
   *(leitura minha)* até a recalibração medir carrossel.
-- Views lidas da grade podem incluir mídia paga.
+- Views lidas da grade podem incluir mídia paga. `padroes.md` **sinaliza** os suspeitos (ficha
+  `provavel-pago`, ou curtidas/views abaixo de 1/3 da mediana do corpus) e mostra a mediana com
+  e sem eles. Não exclui ninguém.
+- J6 não premia padrão de um criador só: padrão em que um perfil tem metade ou mais dos casos
+  não conta.
 - As regras `claude` são julgamento. Duas sessões podem discordar em J2 ou J3; a linha de
   motivo existe para a discordância ser discutível.

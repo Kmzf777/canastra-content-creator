@@ -228,8 +228,25 @@ def medir(corpus: list[dict], vicios: list[dict]) -> dict:
 #: Frentes de café; as de motion vendem outras categorias e entram só no total.
 FRENTES_CAFE = {"processo", "brasil", "marcas", "influenciadores"}
 
+#: Suspeita de impulsionamento: curtidas/views abaixo de 1/3 da mediana do próprio corpus.
+#: Relativo, não o corte fixo de 2% do Hook Machine: a razão muda com o nicho e o formato.
+#: O fator é [leitura minha]. O suspeito é SINALIZADO, nunca excluído.
+FATOR_SUSPEITA = 1 / 3
 
-def tabela_padroes(corpus: list[dict], mapa: dict) -> list[dict]:
+
+def suspeitos(corpus: list[dict]) -> set[str]:
+    """Ids com cara de alcance comprado: ficha marcada `provavel-pago`, ou curtidas/views muito
+    abaixo da mediana do corpus. Sem views lidas não há como julgar a razão."""
+    razoes = {x["id"]: x["curtidas"] / x["views"] for x in corpus if x.get("views") and x.get("curtidas") is not None}
+    if not razoes:
+        return {x["id"] for x in corpus if x.get("organico") == "provavel-pago"}
+    corte = statistics.median(razoes.values()) * FATOR_SUSPEITA
+    return ({i for i, r in razoes.items() if r < corte}
+            | {x["id"] for x in corpus if x.get("organico") == "provavel-pago"})
+
+
+def tabela_padroes(corpus: list[dict], mapa: dict, suspeitos: set[str] | None = None) -> list[dict]:
+    susp = suspeitos or set()
     grupos: dict[str, list[dict]] = {}
     for x in corpus:
         slug = mapa["mapa"].get(x["id"])
@@ -238,13 +255,23 @@ def tabela_padroes(corpus: list[dict], mapa: dict) -> list[dict]:
     out = []
     for slug, itens in grupos.items():
         views = [x["views"] for x in itens if x.get("views")]
+        limpos = [x["views"] for x in itens if x.get("views") and x["id"] not in susp]
         cafe = [x for x in itens if x["frente"] in FRENTES_CAFE]
         views_cafe = [x["views"] for x in cafe if x.get("views")]
+        perfis: dict[str, int] = {}
+        for x in itens:
+            perfis[x["perfil"]] = perfis.get(x["perfil"], 0) + 1
+        dominante = max(perfis, key=lambda k: (perfis[k], k))
         out.append({
-            "slug": slug, **mapa["padroes"][slug], "n": len(itens),
+            "slug": slug, **{k: v for k, v in mapa["padroes"][slug].items() if k != "formulas"},
+            "formulas": mapa["padroes"][slug].get("formulas", []),
+            "n": len(itens),
             "n_pt": sum(x["idioma"] == "pt" for x in itens),
             "n_cafe": len(cafe),
+            "n_perfis": len(perfis), "perfil_dominante": dominante, "fatia_dominante": perfis[dominante] / len(itens),
+            "n_suspeitos": sum(x["id"] in susp for x in itens),
             "mediana_views": statistics.median(views) if views else None,
+            "mediana_views_sem_suspeitos": statistics.median(limpos) if limpos else None,
             "mediana_views_cafe": statistics.median(views_cafe) if views_cafe else None,
             "exemplos": sorted(itens, key=lambda x: -(x.get("views") or 0))[:3],
         })
@@ -258,6 +285,9 @@ def _fmt_views(v) -> str:
 
 
 def escrever_padroes_md(corpus: list[dict], mapa: dict, medidas: dict, destino: Path) -> None:
+    susp = suspeitos(corpus)
+    por_id = {x["id"]: x for x in corpus}
+    tabela = tabela_padroes(corpus, mapa, susp)
     linhas = [
         "# Padrões de gancho",
         "",
@@ -266,20 +296,55 @@ def escrever_padroes_md(corpus: list[dict], mapa: dict, medidas: dict, destino: 
         "",
         f"Corpus: {len(corpus)} ganchos das fichas de `instagram/referencias-virais/` — **só Reel e só "
         "vencedores**. Os números dizem o que os virais têm em comum, não o que separa viral de "
-        "fracasso. Views lidas da grade podem incluir mídia paga (campo `organico` da ficha). O "
-        "agrupamento é julgamento **[leitura minha]**; as contagens sobre ele são **[medido]**.",
+        "fracasso (para isso, `python scripts/ganchos.py contrastar`). Views lidas da grade podem "
+        "incluir mídia paga. O agrupamento é julgamento **[leitura minha]**; as contagens sobre ele "
+        "são **[medido]**.",
         "",
         "## Padrões",
         "",
-        "| Padrão | Forma | n | n café | n pt | Mediana de views (todos · café) | Exemplos, maior view primeiro |",
-        "|---|---|---:|---:|---:|---|---|",
+        "`perfis` = quantos criadores diferentes usam o padrão; `dominante` = o criador com mais casos "
+        "e a fatia dele. Padrão em que um perfil sozinho tem metade ou mais dos casos é estilo de um "
+        "criador, não padrão, e não conta em J6. A mediana \"sem susp.\" tira os suspeitos de "
+        "impulsionamento (seção abaixo); os dois números ficam lado a lado.",
+        "",
+        "| Padrão | Forma | n | perfis | dominante | n café | Mediana de views (todos · sem susp. · café) | Exemplos, maior view primeiro |",
+        "|---|---|---:|---:|---|---:|---|---|",
     ]
-    for p in tabela_padroes(corpus, mapa):
+    for p in tabela:
         ex = "<br>".join(
-            f"{x['perfil']} {_fmt_views(x.get('views'))}: “{(_abertura(x) or '(sem texto) ' + x['ve'])[:90]}”"
+            f"{x['perfil']} {_fmt_views(x.get('views'))}{' ⚑' if x['id'] in susp else ''}: "
+            f"“{(_abertura(x) or '(sem texto) ' + x['ve'])[:90]}”"
             for x in p["exemplos"])
-        linhas.append(f"| **{p['nome']}** (`{p['slug']}`) | {p['forma']} | {p['n']} | {p['n_cafe']} | {p['n_pt']} | "
-                      f"{_fmt_views(p['mediana_views'])} · {_fmt_views(p['mediana_views_cafe'])} | {ex} |")
+        dom = f"{p['perfil_dominante']} {p['fatia_dominante']:.0%}".replace(".", ",")
+        linhas.append(f"| **{p['nome']}** (`{p['slug']}`) | {p['forma']} | {p['n']} | {p['n_perfis']} | {dom} | "
+                      f"{p['n_cafe']} | {_fmt_views(p['mediana_views'])} · {_fmt_views(p['mediana_views_sem_suspeitos'])} · "
+                      f"{_fmt_views(p['mediana_views_cafe'])} | {ex} |")
+    linhas += ["", "⚑ = suspeito de impulsionamento.", "",
+               "## Fórmulas de lacuna (mad-lib), por padrão", "",
+               "Cada fórmula sai de um vencedor do próprio padrão: o original, as views e a fórmula com as "
+               "lacunas entre colchetes. Use no Modo 1 da skill, **depois** do filtro de compatibilidade "
+               "(estrutura, tom, lido em voz alta). Lacuna de número só se preenche com número medido (P1).", ""]
+    for p in tabela:
+        if not p["formulas"]:
+            continue
+        linhas += [f"### {p['nome']} (`{p['slug']}`)", ""]
+        for f in p["formulas"]:
+            x = por_id[f["id"]]
+            linhas += [f"- **{x['perfil']}**, {_fmt_views(x.get('views'))}{' ⚑' if x['id'] in susp else ''}",
+                       f"  Original: “{f.get('original') or _abertura(x)}”",
+                       f"  Fórmula: {f['formula']}", ""]
+    razoes = [x["curtidas"] / x["views"] for x in corpus if x.get("views") and x.get("curtidas") is not None]
+    med = statistics.median(razoes) if razoes else 0
+    linhas += ["## Suspeitos de impulsionamento (sinalizados, não excluídos)", "",
+               f"Critério: ficha marcada `provavel-pago`, ou curtidas/views abaixo de "
+               f"{FATOR_SUSPEITA:.2f} × a mediana do corpus ({med:.2%} → corte em {med * FATOR_SUSPEITA:.2%}). "
+               "O fator é **[leitura minha]**; o Hook Machine usa 2% fixo, que aqui não serve porque a razão "
+               "varia com nicho e formato. Fichas sem views lidas não entram na conta da razão.", "",
+               "| Perfil | Views | Curtidas/views | `organico` na ficha | Padrão |", "|---|---:|---:|---|---|"]
+    for x in sorted((por_id[i] for i in susp), key=lambda x: -(x.get("views") or 0)):
+        r = f"{x['curtidas'] / x['views']:.2%}" if x.get("views") and x.get("curtidas") is not None else "—"
+        linhas.append(f"| {x['perfil']} | {_fmt_views(x.get('views'))} | {r} | {x.get('organico')} | "
+                      f"`{mapa['mapa'].get(x['id'], '?')}` |")
     linhas += ["", "## Medidas do corpus **[medido]**", "",
                "Abertura = 1ª tela citada entre aspas + 1ª frase falada. Texto sem aspas na ficha é "
                "descrição e não conta.", "",
@@ -300,9 +365,11 @@ def escrever_padroes_md(corpus: list[dict], mapa: dict, medidas: dict, destino: 
 
 # --- rubrica ----------------------------------------------------------------
 
-TIPOS = ("portao", "pontuada")
+TIPOS = ("portao", "pontuada", "bonus")
 QUEM = ("script", "claude")
 FORMATOS = ("capa", "reel")
+#: Gancho GERADO abaixo disto não é mostrado: reescreve antes (Modo 1, passo 5 da skill).
+NOTA_MINIMA = 70
 
 
 @dataclass(frozen=True)
@@ -320,7 +387,7 @@ class Regra:
 def ler_rubrica(caminho: Path = RUBRICA) -> list[Regra]:
     # len >= 8 separa a tabela de regras da tabela de exemplos (3 colunas, mesmos ids)
     return [Regra(c[0], c[1], c[2], c[3], c[4], int(c[5] or 0), c[6], c[7])
-            for c in _linhas_tabela(caminho, r"[PMJCR]\d+") if len(c) >= 8]
+            for c in _linhas_tabela(caminho, r"[PMJCRB]\d+") if len(c) >= 8]
 
 
 def regras_do_formato(regras: list[Regra], formato: str) -> list[Regra]:
@@ -337,6 +404,8 @@ def validar_rubrica(regras: list[Regra]) -> list[str]:
             erros.append(f"{r.id}: tipo/quem/formato fora do vocabulário")
         if r.tipo == "portao" and r.peso:
             erros.append(f"{r.id}: portão não tem peso")
+        if r.tipo == "bonus" and not r.peso:
+            erros.append(f"{r.id}: bônus sem peso")
         if r.quem == "script" and r.id not in MECANICAS:
             erros.append(f"{r.id}: quem=script mas não há função em MECANICAS")
     for f in FORMATOS:
@@ -442,9 +511,15 @@ def _m3(gc: Gancho):
     """Vícios de IA e palavras recusadas pela voz (vicios-ia.md). `onde = tela` vale só para o
     que se lê: manchete e apoio da capa, tela do Reel (10-voz.md §7)."""
     tela = gc.textos() if gc.formato == "capa" else gc.tela
-    achados = [v["id"] for v in ler_vicios() if v["proibe"] == "sim"
-               and v["regex"].search(tela if v["onde"] == "tela" else gc.textos())]
-    return (False, "vício: " + ", ".join(achados)) if achados else (True, "")
+    casou = [v for v in ler_vicios() if v["regex"].search(tela if v["onde"] == "tela" else gc.textos())]
+    falhas = [v["id"] for v in casou if v["proibe"] == "sim"]
+    amarelos = [f"{v['id']} {v['nome']}" for v in casou if v["proibe"] == "medir"]
+    det = []
+    if falhas:
+        det.append("vício: " + ", ".join(falhas))
+    if amarelos:
+        det.append("sinal amarelo: " + ", ".join(amarelos) + " (julgue em J1/J7)")
+    return not falhas, "; ".join(det)
 
 
 def _m4(gc: Gancho):
@@ -462,20 +537,23 @@ def avaliar(gc: Gancho, regras: list[Regra], julgamento: dict[str, bool]) -> dic
             ok, det = MECANICAS[r.id](gc)
         else:
             ok, det = julgamento.get(r.id), ""
+            if r.tipo == "bonus" and ok is None:
+                ok = False                      # bônus ausente não pende: só não soma
         res[r.id] = {"ok": ok, "detalhe": det, "peso": r.peso, "tipo": r.tipo, "quem": r.quem, "nome": r.nome}
     falhos = [i for i, v in res.items() if v["tipo"] == "portao" and v["ok"] is False]
     pendentes = [i for i, v in res.items() if v["ok"] is None]
     subtotal = sum(v["peso"] for v in res.values() if v["tipo"] == "pontuada" and v["ok"])
-    nota = 0 if falhos else (subtotal if not pendentes else None)
+    bonus = sum(v["peso"] for v in res.values() if v["tipo"] == "bonus" and v["ok"])
+    nota = 0 if falhos else (min(100, subtotal + bonus) if not pendentes else None)
     return {"gancho": asdict(gc), "resultados": res, "portoes_falhos": falhos,
-            "pendentes": pendentes, "subtotal": subtotal, "nota": nota}
+            "pendentes": pendentes, "subtotal": subtotal, "bonus": bonus, "nota": nota}
 
 
 def registrar(r: dict, tema: str, destino: Path = SAIDA / "avaliacoes.jsonl",
               escolhido: bool = False, post: str | None = None) -> None:
     linha = {"data": date.today().isoformat(), "tema": tema, "gancho": r["gancho"], "nota": r["nota"],
              "subtotal": r["subtotal"], "resultados": {i: v["ok"] for i, v in r["resultados"].items()},
-             "portoes_falhos": r["portoes_falhos"], "pendentes": r["pendentes"],
+             "bonus": r.get("bonus", 0), "portoes_falhos": r["portoes_falhos"], "pendentes": r["pendentes"],
              "escolhido": escolhido, "post": post}
     destino.parent.mkdir(parents=True, exist_ok=True)
     with destino.open("a", encoding="utf-8") as f:
@@ -619,12 +697,143 @@ def recalibrar_cli(proprios: Path) -> int:
     return 0
 
 
+# --- contraste vencedores × perdedores, por perfil (dados do fluxo 1) ---------
+
+CONCORRENTES = RAIZ / "instagram" / "metricas" / "concorrentes"
+N_MIN_PERFIL = 8
+#: As medidas que comparam vencedor com perdedor dentro de um perfil.
+TRACOS = {"pct_pergunta": "pergunta", "pct_numero": "número", "pct_voce": "você",
+          "pct_negacao_inicial": "negação no início"}
+
+
+def _primeira_linha(s: str | None) -> str:
+    for linha in (s or "").splitlines():
+        if linha.strip():
+            return linha.strip()
+    return ""
+
+
+def _perfil(handle: str, posts: list[dict], vicios: list[dict], n_min: int) -> tuple[dict, str]:
+    """Um perfil, a grade inteira: corte pela MEDIANA do próprio perfil, não pela média
+    (um viral de 1 milhão puxa a média e transforma todo o resto em perdedor)."""
+    com_gancho = sum(1 for p in posts if p.get("gancho"))
+    origem = "gancho de tela (ganchos.json)" if com_gancho * 2 >= max(len(posts), 1) else "1ª linha da legenda"
+    com_views = [p for p in posts if p.get("views") is not None]
+    metrica_nome = "views" if len(com_views) >= n_min and len(com_views) * 5 >= len(posts) * 4 else "curtidas"
+    itens = []
+    for p in posts:
+        v = p.get(metrica_nome)
+        if v is None:
+            continue
+        texto = p.get("gancho") or _primeira_linha(p.get("legenda"))
+        itens.append({"id": p.get("id"), "url": p.get("url"), "valor": v, "escrito": texto, "dito": ""})
+    if len(itens) < n_min:
+        return {"status": "poucos posts", "n": len(itens), "n_min": n_min, "metrica": metrica_nome}, origem
+    corte = statistics.median(x["valor"] for x in itens)
+    venc = [x for x in itens if x["valor"] > corte]
+    perd = [x for x in itens if x["valor"] <= corte]
+    return {"status": "ok", "n": len(itens), "metrica": metrica_nome, "corte": corte,
+            "vencedores": _bloco(venc, vicios), "perdedores": _bloco(perd, vicios),
+            "top": sorted(venc, key=lambda x: -x["valor"])[:5]}, origem
+
+
+def contrastar(pasta: Path = CONCORRENTES, proprios: Path | None = None, desde: str | None = None,
+               n_min: int = N_MIN_PERFIL) -> dict:
+    """Vencedores × perdedores em cada perfil e, depois, o que se repete em 2+ perfis.
+
+    Lê `instagram/metricas/concorrentes/<handle>.jsonl` e, se existir, `proprios.jsonl`, os dois do
+    fluxo 1 (última linha por id). LIMITE: a API não sabe qual foi o texto de tela dos concorrentes,
+    então o gancho deles é a 1ª linha da legenda, que nem sempre é o que aparece na capa ou no
+    vídeo. Só nos posts próprios o `gancho` vem de instagram/metricas/ganchos.json."""
+    vicios = ler_vicios()
+    fontes = {arq.stem.lstrip("@"): carregar_jsonl(arq) for arq in sorted(Path(pasta).glob("*.jsonl"))}
+    if proprios and Path(proprios).exists():
+        fontes["cafecanastra"] = carregar_jsonl(Path(proprios))
+    perfis, origem = {}, {}
+    for handle, linhas in fontes.items():
+        posts = ultimas_por_id(linhas)
+        if desde:
+            posts = [p for p in posts if (p.get("data_publicacao") or "") >= desde]
+        perfis[handle], origem[handle] = _perfil(handle, posts, vicios, n_min)
+    cruzado = []
+    ok = {h: p for h, p in perfis.items() if p["status"] == "ok"}
+    for chave, nome in TRACOS.items():
+        mais = [h for h, p in ok.items() if p["vencedores"][chave] > p["perdedores"][chave]]
+        menos = [h for h, p in ok.items() if p["vencedores"][chave] < p["perdedores"][chave]]
+        cruzado.append({"traco": nome, "vencedor_tem_mais": mais, "vencedor_tem_menos": menos,
+                        "compartilhado": len(mais) >= 2 or len(menos) >= 2})
+    return {"perfis": perfis, "gancho_de": origem, "cruzado": cruzado}
+
+
+def escrever_contraste(r: dict, destino: Path) -> None:
+    linhas = [f"# Contraste vencedores × perdedores — {date.today().isoformat()}", "",
+              "Gerado por `python scripts/ganchos.py contrastar`. Em cada perfil, a grade inteira é cortada "
+              "pela **mediana do próprio perfil** (não pela média): acima é vencedor, o resto é perdedor. "
+              "Cada perfil é analisado sozinho antes de qualquer comparação entre eles.", "",
+              "**Limite:** para concorrente, o gancho é a **1ª linha da legenda**, porque a API não entrega "
+              "o texto da capa nem o do vídeo. Só os posts próprios usam o gancho de tela "
+              "(`instagram/metricas/ganchos.json`). É sinal fraco: serve para levantar hipótese, não para "
+              "mudar peso da rubrica sozinho.", ""]
+    for h, p in r["perfis"].items():
+        linhas.append(f"## @{h}")
+        linhas.append("")
+        if p["status"] != "ok":
+            linhas += [f"{p['n']} posts com {p['metrica']}, o mínimo é {p['n_min']}. Não analisado.", ""]
+            continue
+        v, d = p["vencedores"], p["perdedores"]
+        linhas += [f"{p['n']} posts · métrica: {p['metrica']} · corte (mediana): {p['corte']:g} · "
+                   f"gancho de: {r['gancho_de'][h]}", "",
+                   "| Traço | vencedores | perdedores |", "|---|---:|---:|",
+                   f"| n | {v['n']} | {d['n']} |",
+                   f"| palavras na abertura (mediana) | {v['palavras_tela']['mediana']} | {d['palavras_tela']['mediana']} |"]
+        for chave, nome in TRACOS.items():
+            linhas.append(f"| {nome} | {v[chave]}% | {d[chave]}% |")
+        linhas += ["", "Vencedores do topo:", ""]
+        for x in p["top"]:
+            linhas.append(f"- {x['valor']:g} · “{x['escrito'][:100]}” {x['url'] or ''}")
+        linhas.append("")
+    linhas += ["## O que se repete em 2+ perfis", "",
+               "| Traço | vencedor tem mais em | vencedor tem menos em | compartilhado |", "|---|---|---|---|"]
+    for c in r["cruzado"]:
+        linhas.append(f"| {c['traco']} | {', '.join('@' + h for h in c['vencedor_tem_mais']) or '—'} | "
+                      f"{', '.join('@' + h for h in c['vencedor_tem_menos']) or '—'} | {'sim' if c['compartilhado'] else 'não'} |")
+    linhas += ["", "Onde os perfis divergem, isso também é dado: mostra qual estilo serve a quem.", ""]
+    destino.write_text("\n".join(linhas) + "\n", encoding="utf-8")
+
+
+def contrastar_cli(pasta: Path, proprios: Path, desde: str | None) -> int:
+    r = contrastar(pasta, proprios=proprios, desde=desde)
+    if not r["perfis"]:
+        print(f"aviso: nada em {pasta} nem em {proprios}; o fluxo 1 ainda não gravou dados de perfil")
+        return 0
+    destino = SAIDA / f"contraste-{date.today().isoformat()}.md"
+    escrever_contraste(r, destino)
+    for h, p in r["perfis"].items():
+        print(f"@{h}: {p['status']} (n = {p['n']}, {p['metrica']})")
+    print(f"-> {destino}")
+    return 0
+
+
+# --- ranking: o gancho do Rafael na mesma fila dos gerados ---------------------
+
+def ranking(tema: str, destino: Path = SAIDA / "avaliacoes.jsonl") -> list[dict]:
+    """Avaliações de um tema, uma por texto (a mais recente), da maior nota para a menor."""
+    ult: dict[str, dict] = {}
+    for a in carregar_jsonl(destino):
+        if a.get("tema") == tema:
+            gc = a["gancho"]
+            ult[normalizar(gc.get("manchete") or gc.get("fala"))] = a
+    return sorted(ult.values(), key=lambda a: -(a["nota"] if a["nota"] is not None else -1))
+
+
 # --- CLI ----------------------------------------------------------------------
 
 def _imprime(r: dict) -> None:
     for i, v in r["resultados"].items():
         marca = {True: "ok ", False: "XX ", None: "?? "}[v["ok"]]
-        peso = "portão" if v["tipo"] == "portao" else f"{v['peso']:>2}"
+        peso = {"portao": "portão", "bonus": f"+{v['peso']}"}.get(v["tipo"], f"{v['peso']:>2}")
+        if v["tipo"] == "bonus" and not v["ok"]:
+            marca = "-- "
         print(f"{marca}{i:<3} [{peso}] {v['nome']}" + (f" — {v['detalhe']}" if v["detalhe"] else ""))
     if r["portoes_falhos"]:
         print(f"\nREPROVADO nos portões {', '.join(r['portoes_falhos'])}: nota 0")
@@ -632,7 +841,10 @@ def _imprime(r: dict) -> None:
         dica = ",".join(p + "=1" for p in r["pendentes"])
         print(f"\nsubtotal {r['subtotal']} · faltam julgar: {', '.join(r['pendentes'])} (--julgamento {dica})")
     else:
-        print(f"\nNOTA {r['nota']}/100")
+        extra = f" (inclui bônus +{r['bonus']})" if r.get("bonus") else ""
+        print(f"\nNOTA {r['nota']}/100{extra}")
+        if r["nota"] < NOTA_MINIMA:
+            print(f"abaixo da nota mínima ({NOTA_MINIMA}): se este gancho foi gerado, reescreva antes de mostrar")
 
 
 def _julgamento(s: str) -> dict[str, bool]:
@@ -660,6 +872,12 @@ def main(argv: list[str] | None = None) -> int:
     c.add_argument("--escolhido", action="store_true", help="marca como o gancho escolhido/publicado")
     rc = sub.add_parser("recalibrar", help="propõe pesos a partir de proprios.jsonl")
     rc.add_argument("--proprios", default=str(PROPRIOS))
+    ct = sub.add_parser("contrastar", help="vencedores × perdedores por perfil (concorrentes/*.jsonl + proprios)")
+    ct.add_argument("--dir", default=str(CONCORRENTES))
+    ct.add_argument("--proprios", default=str(PROPRIOS))
+    ct.add_argument("--desde", default=None, help="AAAA-MM-DD: só posts publicados a partir daí")
+    rk = sub.add_parser("ranking", help="avaliações de um tema, maior nota primeiro")
+    rk.add_argument("--tema", required=True)
     a = ap.parse_args(argv)
 
     if a.cmd == "extrair":
@@ -706,6 +924,19 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if a.cmd == "recalibrar":
         return recalibrar_cli(Path(a.proprios))
+    if a.cmd == "contrastar":
+        return contrastar_cli(Path(a.dir), Path(a.proprios), a.desde)
+    if a.cmd == "ranking":
+        linhas = ranking(a.tema)
+        if not linhas:
+            print(f"nenhuma avaliação com o tema “{a.tema}”")
+            return 0
+        for i, x in enumerate(linhas, 1):
+            gc = x["gancho"]
+            nota = "?" if x["nota"] is None else x["nota"]
+            texto = " / ".join(t for t in (gc.get("manchete") or gc.get("fala"), gc.get("apoio") or gc.get("tela")) if t)
+            print(f"{i:>2}. {nota:>3}  {texto}" + ("  [escolhido]" if x.get("escolhido") else ""))
+        return 0
     return 1
 
 

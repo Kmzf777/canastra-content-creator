@@ -4,7 +4,8 @@ Fonte única do léxico que a regra **M3** da [rubrica](rubrica.md) aplica. `scr
 lê a tabela abaixo: a coluna `regex` é a busca (sem diferenciar maiúscula), `proibe` decide o
 que acontece e `onde` diz em que camada ela vale.
 
-- `proibe = sim`: casou → M3 falha. `medir`: só conta no corpus. Se os virais usam a
+- `proibe = sim`: casou → M3 falha. `medir`: não falha; `checar` mostra como **sinal amarelo** no
+  detalhe de M3, para o julgamento (J1/J7) olhar, e o corpus conta. Se os virais usam a
   construção, ela é **padrão**, não vício, e proibir seria proibir o que funciona.
 - `onde = todas`: manchete, apoio, fala e tela. `onde = tela`: só o que se **lê** (manchete e
   apoio da capa, tela do Reel). A fala não tem exclamação nem emoji.
@@ -41,6 +42,7 @@ só na tela. Atualize com `python scripts/ganchos.py medir`.
 | V13 | exclamação na tela | `!` | sim | tela | 2 / 0 / 2 | `10-voz.md` §7: na tela, nenhuma. Dois virais pt usam ("Não é CHAFÉ!"); a decisão de voz prevalece sobre o corpus |
 | V14 | emoji na tela | `[🌀-🫿☀-➿]` | sim | tela | 4 / 0 / 4 | `10-voz.md` §7: na tela, nenhum. Quatro virais pt usam (🔴, 🤫, 😂); a decisão de voz prevalece |
 | V15 | reticências na tela | `…|\.\.\.` | sim | tela | 2 / 1 / 3 | `10-voz.md` §7: "soam como suspense de gancho" |
+| V16 | jargão a frio | `\b(via [úu]mida|via seca|citricidade|peneira|SCAA?|anaer[óo]bic\w*|fermenta[çc][ãa]o|honey|cereja descascada|despolpad\w*|Q-?grader|cupping|terroir|bebida (dura|mole)|rio zona|microlote)\b` | medir | todas | 1 / 0 / 1 | **Sinal amarelo, não falha.** O único viral que abre com jargão é "Essa aqui é a via úmida do café." (@_gabriel_dcafe, 4,0 mi), dito por quem trabalha nela, mostrando: é jargão com contexto, e por isso não é proibido. `checar` avisa e quem julga é J1/J7: jargão sem tradução na mesma frase derruba J7 (`10-voz.md` §3); jargão que a própria capa pergunta ("O que quer dizer SCA 80+?") não. Fonte: *assumed knowledge / jargon on a cold brain* do prompt Hook Machine (Kallaway) **[criador]** |
 
 ## O que o corpus diz sobre soar humano
 

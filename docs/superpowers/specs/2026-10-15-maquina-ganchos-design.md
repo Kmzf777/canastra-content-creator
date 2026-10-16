@@ -138,3 +138,26 @@ ficaram pendentes. `--json` serve para máquina e `--registrar --tema T` anexa o
   conferidas.
 - **O cruzamento com o fluxo 1 é feito primeiro pelo shortcode** (`url` do post × `post` da
   avaliação) e depois pelo texto, que o fluxo 1 copia de `instagram/metricas/ganchos.json`.
+
+## v2: o que veio do Hook Machine (Kallaway), aprovado pelo Rafael em 15/10/2026
+
+Adotado:
+
+- **J7** "contexto imediato, sem ambiguidade" (peso 10).
+- **Bônus B1** de prova na 2ª camada: até +5, nunca tira, teto de 100.
+- **Jargão a frio** (V16, sinal amarelo, julgado em J1/J7).
+- **`contrastar`:** vencedores × perdedores por perfil, cortados na mediana do perfil, lendo os
+  `.jsonl` do fluxo 1.
+- **Suspeitos de impulsionamento** sinalizados em `padroes.md`, com corte relativo de 1/3 da
+  mediana e não 2% fixo, sem excluir ninguém.
+- **`n_perfis` e perfil dominante** por padrão. J6 recusa padrão de um criador só.
+- **Fórmulas de lacuna** por padrão, e o filtro de compatibilidade (estrutura, tom, voz alta) no
+  Modo 1.
+- **Nota mínima de 70** para mostrar gancho gerado.
+- **Modo 2** ranqueado com os gerados (`ranking`), com 3 alternativas de abordagens diferentes.
+
+Recusado: dependência do Sandcastles, créditos e textos fixos, nota em letras (fica 0–100) e os
+5 ganchos adaptados por canal.
+
+Pesos v2: M1 6 · M2 4 · M3 10 · M4 4 · J1 14 · J2 10 · J3 10 · J4 10 · J5 6 · J6 6 · J7 10, mais C1 6 ·
+C2 4 (capa) ou R1 10 (reel) = 100; B1 +5.

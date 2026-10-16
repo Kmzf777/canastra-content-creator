@@ -1,11 +1,14 @@
 # Capas para os carrosséis de 20/10 a 30/10 — rodada 1 da máquina de ganchos
 
 15/10/2026 · skill `canastra-ganchos` · as notas vêm de `scripts/ganchos.py checar` e estão
-registradas em `avaliacoes.jsonl`.
+registradas em `avaliacoes.jsonl`. **Reavaliadas na rubrica v2** (com J7 "contexto imediato" e o
+bônus B1 de prova na 2ª camada, tirados do Hook Machine do Kallaway), na mesma noite.
 
 **Como ler a nota.** É hipótese, não previsão (`03-roteiro.md` §5).
 
-- **100** quer dizer que passou nas 17 regras. Não quer dizer perfeito.
+- **100** quer dizer que passou nas 18 regras (ou chegou lá com o bônus). Não quer dizer perfeito.
+- Abaixo de **70**, um gancho gerado não é mostrado: é reescrito antes. Os de 70 ou menos que
+  aparecem aqui estão como exemplo do que a máquina barra.
 - **0** quer dizer que reprovou num **portão**: falta dado, ou a promessa não tem como ser
   paga. Nota 0 aqui quase sempre é "falta um dado", não "frase ruim".
 - Entre dois 100, quem decide é a foto e a matéria-prima.
@@ -33,14 +36,14 @@ Foto da capa: macro rasante na caixa `SPECIALTY / ESPECIAL / SCA 80+` do Clássi
 
 **100 · veredito-direto** — *Café especial se reconhece sem provar.* / *Está escrito no pacote.*
 - Pergunta que abre: "como? onde no pacote?" · Paga em: slide 2 (a caixa e o que ela quer dizer)
-- Nasceu da versão de 92 ("Dá para saber se o café é especial sem provar."), que estourou a
+- Nasceu da versão de 94 ("Dá para saber se o café é especial sem provar."), que estourou a
   faixa de palavras (10 de 9). A máquina pegou isso; a versão curta mantém o contraste.
 
 **90 · pergunta-diagnostico** — *O que quer dizer "SCA 80+" no pacote?* / *É uma nota de 0 a 100. A gente explica a escala.*
 - Perdeu em J3: não há tensão, é pergunta de significado.
 
-**90 · quem-faz-mostra** — *Essa caixinha no pacote é o nosso boletim.* / *SCA 80+: o que a nota mede*
-- Perdeu em J3: apresenta em vez de contrariar.
+**80 · quem-faz-mostra** — *Essa caixinha no pacote é o nosso boletim.* / *SCA 80+: o que a nota mede*
+- Perdeu em J3 (apresenta em vez de contrariar) e em J7: lida a frio, "que caixinha? boletim de quê?".
 
 Fonte dos números: a caixa está impressa no Clássico e no Suave (`02-ganchos.md` G2)
 **[medido]**. A escala de 100 pontos vem do protocolo de prova da SCA: **cite o link no slide**.
@@ -86,11 +89,13 @@ quando o dado chegar:
 Foto: Microlote e Clássico 250 g lado a lado, cada um com o preço escrito à mão num papel na
 frente. Os pacotes existem (shoot de 11/09); os papéis são captura de 5 min.
 
-**94 · pergunta-diagnostico** — *Quatro reais de diferença. O que eles pagam?*
-- Perdeu em C1 enquanto os papéis de preço não estiverem legíveis na foto.
+**100 · pergunta-diagnostico** — *Quatro reais a mais. O que muda no café?*
+- Nasceu da J7: a versão anterior, *"Quatro reais de diferença. O que eles pagam?"*, caiu para
+  **90** porque "eles", lido em voz alta, pode ser os quatro reais ou as pessoas.
 
-**92 · veredito-direto** — *R$ 28,70 e R$ 32,70. Não é o mesmo café.*
-- Passou do teto de palavras por 1, porque cada preço conta como palavra. Contraste forte.
+**84 · veredito-direto** — *R$ 28,70 e R$ 32,70. Não é o mesmo café.*
+- Passou do teto de palavras por 1 (cada preço conta como palavra) e perde em J7: a 1ª frase são
+  dois preços sem dizer de quê.
 
 **86 · veredito-direto** — *O microlote custa quatro reais a mais.* / *É o melhor café da casa.*
 - O G14 original perde em J1: "melhor café da casa" fecha a lacuna em vez de abrir.
@@ -115,7 +120,7 @@ proporção pó/água vem de fonte externa citada no slide.
 **100 · situacao-reconhecivel** — *Seu café esfria na mesa do trabalho?* / *Então faz ele gelado de propósito.*
 - É a mais anel 4 das três (rotina do trabalho), e a graça nasce do próprio café.
 
-**42 · reprovado na prática** — *O café da tarde é o que salva o dia.* Perde em J1–J4 e em
+**46 · reprovado na prática** — *O café da tarde é o que salva o dia.* Perde em J1–J4 e em
 M1: é a frase que qualquer marca escreveria. Fica como exemplo do que a máquina barra.
 
 ## Reserva (próxima vaga de anel 2 ou 3) · Onde guardar o pacote aberto (G6)
@@ -147,6 +152,11 @@ dela. Três alternativas que consertam J3 sem perder o resto:
 | 100 | *Essa lasquinha clara no pó não é casca.* | contraste + o objeto nomeado ("lasquinha clara") |
 | 96 | *Achou casca no café? Ninguém misturou nada.* | contraste; perde C2 porque já tranquiliza e tira motivo de arrastar |
 
+Ranqueada junto com as alternativas (`python scripts/ganchos.py ranking --tema "casca no café
+(película prateada)"`), a capa publicada fica em **4º de 4**. As três alternativas usam
+abordagens diferentes: a 1ª muda a estrutura (veredito em vez de pergunta), a 2ª acrescenta o
+objeto concreto e a 3ª reformula a promessa (tranquilizar).
+
 Isso **não** quer dizer que a capa publicada estava errada: 90 é alto. Quando o fluxo 1 medir o
 post (ela já está em `instagram/metricas/ganchos.json`), ela vira o primeiro ponto real da
 recalibração.
@@ -159,7 +169,7 @@ recalibração.
 |---|---|---|---|
 | 20/10 | 2 | *Café especial se reconhece sem provar.* | 100, foto existe, sem dado pendente |
 | 23/10 | 1 | *Se colher agora, esse café vira defeito.* | 100, risco real da lavoura (`03-roteiro` §4), foto real com GPS. Conferir a IN 8/2003 |
-| 27/10 | 1 | *Quatro reais de diferença. O que eles pagam?* | a pauta de preço está bloqueada; esta tem o dado inteiro |
+| 27/10 | 1 | *Quatro reais a mais. O que muda no café?* | 100; a pauta de preço está bloqueada e esta tem o dado inteiro |
 | 30/10 | 4 | *Seu café esfria na mesa do trabalho?* | 100, preenche o anel que o banco não tem, custo zero, e é capa que se manda para alguém (envio é sinal **[oficial]**) |
 
 Ao publicar cada uma, registre o texto exato com `--escolhido --post <shortcode>` para a

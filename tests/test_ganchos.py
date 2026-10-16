@@ -312,3 +312,126 @@ def test_cruzar_pelo_shortcode_mesmo_sem_gancho_no_post():
     post2 = {"id": "1790", "url": "https://www.instagram.com/p/OUTRO/", "gancho": "tem casca no seu cafe",
              "coletado_em": "2026-10-16T05:00:00Z"}
     assert g.cruzar([post2], [aval])[0]["avaliacao"] is aval     # e pelo texto normalizado
+
+
+# --- v2: melhorias tiradas do "Hook Machine" (Kallaway), aprovadas em 15/10/2026 ---------
+
+def _julg_capa(**muda):
+    regras = g.ler_rubrica()
+    d = {x.id: True for x in g.regras_do_formato(regras, "capa") if x.quem == "claude" and x.tipo != "bonus"}
+    d.update(muda)
+    return regras, d
+
+
+def test_j7_existe_e_bonus_fica_fora_da_soma():
+    regras = g.ler_rubrica()
+    ids = {r.id: r for r in regras}
+    assert ids["J7"].tipo == "pontuada" and ids["J7"].quem == "claude"
+    assert ids["B1"].tipo == "bonus" and ids["B1"].peso > 0
+    assert g.validar_rubrica(regras) == []
+
+
+def test_bonus_premia_sem_penalizar_e_nao_passa_de_100():
+    regras, j = _julg_capa(J3=False)
+    gc = G("capa", manchete="Tem casca no seu café?", apoio="A gente explica o que é")
+    sem = g.avaliar(gc, regras, j)
+    assert sem["nota"] == 90 and "B1" not in sem["pendentes"]          # ausência do bônus não pende
+    com = g.avaliar(gc, regras, {**j, "B1": True})
+    assert com["nota"] == 90 + ids_peso(regras, "B1")
+    tudo = g.avaliar(gc, regras, {**j, "J3": True, "B1": True})
+    assert tudo["nota"] == 100
+
+
+def ids_peso(regras, rid):
+    return next(r.peso for r in regras if r.id == rid)
+
+
+def test_nota_minima_avisa_no_checar(capsys):
+    assert g.main(["checar", "--formato", "capa", "--manchete", "O café da tarde é bom.",
+                   "--julgamento", "P4=1,J1=0,J2=0,J3=0,J4=0,J5=1,J6=0,J7=1,C1=0,C2=0"]) == 0
+    assert f"abaixo da nota mínima ({g.NOTA_MINIMA})" in capsys.readouterr().out
+
+
+def test_m3_jargao_a_frio_e_sinal_amarelo_nao_falha():
+    ok, det = g.MECANICAS["M3"](G("capa", manchete="Café de via úmida tem outro gosto?"))
+    assert ok and "V16" in det and "J7" in det
+
+
+def test_suspeitos_de_impulsionamento():
+    corpus = [{"id": str(i), "views": 1000, "curtidas": 40, "organico": "sim"} for i in range(9)]
+    corpus.append({"id": "baixo", "views": 1000, "curtidas": 5, "organico": "sim"})       # 0,5% contra mediana 4%
+    corpus.append({"id": "pago", "views": 1000, "curtidas": 40, "organico": "provavel-pago"})
+    corpus.append({"id": "sem-views", "views": None, "curtidas": 40, "organico": "sim"})
+    assert g.suspeitos(corpus) == {"baixo", "pago"}
+
+
+def test_padroes_contam_perfis_e_sinalizam_suspeitos():
+    base = {"idioma": "pt", "escrito": "x", "dito": "", "frente": "brasil", "ve": "", "organico": "sim"}
+    corpus = [{**base, "id": "a", "perfil": "@x", "views": 100, "curtidas": 4},
+              {**base, "id": "b", "perfil": "@x", "views": 300, "curtidas": 12},
+              {**base, "id": "c", "perfil": "@y", "views": 900, "curtidas": 1}]          # suspeito
+    mapa = {"padroes": {"p1": {"nome": "Um", "forma": "f", "descricao": "d"}}, "mapa": {"a": "p1", "b": "p1", "c": "p1"}}
+    p = g.tabela_padroes(corpus, mapa, suspeitos={"c"})[0]
+    assert p["n_perfis"] == 2 and p["perfil_dominante"] == "@x" and p["fatia_dominante"] == pytest.approx(2 / 3)
+    assert p["n_suspeitos"] == 1
+    assert p["mediana_views"] == 300 and p["mediana_views_sem_suspeitos"] == 200
+
+
+def test_formulas_do_mapa_real_vem_de_vencedores_do_proprio_padrao():
+    corpus = {x["id"] for x in (json.loads(l) for l in (RAIZ / "instagram/ganchos/corpus.jsonl").read_text(encoding="utf-8").splitlines())}
+    mapa = json.loads((RAIZ / "instagram/ganchos/padroes-mapa.json").read_text(encoding="utf-8"))
+    for slug, p in mapa["padroes"].items():
+        for f in p.get("formulas", []):
+            assert f["id"] in corpus, f
+            assert mapa["mapa"][f["id"]] == slug, f
+            assert "[" in f["formula"], f                            # mad-lib tem lacuna
+    transferem = [s for s in mapa["padroes"] if s not in ("marca-clima", "objeto-impossivel")]
+    assert all(mapa["padroes"][s].get("formulas") for s in transferem)
+
+
+def _linha_conc(handle, i, curtidas, legenda, views=None, coletado="2026-10-16T05:00:00Z"):
+    return {"id": f"{handle}-{i}", "url": f"https://www.instagram.com/p/{handle}{i}/", "tipo": "carrossel",
+            "legenda": legenda, "curtidas": curtidas, "comentarios": 1, "views": views,
+            "seguidores": 1000, "coletado_em": coletado}
+
+
+def test_contrastar_corta_pela_mediana_de_cada_perfil(tmp_path):
+    pasta = tmp_path / "concorrentes"
+    pasta.mkdir()
+    linhas = [_linha_conc("aaa", i, 100 + i, f"Por que o café {i} amarga?\nresto da legenda") for i in range(4)]
+    linhas += [_linha_conc("aaa", i, 10 + i, f"Novidade da semana {i}") for i in range(4, 8)]
+    linhas.append(_linha_conc("aaa", 0, 999, "Por que o café 0 amarga?", coletado="2026-10-17T05:00:00Z"))  # última vale
+    (pasta / "aaa.jsonl").write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in linhas), encoding="utf-8")
+    poucos = [_linha_conc("bbb", i, 50, "oi") for i in range(3)]
+    (pasta / "bbb.jsonl").write_text("".join(json.dumps(x) + "\n" for x in poucos), encoding="utf-8")
+    r = g.contrastar(pasta)
+    a = r["perfis"]["aaa"]
+    assert a["n"] == 8 and a["metrica"] == "curtidas"
+    assert a["corte"] == pytest.approx(59)                            # mediana de 14..17 e 101..103 + 999 (a última linha do id 0 vale)
+    assert a["vencedores"]["n"] == 4 and a["vencedores"]["pct_pergunta"] == 100.0
+    assert a["perdedores"]["pct_pergunta"] == 0.0
+    assert r["perfis"]["bbb"]["status"] == "poucos posts"
+    assert r["gancho_de"]["aaa"] == "1ª linha da legenda"
+
+
+def test_contrastar_prefere_o_gancho_de_tela_dos_proprios(tmp_path):
+    pasta = tmp_path / "concorrentes"
+    pasta.mkdir()
+    proprios = tmp_path / "proprios.jsonl"
+    linhas = [{"id": str(i), "url": f"https://www.instagram.com/p/X{i}/", "legenda": "legenda longa",
+               "gancho": f"Tem casca {i}?", "curtidas": i, "alcance": 100, "views": 100 + i,
+               "coletado_em": "2026-10-16T05:00:00Z"} for i in range(8)]
+    proprios.write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in linhas), encoding="utf-8")
+    r = g.contrastar(pasta, proprios=proprios)
+    assert r["gancho_de"]["cafecanastra"] == "gancho de tela (ganchos.json)"
+    assert r["perfis"]["cafecanastra"]["metrica"] == "views"
+
+
+def test_ranking_por_tema(tmp_path, capsys):
+    destino = tmp_path / "avaliacoes.jsonl"
+    regras = g.ler_rubrica()
+    for m, j3 in (("Tem casca no seu café?", False), ("Parece casca no seu café. Não é.", True)):
+        r = g.avaliar(G("capa", manchete=m), regras, _julg_capa(J3=j3)[1])
+        g.registrar(r, tema="casca", destino=destino)
+    linhas = g.ranking("casca", destino)
+    assert [x["gancho"]["manchete"] for x in linhas][0] == "Parece casca no seu café. Não é."
