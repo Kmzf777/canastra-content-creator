@@ -62,7 +62,7 @@ existe, o perfil está na watchlist mas ainda não foi coletado, ou ele não est
 
    ```json
    {"id": "<shortcode>", "url": "https://www.instagram.com/p/<shortcode>/", "data_publicacao": "2026-09-25T14:03:00+0000",
-    "tipo": "REEL", "legenda": "...", "curtidas": 120, "comentarios": 8, "views": null,
+    "tipo": "reel", "legenda": "...", "curtidas": 120, "comentarios": 8, "views": null,
     "seguidores": 10300, "coletado_em": "2026-10-15T10:00:00Z"}
    ```
 
@@ -113,7 +113,8 @@ que acharia uma virada só onde nós achamos várias.
 | **Confiança do degrau** | `t_welch`, `confianca`, `n_antes`, `n_depois` em cada degrau e queda | t de Welch sobre `log1p` (depois − antes): **forte** ≥ 4, **moderada** ≥ 2,5, **fraca** abaixo. Com 12 × 8 posts a amostra é pequena: cite o t junto com os tamanhos. `sem variância` = série constante, coisa que não acontece em dado real |
 | **Comentários por curtida** | `antes_depois.antes/depois` e cada item de `puxaram` | sinal de funil comentário → DM. Uma razão que sobe junto com legenda pedindo comentário ("comenta EU QUERO") é o funil funcionando; cite os números |
 | **CTA, produto, colaboração** | `cta_fatia`, `produto_fatia`, `colab_fatia` | fração dos posts com chamada para ação ("comenta", "link na bio", "chama na DM", "cupom", "frete", "compre"), com vocabulário de produto de café (pacote, cápsula, em grãos, 250g, preço, loja) e com `@menção`. **É regex, não leitura**: abra as legendas antes de afirmar |
-| **Surgiram, sumiram, mantidos** | `palavras`, `hashtags`, `tipos` em `antes_depois` | por fração de posts: surgiu = ≤ 15% antes e ≥ 40% depois; sumiu = o espelho; mantido = ≥ 40% nos dois. O mantido também conta: o que não mudou na virada sai da lista de explicações |
+| **Tema, formato narrativo, gancho de tela** | `temas`, `formatos_narrativos` em `antes_depois`; `tema`, `gancho` em `puxaram` | vêm de `temas.json`, `formatos.json` e `ganchos.json`, que o fluxo 1 grava em `instagram/metricas/`. Post sem classificação fica de fora da conta, então com poucos posts classificados a assinatura sai vazia. O gancho de tela vale mais que a 1ª linha da legenda |
+| **Surgiram, sumiram, mantidos** | `palavras`, `hashtags`, `tipos`, `temas`, `formatos_narrativos` em `antes_depois` | por fração de posts: surgiu = ≤ 15% antes e ≥ 40% depois; sumiu = o espelho; mantido = ≥ 40% nos dois. O mantido também conta: o que não mudou na virada sai da lista de explicações |
 
 ## Ler e entregar
 

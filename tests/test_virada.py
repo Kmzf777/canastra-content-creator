@@ -34,7 +34,7 @@ INICIO = datetime(2026, 1, 1, 12, tzinfo=timezone.utc)
 HOJE = date(2026, 12, 31)
 
 
-def _linhas(valores, passo=3, tipo="REEL", legendas=None, inicio=INICIO, views=None, prefixo="p"):
+def _linhas(valores, passo=3, tipo="reel", legendas=None, inicio=INICIO, views=None, prefixo="p"):
     linhas = []
     for n, valor in enumerate(valores):
         data = inicio + timedelta(days=passo * n)
@@ -116,6 +116,38 @@ def test_proprios_e_arroba_no_nome(tmp_path):
     assert v.localizar("zanellicoffee", tmp_path) == arroba
 
 
+def test_tipo_normalizado_para_o_contrato(tmp_path):
+    # o contrato do fluxo 1 usa reel | carrossel | estatico; proprios.jsonl chama o campo de `formato`
+    linhas = _linhas([1] * 5)
+    for linha, tipo in zip(linhas, ["REEL", "CAROUSEL_ALBUM", "IMAGE", "VIDEO", None]):
+        linha["tipo"] = tipo
+    del linhas[4]["tipo"]
+    linhas[4]["formato"] = "carrossel"
+    posts, _ = v.ler_jsonl(_grava(tmp_path / "s.jsonl", linhas))
+    assert [p.tipo for p in posts] == ["reel", "carrossel", "estatico", "reel", "carrossel"]
+
+
+def test_anotacoes_tema_formato_gancho(tmp_path):
+    # temas.json e formatos.json por id, ganchos.json por shortcode: o "tema e gancho" da virada
+    linhas = _linhas([50] * 20) + _linhas([200] * 20, inicio=INICIO + timedelta(days=60), prefixo="r")
+    metricas = tmp_path / "metricas"
+    metricas.mkdir()
+    temas = {l["id"]: ("lavoura" if l["id"].startswith("p") else "preparo") for l in linhas}
+    formatos = {l["id"]: "tutorial" for l in linhas if l["id"].startswith("r")}
+    (metricas / "temas.json").write_text(json.dumps(temas), encoding="utf-8")
+    (metricas / "formatos.json").write_text(json.dumps(formatos), encoding="utf-8")
+    (metricas / "ganchos.json").write_text(json.dumps({"R000": "O erro que todo mundo comete"}), encoding="utf-8")
+    posts, _ = v.ler_jsonl(_grava(tmp_path / "s.jsonl", linhas))
+    v.anotar(posts, metricas)
+    ad = v.antes_depois(posts, [p.engajamento for p in posts], 20, k=12, m=8)
+    assert [x["termo"] for x in ad["temas"]["surgiram"]] == ["preparo"]
+    assert [x["termo"] for x in ad["temas"]["sumiram"]] == ["lavoura"]
+    assert [x["termo"] for x in ad["formatos_narrativos"]["surgiram"]] == ["tutorial"]
+    assert ad["puxaram"][0]["gancho"] == "O erro que todo mundo comete"
+    assert ad["puxaram"][0]["tema"] == "preparo"
+    assert ad["puxaram"][1]["gancho"] is None
+
+
 def test_perfil_ausente_mensagens(tmp_path):
     def motivo(raiz, handle):
         try:
@@ -186,15 +218,15 @@ def test_sem_base_nos_primeiros():
 # --- o que mudou ao redor ------------------------------------------------------------------
 
 def test_antes_depois(tmp_path):
-    antes = _linhas([50] * 20, passo=7, tipo="IMAGE", legendas=["foto do dia no sítio da canastra"] * 20)
+    antes = _linhas([50] * 20, passo=7, tipo="estatico", legendas=["foto do dia no sítio da canastra"] * 20)
     inicio_depois = INICIO + timedelta(days=7 * 20)
     gancho = "Você sabia? torra clara de verdade na canastra #torraclara"
-    depois = _linhas([200] * 20, passo=2, tipo="REEL", legendas=[gancho] * 20, inicio=inicio_depois, prefixo="r")
+    depois = _linhas([200] * 20, passo=2, tipo="reel", legendas=[gancho] * 20, inicio=inicio_depois, prefixo="r")
     posts, _ = v.ler_jsonl(_grava(tmp_path / "s.jsonl", antes + depois))
     valores = [p.engajamento for p in posts]
     ad = v.antes_depois(posts, valores, 20, k=12, m=8)
-    assert ad["antes"]["formatos"] == {"IMAGE": 12}
-    assert ad["depois"]["formatos"] == {"REEL": 8}
+    assert ad["antes"]["formatos"] == {"estatico": 12}
+    assert ad["depois"]["formatos"] == {"reel": 8}
     assert ad["antes"]["cadencia_semana"] == 1.0
     assert ad["depois"]["cadencia_semana"] == 3.5
     termos = lambda grupo: [x["termo"] for x in grupo]
@@ -204,8 +236,8 @@ def test_antes_depois(tmp_path):
     assert termos(ad["palavras"]["mantidos"]) == ["canastra"]
     assert ad["palavras"]["mantidos"][0] == {"termo": "canastra", "antes": 1.0, "depois": 1.0}
     assert termos(ad["hashtags"]["surgiram"]) == ["torraclara"]
-    assert termos(ad["tipos"]["surgiram"]) == ["REEL"]
-    assert termos(ad["tipos"]["sumiram"]) == ["IMAGE"]
+    assert termos(ad["tipos"]["surgiram"]) == ["reel"]
+    assert termos(ad["tipos"]["sumiram"]) == ["estatico"]
     assert len(ad["puxaram"]) == 8
     assert ad["puxaram"][0]["primeira_linha"] == gancho
 

@@ -92,6 +92,9 @@ class Post:
     views: int | None
     seguidores: int | None
     coletado_em: datetime | None
+    tema: str | None = None               # temas.json do fluxo 1, por id
+    formato_narrativo: str | None = None  # formatos.json do fluxo 1, por id
+    gancho: str | None = None             # gancho de tela: campo do proprios.jsonl ou ganchos.json
 
     @property
     def engajamento(self) -> int | None:
@@ -104,6 +107,17 @@ class Post:
 
 def normalizar_handle(handle: str) -> str:
     return handle.strip().lstrip("@").lower()
+
+
+# O contrato do fluxo 1 usa reel | carrossel | estatico; os valores crus da Graph API também valem.
+TIPOS = {"reel": "reel", "video": "reel", "clips": "reel", "carrossel": "carrossel", "carousel_album": "carrossel",
+         "carousel": "carrossel", "estatico": "estatico", "estático": "estatico", "image": "estatico",
+         "imagem": "estatico", "foto": "estatico"}
+
+
+def normalizar_tipo(valor) -> str:
+    bruto = str(valor or "").strip().lower()
+    return TIPOS.get(bruto, bruto or "?")
 
 
 def parse_data(valor) -> datetime | None:
@@ -150,7 +164,8 @@ def ler_jsonl(caminho: Path) -> tuple[list[Post], dict]:
                 id=str(bruto["id"]),
                 url=str(bruto.get("url") or ""),
                 data=parse_data(bruto.get("data_publicacao")),
-                tipo=str(bruto.get("tipo") or "?").upper(),
+                # concorrentes gravam `tipo`; proprios.jsonl grava `formato`
+                tipo=normalizar_tipo(bruto.get("tipo") or bruto.get("formato")),
                 legenda=str(bruto.get("legenda") or ""),
                 curtidas=_inteiro(bruto.get("curtidas")),
                 comentarios=_inteiro(bruto.get("comentarios")),
@@ -158,6 +173,7 @@ def ler_jsonl(caminho: Path) -> tuple[list[Post], dict]:
                 # proprios.jsonl grava `seguidores_conta`; concorrentes, `seguidores`
                 seguidores=_inteiro(bruto.get("seguidores", bruto.get("seguidores_conta"))),
                 coletado_em=parse_data(bruto.get("coletado_em")),
+                gancho=bruto.get("gancho") if isinstance(bruto.get("gancho"), str) else None,
             )
         except (json.JSONDecodeError, KeyError, TypeError, AttributeError):
             contagem["invalidas"] += 1
@@ -172,6 +188,31 @@ def ler_jsonl(caminho: Path) -> tuple[list[Post], dict]:
                 continue
         por_id[post.id] = post
     return sorted(por_id.values(), key=lambda p: p.data), contagem
+
+
+def _ler_mapa(arq: Path) -> dict[str, str]:
+    """Arquivo `{chave: texto}` do fluxo 1. Ausente ou ilegível = vazio: anotação é opcional."""
+    try:
+        dado = json.loads(arq.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(dado, dict):
+        return {}
+    return {str(k): x.strip() for k, x in dado.items() if isinstance(x, str) and x.strip()}
+
+
+def shortcode(url: str) -> str | None:
+    m = re.search(r"/(?:p|reel|reels|tv)/([^/?#]+)", url)
+    return m.group(1) if m else None
+
+
+def anotar(posts: list[Post], raiz: Path) -> None:
+    """Junta tema, formato narrativo e gancho de tela que o fluxo 1 grava ao lado dos .jsonl."""
+    temas, formatos, ganchos = (_ler_mapa(raiz / nome) for nome in ("temas.json", "formatos.json", "ganchos.json"))
+    for post in posts:
+        post.tema = temas.get(post.id, post.tema)
+        post.formato_narrativo = formatos.get(post.id, post.formato_narrativo)
+        post.gancho = post.gancho or ganchos.get(shortcode(post.url) or "")
 
 
 def na_watchlist(handle: str, raiz: Path) -> bool:
@@ -413,6 +454,10 @@ def _janela(posts: list[Post]) -> dict:
     }
 
 
+def _valor(x) -> list:
+    return [x] if x else []
+
+
 def antes_depois(posts: list[Post], valores: list[float], i: int, k: int, m: int) -> dict:
     antes, depois = posts[max(0, i - k):i], posts[i:i + m]
     base = median(valores[max(0, i - k):i])
@@ -422,12 +467,15 @@ def antes_depois(posts: list[Post], valores: list[float], i: int, k: int, m: int
         "puxaram": [
             {"id": p.id, "url": p.url, "data": p.data.date().isoformat(), "tipo": p.tipo, "valor": x,
              "razao": round(x / max(base, 1), 2), "comentarios_por_curtida": _comentarios_por_curtida([p]),
+             "tema": p.tema, "formato_narrativo": p.formato_narrativo, "gancho": p.gancho,
              "primeira_linha": primeira_linha(p.legenda)}
             for p, x in zip(depois, valores[i:i + m]) if x > base
         ],
         "palavras": _assinatura(_palavras, antes, depois),
         "hashtags": _assinatura(_hashtags, antes, depois),
-        "tipos": _assinatura(lambda tipo: [tipo], antes, depois, de=lambda p: p.tipo),
+        "tipos": _assinatura(_valor, antes, depois, de=lambda p: p.tipo),
+        "temas": _assinatura(_valor, antes, depois, de=lambda p: p.tema),
+        "formatos_narrativos": _assinatura(_valor, antes, depois, de=lambda p: p.formato_narrativo),
     }
 
 
@@ -541,8 +589,8 @@ def resumo(rel: dict) -> str:
 
 # --- HTML ----------------------------------------------------------------------------------
 
-NOMES_TIPO = {"REEL": "Reel", "VIDEO": "Vídeo", "CAROUSEL_ALBUM": "Carrossel", "IMAGE": "Foto"}
-CLASSE_TIPO = {"REEL": "reel", "VIDEO": "reel", "CAROUSEL_ALBUM": "carrossel", "IMAGE": "foto"}
+NOMES_TIPO = {"reel": "Reel", "carrossel": "Carrossel", "estatico": "Estático"}
+CLASSE_TIPO = {"reel": "reel", "carrossel": "carrossel", "estatico": "foto"}
 TITULO_EVENTO = {"degrau": "Degrau sustentado", "queda": "Queda de patamar", "pico": "Pico isolado"}
 
 
@@ -718,11 +766,15 @@ def _cartao(ev: dict, serie_nome: str) -> str:
             itens = "".join(
                 f'<li><a href="{_e(x["url"])}" target="_blank" rel="noopener">{_data_br(x["data"])}</a> '
                 f'<span class="n">{_e(NOMES_TIPO.get(x["tipo"], x["tipo"]))} · {_num(x["valor"])} · '
-                f'{_num(x["razao"])}× · {_num(x["comentarios_por_curtida"])} coment./curtida</span> '
+                f'{_num(x["razao"])}× · {_num(x["comentarios_por_curtida"])} coment./curtida'
+                f'{" · " + _e(x["tema"]) if x["tema"] else ""}</span> '
+                f'{"<b>gancho:</b> " + _e(x["gancho"]) + " · " if x["gancho"] else ""}'
                 f'{_e(x["primeira_linha"])}</li>' for x in ad["puxaram"])
             titulo = "Posts acima da base antiga" if tipo == "degrau" else "Posts que ainda ficaram acima da base"
             corpo.append(f"<h4>{titulo}</h4><ul class='puxaram'>{itens}</ul>")
         corpo.append(_assinatura_html("Formatos", ad["tipos"], lambda t: NOMES_TIPO.get(t, t)))
+        corpo.append(_assinatura_html("Temas", ad["temas"]))
+        corpo.append(_assinatura_html("Formato narrativo", ad["formatos_narrativos"]))
         corpo.append(_assinatura_html("Palavras da legenda", ad["palavras"]))
         corpo.append(_assinatura_html("Hashtags", ad["hashtags"], lambda t: "#" + t))
     return (f'<article class="cartao {tipo}"><header><span class="selo">{_e(TITULO_EVENTO[tipo])}</span>'
@@ -816,7 +868,7 @@ def render_html(rel: dict) -> str:
             f"<section><h2>{_e(rotulo)}</h2><div class='grafico'><div class='rolagem'>{_svg(serie)}</div>"
             "<div class='legenda'><span><i style='background:var(--reel)'></i>Reel</span>"
             "<span><i style='background:var(--carrossel)'></i>Carrossel</span>"
-            "<span><i style='background:var(--foto)'></i>Foto</span>"
+            "<span><i style='background:var(--foto)'></i>Estático</span>"
             "<span><i style='border:1.5px solid var(--suave)'></i>Imaturo</span>"
             "<span><i style='border:2.5px solid var(--pico)'></i>Pico isolado</span>"
             "<span><i class='q' style='background:var(--degrau);opacity:.35'></i>Degrau</span>"
@@ -866,6 +918,7 @@ def main(argv: list[str] | None = None) -> int:
             return 2
 
     posts, contagem = ler_jsonl(fonte)
+    anotar(posts, a.metricas)
     params = {nome: getattr(a, nome) for nome in PADROES}
     rel = analisar(handle, fonte, posts, contagem, params, a.hoje, a.dias, a.maturidade)
     caminho_json, caminho_html = gravar(rel, a.saida or RAIZ_SAIDA / handle)

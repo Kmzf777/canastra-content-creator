@@ -30,7 +30,7 @@ Fora do escopo: `instagram/metricas/` (fluxo 1, dono da coleta), `instagram/estr
   15/10/2026. Este fluxo assume o formato combinado:
 
 ```json
-{"id": "...", "url": "...", "data_publicacao": "2026-09-25T14:03:00+0000", "tipo": "REEL",
+{"id": "...", "url": "...", "data_publicacao": "2026-09-25T14:03:00+0000", "tipo": "reel",
  "legenda": "...", "curtidas": 120, "comentarios": 8, "views": null, "seguidores": 10300,
  "coletado_em": "2026-10-15T10:00:00Z"}
 ```
@@ -39,8 +39,12 @@ Leitura tolerante:
 - `id` repetido = a mesma postagem em coletas diferentes; fica o registro com `coletado_em`
   mais recente.
 - Datas em ISO 8601, com `Z`, `+0000` ou `+00:00`.
-- `tipo` normalizado em maiúsculas. Valores esperados: `REEL`, `IMAGE`, `CAROUSEL_ALBUM`,
-  `VIDEO`.
+- `tipo` (concorrentes) ou `formato` (`proprios.jsonl`) normalizado para o contrato do fluxo 1:
+  `reel | carrossel | estatico`. Os valores crus da Graph API (`REEL`, `VIDEO`, `CAROUSEL_ALBUM`,
+  `IMAGE`) são mapeados para esses.
+- `temas.json` e `formatos.json` (por `id`) e `ganchos.json` (por shortcode da URL), quando
+  existem em `instagram/metricas/`, anotam cada post com tema, formato narrativo e gancho de
+  tela. Entram como assinaturas (`temas`, `formatos_narrativos`) e nos itens de `puxaram`.
 - Uma linha inválida é contada e reportada, nunca derruba a leitura toda.
 - `curtidas`/`comentarios` ausentes ou `null` tiram o post da série principal, e esse post
   é contado.
