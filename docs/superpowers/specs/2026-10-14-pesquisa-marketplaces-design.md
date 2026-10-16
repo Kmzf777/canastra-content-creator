@@ -75,3 +75,19 @@ Estratégia para a Canastra, preços da Canastra, criação de agentes, qualquer
 
 24 `notas.md` + 3 `social/notas.md` + 3 `CONSOLIDADO.md` + `metodo/` + `LACUNAS.md`, com as
 afirmações de regra verificadas ou marcadas, e o material bruto reproduzível (`LEIA-ME.md`).
+
+## Extensão: TikTok Shop (15/10/2026)
+
+Pedido do Rafael: o mesmo tipo de pesquisa, **duas vezes mais ampla**, para o TikTok Shop. Mesmas
+regras (neutra, 4 camadas de fonte, tipos de afirmação, sem login). Pasta: `pesquisa-marketplaces/tiktokshop/`.
+
+**16 frentes:** as 8 de marketplace (ads, preco-promocao, logistica-estoque, ranqueamento-vitrine,
+produto-mix, reputacao-atendimento, alimentos-marca-propria, cases-grandes) + 8 próprias do TikTok
+Shop (conteudo-video, live-commerce, afiliados-criadores, conta-onboarding, conta-de-marca-conteudo,
+dados-mercado-br, ferramentas-analise, regulatorio-fiscal). Referências globais (EUA, Reino Unido,
+Sudeste Asiático) entram quando a mecânica é a mesma, sempre marcadas com o país.
+
+**Mudanças de execução aprendidas nas rodadas anteriores:** coleta do YouTube em série (429);
+um único agente de navegador por vez (risco de resposta trocada entre sessões no Claude in
+Chrome); teto de buscas na web por analista (a cota acabou na rodada 1); verificação pelo
+navegador já embutida no workflow, em lotes em série; consolidado e crítico de lacunas no fim.
