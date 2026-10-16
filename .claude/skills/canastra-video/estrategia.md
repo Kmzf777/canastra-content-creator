@@ -10,6 +10,13 @@ aqui está **o que fazer**. Tudo abaixo saiu de 130 vídeos virais analisados qu
 fina sobre material real (explicar um número, comprimir um tempo, celebrar um objeto real),
 nunca o substituto da fazenda, da pessoa ou da embalagem.
 
+**Público e voz vêm de fora desta skill.** Antes do §0, saiba de que anel do público é a peça e
+o que o ciclo está devendo (`instagram/estrategia/09-publico.md` §2 e §3). Toda fala, texto de
+tela e legenda segue `instagram/estrategia/10-voz.md`, a fonte da voz da marca: conversa de
+cozinha, "a gente", jargão traduzido na mesma frase, *gourmet* e *premium* proibidos. As §3, §4 e
+§7 abaixo são a parte específica de vídeo e não contradizem o `10-voz.md`; se um dia
+contradisserem, vale o `10-voz.md` e esta skill se corrige.
+
 ## 0. Primeiro passo obrigatório: 3 referências
 
 Antes de qualquer roteiro, busque na biblioteca e **cite no planejamento** 3 fichas do mesmo
@@ -67,6 +74,8 @@ de café lê nele, sem som? Chama lê "queimado"; render dourado lê "gerado".
   usar: rótulo de IA ligado na publicação e a legenda do post diz que a narração é gerada.
 - Sem pessoa disponível para falar? Escolha um formato **sem voz** (processo, uma tarefa), não
   uma voz sintética.
+- **Registro da fala:** conversa de cozinha — pergunta, responde, explica o porquê; o sotaque
+  mineiro só quando é o jeito real de quem fala (`10-voz.md` §1, §2 e §8).
 
 ## 4. Copy e roteiro
 
@@ -134,7 +143,8 @@ em alta" do Instagram.
   sinal que mais leva a não seguidores; "salvar" vem junto quando a peça é utilidade.
 - Legenda do post: primeira linha ≤ ~55 caracteres com a pergunta que as pessoas buscam; a
   colinha do vídeo; uma pergunta aberta; ≤ 5 hashtags; nunca "comenta X que eu te mando";
-  nenhum emoji de fogo. Molde em `colagem.md` §9.
+  nenhum emoji de fogo; no máximo 2 emojis, só com função, e nenhum na tela; palavras proibidas
+  do `10-voz.md` §6. Molde em `colagem.md` §9.
 
 ## 8. Planejar em série e medir
 
@@ -167,6 +177,8 @@ em alta" do Instagram.
 ## Checklist antes de levar o roteiro ao cliente
 
 - [ ] 3 fichas citadas, com o que cada uma empresta
+- [ ] anel do público declarado (`09-publico.md`) e a peça passa no teste das duas camadas (§5 de lá)
+- [ ] fala, tela e legenda passaram no checklist do `10-voz.md` §10
 - [ ] formato escolhido da tabela §1, com o porquê
 - [ ] gancho com imagem real no quadro 0, texto e fala; passou no teste da leitura literal
 - [ ] voz humana ou nenhuma (IA só se o cliente pediu)

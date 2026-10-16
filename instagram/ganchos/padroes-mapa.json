@@ -1,0 +1,289 @@
+{
+  "_leia": "Julgamento, não medida: cada gancho do corpus recebe o padrão DOMINANTE, pela mecânica que faz parar (não pelo assunto). Lido gancho a gancho em 15/10/2026 a partir de corpus.jsonl (abertura + o que se vê). As contagens sobre este mapa estão em padroes.md.",
+  "padroes": {
+    "acao-em-curso": {
+      "nome": "Ação já em curso",
+      "forma": "abre no meio do trabalho, com a matéria mudando na frente da câmera",
+      "descricao": "Sem preparação: a mão já está despejando, colhendo, torrando. O frame 1 responde 'do que se trata' sozinho, e a mudança da matéria segura o olho.",
+      "formulas": [
+        {
+          "id": "DbQPPv2PPVk",
+          "original": "(sem texto: plano de baixo, dentro do pé de café, o apanhador colhendo)",
+          "formula": "Frame 1 = [mão ou ferramenta] já [fazendo a tarefa] em [matéria que muda de estado]. Tela, se houver: [o nome da tarefa, em até 4 palavras]."
+        },
+        {
+          "id": "DFe7K8yM7rZ",
+          "original": "(sem texto: tremonha de cerejas vermelhas soltando grãos brancos)",
+          "formula": "Frame 1 = [a matéria entrando] e, no mesmo plano, [a matéria saindo transformada]. Sem fala no primeiro segundo."
+        }
+      ]
+    },
+    "objeto-impossivel": {
+      "nome": "Um objeto fora do lugar",
+      "forma": "cenário banal + uma única coisa que não devia estar ali",
+      "descricao": "A estranheza é UMA e o resto é reconhecível (FOOH, máquina de concreto, olho roxo do campeão). Exige produção ou CGI; para a Canastra só vale com objeto real da fazenda."
+    },
+    "situacao-reconhecivel": {
+      "nome": "Situação que a pessoa reconhece",
+      "forma": "'quando você…' / cena de vida real que o público já viveu",
+      "descricao": "Humor ou ternura de situação. Segura por identificação. Para marca só transfere quando a graça nasce do próprio café (07-nao-fazer §2.1).",
+      "formulas": [
+        {
+          "id": "C8XugrWh_-n",
+          "original": "Hoje é dia de panhar café na pirambeira!",
+          "formula": "Hoje é dia de [tarefa dura e conhecida] [no lugar difícil, com a palavra local]."
+        },
+        {
+          "id": "Dc_LmZjR4rN",
+          "original": "Eu quando passo o dia sem encostar no café",
+          "formula": "Eu quando [situação de rotina que todo mundo já viveu com café]."
+        },
+        {
+          "id": "DcbH1Lhtiy0",
+          "original": "Oh, pumpkin spice latte?",
+          "formula": "[O nome da bebida/do hábito], [repetido com o tom de quem acha graça dele]?"
+        }
+      ]
+    },
+    "quem-faz-mostra": {
+      "nome": "Quem faz, mostrando",
+      "forma": "'Essa aqui é a…' / 'Hoje eu vou…' dito por quem trabalha naquilo",
+      "descricao": "Autoridade de ofício: a pessoa que faz apresenta a coisa no lugar onde ela acontece. A frase é simples; o crédito vem de quem fala e de onde.",
+      "formulas": [
+        {
+          "id": "DYVG9iFxLp6",
+          "original": "Essa aqui é a via úmida do café.",
+          "formula": "Essa aqui é [a etapa/o lugar], [dito por quem trabalha nela, com o termo traduzido em seguida]."
+        },
+        {
+          "id": "Dbtvw4eB5Cz",
+          "original": "Hoje eu vou tirar o boia desse café, galera.",
+          "formula": "Hoje [eu/a gente] vai [tarefa concreta, com a palavra da roça] [desse/nesse] [objeto na tela]."
+        },
+        {
+          "id": "CqGC2e7g5nf",
+          "original": "As duas informações mais importantes que eu trago aqui sempre são…",
+          "formula": "As [número contado] [coisas] que [eu/a gente] [olha/confere] sempre [no lugar de escolha] são…"
+        }
+      ]
+    },
+    "veredito-direto": {
+      "nome": "Veredito que contraria",
+      "forma": "uma afirmação curta que contraria o que a pessoa acha (com a prova à vista)",
+      "descricao": "'Não é CHAFÉ!', 'Coffee is 98.5% water', 'Ambos são o mesmo café'. Contraste na própria frase; quase sempre há um objeto na tela que a sustenta.",
+      "formulas": [
+        {
+          "id": "DFFc826SxPF",
+          "original": "Ambos são o mesmo café.",
+          "formula": "[Os dois / Esses dois] [objetos que parecem diferentes, na tela] são o mesmo [coisa]."
+        },
+        {
+          "id": "DVobHGpAW2Y",
+          "original": "Não é CHAFÉ! Esses dois cafés foram produzidos aqui na roça.",
+          "formula": "Não é [o rótulo que a pessoa usa para julgar]. [Prova de origem, de quem fala, no lugar]."
+        },
+        {
+          "id": "DbgXMlIhWpw",
+          "original": "Coffee is 98.5% water.",
+          "formula": "[Coisa conhecida] é [número medido que surpreende] [unidade]."
+        }
+      ]
+    },
+    "resultado-antes": {
+      "nome": "Resultado antes do processo",
+      "forma": "mostra o fim primeiro (o produto pronto, o antes e depois) e depois volta",
+      "descricao": "Paga o olho no primeiro segundo e cria a pergunta 'como chegou nisso?'. É a estrutura 'resposta primeiro' em imagem.",
+      "formulas": [
+        {
+          "id": "DVqyHk-kefA",
+          "original": "3 Most Interesting Coffee Brewers",
+          "formula": "[Número contado] [coisas] mais [adjetivo verificável] [da categoria], com o resultado de cada uma já na tela."
+        },
+        {
+          "id": "DaTMYyYB1BJ",
+          "original": "The humble mocha is one of my favorite coffee drinks",
+          "formula": "[O produto pronto, na mão] é [o que ele é para quem fala]. Depois volta para como chegou nisso."
+        },
+        {
+          "id": "DMdH8NPgpSF",
+          "original": "Eu fiz esse projeto usando só Photoshop e After Effects",
+          "formula": "[A gente] fez [isso, mostrado pronto] usando só [o recurso simples]."
+        }
+      ]
+    },
+    "pergunta-diagnostico": {
+      "nome": "Pergunta que a pessoa já se fez",
+      "forma": "uma pergunta concreta, de uso, que a pessoa já tentou responder sozinha",
+      "descricao": "'Como separar o café de qualidade do inferior', 'Quanto eu ganhei em uma semana'. Não é pergunta retórica: a resposta existe e vem no vídeo.",
+      "formulas": [
+        {
+          "id": "DZOC2OdJSgo",
+          "original": "Como separar o café de qualidade do café inferior?",
+          "formula": "Como separar [a coisa boa] [da coisa ruim] [no lugar onde a pessoa escolhe]?"
+        },
+        {
+          "id": "DYZx1JxOX45",
+          "original": "Quanto eu ganhei em uma semana trabalhando na apanha de café",
+          "formula": "Quanto [eu/a gente] [ganhei/gastei/levei] em [período] [fazendo a tarefa real]."
+        },
+        {
+          "id": "DcgT31-Bo5x",
+          "original": "What would happen if you brewed your coffee with milk instead of water?",
+          "formula": "O que acontece se você [fizer o gesto de sempre] com [um ingrediente trocado]?"
+        }
+      ]
+    },
+    "conflito-resposta": {
+      "nome": "Resposta a um ataque ou prejuízo",
+      "forma": "responder a comentário / contar o que esteve em jogo, com o valor",
+      "descricao": "Stakes reais e pessoais (um comentário ofensivo, um contrato de R$ 8.000). Funciona para criador; para marca, só risco real da lavoura (03-roteiro §4, guarda de tom).",
+      "formulas": [
+        {
+          "id": "DdnPgzptYs2",
+          "original": "Eu vou responder ao comentário…",
+          "formula": "[A gente] vai responder [o comentário real, na tela]."
+        },
+        {
+          "id": "DKFHg5fuun9",
+          "original": "Quase tomei um prejuízo de R$ …",
+          "formula": "Quase [perdemos/estragamos] [valor ou lote medido] [por causa do risco real]."
+        }
+      ]
+    },
+    "marca-clima": {
+      "nome": "Clima de marca, sem gancho",
+      "forma": "atmosfera, slogan ou packshot sem pergunta nem contraste",
+      "descricao": "O institucional. Está aqui como contraste: os casos de view alta são de marcas grandes com mídia (Pilão, Liquid Death) e não provam alcance orgânico."
+    }
+  },
+  "mapa": {
+    "DVMF38UgD0M": "veredito-direto",
+    "C4eJrrkLMPJ": "situacao-reconhecivel",
+    "C_AvrBuxgMj": "situacao-reconhecivel",
+    "DCFZKnnsMjx": "situacao-reconhecivel",
+    "DeLLLxpNbtP": "situacao-reconhecivel",
+    "CqGC2e7g5nf": "quem-faz-mostra",
+    "DARbgCGyf5H": "pergunta-diagnostico",
+    "DVobHGpAW2Y": "veredito-direto",
+    "C0r_Lc9O851": "quem-faz-mostra",
+    "C6UA4X9r-4N": "pergunta-diagnostico",
+    "DFf3isuuhcS": "quem-faz-mostra",
+    "Dd9M1ytxbDO": "conflito-resposta",
+    "DeR5EiZvusW": "situacao-reconhecivel",
+    "C8XugrWh_-n": "situacao-reconhecivel",
+    "DeHjlCAoQc1": "conflito-resposta",
+    "DK0HqC5S_Hm": "resultado-antes",
+    "DaiGLxiR0Ko": "marca-clima",
+    "DcCB9dQhKYn": "marca-clima",
+    "DVjjyTpDk65": "veredito-direto",
+    "Dcgza21gR2n": "situacao-reconhecivel",
+    "DZcutnADia9": "situacao-reconhecivel",
+    "Ck8i4GujtWV": "acao-em-curso",
+    "ClWQYFNDojC": "objeto-impossivel",
+    "C6e2tTUNtqV": "quem-faz-mostra",
+    "Db3wkazhqAx": "veredito-direto",
+    "DaTMYyYB1BJ": "resultado-antes",
+    "DbgXMlIhWpw": "veredito-direto",
+    "DcgT31-Bo5x": "pergunta-diagnostico",
+    "C-YNAbXARZS": "situacao-reconhecivel",
+    "CuAhpuGAGdk": "quem-faz-mostra",
+    "DU6GNWQER2M": "resultado-antes",
+    "DVqyHk-kefA": "resultado-antes",
+    "DY9g8flxMEa": "objeto-impossivel",
+    "DdWpu4yMpxk": "marca-clima",
+    "DKrnvXvt72X": "objeto-impossivel",
+    "DKwzk3ztsKq": "marca-clima",
+    "DO_MzbODBzQ": "marca-clima",
+    "C017i9wN2O_": "marca-clima",
+    "CsoTJECgvES": "marca-clima",
+    "DSmaaz3DWOX": "marca-clima",
+    "DV8gTwyDK9W": "acao-em-curso",
+    "DZ5Q5B9inoj": "quem-faz-mostra",
+    "Db6L8cPJ5Jj": "quem-faz-mostra",
+    "Dbdlv_5CFvB": "acao-em-curso",
+    "DcT14-qx6pM": "situacao-reconhecivel",
+    "Da1SakEtUHD": "objeto-impossivel",
+    "DZ2txUDu-PL": "marca-clima",
+    "DdXVF0-o1xu": "marca-clima",
+    "DYpiwKZR1ks": "marca-clima",
+    "DcbH1Lhtiy0": "situacao-reconhecivel",
+    "DdRM4oglV5o": "situacao-reconhecivel",
+    "DTnC1O2DjKg": "acao-em-curso",
+    "C380j0MvQPk": "objeto-impossivel",
+    "Ddpzfv2M97p": "objeto-impossivel",
+    "DB_7-NgieFc": "objeto-impossivel",
+    "C29qDOZMAsP": "acao-em-curso",
+    "C0CetDUpYKt": "objeto-impossivel",
+    "DZh2UNBiIYH": "situacao-reconhecivel",
+    "DQfWDLPEro8": "objeto-impossivel",
+    "Dbs5H8rRQfT": "objeto-impossivel",
+    "Dc1fyuqADLQ": "objeto-impossivel",
+    "C1UzVXSq6yP": "objeto-impossivel",
+    "Cy2Oe0yqNWa": "objeto-impossivel",
+    "C7nl6DEK6-3": "acao-em-curso",
+    "CubwtncxdEA": "objeto-impossivel",
+    "C6VZx59rrFj": "objeto-impossivel",
+    "DeJ7UMLRDD5": "situacao-reconhecivel",
+    "DeRxCgKRU9a": "objeto-impossivel",
+    "DeH6r5-PujC": "situacao-reconhecivel",
+    "DeIH4qoJyD2": "acao-em-curso",
+    "DdPkB_GO0YH": "marca-clima",
+    "Dc3qIniBHu3": "objeto-impossivel",
+    "DdcdXuqhRST": "marca-clima",
+    "Ddmprvdt3ZF": "objeto-impossivel",
+    "DV09A1RIJeS": "resultado-antes",
+    "DVOnVHZidJH": "resultado-antes",
+    "DdZxtj8Mw8_": "objeto-impossivel",
+    "DKFHg5fuun9": "conflito-resposta",
+    "DPwLjx4DQqk": "conflito-resposta",
+    "DUpHrXODcmA": "conflito-resposta",
+    "DcMaCPgtjBH": "quem-faz-mostra",
+    "DWzBtcOjZ7e": "situacao-reconhecivel",
+    "DY0HBzhNx69": "veredito-direto",
+    "DA3Gn2GSK2P": "quem-faz-mostra",
+    "DPyO3Esj1iE": "veredito-direto",
+    "DMdH8NPgpSF": "resultado-antes",
+    "DcwBkOxyeA-": "objeto-impossivel",
+    "DXW3HSxjZu-": "acao-em-curso",
+    "C2As5K3v-hy": "acao-em-curso",
+    "DQosgdvDOS4": "situacao-reconhecivel",
+    "Dcdsd6BB5bv": "veredito-direto",
+    "DCr-JBozHjY": "marca-clima",
+    "DOoqmy2ErVK": "acao-em-curso",
+    "DP47nAcDFNQ": "pergunta-diagnostico",
+    "Dd6xl6lptpp": "acao-em-curso",
+    "Dc3xBjaMSKo": "resultado-antes",
+    "DdPLCRDCFbb": "objeto-impossivel",
+    "Dd1_il8hdbC": "situacao-reconhecivel",
+    "DblYXS4PNer": "marca-clima",
+    "Ddy_Yadxum9": "situacao-reconhecivel",
+    "DePbAhMxhgS": "pergunta-diagnostico",
+    "DbyehgZAeM2": "situacao-reconhecivel",
+    "DeJVRWUEyVC": "objeto-impossivel",
+    "DbV6ICBSdBI": "marca-clima",
+    "Db5wAxRphn9": "marca-clima",
+    "Dcd7cmWu68G": "objeto-impossivel",
+    "DeXQKFXCNo1": "situacao-reconhecivel",
+    "Db3KtvZKzjx": "objeto-impossivel",
+    "DYVG9iFxLp6": "quem-faz-mostra",
+    "DbBf3hosq7q": "acao-em-curso",
+    "DM1thp6Rpb8": "acao-em-curso",
+    "DYZx1JxOX45": "pergunta-diagnostico",
+    "DbLuf9bhF-8": "acao-em-curso",
+    "DcEbBtbJsH_": "acao-em-curso",
+    "DbQPPv2PPVk": "acao-em-curso",
+    "DFe7K8yM7rZ": "acao-em-curso",
+    "DdnPgzptYs2": "conflito-resposta",
+    "Dbtvw4eB5Cz": "quem-faz-mostra",
+    "DZopUf8xMxe": "acao-em-curso",
+    "Dc_LmZjR4rN": "situacao-reconhecivel",
+    "DYpAfxFR2qV": "pergunta-diagnostico",
+    "DWT0E6MRoBP": "quem-faz-mostra",
+    "DcRoodZJjF6": "objeto-impossivel",
+    "CwBZ3UFINrm": "resultado-antes",
+    "DapoKiRRTkC": "resultado-antes",
+    "DFFc826SxPF": "veredito-direto",
+    "DZOC2OdJSgo": "pergunta-diagnostico",
+    "DdaDVUCJ6Pt": "acao-em-curso"
+  }
+}
