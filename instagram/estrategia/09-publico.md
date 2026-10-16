@@ -81,7 +81,26 @@ marca.
 | **4** | **Rotina da manhã e do trabalho + receitas com café** | não há número do anel; o *proxy* é o TudoGostoso, **7,5 mi** de seguidores no Instagram | **[terciário]** | número autodeclarado pela marca, de um público de receita em geral, não de café |
 | **5** | **Estilo de vida** | Instagram alcança **147 mi** de pessoas no Brasil com anúncio (69% da população) | **[terciário]** | é audiência de anúncio do Meta, não usuário ativo, e pode contar perfil duplicado |
 
-Fontes, URL e data de cada número: [`08-fontes.md`](08-fontes.md) §8. **Os cinco são
+### Quem disputa cada anel
+
+Tamanho sozinho engana: o anel grande também é o mais disputado. A densidade de concorrência
+costuma ser o inverso do tamanho, e na Canastra isso está medido no centro e no anel 2.
+
+| Anel | Quem disputa | Densidade | Marca |
+|---|---|---|---|
+| **1** | três homônimos ocupam o nome *Serra da Canastra* — @cafeserradacanastra (14,4 mil seguidores, mediana de **8** curtidas), @cafedaserradacanastra (3.903, mediana 11; é o vendedor do Mercado Livre e usa *"Da raiz à xícara"*) e @fazendacafeserradacanastra (948, mediana 13) | **ocupado, mas sem audiência viva**: a placa está lá, o público não | **[medido]** |
+| **2** | @coffeemais (Coffee++, 269 mil, 93% reels educativos: *o que é café especial · acidez não é defeito · o que significam 84/90/95 pontos*), @sebastianspecialtycoffee, @cafezale.com.br, @orfeucafes | **lotado**: o mesmo assunto, publicado em série por contas maiores | **[medido]** |
+| **3** | todo perfil de café ensina preparo; o Coffee++ intercala receita, e o @chamberlaincoffee (541 mil) faz preparo em câmera lenta | lotado | perfis **[medido]**; a densidade é *leitura minha, não medição* |
+| **4** | o Orfeu faz coautoria com cozinheiras (@cozinharoccia, @chefmorenaleite — esta com 3.188 curtidas num post); o Coffee++ posta pudim, mousse, pão de mel; o TudoGostoso tem 7,5 mi de seguidores | muito lotado, e quase nunca com café de origem no centro | Orfeu e Coffee++ **[medido]**; TudoGostoso **[terciário]** |
+| **5** | todo mundo | saturado | — |
+
+Fontes das linhas medidas: [`../01-concorrencia.md`](../01-concorrencia.md) §2 e §4, coleta de
+30/09/2026. *(Leitura minha, não medição: o centro é o único anel em que a disputa é pelo
+**nome** e não pela atenção. Quem chega lá procurando "Serra da Canastra" encontra três contas sem
+fazenda própria e com audiência parada. Nos outros anéis a disputa é por atenção, e a Canastra
+entra menor.)*
+
+Fontes, URL e data de cada número de tamanho: [`08-fontes.md`](08-fontes.md) §8. **Os cinco são
 [terciário]** — números de estudo de terceiro, que a pesquisa de 15/10/2026 leu mas não
 auditou. Servem para dar a ordem de grandeza entre os anéis, **nunca para virar meta**. Em
 nenhum anel existe contagem de **pessoas que compram café especial**: os números medem
@@ -216,17 +235,73 @@ então ele gira **dentro** da combinação, do mesmo jeito que o tema: na fase 1
 da combinação ativa e os anéis se alternam entre elas. Anel não é formato e não cria
 combinação nova.
 
-### Como registrar e como avaliar
+### Como registrar
 
-- **Toda peça leva o anel na agenda** (`instagram/agenda.md`): é a coluna que permite olhar o
-  mix no fim do ciclo. Quem pauta declara o anel junto com o gancho.
-- **No dia 30, não se dá veredito por anel na fase 1.** Duas peças de anel 4 não são amostra; a
-  regra de `06-cadencia.md` §6 — não descartar antes de 8 peças — vale para anel também.
-- **O que olhar, como hipótese:** envios por alcance pesam mais no alcance **não-conectado**, e
-  curtidas por alcance no **conectado** **[oficial]**. *(Leitura minha, não medição: se o modelo
-  de anéis estiver certo, os anéis externos deveriam render mais envio e mais alcance em
-  não-seguidor, e o centro mais curtida de quem já segue. É a primeira coisa a conferir quando
-  os Insights por peça chegarem em `instagram/metricas/`.)*
+**Toda peça leva o anel na agenda** (`instagram/agenda.md`, coluna *Anel*): é o que permite
+cruzar o anel com o número no fim do lote. Quem pauta declara o anel junto com o gancho, e o
+fechamento do dia preenche a coluna.
+
+### A calibração por lote
+
+O mix 4 · 2 · 2 é ponto de partida, não verdade. A ideia vem do método do Kallaway: rodar o
+mesmo padrão por 2 ou 3 lotes, ver **qual anel trouxe gente que compra** e puxar os lotes seguintes
+para ele **[criador]**. Aqui, **lote = um ciclo de 30 dias** de `06-cadencia.md` (8 a 9 peças).
+
+**Quando:** a primeira calibração é no **fim do lote 2** (~dia 60). No fim do lote 1 os anéis 2–3 e
+4 têm duas peças cada, o que não é amostra; com dois lotes chegam a quatro. Até lá vale a regra de
+`06-cadencia.md` §6: não se descarta com menos de 8 peças.
+
+**A ficha, uma linha por anel por lote:**
+
+| Lote | Anel | Peças | Alcance (mediana) | Envios ÷ alcance | Salvamentos ÷ alcance | Tempo médio assistido (reel) | Sinal de venda | Decisão |
+|---|---|---:|---:|---:|---:|---:|---|---|
+| 1 · 06/10–02/11 | 1 | | | | | | | — (lote 1 não decide) |
+| 1 | 2–3 | | | | | | | — |
+| 1 | 4 | | | | | | | — |
+| 2 | 1 | | | | | | | |
+| 2 | 2–3 | | | | | | | |
+| 2 | 4 | | | | | | | |
+
+**De onde sai cada coluna.** O anel sai da agenda. Os números saem de
+`instagram/metricas/proprios.jsonl`, pela **última linha de cada `id`**, conforme o contrato em
+`instagram/metricas/LEIA-ME.md` (fluxo 1):
+
+| Coluna | Campo do contrato | O que é |
+|---|---|---|
+| Alcance | `alcance` | contas alcançadas |
+| Envios ÷ alcance | `shares` ÷ `alcance` | sinal que pesa mais no alcance de **não-seguidor** **[oficial]** |
+| Salvamentos ÷ alcance | `saves` ÷ `alcance` | utilidade |
+| Tempo médio assistido | `tempo_medio_assistido_s` | sinal principal de ranking **[oficial]**; só reel |
+| Sinal de venda | **não está no contrato** | ver abaixo |
+
+**O sinal de venda é o que decide**, e é o que ainda não se coleta por peça. Três candidatos, e o
+estado de cada um:
+
+- **Clique no link.** O Instagram mostra toque no link da bio por **conta**, não por post; atribuir
+  a uma peça só funciona com link próprio por peça (UTM na loja). Ainda não existe.
+- **Cupom.** Um cupom por anel ou por peça, dito na legenda, conta a venda na loja. Depende de
+  decisão do cliente e de configuração da loja; não existe hoje.
+- **DM.** Mensagem que cita a peça ("vi o vídeo da peneira"), contada à mão no fechamento do dia.
+  Custo zero e começa amanhã, mas é contagem manual e por isso frágil.
+
+Enquanto nenhum dos três existir, a coluna fica `sem dado`, e a calibração decide por **envios ÷
+alcance** e **salvamentos ÷ alcance**, dizendo na própria linha que decidiu sem sinal de venda.
+*(Leitura minha, não medição: é exatamente o caso que o método quer evitar, porque o anel que mais
+rende envio pode não ser o que mais vende. Instrumentar um dos três antes do dia 60 é o que torna
+a calibração útil.)*
+
+**A regra de decisão** — proposta minha, a confirmar com o cliente:
+
+1. Compare a **mediana** por anel, nunca o melhor post (`06-cadencia.md` §6).
+2. O anel com melhor sinal de venda ganha **uma** peça por lote, tirada do anel com o pior. Uma
+   mudança por calibração, como a regra de torneio da cadência.
+3. Anel 5 continua 0, e o anel 4 continua no mix: as duas coisas são decisão do cliente
+   registrada neste documento, e a calibração ajusta proporção, não reabre decisão.
+4. A decisão vai para a coluna *Decisão* e para a §3 deste arquivo (o novo mix), com a data.
+
+*(Hipótese a conferir na primeira ficha, leitura minha: se o modelo de anéis estiver certo, os
+anéis externos rendem mais envio e mais alcance em não-seguidor, e o centro rende mais salvamento
+e mais sinal de venda.)*
 
 ---
 
@@ -292,7 +367,44 @@ anel 1; *Tem casca no seu café?* → anel 2.
 
 ---
 
-## 7. O que este documento não decide, e as lacunas
+## 7. Referências: o assunto vem de perto, a execução vem de qualquer lugar
+
+Quando a peça nasce olhando o que outra conta fez, separe as duas coisas que se copiam:
+
+- **Assunto** — do que a peça fala. Vem de **perto do centro**: de conta dos anéis 1 e 2 (café
+  de origem e café especial), **re-mirado para o nosso café**. O vídeo de um barista sobre "o que
+  é torra média" vira *a torra média do nosso Suave, no nosso galpão*. Para peça de anel 3 ou 4, o
+  assunto pode vir do próprio anel, mas entra com o nosso café dentro do quadro e passa no teste
+  das duas camadas (§5). **Nunca** se pega assunto do anel 5.
+- **Execução** — formato, gancho, estrutura, edição, ritmo, legenda, trilha. Vem de **qualquer
+  lugar**, inclusive de fora do café. É o que a biblioteca `instagram/referencias-virais/` já faz:
+  58 das 130 fichas são motion de marca de outros setores **[medido]**.
+
+*(O método vem do Kallaway — assunto tirado de longe do centro faz a conta derivar para o amplo, e
+o algoritmo perde quem é o espectador **[criador]**. Que isso valha para o Instagram de uma marca
+de café é hipótese, não medição.)*
+
+**Se o centro não tem ninguém para copiar, isso é a vaga, não o problema.** No anel 1, os três
+homônimos têm o nome e não têm audiência (§2); não há de quem copiar assunto de lavoura própria,
+e é por isso que ele é nosso.
+
+### Termos de busca por anel
+
+Para achar contas e vídeos a estudar. *(Sugestão de termos, não medição: nenhum foi testado em
+contagem de resultado.)* Na biblioteca, os termos da coluna do meio são etiquetas do vocabulário
+de `scripts/indice_referencias.py` e rodam em `python scripts/indice_referencias.py buscar <termos>`.
+
+| Anel | Para quê | Biblioteca (etiquetas) | Busca no Instagram |
+|---|---|---|---|
+| 1 | **assunto** | `colheita selecao`, `terreiro-secagem`, `produtor-familia`, `torra cor-do-grao` | *café de fazenda*, *produtor de café especial*, *colheita de café*, *microlote* |
+| 2 | **assunto** | `mito-verdade supermercado`, `comparacao conflito-vilao`, `prova-cupping` | *café especial*, *pontuação SCA*, *torra média*, *Q-Grader* |
+| 3 | assunto do próprio anel, re-mirado | `tutorial-preparo preparo`, `consumo` | *café coado*, *prensa francesa*, *cápsula compatível*, *moagem para coador* |
+| 4 | assunto do próprio anel, re-mirado; e execução | `vida-real consumo`, `collab` | *receita com café*, *café gelado*, *café da manhã rotina*, *home office café* |
+| 5 e fora do café | **só execução** | frentes `motion-marcas`, `motion-criadores`, `marcas`; técnicas `kinetic-type`, `parallax-2-5d`, `loop-perfeito` | contas de motion e de marca de produto, de qualquer setor |
+
+---
+
+## 8. O que este documento não decide, e as lacunas
 
 - **Não decide o formato.** Anel é assunto; formato é `05-formatos.md`, combinação é
   `06-cadencia.md`.
@@ -302,6 +414,8 @@ anel 1; *Tem casca no seu café?* → anel 2.
   cliente continua valendo como alvo**, mas a distância entre o alvo e a audiência vira dado.
 - **Não tem venda por região nem por produto de entrada.** As duas linhas da §1 são declaração
   do cliente.
+- **Não tem sinal de venda por peça.** Clique no link, cupom e DM ainda não são coletados (§3,
+  *A calibração por lote*); sem um deles, a calibração decide por envio e salvamento.
 - **Os tamanhos dos anéis não contam pessoas** nos anéis 1 a 4 (§2).
 - **O modelo de anéis e o 3-2-2 são [criador].** Se o modelo cair, a regra prática que sobra é
   a do teste da troca de logo, que não depende dele.
@@ -311,7 +425,7 @@ anel 1; *Tem casca no seu café?* → anel 2.
 
 ---
 
-## 8. Onde isso se conecta
+## 9. Onde isso se conecta
 
 | Preciso de | Vá para |
 |---|---|
@@ -323,4 +437,5 @@ anel 1; *Tem casca no seu café?* → anel 2.
 | o molde da peça | [`04-arquetipos.md`](04-arquetipos.md) |
 | o que está fora (humor de fora do café, sorteio) | [`07-nao-fazer.md`](07-nao-fazer.md) |
 | de onde vem cada tamanho de anel | [`08-fontes.md`](08-fontes.md) §8 |
+| os números de cada peça, para a calibração | `instagram/metricas/LEIA-ME.md` (contrato do coletor) |
 | os quatro pilares | `../../Direcao-Criativa.md` |
