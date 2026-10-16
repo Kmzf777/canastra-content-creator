@@ -1,0 +1,1 @@
+DcZWVc8K-6F	https://www.instagram.com/reel/DcZWVc8K-6F/	rc=1	it 1): ERROR: [Instagram] DcZWVc8K-6F: Requested format is not available. Use --list-formats for a list of available formats Check the original error and update the owning yt-dlp package if needed. 

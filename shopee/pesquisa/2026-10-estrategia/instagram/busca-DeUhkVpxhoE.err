@@ -1,0 +1,6 @@
+[watch] working dir: C:\Users\rafae\AppData\Local\Temp\claude\C--Users-rafae-OneDrive-Desktop-Canastra-Inteligencia-Agentes-AI-central-claude\b9d7e122-27e5-4be7-8b7d-7f23c67a1f84\scratchpad\watch\watch-d5fnff_h
+[watch] checking metadata/captions via yt-dlp…
+[watch] downloading media…
+[watch] local WhisperX small transcription; CPU runs may take several minutes.
+[whisperx] Using cache found in C:\Users\rafae/.cache\torch\hub\snakers4_silero-vad_master
+[whisperx] 2026-10-14 17:54:20 - whisperx.asr - WARNING - Audio is shorter than 30s, language detection may be inaccurate

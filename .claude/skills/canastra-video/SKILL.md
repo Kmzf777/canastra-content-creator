@@ -1,9 +1,14 @@
 ---
 name: canastra-video
-description: Use when producing or auditing any Café Canastra moving piece — reel, vídeo de Instagram, Shorts, TikTok, motion, criativo animado, legenda queimada, kinetic type, versão 1:1 ou 4:5 de um vertical — or when writing/compiling a briefing.json for the video engine in instagram/remotion, rendering a peça, running the conferir.mjs portões, normalizing audio, or debugging why a render came out torto, mudo or with the wrong duração.
+description: Use when planning, writing, producing or auditing any Café Canastra moving piece — reel, vídeo de Instagram, Shorts, TikTok, motion, criativo animado, legenda queimada, kinetic type, versão 1:1 ou 4:5 de um vertical — including choosing the format, the hook, the voice, the copy/roteiro, the background music or sound, the edit and the CTA; or when writing/compiling a briefing.json for the engine in instagram/remotion, syncing captions to a narration, rendering, running the conferir.mjs portões, normalizing audio, writing the Reel's descrição, or debugging a render that came out torto, mudo, fora de sincronia or with the wrong duração.
 ---
 
 # Motor de vídeo — Café Canastra
+
+> **ANTES de escrever copy, escolher gancho, voz ou música, ou planejar a edição: leia
+> `estrategia.md` (nesta pasta).** Ele decide o *quê* (formato, gancho, voz, roteiro, som,
+> edição, marca, CTA, medição) a partir de 130 virais analisados; o resto desta skill decide o
+> *como* (motor, briefing, portões). Plano sem 3 fichas de referência citadas não está pronto.
 
 O motor vive em `instagram/remotion/` e é **dirigido por briefing**:
 
@@ -605,3 +610,42 @@ usuário, não presuma.
 Erro que custou uma rodada vira lição no `Registro de lições` do `CLAUDE.md`, no formato
 **sintoma → causa raiz → regra**. Erro não registrado se repete na próxima sessão, que não
 tem a memória desta.
+
+---
+
+## Referências antes de criar
+
+A estratégia inteira está em `estrategia.md`; a biblioteca em `instagram/referencias-virais/`
+(130 fichas; busca: `python scripts/indice_referencias.py buscar <termos>`). Peça animada:
+`instagram/referencias-virais/relatorio-motion.md`.
+
+## Série de colagem (estilo @_victorzk) — motor à parte
+
+> **Exceção, não padrão** (`estrategia.md` §1): só com pedido explícito do cliente. Os 130 virais
+> não usam colagem narrada de ponta a ponta, e o Reel 08 nesse formato foi reprovado.
+
+Motion de colagem narrado NÃO passa pelo briefing nem pelo `conferir.mjs` (os dois
+dependem de `plano.json`). **REQUIRED: leia `colagem.md`, nesta pasta, antes de escrever
+copy, gerar narração, alinhar, montar cena, conferir ou escrever a descrição de uma peça
+da série.** É o processo da peça 07 (`src/pecas/especial/`, aprovada pelo cliente como
+impecável em 07/10/2026), na ordem em que se faz. As medidas das referências estão em
+`docs/motion-colagem.md`.
+
+O que não se negocia — cada linha já custou uma rodada:
+
+| Regra | Lição |
+|---|---|
+| Tempo das palavras = fusão whisper + CTC (`scripts/alinhar_forcado.py`), conferida contra o áudio (`scripts/conferir_alinhamento.py`) | 56 |
+| Nenhum segundo digitado em cena, som ou trilha: `em()`, `depois()`, `TROCA`, `CENA_INICIO` | 56 |
+| Marcador escreve no tempo da fala: `dur={fala(faixa)}` | 57 |
+| Chicote com as duas imagens coladas; conferir com still DENTRO da janela | 58 |
+| Medir o alfa do recorte antes de pôr texto perto da embalagem; nunca sobre logo ou selo | 59 |
+| Variantes de boil cortadas pela união dos bboxes | 60 |
+| Render abortado: matar a árvore pelo PID achado na linha de comando | 61 |
+| Áudio: `normalizar-audio.mjs` mede o MP4 escrito e corrige a margem de pico do AAC sozinho | 62 |
+
+Ferramentas da série: `scripts/alinhar_narracao.py` · `scripts/alinhar_forcado.py` ·
+`scripts/conferir_alinhamento.py` · `scripts/biblioteca_colagem.py` ·
+`scripts/colagem_assets*.py` · `instagram/remotion/scripts/contato.mjs` ·
+`scripts/varrer_movimento.py` · `scripts/folha_do_video.py` ·
+`instagram/remotion/scripts/normalizar-audio.mjs`.

@@ -1,0 +1,9 @@
+[watch] working dir: C:\Users\rafae\AppData\Local\Temp\claude\C--Users-rafae-OneDrive-Desktop-Canastra-Inteligencia-Agentes-AI-central-claude\6f39a7e7-bf58-4ccb-8d5b-41b961923289\scratchpad\watch\watch-ayaseilh
+[watch] checking metadata/captions via yt-dlp…
+[watch] captions unavailable: yt-dlp failed (exit 1): ERROR: [TikTok] 7685809368431987976: No video formats found!; please report this issue on  https://github.com/yt-dlp/yt-dlp/issues?q= , filling out the appropriate issue template. Confirm you are on the latest version using  yt-dlp -U
+Check the original error and update the owning yt-dlp package if needed.
+[watch] downloading media…
+[watch] yt-dlp failed (exit 1): ERROR: [TikTok] 7685809368431987976: No video formats found!; please report this issue on  https://github.com/yt-dlp/yt-dlp/issues?q= , filling out the appropriate issue template. Confirm you are on the latest version using  yt-dlp -U
+Check the original error and update the owning yt-dlp package if needed.
+[watch] Media unavailable: yt-dlp failed (exit 1): ERROR: [TikTok] 7685809368431987976: No video formats found!; please report this issue on  https://github.com/yt-dlp/yt-dlp/issues?q= , filling out the appropriate issue template. Confirm you are on the latest version using  yt-dlp -U
+Check the original error and update the owning yt-dlp package if needed.

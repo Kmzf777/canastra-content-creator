@@ -1,0 +1,1106 @@
+[
+ {
+  "i": 0,
+  "texto": "Esse",
+  "inicio": 0.06,
+  "fim": 0.38
+ },
+ {
+  "i": 1,
+  "texto": "café",
+  "inicio": 0.38,
+  "fim": 0.39
+ },
+ {
+  "i": 2,
+  "texto": "aqui",
+  "inicio": 0.85,
+  "fim": 0.97
+ },
+ {
+  "i": 3,
+  "texto": "já",
+  "inicio": 1.39,
+  "fim": 1.52
+ },
+ {
+  "i": 4,
+  "texto": "foi",
+  "inicio": 1.68,
+  "fim": 1.84
+ },
+ {
+  "i": 5,
+  "texto": "uma",
+  "inicio": 1.84,
+  "fim": 1.91
+ },
+ {
+  "i": 6,
+  "texto": "fruta.",
+  "inicio": 2.14,
+  "fim": 2.37
+ },
+ {
+  "i": 7,
+  "texto": "Vermelha,",
+  "inicio": 2.84,
+  "fim": 3.53
+ },
+ {
+  "i": 8,
+  "texto": "doce",
+  "inicio": 3.67,
+  "fim": 4.26
+ },
+ {
+  "i": 9,
+  "texto": "e",
+  "inicio": 4.61,
+  "fim": 4.66
+ },
+ {
+  "i": 10,
+  "texto": "você",
+  "inicio": 4.66,
+  "fim": 4.94
+ },
+ {
+  "i": 11,
+  "texto": "nunca",
+  "inicio": 4.94,
+  "fim": 5.22
+ },
+ {
+  "i": 12,
+  "texto": "viu",
+  "inicio": 5.22,
+  "fim": 5.39
+ },
+ {
+  "i": 13,
+  "texto": "ela",
+  "inicio": 5.39,
+  "fim": 5.56
+ },
+ {
+  "i": 14,
+  "texto": "no",
+  "inicio": 5.56,
+  "fim": 5.67
+ },
+ {
+  "i": 15,
+  "texto": "supermercado.",
+  "inicio": 5.67,
+  "fim": 6.37
+ },
+ {
+  "i": 16,
+  "texto": "Antes",
+  "inicio": 6.63,
+  "fim": 6.83
+ },
+ {
+  "i": 17,
+  "texto": "de",
+  "inicio": 6.83,
+  "fim": 6.93
+ },
+ {
+  "i": 18,
+  "texto": "colher,",
+  "inicio": 6.93,
+  "fim": 7.32
+ },
+ {
+  "i": 19,
+  "texto": "a",
+  "inicio": 7.42,
+  "fim": 7.46
+ },
+ {
+  "i": 20,
+  "texto": "gente",
+  "inicio": 7.46,
+  "fim": 7.67
+ },
+ {
+  "i": 21,
+  "texto": "mede",
+  "inicio": 7.67,
+  "fim": 7.88
+ },
+ {
+  "i": 22,
+  "texto": "o",
+  "inicio": 7.88,
+  "fim": 7.92
+ },
+ {
+  "i": 23,
+  "texto": "açúcar",
+  "inicio": 7.92,
+  "fim": 8.36
+ },
+ {
+  "i": 24,
+  "texto": "dela.",
+  "inicio": 8.36,
+  "fim": 8.6
+ },
+ {
+  "i": 25,
+  "texto": "É,",
+  "inicio": 8.88,
+  "fim": 9.06
+ },
+ {
+  "i": 26,
+  "texto": "café",
+  "inicio": 9.06,
+  "fim": 9.09
+ },
+ {
+  "i": 27,
+  "texto": "também",
+  "inicio": 9.5,
+  "fim": 9.88
+ },
+ {
+  "i": 28,
+  "texto": "faz",
+  "inicio": 9.88,
+  "fim": 10.08
+ },
+ {
+  "i": 29,
+  "texto": "exame.",
+  "inicio": 10.08,
+  "fim": 10.48
+ },
+ {
+  "i": 30,
+  "texto": "Só",
+  "inicio": 10.76,
+  "fim": 10.88
+ },
+ {
+  "i": 31,
+  "texto": "as",
+  "inicio": 10.88,
+  "fim": 11.04
+ },
+ {
+  "i": 32,
+  "texto": "maduras",
+  "inicio": 11.04,
+  "fim": 11.47
+ },
+ {
+  "i": 33,
+  "texto": "vêm.",
+  "inicio": 11.47,
+  "fim": 11.63
+ },
+ {
+  "i": 34,
+  "texto": "As",
+  "inicio": 11.88,
+  "fim": 11.93
+ },
+ {
+  "i": 35,
+  "texto": "outras",
+  "inicio": 11.93,
+  "fim": 12.32
+ },
+ {
+  "i": 36,
+  "texto": "esperam",
+  "inicio": 12.32,
+  "fim": 12.78
+ },
+ {
+  "i": 37,
+  "texto": "a",
+  "inicio": 12.78,
+  "fim": 12.84
+ },
+ {
+  "i": 38,
+  "texto": "vez.",
+  "inicio": 12.84,
+  "fim": 13.13
+ },
+ {
+  "i": 39,
+  "texto": "Depois",
+  "inicio": 13.34,
+  "fim": 13.67
+ },
+ {
+  "i": 40,
+  "texto": "foi",
+  "inicio": 13.67,
+  "fim": 13.91
+ },
+ {
+  "i": 41,
+  "texto": "tomar",
+  "inicio": 13.91,
+  "fim": 14.2
+ },
+ {
+  "i": 42,
+  "texto": "sol",
+  "inicio": 14.2,
+  "fim": 14.37
+ },
+ {
+  "i": 43,
+  "texto": "no",
+  "inicio": 14.37,
+  "fim": 14.5
+ },
+ {
+  "i": 44,
+  "texto": "terreiro,",
+  "inicio": 14.5,
+  "fim": 15.16
+ },
+ {
+  "i": 45,
+  "texto": "sendo",
+  "inicio": 15.16,
+  "fim": 15.46
+ },
+ {
+  "i": 46,
+  "texto": "revirada",
+  "inicio": 15.46,
+  "fim": 15.99
+ },
+ {
+  "i": 47,
+  "texto": "e",
+  "inicio": 15.99,
+  "fim": 16.03
+ },
+ {
+  "i": 48,
+  "texto": "revirada",
+  "inicio": 16.03,
+  "fim": 16.46
+ },
+ {
+  "i": 49,
+  "texto": "tipo",
+  "inicio": 16.75,
+  "fim": 16.98
+ },
+ {
+  "i": 50,
+  "texto": "frango",
+  "inicio": 16.98,
+  "fim": 17.28
+ },
+ {
+  "i": 51,
+  "texto": "de",
+  "inicio": 17.28,
+  "fim": 17.34
+ },
+ {
+  "i": 52,
+  "texto": "padaria.",
+  "inicio": 17.34,
+  "fim": 17.68
+ },
+ {
+  "i": 53,
+  "texto": "Aí",
+  "inicio": 17.97,
+  "fim": 18.11
+ },
+ {
+  "i": 54,
+  "texto": "perdeu",
+  "inicio": 18.11,
+  "fim": 18.58
+ },
+ {
+  "i": 55,
+  "texto": "a",
+  "inicio": 18.58,
+  "fim": 18.63
+ },
+ {
+  "i": 56,
+  "texto": "casca.",
+  "inicio": 18.63,
+  "fim": 18.89
+ },
+ {
+  "i": 57,
+  "texto": "E",
+  "inicio": 19.13,
+  "fim": 19.17
+ },
+ {
+  "i": 58,
+  "texto": "começou",
+  "inicio": 19.17,
+  "fim": 19.73
+ },
+ {
+  "i": 59,
+  "texto": "a",
+  "inicio": 19.73,
+  "fim": 19.77
+ },
+ {
+  "i": 60,
+  "texto": "parte",
+  "inicio": 19.77,
+  "fim": 20.07
+ },
+ {
+  "i": 61,
+  "texto": "mais",
+  "inicio": 20.07,
+  "fim": 20.34
+ },
+ {
+  "i": 62,
+  "texto": "difícil",
+  "inicio": 20.34,
+  "fim": 20.59
+ },
+ {
+  "i": 63,
+  "texto": "da",
+  "inicio": 20.89,
+  "fim": 21.02
+ },
+ {
+  "i": 64,
+  "texto": "vida",
+  "inicio": 21.02,
+  "fim": 21.29
+ },
+ {
+  "i": 65,
+  "texto": "dela:",
+  "inicio": 21.29,
+  "fim": 21.63
+ },
+ {
+  "i": 66,
+  "texto": "cinco",
+  "inicio": 21.9,
+  "fim": 22.15
+ },
+ {
+  "i": 67,
+  "texto": "máquinas",
+  "inicio": 22.15,
+  "fim": 22.27
+ },
+ {
+  "i": 68,
+  "texto": "que",
+  "inicio": 22.78,
+  "fim": 22.94
+ },
+ {
+  "i": 69,
+  "texto": "existem",
+  "inicio": 22.94,
+  "fim": 23.39
+ },
+ {
+  "i": 70,
+  "texto": "pra",
+  "inicio": 23.39,
+  "fim": 23.66
+ },
+ {
+  "i": 71,
+  "texto": "dizer",
+  "inicio": 23.66,
+  "fim": 23.99
+ },
+ {
+  "i": 72,
+  "texto": "não.",
+  "inicio": 23.99,
+  "fim": 24.45
+ },
+ {
+  "i": 73,
+  "texto": "Não",
+  "inicio": 24.7,
+  "fim": 24.86
+ },
+ {
+  "i": 74,
+  "texto": "pra",
+  "inicio": 24.86,
+  "fim": 25.16
+ },
+ {
+  "i": 75,
+  "texto": "pedra.",
+  "inicio": 25.16,
+  "fim": 25.53
+ },
+ {
+  "i": 76,
+  "texto": "Não",
+  "inicio": 25.53,
+  "fim": 25.67
+ },
+ {
+  "i": 77,
+  "texto": "pro",
+  "inicio": 25.67,
+  "fim": 25.9
+ },
+ {
+  "i": 78,
+  "texto": "graveto.",
+  "inicio": 25.9,
+  "fim": 26.39
+ },
+ {
+  "i": 79,
+  "texto": "Não",
+  "inicio": 26.39,
+  "fim": 26.54
+ },
+ {
+  "i": 80,
+  "texto": "pro",
+  "inicio": 26.54,
+  "fim": 26.76
+ },
+ {
+  "i": 81,
+  "texto": "grão",
+  "inicio": 26.76,
+  "fim": 26.98
+ },
+ {
+  "i": 82,
+  "texto": "leve.",
+  "inicio": 26.98,
+  "fim": 27.28
+ },
+ {
+  "i": 83,
+  "texto": "Não",
+  "inicio": 27.28,
+  "fim": 27.46
+ },
+ {
+  "i": 84,
+  "texto": "pro",
+  "inicio": 27.46,
+  "fim": 27.68
+ },
+ {
+  "i": 85,
+  "texto": "preto,",
+  "inicio": 27.68,
+  "fim": 28.06
+ },
+ {
+  "i": 86,
+  "texto": "pro",
+  "inicio": 28.06,
+  "fim": 28.25
+ },
+ {
+  "i": 87,
+  "texto": "verde,",
+  "inicio": 28.25,
+  "fim": 28.53
+ },
+ {
+  "i": 88,
+  "texto": "pro",
+  "inicio": 28.53,
+  "fim": 28.75
+ },
+ {
+  "i": 89,
+  "texto": "ardido.",
+  "inicio": 28.75,
+  "fim": 29.12
+ },
+ {
+  "i": 90,
+  "texto": "E",
+  "inicio": 29.29,
+  "fim": 29.33
+ },
+ {
+  "i": 91,
+  "texto": "quem",
+  "inicio": 29.33,
+  "fim": 29.5
+ },
+ {
+  "i": 92,
+  "texto": "sobrou",
+  "inicio": 29.5,
+  "fim": 29.83
+ },
+ {
+  "i": 93,
+  "texto": "ainda",
+  "inicio": 29.83,
+  "fim": 30.12
+ },
+ {
+  "i": 94,
+  "texto": "foi",
+  "inicio": 30.12,
+  "fim": 30.35
+ },
+ {
+  "i": 95,
+  "texto": "separado",
+  "inicio": 30.35,
+  "fim": 30.75
+ },
+ {
+  "i": 96,
+  "texto": "por",
+  "inicio": 30.75,
+  "fim": 30.92
+ },
+ {
+  "i": 97,
+  "texto": "tamanho.",
+  "inicio": 30.92,
+  "fim": 31.29
+ },
+ {
+  "i": 98,
+  "texto": "Pra",
+  "inicio": 31.54,
+  "fim": 31.67
+ },
+ {
+  "i": 99,
+  "texto": "ninguém",
+  "inicio": 31.67,
+  "fim": 32.04
+ },
+ {
+  "i": 100,
+  "texto": "torrar",
+  "inicio": 32.04,
+  "fim": 32.3
+ },
+ {
+  "i": 101,
+  "texto": "antes",
+  "inicio": 32.3,
+  "fim": 32.53
+ },
+ {
+  "i": 102,
+  "texto": "da",
+  "inicio": 32.53,
+  "fim": 32.62
+ },
+ {
+  "i": 103,
+  "texto": "hora.",
+  "inicio": 32.62,
+  "fim": 32.82
+ },
+ {
+  "i": 104,
+  "texto": "Depois",
+  "inicio": 33.05,
+  "fim": 33.4
+ },
+ {
+  "i": 105,
+  "texto": "de",
+  "inicio": 33.52,
+  "fim": 33.56
+ },
+ {
+  "i": 106,
+  "texto": "tudo",
+  "inicio": 33.56,
+  "fim": 33.83
+ },
+ {
+  "i": 107,
+  "texto": "isso",
+  "inicio": 33.83,
+  "fim": 34.17
+ },
+ {
+  "i": 108,
+  "texto": "foi",
+  "inicio": 34.52,
+  "fim": 34.56
+ },
+ {
+  "i": 109,
+  "texto": "pro",
+  "inicio": 34.56,
+  "fim": 34.72
+ },
+ {
+  "i": 110,
+  "texto": "fogo.",
+  "inicio": 34.84,
+  "fim": 35.06
+ },
+ {
+  "i": 111,
+  "texto": "Sim.",
+  "inicio": 35.46,
+  "fim": 35.66
+ },
+ {
+  "i": 112,
+  "texto": "Depois",
+  "inicio": 35.98,
+  "fim": 36.15
+ },
+ {
+  "i": 113,
+  "texto": "de",
+  "inicio": 36.15,
+  "fim": 36.29
+ },
+ {
+  "i": 114,
+  "texto": "tudo",
+  "inicio": 36.29,
+  "fim": 36.37
+ },
+ {
+  "i": 115,
+  "texto": "isso.",
+  "inicio": 36.58,
+  "fim": 37.01
+ },
+ {
+  "i": 116,
+  "texto": "E",
+  "inicio": 37.21,
+  "fim": 37.25
+ },
+ {
+  "i": 117,
+  "texto": "aí",
+  "inicio": 37.25,
+  "fim": 37.41
+ },
+ {
+  "i": 118,
+  "texto": "alguém",
+  "inicio": 37.41,
+  "fim": 37.92
+ },
+ {
+  "i": 119,
+  "texto": "provou.",
+  "inicio": 37.92,
+  "fim": 38.34
+ },
+ {
+  "i": 120,
+  "texto": "Fez",
+  "inicio": 38.67,
+  "fim": 38.79
+ },
+ {
+  "i": 121,
+  "texto": "barulho.",
+  "inicio": 38.79,
+  "fim": 39.32
+ },
+ {
+  "i": 122,
+  "texto": "Cheirou.",
+  "inicio": 39.45,
+  "fim": 39.95
+ },
+ {
+  "i": 123,
+  "texto": "Provou",
+  "inicio": 40.18,
+  "fim": 40.37
+ },
+ {
+  "i": 124,
+  "texto": "de",
+  "inicio": 40.37,
+  "fim": 40.5
+ },
+ {
+  "i": 125,
+  "texto": "novo.",
+  "inicio": 40.5,
+  "fim": 40.87
+ },
+ {
+  "i": 126,
+  "texto": "É",
+  "inicio": 41.12,
+  "fim": 41.18
+ },
+ {
+  "i": 127,
+  "texto": "técnica,",
+  "inicio": 41.18,
+  "fim": 41.79
+ },
+ {
+  "i": 128,
+  "texto": "juro.",
+  "inicio": 41.79,
+  "fim": 42.02
+ },
+ {
+  "i": 129,
+  "texto": "Fruta,",
+  "inicio": 42.36,
+  "fim": 42.52
+ },
+ {
+  "i": 130,
+  "texto": "semente,",
+  "inicio": 42.95,
+  "fim": 43.68
+ },
+ {
+  "i": 131,
+  "texto": "grão",
+  "inicio": 43.81,
+  "fim": 44.23
+ },
+ {
+  "i": 132,
+  "texto": "Mas",
+  "inicio": 44.57,
+  "fim": 44.68
+ },
+ {
+  "i": 133,
+  "texto": "o",
+  "inicio": 44.68,
+  "fim": 44.79
+ },
+ {
+  "i": 134,
+  "texto": "que",
+  "inicio": 44.79,
+  "fim": 44.83
+ },
+ {
+  "i": 135,
+  "texto": "fez",
+  "inicio": 44.96,
+  "fim": 45.1
+ },
+ {
+  "i": 136,
+  "texto": "esse",
+  "inicio": 45.1,
+  "fim": 45.43
+ },
+ {
+  "i": 137,
+  "texto": "café",
+  "inicio": 45.43,
+  "fim": 45.66
+ },
+ {
+  "i": 138,
+  "texto": "ser",
+  "inicio": 45.66,
+  "fim": 45.84
+ },
+ {
+  "i": 139,
+  "texto": "bom",
+  "inicio": 45.84,
+  "fim": 46.02
+ },
+ {
+  "i": 140,
+  "texto": "não",
+  "inicio": 46.18,
+  "fim": 46.39
+ },
+ {
+  "i": 141,
+  "texto": "foi",
+  "inicio": 46.39,
+  "fim": 46.55
+ },
+ {
+  "i": 142,
+  "texto": "nada",
+  "inicio": 46.55,
+  "fim": 46.76
+ },
+ {
+  "i": 143,
+  "texto": "disso",
+  "inicio": 46.76,
+  "fim": 47.02
+ },
+ {
+  "i": 144,
+  "texto": "que",
+  "inicio": 47.02,
+  "fim": 47.18
+ },
+ {
+  "i": 145,
+  "texto": "ele",
+  "inicio": 47.18,
+  "fim": 47.34
+ },
+ {
+  "i": 146,
+  "texto": "virou.",
+  "inicio": 47.34,
+  "fim": 47.57
+ },
+ {
+  "i": 147,
+  "texto": "Foi",
+  "inicio": 47.89,
+  "fim": 47.95
+ },
+ {
+  "i": 148,
+  "texto": "tudo",
+  "inicio": 48.12,
+  "fim": 48.3
+ },
+ {
+  "i": 149,
+  "texto": "que",
+  "inicio": 48.3,
+  "fim": 48.48
+ },
+ {
+  "i": 150,
+  "texto": "ficou",
+  "inicio": 48.48,
+  "fim": 48.62
+ },
+ {
+  "i": 151,
+  "texto": "pelo",
+  "inicio": 48.8,
+  "fim": 49.05
+ },
+ {
+  "i": 152,
+  "texto": "caminho.",
+  "inicio": 49.05,
+  "fim": 49.5
+ },
+ {
+  "i": 153,
+  "texto": "Esse",
+  "inicio": 49.77,
+  "fim": 49.95
+ },
+ {
+  "i": 154,
+  "texto": "aqui",
+  "inicio": 49.95,
+  "fim": 50.04
+ },
+ {
+  "i": 155,
+  "texto": "nasceu",
+  "inicio": 50.2,
+  "fim": 50.58
+ },
+ {
+  "i": 156,
+  "texto": "a",
+  "inicio": 50.58,
+  "fim": 50.64
+ },
+ {
+  "i": 157,
+  "texto": "mil",
+  "inicio": 50.64,
+  "fim": 50.88
+ },
+ {
+  "i": 158,
+  "texto": "duzentos",
+  "inicio": 50.88,
+  "fim": 51.12
+ },
+ {
+  "i": 159,
+  "texto": "e",
+  "inicio": 51.12,
+  "fim": 51.36
+ },
+ {
+  "i": 160,
+  "texto": "cinquenta",
+  "inicio": 51.36,
+  "fim": 51.6
+ },
+ {
+  "i": 161,
+  "texto": "metros,",
+  "inicio": 51.6,
+  "fim": 52.09
+ },
+ {
+  "i": 162,
+  "texto": "na",
+  "inicio": 52.09,
+  "fim": 52.21
+ },
+ {
+  "i": 163,
+  "texto": "Serra",
+  "inicio": 52.21,
+  "fim": 52.52
+ },
+ {
+  "i": 164,
+  "texto": "da",
+  "inicio": 52.52,
+  "fim": 52.64
+ },
+ {
+  "i": 165,
+  "texto": "Canastra.",
+  "inicio": 52.64,
+  "fim": 53.22
+ },
+ {
+  "i": 166,
+  "texto": "Já",
+  "inicio": 53.51,
+  "fim": 53.69
+ },
+ {
+  "i": 167,
+  "texto": "foi",
+  "inicio": 53.69,
+  "fim": 53.77
+ },
+ {
+  "i": 168,
+  "texto": "fruta.",
+  "inicio": 53.88,
+  "fim": 54.17
+ },
+ {
+  "i": 169,
+  "texto": "Hoje",
+  "inicio": 54.44,
+  "fim": 54.67
+ },
+ {
+  "i": 170,
+  "texto": "é",
+  "inicio": 54.67,
+  "fim": 54.74
+ },
+ {
+  "i": 171,
+  "texto": "Café",
+  "inicio": 54.86,
+  "fim": 55.06
+ },
+ {
+  "i": 172,
+  "texto": "Canastra.",
+  "inicio": 55.2,
+  "fim": 55.8
+ },
+ {
+  "i": 173,
+  "texto": "E",
+  "inicio": 56.02,
+  "fim": 56.06
+ },
+ {
+  "i": 174,
+  "texto": "amanhã?",
+  "inicio": 56.06,
+  "fim": 56.48
+ },
+ {
+  "i": 175,
+  "texto": "Amanhã",
+  "inicio": 56.81,
+  "fim": 57.23
+ },
+ {
+  "i": 176,
+  "texto": "ele",
+  "inicio": 57.23,
+  "fim": 57.42
+ },
+ {
+  "i": 177,
+  "texto": "vai",
+  "inicio": 57.42,
+  "fim": 57.63
+ },
+ {
+  "i": 178,
+  "texto": "ser",
+  "inicio": 57.63,
+  "fim": 57.87
+ },
+ {
+  "i": 179,
+  "texto": "o",
+  "inicio": 57.87,
+  "fim": 57.91
+ },
+ {
+  "i": 180,
+  "texto": "seu",
+  "inicio": 57.91,
+  "fim": 58.11
+ },
+ {
+  "i": 181,
+  "texto": "café",
+  "inicio": 58.11,
+  "fim": 58.17
+ },
+ {
+  "i": 182,
+  "texto": "da",
+  "inicio": 58.42,
+  "fim": 58.55
+ },
+ {
+  "i": 183,
+  "texto": "manhã.",
+  "inicio": 58.55,
+  "fim": 59.15
+ }
+]

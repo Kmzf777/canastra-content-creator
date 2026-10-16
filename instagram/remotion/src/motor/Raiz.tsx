@@ -54,6 +54,13 @@ import type {Plano} from '../briefing/compilar';
 import {Peca} from './Peca';
 import {PonteAssets, PONTE_PADRAO} from './PonteAssets';
 import {Carta} from '../estatico/Carta';
+import {VoceSabia} from '../colagem/VoceSabia';
+import {DURACAO_Q as VOCE_SABIA_Q, FPS as VOCE_SABIA_FPS} from '../colagem/tempos';
+import {DURACAO_ESPECIAL, Especial} from '../pecas/especial/Especial';
+import {DURACAO_FRUTA, Fruta} from '../pecas/fruta/Fruta';
+import {DURACAO_ONZE2, Onze2} from '../pecas/onze/v2/Onze2';
+import {DURACAO_TESTE, TesteCodigo} from '../pecas/onze/teste/TesteCodigo';
+import {DURACAO_ONZE, Onze} from '../pecas/onze/Onze';
 import {MOLDES_ESTATICO} from '../estatico/moldes';
 import {COR, TIPO} from '../identidade/tokens';
 import {PILHA} from '../identidade/tipografia';
@@ -201,6 +208,23 @@ export const Raiz: React.FC = () => (
         valor so existe porque `<Composition>` o exige. Nao vem do plano -- peca
         estatica nao tem plano -- nem de uma constante FPS, que deixou de existir
         em 01/10/2026 quando o fps passou a sair do `plano.json`. */}
+    {/* Peca 06, colagem. Composicao propria, FORA do motor por briefing: duracao e
+        fps vem de `colagem/tempos.ts`, medidos na narracao, nao de um plano.json. */}
+    <Composition id="VoceSabiaColagem" component={VoceSabia}
+      durationInFrames={VOCE_SABIA_Q} fps={VOCE_SABIA_FPS} width={1080} height={1920} />
+    {/* Peça 07, café especial em colagem v2: câmera 2.5D, legenda A/B, tempos da narração. */}
+    <Composition id="EspecialColagem" component={Especial}
+      durationInFrames={DURACAO_ESPECIAL} fps={30} width={1080} height={1920} />
+    {/* Peça 08, "esse café já foi uma fruta": colagem + vídeo real tratado. */}
+    <Composition id="FrutaColagem" component={Fruta}
+      durationInFrames={DURACAO_FRUTA} fps={30} width={1080} height={1920} />
+    {/* Peça 08b, "onze provas": refação educativa do Reel 08 (vídeo real + colagem + boneco). */}
+    <Composition id="OnzeProvas" component={Onze}
+      durationInFrames={DURACAO_ONZE} fps={30} width={1080} height={1920} />
+    <Composition id="OnzeProvas2" component={Onze2}
+      durationInFrames={DURACAO_ONZE2} fps={30} width={1080} height={1920} />
+    <Composition id="TesteBonecoCodigo" component={TesteCodigo}
+      durationInFrames={DURACAO_TESTE} fps={30} width={1080} height={1920} />
     <Composition id="Carta" component={Carta}
       durationInFrames={1} fps={30}
       width={MOLDES_ESTATICO['cartao-produto'].largura}

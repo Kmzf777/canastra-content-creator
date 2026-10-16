@@ -23,3 +23,14 @@ Barram o "look de IA" e protegem as regras da marca.
   frame é incompressível e estoura o bitrate.
 - Foto real entra por um registro que declara a origem (moldura, cartão, tela
   cheia), nunca como recorte flutuando.
+
+## Licença da série de colagem (aprovada pelo Rafael em 07/10/2026)
+
+Só nas peças de colagem (`src/colagem/`, `src/pecas/especial/`), para reproduzir as
+referências do @_victorzk — ver `docs/motion-colagem.md`:
+- chicote entre cenas, com blur DIRECIONAL de movimento (não flash, não corte seco);
+- snap zoom em pulso e tremor de até 3 quadros no carimbo;
+- carimbo com até 12% de ultrapassagem (1,12 → 0,97 → 1,00), nunca mola que oscila;
+- letra a letra SOMENTE em etiqueta Dymo, marcador e letras recortadas — a legenda (pílula)
+  continua entrando inteira, em corte seco.
+Todo o resto desta página vale igual nas peças de colagem.

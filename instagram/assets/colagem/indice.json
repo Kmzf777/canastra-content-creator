@@ -1,0 +1,2272 @@
+[
+ {
+  "id": "2026-10-07_fita-crepe",
+  "nome": "fita-crepe",
+  "categoria": "fita",
+  "data": "2026-10-07",
+  "tags": [
+   "bege",
+   "fita crepe",
+   "translúcida"
+  ],
+  "origem": "codigo",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fita/2026-10-07_fita-crepe-b0.png",
+   "instagram/assets/colagem/pecas/fita/2026-10-07_fita-crepe-b1.png",
+   "instagram/assets/colagem/pecas/fita/2026-10-07_fita-crepe-b2.png"
+  ],
+  "dimensoes": [
+   220,
+   58
+  ],
+  "bruto": null,
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_foto-cafeeiro",
+  "nome": "foto-cafeeiro",
+  "categoria": "foto-real",
+  "data": "2026-10-07",
+  "tags": [
+   "cafeeiro",
+   "medeiros",
+   "mão",
+   "planta",
+   "pé de café",
+   "vertical"
+  ],
+  "origem": "real-verificada",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-cafeeiro-b0.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-cafeeiro-b1.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-cafeeiro-b2.png"
+  ],
+  "dimensoes": [
+   596,
+   782
+  ],
+  "bruto": "base-curada/01-real-verificada/fazenda-medeiros-1250m/cafeeiro-com-mao/IMG_1421.JPG",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem"
+  ],
+  "nota": "foto real impressa com borda rasgada; sem retícula"
+ },
+ {
+  "id": "2026-10-07_foto-cereja-verde",
+  "nome": "foto-cereja-verde",
+  "categoria": "foto-real",
+  "data": "2026-10-07",
+  "tags": [
+   "cereja verde",
+   "close",
+   "folhas",
+   "galho",
+   "medeiros"
+  ],
+  "origem": "real-verificada",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-cereja-verde-b0.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-cereja-verde-b1.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-cereja-verde-b2.png"
+  ],
+  "dimensoes": [
+   656,
+   633
+  ],
+  "bruto": "base-curada/01-real-verificada/fazenda-medeiros-1250m/cereja-verde/IMG_1424.JPG",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem"
+  ],
+  "nota": "foto real impressa com borda rasgada; sem retícula"
+ },
+ {
+  "id": "2026-10-07_foto-fileiras",
+  "nome": "foto-fileiras",
+  "categoria": "foto-real",
+  "data": "2026-10-07",
+  "tags": [
+   "céu",
+   "fileiras",
+   "lavoura",
+   "medeiros"
+  ],
+  "origem": "real-verificada",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-fileiras-b0.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-fileiras-b1.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-fileiras-b2.png"
+  ],
+  "dimensoes": [
+   936,
+   711
+  ],
+  "bruto": "base-curada/01-real-verificada/fazenda-medeiros-1250m/cafezal/IMG_1407.JPG",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": "foto real impressa com borda rasgada"
+ },
+ {
+  "id": "2026-10-07_foto-lavoura-ceu",
+  "nome": "foto-lavoura-ceu",
+  "categoria": "foto-real",
+  "data": "2026-10-07",
+  "tags": [
+   "cumulus",
+   "céu",
+   "fileiras",
+   "horizontal",
+   "lavoura",
+   "medeiros"
+  ],
+  "origem": "real-verificada",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-lavoura-ceu-b0.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-lavoura-ceu-b1.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-lavoura-ceu-b2.png"
+  ],
+  "dimensoes": [
+   1136,
+   861
+  ],
+  "bruto": "base-curada/01-real-verificada/fazenda-medeiros-1250m/cafezal/IMG_1414.JPG",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem"
+  ],
+  "nota": "foto real impressa com borda rasgada; sem retícula"
+ },
+ {
+  "id": "2026-10-07_foto-lavoura-rua",
+  "nome": "foto-lavoura-rua",
+  "categoria": "foto-real",
+  "data": "2026-10-07",
+  "tags": [
+   "céu",
+   "fileiras",
+   "lavoura",
+   "medeiros",
+   "rua de terra",
+   "vertical"
+  ],
+  "origem": "real-verificada",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-lavoura-rua-b0.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-lavoura-rua-b1.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-lavoura-rua-b2.png"
+  ],
+  "dimensoes": [
+   1116,
+   1476
+  ],
+  "bruto": "base-curada/01-real-verificada/fazenda-medeiros-1250m/cafezal/IMG_1405.JPG",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem"
+  ],
+  "nota": "foto real impressa com borda rasgada; sem retícula"
+ },
+ {
+  "id": "2026-10-07_foto-maos-cafeeiro",
+  "nome": "foto-maos-cafeeiro",
+  "categoria": "foto-real",
+  "data": "2026-10-07",
+  "tags": [
+   "cafeeiro",
+   "colhe",
+   "medeiros",
+   "mão"
+  ],
+  "origem": "real-verificada",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-maos-cafeeiro-b0.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-maos-cafeeiro-b1.png",
+   "instagram/assets/colagem/pecas/foto-real/2026-10-07_foto-maos-cafeeiro-b2.png"
+  ],
+  "dimensoes": [
+   596,
+   782
+  ],
+  "bruto": "base-curada/01-real-verificada/fazenda-medeiros-1250m/cafeeiro-com-mao/IMG_1422.JPG",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": "foto real impressa com borda rasgada"
+ },
+ {
+  "id": "2026-10-07_cachinho",
+  "nome": "cachinho",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "cacho",
+   "cereja madura",
+   "folha",
+   "galho",
+   "retícula",
+   "vermelha"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cachinho-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cachinho-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cachinho-b2.png"
+  ],
+  "dimensoes": [
+   520,
+   809
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_cerejas-estagios.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cereja-amarela-1",
+  "nome": "cereja-amarela-1",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "amarela",
+   "cereja",
+   "maturação",
+   "retícula",
+   "semimadura",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-amarela-1-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-amarela-1-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-amarela-1-b2.png"
+  ],
+  "dimensoes": [
+   171,
+   225
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_cerejas-estagios.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cereja-amarela-2",
+  "nome": "cereja-amarela-2",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "amarela",
+   "cereja",
+   "maturação",
+   "retícula",
+   "semimadura",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-amarela-2-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-amarela-2-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-amarela-2-b2.png"
+  ],
+  "dimensoes": [
+   166,
+   224
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_cerejas-estagios.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cereja-amarela-3",
+  "nome": "cereja-amarela-3",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "amarela",
+   "cereja",
+   "maturação",
+   "retícula",
+   "semimadura",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-amarela-3-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-amarela-3-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-amarela-3-b2.png"
+  ],
+  "dimensoes": [
+   166,
+   224
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_cerejas-estagios.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cereja-verde-1",
+  "nome": "cereja-verde-1",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "cereja",
+   "imatura",
+   "maturação",
+   "retícula",
+   "unidade",
+   "verde"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-verde-1-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-verde-1-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-verde-1-b2.png"
+  ],
+  "dimensoes": [
+   169,
+   223
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_cerejas-estagios.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cereja-verde-2",
+  "nome": "cereja-verde-2",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "cereja",
+   "imatura",
+   "maturação",
+   "retícula",
+   "unidade",
+   "verde"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-verde-2-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-verde-2-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-verde-2-b2.png"
+  ],
+  "dimensoes": [
+   162,
+   222
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_cerejas-estagios.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cereja-verde-3",
+  "nome": "cereja-verde-3",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "cereja",
+   "imatura",
+   "maturação",
+   "retícula",
+   "unidade",
+   "verde"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-verde-3-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-verde-3-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-verde-3-b2.png"
+  ],
+  "dimensoes": [
+   164,
+   221
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_cerejas-estagios.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cereja-vermelha-1",
+  "nome": "cereja-vermelha-1",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "cereja",
+   "madura",
+   "maturação",
+   "retícula",
+   "unidade",
+   "vermelha"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-vermelha-1-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-vermelha-1-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-vermelha-1-b2.png"
+  ],
+  "dimensoes": [
+   184,
+   232
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_cerejas-estagios.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cereja-vermelha-2",
+  "nome": "cereja-vermelha-2",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "cereja",
+   "madura",
+   "maturação",
+   "retícula",
+   "unidade",
+   "vermelha"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-vermelha-2-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-vermelha-2-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-vermelha-2-b2.png"
+  ],
+  "dimensoes": [
+   177,
+   231
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_cerejas-estagios.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "08-cafe-ja-foi-fruta"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cereja-vermelha-3",
+  "nome": "cereja-vermelha-3",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "cereja",
+   "madura",
+   "maturação",
+   "retícula",
+   "unidade",
+   "vermelha"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-vermelha-3-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-vermelha-3-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_cereja-vermelha-3-b2.png"
+  ],
+  "dimensoes": [
+   176,
+   237
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_cerejas-estagios.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_frutos-no-chao",
+  "nome": "frutos-no-chao",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "caido",
+   "fermentou",
+   "fruto passado",
+   "terra vermelha"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_frutos-no-chao-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_frutos-no-chao-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_frutos-no-chao-b2.png"
+  ],
+  "dimensoes": [
+   673,
+   790
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_origem-defeitos.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_galho-passado",
+  "nome": "galho-passado",
+  "categoria": "fruto",
+  "data": "2026-10-07",
+  "tags": [
+   "cereja passada",
+   "galho",
+   "seca no pé"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_galho-passado-b0.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_galho-passado-b1.png",
+   "instagram/assets/colagem/pecas/fruto/2026-10-07_galho-passado-b2.png"
+  ],
+  "dimensoes": [
+   585,
+   936
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_origem-defeitos.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_casca",
+  "nome": "casca",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "casca",
+   "classificacao",
+   "impureza",
+   "pergaminho"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_casca-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_casca-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_casca-b2.png"
+  ],
+  "dimensoes": [
+   431,
+   402
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-b.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cereja-seca",
+  "nome": "cereja-seca",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cereja",
+   "classificacao",
+   "coco",
+   "cru",
+   "defeito",
+   "grave",
+   "seca"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_cereja-seca-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_cereja-seca-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_cereja-seca-b2.png"
+  ],
+  "dimensoes": [
+   386,
+   518
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-a.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-01",
+  "nome": "grao-01",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cru",
+   "grão verde",
+   "retícula",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-01-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-01-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-01-b2.png"
+  ],
+  "dimensoes": [
+   255,
+   322
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-02",
+  "nome": "grao-02",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cru",
+   "grão verde",
+   "retícula",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-02-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-02-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-02-b2.png"
+  ],
+  "dimensoes": [
+   243,
+   313
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-03",
+  "nome": "grao-03",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cru",
+   "grão verde",
+   "retícula",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-03-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-03-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-03-b2.png"
+  ],
+  "dimensoes": [
+   253,
+   310
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-04",
+  "nome": "grao-04",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cru",
+   "grão verde",
+   "retícula",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-04-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-04-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-04-b2.png"
+  ],
+  "dimensoes": [
+   259,
+   312
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-05",
+  "nome": "grao-05",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cru",
+   "grão verde",
+   "retícula",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-05-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-05-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-05-b2.png"
+  ],
+  "dimensoes": [
+   252,
+   303
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-06",
+  "nome": "grao-06",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cru",
+   "grão verde",
+   "retícula",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-06-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-06-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-06-b2.png"
+  ],
+  "dimensoes": [
+   256,
+   318
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-07",
+  "nome": "grao-07",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cru",
+   "grão verde",
+   "retícula",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-07-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-07-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-07-b2.png"
+  ],
+  "dimensoes": [
+   262,
+   327
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-08",
+  "nome": "grao-08",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cru",
+   "grão verde",
+   "retícula",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-08-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-08-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-08-b2.png"
+  ],
+  "dimensoes": [
+   254,
+   310
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-09",
+  "nome": "grao-09",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cru",
+   "grão verde",
+   "retícula",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-09-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-09-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-09-b2.png"
+  ],
+  "dimensoes": [
+   272,
+   336
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-10",
+  "nome": "grao-10",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "cru",
+   "grão verde",
+   "retícula",
+   "unidade"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-10-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-10-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-10-b2.png"
+  ],
+  "dimensoes": [
+   259,
+   335
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-ardido",
+  "nome": "grao-ardido",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "ardido",
+   "azedo",
+   "classificacao",
+   "cru",
+   "defeito",
+   "grave"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-ardido-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-ardido-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-ardido-b2.png"
+  ],
+  "dimensoes": [
+   328,
+   455
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-a.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-brocado",
+  "nome": "grao-brocado",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "broca",
+   "classificacao",
+   "defeito",
+   "furos",
+   "inseto"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-brocado-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-brocado-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-brocado-b2.png"
+  ],
+  "dimensoes": [
+   270,
+   345
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-b.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-concha",
+  "nome": "grao-concha",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "classificacao",
+   "concha",
+   "defeito",
+   "leve"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-concha-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-concha-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-concha-b2.png"
+  ],
+  "dimensoes": [
+   216,
+   352
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-b.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-defeito",
+  "nome": "grao-defeito",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "defeito grave",
+   "grão defeituoso",
+   "preto",
+   "quebrado",
+   "retícula"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-defeito-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-defeito-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-defeito-b2.png"
+  ],
+  "dimensoes": [
+   356,
+   306
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_graos-verdes-defeito.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-fungo",
+  "nome": "grao-fungo",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "classificacao",
+   "cru",
+   "defeito",
+   "fungo",
+   "grave",
+   "mofo"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-fungo-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-fungo-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-fungo-b2.png"
+  ],
+  "dimensoes": [
+   322,
+   494
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-a.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-imaturo",
+  "nome": "grao-imaturo",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "classificacao",
+   "cru",
+   "defeito",
+   "imaturo",
+   "verde"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-imaturo-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-imaturo-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-imaturo-b2.png"
+  ],
+  "dimensoes": [
+   334,
+   469
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-a.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-preto",
+  "nome": "grao-preto",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "classificacao",
+   "cru",
+   "defeito",
+   "grave",
+   "preto"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-preto-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-preto-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-preto-b2.png"
+  ],
+  "dimensoes": [
+   307,
+   449
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-a.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-preto-partido",
+  "nome": "grao-preto-partido",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "classificacao",
+   "cru",
+   "defeito",
+   "grave",
+   "preto",
+   "quebrado"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-preto-partido-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-preto-partido-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-preto-partido-b2.png"
+  ],
+  "dimensoes": [
+   417,
+   368
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-a.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-quaker",
+  "nome": "grao-quaker",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "claro",
+   "classificacao",
+   "defeito",
+   "quaker",
+   "torrado"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-quaker-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-quaker-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-quaker-b2.png"
+  ],
+  "dimensoes": [
+   245,
+   322
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-b.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-quebrado",
+  "nome": "grao-quebrado",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "classificacao",
+   "defeito",
+   "leve",
+   "quebrado"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-quebrado-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-quebrado-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_grao-quebrado-b2.png"
+  ],
+  "dimensoes": [
+   287,
+   330
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-b.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_graveto",
+  "nome": "graveto",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "classificacao",
+   "estranha",
+   "graveto",
+   "impureza",
+   "materia",
+   "pau"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_graveto-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_graveto-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_graveto-b2.png"
+  ],
+  "dimensoes": [
+   631,
+   233
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-b.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_pedra",
+  "nome": "pedra",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "classificacao",
+   "estranha",
+   "impureza",
+   "materia",
+   "pedra"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_pedra-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_pedra-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_pedra-b2.png"
+  ],
+  "dimensoes": [
+   276,
+   296
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_defeitos-graves-b.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_torrado",
+  "nome": "torrado",
+  "categoria": "grao",
+  "data": "2026-10-07",
+  "tags": [
+   "grão torrado",
+   "punhado",
+   "retícula",
+   "torra"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/grao/2026-10-07_torrado-b0.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_torrado-b1.png",
+   "instagram/assets/colagem/pecas/grao/2026-10-07_torrado-b2.png"
+  ],
+  "dimensoes": [
+   442,
+   476
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_peneira-torrado.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-08_carrinho-mercado",
+  "nome": "carrinho-mercado",
+  "categoria": "objeto",
+  "data": "2026-10-08",
+  "tags": [
+   "carrinho",
+   "compra",
+   "mercado",
+   "supermercado"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/objeto/2026-10-08_carrinho-mercado-b0.png",
+   "instagram/assets/colagem/pecas/objeto/2026-10-08_carrinho-mercado-b1.png",
+   "instagram/assets/colagem/pecas/objeto/2026-10-08_carrinho-mercado-b2.png"
+  ],
+  "dimensoes": [
+   579,
+   649
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-08_folha-08.png",
+  "prompt": "Generate ONE square image: a cutout sheet of 4 separate objects, isolated on a pure flat white background (#FFFFFF), widely spaced with lots of white between them, nothing touching, no cast shadows on the background. No text, no letters, no labels, no logos, no brand marks, no people, no hands.\nStyle: real photographs of real objects, as if cut out of a printed magazine, with a subtle halftone print texture, natural daylight, slightly desaturated, matte.\nThe 4 objects:\n1) A whole golden-brown rotisserie chicken skewered on a long metal spit rod, like the ones turning in a Brazilian bakery rotisserie (\"frango de padaria\"), crispy shiny skin, seen from the side.\n2) A handheld optical Brix refractometer: a small cylindrical metal-and-black tube about 20 cm long with a hinged daylight plate and prism at one end and an eyepiece at the other.\n3) A single bright orange-yellow flame of fire, isolated, tall teardrop shape.\n4) A small empty metal supermarket shopping cart, three-quarter view.\n",
+  "usado_em": [
+   "08-cafe-ja-foi-fruta"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-08_chama",
+  "nome": "chama",
+  "categoria": "objeto",
+  "data": "2026-10-08",
+  "tags": [
+   "calor",
+   "chama",
+   "fogo",
+   "torra"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/objeto/2026-10-08_chama-b0.png",
+   "instagram/assets/colagem/pecas/objeto/2026-10-08_chama-b1.png",
+   "instagram/assets/colagem/pecas/objeto/2026-10-08_chama-b2.png"
+  ],
+  "dimensoes": [
+   296,
+   699
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-08_folha-08.png",
+  "prompt": "Generate ONE square image: a cutout sheet of 4 separate objects, isolated on a pure flat white background (#FFFFFF), widely spaced with lots of white between them, nothing touching, no cast shadows on the background. No text, no letters, no labels, no logos, no brand marks, no people, no hands.\nStyle: real photographs of real objects, as if cut out of a printed magazine, with a subtle halftone print texture, natural daylight, slightly desaturated, matte.\nThe 4 objects:\n1) A whole golden-brown rotisserie chicken skewered on a long metal spit rod, like the ones turning in a Brazilian bakery rotisserie (\"frango de padaria\"), crispy shiny skin, seen from the side.\n2) A handheld optical Brix refractometer: a small cylindrical metal-and-black tube about 20 cm long with a hinged daylight plate and prism at one end and an eyepiece at the other.\n3) A single bright orange-yellow flame of fire, isolated, tall teardrop shape.\n4) A small empty metal supermarket shopping cart, three-quarter view.\n",
+  "usado_em": [
+   "08-cafe-ja-foi-fruta"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-08_frango-padaria",
+  "nome": "frango-padaria",
+  "categoria": "objeto",
+  "data": "2026-10-08",
+  "tags": [
+   "assado",
+   "espeto",
+   "frango",
+   "girando",
+   "padaria"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/objeto/2026-10-08_frango-padaria-b0.png",
+   "instagram/assets/colagem/pecas/objeto/2026-10-08_frango-padaria-b1.png",
+   "instagram/assets/colagem/pecas/objeto/2026-10-08_frango-padaria-b2.png"
+  ],
+  "dimensoes": [
+   757,
+   414
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-08_folha-08.png",
+  "prompt": "Generate ONE square image: a cutout sheet of 4 separate objects, isolated on a pure flat white background (#FFFFFF), widely spaced with lots of white between them, nothing touching, no cast shadows on the background. No text, no letters, no labels, no logos, no brand marks, no people, no hands.\nStyle: real photographs of real objects, as if cut out of a printed magazine, with a subtle halftone print texture, natural daylight, slightly desaturated, matte.\nThe 4 objects:\n1) A whole golden-brown rotisserie chicken skewered on a long metal spit rod, like the ones turning in a Brazilian bakery rotisserie (\"frango de padaria\"), crispy shiny skin, seen from the side.\n2) A handheld optical Brix refractometer: a small cylindrical metal-and-black tube about 20 cm long with a hinged daylight plate and prism at one end and an eyepiece at the other.\n3) A single bright orange-yellow flame of fire, isolated, tall teardrop shape.\n4) A small empty metal supermarket shopping cart, three-quarter view.\n",
+  "usado_em": [
+   "08-cafe-ja-foi-fruta"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_clipe-1",
+  "nome": "clipe-1",
+  "categoria": "papelaria",
+  "data": "2026-10-07",
+  "tags": [
+   "clipe",
+   "mural"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_clipe-1-b0.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_clipe-1-b1.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_clipe-1-b2.png"
+  ],
+  "dimensoes": [
+   288,
+   258
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_papelaria.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_clipe-2",
+  "nome": "clipe-2",
+  "categoria": "papelaria",
+  "data": "2026-10-07",
+  "tags": [
+   "clipe",
+   "mural"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_clipe-2-b0.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_clipe-2-b1.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_clipe-2-b2.png"
+  ],
+  "dimensoes": [
+   245,
+   279
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_papelaria.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_etiqueta-barbante",
+  "nome": "etiqueta-barbante",
+  "categoria": "papelaria",
+  "data": "2026-10-07",
+  "tags": [
+   "etiqueta",
+   "mural"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_etiqueta-barbante-b0.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_etiqueta-barbante-b1.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_etiqueta-barbante-b2.png"
+  ],
+  "dimensoes": [
+   532,
+   585
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_papelaria.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_post-it",
+  "nome": "post-it",
+  "categoria": "papelaria",
+  "data": "2026-10-07",
+  "tags": [
+   "mural",
+   "post"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_post-it-b0.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_post-it-b1.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_post-it-b2.png"
+  ],
+  "dimensoes": [
+   447,
+   426
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_papelaria.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_tachinha-creme",
+  "nome": "tachinha-creme",
+  "categoria": "papelaria",
+  "data": "2026-10-07",
+  "tags": [
+   "mural",
+   "tachinha"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-creme-b0.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-creme-b1.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-creme-b2.png"
+  ],
+  "dimensoes": [
+   173,
+   210
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_papelaria.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_tachinha-preta",
+  "nome": "tachinha-preta",
+  "categoria": "papelaria",
+  "data": "2026-10-07",
+  "tags": [
+   "mural",
+   "tachinha"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-preta-b0.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-preta-b1.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-preta-b2.png"
+  ],
+  "dimensoes": [
+   174,
+   212
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_papelaria.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_tachinha-terra",
+  "nome": "tachinha-terra",
+  "categoria": "papelaria",
+  "data": "2026-10-07",
+  "tags": [
+   "mural",
+   "tachinha"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-terra-b0.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-terra-b1.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-terra-b2.png"
+  ],
+  "dimensoes": [
+   174,
+   211
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_papelaria.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_tachinha-verde",
+  "nome": "tachinha-verde",
+  "categoria": "papelaria",
+  "data": "2026-10-07",
+  "tags": [
+   "mural",
+   "tachinha"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-verde-b0.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-verde-b1.png",
+   "instagram/assets/colagem/pecas/papelaria/2026-10-07_tachinha-verde-b2.png"
+  ],
+  "dimensoes": [
+   167,
+   213
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_papelaria.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_folha-1",
+  "nome": "folha-1",
+  "categoria": "planta",
+  "data": "2026-10-07",
+  "tags": [
+   "arabica",
+   "folha de café",
+   "primeiro plano"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-1-b0.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-1-b1.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-1-b2.png"
+  ],
+  "dimensoes": [
+   622,
+   315
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_folhas-cafe.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": "filete 0: vai desfocada na frente da lente"
+ },
+ {
+  "id": "2026-10-07_folha-2",
+  "nome": "folha-2",
+  "categoria": "planta",
+  "data": "2026-10-07",
+  "tags": [
+   "arabica",
+   "folha de café",
+   "primeiro plano"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-2-b0.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-2-b1.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-2-b2.png"
+  ],
+  "dimensoes": [
+   404,
+   373
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_folhas-cafe.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": "filete 0: vai desfocada na frente da lente"
+ },
+ {
+  "id": "2026-10-07_folha-3",
+  "nome": "folha-3",
+  "categoria": "planta",
+  "data": "2026-10-07",
+  "tags": [
+   "arabica",
+   "folha de café",
+   "primeiro plano"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-3-b0.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-3-b1.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-3-b2.png"
+  ],
+  "dimensoes": [
+   322,
+   467
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_folhas-cafe.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": "filete 0: vai desfocada na frente da lente"
+ },
+ {
+  "id": "2026-10-07_folha-4",
+  "nome": "folha-4",
+  "categoria": "planta",
+  "data": "2026-10-07",
+  "tags": [
+   "arabica",
+   "folha de café",
+   "primeiro plano"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-4-b0.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-4-b1.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-4-b2.png"
+  ],
+  "dimensoes": [
+   598,
+   324
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_folhas-cafe.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": "filete 0: vai desfocada na frente da lente"
+ },
+ {
+  "id": "2026-10-07_folha-5",
+  "nome": "folha-5",
+  "categoria": "planta",
+  "data": "2026-10-07",
+  "tags": [
+   "arabica",
+   "folha de café",
+   "primeiro plano"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-5-b0.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-5-b1.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-5-b2.png"
+  ],
+  "dimensoes": [
+   505,
+   322
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_folhas-cafe.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": "filete 0: vai desfocada na frente da lente"
+ },
+ {
+  "id": "2026-10-07_folha-6",
+  "nome": "folha-6",
+  "categoria": "planta",
+  "data": "2026-10-07",
+  "tags": [
+   "arabica",
+   "folha de café",
+   "primeiro plano"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-6-b0.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-6-b1.png",
+   "instagram/assets/colagem/pecas/planta/2026-10-07_folha-6-b2.png"
+  ],
+  "dimensoes": [
+   540,
+   383
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_folhas-cafe.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": "filete 0: vai desfocada na frente da lente"
+ },
+ {
+  "id": "2026-10-07_cortica",
+  "nome": "cortica",
+  "categoria": "textura",
+  "data": "2026-10-07",
+  "tags": [
+   "1080x1920",
+   "cortiça",
+   "mural"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/textura/2026-10-07_cortica.png"
+  ],
+  "dimensoes": [
+   1080,
+   1920
+  ],
+  "bruto": null,
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_cortica-mural",
+  "nome": "cortica-mural",
+  "categoria": "textura",
+  "data": "2026-10-07",
+  "tags": [
+   "1620x2880",
+   "cortiça",
+   "mural",
+   "travelling"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/textura/2026-10-07_cortica-mural.png"
+  ],
+  "dimensoes": [
+   1620,
+   2880
+  ],
+  "bruto": null,
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_grao-filme",
+  "nome": "grao-filme",
+  "categoria": "textura",
+  "data": "2026-10-07",
+  "tags": [
+   "4 variantes",
+   "grão de filme",
+   "overlay"
+  ],
+  "origem": "codigo",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/textura/2026-10-07_grao-filme-b0.png",
+   "instagram/assets/colagem/pecas/textura/2026-10-07_grao-filme-b1.png",
+   "instagram/assets/colagem/pecas/textura/2026-10-07_grao-filme-b2.png",
+   "instagram/assets/colagem/pecas/textura/2026-10-07_grao-filme-b3.png"
+  ],
+  "dimensoes": [
+   540,
+   960
+  ],
+  "bruto": null,
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_kraft",
+  "nome": "kraft",
+  "categoria": "textura",
+  "data": "2026-10-07",
+  "tags": [
+   "1080x1920",
+   "grão de papel",
+   "multiply",
+   "papel kraft"
+  ],
+  "origem": "codigo",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/textura/2026-10-07_kraft.png"
+  ],
+  "dimensoes": [
+   1080,
+   1920
+  ],
+  "bruto": null,
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta"
+  ],
+  "nota": "cinza ~200 para mix-blend multiply sobre o campo de cor"
+ },
+ {
+  "id": "2026-10-07_sombra-folhas",
+  "nome": "sombra-folhas",
+  "categoria": "textura",
+  "data": "2026-10-07",
+  "tags": [
+   "folhagem real",
+   "gobo",
+   "sol a pino",
+   "sombra"
+  ],
+  "origem": "codigo",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/textura/2026-10-07_sombra-folhas.png"
+  ],
+  "dimensoes": [
+   1620,
+   2160
+  ],
+  "bruto": "base-curada/01-real-verificada/fazenda-medeiros-1250m/folhagem/IMG_1423.JPG",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_bandeja",
+  "nome": "bandeja",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "bandeja preta",
+   "classificacao",
+   "grao verde",
+   "vista de cima"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_bandeja-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_bandeja-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_bandeja-b2.png"
+  ],
+  "dimensoes": [
+   777,
+   1083
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_bandeja-classificacao.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_colher",
+  "nome": "colher",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "colher de prova",
+   "cupping",
+   "inox",
+   "retícula"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_colher-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_colher-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_colher-b2.png"
+  ],
+  "dimensoes": [
+   246,
+   725
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_xicara-colher.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_lupa",
+  "nome": "lupa",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "classificador",
+   "lente transparente",
+   "lupa"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_lupa-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_lupa-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_lupa-b2.png"
+  ],
+  "dimensoes": [
+   580,
+   682
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_ferramentas-classificador.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_mao-colher",
+  "nome": "mao-colher",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "colher de prova",
+   "cupping",
+   "mão"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_mao-colher-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_mao-colher-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_mao-colher-b2.png"
+  ],
+  "dimensoes": [
+   821,
+   617
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_mesa-de-prova.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_peneira",
+  "nome": "peneira",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "bambu",
+   "grão verde",
+   "peneira",
+   "retícula",
+   "seleção"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_peneira-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_peneira-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_peneira-b2.png"
+  ],
+  "dimensoes": [
+   755,
+   753
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_peneira-torrado.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_peneira-classificacao",
+  "nome": "peneira-classificacao",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "classificacao",
+   "classificador",
+   "metal",
+   "peneira"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_peneira-classificacao-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_peneira-classificacao-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_peneira-classificacao-b2.png"
+  ],
+  "dimensoes": [
+   525,
+   565
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_ferramentas-classificador.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_pinca",
+  "nome": "pinca",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "classificador",
+   "inox",
+   "pinça"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_pinca-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_pinca-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_pinca-b2.png"
+  ],
+  "dimensoes": [
+   469,
+   574
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_ferramentas-classificador.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_prato",
+  "nome": "prato",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "alumínio",
+   "amostra",
+   "grão verde",
+   "prato de balança",
+   "retícula"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_prato-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_prato-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_prato-b2.png"
+  ],
+  "dimensoes": [
+   1038,
+   719
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_prato-balanca.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_tigela-crosta",
+  "nome": "tigela-crosta",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "crosta",
+   "cupping",
+   "vidro"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_tigela-crosta-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_tigela-crosta-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_tigela-crosta-b2.png"
+  ],
+  "dimensoes": [
+   441,
+   436
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_mesa-de-prova.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_xicara",
+  "nome": "xicara",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "cafe coado",
+   "pires",
+   "retícula",
+   "vista de cima",
+   "xicara"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_xicara-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_xicara-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_xicara-b2.png"
+  ],
+  "dimensoes": [
+   680,
+   678
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_xicara-colher.png",
+  "prompt": null,
+  "usado_em": [
+   "06-voce-sabia-especial",
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-07_xicara-prova",
+  "nome": "xicara-prova",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-07",
+  "tags": [
+   "cupping",
+   "vista de cima",
+   "xicara de prova"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_xicara-prova-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_xicara-prova-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-07_xicara-prova-b2.png"
+  ],
+  "dimensoes": [
+   441,
+   433
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-07_mesa-de-prova.png",
+  "prompt": null,
+  "usado_em": [
+   "07-cafe-especial-colagem",
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ },
+ {
+  "id": "2026-10-08_refratometro",
+  "nome": "refratometro",
+  "categoria": "xicara-utensilio",
+  "data": "2026-10-08",
+  "tags": [
+   "acucar",
+   "brix",
+   "maturacao",
+   "medir",
+   "refratometro"
+  ],
+  "origem": "gerado-chatgpt",
+  "arquivos": [
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-08_refratometro-b0.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-08_refratometro-b1.png",
+   "instagram/assets/colagem/pecas/xicara-utensilio/2026-10-08_refratometro-b2.png"
+  ],
+  "dimensoes": [
+   515,
+   398
+  ],
+  "bruto": "instagram/assets/colagem/brutos/2026-10-08_folha-08.png",
+  "prompt": "Generate ONE square image: a cutout sheet of 4 separate objects, isolated on a pure flat white background (#FFFFFF), widely spaced with lots of white between them, nothing touching, no cast shadows on the background. No text, no letters, no labels, no logos, no brand marks, no people, no hands.\nStyle: real photographs of real objects, as if cut out of a printed magazine, with a subtle halftone print texture, natural daylight, slightly desaturated, matte.\nThe 4 objects:\n1) A whole golden-brown rotisserie chicken skewered on a long metal spit rod, like the ones turning in a Brazilian bakery rotisserie (\"frango de padaria\"), crispy shiny skin, seen from the side.\n2) A handheld optical Brix refractometer: a small cylindrical metal-and-black tube about 20 cm long with a hinged daylight plate and prism at one end and an eyepiece at the other.\n3) A single bright orange-yellow flame of fire, isolated, tall teardrop shape.\n4) A small empty metal supermarket shopping cart, three-quarter view.\n",
+  "usado_em": [
+   "08-cafe-ja-foi-fruta",
+   "08b-onze-etapas"
+  ],
+  "nota": ""
+ }
+]

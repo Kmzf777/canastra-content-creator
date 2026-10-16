@@ -88,6 +88,8 @@ A verdade operacional está nos documentos, não no código:
 | `docs/custos-geracao.md` | Preços confirmados dos dois provedores |
 | `Direcao-Criativa.md` | Posicionamento de marca e os 4 pilares de conteúdo |
 | `mercadolivre/LEIA-ME.md` | **Mercado Livre.** Resumo de sessão, estado da conta, o que foi corrigido e o que segue sem verificação. **Leia antes de mexer no ML** |
+| `instagram/referencias-virais/LEIA-ME.md` | **Biblioteca de vídeos virais** (130 fichas quadro a quadro: 72 de café e 58 de motion de marca; gancho, transcrição, edição, diagnóstico), o relatório da reprovação do Reel 08 e o `relatorio-motion.md`. **Consulte antes de criar qualquer vídeo**: `python scripts/indice_referencias.py buscar <termos>` |
+| `marca/LEIA-ME.md` | **Logo oficial** em preto e em branco, fundo transparente, 3508×2481, idêntica à do site. Entra como pixel, nunca redesenhada |
 
 ### Skills de conteúdo (`.claude/skills/`)
 
@@ -101,7 +103,7 @@ referência, prompt, Claude in Chrome no ChatGPT, conferência ampliada, registr
 | `canastra-cena` | lavoura, mesa, torrefação, UGC — realismo e procedência da referência |
 | `canastra-mercadolivre` | mexer na Central do ML pelo navegador — o que grava, o que falha em silêncio |
 | `canastra-estatico` | post estático de feed — o catálogo declarado e a escada de correção do rótulo |
-| `canastra-carrossel` | carrossel de feed — os 10 tipos de slide, o ritmo e os três portões |
+| `canastra-carrossel` | carrossel de feed — os 10 tipos de slide, o ritmo, os três portões e o **estilo aprovado "Céu a pino"** (Claude Design + `scripts/dc_render.py`) |
 | `canastra-direcao` | direção de foto — que chão, que luz, que prop, que paleta. Os looks nomeados |
 
 A regra que mais se perde, e que um agente de teste furou neste repositório:
@@ -116,7 +118,7 @@ por assunto. Ver `base-curada/LEIA-ME.md`.
 | Camada | Referência de imagem | Style DNA | Recorte |
 |---|:---:|:---:|:---:|
 | `01-real-verificada` (38) — EXIF de câmera **e** GPS | sim | sim | sim |
-| `02-real-nao-verificada` (6) — sem prova de origem | não | não | não |
+| `02-real-nao-verificada` (6) — sem EXIF; **confirmadas próprias pelo cliente em 06/10/2026**, ainda não movidas para `01` | sim | não | sim |
 | `03-mood-terceiros` (16) — scrapes de Pinterest | **nunca** | só descritor textual | **nunca** |
 | `04-quarentena` (6) — sintéticas e baixa resolução | **nunca** | **nunca** | **nunca** |
 
@@ -758,3 +760,156 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     composição que nenhum deles vê — a faixa cobrindo a base da embalagem e o
     `1.250 m` quebrando em duas linhas. Por isso `render.miniaturas` existe e por isso
     a mensagem de sucesso da CLI termina em *"olhe o `_feed` antes de publicar"*.
+48. **A embalagem saiu gigante na lavoura, e o cliente viu antes de mim** → em
+    07/10/2026, na capa do carrossel de história, o prompt pedia *"camera at knee height,
+    level"* e, no mesmo parágrafo, o topo do pacote acima da linha das fileiras de café.
+    As duas coisas não cabem no mesmo mundo: **a linha do horizonte fica na altura da
+    câmera**, e um objeto mais baixo que a câmera fica inteiro abaixo dela. Para o topo
+    de um pacote de ~23 cm passar das fileiras com a lente a ~50 cm do chão, o pacote
+    precisa ter mais de meio metro, e foi o que o modelo desenhou: um saco de ~1 m no
+    meio do cafezal. O rótulo estava perfeito; a escala denunciava → **ao ditar
+    enquadramento, faça a conta da altura da câmera antes de enviar.** Pacote acima do
+    horizonte exige celular apoiado no chão (lente a poucos centímetros); câmera alta
+    exige pacote abaixo do horizonte. E ponha uma **régua de escala** no quadro, com o
+    tamanho escrito: uma folha de café caída (~12 cm) ao lado de um pacote de 23 cm. O
+    modelo obedece à composição pedida e não tem noção de tamanho de produto, então a
+    proporção que você não escreveu ele resolve aumentando o produto.
+49. **O remove.bg não serviu para recortar os assets do motion, e o recorte certo era
+    local** → em 07/10/2026, na peça 06, a página de upload só cria o `input[type=file]`
+    no clique, e o clique abre o seletor nativo do Windows, que o Claude in Chrome não
+    opera. Além disso o plano gratuito entrega prévia de baixa resolução, e o próprio site
+    avisa que sai do ar em 01/12/2026 → **para asset de colagem, peça a folha ao ChatGPT
+    já sobre branco liso (#FFFFFF), objetos afastados**, e recorte local:
+    `scripts/colagem_assets.py` (limiar de distância ao branco + componente conexo,
+    resolução cheia). Dois cuidados medidos: objeto branco sobre branco (o pires) perde
+    metade da borda no limiar e se resolve com casco convexo; sombra suave entra no
+    recorte com limiar baixo e vira mancha de retícula (cerejas: limiar 22 → 55).
+50. **Download do ChatGPT sem depender do nome do arquivo** → a lição 35 trocou o glob por
+    trava de tempo; nesta sessão nem isso foi preciso: `fetch(img.src)` no blob da imagem
+    gerada (`img[alt*="gerada"]`, 1254×1254, PNG cheio) e um `<a download="nome-escolhido.png">`
+    clicado por JS gravam em Downloads com **o nome que você deu**. Nenhum padrão de nome
+    para adivinhar, e cinco folhas baixaram em paralelo sem trocar uma pela outra. E o
+    envio: o clique por JS no botão Enviar **não envia** numa aba em segundo plano, e o
+    clique por `ref` estourou 45 s; clique por **coordenada lida no screenshot** enviou
+    na primeira (a lição 40 de novo, agora no ChatGPT).
+51. **No Grok Imagine, o "mais recente de Downloads" teria salvo a imagem de outra sessão**
+    → em 07/10/2026, cinco segundos antes de eu baixar a primeira imagem do Grok, outra
+    sessão gravou `motion06-folha4-cerejas.png` na mesma pasta. O Grok baixa em **JPG** com
+    o nome `grok-image-<id do post>.jpg`, e o `_pega_download.py` procura o PNG mais
+    recente: ele teria copiado a folha do motion como se fosse o meu slide, sem erro →
+    **com duas sessões ativas, "o arquivo mais novo" não identifica nada.** Selecione pelo
+    identificador que o próprio fornecedor põe no nome (o id do post está na URL) ou dê
+    você o nome (lição 50). Cuidado extra do Grok: o id da URL **muda** quando a imagem
+    termina de gerar (`8c5d2d0e…` virou `63212096…`); releia `location.pathname` na hora
+    de baixar. Mecânica completa na `canastra-conteudo`.
+52. **Os downloads do ChatGPT pararam de chegar sem erro na segunda rodada** → em 07/10/2026
+    a primeira leva (5 imagens, uma por aba) chegou em Downloads; a segunda, nas MESMAS abas,
+    não chegou e nada reclamou. O Chrome libera o primeiro download automático de cada aba e
+    segura o segundo esperando permissão → **um download por aba**: para baixar de novo, abra
+    a conversa (`/c/<id>`) numa aba NOVA e baixe dali — chegou na hora. Tentei também um
+    servidor em `127.0.0.1` recebendo o blob por `fetch`: a CSP do chatgpt.com bloqueia
+    (`TypeError: Failed to fetch`) e não se contorna CSP. E o envio: em aba de fundo o clique
+    (por ref ou coordenada) e o screenshot estouram 45 s, mas **`el.closest('form').requestSubmit()`
+    envia** — desde que se espere ~1 s depois do `insertText`, senão o React ainda não registrou
+    o texto e o submit sai vazio.
+53. **O whisper estragou os acentos da legenda, e o tempo dele adiantou palavras para dentro
+    da pausa** → com `-ml 1` o whisper.cpp parte a palavra em tokens e corta o UTF-8 no meio
+    ("café" vira "caf\ufffd"), e números falados por extenso viram UM token ("trezentos e
+    cinquenta" = "350") → **o texto da legenda vem do roteiro, o tempo vem do whisper**,
+    casados por sequência de letras sem acento (`scripts/alinhar_narracao.py`); palavras do
+    roteiro que caem num token só são espalhadas pela duração dele. Refinar pelo silêncio só
+    vale quando o início do whisper cai DENTRO de um silêncio: com margem de 0,05 s, "preto"
+    (19,58 s, 0,02 s antes da pausa) foi puxado para depois dela (19,85 s). *(O texto
+    continua vindo do roteiro; o TEMPO passou a vir da fusão whisper + CTC — lição 56.)*
+54. **A pílula quebrou frase no artigo: "POR ISSO A / GENTE SÓ TORRA", "FIM DESSE / VÍDEO"**
+    → cortar a legenda em "3 palavras" é contar, não ler → orçamento por caracteres (16) e
+    palavras (4), partição equilibrada por programação dinâmica e **custo alto para bloco que
+    termina em palavra fraca** — artigo, preposição e também determinante/possessivo
+    (`desse`, `seu`, `nosso`) —, para bloco-relâmpago (< 0,3 s na tela) e para bloco que
+    atravessa respiro. Legenda é leitura; o portão é `tests/especial-roteiro.test.ts`.
+55. **Texto de colagem cortado na borda só em alguns quadros** → a câmera 2.5D anda até
+    ~120 px e amplia até ~1,16×, então "PROVA 1" em x=250 saía do quadro no meio da cena e o
+    still do começo não mostrava → com câmera em movimento, **a área segura da tipografia é
+    x ≈ 140–940 em repouso**, e a conferência precisa de stills no MEIO e no FIM de cada
+    movimento, não só na entrada do texto.
+56. **"Erro de sincronização de voz e legenda" que o cliente viu e o teste não pegava** → em
+    07/10/2026, na peça 07, o tempo das palavras vinha do whisper (lição 53) e ele
+    **deslizava sem cair em silêncio nenhum**: de 23,8 s a 28,6 s ficou 0,5 a 0,7 s
+    atrasado ("Não é especial" começa em 23,83 s, ele dizia 24,48 s), e de novo em
+    32,9–35 s. A regra da lição 53 só corrige início que cai DENTRO de pausa, então
+    passou. O alinhamento forçado CTC (`torchaudio` MMS_FA, lê o roteiro inteiro sobre o
+    áudio) nunca perde a região, mas atrasa ~0,1 s dentro da frase e, depois de pausa, às
+    vezes atrasa a frase inteira 0,2–0,4 s ("Zero defeito grave", "Se não tem nota") →
+    **nenhum alinhador sozinho é confiável; funda e meça.** `scripts/alinhar_forcado.py`
+    funde os dois (ataque após pausa → média quando concordam → CTC quando o whisper
+    desliza) e foi validado contra 109 ataques lidos à mão no envelope do áudio: whisper
+    mediana 0,10 s / máx 0,76 s; CTC 0,09 / 0,39; fusão **0,02 / 0,15**. Corolário que
+    custou o dobro: **nenhum tempo de cena ou de som é digitado** — 60 segundos escritos à
+    mão nas cenas e no `Sons.tsx` teriam ficado para trás quando as palavras andaram 0,7 s.
+    Tudo lê a palavra (`em(faixa, 'palavra')`) ou a troca (`TROCA`, `CENA_INICIO`).
+57. **O marcador terminava de escrever depois da fala, e um deles nem terminava** → a
+    escrita andava a 2 quadros por letra fixos: "COLHEITA ANTES DA HORA." acabava 0,4 s
+    depois da voz; "O NOSSO TÁ AQUI." esperava a câmera pousar (+14 quadros) e o fecho
+    entrava antes da última letra → **a velocidade da escrita sai da duração da fala**
+    (`dur={fala(faixa)}`), e o movimento de câmera que um texto espera acontece DURANTE a
+    frase, não antes do texto.
+58. **O chicote mostrava uma faixa preta de até meia tela, nas 10 trocas** → a cena que
+    saía andava 520 px sozinha e revelava o fundo da raiz; com borrão parece falha de
+    render → **chicote é a imagem que sai e a que entra COLADAS**, andando uma tela inteira
+    sob borrão direcional, cada uma congelada no último/primeiro quadro durante os 12
+    quadros da janela (`Especial.tsx`). Visto na folha de contato de 76,95 s: conferir
+    transição exige still DENTRO da janela, não antes e depois dela.
+59. **A etiqueta tapou o logotipo do pacote** → posicionei "O NOSSO TÁ AQUI." 160 px acima
+    do selo sem medir onde o pacote está no recorte: o PNG tem margem transparente e o
+    pacote ocupa só fy 0,17–0,75 (o selo fica a 84% da altura DELE, colado no logotipo) →
+    **antes de pôr qualquer coisa relativa à embalagem, meça o bbox do alfa do recorte**;
+    texto de colagem não cobre logotipo nem selo.
+60. **Todo objeto da colagem "respirava" no vídeo** → o recorte de cada uma das 3 variantes
+    de borda (o boil) usava o bbox DELA; os tamanhos diferiam até 2,4% e, como a variante
+    alterna a cada 3 quadros, o objeto pulsava → **as variantes de uma peça são cortadas
+    pela UNIÃO dos bboxes** (`scripts/colagem_assets.py:peca`), e toda a biblioteca foi
+    refeita assim.
+61. **O render "parado" continuou rodando** → no Windows o `TaskStop` encerra o shell, mas o
+    `node` do Remotion e os `chrome-headless-shell` filhos seguem renderizando (CPU cheia,
+    arquivo de saída travado) → depois de parar um render, procure o processo pela LINHA
+    DE COMANDO (tem que citar a composição) e derrube a árvore dele
+    (`taskkill /PID <pid> /T /F`). Nunca mate `chrome-headless-shell` às cegas: outra
+    sessão pode estar renderizando.
+62. **O normalizador recusou o render final por 0,08 dB** → a mixagem da peça 07 saiu do
+    Remotion com pico real de **+0,05 dBTP** (carimbo + thump + pops empilhados), o
+    `loudnorm` limitou para −1 dBTP em PCM e o encode AAC, depois do limitador, devolveu o
+    pico a **−0,62 dBTP** no MP4 — fora da folga de 0,3 dB do `normalizar-audio.mjs` → com
+    efeito percussivo na mixagem, **peça ao loudnorm um teto com margem para o AAC**: duas
+    passadas com `TP=-1.6` deram −14,20 LUFS e −1,17 dBTP medidos no MP4 escrito. Corrigido
+    no motor: `src/motor/audio/normalizar.ts` separa o teto PEDIDO (0,6 dB abaixo) do teto
+    VERIFICADO e, se o MP4 ainda passar, refaz pedindo mais baixo pelo excesso medido (um
+    teste com rajadas de ruído a 0 dBFS precisou de 2,3 dB e passou na segunda tentativa).
+66. **O Reel 08 ("esse café já foi uma fruta") foi reprovado pelo marketing, e o dono
+    apontou duas causas** → em 11/10/2026: *"Nada a ver essa do frango assado"* e *"A parte
+    do fogo no grão levou a entender que o café é queimado, pode enviesar o público"*. As
+    duas eram minhas: (a) para o terreiro, usei uma analogia **de fora do café** ("revirada
+    tipo frango de padaria", com um frango girando no espeto), que rebaixa um produto premium
+    a comida de balcão e não tem nada a ver com o assunto; (b) na torra, escrevi "foi pro
+    fogo" e pus **chamas de colagem sobre o tambor**. Para o consumidor brasileiro, torra
+    escura e queimada é justamente o defeito que o café especial combate; a imagem de fogo
+    confirma o preconceito que a marca quer desfazer → **humor e metáfora só de dentro do
+    café** (preparo, sabor, cultura de café, o próprio ofício), nunca comida ou objeto
+    alheio; e **torra nunca se mostra com fogo, fumaça ou grão preto**. Mostre o grão mudando
+    de cor, o som e o resfriador, e fale de controle e de sabor doce. Vale para a fala, a
+    colagem e a trilha de efeitos. A pesquisa de referência está em
+    `instagram/referencias-virais/` (relatório, índice e 72 fichas).
+68. **O Reel 08b v1 foi reprovado pelo dono: "desincronia, legenda em excesso, boneco
+    bugado, conteúdo vazio, edição sem vida"** → em 13/10/2026 a v1 empilhava pílula de
+    legenda com a frase inteira **e** colagem dizendo a mesma coisa; o boneco de palito
+    herdou o *boil* da colagem (o corpo inteiro tremia a cada 3 quadros, o que lê como
+    falha de render, não como desenho à mão) e tinha membros em reta quebrada; e cenas
+    "reais" usavam uma mão parada, que lê como foto. A v2, aprovada num teste A/B de um
+    trecho antes de refazer a peça (`src/pecas/onze/teste/`, `src/pecas/onze/v2/`), segue
+    as referências que o dono mandou (motion de marca do Aryan Raj e o método do
+    `kaomei/stickman-video-director`) → **sem pílula: só a palavra-chave entra, no quadro
+    em que a voz a diz; boneco sem boil, membro em curva contínua, cabeça sempre por cima
+    do braço, uma ação física por cena; câmera sempre andando com parallax; vídeo real
+    sempre em movimento.** E o ritmo: o primeiro teste saiu "absurdo de rápido" — com
+    narração acelerada, o movimento não compete com a voz (corrida ~15 px/quadro, tremor
+    ≤ 14 px, carimbo de palavra ≤ 115%). Para mudança de linguagem, **teste num trecho de
+    10 s e mostre antes de refazer 80 s.**

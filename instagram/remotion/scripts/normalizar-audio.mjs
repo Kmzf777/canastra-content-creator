@@ -145,6 +145,10 @@ async function principal() {
         `${r.depois.lra.toFixed(2)} LU   <- medido no MP4 escrito`,
     );
     console.log(`  ganho    ${sinal(r.ganhoLu)} LU · modo loudnorm: ${r.tipo}`);
+    console.log(
+      `  pico     loudnorm mirou ${r.margemPicoDb} dB abaixo do teto (margem para o AAC), ` +
+        `${r.tentativas} tentativa(s)`,
+    );
     if (r.tipo !== 'linear') {
       console.log(
         `  ATENCAO: modo ${r.tipo}, nao linear -- o ganho necessario nao cabia ` +

@@ -146,6 +146,29 @@ salvou silenciosamente uma imagem do dia anterior porque procurava só um dos do
 padrões de nome (`ChatGPT Image*` em inglês, `Imagem do ChatGPT*` em português) e
 as dimensões eram idênticas. Dimensão igual não prova que é a imagem certa.
 
+### Alternativa: Grok Imagine (grok.com/imagine)
+
+Usado a pedido do cliente em 07/10/2026, nos slides 3, 7, 8 e 9 do carrossel de
+história. Conta "Rafael Café Canastra", interface em português.
+
+| Passo | O que funciona |
+|---|---|
+| Imagem nova | navegue para `/imagine` a cada imagem. A caixa de baixo de um post (`Descreva sua edição`) **edita aquela imagem**, não cria outra |
+| Anexar | o único `input[type=file]` com `multiple` é o do formulário do prompt (`find` "file type button inside the prompt form"). Use `file_upload` com **todos os caminhos numa chamada**, na ordem FIRST/SECOND. Aceitou 4; as miniaturas aparecem na ordem enviada |
+| Proporção | **com anexo, volta para "Automático"**, que herda a proporção da primeira fonte. Reabra o seletor e escolha `2:3 Pôster` toda vez. Não há 4:5 nem 3:4 |
+| Prompt | é um tiptap/ProseMirror: use `execCommand('insertText')` e confira o comprimento, como no ChatGPT |
+| Enviar | seta azul. A URL vira `/imagine/post/<id>`, e **o id muda quando a imagem termina**: releia `location.pathname` antes de baixar |
+| Baixar | `find` "Baixar button for the main image (bottom action bar)". O arquivo cai como `grok-image-<id>.jpg` |
+| Salvar | **copie pelo id**, nunca pelo mais recente. `_pega_download.py` procura PNG e pegaria o download de outra sessão (lição 51) |
+| Resolução | sai **832×1248**. Não há versão maior no post; amplie na montagem, sem outro passe |
+| 1ª vez | modal **"Ano de Nascimento"**, irreversível. É dado pessoal: pare e peça ao usuário. Cookies opcionais: `Rejeitar todos` |
+
+O rótulo se comporta como no ChatGPT: logo, selo, `250g` e `SPECIALTY / ESPECIAL / SCA
+80+` saíram certos; `Desde 1985` e a linha `TORRADO E MOÍDO` quebraram toda vez. Componha
+com `scripts/compor_rotulo.py --preset classico-moido|suave-moido|canela-moido`. Com os
+três pacotes no mesmo quadro, passe `--regiao` de cada um: a logo é igual nos três, e o
+alinhamento pode casar com o pacote vizinho.
+
 ---
 
 ## Fase 5 — registro

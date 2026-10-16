@@ -1,0 +1,11 @@
+[watch] working dir: C:\Users\rafae\AppData\Local\Temp\claude\C--Users-rafae-OneDrive-Desktop-Canastra-Inteligencia-Agentes-AI-central-claude\6f39a7e7-bf58-4ccb-8d5b-41b961923289\scratchpad\watch\watch-jmfxtw7v
+[watch] checking metadata/captions via yt-dlp…
+[watch] captions unavailable: yt-dlp failed (exit 1): WARNING: [Instagram] Ddo1XssCdpe: Unable to download JSON metadata: Failed to perform, curl: (56) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+ERROR: [Instagram] Ddo1XssCdpe: Unable to download webpage: Failed to perform, curl: (7) Failed to connect to www.instagram.com:443 after 6 ms: Could not connect to server. See https://curl.se/libcurl/c/libcurl-errors.html first for more details. (caused by TransportError('Failed to perform, curl: (7) Failed to connect to www.instagram.com:443 after 6 ms: Could not connect to server. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.'))
+Check the original error and update the owning yt-dlp package if needed.
+[watch] downloading media…
+[watch] local WhisperX small transcription; CPU runs may take several minutes.
+[whisperx] Using cache found in C:\Users\rafae/.cache\torch\hub\snakers4_silero-vad_master
+[watch] yt-dlp failed (exit 1): WARNING: [Instagram] Ddo1XssCdpe: Unable to download JSON metadata: Failed to perform, curl: (56) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+ERROR: [Instagram] Ddo1XssCdpe: Unable to download webpage: Failed to perform, curl: (7) Failed to connect to www.instagram.com:443 after 6 ms: Could not connect to server. See https://curl.se/libcurl/c/libcurl-errors.html first for more details. (caused by TransportError('Failed to perform, curl: (7) Failed to connect to www.instagram.com:443 after 6 ms: Could not connect to server. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.'))
+Check the original error and update the owning yt-dlp package if needed.
