@@ -15,6 +15,8 @@ conferência: isso é de `canastra-conteudo`.
 | fluxo de 5 fases, mecânica do ChatGPT via Chrome, racionalizações de conferência | **canastra-conteudo** |
 | fidelidade do rótulo, qual face fotografar, âncora de família | **canastra-embalagem** |
 | realismo de cena, procedência da referência | **canastra-cena** |
+| de que anel do público é a peça, e o mix do ciclo | `instagram/estrategia/09-publico.md` |
+| a frase do cartão e a legenda: registro, palavras proibidas, emoji | `instagram/estrategia/10-voz.md` |
 | **o catálogo declarado e qual degrau subir quando o rótulo sai errado** | **esta skill** |
 
 ---

@@ -84,7 +84,7 @@ afirmação: ela convida a próxima sessão a confiar sem conferir.
 
 ---
 
-## Os oito documentos
+## Os documentos
 
 | Arquivo | O que decide |
 |---|---|
@@ -97,6 +97,8 @@ afirmação: ela convida a próxima sessão a confiar sem conferir.
 | `06-cadencia.md` | calendário, séries nomeadas e a meta numérica |
 | `07-nao-fazer.md` | pseudociência, o que não transfere, as contradições |
 | `08-fontes.md` | de onde veio cada afirmação |
+| `09-publico.md` | **para quem é a peça**: a pessoa na cadeira, os cinco anéis do alvo e o mix por anel (visual em `09-publico-aneis.html`) |
+| `10-voz.md` | **como a Canastra fala e escreve**: registro, palavras proibidas, jargão, vilão, metáforas, pontuação |
 
 A coluna *Estado* que existia aqui foi removida: ela dizia "a escrever" para sete arquivos que
 já estavam escritos, e é exatamente o erro que a regra *Estado do repositório não é [medido]*
@@ -105,8 +107,11 @@ acrescenta a linha** — essa parte não envelhece.
 
 ### Em que ordem ler
 
+- **Vai pautar?** `09-publico.md` diz de que anel a peça é e quantas de cada anel entram no
+  ciclo; `05-formatos.md` escolhe a peça.
 - **Vai gravar?** `05-formatos.md` escolhe a peça, `02-ganchos.md` dá a primeira frase,
   `03-roteiro.md` dá o esqueleto e os segundos.
+- **Vai escrever fala, tela ou legenda?** `10-voz.md`, antes de enviar.
 - **Vai decidir o que priorizar?** `06-cadencia.md` e `01-ranking.md`.
 - **Vai avaliar uma ideia que alguém trouxe?** `07-nao-fazer.md` primeiro. Boa parte das
   ideias que chegam prontas já está catalogada ali como o que não transfere.

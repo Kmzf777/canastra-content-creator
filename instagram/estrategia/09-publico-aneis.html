@@ -1,0 +1,211 @@
+<title>Alvo de público Canastra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: o alvo à esquerda como mapa, a ficha do anel à direita; abaixo, a grade de 4 semanas e o teste das duas camadas. Cores da fazenda: terra vermelha no centro, céu a pino na borda. */
+:root {
+  --bg: #f3f5f6;
+  --surface: #ffffff;
+  --fg: #1f2523;
+  --muted: #5c6662;
+  --line: #d5dcdc;
+  --a1: #a2412a;   /* terra vermelha: o centro */
+  --a2: #6b4a32;   /* grão torrado */
+  --a3: #3f6b47;   /* folha de cafezal */
+  --a4: #b8862c;   /* sol de meio-dia */
+  --a5: #7f9db5;   /* céu */
+  --on-ring: #ffffff;
+  --display: "Zilla Slab", "Rockwell", Georgia, serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141a1d; --surface: #1c2428; --fg: #e8ecea; --muted: #9aa6a3; --line: #2f3a3e;
+    --a1: #d0654b; --a2: #a57a58; --a3: #6fa177; --a4: #d8a74a; --a5: #8fb0c9; --on-ring: #141a1d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141a1d; --surface: #1c2428; --fg: #e8ecea; --muted: #9aa6a3; --line: #2f3a3e;
+  --a1: #d0654b; --a2: #a57a58; --a3: #6fa177; --a4: #d8a74a; --a5: #8fb0c9; --on-ring: #141a1d;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 32px 56px; display: grid; gap: 40px; }
+header { display: grid; gap: 8px; max-width: 68ch; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 44px); line-height: 1.08; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 700; font-size: 24px; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.lede { color: var(--muted); font-size: 17px; }
+.mapa { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+@media (max-width: 760px) { .mapa { grid-template-columns: 1fr; } }
+svg.alvo { width: 100%; max-width: 460px; height: auto; display: block; margin-inline: auto; }
+.anel { cursor: pointer; transition: opacity .15s; }
+.anel:focus { outline: none; }
+.anel:focus-visible circle { stroke: var(--fg); stroke-width: 3; }
+.mapa[data-sel] .anel { opacity: .45; }
+.mapa[data-sel="1"] .anel[data-a="1"], .mapa[data-sel="2"] .anel[data-a="2"], .mapa[data-sel="3"] .anel[data-a="3"],
+.mapa[data-sel="4"] .anel[data-a="4"], .mapa[data-sel="5"] .anel[data-a="5"] { opacity: 1; }
+.rot { font-family: var(--mono); font-size: 11px; fill: var(--on-ring); letter-spacing: .04em; pointer-events: none; }
+.rot.big { font-family: var(--display); font-size: 15px; font-weight: 700; }
+.rot.fora { fill: var(--muted); }
+.ficha { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 24px; display: grid; gap: 14px; min-width: 0; }
+.ficha .num { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.ficha h2 { color: var(--cor); }
+.ficha dl { display: grid; grid-template-columns: 8.5em minmax(0, 1fr); gap: 8px 14px; margin: 0; }
+.ficha dt { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding-top: 3px; }
+.ficha dd { margin: 0; }
+@media (max-width: 460px) { .ficha dl { grid-template-columns: 1fr; gap: 2px; } .ficha dd { margin-bottom: 8px; } }
+.marca { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+.botoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.botoes button { font: 500 13px var(--mono); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.botoes button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.botoes button:focus-visible { outline: 2px solid var(--a1); outline-offset: 2px; }
+section { display: grid; gap: 16px; }
+.semanas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 640px) { .semanas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.semana { display: grid; gap: 6px; }
+.semana .eyebrow { margin-bottom: 2px; }
+.slot { border-radius: 4px; padding: 10px 12px; color: var(--on-ring); font-weight: 600; font-size: 14px; line-height: 1.3; }
+.slot small { display: block; font-family: var(--mono); font-weight: 400; font-size: 11px; opacity: .9; }
+.s1 { background: var(--a1); } .s23 { background: linear-gradient(90deg, var(--a2), var(--a3)); } .s4 { background: var(--a4); }
+.conta { font-family: var(--mono); font-size: 14px; display: flex; flex-wrap: wrap; gap: 18px; font-variant-numeric: tabular-nums; }
+.conta b { font-weight: 500; }
+.testes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 640px) { .testes { grid-template-columns: 1fr; } }
+.teste { border-top: 3px solid var(--fg); padding-top: 12px; display: grid; gap: 6px; min-width: 0; }
+.teste h3 { margin: 0; font-family: var(--display); font-size: 19px; }
+.nota { font-size: 14px; color: var(--muted); max-width: 72ch; }
+code { font-family: var(--mono); font-size: .9em; }
+@media (prefers-reduced-motion: reduce) { .anel { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">@cafecanastra · estratégia · 09-publico</span>
+    <h1>Do que só a Canastra pode contar até o que qualquer conta publica</h1>
+    <p class="lede">Cinco anéis de assunto. O centro é o caminho do nosso café, da lavoura à xícara. Toda peça declara o anel na agenda; o mix da fase 1 é 4 · 2 · 2 · 0 a cada 8 peças.</p>
+  </header>
+
+  <div class="mapa" id="mapa" data-sel="1">
+    <svg class="alvo" viewBox="0 0 400 400" role="group" aria-label="Alvo de público em cinco anéis">
+      <g class="anel" data-a="5" tabindex="0" role="button" aria-label="Anel 5, estilo de vida">
+        <circle cx="200" cy="200" r="194" fill="var(--bg)" stroke="var(--a5)" stroke-width="2" stroke-dasharray="6 5"/>
+        <text class="rot fora" x="200" y="24" text-anchor="middle">5 · ESTILO DE VIDA · NÃO SE PRODUZ</text>
+      </g>
+      <g class="anel" data-a="4" tabindex="0" role="button" aria-label="Anel 4, rotina e receitas com café">
+        <circle cx="200" cy="200" r="168" fill="var(--a4)"/>
+        <text class="rot" x="200" y="52" text-anchor="middle">4 · ROTINA E RECEITAS</text>
+      </g>
+      <g class="anel" data-a="3" tabindex="0" role="button" aria-label="Anel 3, café em casa">
+        <circle cx="200" cy="200" r="134" fill="var(--a3)"/>
+        <text class="rot" x="200" y="86" text-anchor="middle">3 · CAFÉ EM CASA</text>
+      </g>
+      <g class="anel" data-a="2" tabindex="0" role="button" aria-label="Anel 2, café especial">
+        <circle cx="200" cy="200" r="100" fill="var(--a2)"/>
+        <text class="rot" x="200" y="120" text-anchor="middle">2 · CAFÉ ESPECIAL</text>
+      </g>
+      <g class="anel" data-a="1" tabindex="0" role="button" aria-label="Anel 1, da lavoura à xícara">
+        <circle cx="200" cy="200" r="64" fill="var(--a1)"/>
+        <text class="rot big" x="200" y="196" text-anchor="middle">Da lavoura</text>
+        <text class="rot big" x="200" y="216" text-anchor="middle">à xícara</text>
+      </g>
+    </svg>
+
+    <div style="display:grid; gap:14px; min-width:0">
+      <div class="botoes" role="group" aria-label="Escolher anel">
+        <button id="b1" data-a="1" aria-pressed="true">Anel 1</button>
+        <button id="b2" data-a="2" aria-pressed="false">Anel 2</button>
+        <button id="b3" data-a="3" aria-pressed="false">Anel 3</button>
+        <button id="b4" data-a="4" aria-pressed="false">Anel 4</button>
+        <button id="b5" data-a="5" aria-pressed="false">Anel 5</button>
+      </div>
+      <article class="ficha" id="ficha" aria-live="polite"></article>
+    </div>
+  </div>
+
+  <section>
+    <h2>Um ciclo da fase 1</h2>
+    <p class="nota">2 posts por semana (<code>06-cadencia.md</code>). Toda semana, uma peça do centro; a segunda alterna entre os anéis 2–3 e o anel 4. O anel gira dentro da combinação ativa, do mesmo jeito que o tema.</p>
+    <div class="semanas">
+      <div class="semana"><span class="eyebrow">Semana 1</span><div class="slot s1">Anel 1<small>lavoura à xícara</small></div><div class="slot s23">Anel 2 ou 3<small>especial · em casa</small></div></div>
+      <div class="semana"><span class="eyebrow">Semana 2</span><div class="slot s1">Anel 1<small>lavoura à xícara</small></div><div class="slot s4">Anel 4<small>rotina · receitas</small></div></div>
+      <div class="semana"><span class="eyebrow">Semana 3</span><div class="slot s1">Anel 1<small>lavoura à xícara</small></div><div class="slot s23">Anel 2 ou 3<small>especial · em casa</small></div></div>
+      <div class="semana"><span class="eyebrow">Semana 4</span><div class="slot s1">Anel 1<small>lavoura à xícara</small></div><div class="slot s4">Anel 4<small>rotina · receitas</small></div></div>
+    </div>
+    <div class="conta"><span><b>Anel 1</b> 4 de 8 · 50%</span><span><b>Anéis 2–3</b> 2 de 8 · 25%</span><span><b>Anel 4</b> 2 de 8 · 25%</span><span><b>Anel 5</b> 0</span></div>
+  </section>
+
+  <section>
+    <h2>Duas faces na cadeira, duas camadas em cada peça</h2>
+    <p class="nota">Quem passa café em casa e compra online, do Brasil todo. Uma face é o cafelover, que quer o detalhe; a outra é o comprador pelo olho, que vê que é bom e compra. A mesma peça serve às duas.</p>
+    <div class="testes">
+      <div class="teste"><h3>Sem som e sem legenda</h3><p>Quem não entende de café vê a prova? Mão, terra, galpão, pacote real, gente com nome, um número grande.</p></div>
+      <div class="teste"><h3>Sem a imagem</h3><p>O cafelover aprendeu alguma coisa? Um detalhe, um número, um porquê. Jargão entra, sempre traduzido na mesma frase.</p></div>
+    </div>
+  </section>
+
+  <p class="nota">Tamanhos de anel: estudos de terceiro lidos em 15/10/2026 e marcados <code>[terciário]</code>. Dão ordem de grandeza, nunca meta, e nenhum conta pessoas que compram café especial. Fontes em <code>08-fontes.md</code> §8; texto completo em <code>09-publico.md</code>.</p>
+</div>
+
+<script>
+const ANEIS = {
+  1: { nome: "Da lavoura à xícara, o nosso", cor: "--a1",
+       o: "O caminho do nosso café: colheita, terreiro, seleção, torra e embalagem, feitos pela mesma família. A família e a Serra entram dentro desse caminho.",
+       tam: "Café especial é ~1% do volume de café vendido no varejo (ABIC, 2025).", marca: "[terciário]",
+       pautas: "As onze provas do lote · cereja verde na peneira · a altitude que o GPS provou · a torra que rodou no sol · o QR do lote · o microlote",
+       mix: "1 peça por semana, toda semana.",
+       teste: "Outra torrefação não poderia publicar trocando só o logo." },
+  2: { nome: "Café especial", cor: "--a2",
+       o: "O que é café especial e como reconhecer um, valendo para qualquer marca boa. É o anel do vilão genérico: o extraforte e a torra escura que escondem defeito.",
+       tam: "34,2% dos lares compraram café \"premium\" em 2025. É teto: inclui gourmet de mercado.", marca: "[terciário]",
+       pautas: "O que SCA 80+ quer dizer · a casca prateada · torra média não é café fraco · amargor que pede açúcar",
+       mix: "Divide com o anel 3 a segunda peça, uma semana sim, outra não.",
+       teste: "Vale para qualquer café especial." },
+  3: { nome: "Café em casa", cor: "--a3",
+       o: "Fazer, guardar e escolher café em casa, para os três métodos de entrada: moído, grão e cápsula.",
+       tam: "98% dos lares têm o hábito do café; 72,5 mi de domicílios (Censo 2022).", marca: "[terciário]",
+       pautas: "Onde guardar o pacote aberto · moagem para cada método · proporção · moído ou grão · o que é a cápsula compatível",
+       mix: "Divide com o anel 2 a segunda peça, uma semana sim, outra não.",
+       teste: "Ensina a fazer, guardar ou escolher." },
+  4: { nome: "Rotina e receitas com café", cor: "--a4",
+       o: "O café como parte do dia: a primeira xícara, a pausa do home office, o café do escritório; e receitas de café gelado, sobremesa e bebida.",
+       tam: "Sem número do anel. Referência: TudoGostoso, 7,5 mi de seguidores (autodeclarado).", marca: "[terciário]",
+       pautas: "Nenhum gancho do banco cai aqui ainda. É o primeiro anel a abastecer.",
+       mix: "A segunda peça, a cada duas semanas.",
+       teste: "O café está no quadro, mas o assunto é o dia." },
+  5: { nome: "Estilo de vida", cor: "--a5",
+       o: "Moda, viagem, decoração, bem-estar, tendência de rede. Não se produz: o público que chega por aqui não compra café especial e diluiria a taxa de 0,50% da conta.",
+       tam: "Instagram alcança 147 mi de pessoas no Brasil com anúncio (DataReportal 2026).", marca: "[terciário]",
+       pautas: "Nenhuma.",
+       mix: "Zero, em todas as fases.",
+       teste: "O café é dispensável no quadro." }
+};
+const mapa = document.getElementById("mapa");
+const ficha = document.getElementById("ficha");
+function mostra(a) {
+  const d = ANEIS[a];
+  mapa.dataset.sel = a;
+  ficha.style.setProperty("--cor", `var(${d.cor})`);
+  ficha.innerHTML = `
+    <span class="num">ANEL ${a} DE 5</span>
+    <h2>${d.nome}</h2>
+    <p>${d.o}</p>
+    <dl>
+      <dt>Tamanho</dt><dd>${d.tam} <span class="marca">${d.marca}</span></dd>
+      <dt>Pautas</dt><dd>${d.pautas}</dd>
+      <dt>No mix</dt><dd>${d.mix}</dd>
+      <dt>Como saber</dt><dd>${d.teste}</dd>
+    </dl>`;
+  document.querySelectorAll(".botoes button").forEach(b => b.setAttribute("aria-pressed", b.dataset.a === String(a)));
+}
+document.querySelectorAll(".anel").forEach(g => {
+  g.addEventListener("click", () => mostra(g.dataset.a));
+  g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); mostra(g.dataset.a); } });
+});
+document.querySelectorAll(".botoes button").forEach(b => b.addEventListener("click", () => mostra(b.dataset.a)));
+mostra(1);
+</script>

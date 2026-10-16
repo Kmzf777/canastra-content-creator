@@ -17,6 +17,8 @@ Esta skill manda em **composição de slide e montagem do deck**. O motor é
 | fidelidade de rótulo e a escada de correção | **canastra-embalagem**, **canastra-estatico** |
 | realismo de foto, perfil de câmera, procedência | **canastra-cena** |
 | que chão, que empilhamento, que paleta na foto | **canastra-direcao** |
+| de que anel do público é o deck, e o mix do ciclo | `instagram/estrategia/09-publico.md` |
+| como a copy fala: registro, palavras proibidas, jargão, emoji | `instagram/estrategia/10-voz.md` |
 | **quantos slides, de que tipo, com que ritmo, e os três portões** | **esta skill** |
 
 **Onde a composição colidir com a óptica, a óptica ganha.** Se o layout pedir
@@ -148,6 +150,10 @@ declarar o deck -> portão orcamento -> APROVAR A COPY
 
 Em 05/10 eu fiz ao contrário: gerei quatro imagens e escrevi o texto depois. Copy
 aprovada primeiro é mais barato — texto se reescreve de graça, geração não.
+
+A copy vai para aprovação já na voz do `instagram/estrategia/10-voz.md` e passada no
+checklist do §10 dele (nenhum emoji nem exclamação na tela, jargão traduzido no mesmo slide).
+E declare o anel do deck (`09-publico.md` §2): ele entra na agenda.
 
 ### Theme-lock
 
