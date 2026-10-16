@@ -814,6 +814,35 @@ def contrastar_cli(pasta: Path, proprios: Path, desde: str | None) -> int:
     return 0
 
 
+# --- escolher: o gancho que foi publicado --------------------------------------
+
+def escolher(texto: str, post: str, destino: Path = SAIDA / "avaliacoes.jsonl", formato: str = "capa") -> dict:
+    """Marca como publicado o gancho de texto `texto` (comparado normalizado).
+
+    Copia a avaliação mais recente com esse texto (julgamentos da pauta incluídos), com
+    `escolhido: true` e o shortcode do post, e é por essa linha que `cruzar` acha o resultado.
+    Sem avaliação prévia, registra o que o script decide sozinho, com o julgamento pendente."""
+    chave = normalizar(texto)
+    achada = None
+    for a in carregar_jsonl(destino):
+        gc = a["gancho"]
+        if normalizar(gc.get("manchete") or gc.get("fala")) == chave:
+            achada = a
+    if achada:
+        linha = {**achada, "data": date.today().isoformat(), "escolhido": True, "post": post}
+    else:
+        gc = Gancho(formato, manchete=texto) if formato == "capa" else Gancho(formato, fala=texto)
+        r = avaliar(gc, ler_rubrica(), {})
+        linha = {"data": date.today().isoformat(), "tema": "(publicado sem avaliação prévia)", "gancho": r["gancho"],
+                 "nota": r["nota"], "subtotal": r["subtotal"], "bonus": r["bonus"],
+                 "resultados": {i: v["ok"] for i, v in r["resultados"].items()},
+                 "portoes_falhos": r["portoes_falhos"], "pendentes": r["pendentes"], "escolhido": True, "post": post}
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    with destino.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(linha, ensure_ascii=False) + "\n")
+    return linha
+
+
 # --- ranking: o gancho do Rafael na mesma fila dos gerados ---------------------
 
 def ranking(tema: str, destino: Path = SAIDA / "avaliacoes.jsonl") -> list[dict]:
@@ -878,6 +907,10 @@ def main(argv: list[str] | None = None) -> int:
     ct.add_argument("--desde", default=None, help="AAAA-MM-DD: só posts publicados a partir daí")
     rk = sub.add_parser("ranking", help="avaliações de um tema, maior nota primeiro")
     rk.add_argument("--tema", required=True)
+    es = sub.add_parser("escolher", help="marca o gancho publicado (texto exato + shortcode do post)")
+    es.add_argument("--texto", required=True, help="texto exato da manchete da capa ou da 1ª frase do Reel")
+    es.add_argument("--post", required=True, help="shortcode: o trecho depois de /p/ ou /reel/ na URL")
+    es.add_argument("--formato", choices=FORMATOS, default="capa")
     a = ap.parse_args(argv)
 
     if a.cmd == "extrair":
@@ -926,6 +959,11 @@ def main(argv: list[str] | None = None) -> int:
         return recalibrar_cli(Path(a.proprios))
     if a.cmd == "contrastar":
         return contrastar_cli(Path(a.dir), Path(a.proprios), a.desde)
+    if a.cmd == "escolher":
+        linha = escolher(a.texto, a.post, formato=a.formato)
+        origem = "avaliação da pauta" if linha["tema"] != "(publicado sem avaliação prévia)" else "sem avaliação prévia"
+        print(f"publicado: “{a.texto}” · post {a.post} · nota {linha['nota']} ({origem})")
+        return 0
     if a.cmd == "ranking":
         linhas = ranking(a.tema)
         if not linhas:

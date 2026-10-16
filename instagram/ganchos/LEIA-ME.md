@@ -24,7 +24,13 @@ Acrescente o id novo em `padroes-mapa.json` e rode `padroes` de novo.
 
 ## Post publicado?
 
-Registre o gancho **com o texto exato da capa** e `--escolhido --post <shortcode>`. É assim que
+Marque o gancho com o **texto exato da capa** (ou da 1ª frase do Reel):
+
+```bash
+python scripts/ganchos.py escolher --texto "<texto exato>" --post <shortcode>
+```
+
+Ele copia a avaliação da pauta com `escolhido: true` e o shortcode. É assim que
 o resultado do fluxo 1 (`instagram/metricas/proprios.jsonl`, campo `gancho`) encontra a
 avaliação na hora de recalibrar.
 

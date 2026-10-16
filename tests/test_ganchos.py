@@ -435,3 +435,23 @@ def test_ranking_por_tema(tmp_path, capsys):
         g.registrar(r, tema="casca", destino=destino)
     linhas = g.ranking("casca", destino)
     assert [x["gancho"]["manchete"] for x in linhas][0] == "Parece casca no seu café. Não é."
+
+
+def test_escolher_marca_a_avaliacao_registrada_e_cruza_pelo_shortcode(tmp_path):
+    destino = tmp_path / "avaliacoes.jsonl"
+    regras = g.ler_rubrica()
+    r = g.avaliar(G("capa", manchete="Parece casca no seu café. Não é."), regras, _julg_capa()[1])
+    g.registrar(r, tema="casca", destino=destino)
+    linha = g.escolher("parece casca no seu cafe nao e", post="DefH_1ClN30", destino=destino)
+    assert linha["escolhido"] is True and linha["post"] == "DefH_1ClN30" and linha["nota"] == 100
+    todas = g.carregar_jsonl(destino)
+    assert len(todas) == 2 and todas[-1]["resultados"] == todas[0]["resultados"]
+    post = {"id": "1", "url": "https://www.instagram.com/p/DefH_1ClN30/", "gancho": None, "coletado_em": "x"}
+    assert g.cruzar([post], todas)[0]["avaliacao"]["post"] == "DefH_1ClN30"
+
+
+def test_escolher_sem_avaliacao_registra_o_que_o_script_sabe(tmp_path):
+    destino = tmp_path / "avaliacoes.jsonl"
+    linha = g.escolher("Tem casca no seu café?", post="X1", destino=destino, formato="capa")
+    assert linha["escolhido"] is True and linha["nota"] is None and "J1" in linha["pendentes"]
+    assert linha["tema"] == "(publicado sem avaliação prévia)"

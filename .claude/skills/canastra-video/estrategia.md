@@ -52,6 +52,10 @@ tela (`motion-criadores/_victorzk_DY0HBzhNx69`). Só use com pedido explícito d
 Três camadas chegam juntas: **imagem** real em ação no quadro 0, **texto** na tela (para quem
 assiste mudo) e **fala** — e a frase nega ou questiona o que a imagem parece ser.
 
+Para escrever e dar nota ao gancho, use a skill **`canastra-ganchos`** (formato `reel`). A
+rubrica, os 9 padrões com as fórmulas e o `checar` estão lá. Esta seção diz o que os virais
+fazem; aquela transforma isso em nota.
+
 | Tipo que funciona | Exemplo |
 |---|---|
 | Objeção do público escrita | "Não é CHAFÉ!" com as duas canecas (`brasil/cafegeracoes_DVobHGpAW2Y`) |

@@ -9,6 +9,11 @@ description: Use when planning, writing, producing or auditing any Café Canastr
 > `estrategia.md` (nesta pasta).** Ele decide o *quê* (formato, gancho, voz, roteiro, som,
 > edição, marca, CTA, medição) a partir de 130 virais analisados; o resto desta skill decide o
 > *como* (motor, briefing, portões). Plano sem 3 fichas de referência citadas não está pronto.
+>
+> **O gancho (1ª frase falada, texto de tela, frame 1) sai da skill `canastra-ganchos`**,
+> formato `reel`: `python scripts/ganchos.py checar --formato reel --fala "..." --tela "..."
+> --julgamento ... --registrar --tema "<peça>"`, só com nota **70 ou mais**. Depois de publicado,
+> marque o gancho com `python scripts/ganchos.py escolher --formato reel --texto "<1ª frase>" --post <shortcode>`.
 
 O motor vive em `instagram/remotion/` e é **dirigido por briefing**:
 

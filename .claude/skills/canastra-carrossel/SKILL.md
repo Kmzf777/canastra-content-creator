@@ -19,6 +19,7 @@ Esta skill manda em **composição de slide e montagem do deck**. O motor é
 | que chão, que empilhamento, que paleta na foto | **canastra-direcao** |
 | de que anel do público é o deck, e o mix do ciclo | `instagram/estrategia/09-publico.md` |
 | como a copy fala: registro, palavras proibidas, jargão, emoji | `instagram/estrategia/10-voz.md` |
+| **a manchete e o apoio da capa**: gerar, dar nota, propor alternativas | **canastra-ganchos** |
 | **quantos slides, de que tipo, com que ritmo, e os três portões** | **esta skill** |
 
 **Onde a composição colidir com a óptica, a óptica ganha.** Se o layout pedir
@@ -154,6 +155,13 @@ aprovada primeiro é mais barato — texto se reescreve de graça, geração nã
 A copy vai para aprovação já na voz do `instagram/estrategia/10-voz.md` e passada no
 checklist do §10 dele (nenhum emoji nem exclamação na tela, jargão traduzido no mesmo slide).
 E declare o anel do deck (`09-publico.md` §2): ele entra na agenda.
+
+**A capa é o gancho, e ela sai da skill `canastra-ganchos`**, formato `capa`: candidatos de
+padrões diferentes, `python scripts/ganchos.py checar --formato capa --manchete "..." --apoio
+"..." --julgamento ... --registrar --tema "<deck>"`, e só vai para aprovação manchete com nota
+**70 ou mais** (a nota do script vai junto com a copy). Depois de publicado, marque a capa
+`python scripts/ganchos.py escolher --texto "<manchete exata>" --post <shortcode>`: é assim que a
+recalibração aprende com o resultado do post.
 
 ### Theme-lock
 

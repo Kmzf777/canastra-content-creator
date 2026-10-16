@@ -17,6 +17,7 @@ conferência: isso é de `canastra-conteudo`.
 | realismo de cena, procedência da referência | **canastra-cena** |
 | de que anel do público é a peça, e o mix do ciclo | `instagram/estrategia/09-publico.md` |
 | a frase do cartão e a legenda: registro, palavras proibidas, emoji | `instagram/estrategia/10-voz.md` |
+| **a frase do cartão como gancho** (o que se lê primeiro no feed): nota do `checar`, mínimo 70, alternativas; marcar a publicada com `ganchos.py escolher --texto ... --post <shortcode>` | **canastra-ganchos** (formato `capa`) |
 | **o catálogo declarado e qual degrau subir quando o rótulo sai errado** | **esta skill** |
 
 ---
