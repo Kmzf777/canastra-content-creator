@@ -25,6 +25,8 @@ ganchos virais reais, e não do gosto de quem escreve.
 | formato do vídeo, roteiro depois do gancho, edição | `canastra-video` |
 | a foto da capa (chão, luz, prop) | `canastra-direcao` + `canastra-cena` |
 | número ou alegação: de onde vem | `instagram/estrategia/02-ganchos.md`, "A regra de sourcing" |
+| **para quem** (o anel do assunto) | `instagram/estrategia/09-publico.md` |
+| **como a marca fala** (registro, palavras proibidas, pontuação) | `instagram/estrategia/10-voz.md` |
 
 ---
 
@@ -34,6 +36,10 @@ Entrada: **tema**, **formato** (`capa` ou `reel`) e a **matéria-prima que exist
 número medido, arquivo). Se não souber o que existe, procure antes. Gancho sem matéria-prima é
 lista de desejos (`02-ganchos.md`, "Como usar este banco").
 
+0. **Decida o anel** pelo teste da troca de logo (`09-publico.md` §2) e confira se ele é o
+   que o mix da semana pede (§3: toda semana um anel 1; a outra peça alterna entre anel 2 ou
+   3 e anel 4). O banco de `02-ganchos.md` tem **0 ganchos no anel 4**: quando a vaga for de
+   anel 4, escreva para ela, não empurre um gancho de anel 1.
 1. **Junte os fatos citáveis** do tema, cada um com a fonte (arquivo, tabela, medição). Fato
    sem fonte não entra em gancho nenhum (P1).
 2. **Escreva 8 a 10 candidatos de padrões diferentes.** Use os 7 padrões que transferem
@@ -77,7 +83,7 @@ lista de desejos (`02-ganchos.md`, "Como usar este banco").
 Para cada gancho apresentado:
 
 ```
-**[nota]/100 · padrão** — manchete / apoio (ou fala / tela)
+**[nota]/100 · padrão · anel N** — manchete / apoio (ou fala / tela)
 Foto: <a foto da capa ou o frame 1, em uma linha; real ou a gerar>
 Pergunta que abre: "<a pergunta exata de J1>"
 Paga em: <slide ou segundo de P4>
@@ -90,9 +96,12 @@ previsão: diga "nota 86, hipótese para testar", nunca "vai performar" (`03-rot
 
 ---
 
-## Não soar como IA
+## Não soar como IA, e soar como a Canastra
 
-Leia [vicios-ia.md](vicios-ia.md) antes de escrever. O resumo medido:
+Leia [vicios-ia.md](vicios-ia.md) e o checklist de 6 perguntas de `10-voz.md` §10 antes de
+escrever. M3 já reprova as palavras e a pontuação que a voz recusa: *gourmet*, *premium*,
+*segredo*, fogo/queimar, voz institucional, e na tela nenhuma exclamação, emoji ou
+reticências. *Perfeito* e *experiência* o cliente manteve. O resumo medido:
 
 - As construções de copy de IA aparecem em **0 a 1 dos 128 virais**. O viral **mostra a
   coisa** e fala dela com palavra de conversa.

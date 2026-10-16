@@ -152,7 +152,7 @@ def ler_vicios(caminho: Path = VICIOS) -> list[dict]:
     out = []
     for c in _linhas_tabela(caminho, r"V\d+"):
         out.append({"id": c[0], "nome": c[1], "regex": re.compile(_sem_crase(c[2]), re.I),
-                    "proibe": c[3].lower()})
+                    "proibe": c[3].lower(), "onde": c[4].lower()})
     return out
 
 
@@ -193,6 +193,7 @@ def _quartis(vals: list[int]) -> dict:
 
 def _bloco(itens: list[dict], vicios: list[dict]) -> dict:
     ab = [_abertura(x) for x in itens]
+    telas_txt = [x["escrito"].split(" / ")[0] for x in itens]
     telas = [len(palavras(x["escrito"].split(" / ")[0])) for x in itens if x["escrito"]]
     falas = [len(palavras(primeira_frase(x["dito"]))) for x in itens if x["dito"]]
     n = len(itens)
@@ -205,7 +206,8 @@ def _bloco(itens: list[dict], vicios: list[dict]) -> dict:
         "pct_voce": _pct(sum(bool(_VOCE.search(a)) for a in ab), n),
         "pct_negacao_inicial": _pct(sum(bool(_NEG.search(a)) for a in ab), n),
         "pct_sem_texto": _pct(sum(not a for a in ab), n),
-        "vicios": {v["id"]: sum(bool(v["regex"].search(a)) for a in ab) for v in vicios},
+        "vicios": {v["id"]: sum(bool(v["regex"].search(t)) for t in (telas_txt if v.get("onde") == "tela" else ab))
+                   for v in vicios},
     }
 
 
@@ -437,8 +439,12 @@ def _m2(gc: Gancho):
 
 
 def _m3(gc: Gancho):
-    achados = [v["id"] for v in ler_vicios() if v["proibe"] == "sim" and v["regex"].search(gc.textos())]
-    return (False, "vício de IA: " + ", ".join(achados)) if achados else (True, "")
+    """Vícios de IA e palavras recusadas pela voz (vicios-ia.md). `onde = tela` vale só para o
+    que se lê: manchete e apoio da capa, tela do Reel (10-voz.md §7)."""
+    tela = gc.textos() if gc.formato == "capa" else gc.tela
+    achados = [v["id"] for v in ler_vicios() if v["proibe"] == "sim"
+               and v["regex"].search(tela if v["onde"] == "tela" else gc.textos())]
+    return (False, "vício: " + ", ".join(achados)) if achados else (True, "")
 
 
 def _m4(gc: Gancho):

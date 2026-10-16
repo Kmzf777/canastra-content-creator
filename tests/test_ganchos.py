@@ -213,7 +213,16 @@ def test_m2_repeticao():
 def test_m3_m4():
     assert not g.MECANICAS["M3"](G("capa", manchete="Não é só café, é uma experiência"))[0]
     assert not g.MECANICAS["M3"](G("capa", manchete="Descubra a jornada do grão"))[0]
-    assert g.MECANICAS["M3"](G("capa", manchete="Não é CHAFÉ!"))[0]
+    assert g.MECANICAS["M3"](G("reel", fala="Não é CHAFÉ!"))[0]          # negação não é V1; fala aceita "!"
+    assert not g.MECANICAS["M3"](G("capa", manchete="Não é CHAFÉ!"))[0]  # na tela não (10-voz §7)
+
+
+def test_m3_voz_da_marca():
+    assert not g.MECANICAS["M3"](G("capa", manchete="Um café gourmet de verdade"))[0]          # V10
+    assert not g.MECANICAS["M3"](G("reel", fala="O segredo do nosso café"))[0]                 # V8
+    assert not g.MECANICAS["M3"](G("reel", fala="O que a gente viu na lavoura", tela="A lavoura ☕"))[0]  # V14 na tela
+    assert g.MECANICAS["M3"](G("capa", manchete="Um café perfeito para a manhã"))[0]         # mantida pelo cliente
+    assert not g.MECANICAS["M3"](G("capa", manchete="Olha o que aconteceu…"))[0]               # V15
     assert g.MECANICAS["M3"](G("capa", manchete="Tem casca no seu café?"))[0]
     assert not g.MECANICAS["M4"](G("reel", fala="Bom dia! Hoje eu vou falar da colheita"))[0]
     assert g.MECANICAS["M4"](G("reel", fala="Hoje eu vou tirar o boia desse café, galera."))[0]

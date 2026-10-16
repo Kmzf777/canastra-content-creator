@@ -11,8 +11,18 @@ registradas em `avaliacoes.jsonl`.
 - Entre dois 100, quem decide é a foto e a matéria-prima.
 
 Pautas: a fila de `agenda.md` tem 3 viáveis (SCA 80+, cereja verde, preço). "Moído ou grãos"
-não tem fonte e "altitude" está bloqueada. A 4ª data usa o G6 do banco (geladeira), que custa
-zero para fotografar.
+não tem fonte e "altitude" está bloqueada.
+
+**O mix de anéis decide a 4ª data** (`instagram/estrategia/09-publico.md` §3: toda semana uma
+peça de anel 1, e a outra alterna entre anel 2 ou 3 e anel 4):
+
+- semana de 20 e 23/10: SCA 80+ (anel 2) + cereja verde (anel 1)
+- semana de 27 e 30/10: microlote (anel 1) + **anel 4**
+
+O banco de ganchos tem 0 no anel 4, então os de 30/10 foram escritos para essa vaga. A
+geladeira (G6, anel 3) fica de reserva para a próxima vaga de anel 2 ou 3. Todos os finalistas
+passam no M3 já alinhado a `10-voz.md` (sem exclamação, emoji nem reticências na tela; sem
+gourmet/premium/segredo).
 
 ---
 
@@ -88,7 +98,27 @@ frente. Os pacotes existem (shoot de 11/09); os papéis são captura de 5 min.
 Fonte: tabela de 11/09/2026 (R$ 28,70 · R$ 32,70) **[medido]**. **Confirme que a tabela segue
 vigente** e o que define o microlote (seleção, lote) antes do slide 2.
 
-## 30/10 sex · Onde guardar o pacote aberto (G6)
+## 30/10 sex · anel 4: café gelado de geladeira (receita e rotina)
+
+Foto da capa: um pote de vidro com café descansando na porta da geladeira, de noite, luz amarela
+de dentro, celular. Captura de custo zero. A receita precisa de teste em casa antes, e a
+proporção pó/água vem de fonte externa citada no slide.
+
+**100 · veredito-direto** — *Pacote fora da geladeira. Café gelado, dentro.* / *A receita que passa a noite lá.*
+- Pergunta: "por que um fora e o outro dentro? que receita?" · Paga em: slide 2 (o pacote
+  aberto fora, com a fonte) e slides 3–5 (a receita)
+- Junta a dica de anel 3 (não guardar o pacote na geladeira) com a receita de anel 4 numa
+  capa só.
+
+**100 · pergunta-diagnostico** — *Dá pra fazer café gelado sem máquina?* / *Pote, pó e uma noite na geladeira.*
+
+**100 · situacao-reconhecivel** — *Seu café esfria na mesa do trabalho?* / *Então faz ele gelado de propósito.*
+- É a mais anel 4 das três (rotina do trabalho), e a graça nasce do próprio café.
+
+**42 · reprovado na prática** — *O café da tarde é o que salva o dia.* Perde em J1–J4 e em
+M1: é a frase que qualquer marca escreveria. Fica como exemplo do que a máquina barra.
+
+## Reserva (próxima vaga de anel 2 ou 3) · Onde guardar o pacote aberto (G6)
 
 Foto da capa: porta da geladeira aberta, o pacote entre o queijo e a cebola, luz amarela de
 dentro, celular torto. Captura de custo zero, hoje à noite.
@@ -125,12 +155,12 @@ recalibração.
 
 ## Minha escolha
 
-| Data | Capa | Por quê |
-|---|---|---|
-| 20/10 | *Café especial se reconhece sem provar.* | 100, foto existe, sem dado pendente |
-| 23/10 | *Se colher agora, esse café vira defeito.* | 100, risco real da lavoura (`03-roteiro` §4), foto real com GPS. Conferir a IN 8/2003 |
-| 27/10 | *Quatro reais de diferença. O que eles pagam?* | a pauta de preço está bloqueada; esta tem o dado inteiro |
-| 30/10 | *Seu pacote de café mora do lado da cebola?* | 100, custo zero, e é o tipo de capa que se manda para alguém (envio é sinal **[oficial]**) |
+| Data | Anel | Capa | Por quê |
+|---|---|---|---|
+| 20/10 | 2 | *Café especial se reconhece sem provar.* | 100, foto existe, sem dado pendente |
+| 23/10 | 1 | *Se colher agora, esse café vira defeito.* | 100, risco real da lavoura (`03-roteiro` §4), foto real com GPS. Conferir a IN 8/2003 |
+| 27/10 | 1 | *Quatro reais de diferença. O que eles pagam?* | a pauta de preço está bloqueada; esta tem o dado inteiro |
+| 30/10 | 4 | *Seu café esfria na mesa do trabalho?* | 100, preenche o anel que o banco não tem, custo zero, e é capa que se manda para alguém (envio é sinal **[oficial]**) |
 
 Ao publicar cada uma, registre o texto exato com `--escolhido --post <shortcode>` para a
 recalibração encontrar o resultado.
