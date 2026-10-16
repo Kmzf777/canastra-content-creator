@@ -14,7 +14,7 @@ Esta skill decide **a primeira coisa que a pessoa vê**: a manchete da capa do c
 | [rubrica.md](rubrica.md) | **as 18 regras e o bônus**, peso, como verificar e de onde veio cada uma |
 | [vicios-ia.md](vicios-ia.md) | o léxico que denuncia texto de IA, com a incidência medida nos virais |
 | `instagram/ganchos/padroes.md` | os 9 padrões do corpus: n, perfis, mediana de views com e sem suspeitos de impulsionamento, e as **fórmulas de lacuna** de cada padrão |
-| `scripts/ganchos.py` | `checar` (rubrica), `ranking`, `contrastar`, `extrair`, `padroes`, `recalibrar` |
+| `scripts/ganchos.py` | `checar` (rubrica), `ranking`, `escolher` (o publicado), `contrastar`, `extrair`, `padroes`, `recalibrar` |
 
 ## Rotear primeiro
 
@@ -170,9 +170,14 @@ tempo médio assistido no Reel, e compara quem passou com quem falhou em cada re
 - Com 8 ou mais, grava `instagram/ganchos/recalibracao-AAAA-MM-DD.md` com pesos propostos
   (±50% no máximo).
 
-**A rubrica só muda com o Rafael aprovando.** Por isso **todo gancho publicado precisa estar em
-`avaliacoes.jsonl` com `--escolhido`**: sem o registro, o post não cruza e a recalibração não
-aprende com ele.
+**A rubrica só muda com o Rafael aprovando.** E **todo gancho publicado precisa ser marcado**:
+
+```bash
+python scripts/ganchos.py escolher --texto "<texto exato>" --post <shortcode>   # --formato reel no Reel
+```
+
+O `escolher` copia a avaliação da pauta com `escolhido: true` e o shortcode. Sem a marca, o post
+só cruza pelo texto, e a recalibração perde a garantia de qual avaliação era a publicada.
 
 ## Limites (diga-os quando a nota for usada para decidir)
 
