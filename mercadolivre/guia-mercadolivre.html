@@ -157,7 +157,7 @@ fieldset.grp legend { font: 700 14px var(--display); color: var(--accent); paddi
 details.adv { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; background: var(--bg); }
 details.adv summary { cursor: pointer; font-weight: 600; }
 .advbody { display: grid; gap: 8px; margin-top: 12px; }
-.advbody .price input[type="number"], fieldset.grp .price input#vendas { width: 110px; font-size: 17px; }
+.advbody .price input[type="number"], fieldset.grp .price input#vendas, fieldset.grp .price input#cmv { width: 110px; font-size: 17px; }
 .modo { font-size: 15px; background: var(--accent-soft); border-radius: 8px; padding: 8px 12px; max-width: none; }
 .mes { display: grid; gap: 0; background: var(--bg); border-radius: 8px; padding: 10px 14px; }
 .mes .k { font: 700 14px var(--display); color: var(--accent); padding-bottom: 4px; }
@@ -181,6 +181,13 @@ dl.gl dt { font-weight: 600; }
 dl.gl dd { margin: 0; color: var(--muted); }
 a { color: var(--accent); }
 footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+
+/* CMV editável (custo do produto) */
+.tagedit { display: inline-block; font: 600 11px var(--body); letter-spacing: .04em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); vertical-align: 1px; margin-left: 6px; }
+.cmvrow { flex-wrap: wrap; row-gap: 6px; }
+.cmvrow input#cmv.ed { border-color: var(--accent); }
+.linkbtn { font: 600 14px var(--body); background: none; border: 0; padding: 4px 2px; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.linkbtn:disabled { color: var(--muted); text-decoration: none; cursor: default; opacity: .7; }
 </style>
 
 <div class="wrap">
@@ -270,6 +277,11 @@ footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
         <fieldset class="grp">
           <legend>Produto e preço</legend>
           <div class="seg" id="prod"></div>
+          <div class="field">
+            <label class="lbl" for="cmv">Custo do produto (CMV), R$<span class="tagedit">editável</span></label>
+            <div class="price cmvrow"><span class="muted">R$</span><input type="number" id="cmv" min="0" step="0.01" inputmode="decimal" aria-describedby="cmvTxt"><button type="button" class="linkbtn" id="cmvReset">voltar ao padrão</button></div>
+            <small id="cmvTxt"></small>
+          </div>
           <div class="price"><span class="muted">R$</span><input type="number" id="preco" step="0.10" aria-label="Preço no Mercado Livre"></div>
           <input type="range" id="precoR" step="0.10" aria-label="Ajustar preço">
           <small id="precoRef"></small>
@@ -369,7 +381,7 @@ footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
   <section>
     <h2>Palavras que vão aparecer</h2>
     <dl class="gl">
-      <dt>CMV</dt><dd>Custo do café dentro do pacote: R$ 47 o de 1 kg, R$ 26 o de 500 g.</dd>
+      <dt>CMV</dt><dd>Custo do café dentro do pacote: R$ 47 o de 1 kg, R$ 26 o de 500 g. Na calculadora dá para trocar.</dd>
       <dt>Clássico e Premium</dt><dd>Os dois tipos de anúncio. No café, o Clássico cobra 14% do preço. O Premium cobra 19% e deixa o comprador parcelar sem juros.</dd>
       <dt>Frete grátis</dt><dd>A partir de R$ 79 o frete grátis é obrigatório e quem paga somos nós. O valor sobe com o peso e com a faixa de preço: R$ 99,90 e R$ 100 caem em faixas diferentes.</dd>
       <dt>Reputação</dt><dd>A cor da conta: verde, amarela, laranja ou vermelha. Sai das reclamações, das vendas canceladas e dos envios atrasados no último ano. No verde o frete tem até 50% de desconto; no vermelho, nenhum.</dd>
@@ -499,14 +511,41 @@ function num(id, def) { const v = parseFloat($(id).value); return isFinite(v) ? 
 function renderSeg(id, list, cur) {
   $(id).innerHTML = list.map(p => `<button type="button" data-id="${p.id}" aria-pressed="${p.id === cur.id}">${p.nome}</button>`).join('');
 }
+// CMV editável: o campo #cmv manda em todas as contas. O valor editado fica salvo por produto neste navegador;
+// sem storage (aba anônima, bloqueio) a página funciona igual, só não lembra.
+const CMV_CHAVE = 'guia-mercadolivre:cmv:';
+function cmvSalvo(id) {
+  try { const s = localStorage.getItem(CMV_CHAVE + id); const v = s === null ? NaN : parseFloat(s); return isFinite(v) && v >= 0 ? v : null; }
+  catch (e) { return null; }
+}
+function salvarCmv(id, v) {
+  try { if (v === null) localStorage.removeItem(CMV_CHAVE + id); else localStorage.setItem(CMV_CHAVE + id, String(v)); }
+  catch (e) { /* sem storage: segue sem salvar */ }
+}
+function cmvAtual() { const v = parseFloat($('cmv').value); return isFinite(v) && v >= 0 ? v : prod.cmv; }
+const cmvEditado = () => Math.abs(cmvAtual() - prod.cmv) >= 0.005;
+function cmvTxt() {
+  const ed = cmvEditado(), kit = prod.id.startsWith('kit');
+  $('cmvTxt').textContent = (ed ? 'Editado. ' : '') + `padrão ${brl(prod.cmv)} de custos.md${kit ? ' (o kit inteiro)' : ''}; mude se o custo mudou`;
+  $('cmvReset').disabled = !ed;
+  $('cmv').classList.toggle('ed', ed);
+}
+function carregarCmv() { const s = cmvSalvo(prod.id); $('cmv').value = (s === null ? prod.cmv : s).toFixed(2); cmvTxt(); }
 function setProd(p) {
   prod = p;
   $('precoR').min = p.min; $('precoR').max = p.max;
   $('preco').min = p.min; $('preco').max = p.max;
   $('preco').value = p.preco.toFixed(2); $('precoR').value = p.preco;
   $('precoRef').textContent = p.ref;
+  carregarCmv();
   renderSeg('prod', PRODS, prod); calc();
 }
+$('cmv').addEventListener('input', () => {
+  const v = parseFloat($('cmv').value);
+  if (isFinite(v) && v >= 0) salvarCmv(prod.id, Math.abs(v - prod.cmv) < 0.005 ? null : v);
+  cmvTxt(); calc();
+});
+$('cmvReset').addEventListener('click', () => { salvarCmv(prod.id, null); $('cmv').value = prod.cmv.toFixed(2); cmvTxt(); calc(); });
 function setTipo(t) { tipo = t; renderSeg('tipo', TIPOS, tipo); calc(); }
 function setRep(r) { rep = r; $('repTxt').textContent = r.txt; renderSeg('rep', REPS, rep); calc(); }
 $('prod').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setProd(PRODS.find(p => p.id === b.dataset.id)); });
@@ -565,7 +604,8 @@ function calc() {
   const preco = parseFloat($('preco').value);
   const adsOn = $('ads').checked, full = $('full').checked, fg = $('fg').checked;
   const roas = num('roas', 10);
-  const o = { peso: prod.peso, rep: rep.id, cmv: prod.cmv, tipo: tipo.id, full, fg, cpPeq: Math.max(0, num('cpPeq', 2.4)), roas: adsOn ? roas : 0,
+  const cmv = cmvAtual();
+  const o = { peso: prod.peso, rep: rep.id, cmv, tipo: tipo.id, full, fg, cpPeq: Math.max(0, num('cpPeq', 2.4)), roas: adsOn ? roas : 0,
     dev: Math.max(0, num('dev', 2)) / 100, estimado: !!prod.estimado,
     dias: Math.min(60, Math.max(7, Math.round(num('dias', 30)))), armDia: prod.armDia, vol: prod.vol, m3: Math.max(0, num('m3', 310)) };
   const V = Math.max(1, Math.round(num('vendas', 10)));
@@ -582,7 +622,8 @@ function calc() {
   $('modo').innerHTML = '<b>Simulando:</b> ' + [tipo.id === 'premium' ? 'Premium' : 'Clássico',
     full ? 'Full (o Mercado Livre despacha)' : 'envio próprio (Mercado Envios)',
     fg ? 'frete grátis' : 'comprador paga o frete',
-    'reputação ' + rep.id, adsOn ? 'anúncio a ROAS ' + pctf(roas) : 'sem anúncio'].join(' · ');
+    'reputação ' + rep.id, adsOn ? 'anúncio a ROAS ' + pctf(roas) : 'sem anúncio']
+    .concat(cmvEditado() ? [`CMV ${brl(cmv)} (editado)`] : []).join(' · ');
 
   const r = preco > 0 ? resultado(preco, o) : null;
   if (!r) {

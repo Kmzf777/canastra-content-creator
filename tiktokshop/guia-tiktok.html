@@ -180,6 +180,13 @@ dl.gl dt { font-weight: 600; }
 dl.gl dd { margin: 0; color: var(--muted); }
 a { color: var(--accent); }
 footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+
+/* CMV editável (custo do produto) */
+.tagedit { display: inline-block; font: 600 11px var(--body); letter-spacing: .04em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); vertical-align: 1px; margin-left: 6px; }
+.cmvrow { flex-wrap: wrap; row-gap: 6px; }
+.cmvrow input#cmv.ed { border-color: var(--accent); }
+.linkbtn { font: 600 14px var(--body); background: none; border: 0; padding: 4px 2px; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.linkbtn:disabled { color: var(--muted); text-decoration: none; cursor: default; opacity: .7; }
 </style>
 
 <div class="wrap">
@@ -262,6 +269,12 @@ footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
         <fieldset class="grp">
           <legend>Produto e preço</legend>
           <div class="seg" id="prod"></div>
+          <div class="field">
+            <label class="lbl" for="cmv">Custo do produto (CMV), R$<span class="tagedit">editável</span></label>
+            <div class="price cmvrow"><span class="muted">R$</span><input type="number" id="cmv" min="0" step="0.01" inputmode="decimal" aria-describedby="cmvTxt cmvAmostra"><button type="button" class="linkbtn" id="cmvReset">voltar ao padrão</button></div>
+            <small id="cmvTxt"></small>
+            <small id="cmvAmostra"></small>
+          </div>
           <label class="lbl" for="preco">Preço no TikTok</label>
           <div class="price"><span class="muted">R$</span><input type="number" id="preco" step="0.10" min="10" max="400"></div>
           <input type="range" id="precoR" step="0.10" aria-label="Ajustar preço">
@@ -384,7 +397,7 @@ footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
   <section>
     <h2>Palavras que vão aparecer</h2>
     <dl class="gl">
-      <dt>CMV</dt><dd>Custo do café dentro do pacote: R$ 47 o de 1 kg, R$ 26 o de 500 g.</dd>
+      <dt>CMV</dt><dd>Custo do café dentro do pacote: R$ 47 o de 1 kg, R$ 26 o de 500 g. Na calculadora dá para trocar.</dd>
       <dt>Tarifa do TikTok</dt><dd>O que o TikTok cobra por venda. Até R$ 50: 10% + R$ 4 por item. De R$ 50 para cima: 6% + R$ 6. Por isso pacote barato perde muito para a tarifa fixa.</dd>
       <dt>Taxa de envio (SFP)</dt><dd>Mais 6% do preço, que o TikTok usa para bancar frete grátis e cupons. É obrigatória.</dd>
       <dt>Afiliado</dt><dd>Criador de conteúdo que coloca o nosso café no vídeo dele e ganha comissão por venda. Em café, o padrão é 8%.</dd>
@@ -569,11 +582,36 @@ function renderAll() {
   renderSeg('prod', PRODS, prod); renderSeg('origem', ORIGENS, origem); renderSeg('cupQuem', CUPQ, cupQ); renderSeg('isen', ISENS, isen);
   renderSeg('nivel', NIVEIS, nivel); renderSeg('kitFix', KITFIX, kitFix); renderSeg('envio', ENVIOS, envio); renderSeg('repasse', REPASSES, repasse);
 }
+// CMV editável: o campo #cmv manda em todas as contas. O valor editado fica salvo por produto neste navegador;
+// sem storage (aba anônima, bloqueio) a página funciona igual, só não lembra.
+const CMV_CHAVE = 'guia-tiktok:cmv:';
+function cmvSalvo(id) {
+  try { const s = localStorage.getItem(CMV_CHAVE + id); const v = s === null ? NaN : parseFloat(s); return isFinite(v) && v >= 0 ? v : null; }
+  catch (e) { return null; }
+}
+function salvarCmv(id, v) {
+  try { if (v === null) localStorage.removeItem(CMV_CHAVE + id); else localStorage.setItem(CMV_CHAVE + id, String(v)); }
+  catch (e) { /* sem storage: segue sem salvar */ }
+}
+function cmvAtual() { const v = parseFloat($('cmv').value); return isFinite(v) && v >= 0 ? v : prod.cmv; }
+const cmvEditado = () => Math.abs(cmvAtual() - prod.cmv) >= 0.005;
+// A amostra é 1 pacote (cmvA). Com o CMV editado, ela muda na mesma proporção; no padrão fica exatamente cmvA.
+const cmvAmostraAtual = () => cmvEditado() ? prod.cmvA * cmvAtual() / prod.cmv : prod.cmvA;
+function cmvTxt() {
+  const ed = cmvEditado();
+  $('cmvTxt').textContent = (ed ? 'Editado. ' : '') + `padrão ${brl(prod.cmv)} de custos.md${prod.n > 1 ? ' (o kit inteiro)' : ''}; mude se o custo mudou`;
+  $('cmvAmostra').textContent = `A amostra para criador é 1 pacote: ${brl(cmvAmostraAtual())}`
+    + (ed ? ` (padrão ${brl(prod.cmvA)}, na mesma proporção do CMV editado).` : '. Se o CMV mudar, ela muda na mesma proporção.');
+  $('cmvReset').disabled = !ed;
+  $('cmv').classList.toggle('ed', ed);
+}
+function carregarCmv() { const s = cmvSalvo(prod.id); $('cmv').value = (s === null ? prod.cmv : s).toFixed(2); cmvTxt(); }
 function setProd(p) {
   prod = p;
   $('precoR').min = p.min; $('precoR').max = p.max;
   $('preco').value = p.preco.toFixed(2); $('precoR').value = p.preco;
   $('precoRef').textContent = p.ref;
+  carregarCmv();
   renderAll(); calc();
 }
 function seg(id, list, set) {
@@ -595,6 +633,12 @@ $('ads').addEventListener('change', () => { $('adsbox').hidden = !$('ads').check
 $('camp').addEventListener('change', () => { $('campbox').hidden = !$('camp').checked; calc(); });
 ['cupom', 'afilPct', 'cupPct', 'vendas', 'cresc', 'shopAds', 'ppa', 'freteA', 'perda', 'emb', 'freteP'].forEach(id => $(id).addEventListener('input', calc));
 $('f').addEventListener('submit', e => e.preventDefault());
+$('cmv').addEventListener('input', () => {
+  const v = parseFloat($('cmv').value);
+  if (isFinite(v) && v >= 0) salvarCmv(prod.id, Math.abs(v - prod.cmv) < 0.005 ? null : v);
+  cmvTxt(); calc();
+});
+$('cmvReset').addEventListener('click', () => { salvarCmv(prod.id, null); $('cmv').value = prod.cmv.toFixed(2); cmvTxt(); calc(); });
 
 // Lê todos os controles e devolve as opções no formato de resultado().
 function opcoes(preco) {
@@ -611,7 +655,7 @@ function opcoes(preco) {
     adsOn, camp, roiUser, cupPct, cupomVend, cupomCamp, shopAdsUsada: afil !== afilBase,
     o: { itens: kitFix.id === 'n' ? prod.n : 1, cupom: r2(cupomVend + cupomCamp), afiliado_pct: afil, roi,
       loja_nova: isen.id !== 'nao', loja_nova_fixa: isen.id === 'fixa',
-      frete_amostra: Math.max(0, num('freteA', 20)), pedidos_por_amostra: Math.max(0, Math.round(num('ppa', 10))), cmv_amostra: prod.cmvA,
+      frete_amostra: Math.max(0, num('freteA', 20)), pedidos_por_amostra: Math.max(0, Math.round(num('ppa', 10))), cmv_amostra: cmvAmostraAtual(),
       perda_pct: Math.max(0, num('perda', 1)), embalagem: Math.max(0, num('emb', 0)), frete: envio.id === 'vend' ? Math.max(0, num('freteP', 15)) : 0 },
   };
 }
@@ -636,10 +680,11 @@ function calc() {
   $('campTxt').textContent = cupQ.txt + (k.adsOn ? '' : ' Sem anúncio seu, o TikTok cria um a ROI 50 e cobra 2% do pedido.');
 
   if (!(preco > 0)) { $('modo').innerHTML = ''; limpar('Digite um preço.'); return; }
-  const r = resultado(preco, prod.cmv, o);
+  const cmv = cmvAtual();
+  const r = resultado(preco, cmv, o);
   if (!r) { $('modo').innerHTML = ''; limpar('O desconto é maior que o preço.'); return; }
-  const semAds = resultado(preco, prod.cmv, Object.assign({}, o, { roi: null }));
-  const rSem = o.loja_nova ? resultado(preco, prod.cmv, Object.assign({}, o, { loja_nova: false, loja_nova_fixa: false })) : r;
+  const semAds = resultado(preco, cmv, Object.assign({}, o, { roi: null }));
+  const rSem = o.loja_nova ? resultado(preco, cmv, Object.assign({}, o, { loja_nova: false, loja_nova_fixa: false })) : r;
   const antes = semAds.cm3;
   $('adsTxt').innerHTML = `ROI ${pctf(k.roiUser)}: o anúncio leva <b class="num">${pctf(100 / k.roiUser)}%</b> do preço pago (${brl(r.receita / k.roiUser)}). `
     + (antes > 0 ? `Para não comer a sobra, o ROI precisa ser pelo menos <b class="num">${pctf(r.receita / antes)}</b>.` : 'Neste caso nenhum ROI empata: mesmo sem anúncio não sobra nada.')
@@ -652,7 +697,7 @@ function calc() {
     isen.id === 'nao' ? 'sem isenção' : isen.id === 'pct' ? 'isenção na parte %' : 'isenção na parte % e na fixa',
     prod.n > 1 ? (o.itens > 1 ? `kit com ${o.itens} tarifas fixas` : 'kit com 1 tarifa fixa') : null,
     envio.id === 'vend' ? 'envio por nós' : 'envio pelo TikTok',
-    'nível ' + nivel.nome].filter(Boolean).join(' · ');
+    'nível ' + nivel.nome, cmvEditado() ? `CMV ${brl(cmv)} (editado)` : null].filter(Boolean).join(' · ');
 
   const pct = r.cm3 / r.receita * 100;
   $('frase').textContent = r.cm3 >= 0 ? `De ${prod.art} a ${brl(r.receita)}, sobram para a Canastra` : `Cada ${prod.nome} vendido a ${brl(r.receita)} dá prejuízo de`;
@@ -718,7 +763,7 @@ function calc() {
   if (iTeto >= 0) $('tetoTxt').innerHTML = `<b>A projeção bate no teto do nível ${nivel.nome} (${nivel.dia} pedidos por dia, ${brl0(teto).replace('R$ ', '')} no mês) ${iTeto === 0 ? 'já no 1º mês' : 'no mês ' + meses[iTeto].m}.</b> A loja nova começa no Iniciante, com 50 por dia, e o Padrão libera 100. Dali em diante a projeção fica parada no teto.`;
 
   const tips = [];
-  const zero = piso(prod.cmv, o, 0), dez = piso(prod.cmv, o, 10);
+  const zero = piso(cmv, o, 0), dez = piso(cmv, o, 10);
   if (zero) tips.push(['', `Nessas condições, o preço mínimo para não perder dinheiro é <b class="num">${brl(zero)}</b>` + (dez ? `. Para sobrar 10%, <b class="num">${brl(dez)}</b>.` : '.') + (o.cupom ? ' Os pisos já contam o desconto.' : '')]);
   if (antes > 0) tips.push(['', `O anúncio pode custar até <b class="num">${pctf(antes / r.receita * 100)}%</b> do preço (${brl(antes)}) antes de comer toda a sobra, ou seja, ROI de pelo menos <b class="num">${pctf(r.receita / antes)}</b>. Em campanha o TikTok cria o anúncio a ROI 50, que leva 2%.`]);
   else tips.push(['alert', 'Mesmo sem anúncio não sobra nada. Nesse preço não há espaço para pagar anúncio.']);
@@ -726,13 +771,13 @@ function calc() {
   if (o.cupom && faixa(preco / o.itens)[0] !== faixa(r.receita / o.itens)[0]) tips.push(['alert', 'O desconto levou o pacote para abaixo de R$ 50 e mudou a tarifa para 10% + R$ 4.']);
   else if (r.receita / o.itens < 50) tips.push(['alert', 'Abaixo de R$ 50 a tarifa vira 10% + R$ 4: em pacote barato a parte fixa pesa muito.']);
   if (prod.n > 1) {
-    const um = resultado(preco, prod.cmv, Object.assign({}, o, { itens: 1 })), varios = resultado(preco, prod.cmv, Object.assign({}, o, { itens: prod.n }));
+    const um = resultado(preco, cmv, Object.assign({}, o, { itens: 1 })), varios = resultado(preco, cmv, Object.assign({}, o, { itens: prod.n }));
     tips.push(['', `Se o kit pagar uma tarifa fixa só, sobram ${brl(um.cm3)}; se pagar uma por pacote, ${brl(varios.cm3)}. A regra não diz qual vale.` + AB]);
   }
   if (r.receita < 109 && envio.id === 'tiktok') tips.push(['', 'Os cupons de frete que o TikTok dá ao comprador começam em compras de R$ 109 (usuário novo). Abaixo disso o comprador pode pagar frete, o que pesa na venda mas não na nossa margem.']);
   if (o.loja_nova) tips.push(['', `A isenção vale ${brl(r2(r.cm3 - rSem.cm3))} por pedido. Ela só existe se a missão de loja nova aparecer no painel.`]);
   if (origem.id === 'live') tips.push(['', 'Uma marca contou que, no fim de 2025, o TikTok cobria de 20% a 30% da venda em LIVE. Não há página oficial sobre isso, então a conta não usa.']);
-  if (origem.id === 'criador' && o.pedidos_por_amostra) tips.push(['', `Cada amostra custa ${brl(prod.cmvA + o.frete_amostra)} (pacote + frete). Com ${o.pedidos_por_amostra} pedidos por amostra, isso dá ${brl(r.amostra)} por pedido. Na pesquisa, 35% a 40% das amostras nunca viram vídeo.`]);
+  if (origem.id === 'criador' && o.pedidos_por_amostra) tips.push(['', `Cada amostra custa ${brl(o.cmv_amostra + o.frete_amostra)} (pacote + frete). Com ${o.pedidos_por_amostra} pedidos por amostra, isso dá ${brl(r.amostra)} por pedido. Na pesquisa, 35% a 40% das amostras nunca viram vídeo.`]);
   tips.push(['', 'Café só pode ser devolvido lacrado. A taxa de envio de pedido devolvido não volta para nós.']);
   $('tips').innerHTML = tips.map(([c, t]) => `<p class="${c}">${t}</p>`).join('');
 }

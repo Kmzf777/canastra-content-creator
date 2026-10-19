@@ -195,6 +195,13 @@ dl.gl dt { font-weight: 600; }
 dl.gl dd { margin: 0; color: var(--muted); }
 a { color: var(--accent); }
 footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+
+/* CMV editável (custo do produto) */
+.tagedit { display: inline-block; font: 600 11px var(--body); letter-spacing: .04em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); vertical-align: 1px; margin-left: 6px; }
+.cmvrow { flex-wrap: wrap; row-gap: 6px; }
+.cmvrow input#cmv.ed { border-color: var(--accent); }
+.linkbtn { font: 600 14px var(--body); background: none; border: 0; padding: 4px 2px; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.linkbtn:disabled { color: var(--muted); text-decoration: none; cursor: default; opacity: .7; }
 </style>
 
 <div class="wrap">
@@ -296,6 +303,11 @@ footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
         <fieldset class="grp">
           <legend>Produto e preço</legend>
           <div class="seg" id="prod" role="group" aria-label="Produto"></div>
+          <div class="field">
+            <label class="lbl" for="cmv">Custo do produto (CMV), R$<span class="tagedit">editável</span></label>
+            <div class="price cmvrow"><span class="muted">R$</span><input type="number" id="cmv" class="n" min="0" step="0.01" inputmode="decimal" aria-describedby="cmvTxt"><button type="button" class="linkbtn" id="cmvReset">voltar ao padrão</button></div>
+            <small id="cmvTxt"></small>
+          </div>
           <div class="field">
             <label class="lbl" for="preco">Preço na Amazon</label>
             <div class="price"><span class="muted">R$</span><input type="number" id="preco" step="0.10" min="20" max="400"></div>
@@ -452,7 +464,7 @@ footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
   <section>
     <h2>Palavras que vão aparecer</h2>
     <dl class="gl">
-      <dt>CMV</dt><dd>Custo do café dentro do pacote: R$ 47 o de 1 kg, R$ 26 o de 500 g.</dd>
+      <dt>CMV</dt><dd>Custo do café dentro do pacote: R$ 47 o de 1 kg, R$ 26 o de 500 g. Na calculadora dá para trocar.</dd>
       <dt>Comissão</dt><dd>O que a Amazon fica de cada venda de café: 10% do preço, no mínimo R$ 1.</dd>
       <dt>FBA</dt><dd>"Logística da Amazon". Mandamos o café para o armazém dela, e ela guarda, embala, entrega e atende devolução. O café ganha o selo Prime. Cobra uma tarifa por pacote vendido e armazenagem por m³.</dd>
       <dt>Experimente FBA</dt><dd>Campanha da Amazon até 31/01/2027: logística a R$ 6 por pacote de R$ 79 para cima, sem custo de coleta e armazenagem, para quem gasta pelo menos 3,5% da receita em anúncio.</dd>
@@ -634,11 +646,34 @@ function renderSegs() {
   $('planoSeg').innerHTML = segHtml(PLANOS, plano);
   $('vineSeg').innerHTML = VINES.map(x => `<button type="button" data-id="${x.id}" aria-pressed="${x.id === vine}">${x.nome}</button>`).join('');
 }
+// CMV editável: o campo #cmv manda em todas as contas. O valor editado fica salvo por produto neste navegador;
+// sem storage (aba anônima, bloqueio) a página funciona igual, só não lembra.
+const CMV_CHAVE = 'guia-amazon:cmv:';
+function cmvSalvo(id) {
+  try { const s = localStorage.getItem(CMV_CHAVE + id); const v = s === null ? NaN : parseFloat(s); return isFinite(v) && v >= 0 ? v : null; }
+  catch (e) { return null; }
+}
+function salvarCmv(id, v) {
+  try { if (v === null) localStorage.removeItem(CMV_CHAVE + id); else localStorage.setItem(CMV_CHAVE + id, String(v)); }
+  catch (e) { /* sem storage: segue sem salvar */ }
+}
+function cmvAtual() { const v = parseFloat($('cmv').value); return isFinite(v) && v >= 0 ? v : prod.cmv; }
+const cmvEditado = () => Math.abs(cmvAtual() - prod.cmv) >= 0.005;
+// o produto escolhido com o CMV do campo: é ele que vai para resultado(), piso() e projetar()
+const prodCalc = () => Object.assign({}, prod, { cmv: cmvAtual() });
+function cmvTxt() {
+  const ed = cmvEditado(), kit = prod.id.startsWith('k');
+  $('cmvTxt').textContent = (ed ? 'Editado. ' : '') + `padrão ${brl(prod.cmv)} de custos.md${kit ? ' (o kit inteiro)' : ''}; mude se o custo mudou`;
+  $('cmvReset').disabled = !ed;
+  $('cmv').classList.toggle('ed', ed);
+}
+function carregarCmv() { const s = cmvSalvo(prod.id); $('cmv').value = (s === null ? prod.cmv : s).toFixed(2); cmvTxt(); }
 function setProd(p) {
   prod = p;
   $('precoR').min = p.min; $('precoR').max = p.max;
   $('preco').value = p.preco.toFixed(2); $('precoR').value = p.preco;
   $('precoRef').textContent = p.ref;
+  carregarCmv();
   renderSegs(); calc();
 }
 function posBand() {
@@ -657,6 +692,13 @@ $('preco').addEventListener('input', () => { $('precoR').value = $('preco').valu
 $('f').addEventListener('input', e => { if (!['preco', 'precoR'].includes(e.target.id)) calc(); });
 $('f').addEventListener('change', calc);
 $('f').addEventListener('submit', e => e.preventDefault());
+// o input do formulário já chama calc(); aqui só guarda o valor e atualiza o texto do campo
+$('cmv').addEventListener('input', () => {
+  const v = parseFloat($('cmv').value);
+  if (isFinite(v) && v >= 0) salvarCmv(prod.id, Math.abs(v - prod.cmv) < 0.005 ? null : v);
+  cmvTxt();
+});
+$('cmvReset').addEventListener('click', () => { salvarCmv(prod.id, null); $('cmv').value = prod.cmv.toFixed(2); cmvTxt(); calc(); });
 
 function entradas() {
   const adsOn = $('ads').checked, roas = +$('roas').value, share = +$('share').value / 100;
@@ -678,7 +720,8 @@ function calc() {
   const lista = parseFloat($('preco').value);
   if (!(lista >= 20)) { $('frase').textContent = 'Digite um preço a partir de R$ 20.'; return; }
   const e = entradas(), o = e.o, fba = modo === 'fba';
-  const r = resultado(lista, prod, o), preco = r.preco;
+  const P = prodCalc();                                              // produto com o CMV do campo
+  const r = resultado(lista, P, o), preco = r.preco;
   const pct = r.cm3 / preco * 100;
 
   $('modoInfo').textContent = MODOS.find(m => m.id === modo).txt;
@@ -716,6 +759,7 @@ function calc() {
   if (o.cupom > 0) partes.push(`desconto de ${pc(o.cupom * 100, 0)}%`);
   if (fba && o.prime5) partes.push('comissão de lançamento 5%');
   partes.push(PLANOS.find(x => x.id === plano).nome);
+  if (cmvEditado()) partes.push(`CMV ${brl(P.cmv)} (editado)`);
   $('modo').innerHTML = 'Simulando: ' + partes.filter(Boolean).join(' · ');
 
   $('adsTxt').innerHTML = `Numa venda que veio do anúncio (ACOS ${pc(e.acos * 100)}%), ele custa ${brl(preco * e.acos)}. Na média de todos os pacotes (TACOS), dá ${pc(o.tacos * 100)}% do preço, ou ${brl(r.anuncio)} por pacote. É o TACOS que entra na conta e na meta do Experimente FBA.`;
@@ -763,7 +807,7 @@ function calc() {
   // estimativa do mês
   const n = e.vendas;
   const g = Math.min(100, Math.max(-50, num('cresc', 10))) / 100;
-  const meses = projetar(lista, prod, o, n, g, e.vine);
+  const meses = projetar(lista, P, o, n, g, e.vine);
   const m1 = meses[0];
   const m = (k, val, extra = '', neg = false) => `<div class="m ${neg ? 'neg' : ''}"><span class="k">${k}${extra}</span><span class="v">${val}</span></div>`;
   let armazMes;
@@ -792,9 +836,9 @@ function calc() {
 
   // dicas
   const tips = [];
-  const zero = piso(prod, o, 0), dez = piso(prod, o, 10);
+  const zero = piso(P, o, 0), dez = piso(P, o, 10);
   if (preco >= 79 && dez !== null && dez * (1 - o.cupom) < 79) {
-    const z79 = piso(prod, o, 0, 'cm3', 79 / (1 - o.cupom)), d79 = piso(prod, o, 10, 'cm3', 79 / (1 - o.cupom));
+    const z79 = piso(P, o, 0, 'cm3', 79 / (1 - o.cupom)), d79 = piso(P, o, 10, 'cm3', 79 / (1 - o.cupom));
     tips.push(['', (z79 * (1 - o.cupom) > 79.05 ? `De R$ 79 para cima, o preço mínimo para não perder dinheiro é <b class="num">${brl(z79)}</b>.` : 'De R$ 79 para cima, nessas condições, o pacote não dá prejuízo.')
       + ` Para sobrar 10%, <b class="num">${brl(d79)}</b>. Abaixo de R$ 79 a logística é fixa e mais barata, e o ${prod.nome} já sobra 10% a partir de ${brl(dez)}.`]);
   } else if (zero) tips.push(['', `Nessas condições, o preço mínimo para não perder dinheiro é <b class="num">${brl(zero)}</b>. Para sobrar 10%, <b class="num">${brl(dez)}</b>.`]);

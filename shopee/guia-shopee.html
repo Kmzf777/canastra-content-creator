@@ -180,6 +180,13 @@ dl.gl dt { font-weight: 600; }
 dl.gl dd { margin: 0; color: var(--muted); }
 a { color: var(--accent); }
 footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+
+/* CMV editável (custo do produto) */
+.tagedit { display: inline-block; font: 600 11px var(--body); letter-spacing: .04em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); vertical-align: 1px; margin-left: 6px; }
+.cmvrow { flex-wrap: wrap; row-gap: 6px; }
+.cmvrow input#cmv.ed { border-color: var(--accent); }
+.linkbtn { font: 600 14px var(--body); background: none; border: 0; padding: 4px 2px; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.linkbtn:disabled { color: var(--muted); text-decoration: none; cursor: default; opacity: .7; }
 </style>
 
 <div class="wrap">
@@ -268,14 +275,14 @@ footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
         <fieldset class="grp">
           <legend>Produto e preço</legend>
           <div class="seg" id="prod"></div>
+          <div class="field">
+            <label class="lbl" for="cmv">Custo do produto (CMV), R$<span class="tagedit">editável</span></label>
+            <div class="price cmvrow"><span class="muted">R$</span><input type="number" id="cmv" min="0" step="0.01" inputmode="decimal" aria-describedby="cmvTxt"><button type="button" class="linkbtn" id="cmvReset">voltar ao padrão</button></div>
+            <small id="cmvTxt"></small>
+          </div>
           <div class="price"><span class="muted">R$</span><input type="number" id="preco" step="0.10" aria-label="Preço na Shopee"></div>
           <input type="range" id="precoR" step="0.10" aria-label="Ajustar preço">
           <small id="precoRef"></small>
-          <div class="field">
-            <label class="lbl" for="cmv">Custo do café no pacote (CMV)</label>
-            <div class="price"><span class="muted">R$</span><input type="number" id="cmv" min="0" step="0.10"></div>
-            <small id="cmvTxt"></small>
-          </div>
         </fieldset>
 
         <fieldset class="grp">
@@ -521,15 +528,30 @@ function setProd(p) {
   $('precoR').min = p.min; $('precoR').max = p.max;
   $('preco').value = p.preco.toFixed(2); $('precoR').value = p.preco;
   $('precoRef').textContent = p.ref;
-  $('cmv').value = p.cmv.toFixed(2); cmvTxt();
+  carregarCmv();
   $('advKit').hidden = !p.kit;
   renderSeg('prod', PRODS, prod); calc();
 }
-function cmvTxt() {
-  const v = num('cmv', prod.cmv);
-  $('cmvTxt').textContent = Math.abs(v - prod.cmv) < 0.005 ? `Custo da planilha (mercadolivre/custos.md): ${brl(prod.cmv)}. Troque se o custo mudou.`
-    : `Custo editado. O da planilha é ${brl(prod.cmv)}; trocar de produto volta para ele.`;
+// CMV editável: o campo #cmv manda em todas as contas. O valor editado fica salvo por produto neste navegador;
+// sem storage (aba anônima, bloqueio) a página funciona igual, só não lembra.
+const CMV_CHAVE = 'guia-shopee:cmv:';
+function cmvSalvo(id) {
+  try { const s = localStorage.getItem(CMV_CHAVE + id); const v = s === null ? NaN : parseFloat(s); return isFinite(v) && v >= 0 ? v : null; }
+  catch (e) { return null; }
 }
+function salvarCmv(id, v) {
+  try { if (v === null) localStorage.removeItem(CMV_CHAVE + id); else localStorage.setItem(CMV_CHAVE + id, String(v)); }
+  catch (e) { /* sem storage: segue sem salvar */ }
+}
+function cmvAtual() { const v = parseFloat($('cmv').value); return isFinite(v) && v >= 0 ? v : prod.cmv; }
+const cmvEditado = () => Math.abs(cmvAtual() - prod.cmv) >= 0.005;
+function cmvTxt() {
+  const ed = cmvEditado();
+  $('cmvTxt').textContent = (ed ? 'Editado. ' : '') + `padrão ${brl(prod.cmv)} de custos.md${prod.kit ? ' (o kit inteiro)' : ''}; mude se o custo mudou`;
+  $('cmvReset').disabled = !ed;
+  $('cmv').classList.toggle('ed', ed);
+}
+function carregarCmv() { const s = cmvSalvo(prod.id); $('cmv').value = (s === null ? prod.cmv : s).toFixed(2); cmvTxt(); }
 function setDoc(d) { doc = d; $('docTxt').textContent = d.txt; renderSeg('doc', DOCS, doc); calc(); }
 function setEnvio(e) {
   envio = e; $('envioTxt').textContent = e.txt;
@@ -544,7 +566,12 @@ onSeg('prod', PRODS, setProd); onSeg('doc', DOCS, setDoc); onSeg('envio', ENVIOS
 onSeg('fullmais', FULLMAIS, setFM); onSeg('itens', ITENS, setItens); onSeg('tam', TAMS, setTam);
 $('precoR').addEventListener('input', () => { $('preco').value = (+$('precoR').value).toFixed(2); calc(); });
 $('preco').addEventListener('input', () => { $('precoR').value = $('preco').value; calc(); });
-$('cmv').addEventListener('input', () => { cmvTxt(); calc(); });
+$('cmv').addEventListener('input', () => {
+  const v = parseFloat($('cmv').value);
+  if (isFinite(v) && v >= 0) salvarCmv(prod.id, Math.abs(v - prod.cmv) < 0.005 ? null : v);
+  cmvTxt(); calc();
+});
+$('cmvReset').addEventListener('click', () => { salvarCmv(prod.id, null); $('cmv').value = prod.cmv.toFixed(2); cmvTxt(); calc(); });
 $('ads').addEventListener('change', () => { $('adsbox').hidden = !$('ads').checked; calc(); });
 $('afil').addEventListener('change', () => { $('afilbox').hidden = !$('afil').checked; calc(); });
 ['camp', 'dev', 'excep'].forEach(id => $(id).addEventListener('change', calc));
@@ -617,7 +644,8 @@ function calc() {
     o.cupom > 0 ? 'cupom de ' + brl(o.cupom) : 'sem cupom',
     o.afil ? 'afiliado ' + dec(o.afil) + '%' : 'venda sem afiliado',
     o.dev && devValido ? 'Devolução Fácil' : 'sem Devolução Fácil',
-  ].join(' · ');
+    cmvEditado() ? `CMV ${brl(cmvAtual())} (editado)` : null,
+  ].filter(Boolean).join(' · ');
 
   if (!(preco > 0)) {
     $('frase').textContent = 'Digite um preço.';
@@ -625,7 +653,7 @@ function calc() {
     $('verdict').className = 'verdict';
     return;
   }
-  const cmv = Math.max(0, num('cmv', prod.cmv));
+  const cmv = cmvAtual();
   const r = resultado(preco, cmv, o);
   const pct = r.cm3 / preco * 100;
   $('adsTxt').innerHTML = `ROAS ${dec(roas)} = o anúncio leva <b class="num">${brl(preco / roas)}</b> (${dec(100 / roas)}% do preço) de cada venda que trouxe. `
