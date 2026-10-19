@@ -1002,3 +1002,36 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     vídeo inteiro**, passo a passo, não da transcrição. Para o Giuseppe (substituto) a fala foi
     escrita só depois de ver os 84 s a 2 qps, e cada passo ("bate o mel, café solúvel, água
     quente, batedeira") tem um take que o mostra.
+74. **Ia publicar numa loja aberta dois packshots com pássaros inventados, e o gabarito
+    para pegar isso já estava no disco há um mês** → ao montar o catálogo da Loja
+    Integrada, tratei os 96 packshots de `saida-teste/catalogo-estudio/` como bloco
+    aprovado (a lição 29 diz que foram aprovados, e estão). Mas `mercadolivre/LEIA-ME.md`
+    registrava que o `10.1` tinha sido **reprovado** — "pássaros e `®` inventados,
+    `Clássico` em minúsculas" — e ninguém tinha olhado os outros 24 com esse critério.
+    Conferindo os 20 um a um contra a foto real, **3 reprovaram**: os dois pacotes de 1 kg
+    (pássaros que o pacote real não tem, e `Clássico`/`Suave` em caixa mista onde o real é
+    todo maiúsculo) e o Microlote moído, cujo selo redondo saiu dizendo só `PARA COADOR`
+    quando o impresso diz **`CAFÉ MOÍDO PARA COADOR`**, em roxo, com dois grãos — texto em
+    arco de novo, exatamente a lição 46 → **"aprovado" é por peça, nunca por pasta**, e um
+    laudo de reprovação que mora no LEIA-ME de outro canal não protege a próxima entrega.
+
+    O que torna a conferência barata é a fonte da verdade que já existe e eu quase não usei:
+    **`fotos produtos cru/`** tem 131 fotos reais do shoot de 11/09/2026, **uma pasta por
+    SKU**, mais `_LEIA-ME.md` com os **13 EANs lidos no código de barras** e a regra de como
+    cada linha marca moagem na frente (selo circular no Clássico em grãos, texto corrido no
+    moído). `loja-integrada/conferencia.py` monta a folha gerado × real × zoom da faixa de
+    texto, e os três defeitos saltaram. Dois cuidados medidos nessa rodada:
+
+    - **A foto real também pode não permitir ler.** Na `frente-01` do Microlote moído o selo
+      está estourado; só a `frente-03` resolveu. Ilegível não é "confere" (lição 18) — troque
+      de foto antes de concluir qualquer coisa.
+    - **Chutar a região do recorte queimou quatro chamadas.** Tentei limiar de cor e de
+      saturação para achar o selo no kraft e todos acenderam no pacote inteiro, porque o
+      kraft deste render é claro e dessaturado. O que funcionou foi ler a coordenada na
+      própria folha de contato que eu já tinha na tela. É a regra de validar a região
+      amostrada, outra vez.
+
+    E a loja atual é fonte de preço, **não de embalagem**: a foto do Clássico 250 g na Tray
+    mostra o selo antigo `GOURMET / SCAA 80+`, enquanto o pacote de hoje traz
+    `SPECIALTY / SCA 80+`. O bloco `GOURMET / SCAA 80+` continua certo **nas cápsulas e no
+    drip** (lição 38) — mudou no saco de café, não na caixa.
