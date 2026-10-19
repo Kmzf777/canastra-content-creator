@@ -1,0 +1,16 @@
+# 7524033298394320134
+# fonte: https://www.tiktok.com/@gabmirandamkt/video/7524033298394320134
+# faster-whisper small, idioma detectado: pt (0.99), duracao 36s
+
+[00:00] Tu vai ver agora um fluxo simples de automação que vai buscar clientes pra ti.
+[00:03] Extremamente simples, só esses quadradinhos aqui vão te trazer possíveis clientes todos os dias.
+[00:07] Se eu clicar em testar ele abre um formulário, eu só preciso escolher o nicho de cliente que eu quero
+[00:10] em qual cidade que ele tem que estar.
+[00:11] Por exemplo, eu posso colocar arquiteto em São Paulo e eu vou fazer ligações pra eles vendendo meus produtos.
+[00:16] E aqui ele já começou a rodar automação e ele tá buscando os dados lá no Google Maps
+[00:19] e na internet pra achar esses arquitetos em São Paulo.
+[00:21] Quando termina ele traz todos os contatos, endereços, cargos, tudo aqui pra mim junto com os telefones
+[00:26] pra uma planilha que eu conectei.
+[00:27] Tu é mais preguiçoso, endereço. Nem precisa fazer isso aqui.
+[00:30] Comenta aqui que eu te mando esse template na DM pra tu usar à vontade.
+[00:33] Então eu só vou mandar se tu tiver me seguindo aqui e na rede vizinho.

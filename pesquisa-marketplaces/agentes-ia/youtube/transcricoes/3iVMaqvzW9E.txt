@@ -1,0 +1,59 @@
+# Como Analisar seu Concorrente no Mercado Livre com IA (Claude + Marketplace Connect)
+- canal: Dev Cloud Native (https://www.youtube.com/channel/UC4mEWT48J1erkqlbHqfHpEg)
+- data: 20260830
+- duração: 10 min
+- views: 1683
+- link: https://www.youtube.com/watch?v=3iVMaqvzW9E
+- descrição: Mostro nesse vídeo como fazer uma análise de mercado completa no Mercado Livre usando IA — direto via API, sem precisar abrir o anúncio do concorrente na tela.
+
+O Claude conectado ao Marketplace Connect busca os dados do seu produto, imagens, especificações, e ainda faz análise de categoria: mais vendidos, termos mais buscados, faixa de preço dominante e comparação direta com o best seller.
+
+00:00 Introdução
+00:25 Aviso: análise de anúncio ≠ clonar concorrente
+01:04 Buscando dados do produto pelo link
+01:47 Dados completos: vendedor, specs, descrição, imagens
+02:03 Como o Claude se conecta ao Marketplace Connect
+02:17 Ferramentas que o Mercado Livre bloqueou pra terceiros (e como contornar via API)
+04:15 Análise por categoria: mais vendidos e tendências
+06:04 Análise de mercado real (categoria Gaveta para HD)
+06:48 Termos mais buscados: SEO pra sua descrição
+07:17 Comparando com concorrentes específicos (Ugreen)
+08:10 Comparação direta com o Best Seller da categoria
+08:46 Com modelo mais forte (Opus) o resultado fica mais profundo
+08:58 Sobre o Marketplace Connect: quase 1.000 clientes, sem fidelidade
+10:16 Encerramento
+
+🔗 Marketplace Connect: https://marketplaces.tiops.com.br/
+📌 Inscreva-se: instagram @tiopstecnologia
+
+Link da extensão: grátis
+https://chromewebstore.google.com/detail/pddmnaklgahmlbgbdljkeopjkmopbjfj?utm_source=item-share-cb
+
+
+Fale comigo
+https://wa.me/5511935350195
+
+
+#mercadolivre #claude #marketplaceconnect #inteligenciaartificial #ecommerce #ia #analisedec
+
+
+[00:00] Olá, mais uma vez aqui com vocês. Vocês sabem que eu sou Itamar, especialista em inteligência artificial. Eu sou responsável aqui para fazer vocês conseguir integrar a IA no seu negócio. E eu vou trazer para vocês aqui uma análise de mercado que eu tô fazendo junto com o o Marketplace Connect. Esse aqui é um anúncio aleatório, tá gente? Primeiro lugar, essa extensão que a gente pode analisar aqui o anúncio. 
+[00:32] Eh, também é ela tá grátis, tem um outro vídeo meu explicando como configura. Ela não vai ficar, ela não é para fazer análise de concorrência para você ficar clonando anúncio, não é isso, tá? É para você ver a qualidade dos seus anúncios, para você ver aqui o score, por exemplo, se às vezes você abre um anúncio aqui e você quer ver o que que o cara fez para ele tá vendendo tanto, qual que é o diferencial, entendeu? Isso é normal, tá gente? a gente analisar, mas não é isso que eu vou falar nesse vídeo. Eu comecei aqui uma uma análise, eu fiz o seguinte, 
+[01:04] eu coloquei aqui, ó, eh, busque dados do produto. Aí eu copiei o link desse produto aqui e colei aqui. O Marketplace Connect, ele vai trazer os dados eh do seu produto aqui, ó, eh, todos os detalhamentos, tá vendo? vendedor que vende, eh, onde que é a cidade que ele tá localizado. Eh, vamos lá. As especificações técnicas do produto, a ficha técnica, descrição curta, mas ele também tem por trás a descrição longa e as imagens, certo? E 
+[01:38] aqui ele tem também as dados de preço, quantidade de vendas, né? É, traz as imagens também. Mostre as imagens aqui, ó. Vamos ver. Então, eu dei um comando aqui em cima. Quando a gente integra o nosso cloud, o chat IPT com o nosso marketplace, eh, você tem acesso da IA paraos seus pros seus anúncios, para tudo e algumas ferramentas. Então, funciona dessa forma. Quando você acessa a minha ferramenta, você não tem acesso só aos seus dados, mas você tem acesso a ferramentas que eu coloquei aqui com a 
+[02:10] gente, com a nossa empresa, olhando para todo o cenário dos sellers que trabalham comigo, eh, algumas necessidades, quando é possível fazer, eu faço. Então, eles falaram que às vezes precisa fazer uma estudo de mercado e não tinha uma ferramenta. Então, a gente tá testando essa ferramenta aqui. É, e aí a gente pô, exemplo, no Mercado Livre, as ferramentas que tem de buyx, catálogo price to aqui, ó, e find similar, esses não são liberados mais para sellar terceiros. Então, significa o quê? Se 
+[02:42] você tá dentro de um catálogo, você consegue ver os seus concorrentes de catálogo e eh pelo própria pela própria PI, pelo próprio Smartplace aqui, Connect, tá? Pelo nosso sistema, pela IA. E aí você consegue ativar a concorrência automática entre você o seu catálogo, né? E aí você seta também o price to aqui, que é o preço vencedor, né? Para vencer, você coloca uma margem lá e ele fica alterando de acordo com o seu concorrente ali do catálogo. O find similar é uma um recurso da PI que 
+[03:13] antigamente ele trazia dados daquele anúncio de terceiros, entendeu? Então, por exemplo, você precisava ver os dados lá do cara, ver qual categoria que ele trabalha tudo, você usava esse find similar, só que o mercado liv bloqueou. Agora você só consegue ver os dados do seu produto. O cloud consegue navegar na tela, olhar o produto do concorrente, isso é normal já, tá? Mas quando a gente tá falando de integrar e a deixar um processo automatizado, fica inviável ficar abrindo tela. O search também é só pros seus produtos. Na busca geral não 
+[03:44] funciona mais. Então, o que acontece? É quando você ol lá ele trouxe as imagens também, ó. Se eu abrir aqui, ó, ele traz as imagens. Por que que eu preciso das imagens do produto? Porque se eu for eh fazer uma análise aqui das minhas imagens, eu posso usar elas como referência também dentro do, né, do meu do meu ambiente. Aqui são sete imagens que ele trouxe. Então ele traz, tá vendo, ó? Não só os dados de todo o anúncio, como eh também as imagens. E 
+[04:14] então a gente vai fazer isso para Shopee também. para trazer os dados para fazer a análise da Shopee. Essa é uma das análises de mercado que dá para fazer baseado no produto. A gente vai fazer mais análises também baseada no mercado. Hoje a gente já tem uma ferramenta aqui dentro que é que a gente já consegue olhar pela sua categoria, ó, para esta categoria, analise no Mercado Livre eh o mercado usando as ferramentas. Nós 
+[04:45] já temos aqui dentro do Marketplace Connect ferramenta que analisa o mercado do mercador, os produtos mais vendidos dessa categoria, ele traz o sellers que vendem mais. Então já existe essa análise. Talvez as pessoas precisam cavar mais, vocês precisam olhar mais aqui no detalhe com a IAL que ela pode fazer para vocês se aprofundarem na análise, porque análise por categoria, ó lá, ó, é o highlights, tá vendo, ó? Ele busca detalhe da categoria. Eh, não sei se dá para vocês ver, vou aumentar um pouquinho. Ele busca o detalhe da categoria, 
+[05:16] eh, e mostra aqui no nessa categoria quais são os produtos mais vendidos, tá? Então esse é o objetivo dessa ferramenta. Nós temos aqui a IA conectada no Markplace, não só nas suas contas, mas também no Mercado Livre com outras ferramentas, só para vocês entender legal, ficar bem explicado. E nós temos eh aqui essa ferramenta que traz os dados do anúncio para dentro do seu ambiente do cloud aqui via API, não é 
+[05:46] via navegador, tá? Então assim, o que faz via browser, gente, é um pouco perigoso no meu ponto de vista. Por quê? Porque no browser ele consegue navegar até os suas configurações. Então aqui no na API não, ele vai fazer só o que o Mercado Livre permite mesmo via API, tá bom? Então beleza. Ó lá ele trouxe aqui, ó. Olha que interessante, ó. análise de mercado, categoria gaveta para HDs. Eu tô, eu trouxe aquele anúncio que eu peguei aleatoriamente aqui, né, que está aberto aqui. Coloquei 
+[06:17] aqui, falei para ele buscar os dados, ele achou categoria, domínio do catálogo, anúncios ativos, 21.928, compra imediata mais leilão. Eh, né, aqui é o modelo de compra, né, os modos de compra. E aí eu tenho aqui, ó, os mais vendidos dessa categoria. E qual que são as lojas? As lojas que vendem. Então isso você pode fazer no seu nicho, no seu eh processo aí de venda, tá? E aí os termos mais buscados, se você tem os termos mais buscados, que 
+[06:48] que você pode pedir aqui pro Marketplace Connect fazer? Eh, pedir para ele fazer o quê? Eh, colocar essas palavraschaves na sua descrição para melhorar o ranking. Leitura estratégica, ó, categoria dominada por SATA, tal, né? a categoria que domina, a faixa de preço, o gap de posicionamento. Então assim, aí ele vai te pedindo mais coisas, quer que eu faça os produtos? Eh, aí eu posso pegar desses produtos 
+[07:18] concorrentes, eu posso ir lá, por exemplo, ó, vou pedir aqui para ele aqui, ó, dos seis mais vendidos, ele falou assim: "Quer que eu busque o produto green?" Eu falo sim dos se três mais vendidos. Busque ou um. [roncando] Se você aparecer nesse trends aqui do Mercado Livre, você já é top. Então você já tem aqui uma análise eh estratégica. Então você tem as suas estratégias, tem os seus anúncios, suas 
+[07:50] categorias. Você precisa eh você precisa fazer isso na sua categoria, tá bom? Porque aqui eu tô fazendo uma categoria aleatória, tá? E aí, vamos lá, deixa ele trazer aqui. Ele vai trazer um pouquinho pra gente ver até onde dá, tá? Foi, ó, o besteller é esse aqui, ó. Ele achou já o anúncio, tá vendo? E aí ele pegou, eh, ele analisou e já trouxe o anúncio 
+[08:21] ali, ó. Tá vendo? A métrica, tudo, a nota, avaliação, mais de 50.000 vendidos. É lógico, eu peguei um produto ali que é deve ser uma commodity porque deve ter um fornecedor só que vem da China, enfim. Mas olha só, gente, a profundidade que dá para chegar é isso aqui, ó. Aí dá para ver item a item do rank aqui. Ele já perguntou para mim aqui embaixo, ó. Então, só pra gente ficar bem claro, isso é uma análise de mercado que dá para você fazer na sua categoria da Eu tô usando um modelo fraquinho ainda. Se eu colocar o Opus, colocar o Fable aqui, vocês vão ver. Aí 
+[08:53] o negócio fica muito mais profundo, viu? Então pessoal, é isso daqui. Eu queria mostrar para vocês nesse vídeo. Então embaixo tem o link do Marketplace Connect. Já temos aí 1000 clientes a usando o sistema, praticamente quase 1000, né? Estamos chegando nos 1000 ali, 1000 clientes. Eh, ó, já tá passando por, já tem muita gente usando IA, já tem muita gente usando isso aqui. Então, vale a pena você aí, eh, comprar, não tem fidelidade de 12 meses, você pode pagar esse mês. 
+[09:23] Por que que eu faço isso? Eu faço um plano mensal porque eu tenho que gerar valor para vocês todo mês, tá bom? Então, por exemplo, tá funcionando legal todo mês, tá dando suporte, continua, senão vocês vão desistir e não vai continuar. Mas eh por isso que eu não quero eh tudo de uma vez aqui, quero que a gente construa junto essa comunidade. Tem muita gente usando, me mandando dicas e tudo. Então o processo aqui de crescimento tá sendo orgânico natural e tem várias pessoas usando aqui e dizendo para mim que, cara, isso aqui mudou o 
+[09:54] jogo para mim, tá? Então, eh, eu tô trazendo a realidade de vocês pro chão. Tô falando que vai fazer milagre. Não. Se você não sentar, começar a estudar isso aqui, pegar os seus anúncios, fazer essa análise, não vai ter como vocês eh ver a profundidade disso, entende? Mas então, enfim, acabando o vídeo para não ficar longo aqui. 

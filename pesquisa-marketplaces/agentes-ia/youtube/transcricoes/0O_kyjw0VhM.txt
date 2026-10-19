@@ -1,0 +1,27 @@
+# Integração API Mercado Livre com Make e n8n na Prática
+- canal: INEMA Futuros (https://www.youtube.com/channel/UCx3T2Ltl8-gsiIytjNZ306w)
+- data: 20260424
+- duração: 6 min
+- views: 248
+- link: https://www.youtube.com/watch?v=0O_kyjw0VhM
+- descrição: Aprenda a conectar a API do Mercado Livre com ferramentas de automação como Make e n8n usando módulos HTTP e autenticação OAuth.
+
+Nesta demonstração prática, você vai ver como criar, atualizar e gerenciar anúncios do Mercado Livre diretamente por endpoints HTTP, sem depender de integrações nativas limitadas. Ideal para quem quer automatizar operações de e-commerce com controle total.
+
+Se você trabalha com automação e vende no Mercado Livre, esse conteúdo vai economizar horas do seu fluxo de trabalho.
+
+Live original: https://www.youtube.com/watch?v=D4gxj59nbak
+
+
+[00:08] Tá, mas veja só isso aí com que fica barbada de fazer, né? É só ver com a a API do Mercado Livre. Vamos até consultar aí, ó. Vamos botar aqui, ó, chat. API Mercado Livre. Eu 
+[00:41] nunca fiz isto, mas ó, Ó, dá para fazer um end point aí com direto. 
+[01:12] Criar itens. Atualizar itens. Obter detalhes dos itens. Pagamento. Sim, porque tu deixa tudo por conta do mercado público ou pro Mercado Livre. Então o que que tu faz? Tu tem que ou criar ou atualizar. E aí, ã, como é que eu faço para deletar? Deixa 
+[01:43] eu ver como posso deletar algum item. 
+[02:37] Beleza, Carlos. Tudo bem? Obrigado aí, cara. Boa noite, Robson. Ó, eu tava dando uma olhada aqui, ó. Eh, deixa eu ver. O dair, dá para fazer, ó, cria-se um end point, né? Tu cria aqui no Mercado Livre aí a a tua autenticação lá no Mercado Livre de Developer, ó. 
+[03:09] Por isso que eu digo, tu vai no chat GPT, põe o teu problema, ele vai te dar os caminhos, ó. Então, ele falou todo, como tu faz a tua tua credencial. Daí tu pode até fazer um teste aqui, ó, usando a PI do Mercado Livre. Daí depois disso, a gente pode pegar e, ó, fazer um get lá usando end points dentro do 
+[03:41] do do make. Vamos pegar um exemplo. O make, provavelmente, aliás, tá aqui, ó. Meio que tá aqui, ó. Que nem eu fiz assim. Vamos fazer um outra coisa. Vamos ver. Eu não vi nada do Mercado Livre aqui. Merc não mercado. Mas tu pode fazer um ó, 
+[04:15] pode fazer um HTTP aqui, ó, e fazer o end point. E daí você faria, botaria aqui a autenticação lá na comunidade. Eu tenho vários. Ah, o Telegram tá aqui. 
+[05:00] No tia, não é no make make. Cadê você? É tanta coisa aqui. aqui. 
+[05:38] Tem alguns end points aqui que tu podia tá usando de exemplo aí para tu fazer. Eu vou achar depois e e coloco aí para eu faço uma live sobre isso, ó. Isso aqui dá para fazer isso aqui, ó. Você faz aqui assim, ó. Tu pode fazer um get aqui e daí publicar no Mercado 
+[06:10] Livre. Em vez disso aqui, tu usa o Mercado Livre. Tu pode fazer um uma aqui, em vez de tu fazer um webs, tu manda buscar no drive que tu quiser, tá? Beleza? É, o importante, eu sempre falei, toda 
+[06:41] automação, a dificuldade é você fazer funcionar os as conexões. Yes. 

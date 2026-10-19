@@ -1,0 +1,51 @@
+# Claude Code Just Made Every Amazon Seller a Developer
+- canal: Seller Labs (https://www.youtube.com/channel/UCZoTfOP-IJuaNOoVseAV79A)
+- data: 20260304
+- duração: 6 min
+- views: 972
+- link: https://www.youtube.com/watch?v=-x8xrG2gu88
+- descrição: I'm not a developer. No coding background. No boot camp. But in one week with Claude Code, I built working tools for my Amazon business — without typing a single line of code.
+
+In this video, I break down exactly how Claude Code is changing the game for Amazon sellers:
+
+→ How I screenshotted a permissions error and Claude Code fixed it instantly
+→ Why Claude Code's memory makes it smarter every time you use it
+→ How it runs 4-5 parallel research threads simultaneously
+→ The moment Claude Code said "I should be honest" — and what that means for AI
+→ How to run your full AI setup from your phone at the gym
+→ Step-by-step: How to set up Claude Code this week (free)
+
+This isn't about learning to code. It's about learning to ask the right questions.
+
+🔗 RESOURCES:
+→ Download Visual Studio Code (free): https://code.visualstudio.com
+→ Claude Code: https://claude.ai
+→ Connect your Amazon data to Claude with Seller Labs MCP: https://www.sellerlabs.com/amazon-mcp/
+
+📊 Want AI-powered insights on YOUR Amazon data?
+Seller Labs MCP connects your Amazon account directly to Claude — so you can ask questions about your profit, inventory, ads, and listings in plain English and get instant answers.
+
+Try it free: https://www.sellerlabs.com/amazon-mcp/
+
+⏱️ TIMESTAMPS:
+0:00 — I'm not a developer (and that's the point)
+0:10 — I built tools without writing code
+0:23 — Meet Maike Dinh — your AI guide
+0:48 — The screenshot that changed everything
+1:12 — "Generalize this. Save it to memory."
+1:27 — Imag
+
+
+[00:00] Not a developer, no coding background, no boot camp. I opened Visual Studio Code for the first time one week ago, installed Claude Code, and my brain is [music] fried. Not because it's hard, because I keep finding out what else it can do. [music] I've already built several working tools for my business. I didn't write code. I took a screenshot. Hi, my name is Mike Den, Nand Den's AI avatar. Naan and the Seller Labs [music] team have written the script for this 
+[00:31] video. We have sold over $80 million on Amazon since [music] 2012. We're your guide to the AI revolution in e-commerce. If you like this, click like and subscribe so you don't fall behind while your competitors [music] figure this out first. Here's what happened. I'm working inside Visual Studio Code with Claude [music] Code running. A permissions pop-up keeps appearing. Instead of researching it, I screenshotted it, pasted it into Claude Code, didn't type a word, just here, 
+[01:03] [music] what is this? Claude Code analyzed the image, told me exactly what it was, explained it, fixed it. But that's not the interesting part. [music] I told Claude Code, generalize this. Don't just fix this one thing. Write a rule so anytime [music] you see something like this, you already know how to handle it. save it to memory. And it did. That entire category of problem handled [music] permanently. Not because I learned how permissions work, because 
+[01:34] I taught the AI to learn it [music] for me. Imagine doing that with your listing errors, your seller central notifications, your supplier spreadsheets. Screenshot it. Claude Code explains it, fixes it, and remembers the rule. The AI gets smarter every time you use it. Here's what keeps surprising me. Claude Code doesn't just do what you ask. It teaches you how to ask better questions. You say, "How do I set this up?" It walks you through it in your 
+[02:04] environment with your files, not some generic tutorial. Something breaks, screenshot the error. Claude Code troubleshoots itself. The only skill this takes is being [music] willing to ask questions and think logically. Now, here's where it compounds. Claude code can research multiple options at [music] the same time. Four or five parallel threads. Each one investigating a different path. It evaluates all of them, compares [music] trade-offs, tells you which one 
+[02:34] wins, which supplier gives you the best landed cost, which keywords are actually converting, whether that new product idea has margin after PPC and FBA fees. The kinds of decisions where you normally spend days inside spreadsheets. Claude Code runs them all simultaneously. Our team pointed Claude code at our own codebase just to scope out a project. It came back and said, "Most of what you want to build already exists." It found infrastructure that 
+[03:05] was 90% done. Connections [music] our team didn't even realize were there. What we thought would take months was weeks away. And then it said something I didn't [music] expect. It said, "I should be honest. I'm terrible at estimating timelines. You decide how long this takes. [music] I just showed you what's already done." That kind of self-awareness from an AI that's different from a year ago. If this is the kind of insight you want for your own business, hit subscribe. We do this 
+[03:35] every week. Here's the insight that ties this together. Every AI chat GPT cla Gemini runs on the same class of technology. The raw intelligence is roughly the same. So what makes the difference? [music] Memory and context. Long-term memory means the AI remembers your catalog, your margins, your restock cycles, your brand voice. Short-term context means it stays focused [music] through complex tasks like optimizing a listing while cross-referencing your 
+[04:07] [music] competitor's pricing. Most Amazon sellers are opening chat GPT cold [music] every session, reexplaining their asens, their ad strategy, starting over. That's not an AI problem. That's [music] a memory problem. And Claude Code has solved it. It doesn't stop at your desk. People are running their full Claude Code setup from their phone. Same AI, same memory, all through a messaging app on your phone. You're at the gym. You send a voice note. Did any of my listings get suppressed today? Any 
+[04:39] inventory [music] alerts I need to see? Clawed code checks your live data. Sends the answer back before your next set. [music] No laptop. No seller central. Your AI never clocks out. [music] Now, I know what some of you are thinking. I tried AI. It made stuff up. Couldn't trust it with my listings, let alone my ad spend. That was real. A year [music] ago, the AI got things wrong 30% of the time. But in the last 6 months, dramatically 
+[05:09] different. I've been running tasks for hours and coming back to correct results. The gap [music] everyone said would take 3 to 5 years is closing right now. Here's your move this week. Download Visual Studio Code. It's free. Install Claude Code. Screenshot something in your Amazon business you want help with. A listing issue, a PPC report, a supplier quote. Ask, "What is this and what should I do about it?" Then describe one task you repeat every 
+[05:41] week. Restock calculations, keyword research, review, monitoring in plain English. Let Claude Code build it. Tell it to save what it learns. That's how this starts. Not with a boot camp, with a screenshot and a question. The Amazon sellers who figure this out [music] aren't going to have a small edge. They'll be running a different kind of business entirely. What's the first thing you'd screenshot [music] in your Amazon business? Drop it 
+[06:12] in the comments. I read every single one. See you in the next one. 

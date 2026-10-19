@@ -1,0 +1,40 @@
+# DccPQL3tcHK
+# fonte: https://www.instagram.com/p/DccPQL3tcHK/
+# faster-whisper small, idioma detectado: pt (1.00), duracao 114s
+
+[00:00] Você conectou a API do Mercado Livre e não está conseguindo puxar as informações direito, né?
+[00:04] Provavelmente, tá? O que está faltando é o que eu vou mostrar aqui agora.
+[00:07] Conectar API, ela é só uma primeira etapa e uma primeira parte, né?
+[00:11] Do que você precisa para conseguir puxar as informações mesmo.
+[00:14] Aí ela também precisa entender como funciona a API do Mercado Livre,
+[00:17] quais indipoints puxar, quais parâmetros ela vai precisar fornecer para o Mercado Livre,
+[00:23] porque o Mercado Livre realmente responda de forma correta as vendas, os pedidos,
+[00:27] as reclamações, se é possível ou não, puxar alguma informação pela API
+[00:31] e ficar procurando ou pedindo que a IA procure em toda a documentação no Mercado Livre.
+[00:36] Cada indipointe, cada forma de puxar uma informação é muita perda de tempo.
+[00:40] E esse é o MCP que o Mercado Livre mesmo fornece, com acesso a toda a documentação.
+[00:44] Então, em vez de você ficar procurando qual indipointe usar a própria IA,
+[00:48] ela consegue consultar a documentação enquanto trabalha.
+[00:51] Então corre aqui comigo que eu vou mostrar para vocês como é que vocês fazem a instalação
+[00:55] desse MCP aqui do Mercado Livre.
+[00:57] Copie essa URL aqui, traz aqui no Cloud, vai impersonalizar.
+[01:00] Dentro de personalizar, estou em Conectores.
+[01:02] Conectores, tu vai adicionar Conector Personalizado.
+[01:05] Vai dar um nome para esse Conector, MCP Mercado Livre.
+[01:08] Vai colar a URL aqui e vai continuar.
+[01:10] Ele mesmo já vai identificar, fazer a identificação de como que vai funcionar aqui, tá?
+[01:14] Depois só adiciona, não precisa modificar nada.
+[01:16] Depois de adicionar, vocês vão vir aqui então fazer a vinculação.
+[01:19] E vocês já vão estar com acesso, então, à documentação do Mercado Livre.
+[01:23] Olha só, então a gente já vai fazer uma pergunta aqui para ele.
+[01:25] Como puxar minhas vendas do Mercado Livre?
+[01:28] Consulte no MCP do Mercado Livre.
+[01:31] A Search Documentation já está fazendo, né?
+[01:33] Como é que faz o gerenciamento de vendas aí dentro do Mercado Livre?
+[01:36] Conectar a documentação, ensina a IA a encontrar esses dados.
+[01:40] Conectar API, te conecta aos dados.
+[01:42] E quando tu consegue conectar a documentação,
+[01:44] tu ensina a IA a encontrar os dados para ti.
+[01:46] Se tu quer receber esse passo a passo,
+[01:48] para conectar o MCP do Mercado Livre direto no teu Cloud,
+[01:50] comenta aqui MCP que eu vou mandar direto para vocês.

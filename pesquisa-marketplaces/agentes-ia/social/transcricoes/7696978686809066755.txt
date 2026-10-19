@@ -1,0 +1,16 @@
+# 7696978686809066755
+# fonte: https://www.tiktok.com/@stayingaheadofyou/video/7696978686809066755
+# faster-whisper small, idioma detectado: en (1.00), duracao 62s
+
+[00:00] Stop loading Amazon products into Seller Central by hand.
+[00:03] Here's how an AI agent does it for you, straight from your buy sheet.
+[00:07] Step 1. In Seller AMP, enter your cost of goods and sell price,
+[00:11] then click the export button to send it to a Google Sheet.
+[00:15] Step 2. A simple Google Sheet with headers.
+[00:19] Asin, cost, quantity, dangerous goods, batteries,
+[00:22] condition, and a bespoke skew. Step 3. The agent watches that sheet.
+[00:29] The moment a new row lands, it wakes up. Step 4. It creates the listing on Seller Central
+[00:35] through the Amazon SPAPI. No clicking about. Step 5. It writes the result back to the sheet as loaded
+[00:44] and colors the row green so you can see it's done. Step 6. Set the agent to review new rows
+[00:50] once a day so it doesn't burn through tokens. Follow for part two and comment agent if you
+[00:56] want the template.

@@ -1,0 +1,29 @@
+# DatnN-ppohI
+# fonte: https://www.instagram.com/p/DatnN-ppohI/
+# faster-whisper small, idioma detectado: pt (0.97), duracao 89s
+
+[00:00] Como utilizar o Cloud Code na sua operação de Marketplace?
+[00:03] Primeiro passo é você baixar a versão desktop, ok?
+[00:07] Hoje vocês acessam ele pelo navegador, pelo Chrome, por tudo mais.
+[00:12] Só que o grande diferencial nele tá em você baixar o Cloud Code, versão desktop, tá?
+[00:17] Ele é um aplicativo que vai ficar na sua área de trabalho.
+[00:19] E o que que acontece?
+[00:21] Tem a versão que você utiliza no navegador.
+[00:23] Ela é uma versão bem resumida, ela é uma versão de chat
+[00:26] onde você tira muitas dúvidas, pergunta, gera várias informações.
+[00:30] Só que quando você baixa a versão desktop, você dá autonomia pra ele acessar a sua máquina
+[00:35] e executar várias tarefas.
+[00:36] Então o primeiro passo é esse, acessar o Cloud desktop, colocar ele na sua máquina
+[00:42] e ali você vai conseguir ter a versão do Work, tá?
+[00:46] Que é a versão do co-work ali do trabalho,
+[00:49] que é onde ele vai executar vários comandos dentro da sua máquina,
+[00:52] vai ler arquivos, vai executar arquivos que você tem lá.
+[00:56] Então o primeiro passo é esse, se você usa o Cloud e quer melhorar na sua operação
+[01:00] você tem que usar a versão desktop, tá?
+[01:02] Usando a versão desktop você vai conseguir programar várias coisas pra ele fazer ele dentro, tá?
+[01:08] Inclusive mandar mensagens no seu WhatsApp, acessar arquivos que você tem ali.
+[01:13] Eu utilizo muito, tá pessoal?
+[01:15] Tô me ajudando muito.
+[01:16] Então se você quer utilizar o primeiro passo é migrar pra essa versão, tá?
+[01:21] E depois eu vou soltar um segundo vídeo explicando como eu utilizo ele.
+[01:24] Se você quer aprender mais, quer entender mais sobre Cloud Cloud pra e-commerce segue aqui.

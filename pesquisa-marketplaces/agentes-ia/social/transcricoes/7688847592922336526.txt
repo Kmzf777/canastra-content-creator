@@ -1,0 +1,9 @@
+# 7688847592922336526
+# fonte: https://www.tiktok.com/@ai.labs.wire/video/7688847592922336526
+# faster-whisper small, idioma detectado: en (1.00), duracao 23s
+
+[00:00] Amazon just hired an AI for every seller. New seller assistant workflows run around the clock.
+[00:05] They watch your inventory, your prices, your ratings while you sleep.
+[00:09] It remembers every business. Over 90% of Amazon's selling partners already have it,
+[00:14] and it plugs straight into Amazon Quick and Claude.
+[00:17] Free, optional, with guardrails you set. Would you hand your store to an AI?

@@ -1,0 +1,44 @@
+# Como publicar anúncio no Mercado Livre com o Claude
+- canal: Dev Cloud Native (https://www.youtube.com/channel/UC4mEWT48J1erkqlbHqfHpEg)
+- data: 20260807
+- duração: 14 min
+- views: 2407
+- link: https://www.youtube.com/watch?v=kvGLTgxkEjk
+- descrição: Como publicar o anuncio no mercado livre com Marketplace connect usando o claude
+Link do Sistema 
+https://marketplaces.tiops.com.br/
+Link prompts publico
+https://prompts.tiops.com.br/prompt/criar-anuncio-do-zero
+
+
+#claude #mercadolivre #shopee #tiktokshop
+
+🎓 Curso completo de Claude: https://l.tiops.com.br/curso-claude?o=linha
+
+
+[00:00] Pessoal, vou vou gravar esse vídeo aqui pra gente fazer alguns testes aqui na publicação de anúncio. Algumas pessoas estão com dificuldade eh na publicação. A gente vai fazer um teste. Aqui a gente tem o prompt de criação de anúncio. É público nesse endereço aqui prompts.tiops.com. Eu copiei isso daqui e aí eu colei aqui. Ó, colei aqui, tá vendo? 
+[00:31] Já tô com meu marketplace conectado. Aí ele pediu algumas informações aqui, né? Qual que é o produto? Aqui vou pegar um caso assim, né? Porque eu não tenho os dados completos. Quem tem os dados do produto é cada vendedor. Vou colocar esse nome aqui da roupa. Vou copiar a imagem. Ó, copiar eh abrir a imagem em uma nova guia. Só pra gente dar um exemplo aqui, né? Vamos ver se abre essa imagem aqui. 
+[01:02] Eh vou pôr aqui, ó, Champion. Imagem principal. &gt;&gt; [roncando] &gt;&gt; E aí eu venho aqui e coloco a descrição também. Vou colocar a descrição também, ó. Só que aqui eu não anuncio na mão mesmo, tá, gente? Se for dentro da sua conta, você consegue pedir pra ele replicar, porque ele já vai ter os dados das imagens, as URLs e tudo, né? O URL é o caminho da imagem aqui, ó, hospedada. 
+[01:33] Se as suas imagens não estiver hospedada, pode não dar certo. Certo? Colei aqui. Eh o preço é 104 reais. Pra não ter problema. Ó, coloque o preço 1000 reais, reais. Estoque 100. 
+[02:09] Vamos ver o que que ele faz aqui. Ele vai otimizar a categoria, atributos e detalhes dos anúncios. Comecei a gravar aqui era 22:15, mais ou menos. Tá bom? Para vocês terem uma noção de quanto tempo vai levar esse primeiro anúncio aqui. Vou acender aqui para melhorar. 
+[02:45] &gt;&gt; [suspirando] &gt;&gt; Ó, achou a categoria. Achou a categoria, agora vai é conjunto ser a mais aderente para conjunto de moletom, blusa e calça. Vou vou puxar os atributos obrigatórios por categoria. Esse vídeo aqui, gente, vai ser sem edição, tá bom? Vou postar ele agora para auxiliar vocês aí que são 
+[03:15] usuários do sistema que estão com dificuldade de se de criar os anúncios. Olha só, ele montou o ras- o rascunho completo. Achou a categoria. É, preço de R$ 1.000, conjunto de moletom, ele vai falar que tá incoerente. Tá, Champion original, tem nota e tem vai pedir a marca, né? O genérica. 
+[03:48] Todos os atributos aqui. É, com marca, sem marca. Aqui ele já deu tudo certinho, ó, a descrição, tal. Preço. Pode manter. Aqui ele pediu a marca, ó, marca, pode manter. O preço, marca genérica, genérica que eu não vou colocar ali a marca que é real, né? A cores, preto, somente. 
+[04:20] Modelo de medidas e peso de pacote, é, sugira, sugerir. Vocês que tem os dados completos do, do, dos produtos de vocês, já vai ser um caminho cortando, é, meio andado, né? Porque vocês já vão passar tudo preenchido. Tá? Eu vou 
+[04:50] acompanhar aqui, fechado, ó. Tudo certinho. É, certo, gente, ó, preto M, M, P, M, G, a tabela de medidas. Aí ele perguntou qual conta eu quero publicar, tenho duas contas no Mercado Livre. Estoque 25 por tamanho. Beleza. 
+[05:22] Ó, manda o gol, mais conta que eu publique te retorno o link do anúncio. Gente, eu já fiz isso aqui centenas de vezes. E o pessoal que trabalha comigo aqui, que tem a, o meu sistema, né? A nossa, da nossa empresa Kit Ops, eles fazem 60, 50 anúncios por dia. 
+[05:55] Ah, tem gente que tá criando variações de anúncio, variações da variações, inversão de fotos, de de ordem. Então, eh, a publicação de anúncio, ela precisa funcionar. Certo? Agora, olha, ele tá fazendo o seguinte, subindo a imagem, ó. Certo? 25 de cada, preto, P, M, G, GG. Vou subir agora, primeiro processa a 
+[06:26] imagem, depois eu crio o anúncio com as variações. Processou a imagem, criando anúncio com quatro variações. &gt;&gt; [suspirando] [suspirando] &gt;&gt; Vamos lá, tá quase lá. 
+[06:57] Tá quase finalizando aqui a criação de anúncio do Mercado Livre. Vocês viram todos os prompts que estão disponíveis aqui, vão ficar no link aqui do vídeo, no na descrição do vídeo. Eh, para usar essa ferramenta, gente, aqui, ó, você paga um valor irrisório, você tem a a integração com marketplaces, pode conectar múltiplas contas, pode conectar conta da Shopee e trazer anúncio da Shopee do Mercado Livre, eh, pro Mercado Livre, Mercado Livre pra Shopee. Enfim, ela vai analisar tudo, a IA vai 
+[07:28] analisar e vai desenvolver o seu anúncio aqui da melhor forma possível. Depois que você entendeu o funcionamento, você automatiza esse processo, você já sabe quais as informações obrigatórias, cria uma planilha, pede pro Cláudio criar, vê todos os atributos, já deixa pré-preenchido, você economiza token. Já deixa as as imagens hospedadas, dá pra você conectar eh, no Google Drive aqui e você deixa uma pasta do Google com os seus SKUs e as suas imagens. E aí você pede pro 
+[07:59] Cláudio acessar essas imagens. Tá bom? Aí aqui ele vai montar aqui tudo o que precisa, ó. A a categoria MLB 29 12 aqui já é do tipo grade size grid. Exige family name no lugar de title. As variações do tamanho vou refazer eh, com o corpo completo, tá? Família mais as quatro variações. Então, dependendo do tipo de anúncio ali, ele vai se autoajustando pra criar o anúncio pra você. 
+[08:30] Isso eu tô fazendo do jeito mais guiado possível, tá? Ele tá guiando a gente aqui. Se você automatizar esse processo e já deixar meio que pré-preenchido, ele vai fazer isso muito rápido, tá bom? 
+[09:17] O ML, ó, o ML, né? Agrupa num tudo numa grade única. Comprador viu o seletor de tamanho normalmente. Eu vou criar o primeiro P, validar e replicar para M, G, GG com a mesma família e a mesma imagem. 
+[10:23] &gt;&gt; Fala, ele tirou a garantia, o Arantes devia campo direto. Foi descontinuado pelo Meli. Eh, vai na ficha barra seu termos depois. Então a gente já localizou onde que vai o campo garantia correto, corretamente. Aí ele removeu, se auto ajustou de novo e agora ele vai subir criar o anúncio. 
+[11:17] Pronto, aqui já foi, ó. Também um P publicado. Tá bom? E aqui família tal, imagem aceita hospedada pelo Meli, agora crio eh a mesma família reutilizando a ID da imagem, agora vai mais rápido, ó. Agora ele já tem todo o mapa dos produtos. M publicado o G publicado, aí ele começou a brincadeira. Imagina se você tinha uma 
+[11:47] planilha com tudo pré-preenchido já. Todas as imagens na pasta do Drive ou todas as URLs das imagens, tudo pré-hospedada isso aqui publica muito rápido, tá? Certo, agora ele vai adicionar a descrição lá no produto. Depois ele pode fazer otimização dos dos títulos, né, para você. 
+[12:18] Aí é um outro passo à parte que eu sempre oriento o pessoal a gerar a otimização com antes e depois numa planilha e você ir aprovando cada numa tabela, né, e você ir aprovando cada alteração ali. Tá? Então vamos agora atualizar a descrição, ele vai atualizar para nós aqui. 
+[12:59] Pronto. É completa ativo, beleza. O comprador vê um anúncio só com seletor tamanho P, M, G, GG. Olha as variações que ele criou aqui no anúncio, ó. Cada um com 25, eu vou abrir aqui, vou clicar no link, tá? Para vocês ver que eu não tô é fazendo nenhuma coisa, ó lá, ó. Olha o percentual, gente, da descrição aqui, ó, ficou 99 pela nossa 
+[13:30] extensão, aqui, ó, P M G, ó, as variações funcionando. M lá, tá vendo, ó? Aí tem que subir as descrições por variação, tá vendo? Pelo que eu vi aqui. Ele não subiu. Mas a gente vai pedir para ele atualizar aqui, ó, vamos clicar nesse segundo anúncio aqui, ó. Vamos clicar aqui. P Ó, a descrição aqui, tá vendo, ó? 
+[14:02] Criou certinho, se ele não criasse, você pede para ele atualizar, dá a instrução para ele. Tudo certinho, ó, esse anúncio ficou já quase uma com um score bem bacana, ó, tá vendo, ó? Só, lógico, o preço tá meio é, é diferente aqui. Benefício poderia ter mais, aqui, ó. É, estoque tá, tá bastante. E aqui a inclusos, né, não colocou que era inclusos. Aí você pode pedir para ele otimizar essa descrição. &gt;&gt; [roncando] &gt;&gt; É isso daí, pessoal, tá demonstrado aqui, ó, é esse o processo, tá, de 
+[14:33] criação de anúncios pelo Marketplace Connect no Mercado Livre. É pode ser otimizado, tá, de acordo com vocês tendo mais dados do produto, ele vai funcionar melhor, tá? 

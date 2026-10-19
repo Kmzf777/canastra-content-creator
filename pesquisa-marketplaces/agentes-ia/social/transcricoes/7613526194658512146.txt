@@ -1,0 +1,28 @@
+# 7613526194658512146
+# fonte: https://www.tiktok.com/@gabmirandamkt/video/7613526194658512146
+# faster-whisper small, idioma detectado: pt (1.00), duracao 71s
+
+[00:00] Qual é o jeito certo de cobrar mensalidade do seu cliente?
+[00:03] Todo mundo me pergunta isso, como cobrar mensalidade, como passar os custos de GA, tem duas formas
+[00:07] principais que as pessoas fazem hoje.
+[00:08] Primeira, cobrando um valor único, você vai cobrar ali, sei lá, 800 reais por mês, 900
+[00:13] reais por mês e nesse valor você já vai estar incluindo o tomão de obra, os toques
+[00:16] GA, VPS, tudo junto, um pacote só.
+[00:19] Qual é o risco disso?
+[00:20] Você não está considerando que o cliente pode exceder esse valor em custos de GA,
+[00:24] então ele pode rodar um tráfego pago muito forte nesse mês e você acaba pagando
+[00:27] mais em ado que você recebeu em mensalidade.
+[00:30] E a segunda forma que eu venho aplicando hoje, grande parte dos alunos também, é você separar
+[00:34] mão de obra, que é o seu serviço e o custo dos toques, então você vai cobrar o seu
+[00:39] valor de mão de obra para fazer a manutenção, inclusive o início da VPS, e você vai cobrar
+[00:43] os toques a parte.
+[00:44] Qual é o grande problema?
+[00:45] Muitos clientes não entendem o porquê essa separação e você pode argumentar
+[00:48] que assim como se ele fosse contratar um gestor de tráfego, ele teria que pagar
+[00:52] o gestor e o custo de anúncios, quando ele contrata um gestor de automação,
+[00:55] ele tem que pagar o custo do gestor e o custo de anúncios, que seria no caso os toques de
+[01:00] GA.
+[01:01] Gabriel, como é que faz esse recebimento?
+[01:02] Você pode receber pelo ASAS no PIX e cadastrar o cartão dele direto na OpenAI, Cloud, Google,
+[01:06] Antropi, tudo que você for utilizar já fazer direto no cartão dele.
+[01:09] Enfim, tem essas duas formas.

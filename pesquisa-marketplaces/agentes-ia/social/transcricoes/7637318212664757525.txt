@@ -1,0 +1,23 @@
+# 7637318212664757525
+# fonte: https://www.tiktok.com/@itamarfrombrazil/video/7637318212664757525
+# faster-whisper small, idioma detectado: pt (1.00), duracao 98s
+
+[00:00] Pessoal, eu integrei meu mercado livre e me achoupi com o cloud, aqui eu vou demonstrar
+[00:06] para você o que eu estou fazendo, eu fiz uma pergunta aqui pelo celular usando o cloud
+[00:12] no celular, mas também funcionando no desktop, e ali eu perguntei quais as perguntas que
+[00:17] estão abertas no mercado livre hoje, e aí ele vai trazer para mim as perguntas,
+[00:23] aí ele já me dá uma sugestão de resposta, assim eu consigo responder por aqui também e
+[00:31] trazer todas as perguntas que estão ali, tanto no achoupi quanto no mercado livre, eu mandei em
+[00:36] áudio para não precisar digitar, fiz a sugestão de resposta, então com isso pelo meu celular eu
+[00:43] consigo responder as perguntas, também trabalhar no meu marketplace, olhar os anúncios,
+[00:47] olhar as métricas de vendas, olhar quanto que vendeu, ajustar os anúncios,
+[00:51] simplesmente mandando áudio aqui para o cloud, ali ele vai dar uma sugestão grande,
+[00:56] aí eu já pedi também, vou gravar um outro áudio falando para ele ajustar a resposta conforme
+[01:01] que eu quero, e após essa gravação ele vai transcrever o meu texto ali e já mandar para o
+[01:08] cloud para ele formatar certinho a resposta, quando ele formata a resposta ele vai me
+[01:12] perguntar se eu já posso, já pode responder a pergunta, ele vai responder,
+[01:16] lógico que eu elaborei aqui toda a questão, mas eu poderia deixar isso numa
+[01:20] memória do cloud, ele todo dia olhar e responder todas as perguntas para mim baseado na
+[01:25] descrição e no título do produto, então se você quer aprender a fazer esse tipo de
+[01:30] coisa eu tenho uma mentoria que você pode chamar aqui a Sofia que é a minha IA para saber
+[01:36] mais, clique aqui abaixo.

@@ -1,0 +1,48 @@
+# Amazon Seller Assistant AI Integrates Directly With Claude Now
+- canal: My Amazon Guy (https://www.youtube.com/channel/UClUSEsDS2sdgNJfCcCM_5Uw)
+- data: 20260923
+- duração: 6 min
+- views: 6153
+- link: https://www.youtube.com/watch?v=AFO6BV55mJA
+- descrição: Amazon announced major Seller Assistant updates at Amazon Accelerate, with new support for Anthropic’s Claude and Amazon Quick through Amazon Bedrock. The update adds 24/7 workflows, custom automations, Seller Central data access, pricing actions, restock planning, product rating alerts, and other routine seller tasks. The video also looks at how useful these features may be compared with current third-party tools, where Seller Assistant may still fall short, and why knowing how to use these tools still matters for Amazon sellers.
+
+Need expert guidance scaling your brand? Book a call with My Amazon Guy today to take your Amazon business to the next level. https://bit.ly/4jMZtxu
+
+Ready to improve your Amazon keyword research? Get Data Dive here: https://bit.ly/3VDBCJY
+@datadivetools 
+
+#AmazonFBA #AmazonSeller #AmazonAI #EcommerceGrowth #MyAmazonGuy
+
+Want free resources? Dowload our Free Amazon guides here:
+
+Your $1M Roadmap is here!: https://bit.ly/3SBO7Vk
+Download the 2026 Amazon AI Operating Manual: https://bit.ly/3SLmusP
+Amazon Receiving Delay Guide: https://hubs.ly/Q04cdD4c0
+Amazon Catalog Spring Cleaning: https://hubs.ly/Q046BVfp0
+Amazon Proft Margin Defense 2026: https://hubs.ly/Q042trRH0
+Amazon SEO Toolkit 2026: https://bit.ly/4oC2ClT
+Amazon Seller Strategy Report 2026: https://bit.ly/3YN1RME
+2026 Ecommerce Website & SEO Readiness Checklist: https://hubs.ly/Q04btghf0
+Amazon 2026 PPC guide: https://bit.ly/4lF0OYX
+
+
+Timestamps
+
+00:00 – Amazon Accelerate AI Announcements
+0
+
+
+[00:00] I'm not at Amazon Accelerate this week, but that doesn't matter because I'm still staying on top of all of the Amazon news, so you can too. And we have some very big news for sellers today. So, if you are somebody who has utilized AI tools or Amazon seller assistant at some point in time, it just got a major upgrade. Amazon gives sellers an even smarter seller assistant in a new plugin for Amazon Quick and Anthropics Clawude. So, very, very interesting. Sellers can now automate routine tasks 24/7 with seller assistant and bring their Amazon 
+[00:30] data and seller central insights into the AI tools they already use. So, I thought this was super interesting because I've utilized seller assistant before and it kind of isn't great. It can't really give any capabilities memory usage tac. It pretty much has to be with inside Amazon selling topics uh to you know actually give you anything. So I think this is a really really big takeaway for specifically how uh the selling partner experience is going to roll out. They also were talking about this at accelerate today uh and it was 
+[01:01] really big news but some of the things that I thought were interesting takes out of this uh specifically it's built on Amazon bedrock with anthropics clawed models. The result is an assistant that doesn't just answer question uh it reasons across domains, remembers context and act and acts all while seller assistant keeps seller data within Amazon's infrastructure and never shares it outside of Amazon. So again, Amazon actually is a giant data company and they hate sharing data with other companies. They just recently actually 
+[01:31] uh told me with their new AI agentic tool, Muse, that it cannot do shopping uh on their platform. So they stopped Muse from doing any form of shopping on Amazon's platform. Uh cuz Meta never asked them if it can. Uh but it also talks about this seller assistant acted when sellers asked a seller could say uh adjust price for this as or draft a restock plan and it would reason through the problem and execute with permission. Again, this is one of those areas where I kind of say no, not really. his seller 
+[02:04] assistant was okay at answering questions and giving context and data towards Amazon topics but actually drafting some things like this like restock plan you know it's not great in my opinion so far but maybe with this claw change it will be uh they also say we're introducing seller assistant workflows custom automations that run continuously monitoring uh monitoring conditions interpreting uh changes and responding dynamically even when the seller isn't logged into seller central. So, if you haven't already, inside of 
+[02:35] Claw, there is scheduled tasks and workflows. And it seems like they're basically taking that exact model and putting it into uh the seller assistant tool, which I do think is kind of cool. That's going to help a lot of different people when it comes to a reporting. I even remember I was telling somebody this the other day 10 years ago. Uh I was working on one of my accounts and during that time one of the things that I actually did was I set up a uh little it was through PowerBm in Excel where it was an automated task on my desktop that 
+[03:07] would log in to seller central. It would then pull the report out of seller central uh and put it into Excel for me to review every single morning. Run a bunch of functions for me. And that was like my way of doing that and automating the task. And nowadays you have thirdparty softwares that do exactly that all the time things like that. So a lot of the automated tasks that I feel like sellers are going to be able to do with this. I feel like software is already handle but I do think it's great to put the power into the seller's hand for that. They also say uh you can do things as simple as alert me if my top 
+[03:37] 10 products drop below a four-star rating and draft a response plan. So, the draft a response plan I'm kind of interesting because the the respon response plan there is basically get more sales uh and figure out why exactly is that you are dropping below four stars. Are you selling the wrong product? Does your product not say exactly what it is? Is there damaged product in there? There's a lot of different reasons and I have a feeling that the seller assistant is not going to be able to totally figure that out. It'll basically say, "Hey, here's a bunch of reasons this could be happening." Uh, as well. Uh furthermore, 
+[04:08] this is the most interesting stat from this entire thing. Uh it is specifically that uh during this, oh, I just realized there was a little blur on the screen this whole time, but specifically during this, 90% of Amazon selling partners already use thirdparty AI tools to run their business. I think that's a super interesting take overall because uh there are many people I talk to every day who don't use AI tools, but at the same time I know pretty much everyone within the e-commerce community is using them. So uh I think that's a huge huge 
+[04:39] take to have for Amazon. I'm guessing they did some kind of study or uh did some kind of survey towards people and they came up with that 90%. But it does seem slightly far-fetched to say 90% of all selling partners are using uh third-party AI tools to run their business. But uh the plug-in launches first on Amazon Quick and Anthropics Claude. If you don't know what Amazon Quick is, uh Amazon Quick is essentially their uh very specific desktop app that is now available on iOS and Android. Um it's basically just an AI platform 
+[05:11] specifically uh that Amazon has created. It integrates into everything. It's very similar to a claude uh a chat GBT etc. So it's just Amazon's own version of that. So uh the final thing I will leave you guys with here is that every seller regardless of size gets the tools to compete and grow on their own terms. And to that I say not true. Specifically not true. especially considering the fact that in this own article, Amazon lists out the fact that uh many sellers got this as a beta feature before any other seller did. And 
+[05:42] if I had to guess, I would guess it's probably top 10% sellers got the beta feature that they were allowed to utilize this with uh compared to any other seller. And if you're a small seller, uh the answer at the end of the day is that Amazon probably doesn't actually care about you nearly as much as uh they try and say they do. uh unfortunately, but that's a big part of why we exist at the end of the day is that we get to see a lot of things like this, including the beta feature for this because we have clients of varying sizes and varying degrees all across our company right now. And so, one of the things though is that you can have every 
+[06:13] tool in the world and you can have the best tools in the world. If you don't know how to use them and you don't know what you don't know about the algorithm and how to sell on Amazon, you're never going to be able to beat somebody who does. And so that's why companies like ours exist because we know how to utilize a tool like this to be able to give you a competitive advantage over those that can use it but maybe they don't understand the strategy of how best to market in your category. So uh if you need help or you want more news and information like this, I would subscribe to this channel. Uh like this video, comment down below what do you 
+[06:43] think. Does this is this really going to change a ton for sellers moving forward or is it just going to be another nothing burger of Amazon uh seller assistant? Who's to say? 

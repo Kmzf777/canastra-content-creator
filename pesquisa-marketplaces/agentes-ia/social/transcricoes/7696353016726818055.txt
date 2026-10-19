@@ -1,0 +1,60 @@
+# 7696353016726818055
+# fonte: https://www.tiktok.com/@luanepinheirof/video/7696353016726818055
+# faster-whisper small, idioma detectado: pt (0.99), duracao 178s
+
+[00:00] Os agentes de compras chegaram e causaram uma briga enorme com a Amazon e a Meta.
+[00:04] Mas a pergunta que eu tenho a te fazer é, você sabe o que é um agente de compra?
+[00:08] Imagina que você manda alguém fazer compras no supermercado pra você
+[00:11] e o segurança da loja barra a pessoa na porta.
+[00:15] Foi isso que aconteceu exatamente com o agente de A da Meta na Amazon.
+[00:19] A agente de compra é um EIA que faz coisas por você,
+[00:22] em vez de só responder.
+[00:23] Você fala, compra a ração pro meu cachorro a mais barata e que chegue amanhã.
+[00:27] Você diz exatamente o que quer.
+[00:29] Ele entra no site, compra, coloca no carrinho, finaliza e pronto, já faz tudo.
+[00:33] Ele usa tua conta, usa suas informações, teu cartão de crédito,
+[00:36] é como mandar alguém literalmente fazer a feira com uma lista e com o teu cartão.
+[00:40] Você entrega tudo.
+[00:41] Isso já é normal no mundo real.
+[00:42] O que aconteceu aqui pro mundo digital com a EIA? Isso se ampliou.
+[00:45] Em 8 de setembro, a Meta lançou o Newsie, em 1000 SE.
+[00:49] Um agente que faz várias tarefas por você, incluindo compras.
+[00:53] Em 10 dias, ele chegou em primeiro lugar dos apps gratuitos da Apple Store nos Estados Unidos
+[00:57] na frente do chat GPD, inclusive.
+[00:59] Doze dias depois do lançamento, a Amazon bloqueou.
+[01:02] Quem tentava comprar lá pelo Newsie via um aviso dizendo que o acesso de um agente não autorizado
+[01:08] viola as condições de uso na loja.
+[01:10] E a Amazon afirmou três coisas.
+[01:12] Primeiro, a Meta não avisou que o agente ia entrar na loja.
+[01:15] Segundo, o agente navega sem se identificar com o agente,
+[01:18] ou seja, não tá pra diferenciar o que é uma pessoa e o que é um agente dentro da Amazon, ali, como cliente.
+[01:23] E terceiro, ele parece guardar os dados de login dos clientes.
+[01:26] Lembra aquela história que eu falei?
+[01:27] Ele vai com as informações com a lista, com a questão dos dados do cartão.
+[01:31] Então, antes de bloquear, a Amazon ainda pediu pra Meta tirar a loja do músico com o seu próprio.
+[01:35] A Meta já tinha explicado que o músico não enxerga sua senha nem o seu cartão.
+[01:40] Esses dados ficam guardados num cofre que o agente consegue usar,
+[01:43] mas não consegue abrir pra ver o que tem dentro.
+[01:45] Que o agente tinha a informação, mas tinha uma proteção.
+[01:48] Pouco mais de duas semanas depois, em 6 de outubro, sim, em 6 de outubro agora de 2026,
+[01:53] a Sierra anunciou junto com a Meta uma regra comum para agentes que se apresentam às empresas.
+[01:59] O Personal Agent Protocol.
+[02:00] A Walmart, Shopify e a Stripe, de todo o grupo, funciona como um crachá.
+[02:05] Você decide o que o agente pode acessar e a loja decide o que você pode fazer lá dentro.
+[02:09] Você não pode mais entrar como se fosse um cliente,
+[02:12] se vestir como se fosse um cliente e agora a Amazon precisa saber que você é um agente.
+[02:17] Basicamente, é isso.
+[02:18] Aí vem um hype. Pronto, agora a Yá vai fazer todas as compras.
+[02:20] Calma.
+[02:21] As regras detalhadas ainda não foram publicadas,
+[02:23] não estão prometidas, esse debate está prometido para esse mês,
+[02:26] mas é alguma coisa que está acontecendo no mercado.
+[02:28] A questão do pagamento ficou para depois, ficou com uma possibilidade.
+[02:32] Isso é uma coisa que para quem constrói produtos,
+[02:34] para quem gosta de tecnologia, é uma coisa que tem que estar acompanhando.
+[02:36] E a pergunta muda, porque a gente projeta produtos para as experiências das pessoas,
+[02:41] para o cliente, para o checkout, para tudo ser extremamente humano.
+[02:45] E a gente está falando tudo sobre essa revolução e agora vem um agente para fazer compras.
+[02:49] E aí, como é que vai falar o Neo, a taxa de conversão, a parte de UX,
+[02:53] o que vocês acham?
+[02:54] Quem gostou desse vídeo, curte e me segue para a próxima revoca.

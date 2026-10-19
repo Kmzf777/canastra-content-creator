@@ -1,0 +1,55 @@
+# 7692231684636396821
+# fonte: https://www.tiktok.com/@lucas.ecom87/video/7692231684636396821
+# faster-whisper small, idioma detectado: pt (0.99), duracao 124s
+
+[00:00] eu consegui conectar e integrar o cloud com a minha xopi
+[00:05] finalmente e já dei o primeiro comando pra ele e funcionou
+[00:08] deu certo, graças a Deus, deu certo
+[00:11] e eu vou mostrar pra vocês o que eu acabei de fazer
+[00:13] e isso não é nada comparado com o que a gente consegue
+[00:17] integrando ele com nossos marketplaces, o nosso site
+[00:20] seja o que for, oh porra de boneiro
+[00:23] enfim, eu consegui
+[00:26] eu tô desde as 9 horas da manhã
+[00:29] agora são 9 horas da noite
+[00:31] e eu tô aqui
+[00:33] agora e eu consegui terminar de implementar isso aí
+[00:36] de mandar o comando pra ele e ele executar o comando
+[00:40] que eu passei pra ele dentro
+[00:42] presta atenção, acompanhe
+[00:44] vamos lá, aqui no cloud, basicamente o que eu fiz foi o que?
+[00:46] eu adicionei a extensão de da xopi dentro do cloud
+[00:51] acho que aqui você clica em adicionar a extensões
+[00:53] e você adiciona e aí ele te dá tipo de permissão
+[00:55] pra você conectar a sua loja da xopi com o cloud
+[00:58] aí eu só passei um comando simples
+[01:00] falei, envia tal mensagem de promoção
+[01:03] pra todos os clientes que compraram de mim ontem
+[01:05] e hoje todas foram 369 pedidos
+[01:09] fechou? falei pra ele
+[01:11] e aí ele foi lá e fez
+[01:13] tudo isso aqui é a explicação de cada passo
+[01:15] o passo dele do que ele foi fazendo
+[01:17] ele foi mostrando pra mim aqui
+[01:19] e aí no fim apareceu
+[01:21] indicador, total de pedidos na plana 369
+[01:23] pedido validado, cliente identificado
+[01:25] aqui o relatório
+[01:27] pra todos os pedidos que ele fez
+[01:29] tudo isso aqui ele mandou pra todo mundo
+[01:31] foi lá na xopi, aqui na xopi, olha aqui o chat
+[01:33] olha o tanto de mensagem que ele enviou
+[01:35] várias já responderam, entendeu?
+[01:37] e deu certo
+[01:39] eu demorei muito pra conseguir fazer
+[01:41] é, porque eu não entendo praticamente nada
+[01:43] sobre a, eu não fiz curso, não fiz nada
+[01:45] só pedi a ajuda de uma amiga
+[01:47] e ela me indicou algumas coisas
+[01:49] e eu fui fazendo e aprendi, deu certo
+[01:51] e agora eu tô com o cloud, já tenho a extensão
+[01:53] vou aprender mais coisas que eu posso fazer dentro do marketplace
+[01:55] vou trazer pra vocês como ensinamento
+[01:57] e tô feliz
+[01:59] cês estou, nove horas da noite estou aqui
+[02:01] mas terminei, terminei essa merda, finalmente

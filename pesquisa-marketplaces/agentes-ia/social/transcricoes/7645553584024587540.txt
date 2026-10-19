@@ -1,0 +1,19 @@
+# 7645553584024587540
+# fonte: https://www.tiktok.com/@marketfacil/video/7645553584024587540
+# faster-whisper small, idioma detectado: pt (0.99), duracao 49s
+
+[00:00] Fiz uma automação com Cloud e N8n para novos anúncios dentro do Mercado Livre.
+[00:06] Quais são os riscos da integração da API?
+[00:09] E na verdade, vamos lá.
+[00:11] Os riscos da integração da API é você fazer caquinha
+[00:15] e criar um loop que você vai dar tanta requisição para o Mercado Livre
+[00:19] que ele vai travar ali o negócio.
+[00:22] Ou se você tiver uma integração com detalhes na API
+[00:26] que o Mercado Livre deixa só numa linha ali da documentação
+[00:29] e você modificar uma coisa sem o HIT.
+[00:32] Vai por mim.
+[00:33] A maioria dos sistemas para lançar uma função nova deixa passar uns negócios assim.
+[00:37] Inclusive eu já deixei passar umas coisas assim.
+[00:40] Então tem que tomar cuidado, testa exaustivamente
+[00:43] antes de deixar rodando no automático esse tipo de integração.
+[00:45] E dá tudo certo, porque risco, risco mesmo, não tem muita coisa na...

@@ -1,0 +1,29 @@
+# 7687295811037744416
+# fonte: https://www.tiktok.com/@chris.amzn/video/7687295811037744416
+# faster-whisper small, idioma detectado: en (0.99), duracao 119s
+
+[00:00] How am I utilizing AI in my Amazon FBA business today?
+[00:05] Now at the moment whenever I order a product
+[00:07] I add it to my orders in profit path and I also export it to my Google Sheets
+[00:12] Now what profit path does is adds that listing that I've logged as an order
+[00:16] To a listing creation queue with a delay of 24 hours
+[00:20] Now this gives Claude time to compare the SKU that profit path is going to be using
+[00:26] To the SKU and my buy sheet what it also does is
+[00:30] Fills in any order numbers directly from my email into my buy sheet
+[00:34] Puts them into profit path if I haven't already and what it also does on top of that is
+[00:39] Exports anything that I haven't already into my prep sheet
+[00:43] So this is scheduled to run twice a day ten in the morning ten at night in case I make any early purchases or
+[00:51] Purchases late at night. So it's constantly working and
+[00:54] And it's saving me so much admin
+[00:57] It's probably saving me an hour a day based on how many products I'm buying at the moment
+[01:02] Which is absolutely insane because if you paid someone to do that for you be paying like a ten or an hour
+[01:07] This is costing me nothing. It's costing me 20 pound a month for my Claude subscription
+[01:12] I've also got Claude to create an app script which is scanning my emails constantly for any one-time passcodes
+[01:18] These get automatically submitted to my prep center
+[01:22] All in all Claude is unreal and AI in general is unreal for Amazon FBA
+[01:28] I've seen people even using it to source
+[01:30] So I'm gonna get Claude working overtime and figure out even more ways to optimize my business
+[01:36] If you haven't already started spending time with Claude and finding out ways on how it can help you with your business
+[01:42] I think that you should do it ahead of the game before everybody else gets on to it
+[01:47] If you've got any questions at all, let me know if I can help I will
+[01:52] But it's pretty straightforward ask Claude to do something and it will do it after some trial and error

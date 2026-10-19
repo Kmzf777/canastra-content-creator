@@ -1,0 +1,5 @@
+# 7647767294214425869
+# fonte: https://www.tiktok.com/@eric.ai.builder/video/7647767294214425869
+# faster-whisper small, idioma detectado: en (0.61), duracao 22s
+
+[00:00] You

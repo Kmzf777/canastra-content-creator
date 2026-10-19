@@ -1,0 +1,5 @@
+# 7667754347379395860
+# fonte: https://www.tiktok.com/@salvianogabrieel/video/7667754347379395860
+# faster-whisper small, idioma detectado: en (0.33), duracao 60s
+
+(sem fala detectada)

@@ -1,0 +1,191 @@
+# 7656957465732467975
+# fonte: https://www.tiktok.com/@fisgar.vendas/video/7656957465732467975
+# faster-whisper small, idioma detectado: pt (0.98), duracao 1051s
+
+[00:01] Nós vamos aprender hoje como é que eu uso o Cloud Code para otimizar uma tela ou para
+[00:08] criar ou até mesmo para modificar na medida de que eu preciso.
+[00:13] Eu tenho uma RP que eu mesmo criei sem saber nada de programação e eu inaugurei ele em
+[00:19] operação na minha empresa no dia 22 dos 6 de 2026.
+[00:24] Então desde então eu estou fazendo melhorias neles porque eu criei ele baseado em todo
+[00:28] da minha meu conhecimento e segunda necessidade da empresa mas a cada dia a gente sente uma
+[00:33] necessidade e essa é a vantagem de você ter o seu próprio RP, seu próprio sistema operacional
+[00:39] para vender aí nos marketplace, né?
+[00:41] Hoje nós vendemos na Chain, na Chopin, no Mercado Líver.
+[00:45] E nós deparamos aqui com uma tela, essa tela por exemplo que eu vou mostrar aqui
+[00:49] ela está aqui em estoque, essa tela de produto e a base central de tudo que você vê
+[00:55] que ela está um pouco crua, não está assim, não tem um design ainda mas ela está já bem
+[01:00] intuitiva.
+[01:01] Aqui por exemplo nós já temos a foto do produto, nós temos o código central do produto, temos
+[01:08] aqui como vem na nota fiscal e o preço de custo aqui nós clicando aqui vai nos
+[01:14] informar qual fornecedor desse produto e nós temos uma opção aqui ó, publicar
+[01:21] ele simples, publicar, montar um kit ou criar variação.
+[01:25] Eu abri aqui esse outro fornecedor que ele vai mostrar aqui o preço de custo, está dizendo
+[01:29] que esse aqui é o mais barato, é, significa que tem outro produto, o mesmo produto de
+[01:34] outro fornecedor mas que esse daqui é o que está mais em conta, né?
+[01:38] Então ele aparece para nós aqui e eu clicando em qualquer um desses três botão aqui
+[01:42] ele vai nos levar para a tela de criar um, seja ele simples, seja ele montar
+[01:46] um kit ou seja ele com variação.
+[01:48] Só que eu não gostei muito dessa tela, como eu disse a gente tem um poder de
+[01:52] execução muito grande porque esse RP é nosso, ele é personalizado segundo a nossa
+[01:57] necessidade e também eu sou o criador dele, então imagina você ser o criador do
+[02:03] seu próprio sistema que quando der um bug ou der uma situação você quer
+[02:07] atualizar ou acrescentar alguma coisa você mesmo consegue fazer.
+[02:10] Então por que que eu não gostei?
+[02:12] Porque aqui quando eu clique publicar simples ele vai me levar para uma
+[02:16] tela onde eu crio e uma tela só eu já crio e já publico anúncio, uma tela só
+[02:21] não precisa sair dessa tela, tá completo, ok?
+[02:23] Mas é até aí ok, montar kit, me leva também para a mesma tela que também eu
+[02:28] posso e adicionando aqui, entendeu, olha, vai criando aqui já vai me dando o preço
+[02:32] de custo, aqui embaixo eu já consigo dar continuidade, se eu quer aumentar
+[02:37] essa quantidade aqui por exemplo, coloco 20 de cada, aplicar para todos já
+[02:40] acontece aqui e já se auto soma aqui, tá?
+[02:44] E aqui embaixo dá continuidade o resto das coisas, mas não é esse ponto.
+[02:47] O que eu quero mostrar para você hoje é exatamente onde eu quero mudar, criar
+[02:52] variação, olha, criar variação, vocês perceberam que já leva para outra tela?
+[02:56] Tela sinéxi totalmente independente e isso aqui não vai me ajudar muito, não
+[03:01] tem otimização, então é por conta dessa tela, tá?
+[03:05] Que eu quero modificar, vocês vão ver que vai ficar totalmente modificada
+[03:10] essa tela e também essa tela de criar anúncio aqui, a ingestão de anúncio,
+[03:14] porque ambas vêm para cá e certas de criar variação, vocês vão ver que é a
+[03:18] mesma, veja bem, é a mesma tela, essa daqui também vai passar por modificação
+[03:23] e é isso que eu quero mostrar para vocês aqui nesse passo a passo de como
+[03:27] criar uma tela, de criar anúncio, dentro de um RP, dentro de um sistema
+[03:34] operacional, então se esse vídeo, se esse conteúdo é do teu interesse, se
+[03:41] reflete bem a tua necessidade, se você é vendedor do mercado livre, da Chopi, da
+[03:45] Chenho, qualquer outro canal de venda, entendeu? E tem interesse em ter seu
+[03:50] próprio RP, seu próprio sistema operacional do teu negócio, então
+[03:53] esse vídeo é para você, continua comigo aí, seja o meu seguidor, seja o
+[03:58] meu inscrito, assine aí as notificações para que você não perca nenhum vídeo,
+[04:04] vamos por vídeo, é aqui que de fato a mágica acontece, aqui eu já estou em
+[04:10] processo em andamento aqui dessas modificações na tela que eu mostrei no
+[04:14] início do vídeo e além da especificação de como eu queria a tela, já está
+[04:22] em processo desde esse outro aqui, dessa outra tela, mas para não ficar muito
+[04:26] pesado, para ele não ficar bugado, então eu abri essa nova tela, mas aqui ele já
+[04:31] deu um andamento já, só que localmente ele ainda não subiu, então aqui eu
+[04:37] iniciei dando a seguinte, primeiramente aqui em cima, está dizendo, deixa eu dar um zoom
+[04:43] aqui para ficar mais fácil, aqui eu escrevi, continue a Ui A1, U1, desculpa, da
+[04:50] unificação do criar anúncio, o que que é isso? Isso aqui é um gatilho,
+[04:53] isso aqui é orientando o Cloud Code a retornar no que esse aqui deixou finalizado,
+[05:01] como retomar, ou seja, como dá continuidade todo esse texto aqui,
+[05:06] essas modificações que foi executado, na sessão nova é só dizer algo como
+[05:11] continuar a Ui A1 da unificação do criar anúncio, isso nada mais, é um gatilho para que o
+[05:18] Cloud entenda, ele tem que buscar esse arquivo que está aqui, em algum lugar aqui, nessa pilha de
+[05:25] informação, ele vai ler que vai estar detalhado exatamente qual é o foco, qual é o projeto que ele tem
+[05:32] que retomar, ok? E aqui eu dei continuidade, por isso que eu colei aqui essa informação,
+[05:37] é que está em execução aqui, se eu apertar aqui, eu colei essa informação, então ele
+[05:42] começou toda uma leitura, vou seguir o protocolo, ler o doc de continuidade, etc.,
+[05:47] depois eu explico o que é isso aqui, ele abriu aqui, isso é outra execução em paralelo que eu
+[05:55] mostro daqui a pouco, não é essa agora, mas se vocês entender que o negócio aqui não para,
+[05:59] está em execução continua, agora me perdi, está aqui, muito bem, está tudo ao vivo aqui,
+[06:06] eu não estou omitindo nada, vocês verem que eu tenho dois projetos de execução aqui,
+[06:10] dois projetos, analisar fluxo de expedição, até aquela tela que abriu ali,
+[06:17] nós estamos aqui, então o que que acontece? Aqui ele leu primeiro protocolo, doc de identidade,
+[06:22] e aqui ele está dizendo que ele já tem todo, é handoff completo, ele já leu, já entendeu tudo,
+[06:28] já sabe o que fazer, é isso, eu não entendo nada de programação desses dados técnicos também,
+[06:33] então aqui eu dei uma divertência para ele, na verdade, um aviso mediante a divertência,
+[06:38] mas antes leia, mais leia atenção, mas antes leia atenção, linha por linha, não me esqueça nada,
+[06:45] aqui eu estou começando uma nova sessão, mas todo histórico estava na outra sessão, lá eu pedi para
+[06:52] deixar bem definido exatamente o que precisa da continuidade aqui, ok? Então é o que que eu,
+[06:59] é a minha esposa manda mensagem primeiro, você vê que está tudo ao vivo aqui, eu não estou
+[07:04] escondendo nada, então o que que acontece? Aqui eu estou dizendo para ele, leia por linha e não
+[07:10] com geralção, dando uma divertência para ele, e aqui ele me responde, achado importante, tal e tal,
+[07:18] vou criar o ortrein, diorge mais, enfim, etc, etc, etc, aqui ele entendeu todo o fluxo,
+[07:24] é estabelezado 5 trechos, ABCD, já feitos, ou seja, ele já executou, a armadilha crítica
+[07:31] que eu confirmei agora, não estava sem percentual óbvia, então aqui ele me dá, quando ele
+[07:36] foi de armadilha, é algo que não apareceu ou não estava dentro do contexto que ele é de fato
+[07:43] estava executando, então ele encontrou algo e ele mostrou para mim, aqui já está, estão em
+[07:50] produção a importar para anilha e massa, deploy calda longa, se eu copiar seu local,
+[07:55] reverteria a produção exatamente o incidente que a lei SICO para vir, olha só, porque eu tenho
+[08:00] várias leis aqui no meu arquivo cloud.md, que eles não podem frigir nenhuma delas,
+[08:05] isso acontece, não confia não, sempre conferem, não confia, conferem, e aí ele quis dizer ao
+[08:11] seguinte, se ele subisse os arquivos como ele havia pré criado, ia dar um conflito aqui em um
+[08:17] outro projeto que ficou cometado, mas não subiu, então ele está aqui e aí ele se autocorrigiu,
+[08:25] encontrou aqui as informações que deveria driblar essa situação para não prejudicar o meu
+[08:31] e ele fez as execuções aqui necessárias a chegar nesse ponto aqui, aqui tudo é dados técnico que
+[08:37] não tem relevância no sentido de passar aqui, agora aqui ele olha, tudo verde, ou seja, tudo
+[08:43] validado, pronto para subir, ou seja, colocar nas nuvens, já alimentar o RP, tela criar anúncio,
+[08:50] ganhou um seletor tipo no topo simples kit com variação, simples kit com variação,
+[08:56] são os cards que irão aparecer lá, olha gente, eu estou falando aqui na minha língua,
+[09:00] tem uma forma de falar, eu não sou letrado, eu não falo direito às vezes, eu salto palavras,
+[09:07] eu gaguejo, então não olha para esse lado, olha para o conteúdo, ok? Validação e evidências,
+[09:12] não axismo, porque eu tenho uma lei contra axismo, eu não aceito nada, assim, no axismo, no
+[09:17] chutomo, ele não aceito nada, então tudo isso aqui, olha só, revisor as cegas, não viu
+[09:25] o plano, resultado, pode entregar, o que que é isso? Além da execução do cloud um agente,
+[09:31] ali que executa essa tarefa, eu tenho outro agente que ele um revisor a cega, ou seja,
+[09:37] ele não acompanha como cloud, como esse agente que o cloud determinou, é como ele criou esse
+[09:43] anúncio, vou ter que ter essas notificações, não complica, ele não viu como foi o planejamento
+[09:49] desse agente, mas ele analisa por dentro verdadeiramente como o projeto deve ser executado, o resultado
+[09:57] que deve trazer, então o Gazelle não está em parceria com esse executor, ele é o revisor, se ele
+[10:03] encontrar defeito ele vai falar, olha, não entrega, revisa isso e aquilo, mas aqui ele deu, pode entregar,
+[10:09] zero crítico alto, um médio já incorporei, ou seja, ele já revisou, então aqui está seguro,
+[10:15] isso está revisado, eu também já fiz a minha revisão aqui, só que o deploy comite, ou seja,
+[10:19] subir para as nuvens para o servidor para ficar valendo dentro do meu RP, pela regra não subo
+[10:27] sem sua autorização, validar clicando em produção só se eu autorizar, então aqui, faça deploy,
+[10:33] autorizado, aí ele vai executar, vai executar que esta tela aqui vai mudar completamente,
+[10:40] então essa também, principalmente essa vai mudar, vamos ver aqui que eu vou autorizar a execução e
+[10:47] aí ele vai começar a processar aqui, ele vai dizer que foi autorizado e aí ele dá continuidade,
+[10:52] rapaz, as notificações aqui, autorizado, autorizado, então aqui é que ele vai fazer o deploy,
+[11:00] e esse é o resultado, concluído, deployado, ou seja, subiu para as nuvens, está já dentro do
+[11:05] botão aqui, nós vamos ver como é que a tela ficou agora, se de fato ela teve mudança,
+[11:09] ó, tela criar anúncio, ganhou o seletor de tipo, simples kit com variação no topo, tela produtos,
+[11:16] os três botões cai todos na criar com tipo já preselecionado, bônus, duplicar um anúncio
+[11:24] kit, agora abre no tipo kit certo, validado, clicando em produção, logado e não axismo,
+[11:31] critérios azeite, exige definição de pronta cumprida, então vamos ver aqui, ele diz que essa
+[11:39] tela aqui já foi alterada, já foi refaturado, vamos dar um F5 ou uma atualizar aqui em cima,
+[11:46] que é o que eu costumo fazer, ver se de fato essa tela mudou, vai pedir um login aqui,
+[11:50] porque, opa, agora eu tenho aqui, ó, eu quero criar aqui um produto simples, eu já tenho ele
+[11:58] aqui, o cardzinho, claro que tudo isso aqui vai ter cor, mas e agora é aqui eu vou criar um,
+[12:06] olha só, eu escolhi o card aqui, produto simples, eu cliquei aqui neste anel e ele já apareceu
+[12:13] para mim aqui e ele deve ter aparecido, ele vai aparecer aqui no sequência, está aqui ó, ele
+[12:17] apareceu aqui, ok, então se é um produto simples, eu não posso adicionar outro produto e
+[12:24] ele diz ó, modo simples, um produto, selecione kit para montar com vários, olha só, já é uma
+[12:31] informação importantíssima, eu posso escolher conta só do mercado livre ou ambas, tá, e aqui embaixo
+[12:38] ele já define para mim, ele vai criar nessas duas contas se eu der aqui, é sugerir pela
+[12:43] composição a categoria, vamos ver se ele vai aparecer, apareceu, automático direto da, tá,
+[12:50] é direto do mercado livre, ok, e direto da, aqui ó, tudo ML, ML, ML, então se eu quero,
+[12:57] por exemplo, ali foi o manel, então vou aqui anel os relógios, no exemplo, carrega a ficha técnica,
+[13:03] também busca direto da API do mercado livre, aqui ele já me dá, já puxa, porque eu tenho
+[13:10] uma base preconfigurada de custo de embalagem, então para esse produto ele já está me dizendo
+[13:15] que eu vou ter um custo de 24 centavos em embalagem, ok, aqui já vem toda a apresificação aqui,
+[13:22] usando a política de preço de cada canal de venda, você vê ó, comissão desse produto no mercado
+[13:28] livre, é 14%, tá, o imposto aqui é de acordo com o CPJ da conta, é o imposto do simples
+[13:33] nacional e devido o peso e tamanho e medidas, vai cobrar 5,65 de taxa fixa e tem aqui foi
+[13:40] colocada uma margem de 15%, essa margem pode se colocar qualquer uma, tá, ela dá para você
+[13:45] ver aqui em cima como você quiser, já para chopir a política da chope, da chope já é diferente,
+[13:51] olha, 20% tá, imposto aqui, aqui é outra conta, tá, é outro CPJ, então imposto é diferente,
+[13:59] 10,91, dessa outra conta é 9,15, eu trabalho com 4 CPJ, ok, preto e taxa, 4 reais por
+[14:07] pedido, aqui seria 5,65, valor de venda, a chope, no caso aqui, tem um valor de venda
+[14:12] menor do que no mercado livre, a diferença tá aqui, ó, a taxa fixa é menor, é maior no
+[14:20] mercado livre do que na chope, nessa realidade aqui, tá, mesmo 20% aqui de, o imposto aqui é maior,
+[14:27] então tem os diferenciais, aí aqui eu tenho também o geratítulo e esse aqui eu não
+[14:33] lembro se eu já ativei ele, vou saber agora, aqui é tudo real, tudo ao vivo, tá, aqui é
+[14:38] minha geração, é minha realidade, eu não tenho nada, opa, foi buscar, isso aqui ele buscou dentro
+[14:44] do mercado livre, tá, dentro do mercado livre, tanto é que ele mostra aqui, ó, ver a evidência
+[14:49] mais buscada e concorrente, aqui, ó, tudo isso aqui é dentro do mercado livre, ok, ele já
+[14:55] traz uma predescrição aqui, eu dou continuidade, aqui as fotos eu adiciono por aqui, tá,
+[15:00] ou eu posso usar link também, se eu quiser puxar a foto da composição, como é um
+[15:05] produto simples eu poderia só fazer isso, revisar e preparar a publicação, só que isso no produto
+[15:10] simples, aí olha, o outro card aqui ó, kit, aqui sim ele já deixa eu adicionar mais de um item,
+[15:15] vou adicionar mais de um e ele vai deixando, sem problema, e aquele vai somando o custo,
+[15:20] quantidade de estoque e o peso, se eu quiser com variação, eu também posso abrir construtor
+[15:27] de variação, isso é novo pra mim, eu nem sei o que que é isso, aqui eu construo variação
+[15:32] que você quiser, tá, é no caso pra adicionar lá, mas essa tela aqui eu não vou detalhar ela aqui
+[15:38] porque eu nem conhecia ela, tô vendo agora, então variação aqui, eu nem sei como, ó, eu estou
+[15:44] tanto colocando o, então aqui, pelo que eu tô vendo aqui, é novo isso aqui pra mim, tá,
+[15:50] o que que acontece, eu estou criando kit com variação, mas esse modelo aqui ainda é
+[15:57] um assunto pra um outro vídeo, porque eu preciso entender direitinho o fluxo, esse aqui como é novo
+[16:03] pra mim, que eu nem tenho produto com variação, eu tenho kit e tenho produto simples, com variação eu
+[16:08] não tenho, né, mas eu vou me aprofundar direitinho, eu achei muito interessante essa parte,
+[16:13] ver que ele tá acrescentando aqui e é bem interessante, eu vou estar vendo, então é isso,
+[16:19] você pode ver que a mudança acontece em tempo real, tá, eu agora tenho esses três cards aqui
+[16:24] que eu não tinha, agora isso só é possível porque eu tenho um RP, um sistema operacional
+[16:30] pra minha empresa, então se eu preciso de restaurar uma página, se eu preciso adicionar algo, otimizar,
+[16:38] automatizar, excluir alguma coisa, modificar, o diferencial é esse, esse sistema é meu,
+[16:44] é da minha empresa, então eu posso, é, eu tenho acesso direto, eu não preciso mandar mensagem
+[16:50] do porte, esperar o suporte responder, na maioria das vezes falar que não dá pra fazer, ou então
+[16:55] que eu tenho que meter a mão, fazer isso, isso, isso, não, aqui eu tenho um agente do meu lado,
+[17:00] que faz isso por mim, aqui, e eu tenho um sistema operacional que é meu, isso aqui é o que
+[17:06] conduzo, então esse é o diferencial, por isso que eu falo pra você, esse é o diferencial e
+[17:11] se eu conseguir, que eu não entendo nada de programação, até hoje eu não entendo nada,
+[17:16] eu não consegui um RP completo, olha, tudo isso é minuto, tudo tá pronto, tá, se tudo isso eu
+[17:23] consegui sem contratar ninguém e sem entender nada de programação, você também consegue, muito obrigado.

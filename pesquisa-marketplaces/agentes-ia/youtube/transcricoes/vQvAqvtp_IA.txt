@@ -1,0 +1,48 @@
+# Reputación de Mercado Libre DESDE CERO: guardá el historial diario con n8n y Google Sheets (4 nodos)
+- canal: Candela - IA para e-commerce y MercadoLibre (https://www.youtube.com/channel/UC-yEu5sZiY4OU95bISpQbjw)
+- data: 20260907
+- duração: 8 min
+- views: 344
+- link: https://www.youtube.com/watch?v=vQvAqvtp_IA
+- descrição: Guardá el historial diario de tu reputación de Mercado Libre en Google Sheets con un workflow de n8n de 4 nodos, y enterate de que vas a bajar de nivel semanas antes de que el panel te lo muestre. Acá lo armamos completo.
+
+💻 AGENDÁ TU REUNIÓN DE DIAGNÓSTICO (sin costo)
+Miramos tu operación y salís de la llamada sabiendo qué proceso conviene sacarte de encima primero.
+👉 https://candelavaccari.com/
+
+🎁 LA PLANTILLA DE N8N DE ESTE VIDEO
+Comentá HISTORIAL y te la mando por privado. También está en la comunidad gratuita junto con el resto de los recursos del canal.
+👉 https://www.skool.com/comunidad-vbi-6
+
+━━━━━━━━━━━━━━━━━━━━
+
+⚙️ ANTES DE EMPEZAR
+Este video arranca con la aplicación de Mercado Libre ya creada y el token andando. Si todavía no hiciste esa parte, mirá primero:
+👉 Crear la aplicación, obtener el token y las primeras peticiones: https://youtu.be/P2jt16ZYwsc
+👉 Dejar el refresh token funcionando: https://youtu.be/P79Om2GqblU
+👉 Cómo configurar el webhook de notificaciones paso a paso (video de facturas automáticas): https://youtu.be/vMGv9_Hlgzw
+
+━━━━━━━━━━━━━━━━━━━━
+
+El panel de reputación de Mercado Libre no te miente, pero te llega tarde. Calcula sobre una ventana de 60 días corridos, así que cuando el color te cambia estás viendo lo que pasó hace semanas. Y cuando perdés el color, perdés exposición en las búsquedas y beneficios en el envío.
+
+Lo que casi nadie usa es que la API te devuelve dos campos que el panel no te muestra: real_level, que es tu nivel real, y protect
+
+
+[00:00] Se você vende no Mercado Livre, sabe que descobrir tarde que sua reputação caiu tem um custo altíssimo. Além de que sua taxa de reclamações, cancelamentos e atrasos é calculada nos últimos 60 dias. Portanto, tudo o que você vê hoje no painel vem sendo arrastado há 2 meses. Ou seja, basicamente, quando você muda de cor definitivamente, não consegue corrigir isso em uma semana, porque essa métrica ruim te persegue por 60 dias. Enquanto isso, se sua reputação cair, você pode perder benefícios como ser 
+[00:30] Mercado Líder, ter frete grátis e, claro, ter destaque nas buscas. A ideia deste vídeo é te mostrar como, em menos de 5 minutos, você pode importar este template do N8N que consulta diariamente a sua reputação e a das suas contas do Mercado Livre e a registra, neste caso, em uma planilha do Google Sheets. É uma automação bem simples de quatro nós, para a qual você precisará ter assistido aos outros dois vídeos, onde você cria seu próprio aplicativo e também faz a 
+[01:01] troca de token para poder vincular sua conta e consultá-la diariamente. Mas, uma vez feito isso, você já tem tudo. Deixo o link para esses dois vídeos na descrição deste, onde você poderá assisti-los e também entrar na minha comunidade gratuita no Skool, onde estão os recursos para baixar esses templates e implementá-los você mesmo . Eu sou Candela Bacari e ajudo donos de pequenas e médias empresas a detectar o que automatizar primeiro, onde não mexer diretamente ou onde convém implementar inteligência 
+[01:32] artificial e onde não. Faço isso há 6 anos e trabalhei com mais de 45 empresas, onde sempre que precisamos construir algo, fazemos isso com minha equipe na BBI. Vamos começar vendo os passos para que você mesmo possa implementar este workflow. Na comunidade gratuita no Skool, na seção de cursos do Mercado Livre, você terá a sua reputação do 
+[02:02] Mercado Livre medida todos os dias. Lá você terá os templates para download e o prompt do dashboard. O template do Google Sheets contém os dados importantes do que o Mercado Livre envia e, além disso, no final, vamos armazenar também o JSON bruto, o que significa todas as informações que o Mercado Livre envia cada vez que você consulta. Há algo muito importante: a API do Mercado Livre te devolve um campo que se chama "real_label", que é 
+[02:33] , basicamente, o nível real. Existem ocasiões em que, se você está em um período de proteção com o Mercado Livre, pode ser que o Mercado Livre esteja mostrando uma reputação que, na verdade, você já não tem mais. E além disso existe outro campo chamado Protection End Date, que é basicamente quando vai terminar esse dia de proteção e quando vai mudar de repente, digamos, ou quando vai mudar de um dia para o outro a cor da reputação no Mercado Livre. 
+[03:05] Basicamente, se este campo estiver vazio é porque não se aplica e você não está dentro desse intervalo de proteção do Mercado Livre. Mas se você estiver, é um dado muito importante para que possa ir prevenindo que pode estar em uma possível deterioração da sua reputação e tomar as ações necessárias, além de que este campo no painel do Mercado Livre você não consegue ver e aqui você pode ir se antecipando. Então, uma vez que você baixe o template do N8N, você vai clicar em baixar. Você vai ter que, obrigatoriamente, ter 
+[03:37] baixado e já implementado a atualização da autenticação do Mercado Livre. Como eu disse antes, você vai colocar "create workflow", isso abre um em branco. Você coloca " import from file". Seleciona o template que você baixou da comunidade School e a única coisa que você vai ter que autenticar aqui é o Google Sheets; que se precisar saber como fazer, pode buscar um vídeo curtinho de como autenticar o Google Sheets com o Google Cloud no N8N ou pode ver nos meus vídeos anteriores, onde também 
+[04:09] explico isso. Uma vez que você tenha autenticado a conta, vai selecionar o template que baixou e que hospedou na sua conta do Google Drive. Além disso, a outra coisa que você vai ter que substituir é a URL do workflow de autenticação de atualização de token que você já tenha implementado no seu ambiente do N8N para que ele se atualize corretamente cada vez que for executado. Bom, como podem ver aqui, o gatilho desta automação é uma vez por dia. Isso pode ser atualizado 
+[04:40] tantas vezes quanto vocês quiserem, pode ser uma vez por semana ou pode ser mais. O primeiro passo da automação é obter o token, como havíamos falado , e vamos fazer uma única requisição a um endpoint no Mercado Livre que basicamente nos traz toda a informação da reputação para aquele vendedor. Temos um passo que vai organizar essa informação e que vai atualizá-la dia a dia no Google Sheets . Vamos fazer uma execução para testar. E vamos ver alguns dos campos 
+[05:13] importantes e relevantes que este endpoint traz. Têm vendas completadas, transações completadas, canceladas, totais. Vêm também as métricas em porcentagem, os cancelamentos e os atrasos por casos em particular. Minha recomendação é salvar as duas, a de porcentagens e a de casos, para que vocês vão tendo uma métrica ao longo do tempo e que sirva para analisar. Basicamente, podemos pegar essas mesmas três perguntas e fazer para o Claude, 
+[05:45] dizendo em qual país estamos para que ele leve em conta quais são as métricas do nosso país em particular e ver diretamente como ele responde com a informação. Neste caso, vou dar a ele um Excel com exemplos, com dados inventados. e vou enviar exatamente essas perguntas. A alternativa a fazer esse gerenciamento é basicamente juntar essas perguntas, passar o relatório para o Claude e pedir a ele, com um prompt, que resolva essas dúvidas para nós. Neste caso, estou passando um Excel de teste para vermos 
+[06:17] um exemplo e podermos ver o resultado que obtemos. A alternativa, se não quisermos receber tanto texto como diferença, trouxe para vocês como bônus a parte que eu mais gosto, que é basicamente passar um prompt para o Claude para que ele nos devolva diretamente um relatório mais orientado a um dashboard, para que analisemos gráficos e métricas. Vamos pegar o prompt que deixei também na comunidade School. Vamos copiá-lo. 
+[06:49] Vamos abrir um chat novo. Vamos colar o prompt e vou deixar o relatório de exemplo. Claude, com isso ele te devolve um dashboard funcionando que você pode baixar e ir atualizando com o tempo para ver realmente as métricas como interessaria a você, sendo dono do seu negócio. Basicamente, você faz isso sem escrever uma linha de código. Você pode carregá-lo e abri-lo, além 
+[07:19] de que depois você pode mantê-lo atualizado diretamente daqui ou pode ir atualizando diretamente com o chat do Claude. Tudo o que vimos neste vídeo só automatizaria uma parte do seu negócio; seria um processo que você olharia uma vez por dia. Tenho certeza de que, se você tem uma pequena ou média empresa funcionando, você tem processos que estão te custando muito mais dinheiro do que este. O problema é que quase ninguém sabe qual é esse processo e acaba automatizando os processos mais evidentes ou os mais fáceis, e não acabam sendo o que 
+[07:50] realmente causa a dor. Se você quiser que olhemos juntos a sua operação, deixo o link que é Candela Bacari na descrição deste vídeo. A ideia é que você agende uma reunião comigo, me conte como trabalha hoje e saia sabendo qual vai ser o próximo passo e o seguinte, e definitivamente também saiba qual é o passo que não convém dar. Espero que você tenha gostado deste vídeo. Obrigada por curtir, por se inscrever, caso se interesse por esse tipo de conteúdo. E não se esqueça de me deixar nos comentários quais são as tarefas que você continua fazendo manualmente e gostaria 
+[08:21] de automatizar. Assim podemos incluí- las nos próximos vídeos. Te mando um beijo e espero que você esteja muito bem. 

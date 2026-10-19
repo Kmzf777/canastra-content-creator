@@ -1,0 +1,59 @@
+# Amazon Ads MCP + SP-API MCP: Full Claude Setup in 8 Minutes
+- canal: shah | Databaaba (https://www.youtube.com/channel/UCkKq3Z34tGDvdGW4oEdmgpg)
+- data: 20260826
+- duração: 7 min
+- views: 1235
+- link: https://www.youtube.com/watch?v=0dGZ1G6-0vc
+- descrição: Amazon runs two MCP servers — one for Ads, one for the Selling Partner API — that let
+Claude query your accounts directly. Ask "which campaigns are running in the US right
+now?" or "how many orders did I get in the last 7 days?" and get a real answer from
+your own data.
+
+In this video I set both up from a clean machine, start to finish.
+
+Full written guide with every command to copy:
+https://www.databaaba.com/blog/amazon-ads-mcp-claude-setup/
+
+── CHAPTERS ──
+0:00  What these two servers actually do
+1:15  Download the proxy script
+2:40  Amazon Ads: save your credentials
+3:30  Confirm Amazon accepts them
+4:00  Register it with the Claude desktop app
+6:00  Seller Central (SP-API) setup
+7:20  Both servers running
+
+── WHAT YOU NEED FIRST ──
+API credentials Amazon has already approved — a client ID, a client secret and a
+refresh token, for whichever API you want. Three values.
+
+The browser "Add custom connector" route does NOT work. Amazon's Ads server asks for a
+permission its own login server does not hand out to unapproved apps, so you get a 400
+error before you reach your account. The setup here goes around that.
+
+No credentials yet? Start here:
+Advertising API — https://advertising.amazon.com/API/docs/en-us/guides/onboarding/overview
+Amazon Ads API access, step by step — https://www.databaaba.com/blog/amazon-ads-api-access/
+
+── THE SCRIPT ──
+Single file, no dependencies beyond the Python standard library:
+https://www.databaaba.com/static/downloads/mcp_proxy.py
+
+── WINDOWS ──
+S
+
+
+[00:01] Hey everyone, this is Shawn. I hope you're doing good. So, if you've been watching along and following me, you know who I am. I work around Amazon Ads API as well as the SP API and I try to share some of the things here on YouTube as well. Here I am again with a new video. So, in this video we're going to discuss about connecting the Amazon Ads as well as the SP API MCP server the MCP to the AI models like Cloud. So, that's what we're going 
+[00:31] to discuss in this video. So, if you've been facing any problems around that, you can watch this simple tutorial. I've tried to make it quite simple and I've tried to design and develop the command in such a way that both the Mac and the Windows users can quite easily adapt and use them and get connected to the AI models within a few minutes. All right, so let's get to the screen and see things in action. All right, so here we are and I'll share 
+[01:02] the link of this blog. Although it's not yet completely updated, but it's good enough to follow for this tutorial. And let's watch it out and follow the commands we have step-by-step and see things in action. So, first of all, if you take a look here, you just need to you can read the above introduction and all that kind of stuff, but here we are and you just need to follow the commands. All right, in the end of this video I'm going to tell you one more easy way of doing the same job which we're going to do step-by-step. So, wait till the end and see how you can even do it far easier. 
+[01:35] So, let's just without wasting time, let's just get to it. So, first of all, you need to actually open up the terminal either if you're on Mac or if you're on Windows, you can easily open that up. You can just copy the commands from here and here you go. In order to check if it ran correctly or not, I I don't want to explain the commands here because I wanted to 
+[02:05] get done as simple as possible. So, yeah, it is just to check out if the if the MCP servers has been have been configured previously or not. So, nevertheless, let's just follow along and get to this step here where we need to set up the Amazon Ads MCP server. So, we need to follow this one and copy this one. But, over here if you can see, it's asking for the Ads client ID and the client secret and the refresh token. 
+[02:35] Now, for the MCP access, you need to have the access to the Amazon Ads API as well. If you don't have that, you definitely cannot have access to the Amazon Ads MCP. So, you can see the I button here on this video. And if you haven't gotten access yet, you can definitely get access to the Amazon Ads API by following the video I've mentioned here in the I button, all right? You can jump on to that and follow it and get back to this block 
+[03:06] after you've gotten the access to the Amazon Ads API. So, that's a pre-req for this Amazon Ads MCP server. Nevertheless, if you already have it, you just need to copy it and replace the Ads client ID and the client secret and the refresh token. All right? So, I've already have it and I'm going to paste it here. So, I've already pasted the command I have. I'm going to blur it because of the security credentials of my own account. So, but you can actually edit these credentials as you can see here. 
+[03:39] And the client ID and the client secret and the refresh token. You're going to get the similar kind of a command and just hit enter. So, after that you need to check out if it's accepting them or not. So, yeah, over here we are. So, the results are matching to the one we can see here. So, it's definitely going all good. After that, we're going to copy this one and paste it onto the same terminal. And you see, we're going to see the 
+[04:09] similar kind of results here as well. So, yeah, we're satisfied. You just need to check out if you're seeing this kind of results or not. If you're not seeing this kind of results, then you're definitely making some mistake and you need to correct them. And then after that, we're all done. We've actually given access to the cloud with the help of these commands, and especially the refresh token and the client ID and the client secret. Now, let's just check out but let me just first quit the cloud first. 
+[04:42] So, I've quit So, I've quit the cloud and I'm going to reopen it so that we can see the cloud having access to the Amazon Ads MCP server or not. So, let's just check out by giving it this command. I've gotten you here. I can copy it from here as well. And let's just give it a go. It's going to take some time, by the way. So, I'm going to fast forward this video and you'll get to see. 
+[05:20] So, here we go. We do have the answers replied back from the cloud, and you can definitely ask most more and more queries. But for now, we just wanted to check out if it's working or not. So, that's how you can get yourself connected to the Amazon Ads MCP. And let's see how to get yourself connected to the Amazon SP API MCP as well. So, here you can see on the screen, we've gotten access to the commands here, just like the way we had in case of Amazon Ads API. But over here again the pre-req is to have access to the Amazon Ads, sorry, the SP API. If 
+[05:52] you don't have access to the Amazon SP API, you definitely cannot follow from here onwards. So, you first need to get access to the Amazon SP API, and if you don't know how to do that, in the I button, I've referenced the video, so you can watch it and get access to the Amazon SP API by following that video. Anyways, if you already have it, let's just follow the commands ahead. And that's how simply you can. So, just like the way we got it done in case of Ads API, you can follow the similar commands on the same 
+[06:23] terminal, and you can get access. So, just by adding your LWA client ID and the client secret and the refresh token, you can do it likewise by pasting these commands and so on so forth. It's just quite similar. So, we are not going to spend time doing it again, and you can test it out on your end. So, that's how simply you can get access to the Amazon Ads API and the SP API and super servers. And besides that, the one thing which I told you right at the start of the video was that you can actually get it done quite easily 
+[06:53] independently by giving this link to the Claude and asking it to read the whole blog on its own and follow the commands. Instead of you copying the commands, it will copy the commands on its own and get the job done for you. But obviously, you have to provide the security credentials alongside, but Claude will ask you on its own. So, that's it for this video, and I hope you liked it. If you have any question, definitely you can ask me in comment down on this video. I'll try my level best to reply each one of your comments. Thank you. See you in the next one. 

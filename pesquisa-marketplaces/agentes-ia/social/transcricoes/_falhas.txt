@@ -1,0 +1,8 @@
+7629003020214209822	https://www.tiktok.com/@robscalesfba/video/7629003020214209822	download	ERROR: [TikTok] 7629003020214209822: Unable to download webpage: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+7641380554956442911	https://www.tiktok.com/@carter.braydon/video/7641380554956442911	download	ERROR: [TikTok] 7641380554956442911: Unable to download webpage: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+7660571492547087636	https://www.tiktok.com/@restructureai/video/7660571492547087636	download	ERROR: [TikTok] 7660571492547087636: Unable to download webpage: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+7665484979094244629	https://www.tiktok.com/@itamarfrombrazil/video/7665484979094244629	download	ERROR: [TikTok] 7665484979094244629: Unable to download webpage: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+7638748995229076756	https://www.tiktok.com/@gabrieladamuchi/video/7638748995229076756	metadados	yt-dlp sem info (2 tentativas)
+DTTTrHbAXC8	https://www.instagram.com/p/DTTTrHbAXC8/	metadados	sem info (provavel post so de imagem)
+DYmtoVoj50g	https://www.instagram.com/p/DYmtoVoj50g/	metadados	No video formats found (carrossel/imagem)
+DWeHxd9gFs8	https://www.instagram.com/p/DWeHxd9gFs8/	metadados	Instagram sent an empty media response (pede login)

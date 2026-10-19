@@ -1,0 +1,50 @@
+# I Built AI Agents That Run an Amazon Business 24/7
+- canal: Profasee (https://www.youtube.com/channel/UCej71eWX_4wKlZo7bTVfNaw)
+- data: 20260508
+- duração: 6 min
+- views: 270
+- link: https://www.youtube.com/watch?v=h0lj3AM6T7Y
+- descrição: Most Amazon sellers are still running PPC, pricing, inventory, and listings with disconnected tools, agencies, spreadsheets, and manual Seller Central work.
+
+In this video, I show the AI employee system we built at Profasee Ultra: coordinated AI agents for Amazon sellers that monitor the account, reason across PPC, pricing, inventory, and catalog, and act inside seller-defined guardrails.
+
+Apply for early access:
+https://profasee.com/apply/
+
+You’ll see:
+- Why the old Amazon PPC workflow is broken
+- The difference between chatbots and AI operators
+- How AI employees coordinate across ads, pricing, inventory, and listings
+- Why guardrails matter before autonomy
+- How Profasee Ultra goes live in 3 steps
+
+Chapters:
+00:00 Profasee Ultra for Amazon sellers
+01:09 The old Amazon PPC workflow
+01:37 From chatbots to AI operators
+02:40 Your AI org chart
+03:12 Agents coordinating across PPC, pricing, and inventory
+03:38 Guardrails before autonomy
+04:29 Why raw AI agent builds are not enough
+04:52 A typical Tuesday with AI employees
+05:11 Build it yourself or turn it on
+05:30 Live in 3 steps
+05:57 What happens when Ultra turns on
+06:29 Apply for access
+
+#AmazonSellers #AIAgents #AmazonPPC
+
+
+[00:00] All right. So, I'm really excited to share with you what we've been building and in the next 3 minutes I'm going to show you the problem with how Amazon PPC is managed today. There's this massive technology shift that just made it obsolete and the platform that replaces it. So, I want to get into it. So, if you're handling Amazon PPC by hand or you're paying someone 3 to 10,000 dollars a month to manage it for you or you're just using a software that was built in 2020, everything has fundamentally changed. So, I'm about to show you something that will make the way that you run your business today feel like a fax machine. And this is not 
+[00:31] a pitch, right? I'm going to show you what we've been building. It's a live platform and by the end of this you're either going to say, "Hey, this is the future, Chad, and I want in." Or you're going to go back to doing things the old way. And either is fine, but once you see this, you really can't see it. My name is Chad Rubin. I have been in the Amazon and e-com space for over 20 years and I build stuff to solve problems. And I've built everything around my e-commerce business called Think Crucial, Prosper Show, Skubana, and now Prophecy Ultra. So, what I'm about to show you is not just some guru or some guy that read a blog post about Amazon 
+[01:01] and put it into ChatGPT, right? I'm a real seller who has built a lot of things in the space that create a ton of value. So, here's the deal with Prophecy Ultra. Right now, your PPC management probably looks like this, right? Scenario one, you do it yourself. Two, maybe you're paying an agency to spend 4 to 6 hours a week on something that AI can now do in 4 minutes. Or one of the most expensive people in your company is doing data entry and figuring it out. So, in all these three scenarios, they're built on the same assumption that a human needs to be in the loop for every single decision. A human needs to do all of those things and that's just 
+[01:33] not the case anymore. And the companies that figured this out right now are the ones that are going to win on Amazon. So, what has changed? There's this new architecture. I think Opus 4.6 specifically, along with OpenAI 5.4 reasoning, came out with this LLM that's incredible and there's this new architecture that now exists. It allows you to spawn AI agents. They don't just answer questions. They act, they have memory, they have skills, they have guardrails, they can talk to each other, they can execute on Amazon through the API while you are sleeping. They don't ask for a raise, they work 24/7, they 
+[02:04] don't take a lunch break. This is not ChatGPT, right? ChatGPT is more call response, you ask a question, you get an answer. What we built is call response and do. You tell it what you want, it goes and does it. It remembers everything from the last time you talked to it. So, imagine you hired a PPC manager that never sleeps, that's senior, that has a higher IQ than I do, it never takes a day off, it never forgets what happened last Tuesday or made an emotional decision because they had a bad morning or they didn't eat breakfast, and it costs you less per month than 1 week of your agency fee. And that is precisely what Prophecy Ultra is. These agents act autonomously, 
+[02:37] they use reasoning, they have memory, and they work while you sleep. So far, we have a team, an org chart, proper delegation chain, and Claudia is the COO, she sits on top. She delegates, she coordinates. When you ask a question in the chat, she routes it to the right agent. She's not the expert, she's the manager or project manager, that's just like a real-time CEO. Now, so far what we've built is Marco, he's your PPC agent, he's the one that's going to be doing the work, he's the one that's making bid decisions, he's the one that's mining search terms, he's pausing wasted spend, and he is the expert. We have other agents that are coming online 
+[03:08] very, very soon, like Oracle for pricing, Bruno for demand planning and forecasting. The roster just keeps on growing. You can see here actually these managers are making changes to my account, right? This is the actual dashboard running on Tin Curcho right now, my e-commerce business. You can see Marco is cutting wasted spend, you can see Bruno is also making changes around stock out to capture more margin, right? This is what's happening right now. So, one agent is thinking, one agent is doing, they coordinate, and you can coordinate with them through Slack, through WhatsApp, through Discord, even in the chat in the application. And most 
+[03:39] importantly, this is the number one concern, we thought about what happens when AI makes mistakes. AI is not perfect yet, and over time it's going to get better and better and better because AI does make mistakes, and it's confidently wrong. But the difference between a $50 mistake and a $5,000 mistake is a bunch of zeros. So, an AI doesn't care about those zeros, but you do. So, what we have done is we built safety guardrails. These are hard stops. These are suggestions where you can actually put in min bids, max bid changes per day, a cost safety spend 
+[04:10] limits, break even analysis, cost per click thresholds, everything. And so, when you first start with Profit AI Ultra, it starts in AMF mode, ask me first mode. You approve every single action before it happens. And when you're comfortable, you flip the switch to handle it mode, where Marco is executing autonomously while you're sleeping. And so, even if someone survives to set up something themselves, right? They still have to start from zero. We actually have data flowing in from all different channels. It's already there. Safety guardrails built 
+[04:40] in already. We're already tracking the market. We already have competitor pricing, buy box ownership, reviews, BSR. We already have your margins, your COGS, your fees, your landed cost guardrails. And like the AI won't make mistakes. It won't bid you into negative margin. So, we've built this incredible agentic platform called Profit AI Ultra, and it doesn't have any of the pain with trying to do this yourself. You connect your Seller Central and your agents, and it gets to work. And so, this is a typical Tuesday morning what it looks like. You can see the agent is actually doing things for me. You wake up at 8:30, your agent started at midnight. 
+[05:11] So, you have two options really, right? You can try to build this yourself, you can try to do things, try to put things together, stitch it together, all this different stuff, or literally, you install Profit AI Ultra, you connect your Seller Central account, your agents start running from day one around your rules, your guardrails, working 24/7 with all the power without all the pain. And like I mentioned, it's really three steps. So, the first step is you're going to actually book a demo. You can book a demo on the site here. It'll guide you to actually book your tour with me, making sure you're a good fit for Ultra for your specific business. 
+[05:42] And then we can start you in observation mode. This is really when the AI is like watching the campaigns, making recommendations. but it doesn't touch anything until you build trust and then boom, right after that you can switch it and you can go live, you can promote it to trust mode, you can pause anytime, there's no long-term contracts, there's no risk, etc. And so, like I mentioned, it's 24/7 coverage. If you think about it, an agency probably has been managing 10 accounts per person, that person's probably outsourced. This is a dedicated senior agent that's in your account running all the routine PPC tasks automated and you're going to see a 
+[06:13] massive drop in cost per campaign managed. So, you're going to execute faster, have a leaner team, have a lower cost, make more money, and have everything alongside your team, right, to amplify and augment the team's strategy, creative. The AI is handling all those things for you. So, if you're ready on the website, you're just going to book a demo. If you're watching this for the first time, you want more information, boom, scan this QR code and let me know what questions you have or you're going to book this live demo, we're going to get you set up and running in the same week. I look forward to seeing you there. 
