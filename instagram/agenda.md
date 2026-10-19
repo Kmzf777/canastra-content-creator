@@ -20,16 +20,19 @@ Peça sem pasta em `saida-teste/` e sem `sidecar.json` **não entra como feita**
 
 ## Ciclo 1 — 06/10 a 02/11/2026
 
-| # | Data | Série | Formato | Peça | Estado | Pasta |
-|---|---|---|---|---|---|---|
-| 1 | 06/10 ter | 7 · pacote no cotidiano | estático 4:5 | Cozinha, Clássico 250g | **pronta** | `saida-teste/post-2026-10-06-cozinha/` |
-| 2 | 09/10 sex | 3 · Arraste para entender | carrossel 6× 4:5 | Canastra é endereço | **pronta** | `saida-teste/carrossel-canastra-endereco/` |
-| 3 | 13/10 ter | 3 · Arraste para entender | carrossel | — | a definir | — |
-| 4 | 16/10 sex | 3 · Arraste para entender | carrossel | — | a definir | — |
-| 5 | 20/10 ter | 3 · Arraste para entender | carrossel | — | a definir | — |
-| 6 | 23/10 sex | 3 · Arraste para entender | carrossel | — | a definir | — |
-| 7 | 27/10 ter | 3 · Arraste para entender | carrossel | — | a definir | — |
-| 8 | 30/10 sex | 3 · Arraste para entender | carrossel | — | a definir | — |
+| # | Data | Série | Formato | Peça | Anel | Estado | Pasta |
+|---|---|---|---|---|---|---|---|
+| 1 | 06/10 ter | 7 · pacote no cotidiano | estático 4:5 | Cozinha, Clássico 250g | 3 | **pronta** | `saida-teste/post-2026-10-06-cozinha/` |
+| 2 | 09/10 sex | 3 · Arraste para entender | carrossel 6× 4:5 | Canastra é endereço | 1 | **pronta** | `saida-teste/carrossel-canastra-endereco/` |
+| 3 | 13/10 ter | 2 · bastidor e processo | reel 9:16 | Onze provas | 1 | **publicada 13/10** (confirmada no perfil em 16/10: instagram.com/reel/DecuZjGToLQ; hora real não conferida) | `instagram/remotion/projetos/08b-onze-etapas/saida/reel-onze-provas-UPLOAD.mp4` |
+| 4 | 16/10 sex | 3 · Arraste para entender | carrossel 6× 4:5 | Tem casca no seu café? (película prateada) | 2 | **publicada 14/10** (adiantada; instagram.com/p/DefH_1ClN30) | `saida-teste/carrossel-casca-no-cafe/` |
+| 5 | 20/10 ter | 3 · Arraste para entender | carrossel | — | — | a definir | — |
+| 6 | 23/10 sex | 3 · Arraste para entender | carrossel | — | — | a definir | — |
+| 7 | 27/10 ter | 3 · Arraste para entender | carrossel | — | — | a definir | — |
+| 8 | 30/10 sex | 3 · Arraste para entender | carrossel | — | — | a definir | — |
+
+
+> **13/10:** o slot de hoje saiu como **Reel** ("Onze provas", 1min22, agendado pelo Rafael para as 18h pelo celular — Reel nao sai pelo instagram.com no desktop). O carrossel da serie "Arraste para entender" que ocupava esta data voltou para a fila de pauta abaixo. Medir o resultado a partir de **14/10 as 18h**.
 
 **Avaliar em 02/11**, não antes — ver `06-cadencia.md` §6, que explica por que 30 dias
 e não 48 horas.

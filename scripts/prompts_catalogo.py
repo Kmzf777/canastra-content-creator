@@ -912,6 +912,254 @@ def p_verso(p: Produto) -> str:
 
 
 # --------------------------------------------------------------------------- #
+# kits de 40 capsulas: 4 caixas de 10 no mesmo estudio do catalogo
+# --------------------------------------------------------------------------- #
+#
+# O kit nao tem embalagem propria: sao 4 caixas de 10 soltas. Entao a fonte de
+# pixel de cada caixa e a frente JA APROVADA daquele SKU (<N>.1), nunca a foto
+# crua - o rotulo ja foi conferido letra por letra ali.
+#
+# Fica de fora de proposito: caixa aberta com capsulas dentro (nao ha foto do
+# interior; as fotos de 2022 do ML mostram sache, entao seria inventar) e
+# qualquer face lateral a mostra (o modelo inventaria o texto dela).
+
+def _produto(slug: str) -> Produto:
+    return next(p for p in PRODUTOS if p.slug == slug)
+
+
+def _n_produto(slug: str) -> int:
+    return next(i for i, p in enumerate(PRODUTOS, start=1) if p.slug == slug)
+
+
+def _aprovada(slug: str) -> str:
+    n = _n_produto(slug)
+    return f"saida-teste/catalogo-estudio/{n}-{slug}/{n}.1-frente-branco.png"
+
+
+#: Nome curto da variante, como esta impresso no badge da caixa.
+VARIANTE = {"capsulas-classico": "CLÁSSICO", "capsulas-suave": "SUAVE",
+            "capsulas-canela": "CANELA"}
+FAIXA = {"capsulas-classico": "black", "capsulas-suave": "dark chocolate brown",
+         "capsulas-canela": "deep wine red"}
+
+
+@dataclass
+class Kit:
+    slug: str
+    nome: str
+    ml_id: str
+    #: piramide: base esquerda, base centro, base direita, topo
+    piramide: tuple[str, str, str, str]
+    #: escalonado: da frente para tras
+    fila: tuple[str, str, str, str]
+    fundo: str
+    #: as duas capsulas soltas da tomada escalonada: (em pe, deitada)
+    capsulas: tuple[str, str]
+
+    @property
+    def skus(self) -> list[str]:
+        """SKUs distintos, na ordem em que os anexos entram."""
+        vistos: list[str] = []
+        for s in self.piramide:
+            if s not in vistos:
+                vistos.append(s)
+        return vistos
+
+
+KITS: list[Kit] = [
+    Kit("kit-capsulas-classico", "Kit 40 Cápsulas Clássico — 4 caixas de 10",
+        "2691993380", ("capsulas-classico",) * 4, ("capsulas-classico",) * 4,
+        FAIXA["capsulas-classico"] + " — the colour of the band at the top of the cartons",
+        ("capsulas-classico", "capsulas-classico")),
+    Kit("kit-capsulas-suave", "Kit 40 Cápsulas Suave — 4 caixas de 10",
+        "2691960931", ("capsulas-suave",) * 4, ("capsulas-suave",) * 4,
+        FAIXA["capsulas-suave"] + " — the colour of the band at the top of the cartons",
+        ("capsulas-suave", "capsulas-suave")),
+    Kit("kit-capsulas-canela", "Kit 40 Cápsulas Canela — 4 caixas de 10",
+        "2691974195", ("capsulas-canela",) * 4, ("capsulas-canela",) * 4,
+        FAIXA["capsulas-canela"] + " — the colour of the band at the top of the cartons",
+        ("capsulas-canela", "capsulas-canela")),
+    # Composicao 2 Classico + 1 Suave + 1 Canela: e o que a descricao do anuncio
+    # diz. A expedicao ainda nao confirmou (mercadolivre/10-textos-prontos.md).
+    Kit("kit-capsulas-3-sabores", "Kit 40 Cápsulas 3 Sabores — 2 Clássico + 1 Suave + 1 Canela",
+        "2691974682",
+        ("capsulas-classico", "capsulas-suave", "capsulas-canela", "capsulas-classico"),
+        ("capsulas-classico", "capsulas-suave", "capsulas-canela", "capsulas-classico"),
+        # Kraft sobre kraft some: as caixas sao kraft. O marrom da faixa do Suave
+        # contrasta com o papel e conversa com as tres faixas (preta, marrom, vinho).
+        "a deep dark coffee brown — the same dark chocolate brown as the top band of "
+        "the SUAVE carton",
+        ("capsulas-classico", "capsulas-canela")),
+]
+
+ORDINAL = ["FIRST", "SECOND", "THIRD", "FOURTH", "FIFTH"]
+
+
+def _anexos_kit(k: Kit) -> str:
+    if len(k.skus) == 1:
+        v = VARIANTE[k.skus[0]]
+        return (
+            f"THE ATTACHED IMAGE is the approved studio packshot of the {v} carton. "
+            "All four cartons in the kit are identical copies of it: reproduce its "
+            "printed artwork, proportions, colours and finish exactly, four times."
+        )
+    linhas = ["THE ATTACHMENTS — each one is the approved studio packshot of one "
+              "carton variant and the source of that variant only:"]
+    for i, s in enumerate(k.skus):
+        linhas.append(f"{ORDINAL[i]} image — the {VARIANTE[s]} carton, with the "
+                      f"{FAIXA[s]} top band and the \"{VARIANTE[s]}\" badge.")
+    linhas.append("Never mix them: each carton keeps its own band colour, its own "
+                  "badge and its own capsule illustration. A band colour or a badge "
+                  "must never move to another carton.")
+    return " ".join(linhas)
+
+
+def _artes_kit(k: Kit) -> str:
+    partes = []
+    for s in k.skus:
+        p = _produto(s)
+        partes.append(f"THE {VARIANTE[s]} CARTON — {p.corpo}. {p.arte.rstrip('.')}.")
+    return "\n\n".join(partes)
+
+
+def _lista(skus: tuple[str, ...]) -> str:
+    return ", ".join(f"{VARIANTE[s]}" for s in skus)
+
+
+#: O kit e um objeto so: nada alem das caixas (e das capsulas, onde pedido).
+KIT_NEGATIVOS = (
+    "The cartons are closed and intact — no open flap, no carton cut open, no "
+    "capsules spilling out. Nothing else in the set: no loose coffee beans, no "
+    "ground coffee, no cup, no leaf, no cinnamon quill, no cloth, no wood, no ribbon, "
+    "no gift box, no tray, no shopping bag, no price tag, no added text and no "
+    "\"40\" or \"KIT\" written anywhere — the printed artwork on each carton is the "
+    "only text in the frame. No side panel artwork is invented: side faces show at "
+    "most as a thin plain sliver."
+)
+
+
+def p_kit_piramide(k: Kit) -> str:
+    """K.1 - a capa: 3 caixas na base e 1 em cima, as 4 frentes inteiras."""
+    return "\n\n".join([
+        "Create a studio product photograph of a KIT of four capsule cartons stacked "
+        "as a small retail display pyramid.",
+        _anexos_kit(k),
+        _artes_kit(k),
+        FIDELIDADE,
+        "THE ARRANGEMENT — three cartons stand upright side by side on the white "
+        "floor in one straight row, fronts square to the camera and in the same "
+        "plane, with a gap of about one centimetre between neighbours. The fourth "
+        "carton stands upright ON TOP of the middle carton, centred on it, its front "
+        "face flush with the front faces below, resting flat on the middle carton's "
+        "top face. All four front faces are fully visible from top band to bottom "
+        f"line — no carton hides any part of another's front. Bottom row, left to "
+        f"right: {_lista(k.piramide[:3])}. On top: {VARIANTE[k.piramide[3]]}.",
+        "SCALE — the cartons are all the same size. Each carton is about one third "
+        "of the frame height; the whole pyramid is about 72% of the frame height and "
+        "fills the width with even margins left and right.",
+        ESTUDIO,
+        "FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). The "
+        "camera is level, at the height of the top edge of the bottom row, square "
+        "to the group, so every vertical edge stays parallel. No low hero angle, no "
+        "top-down view, no tilt, no wide-angle distortion. The pyramid is centred "
+        "with its base a little below the middle of the frame's lower half. Each "
+        "carton casts its own soft contact shadow; the top carton casts a faint one "
+        "on the top face of the carton beneath it.",
+        KIT_NEGATIVOS,
+    ])
+
+
+def p_kit_cor(k: Kit) -> str:
+    """K.2 - troca de fundo da K.1 aprovada."""
+    return "\n\n".join([
+        "EDIT THE ATTACHED PHOTOGRAPH. This is a background replacement and nothing "
+        "else. Do not re-stage it, do not re-shoot it, do not re-draw it, do not "
+        "re-frame it.",
+        "KEEP ALL FOUR CARTONS PIXEL-FOR-PIXEL IDENTICAL: the same cartons, at the "
+        "exact same positions in the frame, the exact same scale, rotation and camera "
+        "perspective, the exact same crop. The same printed artwork and the same "
+        "typography on every carton, letter for letter. The cartons must occupy "
+        "exactly the same pixels of the frame as they do in the source.",
+        "CHANGE ONLY THE BACKGROUND. Replace the white cove with a seamless sweep in "
+        f"{k.fundo} — sample that colour from the cartons themselves. Wall and floor "
+        "are the same colour and continuous, with no visible horizon line, no seam, "
+        "no edge and no props. Keep the same key light direction and the same "
+        "highlight pattern on the cartons, and let the new backdrop bounce a little "
+        "of its own colour back onto them, the way a coloured cove really would.",
+        "Keep the soft contact shadows under each carton, now reading as a slightly "
+        "deeper tone of the backdrop colour rather than grey. No mirror reflection. "
+        "Everything stays sharp. No added text, no watermark.",
+    ])
+
+
+def p_kit_escalonado(k: Kit) -> str:
+    """K.3 - as 4 caixas em fila diagonal, cada uma de frente, e as capsulas reais."""
+    n = len(k.skus)
+    ref_caps = sorted(set(k.capsulas), key=k.capsulas.index)
+    caps = []
+    for s in ref_caps:
+        caps.append(f"the {VARIANTE[s]} capsule — {_produto(s).capsula_corpo}")
+    n_caps = len(_caps_fonte(k))
+    anexo_caps = (
+        f"{ORDINAL[n]} image" + ("" if n_caps == 1 else f" and {ORDINAL[n + 1]} image")
+        + " — tight crops of the REAL capsule photographed on a wooden table, the same "
+        "capsule twice: standing on the left, lying on its side on the right so the "
+        "foil lid shows. Look at "
+        + ("it" if n_caps == 1 else "them")
+        + " ONLY to read the capsule's shape, proportions, colour, finish and silver "
+        "foil lid. The wooden table, the warm tungsten light, the two-up split layout "
+        "and the white border must NOT appear in your output."
+    )
+    em_pe, deitada = k.capsulas
+    return "\n\n".join([
+        "Create a studio product photograph of a KIT of four capsule cartons standing "
+        "in a staggered diagonal line, with two loose capsules in front.",
+        # aqui ha mais de um anexo (a caixa e a capsula): "THE ATTACHED IMAGE"
+        # seguido de "SECOND image" confunde a ordem
+        _anexos_kit(k).replace("THE ATTACHED IMAGE is", "FIRST image —"),
+        anexo_caps,
+        _artes_kit(k),
+        FIDELIDADE,
+        "THE ARRANGEMENT — four cartons stand upright in a single file that recedes "
+        "diagonally from the front-left of the set to the back-right. Every carton "
+        "keeps its FRONT FACE SQUARE TO THE CAMERA — they are not rotated, they are "
+        "only stepped back and to the right. Each carton stands about two "
+        "centimetres behind the one in front of it and shifted right by about half "
+        "its width, so the front carton is shown complete and each carton behind "
+        "shows its right half: top band, the right part of the logo, the badge. "
+        f"Front to back: {_lista(k.fila)}. The cartons are all the same size; the "
+        "receding ones only get very slightly smaller with distance.",
+        f"THE CAPSULES — {CAPSULA_FORMA}. On the white floor in front of the front "
+        f"carton, slightly to its left, clear of it: one capsule STANDING on its "
+        f"flange, dome up, foil hidden — {('the ' + VARIANTE[em_pe] + ' capsule')}; "
+        f"and one LYING on its side beside it, rolled so the SILVER FOIL LID faces "
+        f"the camera as a full circle — {('the ' + VARIANTE[deitada] + ' capsule')}. "
+        + " ".join(c[0].upper() + c[1:] + "." for c in caps)
+        + " A standing capsule reaches about one third of a carton's height. The two "
+        "capsules touch neither each other nor the cartons.",
+        ESTUDIO,
+        "FRAMING — vertical portrait, 3:4 aspect ratio (width:height = 3:4). Camera "
+        "at eye level with the middle of the front carton, very slightly above, "
+        "square to the cartons' front faces. The front carton is about 45% of the "
+        "frame height; the whole group is centred with even margins and its base a "
+        "little below centre. Each carton and capsule casts its own soft contact "
+        "shadow in the same direction.",
+        KIT_NEGATIVOS.replace("no capsules spilling out", "no capsules other than the "
+                              "two described")
+        + " " + CAPSULA_NEGATIVOS,
+    ])
+
+
+def _caps_fonte(k: Kit) -> list[str]:
+    fontes: list[str] = []
+    for s in k.capsulas:
+        f = _produto(s).capsula_fonte
+        if f not in fontes:
+            fontes.append(f)
+    return fontes
+
+
+# --------------------------------------------------------------------------- #
 # escrita
 # --------------------------------------------------------------------------- #
 
@@ -1085,6 +1333,38 @@ def montar() -> str:
 
         partes.append("---\n")
 
+    partes.append(montar_kits())
+    return "\n".join(partes)
+
+
+def montar_kits() -> str:
+    base = len(PRODUTOS)
+    partes = [
+        "\n# Kits de 40 cápsulas\n",
+        "Quatro caixas de 10, no mesmo estúdio do catálogo. A fonte de pixel de cada "
+        "caixa é a **frente já aprovada** daquele SKU, nunca a foto crua. Ordem: K.1 "
+        "primeiro (é a capa), K.2 só com a K.1 aprovada, K.3 por último.\n",
+        "**Conferência:** com 4 caixas no quadro, cada uma tem ~1/3 da altura — abaixo "
+        "do limiar de ~30% em que o rótulo começa a errar letra. Amplie **cada caixa** e "
+        "confira `CÁPSULAS`, `Desde 1985`, o badge, `CONTEÚDO 10un. DE 5g.`, `SCAA 80+` "
+        "e `INDÚSTRIA BRASILEIRA`, uma por uma. No misto, confira também que **nenhuma "
+        "faixa ou badge trocou de caixa**.\n",
+    ]
+    for j, k in enumerate(KITS, start=1):
+        n = base + j
+        aprov = [_aprovada(s) for s in k.skus]
+        partes.append(f"\n## {n}. {k.nome}\n")
+        partes.append(f"Anúncio `MLB{k.ml_id}`. Saída em "
+                      f"`saida-teste/catalogo-estudio/{n}-{k.slug}/`.\n")
+        partes.append(bloco(f"{n}.1 Kit — pirâmide, fundo branco (capa)", aprov,
+                            p_kit_piramide(k), "Confira as 4 caixas ampliadas, uma por uma."))
+        partes.append(bloco(f"{n}.2 Kit — pirâmide, fundo cor", [f"a imagem aprovada em {n}.1"],
+                            p_kit_cor(k), "Só a aprovada do passo anterior."))
+        partes.append(bloco(f"{n}.3 Kit — escalonado com cápsulas", aprov + _caps_fonte(k),
+                            p_kit_escalonado(k),
+                            "Confira a caixa da frente como uma frente nova, a tampa lisa "
+                            "das cápsulas e a cor de cada cápsula."))
+        partes.append("---\n")
     return "\n".join(partes)
 
 
@@ -1099,6 +1379,10 @@ def conferir() -> int:
                 faltando.append(f"{p.pasta}/{a}")
         if p.capsula_fonte and not (RAIZ / p.capsula_fonte).exists():
             faltando.append(p.capsula_fonte)
+    for k in KITS:
+        for f in [_aprovada(s) for s in k.skus] + _caps_fonte(k):
+            if not (RAIZ / f).exists():
+                faltando.append(f)
     if not (RAIZ / ANCORA).exists():
         faltando.append(ANCORA)
     for f in faltando:

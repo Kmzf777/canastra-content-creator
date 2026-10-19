@@ -141,6 +141,12 @@ tempo trocam as imagens entre si sem erro nenhum. E o ChatGPT **compartilha o ra
 e os anexos do composer entre abas** — leia o `.ProseMirror` e a lista de anexos
 imediatamente antes de cada envio.
 
+**Prompts longos em várias abas: guarde os blocos no `localStorage`.** O chatgpt.com é a mesma
+origem em todas as abas, então `localStorage.setItem('__kitK', JSON.stringify(blocos))` numa aba
+deixa os blocos de caixa, estúdio e negativos disponíveis nas outras. Cada prompt se monta em JS
+a partir deles, e o comprimento montado **tem que bater com o do `.md`** gerado pelo script antes
+do envio (foi assim nos kits de 08/10/2026: 7.660 / 7.906 / 7.855 / 12.928, idênticos).
+
 **Confira o carimbo de hora do arquivo de origem que ele imprimiu.** O script já
 salvou silenciosamente uma imagem do dia anterior porque procurava só um dos dois
 padrões de nome (`ChatGPT Image*` em inglês, `Imagem do ChatGPT*` em português) e

@@ -1,0 +1,706 @@
+<title>Guia Shopee Canastra</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: uma coluna de leitura (onde estamos → plano → o que é CM → calculadora → glossário); a calculadora abre em duas colunas no desktop. */
+:root {
+  --bg: #F3F5F7;
+  --surface: #FFFFFF;
+  --line: #D8DDE3;
+  --fg: #1A1E24;
+  --muted: #5B6470;
+  --accent: #2F5A9E;
+  --accent-soft: #E1E9F5;
+  --good: #1F7A50; --good-soft: #DFF1E7;
+  --warn: #8A5A00; --warn-soft: #FBEFD6;
+  --bad: #B3261E;  --bad-soft: #F8E1DF;
+  --c-cafe: #7A4E2D;
+  --c-shopee: #34405A;
+  --c-imposto: #8C8799;
+  --c-frete: #3E8FA8;
+  --c-promo: #7B57B0;
+  --c-ads: #D99A12;
+  --c-perda: #B5ADA3;
+  --c-sobra: #1F8A5B;
+  --display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171B; --surface: #1C2026; --line: #323842; --fg: #E9ECEF; --muted: #A2AAB4;
+    --accent: #8DB0EA; --accent-soft: #1A2740;
+    --good: #6CCB97; --good-soft: #16301F; --warn: #E8B54A; --warn-soft: #3A2C10; --bad: #F08A80; --bad-soft: #3A1C1A;
+    --c-cafe: #B07A50; --c-shopee: #8E9BB8; --c-imposto: #6F6A7D; --c-frete: #6FB9CF; --c-promo: #A889D6; --c-ads: #E8B54A; --c-perda: #6E675F; --c-sobra: #4DBB82;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171B; --surface: #1C2026; --line: #323842; --fg: #E9ECEF; --muted: #A2AAB4;
+  --accent: #8DB0EA; --accent-soft: #1A2740;
+  --good: #6CCB97; --good-soft: #16301F; --warn: #E8B54A; --warn-soft: #3A2C10; --bad: #F08A80; --bad-soft: #3A1C1A;
+  --c-cafe: #B07A50; --c-shopee: #8E9BB8; --c-imposto: #6F6A7D; --c-frete: #6FB9CF; --c-promo: #A889D6; --c-ads: #E8B54A; --c-perda: #6E675F; --c-sobra: #4DBB82;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 44px; }
+section { display: grid; gap: 16px; min-width: 0; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.08; font-weight: 700; }
+h2 { font-size: 24px; font-weight: 700; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 66ch; }
+.eyebrow { font: 600 13px var(--body); letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+.lead { color: var(--muted); font-size: 18px; }
+.muted { color: var(--muted); }
+small, .small { font-size: 14px; color: var(--muted); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* onde estamos */
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.st { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+.pill { justify-self: start; font: 600 12px var(--body); letter-spacing: .05em; text-transform: uppercase; padding: 2px 9px; border-radius: 999px; }
+.pill.ok { background: var(--good-soft); color: var(--good); }
+.pill.no { background: var(--warn-soft); color: var(--warn); }
+
+/* plano */
+.fases { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: f; }
+.fases li { counter-increment: f; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding-bottom: 22px; position: relative; }
+.fases li::before {
+  content: counter(f); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: var(--surface); font: 700 16px var(--display);
+}
+.fases li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 40px; bottom: 4px; width: 2px; background: var(--line); }
+.fases .t { display: grid; gap: 4px; padding-top: 5px; }
+.fases .gate { font-size: 14px; color: var(--muted); }
+.fases .gate b { color: var(--fg); font-weight: 600; }
+.note { background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; font-size: 15px; }
+
+/* CMs */
+.cms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 720px) { .cms { grid-template-columns: minmax(0, 1fr); } }
+.cm { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; align-content: start; }
+.cm .tag { font: 700 22px var(--display); color: var(--accent); }
+.cm .q { font-weight: 600; }
+.cm ul { margin: 0; padding-left: 18px; font-size: 15px; color: var(--muted); }
+
+/* calculadora */
+.calc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 28px; }
+@media (max-width: 800px) { .calc { grid-template-columns: minmax(0, 1fr); padding: 18px; } }
+.ctrl { display: grid; gap: 22px; align-content: start; }
+.field { display: grid; gap: 8px; }
+.field > .lbl { font-weight: 600; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button {
+  font: 600 15px var(--body); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg);
+}
+.seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.price { display: flex; align-items: center; gap: 10px; }
+.price input[type="number"] {
+  width: 120px; font: 500 20px var(--mono); padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); text-align: right;
+}
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+.sw { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; cursor: pointer; }
+.sw input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); }
+.sw span b { display: block; font-weight: 600; }
+.sw span small { display: block; }
+.adsbox { display: grid; gap: 6px; padding-left: 30px; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.out { display: grid; gap: 20px; align-content: start; min-width: 0; }
+.big { display: grid; gap: 6px; }
+.big .s { font-size: 19px; }
+.big .v { font: 700 clamp(34px, 6vw, 48px) var(--display); line-height: 1; font-variant-numeric: tabular-nums; }
+.verdict { justify-self: start; font: 600 14px var(--body); padding: 4px 12px; border-radius: 999px; }
+.verdict.good { background: var(--good-soft); color: var(--good); }
+.verdict.warn { background: var(--warn-soft); color: var(--warn); }
+.verdict.bad { background: var(--bad-soft); color: var(--bad); }
+.bar { display: flex; height: 34px; border-radius: 8px; overflow: hidden; background: var(--bg); }
+.bar span { height: 100%; transition: width .25s ease; }
+@media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+.legend { display: grid; gap: 0; }
+.legend .r { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.legend .r:last-child { border-bottom: 0; }
+.legend .dot { width: 12px; height: 12px; border-radius: 3px; align-self: center; }
+.legend .r small { display: block; }
+.legend .r .num { white-space: nowrap; }
+.legend .r.sobra { font-weight: 600; }
+.stops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stop { border-radius: 8px; padding: 10px 12px; background: var(--bg); display: grid; gap: 2px; }
+.stop .k { font: 700 14px var(--display); color: var(--accent); }
+.stop .v { font: 500 18px var(--mono); font-variant-numeric: tabular-nums; }
+.stop .d { font-size: 13px; color: var(--muted); line-height: 1.3; }
+.stop.neg .v { color: var(--bad); }
+.tips { display: grid; gap: 8px; font-size: 15px; }
+.tips p { padding-left: 14px; border-left: 3px solid var(--line); }
+.tips p.alert { border-left-color: var(--bad); }
+.chip { display: inline-block; font: 600 11px var(--body); letter-spacing: .04em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); vertical-align: 1px; white-space: nowrap; }
+
+/* grupos da calculadora */
+fieldset.grp { border: 0; margin: 0; padding: 0 0 18px; display: grid; gap: 10px; border-bottom: 1px solid var(--line); min-width: 0; }
+fieldset.grp legend { font: 700 14px var(--display); color: var(--accent); padding: 0; margin-bottom: 10px; letter-spacing: .02em; }
+fieldset.grp .price input[type="number"], .advbody .price input[type="number"] { width: 110px; font-size: 17px; }
+.roas { position: relative; display: grid; align-items: center; height: 26px; }
+.roas .band { position: absolute; top: 50%; height: 10px; transform: translateY(-50%); background: var(--good-soft); border: 1px solid var(--good); border-radius: 4px; pointer-events: none; }
+.roas input { position: relative; margin: 0; background: transparent; }
+.bandkey { display: inline-block; width: 18px; height: 8px; border-radius: 3px; background: var(--good-soft); border: 1px solid var(--good); vertical-align: 1px; margin-right: 4px; }
+details.adv { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; background: var(--bg); }
+details.adv summary { cursor: pointer; font-weight: 600; }
+.advbody { display: grid; gap: 8px; margin-top: 12px; }
+.modo { font-size: 15px; background: var(--accent-soft); border-radius: 8px; padding: 8px 12px; max-width: none; }
+.sw input:disabled + span { opacity: .6; }
+.mes { display: grid; gap: 0; background: var(--bg); border-radius: 8px; padding: 10px 14px; }
+.mes .k { font: 700 14px var(--display); color: var(--accent); padding-bottom: 4px; }
+.mes .row { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.mes .row:last-child { border-bottom: 0; }
+.mes .row.tot { font-weight: 600; }
+.mes .row b { white-space: nowrap; font-weight: 500; }
+.proj { display: grid; gap: 8px; }
+.proj .k { font: 700 14px var(--display); color: var(--accent); }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { font: 12px var(--body); fill: var(--muted); }
+.chart .lab { font: 600 12px var(--body); }
+.chartkey { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); }
+.chartkey i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: 3px; margin-right: 6px; }
+
+/* glossário */
+dl.gl { margin: 0; display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr); gap: 10px 20px; }
+@media (max-width: 560px) { dl.gl { grid-template-columns: minmax(0, 1fr); gap: 2px; } dl.gl dd { margin-bottom: 10px; } }
+dl.gl dt { font-weight: 600; }
+dl.gl dd { margin: 0; color: var(--muted); }
+a { color: var(--accent); }
+footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+</style>
+
+<div class="wrap">
+
+  <header style="display:grid;gap:10px">
+    <span class="eyebrow">Café Canastra · Shopee</span>
+    <h1>A Shopee explicada, e quanto sobra em cada pacote</h1>
+    <p class="lead">Uma página para entender a estratégia sem planilha: onde a loja está, o caminho em quatro fases, o que significam CM1, CM2 e CM3, e uma calculadora com o essencial na frente e o resto no Avançado.</p>
+  </header>
+
+  <section>
+    <h2>Onde a loja está hoje</h2>
+    <p class="muted">A Canastra nunca vendeu na Shopee. Começamos do zero.</p>
+    <div class="status">
+      <div class="st"><span class="pill ok">Pronto</span><h3>Abrir em CNPJ</h3><span class="small">Decidido em 15/10. Só CNPJ entra no Full e no selo de Vendedor Indicado.</span></div>
+      <div class="st"><span class="pill ok">Pronto</span><h3>Despachar em 1 dia útil</h3><span class="small">Decidido em 15/10. É o prazo que o selo de Indicado pede.</span></div>
+      <div class="st"><span class="pill ok">Pronto</span><h3>Preço estudado</h3><span class="small">Já sabemos a faixa em que o café se paga: a do café especial.</span></div>
+      <div class="st"><span class="pill no">Falta</span><h3>A loja não existe</h3><span class="small">Não há conta de vendedor. Quem cria é você, com o passo a passo pronto.</span></div>
+      <div class="st"><span class="pill no">Falta</span><h3>Código Anvisa</h3><span class="small">Confirmar com o contador se é "00" (dispensado). Código errado tira o anúncio do ar.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>O caminho, em quatro fases</h2>
+    <p class="muted">Na Shopee, quem é visto é quem entrega no prazo e tem o selo de Vendedor Indicado. E a tarifa come muito do pacote barato. Por isso a ordem é: abrir certo, vender sem atrasar nada, só então pagar anúncio, e por fim buscar o selo e o estoque da Shopee (Full).</p>
+    <ol class="fases">
+      <li><div class="t">
+        <h3>Abrir a loja do jeito certo</h3>
+        <p>Criar a loja em CNPJ, pesar o 1 kg e o 500 g já na caixa de envio, ver que tipo de coleta existe no nosso CEP e confirmar o código Anvisa. Cadastrar 1 kg e 500 g.</p>
+        <span class="gate"><b>Por quê:</b> peso cadastrado errado vira cobrança de frete até 90 dias depois. E abrir em CPF obriga a migrar mais tarde.</span>
+        <span class="gate"><b>Passa para a próxima quando:</b> produtos no ar, coleta definida e nota fiscal saindo.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Primeiras vendas, sem atrasar nenhuma</h3>
+        <p>Vender no preço do café especial, não no do gourmet barato. Usar vídeo no anúncio e cupom de seguidor, que não custam tarifa extra. Despachar todo pedido no dia útil seguinte.</p>
+        <span class="gate"><b>Por quê:</b> 5% de pedidos atrasados já vale um ponto de penalidade. Três pontos no trimestre derrubam a visibilidade da loja. E o extrato do primeiro pedido mostra se a taxa cobrada bate com a nossa conta.</span>
+        <span class="gate"><b>Passa para a próxima quando:</b> o extrato do 1º pedido confere com a calculadora e os atrasos ficam abaixo de 3%.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Anúncio com meta que se paga</h3>
+        <p>Ligar o Shopee Ads (GMV Max) com uma meta de ROAS acima do mínimo que a calculadora mostra. Pode entrar aqui também o Afiliado do Vendedor, que é comissão extra paga por nós.</p>
+        <span class="gate"><b>Por quê:</b> loja nova não tem selo nem avaliações, e o anúncio é o jeito de ser vista. Mas meta baixa demais faz cada venda dar prejuízo.</span>
+        <span class="gate"><b>Passa para a próxima quando:</b> loja com mais de 90 dias e 30 pedidos em 30 dias, o mínimo para pedir o selo.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Selo de Indicado e Full</h3>
+        <p>Buscar o selo de Vendedor Indicado e, com giro suficiente, mandar estoque para o Full (o armazém da Shopee). Se vier convite para Campanha de Destaque, decidir com a conta na mão.</p>
+        <span class="gate"><b>Por quê:</b> 17 dos 40 primeiros anúncios de "café em grãos 1kg" têm o selo. A Campanha de Destaque cobra 3,5% de todas as vendas da loja, não só das vendas da campanha.</span>
+      </div></li>
+    </ol>
+    <p class="note">Já está decidido: loja em CNPJ, preparo em 1 dia útil e manter o teste grátis da Devolução Fácil. As quatro fases são uma proposta que sai do diagnóstico de 15/10/2026. A ordem das fases ainda não foi aprovada. Cada passo é aprovado por você, um de cada vez.</p>
+  </section>
+
+  <section>
+    <h2>O que são CM1, CM2 e CM3</h2>
+    <p class="muted">CM quer dizer <b>margem de contribuição</b>: o dinheiro que sobra de uma venda depois de pagar o que aquela venda gastou. Os três números são a mesma conta em três paradas. A cada parada sai mais uma despesa.</p>
+    <div class="cms">
+      <div class="cm">
+        <span class="tag">CM1</span>
+        <span class="q">O pacote se paga sozinho?</span>
+        <p class="small">Preço menos o que é obrigatório em toda venda:</p>
+        <ul><li>o custo do café (CMV)</li><li>a comissão da Shopee</li><li>a taxa fixa por item</li><li>o imposto de 9%</li></ul>
+        <p class="small">O frete grátis só entra na logística própria (25% do desconto, até R$ 10). Na coleta, na agência e no Full, a Shopee banca o cupom de frete.</p>
+      </div>
+      <div class="cm">
+        <span class="tag">CM2</span>
+        <span class="q">E pagando para vender mais?</span>
+        <p class="small">CM1 menos o que depende de como a venda chegou:</p>
+        <ul><li>o anúncio, se estava ligado</li><li>3,5% da Campanha de Destaque, se a loja entrar</li><li>cupom nosso, moedas de cashback ou comissão do Afiliado do Vendedor, se usarmos</li></ul>
+      </div>
+      <div class="cm">
+        <span class="tag">CM3</span>
+        <span class="q">Quanto sobra de verdade?</span>
+        <p class="small">CM2 menos os custos que vêm depois da venda:</p>
+        <ul><li>R$ 0,49 da Devolução Fácil por pedido</li><li>devoluções por culpa nossa e pacotes perdidos</li><li>mais tarde, a armazenagem do Full se o estoque parar</li></ul>
+      </div>
+    </div>
+    <p>A CM3 é o número que importa para decidir preço. É o que fica para pagar salários, aluguel e o lucro da empresa. Se a CM3 é negativa, cada venda tira dinheiro do caixa.</p>
+  </section>
+
+  <section id="calculadora">
+    <h2>Calculadora: quanto sobra em cada pacote</h2>
+    <p class="muted">A Canastra ainda não tem loja na Shopee, então nada aqui foi medido num pedido nosso. Os números são as regras públicas da Shopee, lidas em 15/10/2026. O que é chute nosso leva o selo <span class="chip">estimado</span>.</p>
+    <div class="calc">
+      <form class="ctrl" id="f" autocomplete="off">
+        <fieldset class="grp">
+          <legend>Produto e preço</legend>
+          <div class="seg" id="prod"></div>
+          <div class="price"><span class="muted">R$</span><input type="number" id="preco" step="0.10" aria-label="Preço na Shopee"></div>
+          <input type="range" id="precoR" step="0.10" aria-label="Ajustar preço">
+          <small id="precoRef"></small>
+          <div class="field">
+            <label class="lbl" for="cmv">Custo do café no pacote (CMV)</label>
+            <div class="price"><span class="muted">R$</span><input type="number" id="cmv" min="0" step="0.10"></div>
+            <small id="cmvTxt"></small>
+          </div>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Como vende</legend>
+          <div class="field">
+            <span class="lbl">Loja em</span>
+            <div class="seg" id="doc"></div>
+            <small id="docTxt"></small>
+          </div>
+          <div class="field">
+            <span class="lbl">Envio</span>
+            <div class="seg" id="envio"></div>
+            <small id="envioTxt"></small>
+          </div>
+          <div class="field" id="boxFrete" hidden>
+            <label class="lbl" for="freteDesc">Desconto de frete dado ao comprador (R$ por pedido)</label>
+            <div class="price"><input type="number" id="freteDesc" min="0" max="100" step="0.50" value="30"><span class="chip">estimado</span></div>
+            <small>Na logística própria pagamos 25% desse desconto, no máximo R$ 10 por pedido. A Shopee paga o resto.</small>
+          </div>
+          <div class="field" id="boxFull" hidden>
+            <span class="lbl">Full+ (desconto na comissão)</span>
+            <div class="seg" id="fullmais"></div>
+            <small id="fullmaisTxt"></small>
+          </div>
+          <label class="sw"><input type="checkbox" id="dev" checked><span><b>Devolução Fácil</b><small id="devTxt"></small></span></label>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Anúncio pago</legend>
+          <label class="sw"><input type="checkbox" id="ads"><span><b>A venda veio do Shopee Ads</b><small>Você escolhe a meta de ROAS, como no GMV Max.</small></span></label>
+          <div class="adsbox" id="adsbox" hidden>
+            <div class="roas">
+              <span class="band" id="band" aria-hidden="true"></span>
+              <input type="range" id="roas" min="2" max="35" step="0.5" value="10" aria-label="Meta de ROAS">
+            </div>
+            <small><span class="bandkey"></span> o que vendedores contam do GMV Max automático: ROAS 3,9 a 8 <span class="chip">estimado</span></small>
+            <small id="adsTxt"></small>
+          </div>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Promoções pagas por nós</legend>
+          <label class="sw"><input type="checkbox" id="camp"><span><b>Loja na Campanha de Destaque</b><small>3,5% de todas as vendas da loja, até das que não vieram da campanha. Só por convite.</small></span></label>
+          <label class="lbl" for="cupom">Cupom do vendedor (R$ por pedido)</label>
+          <div class="price"><input type="number" id="cupom" min="0" max="100" step="0.50" value="0"></div>
+          <label class="sw"><input type="checkbox" id="afil"><span><b>A venda veio do Afiliado do Vendedor</b><small>Comissão extra que nós oferecemos ao criador. A comissão básica do afiliado é paga pela Shopee.</small></span></label>
+          <div class="adsbox" id="afilbox" hidden>
+            <div class="price"><input type="number" id="afilPct" min="0" max="50" step="0.5" value="5"><span class="muted">% do preço</span><span class="chip">estimado</span></div>
+            <small>Quem escolhe o % somos nós. A pesquisa não achou um valor típico para café.</small>
+          </div>
+          <small>Oferta Relâmpago, Leve Mais por Menos e desconto no anúncio são só preço menor: para simular, baixe o preço.</small>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Estimativa do mês</legend>
+          <label class="lbl" for="vendas">Vendas por mês</label>
+          <div class="price"><input type="number" id="vendas" min="1" max="2000" step="1" value="10"><span class="muted">pacotes no 1º mês</span></div>
+          <label class="lbl" for="cresc">Crescimento por mês</label>
+          <div class="price"><input type="number" id="cresc" min="-50" max="100" step="1" value="10"><span class="muted">% ao mês</span><span class="chip">estimado</span></div>
+        </fieldset>
+
+        <details class="adv">
+          <summary>Avançado</summary>
+          <div class="advbody">
+            <div id="advKit" style="display:grid;gap:8px">
+              <span class="lbl">Taxas fixas cobradas no kit</span>
+              <div class="seg" id="itens"></div>
+              <small>A Shopee cobra a taxa fixa por item. Se o kit conta como 1 item ou 2, nenhuma regra oficial diz. Só o extrato do 1º kit vendido vai responder.</small>
+            </div>
+            <label class="lbl" for="share">Vendas que vêm do anúncio (% do mês)</label>
+            <div class="price"><input type="number" id="share" min="0" max="100" step="5" value="100"><span class="chip">estimado</span></div>
+            <small>Só mexe na estimativa do mês. Com 100%, toda venda paga o anúncio.</small>
+            <label class="lbl" for="moedas">Cashback em moedas (% do preço)</label>
+            <div class="price"><input type="number" id="moedas" min="0" max="30" step="0.5" value="0"></div>
+            <small>Moedas dadas pela loja saem do nosso bolso: 100 moedas = R$ 1.</small>
+            <label class="lbl" for="perdas">Devoluções por culpa nossa e perdas (% do preço)</label>
+            <div class="price"><input type="number" id="perdas" min="0" max="20" step="0.5" value="0"><span class="chip">estimado</span></div>
+            <small>Sem a Devolução Fácil, a devolução por culpa nossa custa o frete inteiro, mais R$ 15 se quisermos o pacote de volta. Ainda não medido.</small>
+            <div id="advFull" hidden style="display:grid;gap:8px">
+              <label class="sw"><input type="checkbox" id="excep"><span><b>Item fora dos critérios do Full</b><small>Quem não vende o mínimo por mês (10 unidades até R$ 79,99, 5 a partir de R$ 80) paga a Taxa de Envio Excepcional por unidade.</small></span></label>
+              <div class="seg" id="tam"></div>
+              <small>R$ 1 (P), R$ 2,50 (M), R$ 6 (G), R$ 12,50 (XG). Qual tamanho a Shopee dá à nossa caixa não foi medido.</small>
+            </div>
+          </div>
+        </details>
+      </form>
+
+      <div class="out" aria-live="polite">
+        <p class="modo" id="modo"></p>
+        <div class="big">
+          <span class="s" id="frase"></span>
+          <span class="v" id="sobra"></span>
+          <span class="verdict" id="verdict"></span>
+        </div>
+        <div>
+          <div class="bar" id="bar" role="img" aria-label="Para onde vai o dinheiro do pedido"></div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div class="stops" id="stops"></div>
+        <div class="mes" id="mes"></div>
+        <div class="proj">
+          <div class="k">Projeção de 12 meses</div>
+          <div id="chart" class="chart"></div>
+          <div class="chartkey"><span><i style="background:var(--accent)"></i>Faturamento do mês</span><span><i style="background:var(--c-sobra)"></i>Sobra acumulada (CM3)</span></div>
+          <p class="small" id="projTxt"></p>
+        </div>
+        <div class="tips" id="tips"></div>
+      </div>
+    </div>
+    <small>Hipóteses fixas: imposto de 9% do preço; comissão cobrada sobre o preço cheio mesmo com cupom (a regra não diz, e assim a conta fica do lado seguro); embalagem fora da conta; na coleta, na agência e no Full o frete grátis é bancado pela Shopee, até R$ 20, R$ 30 ou R$ 40 conforme o preço. Ficam de fora a armazenagem do Full por estoque parado (Supermercado paga a partir de 2 meses, de R$ 2 a R$ 72,30 por unidade, sem a tabela por tamanho), as multas de agendamento do Full e o frete cobrado depois quando o peso cadastrado está errado. O prazo em que a Shopee libera o dinheiro da venda não apareceu na pesquisa. Para as mesmas contas em tabela, use a <a href="https://claude.ai/artifact/5E3fvuybC5xVK9JQ4QxhBR">Mesa de Preço Canastra</a>.</small>
+  </section>
+
+  <section>
+    <h2>Palavras que vão aparecer</h2>
+    <dl class="gl">
+      <dt>CMV</dt><dd>Custo do café dentro do pacote: R$ 47 o de 1 kg, R$ 26 o de 500 g. Na calculadora dá para trocar.</dd>
+      <dt>Comissão e taxa fixa</dt><dd>O que a Shopee cobra por item vendido. Até R$ 79,99: 20% + R$ 4,50. De R$ 80 a 99,99: 14% + R$ 16. De R$ 100 a 199,99: 14% + R$ 20. De R$ 200 para cima: 14% + R$ 26. Por isso há preços em que cobrar um pouco mais rende menos.</dd>
+      <dt>CPF e CNPJ</dt><dd>A loja em CPF paga mais R$ 3 por item depois de 450 pedidos em 90 dias, e não entra no Full nem no selo de Indicado.</dd>
+      <dt>Frete grátis</dt><dd>Vale para todos os vendedores. Na coleta, na agência e no Full, a Shopee paga o cupom de frete até R$ 20, R$ 30 ou R$ 40, conforme o preço do item. Na logística própria pagamos 25% do desconto, até R$ 10.</dd>
+      <dt>Coleta e agência</dt><dd>Os dois jeitos de entregar o pacote à Shopee: o Shopee Xpress busca na torrefação (para vendedores selecionados) ou levamos a uma agência parceira.</dd>
+      <dt>Full e Full+</dt><dd>Estoque guardado no armazém da Shopee, que despacha por nós. Exige CNPJ e venda mínima por item, e cobra se o estoque parar. Com 40% ou mais dos pedidos pelo Full, a comissão cai de 0,5 a 2 pontos (Full+, até dez/2026).</dd>
+      <dt>Pix</dt><dd>De R$ 80 para cima o comprador paga 5% menos no Pix. Quem banca é a Shopee: recebemos o mesmo valor.</dd>
+      <dt>Campanha de Destaque</dt><dd>Programa por convite. Dá vitrine e cupons, mas cobra 3,5% de todas as vendas da loja.</dd>
+      <dt>Afiliado do Vendedor</dt><dd>Comissão extra que nós damos a um criador, além da que a Shopee já paga a ele.</dd>
+      <dt>Moedas</dt><dd>Cashback da Shopee. As moedas que a loja oferece são pagas por nós: 100 moedas = R$ 1.</dd>
+      <dt>Shopee Ads e GMV Max</dt><dd>O anúncio da Shopee. É pré-pago e você escolhe uma meta de ROAS. Com meta alta demais, a Shopee simplesmente não gasta.</dd>
+      <dt>ROAS</dt><dd>Quanto o anúncio vende para cada R$ 1 gasto. ROAS 10 = gastou R$ 10, vendeu R$ 100. Não é lucro.</dd>
+      <dt>Devolução Fácil</dt><dd>Seguro de devolução: R$ 0,49 por pedido, com 30 dias grátis de teste. Cobre o frete de devoluções por culpa nossa. Só vale na logística da Shopee.</dd>
+      <dt>Vendedor Indicado</dt><dd>Selo da Shopee para loja com mais de 90 dias, CNPJ, 30 pedidos em 30 dias, nota 4,5 ou mais e preparo em até 1 dia útil.</dd>
+      <dt>Pontos de penalidade</dt><dd>Atrasos e cancelamentos viram pontos, contados por trimestre. A partir de 3 pontos a loja perde visibilidade, e a partir de 6 perde o frete grátis.</dd>
+    </dl>
+  </section>
+
+  <footer>
+    <p>Fontes: regras da Shopee lidas no Centro de Educação do Vendedor em 15/10/2026 (artigos 18483, 18484, 23431, 25794, 18712, 26700, 27298, 23740, 27600, 26370, 23197, 26581, 7955, 18456, 11602) e reunidas em <code>pesquisa-marketplaces/shopee/CONSOLIDADO.md</code>; moedas, cupons, afiliados e modalidades de envio em <code>pesquisa-marketplaces/shopee/preco-promocao/notas.md</code> e <code>logistica-estoque/notas.md</code>; faixa de ROAS da mesma pesquisa (relatos de vendedores, não dado oficial); custos de <code>mercadolivre/custos.md</code>; contas iguais às de <code>shopee/scripts/precificar_shopee.py</code> e da <a href="https://claude.ai/artifact/5E3fvuybC5xVK9JQ4QxhBR">Mesa de Preço Canastra</a>; diagnóstico e decisões em <code>shopee/02-diagnostico-prontidao-2026-10.md</code> e <code>shopee/03-estrategia-entrada-1kg-500g.md</code>.</p>
+  </footer>
+</div>
+
+<script>
+// Mesmas fórmulas do precificar_shopee.py e da Mesa de Preço Canastra (regra de comissão de 01/10/2026).
+// Acréscimos desta página: moedas, perdas, Taxa de Envio Excepcional do Full e Full+ calculado pela faixa de preço.
+const IMPOSTO = 0.09;
+const FAIXAS = [[0, 0.20, 4.50], [80, 0.14, 16.00], [100, 0.14, 20.00], [200, 0.14, 26.00]];   // edu 18483
+const ADIC_CPF = 3.00;                       // por item, CPF depois de 450 pedidos em 90 dias (18484)
+const CAMPANHA = 0.035, DEV_FACIL = 0.49;    // 18712; 26700
+const COPART = 0.25, COPART_TETO = 10.00;    // só logística própria (25794)
+const TETO_FRETE = [[0, 20], [80, 30], [200, 40]];   // cupom de frete bancado pela Shopee (23431)
+const EXCEP = { P: 1.00, M: 2.50, G: 6.00, XG: 12.50 };   // Taxa de Envio Excepcional do Full (26581)
+const r2 = x => Math.round(x * 100) / 100;   // igual à Mesa de Preço; bate com o round() do Python
+function faixa(p) { for (let i = FAIXAS.length - 1; i >= 0; i--) if (p >= FAIXAS[i][0]) return [FAIXAS[i][1], FAIXAS[i][2]]; }
+function degrau(tab, p) { let v = tab[0][1]; for (const [m, x] of tab) if (p >= m) v = x; return v; }
+// Full+ (27600): itens a partir de R$ 50 via Full. Nível 1 = 40% a 70% dos pedidos no Full; nível 2 = 70% ou mais.
+function fullMaisPP(p, nivel) { if (!nivel || p < 50) return 0; return nivel === 1 ? (p < 80 ? 0.5 : 1) : (p < 80 ? 1 : 2); }
+// o: { itens, cpf, log ('shopee' | 'full' | 'propria'), freteDesc, fullMais (0/1/2), roas (0 = sem anúncio), cupom,
+//      campanha, afil (%), moedas (%), dev (bool), perdas (%), excep (R$ por pedido) }
+function resultado(preco, cmv, o) {
+  const [pct0, fixa] = faixa(preco);
+  const pp = o.log === 'full' ? fullMaisPP(preco, o.fullMais) : 0;
+  const pct = Math.max(pct0 - pp / 100, 0);
+  const itens = o.itens || 1;
+  const comissao = r2(preco * pct);
+  const fixas = r2(fixa * itens + (o.cpf ? ADIC_CPF * itens : 0));
+  const copart = o.log === 'propria' ? r2(Math.min((o.freteDesc || 0) * COPART, COPART_TETO)) : 0;
+  const excep = o.log === 'full' ? r2(o.excep || 0) : 0;
+  const receita = preco - (o.cupom || 0);
+  const imposto = r2(receita * IMPOSTO);
+  const cm1 = r2(receita - cmv - comissao - fixas - copart - excep - imposto);
+  const ads = o.roas > 0 ? r2(preco / o.roas) : 0;
+  const camp = o.campanha ? r2(receita * CAMPANHA) : 0;
+  const afil = r2(receita * (o.afil || 0) / 100);
+  const moedas = r2(receita * (o.moedas || 0) / 100);
+  const cm2 = r2(cm1 - ads - camp - afil - moedas);
+  const dev = o.dev && o.log !== 'propria' ? DEV_FACIL : 0;
+  const perdas = r2(preco * (o.perdas || 0) / 100);
+  const cm3 = r2(cm2 - dev - perdas);
+  const antesAds = cm1 - camp - afil - moedas - dev - perdas;
+  return { preco, cmv, pct, pp, comissao, fixas, tarifa: r2(comissao + fixas), copart, excep, cupom: o.cupom || 0, imposto, cm1,
+    ads, camp, afil, moedas, promo: r2((o.cupom || 0) + camp + afil + moedas), cm2, dev, perdas, cm3, antesAds,
+    margem: Math.round(cm3 / preco * 1000) / 10, tetoFrete: degrau(TETO_FRETE, preco),
+    pix: preco >= 80 ? r2(preco * 0.95) : preco };
+}
+// Menor preço com a margem pedida, de centavo em centavo a partir de R$ 10 (igual ao preco_para_margem do script).
+function piso(cmv, o, margem) {
+  for (let c = 1000; c < 100000; c++) { const p = c / 100; if (resultado(p, cmv, o).margem >= margem) return p; }
+  return null;
+}
+// Projeção de 12 meses: vendas começam em V e crescem g ao mês; só a fatia "share" das vendas paga o anúncio.
+function projetar(preco, cmv, o, V, g, share) {
+  const r = resultado(preco, cmv, o);
+  const meses = []; let acum = 0;
+  for (let m = 0; m < 12; m++) {
+    const v = V * Math.pow(1 + g, m), fat = v * preco, ads = v * share * r.ads, sobra = v * (r.cm3 + r.ads) - ads;
+    acum += sobra;
+    meses.push({ m: m + 1, vendas: v, fat, ads, sobra, acum });
+  }
+  return meses;
+}
+if (typeof module !== 'undefined') module.exports = { resultado, piso, projetar, fullMaisPP };
+</script>
+<script>
+const PRODS = [
+  { id: '1kg', nome: '1 kg', art: 'cada 1 kg vendido', cmv: 47, kit: false, preco: 99.99, min: 60, max: 160,
+    ref: 'Na Shopee, o 1 kg gourmet sai por R$ 60 a 94 e o especial por R$ 113 a 147 (busca de 15/10). Nosso lugar é o especial.' },
+  { id: '500g', nome: '500 g', art: 'cada 500 g vendido', cmv: 26, kit: false, preco: 59.90, min: 30, max: 100,
+    ref: 'O 500 g comum sai por R$ 24 a 45, perto do nosso custo. O especial fica em R$ 50 a 60.' },
+  { id: 'kit', nome: 'Kit 2 × 1 kg', art: 'cada kit 2 × 1 kg vendido', cmv: 94, kit: true, preco: 199.90, min: 120, max: 280,
+    ref: 'Na busca, kits de 2 × 1 kg vão de R$ 147 a R$ 238. Se o kit pagar uma taxa fixa só, rende mais que dois pacotes.' },
+  { id: 'kit500', nome: 'Kit 2 × 500 g', art: 'cada kit 2 × 500 g vendido', cmv: 52, kit: true, preco: 99.99, min: 60, max: 150,
+    ref: 'Dois de 500 g vendidos como 1 kg. A R$ 79,99 dá prejuízo; precisa ficar perto de R$ 100.' },
+];
+const DOCS = [
+  { id: 'cnpj', nome: 'CNPJ', txt: 'Decidido em 15/10. Entra no Full e no selo de Indicado, sem adicional por item.' },
+  { id: 'cpf', nome: 'CPF até 450 pedidos', txt: 'Mesma tabela do CNPJ, mas sem Full e sem selo de Indicado.' },
+  { id: 'cpf450', nome: 'CPF acima de 450', txt: 'Depois de 450 pedidos em 90 dias, o CPF paga mais R$ 3 por item. Ao migrar para CNPJ, o adicional sai em até 7 dias úteis.' },
+];
+const ENVIOS = [
+  { id: 'shopee', nome: 'Coleta ou agência', txt: 'O Shopee Xpress busca na torrefação (para vendedores selecionados) ou levamos a uma agência. O frete grátis é por conta da Shopee, até o teto da faixa. Qual das duas existe no nosso CEP só aparece com a loja aberta.' },
+  { id: 'full', nome: 'Full', txt: 'O estoque fica no armazém da Shopee e ela despacha. Exige CNPJ e pelo menos 10 vendas por mês por item até R$ 79,99 (5 a partir de R$ 80). Café precisa de validade e lote visíveis. Estoque parado mais de 2 meses paga armazenagem, que esta conta não inclui.' },
+  { id: 'propria', nome: 'Logística própria', txt: 'Nós contratamos o frete (Intelipost ou API de Frete). Pagamos 25% do desconto de frete do comprador, até R$ 10, e a Devolução Fácil não vale.' },
+];
+const FULLMAIS = [
+  { id: 0, nome: 'Sem Full+', txt: 'Menos de 40% dos pedidos pelo Full: comissão normal.' },
+  { id: 1, nome: '40% a 70% no Full', txt: 'Comissão 0,5 ponto menor de R$ 50 a 79,99 e 1 ponto menor a partir de R$ 80. Vem como crédito no mês seguinte. Programa até dez/2026.' },
+  { id: 2, nome: '70% ou mais', txt: 'Comissão 1 ponto menor de R$ 50 a 79,99 e 2 pontos menor a partir de R$ 80. Vem como crédito no mês seguinte. Programa até dez/2026.' },
+];
+const ITENS = [{ id: 1, nome: '1 taxa (hipótese)' }, { id: 2, nome: '2 taxas' }];
+const TAMS = ['P', 'M', 'G', 'XG'].map(t => ({ id: t, nome: t }));
+let prod = PRODS[0], doc = DOCS[0], envio = ENVIOS[0], fm = FULLMAIS[0], itens = ITENS[0], tam = TAMS[1];
+const $ = id => document.getElementById(id);
+const brl = v => (v < 0 ? '−' : '') + 'R$ ' + Math.abs(v).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const brl0 = v => (v < 0 ? '−' : '') + 'R$ ' + Math.round(Math.abs(v)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const dec = v => v.toFixed(1).replace('.', ',');
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const EST = ' <span class="chip">estimado</span>', NC = ' <span class="chip">não confirmado</span>';
+function num(id, def) { const v = parseFloat($(id).value); return isFinite(v) ? v : def; }
+
+function renderSeg(id, list, cur) {
+  $(id).innerHTML = list.map(p => `<button type="button" data-id="${p.id}" aria-pressed="${p.id === cur.id}">${p.nome}</button>`).join('');
+}
+function onSeg(id, list, set) { $(id).addEventListener('click', e => { const b = e.target.closest('button'); if (b) set(list.find(x => String(x.id) === b.dataset.id)); }); }
+function setProd(p) {
+  prod = p;
+  $('precoR').min = p.min; $('precoR').max = p.max;
+  $('preco').value = p.preco.toFixed(2); $('precoR').value = p.preco;
+  $('precoRef').textContent = p.ref;
+  $('cmv').value = p.cmv.toFixed(2); cmvTxt();
+  $('advKit').hidden = !p.kit;
+  renderSeg('prod', PRODS, prod); calc();
+}
+function cmvTxt() {
+  const v = num('cmv', prod.cmv);
+  $('cmvTxt').textContent = Math.abs(v - prod.cmv) < 0.005 ? `Custo da planilha (mercadolivre/custos.md): ${brl(prod.cmv)}. Troque se o custo mudou.`
+    : `Custo editado. O da planilha é ${brl(prod.cmv)}; trocar de produto volta para ele.`;
+}
+function setDoc(d) { doc = d; $('docTxt').textContent = d.txt; renderSeg('doc', DOCS, doc); calc(); }
+function setEnvio(e) {
+  envio = e; $('envioTxt').textContent = e.txt;
+  $('boxFrete').hidden = e.id !== 'propria'; $('boxFull').hidden = e.id !== 'full'; $('advFull').hidden = e.id !== 'full';
+  $('dev').disabled = e.id === 'propria';
+  renderSeg('envio', ENVIOS, envio); calc();
+}
+function setFM(x) { fm = x; $('fullmaisTxt').textContent = x.txt; renderSeg('fullmais', FULLMAIS, fm); calc(); }
+function setItens(x) { itens = x; renderSeg('itens', ITENS, itens); calc(); }
+function setTam(x) { tam = x; renderSeg('tam', TAMS, tam); calc(); }
+onSeg('prod', PRODS, setProd); onSeg('doc', DOCS, setDoc); onSeg('envio', ENVIOS, setEnvio);
+onSeg('fullmais', FULLMAIS, setFM); onSeg('itens', ITENS, setItens); onSeg('tam', TAMS, setTam);
+$('precoR').addEventListener('input', () => { $('preco').value = (+$('precoR').value).toFixed(2); calc(); });
+$('preco').addEventListener('input', () => { $('precoR').value = $('preco').value; calc(); });
+$('cmv').addEventListener('input', () => { cmvTxt(); calc(); });
+$('ads').addEventListener('change', () => { $('adsbox').hidden = !$('ads').checked; calc(); });
+$('afil').addEventListener('change', () => { $('afilbox').hidden = !$('afil').checked; calc(); });
+['camp', 'dev', 'excep'].forEach(id => $(id).addEventListener('change', calc));
+['roas', 'cupom', 'afilPct', 'vendas', 'cresc', 'share', 'moedas', 'perdas', 'freteDesc'].forEach(id => $(id).addEventListener('input', calc));
+$('f').addEventListener('submit', e => e.preventDefault());
+// faixa de ROAS relatada (3,9 a 8) desenhada sobre a barrinha de 2 a 35
+$('band').style.left = ((3.9 - 2) / 33 * 100) + '%'; $('band').style.width = ((8 - 3.9) / 33 * 100) + '%';
+
+// passo "bonito" para o eixo: 1, 2 ou 5 × 10^n
+function passo(bruto) { const e = Math.pow(10, Math.floor(Math.log10(bruto))); const f = bruto / e; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * e; }
+function eixoTxt(v) { const a = Math.abs(v); const s = a >= 1000 ? (a / 1000).toFixed(a % 1000 === 0 ? 0 : 1).replace('.', ',') + ' mil' : Math.round(a).toString(); return (v < 0 ? '−' : '') + 'R$ ' + s; }
+function empate(meses) { return meses.findIndex((m, i) => i > 0 && m.acum >= 0 && meses[i - 1].acum < 0); }
+function grafico(meses) {
+  const W = 600, H = 250, L = 66, Rm = 92, T = 12, B = 34;
+  const vals = meses.flatMap(m => [m.fat, m.acum]).concat([0]);
+  let lo = Math.min(...vals), hi = Math.max(...vals);
+  if (hi - lo < 1) hi = lo + 1;
+  const st = passo((hi - lo) / 4);
+  lo = Math.floor(lo / st) * st; hi = Math.ceil(hi / st) * st;
+  const x = m => L + (m - 1) * (W - L - Rm) / 11;
+  const y = v => T + (hi - v) * (H - T - B) / (hi - lo);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Projeção de 12 meses do faturamento e da sobra acumulada">`;
+  for (let v = lo; v <= hi + st / 2; v += st) {
+    const yy = y(v).toFixed(1), zero = Math.abs(v) < st / 1000;
+    s += `<line x1="${L}" x2="${W - Rm}" y1="${yy}" y2="${yy}" stroke="var(${zero ? '--fg' : '--line'})" stroke-width="${zero ? 1.4 : 1}"${zero ? '' : ' stroke-dasharray="3 3"'}/>`;
+    s += `<text x="${L - 8}" y="${yy}" text-anchor="end" dominant-baseline="middle">${eixoTxt(zero ? 0 : v)}</text>`;
+  }
+  meses.forEach(m => { s += `<text x="${x(m.m).toFixed(1)}" y="${H - B + 16}" text-anchor="middle">${m.m}</text>`; });
+  s += `<text x="${(L + W - Rm) / 2}" y="${H - 2}" text-anchor="middle">mês</text>`;
+  const linha = (k, cor) => `<polyline fill="none" stroke="var(${cor})" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="${meses.map(m => x(m.m).toFixed(1) + ',' + y(m[k]).toFixed(1)).join(' ')}"/>`
+    + meses.map(m => `<circle cx="${x(m.m).toFixed(1)}" cy="${y(m[k]).toFixed(1)}" r="3" fill="var(${cor})"><title>Mês ${m.m}: ${k === 'fat' ? 'faturamento' : 'sobra acumulada'} ${brl0(m[k])}</title></circle>`).join('');
+  s += linha('fat', '--accent') + linha('acum', '--c-sobra');
+  const iEq = empate(meses);
+  if (iEq > 0) {
+    const m = meses[iEq];
+    s += `<circle cx="${x(m.m).toFixed(1)}" cy="${y(m.acum).toFixed(1)}" r="6" fill="none" stroke="var(--fg)" stroke-width="1.5"/>`
+      + `<text class="lab" x="${x(m.m).toFixed(1)}" y="${(y(m.acum) - 12).toFixed(1)}" text-anchor="middle" style="fill:var(--fg)">empata no mês ${m.m}</text>`;
+  }
+  const last = meses[11];
+  let yf = y(last.fat), ya = y(last.acum);
+  if (Math.abs(yf - ya) < 16) { if (yf <= ya) { yf -= 8; ya += 8; } else { yf += 8; ya -= 8; } }
+  s += `<text class="lab" x="${W - Rm + 8}" y="${yf.toFixed(1)}" dominant-baseline="middle" style="fill:var(--accent)">${eixoTxt(last.fat)}</text>`;
+  s += `<text class="lab" x="${W - Rm + 8}" y="${ya.toFixed(1)}" dominant-baseline="middle" style="fill:var(--c-sobra)">${eixoTxt(last.acum)}</text>`;
+  return s + '</svg>';
+}
+
+function opcoes() {
+  const log = envio.id;
+  return {
+    itens: prod.kit ? itens.id : 1, cpf: doc.id === 'cpf450', log, freteDesc: Math.max(0, num('freteDesc', 30)),
+    fullMais: log === 'full' ? fm.id : 0, roas: $('ads').checked ? num('roas', 10) : 0, cupom: Math.max(0, num('cupom', 0)),
+    campanha: $('camp').checked, afil: $('afil').checked ? Math.max(0, num('afilPct', 5)) : 0, moedas: Math.max(0, num('moedas', 0)),
+    dev: $('dev').checked, perdas: Math.max(0, num('perdas', 0)),
+    excep: log === 'full' && $('excep').checked ? EXCEP[tam.id] * (prod.kit ? 2 : 1) : 0,
+  };
+}
+
+function calc() {
+  const preco = parseFloat($('preco').value);
+  const o = opcoes(), adsOn = o.roas > 0, roas = num('roas', 10);
+  const devValido = envio.id !== 'propria';
+  $('devTxt').textContent = !devValido ? 'Não vale na logística própria: só na logística da Shopee.'
+    : o.dev ? 'R$ 0,49 por pedido, depois de 30 dias grátis de teste. Cobre o frete das devoluções por culpa nossa, até R$ 500 por pedido.'
+    : 'Sem o programa, a devolução é grátis para nós, salvo culpa nossa: aí pagamos o frete inteiro, mais R$ 15 se quisermos o pacote de volta.';
+  $('modo').innerHTML = '<b>Simulando:</b> ' + [
+    doc.id === 'cnpj' ? 'loja em CNPJ' : doc.id === 'cpf' ? 'loja em CPF' : 'loja em CPF com adicional de R$ 3',
+    { shopee: 'coleta ou agência da Shopee', full: 'Full' + (fm.id ? ' com Full+' : ''), propria: 'logística própria' }[envio.id],
+    adsOn ? 'Shopee Ads a ROAS ' + dec(roas) : 'sem anúncio',
+    o.campanha ? 'Campanha de Destaque' : 'sem campanha',
+    o.cupom > 0 ? 'cupom de ' + brl(o.cupom) : 'sem cupom',
+    o.afil ? 'afiliado ' + dec(o.afil) + '%' : 'venda sem afiliado',
+    o.dev && devValido ? 'Devolução Fácil' : 'sem Devolução Fácil',
+  ].join(' · ');
+
+  if (!(preco > 0)) {
+    $('frase').textContent = 'Digite um preço.';
+    ['sobra', 'verdict', 'bar', 'legend', 'stops', 'mes', 'tips', 'chart', 'projTxt', 'adsTxt'].forEach(id => { $(id).innerHTML = ''; });
+    $('verdict').className = 'verdict';
+    return;
+  }
+  const cmv = Math.max(0, num('cmv', prod.cmv));
+  const r = resultado(preco, cmv, o);
+  const pct = r.cm3 / preco * 100;
+  $('adsTxt').innerHTML = `ROAS ${dec(roas)} = o anúncio leva <b class="num">${brl(preco / roas)}</b> (${dec(100 / roas)}% do preço) de cada venda que trouxe. `
+    + (r.antesAds > 0 ? `Para empatar, a meta precisa ser de pelo menos <b class="num">${dec(preco / r.antesAds)}</b>.` : 'Neste caso nenhum ROAS empata: mesmo sem anúncio não sobra nada.');
+
+  $('frase').textContent = r.cm3 >= 0 ? `De ${prod.art} a ${brl(preco)}, sobram para a Canastra` : `Cada ${prod.nome} vendido a ${brl(preco)} dá prejuízo de`;
+  $('sobra').textContent = brl(Math.abs(r.cm3)) + ` (${dec(Math.abs(pct))}% do preço)`;
+  $('sobra').style.color = r.cm3 < 0 ? css('--bad') : '';
+  const v = $('verdict');
+  if (pct >= 10) { v.className = 'verdict good'; v.textContent = 'Saudável: sobra 10% ou mais'; }
+  else if (pct >= 0) { v.className = 'verdict warn'; v.textContent = 'Apertado: menos de 10%'; }
+  else { v.className = 'verdict bad'; v.textContent = 'Prejuízo'; }
+
+  const [, ff] = faixa(preco);
+  const tarifaDe = `comissão de ${dec(r.pct * 100)}%` + (r.pp ? ` (Full+ −${String(r.pp).replace('.', ',')} ${r.pp < 2 ? 'ponto' : 'pontos'})` : '') + ` + ${brl(ff)} por item`
+    + (o.itens > 1 ? ' × ' + o.itens : '') + (o.cpf ? ' + R$ 3 do CPF' : '') + (prod.kit && o.itens === 1 ? NC : '');
+  const promoDe = [o.cupom ? 'cupom ' + brl(o.cupom) : '', r.camp ? 'campanha 3,5%' : '', r.afil ? 'afiliado ' + dec(o.afil) + '%' + EST : '', r.moedas ? 'moedas ' + dec(o.moedas) + '%' : ''].filter(Boolean).join(' + ') || 'nenhuma';
+  const parts = [
+    ['--c-cafe', 'Café (CMV)', 'o custo do que vai no pacote', r.cmv],
+    ['--c-shopee', 'Shopee', tarifaDe, r.tarifa],
+    ['--c-frete', 'Frete', envio.id === 'propria' ? `25% de ${brl(o.freteDesc)} de desconto, teto de R$ 10` + EST
+      : envio.id === 'full' && r.excep ? `Taxa de Envio Excepcional, tamanho ${tam.id}${prod.kit ? ', 2 unidades' : ''}` + EST
+      : `frete grátis bancado pela Shopee até ${brl(r.tetoFrete)}`, r2(r.copart + r.excep)],
+    ['--c-imposto', 'Imposto', '9% do que o comprador paga pelo produto', r.imposto],
+    ['--c-ads', 'Anúncio', adsOn ? 'ROAS ' + dec(roas) : 'venda sem anúncio', r.ads],
+    ['--c-promo', 'Promoções', promoDe, r.promo],
+    ['--c-perda', 'Devoluções', [r.dev ? 'Devolução Fácil R$ 0,49' : (devValido ? 'sem Devolução Fácil' : 'Devolução Fácil não vale aqui'), r.perdas ? 'perdas ' + dec(o.perdas) + '%' + EST : ''].filter(Boolean).join(' + '), r2(r.dev + r.perdas)],
+  ];
+  const sobra = Math.max(r.cm3, 0);
+  const total = parts.reduce((s, p) => s + p[3], 0) + sobra;
+  $('bar').innerHTML = parts.concat([['--c-sobra', '', '', sobra]]).filter(p => p[3] > 0)
+    .map(p => `<span style="width:${(p[3] / total * 100).toFixed(2)}%;background:var(${p[0]})" title="${p[1] || 'Sobra'}"></span>`).join('');
+  $('legend').innerHTML = parts.map(p =>
+    `<div class="r"><span class="dot" style="background:var(${p[0]})"></span><span>${p[1]}<small>${p[2]}</small></span><span class="num">${brl(-p[3])}</span></div>`).join('')
+    + `<div class="r sobra"><span class="dot" style="background:var(--c-sobra)"></span><span>Sobra (CM3)</span><span class="num">${brl(r.cm3)}</span></div>`;
+
+  const stop = (k, val, d) => `<div class="stop ${val < 0 ? 'neg' : ''}"><span class="k">${k}</span><span class="v">${brl(val)}</span><span class="d">${d}</span></div>`;
+  $('stops').innerHTML = stop('CM1', r.cm1, 'depois de café, Shopee, frete e imposto') + stop('CM2', r.cm2, 'depois de anúncio e promoções') + stop('CM3', r.cm3, 'depois de devoluções e perdas');
+
+  // Estimativa do 1º mês e projeção de 12 meses
+  const V = Math.max(1, Math.round(num('vendas', 10)));
+  const g = Math.min(100, Math.max(-50, num('cresc', 10))) / 100;
+  const share = Math.min(100, Math.max(0, num('share', 100))) / 100;
+  const meses = projetar(preco, cmv, o, V, g, share), m1 = meses[0];
+  $('mes').innerHTML = `<div class="k">Em um mês com ${V} vendas</div>`
+    + `<div class="row"><span>Faturamento</span><b class="num">${brl(m1.fat)}</b></div>`
+    + (adsOn ? `<div class="row"><span>Gasto com anúncio (${Math.round(share * 100)}% das vendas vêm dele)</span><b class="num">${brl(-m1.ads)}</b></div>` : '')
+    + `<div class="row tot"><span>Sobra estimada no mês${EST}</span><b class="num" style="color:${m1.sobra < 0 ? css('--bad') : ''}">${brl(m1.sobra)}</b></div>`;
+  $('chart').innerHTML = grafico(meses);
+  const fat12 = meses.reduce((s, m) => s + m.fat, 0), sob12 = meses[11].acum, iEq = empate(meses);
+  const eqTxt = m1.acum >= 0 && sob12 >= 0 ? 'A sobra é positiva desde o 1º mês.'
+    : iEq > 0 ? `A sobra acumulada empata no mês ${meses[iEq].m}.` : sob12 < 0 ? 'A sobra acumulada não empata em 12 meses.' : '';
+  $('projTxt').innerHTML = `<b>Em 12 meses: faturamento ${brl0(fat12)}, sobra ${brl0(sob12)}.</b> ${eqTxt} As vendas vão de ${V} para ${Math.round(meses[11].vendas)} por mês.` + EST;
+
+  const tips = [];
+  const zero = piso(cmv, o, 0), dez = piso(cmv, o, 10);
+  if (zero) tips.push(['', `Nessas condições, o preço mínimo para não perder dinheiro é <b class="num">${brl(zero)}</b>. Para sobrar 10%, <b class="num">${dez ? brl(dez) : 'acima de R$ 1.000'}</b>.`]);
+  if (r.antesAds > 0) {
+    tips.push(['', `O anúncio pode custar até <b class="num">${dec(r.antesAds / preco * 100)}%</b> do preço (${brl(r.antesAds)}) antes de comer toda a sobra. Em ROAS, a meta precisa ser de pelo menos <b class="num">${dec(preco / r.antesAds)}</b>. Vendedores contam que o anúncio automático da Shopee entrega ROAS entre 3,9 e 8; com meta acima do que o leilão comporta, ele não gasta.`]);
+  } else tips.push(['alert', 'Mesmo sem anúncio não sobra nada. Neste preço não há espaço para pagar anúncio.']);
+  if (r.cm3 < 0) tips.push(['alert', `Neste preço, cada venda tira dinheiro do caixa. Suba o preço${prod.kit ? '' : ', venda em kit'} ou desligue anúncio e promoções.`]);
+  for (const d of [80, 100, 200]) {
+    if (preco >= d && preco < d + 20) {
+      const antes = resultado(d - 0.01, cmv, o);
+      if (r.cm3 < antes.cm3) tips.push(['alert', `A partir de ${brl(d)} a taxa fixa sobe de degrau: neste preço sobra menos do que a ${brl(d - 0.01)} (${brl(antes.cm3)}).`]);
+    }
+  }
+  if (preco < 80) tips.push(['alert', 'Até R$ 79,99 a comissão é de 20% + R$ 4,50 e não há desconto Pix bancado pela Shopee.']);
+  else tips.push(['', `No Pix o comprador paga <b class="num">${brl(r.pix)}</b>. A diferença é bancada pela Shopee: recebemos o mesmo.`]);
+  if (doc.id !== 'cnpj' && envio.id === 'full') tips.push(['alert', 'O Full exige CNPJ. Com loja em CPF esta combinação não existe.']);
+  if (envio.id === 'full') tips.push(['', 'No Full ficam fora da conta a armazenagem por estoque parado (Supermercado, a partir de 2 meses) e as multas de agendamento: R$ 5 por unidade que não chega e R$ 3 por unidade divergente.']);
+  if (prod.kit && o.itens === 1) tips.push(['', `A conta do kit supõe uma taxa fixa só. Se a Shopee cobrar duas, troque no Avançado: neste preço a sobra cai ${brl(ff + (o.cpf ? 3 : 0))}.`]);
+  if (o.cupom > 0) tips.push(['', 'Só um cupom nosso vale por compra. Segundo vendedores, criar cupom exige 10 dias de conta, 10 produtos e menos de 3 pontos de penalidade.']);
+  $('tips').innerHTML = tips.map(([c, t]) => `<p class="${c}">${t}</p>`).join('');
+}
+
+renderSeg('prod', PRODS, prod); setDoc(DOCS[0]); setFM(FULLMAIS[0]); setItens(ITENS[0]); setTam(TAMS[1]); setEnvio(ENVIOS[0]); setProd(PRODS[0]);
+</script>

@@ -10,20 +10,26 @@
 
 ---
 
-## Panorama
+## Panorama — atualizado em 07/10/2026
 
 | Anúncio | Título | Preço | Tipo | Frete | Marca | Linha | Formato | Descrição |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| `2692127545` Clássico 10un | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
-| `2692082114` Suave 10un | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
-| `2692076338` Canela 10un | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
-| `2691974682` Kit 3 Sabores | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| `2691993380` Kit Clássico | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
-| `2691960931` Kit Suave | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
-| `2691974195` Kit Canela | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| `2692127545` Clássico 10un | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 1 | ✅ |
+| `2692082114` Suave 10un | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 1 | ✅ |
+| `2692076338` Canela 10un | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 1 | ✅ |
+| `2691974682` Kit 3 Sabores | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 4 | ✅ |
+| `2691993380` Kit Clássico | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 4 | ✅ |
+| `2691960931` Kit Suave | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 4 | ✅ |
+| `2691974195` Kit Canela | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ 4 | ✅ |
 
-**Feito: 24 de 56 campos.** Preço, tipo e frete nos 7 — que é onde está quase todo o
-dinheiro. Os kits saíram de −R$ 30,40 e +R$ 2,11 por venda para **+R$ 45,46**.
+**Feito: 56 de 56.** Conferido relendo cada formulário do zero e na lista de anúncios.
+**Os 7 seguem Inativos.** O estoque não foi tocado, por decisão do Rafael.
+
+O que ficou em branco **de propósito**: intensidade, glúten e tipo de torra (dependem da
+torrefação e do controle de qualidade). Atacado, fotos dos kits, vídeo, Full e Ads seguem
+fora do escopo — ver o fim deste arquivo.
+
+> O plano por anúncio abaixo é o registro de 30/09 e ficou como histórico.
 
 ---
 
@@ -190,7 +196,7 @@ JavaScript por mais de 10 segundos, cinco vezes seguidas. Pode ser degradação 
 | O quê | Quando | Onde está |
 |---|---|---|
 | **Faixas de atacado nos 4 kits** (2+ · 3+ · 5+) | **depois da reputação verde** | [`12-precos-de-atacado.md`](12-precos-de-atacado.md) |
-| **Fotos — 10 slots** | antes de reativar | [`03-os-sete-anuncios.md`](03-os-sete-anuncios.md) |
+| ~~Fotos~~ | **feito em 08/10/2026** nos 7 (caixas em 04–05/10, kits em 08/10) | [`LEIA-ME.md`](LEIA-ME.md) § Alterações aplicadas |
 | **Vídeo — 7 planos** | vantagem barata, quase ninguém usa | [`10-textos-prontos.md`](10-textos-prontos.md) |
 | **Enviar estoque ao Full** | depois do certificado e dos R$ 75 | [`09-remessa-e-estrategia-de-preco.md`](09-remessa-e-estrategia-de-preco.md) |
 | **Ligar o Ads** no `2691974682` | só depois do verde | [`05-ads.md`](05-ads.md) |

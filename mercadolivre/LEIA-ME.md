@@ -4,7 +4,7 @@
 > o que foi medido, o que foi decidido, o que eu errei e corrigi, e o que continua sem
 > verificação. Sessões futuras não têm a memória desta.
 >
-> **Última atualização:** 05/10/2026
+> **Última atualização:** 07/10/2026
 > **Objetivo do projeto:** cápsulas Nespresso-compatíveis são o produto escolhido para
 > ser o primeiro a escalar em vendas no Mercado Livre.
 
@@ -300,7 +300,9 @@ de culpar a plataforma — eu cheguei a escrever no repositório que era limita�
 | [`11-folha-de-aplicacao.md`](11-folha-de-aplicacao.md) | Campo a campo dos 7 e a mecânica de edição |
 | [`12-precos-de-atacado.md`](12-precos-de-atacado.md) | Atacado (ML Negócios): sim nos kits, não nas caixas, e só depois do verde |
 | [`13-o-que-falta.md`](13-o-que-falta.md) | **COMECE AQUI para executar.** O que falta em cada anúncio, em sequência, com o estado lido do formulário |
+| [`14-estrategia-1kg.md`](14-estrategia-1kg.md) | **Linha 1 kg** (grãos, kit moído, Néctar de Minas): concorrência de 08/10/2026 (busca + 20 anúncios abertos), vendas 12 m do Suave 1 kg, economia e os anúncios prontos para criar |
 | [`15-preco-1kg-suave-classico.md`](15-preco-1kg-suave-classico.md) | **Preço do Suave e Clássico 1 kg com CMV real** (14/10/2026): lucro hoje R$ 3,32, proposta R$ 129,90, atacado no teto, Ads só depois |
+| [`16-estrategia-competir.md`](16-estrategia-competir.md) | **Estratégia para competir como fábrica** (14/10/2026): pesquisa de 63 vídeos + Instagram/TikTok; frete vermelho é o gargalo, kit como arma de preço por kg, Full Super, Ads só com amarela e MC ≥ 15%, fases com portões |
 | [`custos.md`](custos.md) | **CMV e fretes — fonte única de custo** |
 | [`99-historico-estrategia-v1.md`](99-historico-estrategia-v1.md) | Primeira versão. **Contém números superados** |
 | `pesquisa/` | 16 transcrições, scripts de busca e `ACHADOS.md` |
@@ -327,9 +329,11 @@ Armadilhas já resolvidas, registradas em `pesquisa/pesquisar.py`:
 - `WebFetch` devolve **403** em todo o ML
 - `curl` com UA de Chrome passa na home e nas páginas de vendedor, mas a **busca**
   devolve `suspicious-traffic-frontend` com status 200
-- A extensão **Claude in Chrome** funciona, mas o ML **trava a busca após a primeira
-  consulta programática**. Rota que funciona: **o humano navega, a IA lê** a página já
-  carregada com `javascript_tool`
+- A extensão **Claude in Chrome** funciona. ~~O ML trava a busca após a primeira consulta
+  programática~~ — **corrigido em 08/10/2026:** 16 buscas seguidas por `navigate` passaram.
+  O que parecia trava era a **janela oculta**: com `visibilityState === 'hidden'` a lista
+  fica no spinner e o DOM volta sem cards. Um `screenshot` força o render; espere ~3 s depois
+  dele e leia. Receita e extrator em `14-estrategia-1kg.md` e na skill `canastra-mercadolivre`
 - Páginas de produto (`/p/` e `/up/`) **não** têm esse limite
 
 ---
@@ -353,6 +357,12 @@ detalhe estético.
 |---|---|---|---|
 | 04/10/2026 | `2692127545` · `2692076338` · `2692082114` (os 3 de 10 un) | **Fotos**: as 3 antigas substituídas por 3 de catálogo — embalagem + cápsula (capa), três cápsulas, cápsula isolada | Rafael, na conversa |
 | 05/10/2026 | os mesmos 3 | **Fotos**: inseridas a frente e a(s) lateral(is) entre a capa e as cápsulas. Clássico e Canela ficaram com **5**, Suave com **6** | Rafael, na conversa |
+| 07/10/2026 | os 7 | **Marca** `Cafe` → `Café Canastra` (inclusive o Kit 3 Sabores, que a folha dava como feito) · **Linha** · **Quantidade de pacotes** (caixas `1`; kits `30` → `4`, que declarava 300 cápsulas) · **descrição nova** · **título dos 4 kits**. Estoque e status intocados | Rafael, na conversa |
+| 08/10/2026 | os 4 kits de 40 | **Fotos**: as de 2022 (caixa dispenser e sachê, que não são o produto vendido) substituídas pelas novas de estúdio — pirâmide branca (capa) → pirâmide em fundo cor → escalonado com cápsulas → frente da caixa de 10 → três cápsulas → cápsula isolada. 6 fotos nos kits de um sabor; 5 no 3 Sabores (as duas últimas são o trio preto e o trio cobre). Conferido relendo os 4 formulários e baixando do CDN | Rafael, na conversa |
+| 08–11/10/2026 | `5903454718` (Suave 1 kg grãos) | **Ficha** gravada: Linha `Especial`, Modelo `Suave`, Nível de torrado `Médio`; Marca e Tipo de café o ML **normaliza** para `Cafe Canastra` e `100% Arabica` (valor de cadastro dele, sem acento). **Descrição nova no ar em 11/10** (conferida na página pública, 1.077 caracteres): a antiga chamava o produto em grãos de *torrado e moído*. **Atacado não mudou** e segue 99,99/94,99: o ML recusa 99,90/97,90 com teto de **R$ 95,34 (5 un)** e **R$ 90,72 (10 un)** — repasse obrigatório da economia de frete. Preços ficam para o Rafael revisar um a um | Rafael, na conversa |
+| 11/10/2026 | **`7791049478` — NOVO, Clássico 1 kg grãos, PAUSADO** | Criado do zero (EAN `7892262780225` não existe no catálogo do ML). Título `Café Em Grãos Especial Torra Escura 1kg Serra Da Canastra Mg`; ficha Marca `Café Canastra`, Linha `Especial`, Modelo `Clássico`, em grão, 100% arábica, pacote, torra `Escura`, sem glúten; 3 fotos **recortadas do pacote real** (`saida-teste/ml-classico-1kg/`, `scripts/recorte_pacote_escuro.py`) — o packshot `10.1` foi reprovado (pássaros e `®` inventados, `Clássico` em minúsculas); descrição `mercadolivre/textos/classico-1kg-descricao.txt` com a origem lida no verso real; embalagem 27×29×11 cm, 1,128 kg; R$ 109,90, Clássico, frete grátis, **sem atacado**; estoque 10, SKU `08`. Preço a revisar pelo Rafael | Rafael, na conversa |
+| 11/10/2026 | **`7791161926` — NOVO, Néctar de Minas Gourmet 1 kg grãos, PAUSADO** | Título `Café Gourmet Em Grãos 1kg 100% Arábica Torra Escura Minas`; Marca `Néctar de Minas`, Linha `Gourmet`, Modelo `Torra Escura`; EAN `7892262780157`; **só a capa** (recorte real, `saida-teste/ml-nectar-gourmet-1kg/`); a IA do ML marcou *livre de glúten = Não* e foi corrigido para Sim (o verso diz *NÃO CONTÉM GLÚTEN*); sem descrição (texto pronto em `mercadolivre/textos/`); 27×29×11 cm, 1,128 kg; R$ 99,90 Clássico, tarifa R$ 13,99, frete grátis R$ 28,90, recebe R$ 57,01; estoque 10, SKU `09`. Pausar exige clicar no **interruptor** da lista (o clique por `ref` não pegou) | Rafael, na conversa |
+| 11/10/2026 | **`7791312402` — NOVO, Kit 2 kg Clássico grãos, PAUSADO** | Título `Kit 2kg Café Em Grãos Especial Torra Escura Serra Canastra`; ficha igual ao Clássico 1 kg; formato **Kit, 2 embalagens de 1 kg**; EAN do pacote `7892262780225`; capa composta com 2 recortes reais (`scripts/compor_kit.py`); 27×29×22 cm, 2,256 kg; R$ 219,80 Clássico: tarifa R$ 30,77, **frete grátis medido R$ 54,10** (eu estimava R$ 40), recebe **R$ 134,93** (R$ 67,47/kg contra R$ 60,21 do avulso); estoque 5, SKU `08-K2` | Rafael, na conversa |
 
 Ordem final, por anúncio: **capa** (embalagem + cápsula) → **frente** → **lateral(is)** →
 **três cápsulas** → **cápsula isolada**.
@@ -376,7 +386,7 @@ Origem: `saida-teste/catalogo-estudio/{16,17,21}-capsulas-*/`. Conferido na **li
 anúncios** e relendo os 3 formulários do zero: as fotos antigas sumiram e a ordem no
 servidor bate com a pedida — 5 · 5 · 6.
 
-**Os 4 kits de 40 un continuam com as fotos antigas** — fora do escopo autorizado.
+**Os 4 kits de 40 un ganharam fotos novas em 08/10/2026** — ver a tabela acima. Origem: `saida-teste/catalogo-estudio/{22,23,24,25}-kit-capsulas-*/`, prompts nas seções 22–25 de `docs/PROMPTS-ESTUDIO-CATALOGO.md`.
 
 ---
 
@@ -390,4 +400,16 @@ Nada mais foi alterado na conta. O que está pendente, em ordem:
 4. **Intensidade (escala 4–12) e status de glúten** — filtros nativos; pedir à
    torrefação e ao controle de qualidade. **Não chutar**
 5. **Simulador de custos da Central** — confirmar o frete do kit de 40
-6. Aplicar as edições nos 7 anúncios (autorizado: tudo menos reativar)
+6. ~~Aplicar as edições nos 7 anúncios~~ — **feito em 07/10/2026**, ver `13-o-que-falta.md`
+
+### Descrições aplicadas em 07/10/2026 — diferenças em relação ao `10-textos-prontos.md`
+
+O texto que foi para o ML **não é idêntico** ao do `10-textos-prontos.md`, em três pontos:
+
+| Mudança | Por quê |
+|---|---|
+| Saiu o bloco **ENTREGA** ("Enviado pelo Mercado Envios Full…") | Nenhum dos 7 tem estoque no Full e o Rafael decidiu não mexer em estoque. A frase seria falsa |
+| Saíram as duas menções a **"torra escura esconde defeito"** | A descrição antiga do ML declarava o Clássico e o Canela como **torra escura**. Com a torra ainda sem confirmação, o texto podia estar falando mal do próprio produto |
+| Parágrafos **sem quebra de linha a 70 colunas** | A quebra do markdown virava linha picada no celular |
+
+Se o estoque for para o Full, o bloco ENTREGA pode voltar.

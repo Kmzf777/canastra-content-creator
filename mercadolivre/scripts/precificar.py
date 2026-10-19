@@ -6,6 +6,7 @@ tarifas e fretes medidos no formulário da conta). Mudou um custo? Mude lá e aq
 
     python mercadolivre/scripts/precificar.py                 # tabela 1 kg e kit 2 kg
     python mercadolivre/scripts/precificar.py --conferir      # bate a fórmula com o ML
+    python mercadolivre/scripts/precificar.py --escada        # 1 kg / 500 g / kits por faixa de envio
     python mercadolivre/scripts/precificar.py --preco 119.90 --cmv 47 --frete 34.30
     python mercadolivre/scripts/precificar.py --margem 15 --cmv 47 --frete 34.30 --tipo premium
 """
@@ -92,9 +93,73 @@ def tabela_padrao():
             for t in ('classico', 'premium') for m in (0, 10, 15, 20)))
 
 
+# --- Escada 1 kg / 500 g por faixa de envio (15/10/2026) --------------------------------
+# Faixas de preço da tabela de envio (ajuda/40538). O frete grátis muda de valor ao cruzar uma.
+FAIXAS = ((0, 18.99), (19, 48.99), (49, 78.99), (79, 99.99), (100, 119.99),
+          (120, 149.99), (150, 199.99), (200, 10**6))
+
+# (classe de peso, início da faixa) -> (frete, origem). M = medido no formulário/lista da conta
+# (reputação vermelha); E = estimado, NÃO usar como fato — medir no formulário antes de decidir.
+FRETE_FAIXA = {
+    ('1kg', 79): (29.50, 'M'),     # Néctar 1 kg a 99,90, lista 15/10
+    ('1kg', 100): (34.30, 'M'),    # Suave 1 kg a 109,90, formulário 15/10
+    ('1kg', 120): (39.10, 'E'),    # extrapolado: +4,80 por faixa, como de 79 para 100
+    ('1kg', 150): (43.90, 'E'),    # idem
+    ('2kg', 200): (54.10, 'M'),    # Kit 2 kg a 219,80, formulário 11/10
+    ('2x500g', 100): (34.30, 'E'),  # supõe pacote de ~1,1 kg igual ao 1 kg; medir
+    ('2x500g', 120): (39.10, 'E'),
+    ('500g', 49): (16.90, 'E'),    # tabela 40538 0,5–1 kg R$ 8,45 com 50% embutido, x2 no vermelho
+    ('500g', 79): (28.90, 'E'),    # tabela 40538 0,5–1 kg R$ 14,45 x2 no vermelho
+}
+
+
+def faixa(preco):
+    for ini, fim in FAIXAS:
+        if ini <= preco <= fim:
+            return ini
+    return FAIXAS[-1][0]
+
+
+ROAS_ADS = 10.0   # ROAS de partida para o CM2 (prática 8–15, fala oficial 10 [ads A24])
+
+SKUS = (
+    # nome, classe de frete, CMV, kg, preços a testar
+    ('1 kg avulso', '1kg', CMV['1kg'], 1.0, (109.90, 119.90, 124.90, 129.90, 134.90, 139.90)),
+    ('Kit 2 x 1 kg', '2kg', 2 * CMV['1kg'], 2.0, (219.80, 229.90, 239.80, 249.90, 259.80)),
+    ('500 g avulso', '500g', CMV['500g'], 0.5, (59.90, 65.70, 69.90, 74.90, 79.90)),
+    ('Kit 2 x 500 g', '2x500g', 2 * CMV['500g'], 1.0, (119.90, 124.90, 129.90)),
+)
+
+
+def escada():
+    print('CM1 = preço − tarifa − frete − imposto 9%% − CMV (antes de Ads). ACOS eq = CM1%%;'
+          ' ROAS eq = 1/ACOS. CM2 = CM1 − Ads a ROAS %.0f (ACOS %.0f%%).'
+          ' Frete M = medido, E = ESTIMADO.' % (ROAS_ADS, 100 / ROAS_ADS))
+    print('%-14s %8s %7s %-5s %7s %6s %7s %6s %7s %6s %7s %6s' % (
+        'SKU', 'preço', 'R$/kg', 'tipo', 'frete', 'orig', 'CM1', 'CM1%', 'ROASeq', 'CM2', 'CM2%', 'eq.'))
+    for nome, classe, cmv, kg, precos in SKUS:
+        for p in precos:
+            tipo = 'premium' if p >= 150 else 'classico'
+            fr = FRETE_FAIXA.get((classe, faixa(p)))
+            if fr is None:
+                print('%-14s %8.2f  — frete da faixa %s sem medida nem estimativa' % (nome, p, faixa(p)))
+                continue
+            frete, orig = fr
+            r = resultado(p, cmv, frete, tipo)
+            cm1 = r['lucro']
+            roas_eq = (p / cm1) if cm1 > 0 else float('inf')
+            cm2 = round(cm1 - p / ROAS_ADS, 2)
+            eq = preco_para_margem(0, cmv, frete, tipo)
+            print('%-14s %8.2f %7.2f %-5s %7.2f %6s %7.2f %5.1f%% %7.1f %6.2f %5.1f%% %6.2f' % (
+                nome, p, p / kg, tipo[:5], frete, orig, cm1, r['margem'],
+                roas_eq, cm2, cm2 / p * 100, eq))
+        print()
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument('--conferir', action='store_true')
+    ap.add_argument('--escada', action='store_true', help='1 kg, kit 2 kg, 500 g e kit 2x500 g por faixa de envio')
     ap.add_argument('--preco', type=float)
     ap.add_argument('--margem', type=float)
     ap.add_argument('--cmv', type=float, default=CMV['1kg'])
@@ -104,6 +169,9 @@ def main(argv=None):
     a = ap.parse_args(argv)
     if a.conferir:
         return 0 if conferir() else 1
+    if a.escada:
+        escada()
+        return 0
     if a.preco is not None:
         print(CAB)
         print(linha(resultado(a.preco, a.cmv, a.frete, a.tipo, a.desconto)))

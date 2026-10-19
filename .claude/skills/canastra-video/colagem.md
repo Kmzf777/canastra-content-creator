@@ -76,13 +76,17 @@ parada a 0,5 s, promessa e não assunto) e `03-roteiro.md` (o relógio). Regras:
   Reticências desaceleram; `[pause]` respira; troca de registro é de propósito.
 
 ```text
-[low, tense, slow, almost a whisper, suspenseful]
-Até um por cento do café que você compra… pode ser casca… e pau.
-[pause]
-[cold, deliberate] E tá tudo dentro da lei.
-[warm, friendly, smiling, relaxed, like talking to a friend]
-Calma! Não precisa largar o café.
+[energetic, upbeat, fast-paced, social media creator talking straight to camera]
+Até um por cento do café que você compra pode ser casca e pau, e tá tudo dentro da lei!
+[upbeat, friendly, confident]
+Mas não precisa largar o café.
 ```
+
+- **Nunca abra com sussurro, tom baixo ou "suspense"**, nem use pausa longa como efeito.
+  Em 15/10/2026 o cliente reprovou esse recurso ("sussurros inúteis que quebram a fala") e
+  pediu fala **dinâmica, de social media**, do começo ao fim. Varie pela energia (animado,
+  provocando, rindo, confiante), nunca pelo volume. A tensão do gancho vem do texto, não do
+  sussurro.
 
 - Número **por extenso** no texto ("trezentos e cinquenta gramas"): é como a voz lê. O
   whisper escreve em algarismo e `alinhar_narracao.py` converte por extenso (`por_extenso`)
@@ -205,9 +209,13 @@ narrada. As referências que o cliente mandou foram o motion de marca do Aryan R
 método do `kaomei/stickman-video-director`, que só serviu para aprender: a peça não tem
 nenhum vídeo gerado por IA.
 
-- **Sem pílula.** O texto é a manchete: só a palavra-chave, entrando no QUADRO em que a voz
-  a diz (`Manchete` em `src/pecas/onze/teste/TesteCodigo.tsx`, carimbo ≤ 115%). Frases inteiras
-  só em serifa, palavra por palavra.
+- **A palavra-chave manda, mas a fala nunca fica sem legenda.** A palavra-chave entra no QUADRO
+  em que a voz a diz (`Manchete` em `src/pecas/onze/teste/TesteCodigo.tsx`, carimbo ≤ 115%) e
+  **sai ~0,9 s depois** (`ate()` em `src/pecas/jeitinho/roteiro.ts`); frase inteira em serifa,
+  palavra por palavra. **Regra do cliente (15/10/2026, peça 09 reprovada): quando não há texto
+  na tela, a fala tem legenda** — a pílula A volta, com o contrato `b/t/mudo` da peça 07 e o
+  teste de roteiro. Palavra-chave parada na tela 3 s enquanto a voz já fala outra coisa foi
+  lida como dessincronia. Molde: `src/pecas/jeitinho/` + `tests/jeitinho-roteiro.test.ts`.
 - **Boneco v2** (`src/pecas/onze/teste/BonecoV2.tsx`). Não use o `colagem/boneco.tsx`, cujo
   boil faz o corpo inteiro tremer e lê como falha.
   - membro em curva contínua e cabeça sempre por cima do braço;

@@ -1,0 +1,822 @@
+<title>Guia Amazon Canastra</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: uma coluna de leitura (onde estamos → plano → o que é CM → calculadora → glossário); a calculadora abre em duas colunas no desktop. */
+:root {
+  --bg: #F3F5F7;
+  --surface: #FFFFFF;
+  --line: #D8DDE3;
+  --fg: #1A1E24;
+  --muted: #5B6470;
+  --accent: #2C5A86;
+  --accent-soft: #E0EAF4;
+  --good: #1F7A50; --good-soft: #DFF1E7;
+  --warn: #8A5A00; --warn-soft: #FBEFD6;
+  --bad: #B3261E;  --bad-soft: #F8E1DF;
+  --c-cafe: #7A4E2D;
+  --c-com: #2E3440;
+  --c-log: #6A86A6;
+  --c-imposto: #8C8799;
+  --c-ads: #D99A12;
+  --c-perda: #B5ADA3;
+  --c-sobra: #1F8A5B;
+  --display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171B; --surface: #1C2026; --line: #323842; --fg: #E9ECEF; --muted: #A2AAB4;
+    --accent: #7FB0E0; --accent-soft: #1A2838;
+    --good: #6CCB97; --good-soft: #16301F; --warn: #E8B54A; --warn-soft: #3A2C10; --bad: #F08A80; --bad-soft: #3A1C1A;
+    --c-cafe: #B07A50; --c-com: #8E99AB; --c-log: #5C7FA6; --c-imposto: #6F6A7D; --c-ads: #E8B54A; --c-perda: #6E675F; --c-sobra: #4DBB82;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171B; --surface: #1C2026; --line: #323842; --fg: #E9ECEF; --muted: #A2AAB4;
+  --accent: #7FB0E0; --accent-soft: #1A2838;
+  --good: #6CCB97; --good-soft: #16301F; --warn: #E8B54A; --warn-soft: #3A2C10; --bad: #F08A80; --bad-soft: #3A1C1A;
+  --c-cafe: #B07A50; --c-com: #8E99AB; --c-log: #5C7FA6; --c-imposto: #6F6A7D; --c-ads: #E8B54A; --c-perda: #6E675F; --c-sobra: #4DBB82;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 44px; }
+section { display: grid; gap: 16px; min-width: 0; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.08; font-weight: 700; }
+h2 { font-size: 24px; font-weight: 700; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 66ch; }
+.eyebrow { font: 600 13px var(--body); letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+.lead { color: var(--muted); font-size: 18px; }
+.muted { color: var(--muted); }
+small, .small { font-size: 14px; color: var(--muted); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* onde estamos */
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.st { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+.pill { justify-self: start; font: 600 12px var(--body); letter-spacing: .05em; text-transform: uppercase; padding: 2px 9px; border-radius: 999px; }
+.pill.ok { background: var(--good-soft); color: var(--good); }
+.pill.no { background: var(--warn-soft); color: var(--warn); }
+.pill.al { background: var(--bad-soft); color: var(--bad); }
+
+/* plano */
+.fases { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: f; }
+.fases li { counter-increment: f; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding-bottom: 22px; position: relative; }
+.fases li::before {
+  content: counter(f); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: var(--surface); font: 700 16px var(--display);
+}
+.fases li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 40px; bottom: 4px; width: 2px; background: var(--line); }
+.fases .t { display: grid; gap: 4px; padding-top: 5px; }
+.fases .gate { font-size: 14px; color: var(--muted); }
+.fases .gate b { color: var(--fg); font-weight: 600; }
+.note { background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; font-size: 15px; }
+
+/* CMs */
+.cms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 720px) { .cms { grid-template-columns: minmax(0, 1fr); } }
+.cm { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; align-content: start; }
+.cm .tag { font: 700 22px var(--display); color: var(--accent); }
+.cm .q { font-weight: 600; }
+.cm ul { margin: 0; padding-left: 18px; font-size: 15px; color: var(--muted); }
+
+/* calculadora */
+.calc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 28px; }
+@media (max-width: 800px) { .calc { grid-template-columns: minmax(0, 1fr); padding: 18px; } }
+.ctrl { display: grid; gap: 22px; align-content: start; }
+.field { display: grid; gap: 8px; }
+.field > .lbl { font-weight: 600; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button {
+  font: 600 15px var(--body); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg);
+}
+.seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.price { display: flex; align-items: center; gap: 10px; }
+.price input[type="number"] {
+  width: 120px; font: 500 20px var(--mono); padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); text-align: right;
+}
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+.sw { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; cursor: pointer; }
+.sw input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); }
+.sw span b { display: block; font-weight: 600; }
+.sw span small { display: block; }
+.adsbox { display: grid; gap: 6px; padding-left: 30px; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.out { display: grid; gap: 20px; align-content: start; min-width: 0; }
+.big { display: grid; gap: 6px; }
+.big .s { font-size: 19px; }
+.big .v { font: 700 clamp(34px, 6vw, 48px) var(--display); line-height: 1; font-variant-numeric: tabular-nums; }
+.verdict { justify-self: start; font: 600 14px var(--body); padding: 4px 12px; border-radius: 999px; }
+.verdict.good { background: var(--good-soft); color: var(--good); }
+.verdict.warn { background: var(--warn-soft); color: var(--warn); }
+.verdict.bad { background: var(--bad-soft); color: var(--bad); }
+.bar { display: flex; height: 34px; border-radius: 8px; overflow: hidden; background: var(--bg); }
+.bar span { height: 100%; transition: width .25s ease; }
+@media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+.legend { display: grid; gap: 0; }
+.legend .r { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.legend .r:last-child { border-bottom: 0; }
+.legend .dot { width: 12px; height: 12px; border-radius: 3px; align-self: center; }
+.legend .r small { display: block; }
+.legend .r .num { white-space: nowrap; }
+.legend .r.sobra { font-weight: 600; }
+.stops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stop { border-radius: 8px; padding: 10px 12px; background: var(--bg); display: grid; gap: 2px; }
+.stop .k { font: 700 14px var(--display); color: var(--accent); }
+.stop .v { font: 500 18px var(--mono); font-variant-numeric: tabular-nums; }
+.stop .d { font-size: 13px; color: var(--muted); line-height: 1.3; }
+.stop.neg .v { color: var(--bad); }
+.tips { display: grid; gap: 8px; font-size: 15px; }
+.tips p { padding-left: 14px; border-left: 3px solid var(--line); }
+.tips p.alert { border-left-color: var(--bad); }
+
+/* grupos da calculadora */
+fieldset.grp { border: 0; margin: 0; padding: 0 0 18px; display: grid; gap: 12px; border-bottom: 1px solid var(--line); min-width: 0; }
+fieldset.grp legend { font: 700 14px var(--display); color: var(--accent); padding: 0; margin-bottom: 10px; letter-spacing: .02em; }
+.sub { display: grid; gap: 6px; padding-left: 30px; }
+.sub[hidden] { display: none; }
+.est { display: inline-block; font: 600 11px var(--body); letter-spacing: .05em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); vertical-align: 2px; }
+.track { position: relative; display: grid; align-items: center; }
+.track input { position: relative; z-index: 1; background: transparent; }
+.track .band { position: absolute; top: 50%; height: 10px; transform: translateY(-50%); border-radius: 5px; background: var(--good-soft); border: 1px solid var(--good); }
+.dims { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.dims input, .advbody .price input, .grp .price input#vendas {
+  font: 500 16px var(--mono); padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); min-width: 0;
+}
+.advbody .price input, .grp .price input#vendas { width: 110px; text-align: right; }
+details.adv { border: 1px solid var(--line); border-radius: 10px; }
+details.adv summary { cursor: pointer; padding: 10px 14px; font-weight: 600; }
+details.adv summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.advbody { display: grid; gap: 8px; padding: 0 14px 14px; }
+.modo { background: var(--accent-soft); border-radius: 8px; padding: 10px 12px; font-size: 15px; max-width: none; }
+.modo b { font-weight: 600; }
+.mes { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.mes h3 { grid-column: 1 / -1; font-size: 15px; }
+.mes .m { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; display: grid; gap: 2px; align-content: start; }
+.mes .m .k { font-size: 13px; color: var(--muted); }
+.mes .m .v { font: 500 18px var(--mono); font-variant-numeric: tabular-nums; }
+.mes .m.neg .v { color: var(--bad); }
+
+.proj { display: grid; gap: 8px; }
+.proj .k { font: 700 14px var(--display); color: var(--accent); }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { font: 12px var(--body); fill: var(--muted); }
+.chart .lab { font: 600 12px var(--body); }
+.chartkey { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); }
+.chartkey i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: 3px; margin-right: 6px; }
+
+.med { display: inline-block; font: 600 11px var(--body); letter-spacing: .05em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; background: var(--good-soft); color: var(--good); vertical-align: 2px; }
+.grp .price input.n, .advbody .price input.n { width: 110px; font: 500 16px var(--mono); padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); text-align: right; min-width: 0; }
+.advbody h4 { margin: 10px 0 0; font: 700 13px var(--display); color: var(--accent); letter-spacing: .02em; }
+.advbody h4:first-child { margin-top: 0; }
+.advbody ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 15px; color: var(--muted); }
+.seg button { font-size: 14px; }
+details.semnum { background: var(--surface); }
+
+/* glossário */
+dl.gl { margin: 0; display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr); gap: 10px 20px; }
+@media (max-width: 560px) { dl.gl { grid-template-columns: minmax(0, 1fr); gap: 2px; } dl.gl dd { margin-bottom: 10px; } }
+dl.gl dt { font-weight: 600; }
+dl.gl dd { margin: 0; color: var(--muted); }
+a { color: var(--accent); }
+footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+</style>
+
+<div class="wrap">
+
+  <header style="display:grid;gap:10px">
+    <span class="eyebrow">Café Canastra · Amazon</span>
+    <h1>A Amazon explicada, e quanto sobra em cada pacote</h1>
+    <p class="lead">Uma página para entender a estratégia sem planilha: onde a conta está, o caminho em quatro fases, o que significam CM1, CM2 e CM3, e uma calculadora com poucos botões.</p>
+  </header>
+
+  <section>
+    <h2>Onde a conta está hoje</h2>
+    <div class="status">
+      <div class="st"><span class="pill ok">Pronto</span><h3>Conta aberta e saudável</h3><span class="small">"Cafe Canastra" no Seller Central. Nota de saúde 200 (o máximo), nenhuma violação, nota de vendedor 5,0.</span></div>
+      <div class="st"><span class="pill ok">Pronto</span><h3>Já vendemos pelo FBA</h3><span class="small">Um envio só, de 50 drips em março de 2026. Vendeu 33. De cada 100 visitas, 20 a 34 viraram compra: o café converte bem.</span></div>
+      <div class="st"><span class="pill al">Lição</span><h3>17 drips venceram na prateleira</h3><span class="small">Mandamos 10 de cada sabor sem olhar o que vendia. Os campeões esgotaram em 3 semanas e não foram repostos. O resto venceu.</span></div>
+      <div class="st"><span class="pill no">Falta</span><h3>1 kg e 500 g não estão à venda</h3><span class="small">As 6 ofertas da conta são de drip, todas sem estoque. O 1 kg é um produto novo na Amazon.</span></div>
+      <div class="st"><span class="pill no">Falta</span><h3>Marca registrada e anúncio</h3><span class="small">Sem cadastro de marca (Brand Registry) e nunca rodou anúncio. E a própria Amazon vende um "Café Canastra" 500 g a R$ 137, que não controlamos.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Já fizemos na Amazon</h2>
+    <p class="muted">Um envio só, de drip coffee, em março de 2026. É pouco, mas já mostra o que a Amazon cobra de verdade. Estes números entram na calculadora com o selo <span class="med">medido</span>.</p>
+    <div class="status">
+      <div class="st"><span class="pill ok">Envio</span><h3>50 drips ao armazém CNF5</h3><span class="small">Envio FBA199CQZ0L1: 6 sabores e formatos, 50 unidades, todas recebidas, sem diferença de contagem. Criado em 23/03, entregue em 31/03, recebimento encerrado em 13/04. Cerca de 3 semanas entre criar o envio e estar à venda.</span></div>
+      <div class="st"><span class="pill ok">Frete de entrada</span><h3>R$ 0,00</h3><span class="small">Cobrado em 24/03 como "Inbound Transportation Fee". Provavelmente pela isenção de entrada no FBA, que não vale mais para nós.</span></div>
+      <div class="st"><span class="pill ok">Tarifas por venda</span><h3>Bateram com a tabela</h3><span class="small">Até o início de maio, só 5% de comissão (lançamento Prime) e logística zero (isenção de entrada no FBA, provavelmente). Depois de 19/05: drip a R$ 31,90 pagou R$ 7,44 = 5% + R$ 5,85; kit de 30 a R$ 89,90 pagou R$ 17,89 = 5% + R$ 12,05 + 1,5% de Vantagens ou parcelamento.</span></div>
+      <div class="st"><span class="pill ok">Armazenagem</span><h3>R$ 6,14 em três meses</h3><span class="small">R$ 4,96 em julho (17 unidades paradas em junho), R$ 1,01 em agosto e R$ 0,17 em setembro. Cerca de R$ 0,29 por pacote por mês.</span></div>
+      <div class="st"><span class="pill al">Remoção</span><h3>R$ 15,55 para tirar os vencidos</h3><span class="small">17 drips venceram no armazém (34% do lote). A remoção, em julho, custou cerca de R$ 1,04 por unidade. Houve depois um crédito de R$ 10,11 ("Repagamento do vendedor") e R$ 19,00 de "Seller Rewards".</span></div>
+      <div class="st"><span class="pill ok">Plano e promoções</span><h3>R$ 0,00</h3><span class="small">O plano saiu de graça em abril e maio. Três descontos de promoção (R$ 8,90, R$ 8,90 e R$ 1,27) foram estornados no mesmo valor.</span></div>
+    </div>
+    <small>Lido no Seller Central em 16/10/2026, só leitura: Cadeia de fornecimento › Gerenciar envios e Financeiro › Pagamentos › Transações (28/02 a 16/10/2026). O extrato não mostra a quebra das tarifas de cada venda; a divisão acima é a única combinação que fecha no centavo com a tabela e as regras.</small>
+  </section>
+
+  <section>
+    <h2>O caminho, em quatro fases</h2>
+    <p class="muted">Na Amazon, quem aparece é quem vende rápido e nunca fica sem estoque. Mas o café vence. Por isso a ordem é: saber a validade e mandar pouco, ligar o anúncio para trazer gente, repor no ritmo certo e, com a marca registrada, buscar avaliações e recompra.</p>
+    <ol class="fases">
+      <li><div class="t">
+        <h3>Arrumar a casa</h3>
+        <p>Descobrir a validade do 1 kg e do 500 g, pesar e medir o pacote, ver o registro da marca no INPI e pedir o Brand Registry. Conferir se o 500 g que a Amazon vende é o nosso Néctar de Minas. Cadastrar o 1 kg.</p>
+        <span class="gate"><b>Por que primeiro:</b> sem saber a validade não dá para saber quanto mandar. Foi o que fez o drip vencer.</span>
+        <span class="gate"><b>Passa para a próxima quando:</b> o 1 kg está cadastrado, com validade e peso conhecidos.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Primeiro envio pequeno, com anúncio</h3>
+        <p>Mandar ao FBA só o que dá para vender antes do prazo. A Amazon exige que o café chegue com mais de 150 dias de validade e tira de venda a 50 dias do fim. Junto, ligar o anúncio automático (Sponsored Products).</p>
+        <span class="gate"><b>Por que o anúncio já aqui:</b> sem anúncio o drip teve 206 visitas em um ano. O café converte; falta gente vendo. E com anúncio de pelo menos 3,5% da receita, a logística FBA cai para R$ 6 por pacote a partir de R$ 79 (Experimente FBA, até 31/01/2027).</span>
+        <span class="gate"><b>Passa para a próxima quando:</b> há vendas toda semana e o estoque gira longe do vencimento.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Repor no ritmo e afinar o anúncio</h3>
+        <p>Repor antes de acabar, pela venda real (a Amazon recomenda ter de 2 a 13 semanas de estoque). No anúncio, passar as buscas que vendem para campanha manual e cortar as que só gastam.</p>
+        <span class="gate"><b>Por que:</b> produto que fica sem estoque perde a posição na busca. Os drips campeões sumiram assim.</span>
+        <span class="gate"><b>Passa para a próxima quando:</b> o anúncio custa menos que o limite da calculadora e não falta estoque.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Marca, avaliações e recompra</h3>
+        <p>Com o Brand Registry aprovado: Vine (a Amazon manda o café a avaliadores), página caprichada (A+), loja da marca, Programe e Poupe (assinatura) e kits.</p>
+        <span class="gate"><b>Por que:</b> café é compra que se repete. Os líderes têm milhares de avaliações e assinatura. Tudo isso exige a marca registrada.</span>
+      </div></li>
+    </ol>
+    <p class="note">Esta é uma proposta, montada a partir da auditoria da conta de 15/10/2026 e da pesquisa de regras. Nada foi decidido nem alterado na conta. Cada passo é aprovado por você, um de cada vez. A Black Friday da Amazon vai de 03 a 30/11/2026 e pede estoque no FBA ao menos 2 semanas antes.</p>
+  </section>
+
+  <section>
+    <h2>O que são CM1, CM2 e CM3</h2>
+    <p class="muted">CM quer dizer <b>margem de contribuição</b>: o dinheiro que sobra de uma venda depois de pagar o que aquela venda gastou. Os três números são a mesma conta em três paradas. A cada parada sai mais uma despesa.</p>
+    <div class="cms">
+      <div class="cm">
+        <span class="tag">CM1</span>
+        <span class="q">O pacote se paga sozinho?</span>
+        <p class="small">Preço menos o que é obrigatório em toda venda:</p>
+        <ul><li>o custo do café (CMV)</li><li>a comissão da Amazon, 10%</li><li>a logística: FBA (R$ 6 a R$ 22, conforme preço e peso) ou DBA</li><li>o imposto de 9%</li><li>o Mais Vantagens, 2,5%</li></ul>
+      </div>
+      <div class="cm">
+        <span class="tag">CM2</span>
+        <span class="q">E pagando o anúncio?</span>
+        <p class="small">CM1 menos o que gastamos para trazer o cliente:</p>
+        <ul><li>o anúncio na busca (Sponsored Products), dividido por todos os pacotes vendidos, com e sem anúncio (o TACOS)</li></ul>
+      </div>
+      <div class="cm">
+        <span class="tag">CM3</span>
+        <span class="q">Quanto sobra de verdade?</span>
+        <p class="small">CM2 menos os custos que não aparecem no pedido:</p>
+        <ul><li>devoluções (café devolvido não volta à venda)</li><li>armazenagem e coleta até o armazém (R$ 0 no Experimente FBA)</li><li>estoque que vence no armazém e a remoção dele</li><li>o plano da conta</li></ul>
+      </div>
+    </div>
+    <p>A CM3 é o número que importa para decidir preço. É o que fica para pagar salários, aluguel e o lucro da empresa. Se a CM3 é negativa, cada venda tira dinheiro do caixa. Na Amazon, o maior risco da CM3 é o vencimento: um pacote de 1 kg vencido joga fora R$ 47 de café.</p>
+  </section>
+
+  <section id="calculadora">
+    <h2>Calculadora: quanto sobra em cada pacote</h2>
+    <p class="muted">O essencial fica na frente: produto, como vende, anúncio e o mês. O resto está em Avançado. O topo do resultado sempre diz o que está sendo simulado. Selo <span class="med">medido</span> quer dizer conferido com cobrança real da nossa conta; selo <span class="est">estimado</span>, que ainda não foi lido na conta.</p>
+    <div class="calc">
+      <form class="ctrl" id="f" autocomplete="off">
+
+        <fieldset class="grp">
+          <legend>Produto e preço</legend>
+          <div class="seg" id="prod" role="group" aria-label="Produto"></div>
+          <div class="field">
+            <label class="lbl" for="preco">Preço na Amazon</label>
+            <div class="price"><span class="muted">R$</span><input type="number" id="preco" step="0.10" min="20" max="400"></div>
+            <input type="range" id="precoR" step="0.10" aria-label="Ajustar preço">
+            <small id="precoRef"></small>
+          </div>
+          <div class="field">
+            <label class="lbl" for="cupom">Desconto ao cliente (cupom ou oferta)</label>
+            <div class="price"><input type="number" id="cupom" class="n" step="1" min="0" max="80" value="0"><span class="muted">% do preço</span></div>
+            <small>A Amazon não cobra tarifa de promoção no Brasil: o custo é o desconto. Cupom vai de 5% a 50% e dura até 30 dias; Oferta Relâmpago dura de 4 a 12 horas e a Amazon pede um desconto mínimo por produto. Comissão e tarifas passam a contar sobre o preço com desconto.</small>
+          </div>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Como vende</legend>
+          <div class="field">
+            <span class="lbl">Quem guarda e entrega</span>
+            <div class="seg" id="modoSeg" role="group" aria-label="Logística"></div>
+            <small id="modoInfo"></small>
+          </div>
+          <div class="sub" id="dbaBox" hidden>
+            <label class="lbl" for="dba79">Tarifa DBA de R$ 79 para cima <span class="est">estimado</span></label>
+            <div class="price"><span class="muted">R$</span><input type="number" id="dba79" class="n" step="0.05" min="0" value="17.45"></div>
+            <small>A Amazon cobra por estado e peso, numa planilha que não lemos. R$ 17,45 é o único valor que a pesquisa achou (vídeo de Egton Andrade, 03/08/2026: pacote de 2 a 3 kg, preço de R$ 100 a R$ 119,99). Para 1 kg deve ser menor; uma praticante cita 50% de desconto saindo de SP, não confirmado. Abaixo de R$ 79 a tarifa é a oficial: R$ 4,50, R$ 6,50 ou R$ 6,75.</small>
+          </div>
+          <div class="sub" id="mfnBox" hidden>
+            <label class="lbl" for="frete">Custo do frete por pacote <span class="est">estimado</span></label>
+            <div class="price"><span class="muted">R$</span><input type="number" id="frete" class="n" step="0.50" min="0" value="25"></div>
+            <small>R$ 25 é só o valor de partida da calculadora completa, sem medição. Aqui o frete é grátis para o cliente; se cobrar frete, a comissão de 10% incide também sobre ele.</small>
+          </div>
+          <label class="sw" id="expRow"><input type="checkbox" id="exp" checked><span><b>Experimente FBA</b><small>Campanha até 31/01/2027 para conta que já usou o FBA, como a nossa: logística a R$ 6 por pacote de R$ 79 para cima e coleta e armazenagem grátis em qualquer preço. Só vale no mês seguinte a um mês em que o anúncio gastou pelo menos 3,5% da receita (TACOS); a Amazon confere todo dia 20.</small></span></label>
+          <div class="field">
+            <span class="lbl">Programa de pagamento</span>
+            <div class="seg" id="progSeg" role="group" aria-label="Programa de pagamento"></div>
+            <small>Mais Vantagens dá ao cliente 12 vezes sem juros e 5% de desconto no Pix, pago pela Amazon; nós recebemos o preço cheio. Vale de R$ 40 para cima. Não sabemos ainda em qual programa a conta está inscrita.</small>
+          </div>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Anúncio</legend>
+          <label class="sw"><input type="checkbox" id="ads" checked><span><b>Anúncio ligado (Sponsored Products)</b><small>O anúncio da busca, pago por clique. Escolha quanto ele vende para cada R$ 1 gasto.</small></span></label>
+          <div class="sub" id="adsBox">
+            <label class="lbl" for="roas">ROAS do anúncio: <span class="num" id="roasV"></span></label>
+            <div class="track"><span class="band" id="band" aria-hidden="true"></span><input type="range" id="roas" min="1" max="15" step="0.5" value="4"></div>
+            <small>Faixa verde, ROAS 2 a 8, é a realista pela pesquisa: 2 é a média nos EUA, 8 é uma conta madura no Brasil.</small>
+            <label class="lbl" for="share">Parte das vendas que vem do anúncio: <span class="num" id="shareV"></span> <span class="est">estimado</span></label>
+            <input type="range" id="share" min="5" max="100" step="5" value="20">
+            <small>20% é o valor de partida da calculadora completa. Num produto novo, com pouca visita orgânica, deve ser mais.</small>
+            <small id="adsTxt"></small>
+          </div>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Estimativa do mês</legend>
+          <div class="field">
+            <label class="lbl" for="vendas">Vendas por mês</label>
+            <div class="price"><input type="number" id="vendas" class="n" step="1" min="1" value="30"><span class="muted">pacotes no 1º mês</span></div>
+          </div>
+          <div class="field">
+            <label class="lbl" for="cresc">Crescimento por mês <span class="est">estimado</span></label>
+            <div class="price"><input type="number" id="cresc" class="n" step="1" min="-50" max="100" value="10"><span class="muted">% ao mês</span></div>
+          </div>
+          <div class="field">
+            <span class="lbl">Plano da conta</span>
+            <div class="seg" id="planoSeg" role="group" aria-label="Plano da conta"></div>
+            <small>Profissional: R$ 19 por mês, grátis nos 12 primeiros meses. Individual: R$ 2 por item vendido. A conta pagou R$ 0,00 de plano em abril e maio de 2026 <span class="med">medido</span>; a data em que o ano grátis acaba não foi lida. No gráfico, a mensalidade entra como valor fixo por mês.</small>
+          </div>
+        </fieldset>
+
+        <details class="adv">
+          <summary>Avançado</summary>
+          <div class="advbody">
+            <h4>Experimente FBA</h4>
+            <label class="lbl" for="meta">Meta de anúncio (% da receita)</label>
+            <div class="price"><input type="number" id="meta" class="n" step="0.5" min="0" value="3.5"><span class="muted">%</span></div>
+            <small>A regra geral é 3,5%. Como a conta entrou no FBA antes de 01/04/2026, os termos também aceitam 1 ponto acima do gasto de abril de 2026, que foi zero: daria 1%. Falta confirmar.</small>
+
+            <h4>Armazém do FBA</h4>
+            <span class="lbl">Medidas do pacote em cm <span class="est">estimado</span></span>
+            <div class="dims"><input type="number" id="dc" step="0.5" min="0" placeholder="C" aria-label="Comprimento em cm"><input type="number" id="dl" step="0.5" min="0" placeholder="L" aria-label="Largura em cm"><input type="number" id="da" step="0.5" min="0" placeholder="A" aria-label="Altura em cm"></div>
+            <small>Ainda não medimos o pacote de café. Em branco, a calculadora usa o que a conta pagou no drip: R$ 4,96 em junho de 2026 por 17 unidades paradas, cerca de R$ 0,29 por pacote por mês <span class="med">medido</span>. Com as medidas, usa a tabela: R$ 75 por m³ por mês até 10.000 cm³, R$ 37,50 acima disso. A armazenagem de longo prazo (mais R$ 525 por m³ depois de 365 dias) não chega a valer para café, que vence antes.</small>
+            <label class="lbl" for="meses">Meses que o pacote fica no armazém <span class="est">estimado</span></label>
+            <div class="price"><input type="number" id="meses" class="n" step="0.5" min="0" value="1.5"></div>
+            <label class="lbl" for="coletaCx">Coleta até o armazém, por caixa <span class="est">estimado</span></label>
+            <div class="price"><span class="muted">R$</span><input type="number" id="coletaCx" class="n" step="0.01" min="0" value="2.92"></div>
+            <label class="lbl" for="porCx">Pacotes por caixa (exemplo)</label>
+            <div class="price"><input type="number" id="porCx" class="n" step="1" min="1" value="10"></div>
+            <small>A Amazon cobra a coleta por caixa, conforme estado e peso. A tabela lida só tem SP até 3 kg: R$ 0,93 a R$ 2,92. Para Minas e caixa pesada não lemos. No nosso único envio a Amazon cobrou R$ 0,00 de frete de entrada <span class="med">medido 1 vez</span>, provavelmente pela isenção de entrada no FBA, que não vale mais. A coleta é grátis no Experimente FBA.</small>
+
+            <h4>Perdas</h4>
+            <label class="lbl" for="dev">Devoluções (% das vendas) <span class="est">estimado</span></label>
+            <div class="price"><input type="number" id="dev" class="n" step="0.5" min="0" max="30" value="1"><span class="muted">%</span></div>
+            <small>Comestível pode ser devolvido em 7 dias. Contamos que o café devolvido não volta à venda e que a Amazon fica com 20% da comissão, até R$ 10 (tarifa de reembolso citada em vídeo, não achada na página de preços).</small>
+            <label class="lbl" for="venc">Pacotes enviados que vencem no armazém <span class="est">estimado</span></label>
+            <div class="price"><input type="number" id="venc" class="n" step="1" min="0" max="80" value="0"><span class="muted">%</span></div>
+            <small>No drip foram 34%. O café tem de chegar com mais de 150 dias de validade e sai de venda a 50 dias do fim. O vencido não é reembolsado: perdemos o café, e a calculadora divide esse custo pelos pacotes vendidos. </small>
+            <label class="sw"><input type="checkbox" id="remover" checked><span><b>Pedir a remoção dos vencidos</b><small>Em julho de 2026 a remoção dos drips custou R$ 15,55, cerca de R$ 1,04 por unidade <span class="med">medido</span>. Sem pedir, a Amazon descarta em 30 dias, sem reembolso. A tabela vai de R$ 0,99 (até 250 g) a R$ 3,60 (9 a 10 kg); a faixa do 1 kg não foi lida.</small></span></label>
+
+            <h4>Comissão, imposto e lançamento</h4>
+            <label class="sw"><input type="checkbox" id="prime5"><span><b>Comissão de lançamento de 5%</b><small>Produto novo no FBA com selo Prime paga 5% em vez de 10% nas primeiras 100 unidades, por até 120 dias. Nos drips a conta pagou exatamente 5% <span class="med">medido</span>.</small></span></label>
+            <label class="lbl" for="com">Comissão de Comidas e bebidas</label>
+            <div class="price"><input type="number" id="com" class="n" step="0.5" min="0" max="30" value="10"><span class="muted">% (mínimo R$ 1)</span></div>
+            <label class="lbl" for="imp">Imposto sobre o preço</label>
+            <div class="price"><input type="number" id="imp" class="n" step="0.5" min="0" max="30" value="9"><span class="muted">%</span></div>
+            <small>9% de <code>mercadolivre/custos.md</code>. DIFAL e o ICMS da remessa ao armazém não foram calculados.</small>
+
+            <h4>Vine (avaliações para produto novo)</h4>
+            <div class="seg" id="vineSeg" role="group" aria-label="Vine"></div>
+            <small>A Amazon manda o café a avaliadores. Taxa por produto: R$ 0 até 2 unidades, R$ 200 de 3 a 10, R$ 500 de 11 a 30, mais o café dado. Exige Brand Registry, que ainda não temos, e produto com menos de 30 avaliações. Entra só no 1º mês da estimativa e do gráfico.</small>
+          </div>
+        </details>
+      </form>
+
+      <div class="out" aria-live="polite">
+        <p class="modo" id="modo"></p>
+        <div class="big">
+          <span class="s" id="frase"></span>
+          <span class="v" id="sobra"></span>
+          <span class="verdict" id="verdict"></span>
+        </div>
+        <div>
+          <div class="bar" id="bar" role="img" aria-label="Para onde vai o dinheiro do pedido"></div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div class="stops" id="stops"></div>
+        <div class="mes" id="mes"></div>
+        <div class="proj">
+          <div class="k">Projeção de 12 meses</div>
+          <div id="chart" class="chart"></div>
+          <div class="chartkey"><span><i style="background:var(--accent)"></i>Faturamento do mês</span><span><i style="background:var(--c-sobra)"></i>Sobra acumulada (CM3)</span></div>
+          <p class="small" id="projTxt"></p>
+        </div>
+        <div class="tips" id="tips"></div>
+      </div>
+    </div>
+    <details class="adv semnum">
+      <summary>O que mais pesa e ainda não tem número</summary>
+      <div class="advbody">
+        <ul>
+          <li><b>Buy Box:</b> a Amazon diz que pesam preço total, prazo de entrega e desempenho da conta. Com o resto igual, FBA e envio pelo vendedor têm a mesma chance. Hoje somos o único vendedor dos nossos produtos.</li>
+          <li><b>Brand Registry:</b> exige a marca registrada ou pedida no INPI. Sem ele não há Vine, A+, loja da marca, Sponsored Brands nem Programe e Poupe, e não controlamos o "Café Canastra" 500 g que a própria Amazon vende a R$ 137.</li>
+          <li><b>Sponsored Brands:</b> anúncio da marca no topo da busca. Exige Brand Registry e 3 produtos ou mais. Sem custo de referência na pesquisa.</li>
+          <li><b>Programe e Poupe (assinatura):</b> exige Brand Registry. A Amazon fala em 10% a 15% de desconto ao assinante; quem banca o quê no Brasil não foi lido. Para simular, use o campo de desconto.</li>
+          <li><b>Crédito de anúncio:</b> a tela de cadastro oferece até US$ 1.000 a novos anunciantes, e o programa de recompensas fala em até R$ 5.300. Termos não lidos.</li>
+          <li><b>Imposto:</b> usamos 9% do preço. DIFAL nas vendas para outros estados e o ICMS da remessa ao armazém (no Regime Normal) não foram calculados.</li>
+          <li><b>Perda dentro do armazém:</b> a Amazon reembolsa automaticamente perda ou dano no armazém e na transportadora dela; vencido e defeito de origem não.</li>
+          <li><b>Frete grátis ao cliente:</b> nos termos da Amazon, o FBA dá frete grátis de R$ 19 para cima, com entrega em até 1 dia acima de R$ 79. Outras páginas dela falam em R$ 129 ou R$ 149 para quem não é Prime. Não entra na conta: quem paga é a Amazon.</li>
+        </ul>
+      </div>
+    </details>
+    <small>Hipóteses fixas: tabela de logística FBA de 01/08/2025, lida em 15/10/2026; peso do pacote não medido (250 g: 0,27 kg; 500 g: 0,53 kg; 1 kg: 1,05 kg; kits: 1,08 e 2,12 kg); preço de referência sem cupom. Para as fórmulas detalhadas, veja a <a href="https://claude.ai/artifact/Co7Fna5yVJHH73Suq6jin7">calculadora completa</a>.</small>
+  </section>
+
+  <section>
+    <h2>Palavras que vão aparecer</h2>
+    <dl class="gl">
+      <dt>CMV</dt><dd>Custo do café dentro do pacote: R$ 47 o de 1 kg, R$ 26 o de 500 g.</dd>
+      <dt>Comissão</dt><dd>O que a Amazon fica de cada venda de café: 10% do preço, no mínimo R$ 1.</dd>
+      <dt>FBA</dt><dd>"Logística da Amazon". Mandamos o café para o armazém dela, e ela guarda, embala, entrega e atende devolução. O café ganha o selo Prime. Cobra uma tarifa por pacote vendido e armazenagem por m³.</dd>
+      <dt>Experimente FBA</dt><dd>Campanha da Amazon até 31/01/2027: logística a R$ 6 por pacote de R$ 79 para cima, sem custo de coleta e armazenagem, para quem gasta pelo menos 3,5% da receita em anúncio.</dd>
+      <dt>DBA</dt><dd>"Delivery by Amazon". O café fica conosco, a gente embala e a Amazon coleta e entrega. Abaixo de R$ 79 custa de R$ 4,50 a R$ 6,75. Acima, depende do estado e do peso, e ainda não medimos.</dd>
+      <dt>Buy Box</dt><dd>A "oferta em destaque": o botão Comprar da página. Quando vários vendedores oferecem o mesmo produto, só um fica com ele de cada vez. Hoje somos o único vendedor dos nossos produtos.</dd>
+      <dt>ASIN</dt><dd>O código de cada produto na Amazon. Um produto, uma página, mesmo com vários vendedores.</dd>
+      <dt>Sponsored Products</dt><dd>O anúncio que aparece na busca da Amazon, marcado como "Patrocinado". Paga-se por clique.</dd>
+      <dt>ACOS</dt><dd>Quanto do valor vendido pelo anúncio foi gasto nele. ACOS 25% = gastou R$ 25 para vender R$ 100. Precisa ficar abaixo da margem.</dd>
+      <dt>ROAS</dt><dd>O inverso do ACOS: quanto o anúncio vende para cada R$ 1 gasto. ROAS 4 = ACOS 25%.</dd>
+      <dt>TACOS</dt><dd>O gasto de anúncio dividido por todas as vendas, com e sem anúncio. Se metade das vendas vem do anúncio com ACOS 25%, o TACOS é 12,5%. É o que entra na calculadora e o que conta para o Experimente FBA.</dd>
+      <dt>Brand Registry</dt><dd>O cadastro da marca na Amazon. Exige marca registrada ou pedida no INPI. Libera Vine, A+, loja da marca e assinatura.</dd>
+      <dt>Mais Vantagens</dt><dd>Programa que dá ao cliente 12 vezes sem juros e 5% de desconto no Pix, pago pela Amazon. O vendedor paga 2,5% do preço a partir de 31/10/2026.</dd>
+    </dl>
+  </section>
+
+  <footer>
+    <p>Fontes: auditoria da conta em <code>amazon/02-auditoria-2026-10.md</code> (15/10/2026); regras da Amazon lidas em 14 e 15/10/2026 e reunidas em <code>pesquisa-marketplaces/amazon/CONSOLIDADO.md</code>; custos de <code>mercadolivre/custos.md</code>; contas iguais às de <code>amazon/scripts/precificar_amazon.py</code> e da <a href="https://claude.ai/artifact/Co7Fna5yVJHH73Suq6jin7">calculadora completa</a>. A Amazon pode mudar tarifas sem aviso: antes de publicar um preço, confira na Calculadora de receitas do Seller Central.</p>
+  </footer>
+</div>
+
+<script>
+// Mesmas fórmulas da calculadora completa (FBA, FBA + Exp., DBA, Próprio) e do precificar_amazon.py, mais os custos
+// da conta e da pesquisa que as duas deixam de fora (plano, coleta, vencimento, remoção, Vine).
+const COMISSAO_MIN = 1.00, PROG_MIN = 40, EXP_TARIFA = 6, EXP_MIN = 79;
+const ARMAZ_M3 = 75, ARMAZ_M3_GRANDE = 37.5;            // R$/m³/mês (até / acima de 10.000 cm³)
+const ARMAZ_MEDIDA = 4.96 / 17;                         // R$/unidade/mês: extrato de jul/2026, 17 drips no armazém em junho
+const REMOCAO_MEDIDA = 1.04;                            // R$/unidade: remoção de jul/2026 (extrato)
+const PLANO_PROF = 19, PLANO_IND = 2;                   // R$/mês; R$/item
+const FBA_ABAIXO_79 = [[30, 5.65], [50, 5.85], [79, 6.05]];
+const DBA_ABAIXO_79 = [[30, 4.50], [50, 6.50], [79, 6.75]];
+const FAIXAS_79 = [100, 120, 150, 200, Infinity];
+const FBA_TABELA = [
+  [0.1, [10.05, 12.05, 14.05, 15.05, 15.55]], [0.2, [10.45, 12.45, 14.45, 15.45, 16.05]],
+  [0.3, [10.95, 12.95, 14.95, 15.95, 16.55]], [0.4, [11.45, 13.45, 15.45, 16.95, 17.15]],
+  [0.5, [11.95, 13.95, 15.95, 17.05, 17.85]], [0.75, [12.05, 14.05, 16.05, 18.45, 18.55]],
+  [1.0, [12.45, 14.45, 16.45, 19.05, 19.25]], [1.5, [12.95, 14.95, 16.95, 19.45, 20.35]],
+  [2.0, [13.05, 15.05, 17.05, 19.95, 21.35]], [3.0, [14.05, 16.05, 18.05, 20.05, 22.35]],
+  [4.0, [15.05, 17.05, 19.05, 21.95, 23.35]], [5.0, [16.05, 18.05, 20.05, 22.95, 24.35]],
+];
+const PROGS = [
+  { id: 'mv', nome: 'Mais Vantagens 2,5%', v: 0.025, d: 'taxa de 31/10/2026 em diante' },
+  { id: 'mvp', nome: 'Mais Vantagens 1,5%', v: 0.015, d: 'promocional até 30/10/2026' },
+  { id: 'v', nome: 'Vantagens ou parcelamento 1,5%', v: 0.015, d: 'era o que a conta pagava em maio/2026' },
+  { id: 'nao', nome: 'Nenhum', v: 0, d: 'sem parcelamento nem Pix' },
+];
+const VINES = [{ id: 0, nome: 'Sem Vine', un: 0, taxa: 0 }, { id: 2, nome: '2 un. (R$ 0)', un: 2, taxa: 0 }, { id: 10, nome: '10 un. (R$ 200)', un: 10, taxa: 200 }, { id: 30, nome: '30 un. (R$ 500)', un: 30, taxa: 500 }];
+const faixaFixa = (tab, p) => tab.find(([teto]) => p < teto)[1];
+function fbaPadrao(preco, pesoKg) {
+  if (preco < 79) return faixaFixa(FBA_ABAIXO_79, preco);
+  const p = pesoKg + 0.020, col = FAIXAS_79.findIndex(t => preco < t);
+  for (const [teto, linha] of FBA_TABELA) if (p <= teto + 1e-9) return linha[col];
+  return null;
+}
+// o = { modo: 'fba'|'dba'|'mfn', exp, meta, tacos, prog, cupom, com, imp, prime5, dba79, frete, volCm3, meses,
+//       coletaCx, porCx, dev, venc, remover, plano: 'gratis'|'prof'|'ind', vendas }
+function resultado(lista, prod, o) {
+  const p = lista * (1 - o.cupom);                                   // preço pago pelo cliente
+  const padrao = fbaPadrao(p, prod.peso);
+  const fba = o.modo === 'fba';
+  const metaOk = fba && o.exp && o.tacos + 1e-9 >= o.meta;          // coleta e armazenagem grátis em qualquer preço
+  const expOk = metaOk && p >= EXP_MIN;                              // logística a R$ 6 de R$ 79 para cima
+  let logistica;
+  if (fba) logistica = expOk ? EXP_TARIFA : padrao;
+  else if (o.modo === 'dba') logistica = p < 79 ? faixaFixa(DBA_ABAIXO_79, p) : o.dba79;
+  else logistica = o.frete;
+  const comPct = fba && o.prime5 ? 0.05 : o.com;
+  const comissao = Math.max(p * comPct, COMISSAO_MIN);
+  const programa = p >= PROG_MIN ? p * o.prog : 0;
+  const imposto = p * o.imp;
+  const cm1 = p - prod.cmv - comissao - logistica - imposto - programa;
+  const anuncio = p * o.tacos;
+  const cm2 = cm1 - anuncio;
+  // armazenagem: pelas medidas, se informadas; senão, o valor medido por unidade no drip
+  let armaz = 0, armazOrigem = 'gratis';
+  if (fba && !metaOk) {
+    if (o.volCm3 > 0) { armaz = o.volCm3 / 1e6 * (o.volCm3 > 10000 ? ARMAZ_M3_GRANDE : ARMAZ_M3) * o.meses; armazOrigem = 'medidas'; }
+    else if (o.armazMedida) { armaz = ARMAZ_MEDIDA * o.meses; armazOrigem = 'medida'; }
+    else armazOrigem = 'fora';
+  }
+  const devol = o.dev * (prod.cmv + Math.max(logistica, 0) + Math.min(comissao * 0.2, 10));
+  const coleta = fba && !metaOk && o.porCx > 0 ? o.coletaCx / o.porCx : 0;
+  const vencido = fba && o.venc > 0 ? o.venc / (1 - o.venc) * (prod.cmv + (o.remover ? REMOCAO_MEDIDA : 0)) : 0;
+  const plano = o.plano === 'prof' ? PLANO_PROF / Math.max(1, o.vendas) : o.plano === 'ind' ? PLANO_IND : 0;
+  const cm3 = cm2 - armaz - devol - coleta - vencido - plano;
+  return { lista, preco: p, cmv: prod.cmv, comPct, comissao, programa, logistica, padrao, metaOk, expOk, imposto, cm1, anuncio, cm2,
+    armaz, armazOrigem, devol, coleta, vencido, plano, cm3, acosEq: cm1 / p, roasEq: cm1 > 0 ? p / cm1 : null };
+}
+// Menor preço de lista (passo de R$ 0,10, como o script) com a margem pedida; base 'cm3' na página, 'cm2' no script.
+function piso(prod, o, margem, base = 'cm3', inicio = 20) {
+  for (let x = inicio; x < 1000; x += 0.10) {
+    const p = Math.round(x * 100) / 100, r = resultado(p, prod, o);
+    if (Math.round(r[base] / r.preco * 1000) / 10 >= margem) return p;
+  }
+  return null;
+}
+// Projeção de 12 meses: vendas começam em V e crescem g ao mês. A mensalidade do Profissional é fixa por mês;
+// o Vine entra uma vez, no 1º mês.
+function projetar(lista, prod, o, V, g, vine) {
+  const r = resultado(lista, prod, o);
+  const porPacote = r.cm3 + r.plano;                                 // sobra por pacote antes do plano
+  const meses = []; let acum = 0;
+  for (let m = 0; m < 12; m++) {
+    const v = V * Math.pow(1 + g, m);
+    const planoMes = o.plano === 'prof' ? PLANO_PROF : o.plano === 'ind' ? PLANO_IND * v : 0;
+    const vineMes = m === 0 && vine ? vine.taxa + vine.un * prod.cmv : 0;
+    const sobra = v * porPacote - planoMes - vineMes;
+    acum += sobra;
+    meses.push({ m: m + 1, vendas: v, fat: v * r.preco, anuncio: v * r.anuncio, arm: v * r.armaz, coleta: v * r.coleta, plano: planoMes, vine: vineMes, sobra, acum });
+  }
+  return meses;
+}
+const PRODS = [
+  { id: '250g', nome: '250 g', cmv: 14, peso: 0.27, preco: 44.90, min: 25, max: 90, ref: 'Na prateleira de café da Amazon, 1 kg e 250 g são os formatos que mais aparecem.' },
+  { id: '500g', nome: '500 g', cmv: 26, peso: 0.53, preco: 69.90, min: 40, max: 110, ref: 'O 500 g comum sai por R$ 24 a R$ 29. Especial de 500 g só aparece em anúncio.' },
+  { id: '1kg', nome: '1 kg', cmv: 47, peso: 1.05, preco: 119.90, min: 70, max: 180, ref: 'Na busca da Amazon, cafés especiais de 1 kg saem entre R$ 85 e R$ 125.' },
+  { id: 'k2x500', nome: 'Kit 2 × 500 g', cmv: 52, peso: 1.08, preco: 119.90, min: 80, max: 200, ref: 'O kit é um pacote só para a Amazon: paga uma logística por pedido.' },
+  { id: 'k2x1kg', nome: 'Kit 2 × 1 kg', cmv: 94, peso: 2.12, preco: 219.90, min: 150, max: 320, ref: 'O kit é um pacote só para a Amazon: paga uma logística por pedido.' },
+];
+const MODOS = [
+  { id: 'fba', nome: 'FBA', txt: 'FBA: o café fica no armazém da Amazon, que embala e entrega; ganha o selo Prime. Pagamos logística por pacote, armazenagem e a coleta até o armazém.' },
+  { id: 'dba', nome: 'DBA', txt: 'DBA: o café fica conosco, a gente embala e a Amazon coleta e entrega. Sem selo Prime e sem armazenagem. Postagem até 9 pacotes por dia, coleta a partir de 10. Pela Amazon, com o resto igual, FBA e DBA têm a mesma chance no botão Comprar.' },
+  { id: 'mfn', nome: 'Envio próprio', txt: 'Envio próprio: nós guardamos e entregamos, pela transportadora que escolhermos. Sem selo Prime.' },
+];
+const PLANOS = [
+  { id: 'gratis', nome: 'Profissional, 1º ano grátis' }, { id: 'prof', nome: 'Profissional R$ 19/mês' }, { id: 'ind', nome: 'Individual R$ 2/item' },
+];
+const ROAS_REAL = [2, 8];   // faixa realista da pesquisa (EUA média 2; conta madura BR 8,31)
+// --- tela ---
+let prod = PRODS[2], modo = 'fba', prog = 'mv', plano = 'gratis', vine = 0;
+const $ = id => document.getElementById(id);
+const num = (id, d = 0) => { const v = parseFloat($(id).value); return isFinite(v) ? v : d; };
+const brl = v => (v < 0 ? '−' : '') + 'R$ ' + Math.abs(v).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const brl0 = v => (v < 0 ? '−' : '') + 'R$ ' + Math.round(Math.abs(v)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const pc = (v, d = 1) => v.toFixed(d).replace('.', ',');
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const EST = ' <span class="est">estimado</span>', MED = ' <span class="med">medido</span>';
+// passo "bonito" para o eixo: 1, 2 ou 5 × 10^n
+function passo(bruto) { const e = Math.pow(10, Math.floor(Math.log10(bruto))); const f = bruto / e; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * e; }
+function eixoTxt(v) { const a = Math.abs(v); const s = a >= 1000 ? (a / 1000).toFixed(a % 1000 === 0 ? 0 : 1).replace('.', ',') + ' mil' : Math.round(a).toString(); return (v < 0 ? '−' : '') + 'R$ ' + s; }
+function grafico(meses) {
+  const W = 600, H = 250, L = 66, Rm = 92, T = 12, B = 34;
+  const vals = meses.flatMap(m => [m.fat, m.acum]).concat([0]);
+  let lo = Math.min(...vals), hi = Math.max(...vals);
+  if (hi - lo < 1) hi = lo + 1;
+  const st = passo((hi - lo) / 4);
+  lo = Math.floor(lo / st) * st; hi = Math.ceil(hi / st) * st;
+  const x = m => L + (m - 1) * (W - L - Rm) / 11;
+  const y = v => T + (hi - v) * (H - T - B) / (hi - lo);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Projeção de 12 meses do faturamento e da sobra acumulada">`;
+  for (let v = lo; v <= hi + st / 2; v += st) {
+    const yy = y(v).toFixed(1), zero = Math.abs(v) < st / 1000;
+    s += `<line x1="${L}" x2="${W - Rm}" y1="${yy}" y2="${yy}" stroke="var(${zero ? '--fg' : '--line'})" stroke-width="${zero ? 1.4 : 1}"${zero ? '' : ' stroke-dasharray="3 3"'}/>`;
+    s += `<text x="${L - 8}" y="${yy}" text-anchor="end" dominant-baseline="middle">${eixoTxt(zero ? 0 : v)}</text>`;
+  }
+  meses.forEach(m => { s += `<text x="${x(m.m).toFixed(1)}" y="${H - B + 16}" text-anchor="middle">${m.m}</text>`; });
+  s += `<text x="${(L + W - Rm) / 2}" y="${H - 2}" text-anchor="middle">mês</text>`;
+  const linha = (k, cor) => `<polyline fill="none" stroke="var(${cor})" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="${meses.map(m => x(m.m).toFixed(1) + ',' + y(m[k]).toFixed(1)).join(' ')}"/>`
+    + meses.map(m => `<circle cx="${x(m.m).toFixed(1)}" cy="${y(m[k]).toFixed(1)}" r="3" fill="var(${cor})"><title>Mês ${m.m}: ${k === 'fat' ? 'faturamento' : 'sobra acumulada'} ${brl0(m[k])}</title></circle>`).join('');
+  s += linha('fat', '--accent') + linha('acum', '--c-sobra');
+  const iEq = meses.findIndex((m, i) => i > 0 && m.acum >= 0 && meses[i - 1].acum < 0);
+  if (iEq > 0) {
+    const m = meses[iEq];
+    s += `<circle cx="${x(m.m).toFixed(1)}" cy="${y(m.acum).toFixed(1)}" r="6" fill="none" stroke="var(--fg)" stroke-width="1.5"/>`
+      + `<text class="lab" x="${x(m.m).toFixed(1)}" y="${(y(m.acum) - 12).toFixed(1)}" text-anchor="middle" style="fill:var(--fg)">empata no mês ${m.m}</text>`;
+  }
+  const last = meses[11];
+  let yf = y(last.fat), ya = y(last.acum);
+  if (Math.abs(yf - ya) < 16) { if (yf <= ya) { yf -= 8; ya += 8; } else { yf += 8; ya -= 8; } }
+  s += `<text class="lab" x="${W - Rm + 8}" y="${yf.toFixed(1)}" dominant-baseline="middle" style="fill:var(--accent)">${eixoTxt(last.fat)}</text>`;
+  s += `<text class="lab" x="${W - Rm + 8}" y="${ya.toFixed(1)}" dominant-baseline="middle" style="fill:var(--c-sobra)">${eixoTxt(last.acum)}</text>`;
+  return s + '</svg>';
+}
+
+const segHtml = (lista, atual) => lista.map(x => `<button type="button" data-id="${x.id}" aria-pressed="${x.id === atual}">${x.nome}</button>`).join('');
+function renderSegs() {
+  $('prod').innerHTML = segHtml(PRODS, prod.id);
+  $('modoSeg').innerHTML = segHtml(MODOS, modo);
+  $('progSeg').innerHTML = segHtml(PROGS, prog);
+  $('planoSeg').innerHTML = segHtml(PLANOS, plano);
+  $('vineSeg').innerHTML = VINES.map(x => `<button type="button" data-id="${x.id}" aria-pressed="${x.id === vine}">${x.nome}</button>`).join('');
+}
+function setProd(p) {
+  prod = p;
+  $('precoR').min = p.min; $('precoR').max = p.max;
+  $('preco').value = p.preco.toFixed(2); $('precoR').value = p.preco;
+  $('precoRef').textContent = p.ref;
+  renderSegs(); calc();
+}
+function posBand() {
+  const r = $('roas'), lo = +r.min, hi = +r.max;
+  $('band').style.left = ((ROAS_REAL[0] - lo) / (hi - lo) * 100) + '%';
+  $('band').style.width = ((ROAS_REAL[1] - ROAS_REAL[0]) / (hi - lo) * 100) + '%';
+}
+const clique = (id, fn) => $(id).addEventListener('click', e => { const b = e.target.closest('button'); if (b) { fn(b.dataset.id); renderSegs(); calc(); } });
+clique('prod', id => setProd(PRODS.find(p => p.id === id)));
+clique('modoSeg', id => { modo = id; });
+clique('progSeg', id => { prog = id; });
+clique('planoSeg', id => { plano = id; });
+clique('vineSeg', id => { vine = +id; });
+$('precoR').addEventListener('input', () => { $('preco').value = (+$('precoR').value).toFixed(2); calc(); });
+$('preco').addEventListener('input', () => { $('precoR').value = $('preco').value; calc(); });
+$('f').addEventListener('input', e => { if (!['preco', 'precoR'].includes(e.target.id)) calc(); });
+$('f').addEventListener('change', calc);
+$('f').addEventListener('submit', e => e.preventDefault());
+
+function entradas() {
+  const adsOn = $('ads').checked, roas = +$('roas').value, share = +$('share').value / 100;
+  const vendas = Math.max(1, Math.round(num('vendas', 30)));
+  return {
+    adsOn, roas, share, acos: 1 / roas, vendas, vine: VINES.find(v => v.id === vine),
+    o: { modo, exp: $('exp').checked, meta: Math.max(0, num('meta', 3.5)) / 100, tacos: adsOn ? share / roas : 0,
+         prog: PROGS.find(x => x.id === prog).v, cupom: Math.min(80, Math.max(0, num('cupom'))) / 100,
+         com: Math.max(0, num('com', 10)) / 100, imp: Math.max(0, num('imp', 9)) / 100, prime5: $('prime5').checked,
+         dba79: Math.max(0, num('dba79', 17.45)), frete: Math.max(0, num('frete', 25)),
+         volCm3: Math.max(0, num('dc')) * Math.max(0, num('dl')) * Math.max(0, num('da')), meses: Math.max(0, num('meses', 1.5)), armazMedida: true,
+         coletaCx: Math.max(0, num('coletaCx', 2.92)), porCx: Math.max(1, Math.round(num('porCx', 10))),
+         dev: Math.max(0, num('dev', 1)) / 100, venc: Math.min(80, Math.max(0, num('venc'))) / 100, remover: $('remover').checked,
+         plano, vendas },
+  };
+}
+
+function calc() {
+  const lista = parseFloat($('preco').value);
+  if (!(lista >= 20)) { $('frase').textContent = 'Digite um preço a partir de R$ 20.'; return; }
+  const e = entradas(), o = e.o, fba = modo === 'fba';
+  const r = resultado(lista, prod, o), preco = r.preco;
+  const pct = r.cm3 / preco * 100;
+
+  $('modoInfo').textContent = MODOS.find(m => m.id === modo).txt;
+  $('dbaBox').hidden = modo !== 'dba';
+  $('mfnBox').hidden = modo !== 'mfn';
+  $('expRow').hidden = !fba;
+  $('adsBox').hidden = !e.adsOn;
+  $('roasV').textContent = pc(e.roas) + ' (ACOS ' + pc(e.acos * 100) + '%)';
+  $('shareV').textContent = Math.round(e.share * 100) + '%';
+  posBand();
+
+  // o que entrou de estimado
+  const est = [];
+  if (modo === 'dba' && preco >= 79) est.push('tarifa DBA');
+  if (modo === 'mfn') est.push('frete');
+  if (e.adsOn) est.push('parte das vendas via anúncio');
+  if (r.armaz > 0 && r.armazOrigem === 'medidas') est.push('medidas');
+  if (r.coleta > 0) est.push('coleta');
+  if (o.dev > 0) est.push('devoluções');
+  if (r.vencido > 0) est.push('vencimento');
+
+  // linha do modo
+  const modoTxt = { fba: '<b>FBA</b> (a Amazon guarda e envia)', dba: '<b>DBA</b> (nós guardamos, a Amazon coleta e entrega)', mfn: '<b>Envio próprio</b> (nós guardamos e entregamos)' }[modo];
+  let expTxt = '';
+  if (fba) {
+    if (!o.exp) expTxt = 'sem Experimente FBA';
+    else if (r.expOk) expTxt = '<b>Experimente FBA</b> (logística R$ 6, coleta e armazenagem grátis)';
+    else if (r.metaOk) expTxt = '<b>Experimente FBA</b> (coleta e armazenagem grátis; R$ 6 só de R$ 79 para cima)';
+    else if (!e.adsOn) expTxt = 'Experimente FBA ligado, mas sem anúncio não vale';
+    else expTxt = `Experimente FBA ligado, mas o anúncio não chega à meta de ${pc(o.meta * 100)}%`;
+  }
+  const progObj = PROGS.find(x => x.id === prog);
+  const partes = [modoTxt, expTxt, prog === 'nao' ? 'sem programa de pagamento' : progObj.nome,
+    e.adsOn ? `<b>anúncio ROAS ${pc(e.roas)}</b> em ${Math.round(e.share * 100)}% das vendas` : 'sem anúncio'];
+  if (o.cupom > 0) partes.push(`desconto de ${pc(o.cupom * 100, 0)}%`);
+  if (fba && o.prime5) partes.push('comissão de lançamento 5%');
+  partes.push(PLANOS.find(x => x.id === plano).nome);
+  $('modo').innerHTML = 'Simulando: ' + partes.filter(Boolean).join(' · ');
+
+  $('adsTxt').innerHTML = `Numa venda que veio do anúncio (ACOS ${pc(e.acos * 100)}%), ele custa ${brl(preco * e.acos)}. Na média de todos os pacotes (TACOS), dá ${pc(o.tacos * 100)}% do preço, ou ${brl(r.anuncio)} por pacote. É o TACOS que entra na conta e na meta do Experimente FBA.`;
+
+  // resposta principal
+  const nomeVenda = o.cupom > 0 ? `${brl(lista)} com ${pc(o.cupom * 100, 0)}% de desconto (o cliente paga ${brl(preco)})` : brl(preco);
+  $('frase').textContent = r.cm3 >= 0 ? `De cada ${prod.nome} vendido a ${nomeVenda}, sobram para a Canastra` : `Cada ${prod.nome} vendido a ${nomeVenda} dá prejuízo de`;
+  $('sobra').innerHTML = brl(Math.abs(r.cm3)) + ` (${pc(Math.abs(pct))}% do preço)` + (est.length ? EST : '');
+  $('sobra').style.color = r.cm3 < 0 ? css('--bad') : '';
+  const v = $('verdict');
+  if (pct >= 10) { v.className = 'verdict good'; v.textContent = 'Saudável: sobra 10% ou mais'; }
+  else if (pct >= 0) { v.className = 'verdict warn'; v.textContent = 'Apertado: menos de 10%'; }
+  else { v.className = 'verdict bad'; v.textContent = 'Prejuízo'; }
+
+  const logNome = { fba: 'Logística FBA', dba: 'Logística DBA', mfn: 'Frete do envio próprio' }[modo];
+  const logSub = fba ? (r.expOk ? 'Experimente FBA: R$ 6' : (preco < 79 ? 'tarifa fixa abaixo de R$ 79' : 'tabela por peso e preço') + MED)
+    : modo === 'dba' ? (preco < 79 ? 'tarifa fixa abaixo de R$ 79' : 'de R$ 79 para cima' + EST) : 'por pacote' + EST;
+  const armSub = r.armazOrigem === 'gratis' ? 'grátis no Experimente' : r.armazOrigem === 'medidas' ? 'pelas medidas do pacote' + EST
+    : r.armazOrigem === 'medida' ? `R$ ${pc(ARMAZ_MEDIDA, 2)} por mês, como no drip${MED}` : '';
+  const outros = [];
+  if (fba) outros.push(r.armazOrigem === 'gratis' ? 'armazenagem e coleta grátis' : `armazenagem ${brl(r.armaz)} (${armSub.replace(/<[^>]+>/g, '').trim()})`);
+  if (r.coleta > 0) outros.push(`coleta ${brl(r.coleta)}`);
+  if (r.vencido > 0) outros.push(`vencimento ${brl(r.vencido)}`);
+  outros.push(`devoluções ${brl(r.devol)}`);
+  if (r.plano > 0) outros.push(`plano ${brl(r.plano)}`);
+  const parts = [
+    ['--c-cafe', 'Café (CMV)', 'o custo do que vai no pacote', r.cmv],
+    ['--c-com', 'Comissão e programa de pagamento', `${pc(r.comPct * 100)}% (mínimo R$ 1)` + (r.programa > 0 ? ` + ${pc(o.prog * 100)}% do preço` : ''), r.comissao + r.programa],
+    ['--c-log', logNome, logSub, r.logistica],
+    ['--c-imposto', 'Imposto', `${pc(o.imp * 100)}% do preço`, r.imposto],
+    ['--c-ads', 'Anúncio (TACOS)', e.adsOn ? pc(o.tacos * 100) + '% do preço, média por pacote' + EST : 'desligado', r.anuncio],
+    ['--c-perda', 'Armazém, perdas e conta', outros.join(' · ') + (est.length ? '' : ''), r.armaz + r.devol + r.coleta + r.vencido + r.plano],
+  ];
+  const sobra = Math.max(r.cm3, 0);
+  const total = parts.reduce((s, p) => s + p[3], 0) + sobra;
+  $('bar').innerHTML = parts.concat([['--c-sobra', 'Sobra', '', sobra]]).filter(p => p[3] > 0)
+    .map(p => `<span style="width:${(p[3] / total * 100).toFixed(2)}%;background:var(${p[0]})" title="${p[1]}"></span>`).join('');
+  $('legend').innerHTML = parts.map(p =>
+    `<div class="r"><span class="dot" style="background:var(${p[0]})"></span><span>${p[1]}<small>${p[2]}</small></span><span class="num">${brl(-p[3])}</span></div>`).join('')
+    + `<div class="r sobra"><span class="dot" style="background:var(--c-sobra)"></span><span>Sobra (CM3)</span><span class="num">${brl(r.cm3)}</span></div>`;
+
+  const stop = (k, val, d) => `<div class="stop ${val < 0 ? 'neg' : ''}"><span class="k">${k}</span><span class="v">${brl(val)}</span><span class="d">${d}</span></div>`;
+  $('stops').innerHTML = stop('CM1', r.cm1, 'depois de café, Amazon, logística e imposto') + stop('CM2', r.cm2, 'depois do anúncio') + stop('CM3', r.cm3, 'depois de armazém, perdas e plano');
+
+  // estimativa do mês
+  const n = e.vendas;
+  const g = Math.min(100, Math.max(-50, num('cresc', 10))) / 100;
+  const meses = projetar(lista, prod, o, n, g, e.vine);
+  const m1 = meses[0];
+  const m = (k, val, extra = '', neg = false) => `<div class="m ${neg ? 'neg' : ''}"><span class="k">${k}${extra}</span><span class="v">${val}</span></div>`;
+  let armazMes;
+  if (!fba) armazMes = m('Armazenagem', 'R$ 0,00', '<br>o café fica conosco');
+  else if (r.metaOk) armazMes = m('Armazenagem e coleta', 'R$ 0,00', '<br>grátis no Experimente');
+  else armazMes = m('Armazenagem', brl(m1.arm), r.armazOrigem === 'medidas' ? EST : MED);
+  $('mes').innerHTML = `<h3>No 1º mês, com ${n} vendas</h3>`
+    + m('Faturamento', brl(m1.fat))
+    + m('Sobra do mês (CM3)', brl(m1.sobra), est.length ? EST : '', m1.sobra < 0)
+    + m('Anúncio', brl(m1.anuncio))
+    + armazMes
+    + (m1.coleta > 0 ? m('Coleta até o armazém', brl(m1.coleta), EST) : '')
+    + (m1.plano > 0 ? m('Plano da conta', brl(m1.plano)) : '')
+    + (m1.vine > 0 ? m('Vine (uma vez)', brl(m1.vine), `<br>taxa + ${e.vine.un} pacotes`) : '');
+
+  // projeção
+  $('chart').innerHTML = grafico(meses);
+  const fat12 = meses.reduce((s, x) => s + x.fat, 0), sob12 = meses[11].acum;
+  const ads12 = meses.reduce((s, x) => s + x.anuncio, 0), arm12 = meses.reduce((s, x) => s + x.arm, 0);
+  const iEq = meses.findIndex((x, i) => i > 0 && x.acum >= 0 && meses[i - 1].acum < 0);
+  const eqTxt = meses[0].acum >= 0 && sob12 >= 0 ? 'A sobra é positiva desde o 1º mês.'
+    : iEq > 0 ? `A sobra acumulada empata no mês ${meses[iEq].m}.` : sob12 < 0 ? 'A sobra acumulada não empata em 12 meses.' : '';
+  const desc = [ads12 > 0 ? `${brl0(ads12)} de anúncio` : '', arm12 > 0 ? `${brl0(arm12)} de armazenagem` : '', m1.vine > 0 ? `${brl0(m1.vine)} de Vine` : ''].filter(Boolean);
+  $('projTxt').innerHTML = `<b>Em 12 meses: faturamento ${brl0(fat12)}, sobra ${brl0(sob12)}.</b> ${eqTxt} As vendas vão de ${n} para ${Math.round(meses[11].vendas)} por mês.`
+    + (desc.length ? ' Já descontados ' + desc.join(', ').replace(/, ([^,]*)$/, ' e $1') + '.' : '') + EST;
+
+  // dicas
+  const tips = [];
+  const zero = piso(prod, o, 0), dez = piso(prod, o, 10);
+  if (preco >= 79 && dez !== null && dez * (1 - o.cupom) < 79) {
+    const z79 = piso(prod, o, 0, 'cm3', 79 / (1 - o.cupom)), d79 = piso(prod, o, 10, 'cm3', 79 / (1 - o.cupom));
+    tips.push(['', (z79 * (1 - o.cupom) > 79.05 ? `De R$ 79 para cima, o preço mínimo para não perder dinheiro é <b class="num">${brl(z79)}</b>.` : 'De R$ 79 para cima, nessas condições, o pacote não dá prejuízo.')
+      + ` Para sobrar 10%, <b class="num">${brl(d79)}</b>. Abaixo de R$ 79 a logística é fixa e mais barata, e o ${prod.nome} já sobra 10% a partir de ${brl(dez)}.`]);
+  } else if (zero) tips.push(['', `Nessas condições, o preço mínimo para não perder dinheiro é <b class="num">${brl(zero)}</b>. Para sobrar 10%, <b class="num">${brl(dez)}</b>.`]);
+  if (r.cm1 > 0) {
+    let t = `Numa venda que veio do anúncio, ele pode custar até <b class="num">${pc(r.acosEq * 100)}%</b> do preço (${brl(r.cm1)}) antes de comer a margem: é o ACOS máximo. Ou seja, o anúncio precisa de <b class="num">ROAS ${pc(r.roasEq, 1)}</b> ou mais para empatar.`;
+    if (e.adsOn) {
+      const vendaAds = r.cm3 + r.anuncio - preco * e.acos;
+      t += vendaAds >= 0 ? ` Com ROAS ${pc(e.roas)}, cada venda que vem do anúncio ainda deixa ${brl(vendaAds)}.` : ` Com ROAS ${pc(e.roas)}, cada venda que vem do anúncio dá prejuízo de ${brl(-vendaAds)}; quem paga é a venda orgânica.`;
+    }
+    if (r.roasEq > ROAS_REAL[1]) t += ' Isso fica acima da faixa realista (2 a 8): neste preço, anúncio dificilmente se paga.';
+    tips.push([r.roasEq > ROAS_REAL[1] ? 'alert' : '', t]);
+  }
+  if (fba && preco >= EXP_MIN) {
+    if (!o.exp) tips.push(['', `Com o Experimente FBA, a logística cairia de ${brl(r.padrao)} para R$ 6,00 e a coleta e a armazenagem sairiam de graça, desde que o anúncio gaste pelo menos ${pc(o.meta * 100)}% da receita.`]);
+    else if (!r.metaOk && !e.adsOn) tips.push(['alert', `Sem anúncio, o Experimente FBA não vale: a Amazon cobra a tabela normal, ${brl(r.padrao)} em vez de R$ 6. Ele exige anúncio de pelo menos ${pc(o.meta * 100)}% da receita.`]);
+    else if (!r.metaOk) tips.push(['alert', `O anúncio está em ${pc(o.tacos * 100)}% da receita, abaixo da meta de ${pc(o.meta * 100)}%. Sem a meta, a Amazon cobra a tabela normal: ${brl(r.padrao)} em vez de R$ 6.`]);
+  }
+  if (fba && preco < EXP_MIN) tips.push(['', 'Abaixo de R$ 79 a logística FBA já é fixa e barata (R$ 5,65 a R$ 6,05), com ou sem anúncio. O Experimente FBA só tira a coleta e a armazenagem.']);
+  if (fba && o.venc === 0) tips.push(['', 'Vencimento está em 0%. No drip, 34% do lote venceu no armazém. Teste em Avançado quanto isso pesa.']);
+  if (r.cm3 < 0) tips.push(['alert', 'Neste preço, cada venda tira dinheiro do caixa. Suba o preço, venda em kit ou reduza o anúncio.']);
+  $('tips').innerHTML = tips.map(([c, t]) => `<p class="${c}">${t}</p>`).join('');
+}
+
+renderSegs(); setProd(prod);
+</script>

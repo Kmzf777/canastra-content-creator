@@ -163,8 +163,8 @@ export const Recortadas: React.FC<Pos & {texto: string; tamanho?: number; chave:
 };
 
 /** Pílula da legenda A: corte seco, na cor da marca, ~78% da altura. */
-export const Pilula: React.FC<{q: number; fps: number; blocos: BlocoA[]; y?: number; tema?: 'claro' | 'escuro'}> = ({
-  q, fps, blocos, y = 1500, tema = 'claro',
+export const Pilula: React.FC<{q: number; fps: number; blocos: BlocoA[]; y?: number; tema?: 'claro' | 'escuro'; tamanho?: number}> = ({
+  q, fps, blocos, y = 1500, tema = 'claro', tamanho = 46,
 }) => {
   const b = blocoNoInstante(blocos, q / fps);
   if (!b) return null;
@@ -173,8 +173,8 @@ export const Pilula: React.FC<{q: number; fps: number; blocos: BlocoA[]; y?: num
     <div style={{
       position: 'absolute', left: 540, top: y, transform: 'translate(-50%, -50%)', whiteSpace: 'nowrap',
       background: escuro ? 'rgba(241,236,224,0.92)' : 'rgba(59,42,31,0.86)', color: escuro ? COR.terra : COR.creme,
-      fontFamily: PILHA.corpo, fontWeight: 700, fontSize: 46, letterSpacing: 0.5, lineHeight: 1,
-      padding: '16px 24px 14px', borderRadius: 12,
+      fontFamily: PILHA.corpo, fontWeight: 700, fontSize: tamanho, letterSpacing: 0.5, lineHeight: 1,
+      padding: `${tamanho * 0.35}px ${tamanho * 0.52}px ${tamanho * 0.3}px`, borderRadius: tamanho * 0.26,
     }}>{b.texto}</div>
   );
 };

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>O próximo passo para o sucesso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=block" rel="stylesheet">
+<style>
+  :root {
+    --terra: #3B2A1F;
+    --creme: #F1ECE0;
+    --verde: #4A5D3A;
+    --acento: #C8661E;
+    --preto: #14100D;
+    --creme-2: #E6DECB;
+  }
+  @page { size: 1280px 720px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--preto); }
+  body { font-family: 'Inter', sans-serif; color: var(--preto); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 1280px; height: 720px; position: relative; overflow: hidden; page-break-after: always; break-after: page; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  .kicker { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; }
+  .display { font-family: 'Archivo Black', sans-serif; text-transform: uppercase; line-height: 1.08; letter-spacing: -.01em; }
+  .mark { background: var(--acento); color: var(--preto); padding: 0 .12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .mark-dark { background: var(--preto); color: var(--creme); padding: 0 .12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .pageno { position: absolute; right: 56px; bottom: 36px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: .1em; opacity: .55; }
+  .resumo .pageno { bottom: 14px; }
+  .logo-sm { position: absolute; left: 56px; bottom: 30px; height: 46px; opacity: .85; }
+
+  /* 1 · capa */
+  .capa { background: var(--terra); color: var(--creme); }
+  .capa .foto { position: absolute; right: 0; top: 0; width: 520px; height: 720px; background: url(img/pacote.jpg) center 62% / cover; }
+  .capa .foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--terra) 0%, rgba(59,42,31,0) 28%); }
+  .capa .logo { position: absolute; left: 64px; top: 52px; height: 92px; }
+  .capa .kicker { position: absolute; left: 64px; top: 196px; color: var(--acento); }
+  .capa h1 { position: absolute; left: 60px; top: 228px; width: 700px; font-size: 92px; color: var(--creme); }
+  .capa .sub { position: absolute; left: 64px; top: 560px; width: 600px; font-size: 22px; line-height: 1.4; font-weight: 500; color: var(--creme-2); }
+  .capa .rodape { position: absolute; left: 64px; bottom: 44px; display: flex; gap: 12px; }
+  .pill { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; border: 1.5px solid currentColor; border-radius: 999px; padding: 9px 18px; }
+  .pill.cheia { background: var(--acento); border-color: var(--acento); color: var(--preto); }
+
+  /* 2 · resumo */
+  .resumo { background: var(--creme); }
+  .resumo .kicker { position: absolute; left: 64px; top: 64px; color: var(--acento); }
+  .resumo h2 { position: absolute; left: 60px; top: 96px; width: 1160px; font-size: 56px; }
+  .fluxo { position: absolute; left: 64px; right: 64px; top: 300px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .passo { position: relative; background: #fff; border-radius: 18px; padding: 24px 24px 22px; min-height: 232px; box-shadow: 0 1px 0 rgba(20,16,13,.06); }
+  .passo .n { font-family: 'Archivo Black', sans-serif; font-size: 44px; line-height: 1; color: var(--acento); }
+  .passo h3 { font-family: 'Archivo Black', sans-serif; font-size: 22px; line-height: 1.12; text-transform: uppercase; margin: 14px 0 10px; }
+  .passo p { font-size: 15.5px; line-height: 1.45; color: #4b4038; }
+  .passo:not(:last-child)::after { content: '→'; position: absolute; right: -24px; top: 32px; font-family: 'Inter'; font-weight: 700; font-size: 22px; color: var(--terra); }
+  .resumo .faixa { position: absolute; left: 64px; right: 64px; bottom: 44px; background: var(--terra); color: var(--creme); border-radius: 18px; padding: 22px 28px; display: flex; align-items: center; gap: 24px; }
+  .faixa .tres { font-family: 'Archivo Black', sans-serif; font-size: 56px; line-height: 1; color: var(--acento); }
+  .faixa p { font-size: 20px; line-height: 1.4; font-weight: 500; }
+  .faixa b { font-weight: 700; color: #fff; }
+
+  /* 3 · já está sendo feito */
+  .feito { background: var(--creme); }
+  .feito .lado { position: absolute; left: 0; top: 0; width: 400px; height: 720px; background: url(img/lavoura.jpg) center / cover; }
+  .feito .card-post { position: absolute; left: 92px; top: 196px; width: 236px; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 40px rgba(20,16,13,.35); transform: rotate(-3deg); border: 6px solid #fff; }
+  .feito .card-post img { display: block; width: 100%; }
+  .feito .legenda { position: absolute; left: 92px; top: 528px; width: 236px; text-align: center; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.6); }
+  .feito .conteudo { position: absolute; left: 456px; right: 56px; top: 64px; }
+  .feito .kicker { color: var(--acento); }
+  .feito h2 { font-size: 54px; margin: 14px 0 34px; }
+  .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 34px; }
+  .item { border-top: 2px solid var(--terra); padding-top: 12px; }
+  .item h4 { font-family: 'Archivo Black', sans-serif; font-size: 19px; text-transform: uppercase; line-height: 1.15; margin-bottom: 6px; }
+  .item p { font-size: 16.5px; line-height: 1.45; color: #4b4038; }
+
+  /* 4 · o que vou fazer */
+  .fazer { background: var(--terra); color: var(--creme); }
+  .fazer .kicker { position: absolute; left: 64px; top: 60px; color: var(--acento); }
+  .fazer h2 { position: absolute; left: 60px; top: 94px; width: 1100px; font-size: 58px; color: var(--creme); }
+  .trilha { position: absolute; left: 64px; right: 64px; top: 270px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+  .trilha::before { content: ''; position: absolute; left: 30px; right: 30px; top: 30px; height: 2px; background: rgba(241,236,224,.28); }
+  .etapa { position: relative; }
+  .etapa .bola { position: relative; z-index: 1; width: 60px; height: 60px; border-radius: 50%; background: var(--acento); color: var(--preto); font-family: 'Archivo Black', sans-serif; font-size: 26px; display: flex; align-items: center; justify-content: center; }
+  .etapa h3 { font-family: 'Archivo Black', sans-serif; font-size: 23px; line-height: 1.1; text-transform: uppercase; margin: 20px 0 10px; color: #fff; }
+  .etapa p { font-size: 15.5px; line-height: 1.5; color: var(--creme-2); }
+  .ideia { position: absolute; left: 64px; right: 64px; bottom: 52px; border: 1.5px dashed rgba(241,236,224,.45); border-radius: 16px; padding: 18px 24px; display: flex; align-items: center; gap: 22px; }
+  .ideia .pill { color: var(--acento); white-space: nowrap; }
+  .ideia p { font-size: 16.5px; line-height: 1.45; color: var(--creme-2); }
+  .ideia b { color: #fff; }
+
+  /* 5 · 3 meses */
+  .teste { color: var(--creme); background: var(--preto); }
+  .teste .bg { position: absolute; inset: 0; background: url(img/serra.jpg) center 40% / cover; }
+  .teste .bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,13,.55) 0%, rgba(20,16,13,.78) 45%, rgba(20,16,13,.94) 100%); }
+  .teste .conteudo { position: absolute; inset: 0; padding: 60px 64px; }
+  .teste .kicker { color: var(--acento); }
+  .teste .topo { display: flex; align-items: flex-end; gap: 28px; margin-top: 10px; }
+  .teste .num { font-family: 'Archivo Black', sans-serif; font-size: 200px; line-height: .8; color: var(--acento); }
+  .teste h2 { font-size: 66px; color: #fff; padding-bottom: 6px; }
+  .teste .colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 44px; }
+  .teste h4 { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--acento); margin-bottom: 12px; }
+  .teste ul { list-style: none; }
+  .teste li { font-size: 18px; line-height: 1.45; padding: 7px 0 7px 26px; position: relative; border-bottom: 1px solid rgba(241,236,224,.16); }
+  .teste li::before { content: ''; position: absolute; left: 4px; top: 17px; width: 9px; height: 9px; border-radius: 50%; background: var(--acento); }
+  .teste .fim { position: absolute; left: 64px; right: 64px; bottom: 44px; display: flex; align-items: center; justify-content: space-between; }
+  .teste .fim p { font-size: 21px; font-weight: 600; color: #fff; }
+  .teste .fim img { height: 64px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · CAPA -->
+<section class="page capa">
+  <div class="foto"></div>
+  <img class="logo" src="img/logo-branca.png" alt="Café Canastra">
+  <div class="kicker">Proposta · Outubro de 2026</div>
+  <h1 class="display">O próximo passo para o <span class="mark">sucesso</span></h1>
+  <p class="sub">Café Canastra vendendo de verdade na internet: marketplaces, conteúdo e afiliados.</p>
+  <div class="rodape"><span class="pill">Rafael</span><span class="pill cheia">3 meses de teste</span></div>
+</section>
+
+<!-- 2 · RESUMO -->
+<section class="page resumo">
+  <div class="kicker">01 · Resumo</div>
+  <h2 class="display">Colocar o Café Canastra para <span class="mark">vender online</span>, de verdade.</h2>
+  <div class="fluxo">
+    <div class="passo"><div class="n">1</div><h3>Estruturar e criar conteúdo</h3><p>Marketplaces prontos para vender e conteúdo desde o primeiro dia.</p></div>
+    <div class="passo"><div class="n">2</div><h3>Vender nos marketplaces</h3><p>Mercado Livre, Shopee, TikTok Shop e Amazon com preço certo e anúncio forte.</p></div>
+    <div class="passo"><div class="n">3</div><h3>Alavancar com afiliados</h3><p>Afiliados e criadores das próprias plataformas vendendo pela gente.</p></div>
+    <div class="passo"><div class="n">4</div><h3>Escalar o orgânico</h3><p>Instagram e TikTok com constância, levando gente para a loja online.</p></div>
+  </div>
+  <div class="faixa">
+    <div class="tres">3</div>
+    <p><b>Meses de teste.</b> No fim, a gente olha os números juntos e decide o próximo passo.</p>
+  </div>
+  <div class="pageno">02</div>
+</section>
+
+<!-- 3 · O QUE JÁ ESTÁ SENDO FEITO -->
+<section class="page feito">
+  <div class="lado"></div>
+  <div class="card-post"><img src="img/carrossel.png" alt="Carrossel publicado no @cafecanastra"></div>
+  <div class="legenda">Carrossel publicado em 14/10</div>
+  <div class="conteudo">
+    <div class="kicker">02 · O que já está sendo feito</div>
+    <h2 class="display">A base já está de pé.</h2>
+    <div class="grade">
+      <div class="item"><h4>TikTok Shop aprovado</h4><p>Categoria Alimentos e bebidas liberada em 15/10. Dá para vender café lá.</p></div>
+      <div class="item"><h4>4 marketplaces estudados</h4><p>Mais de 500 vídeos e materiais analisados. Estratégia e calculadora de preço para cada um.</p></div>
+      <div class="item"><h4>Mercado Livre diagnosticado</h4><p>Já sabemos o que derrubou a reputação e qual o preço certo do 1 kg e do kit.</p></div>
+      <div class="item"><h4>Agentes de IA no Discord</h4><p>Mercado Livre, Instagram, consulta de números para a equipe e melhorias no CRM: 13 já entregues.</p></div>
+      <div class="item"><h4>Conteúdo com cara de marca</h4><p>Voz e público definidos, Reels em motion e 130 vídeos virais de café estudados.</p></div>
+      <div class="item"><h4>Valéria e CRM</h4><p>Atendimento no WhatsApp, vendas no Bling e o resultado voltando para o Google e a Meta.</p></div>
+    </div>
+  </div>
+  <div class="pageno">03</div>
+</section>
+
+<!-- 4 · O QUE VOU FAZER -->
+<section class="page fazer">
+  <div class="kicker">03 · O que vou fazer</div>
+  <h2 class="display">Um passo puxa o outro.</h2>
+  <div class="trilha">
+    <div class="etapa"><div class="bola">1</div><h3>Estruturar os marketplaces</h3><p>Mercado Livre arrumado, Shopee aberta, TikTok Shop com catálogo e Amazon de volta. Conteúdo rodando junto, desde o primeiro dia.</p></div>
+    <div class="etapa"><div class="bola">2</div><h3>Vender</h3><p>Preço com margem, anúncios fortes e Ads só onde se paga. Um agente acompanhando cada canal todo dia.</p></div>
+    <div class="etapa"><div class="bola">3</div><h3>Afiliados</h3><p>Criadores e afiliados das plataformas divulgando o café e ganhando por venda. Mais alcance sem pagar antes.</p></div>
+    <div class="etapa"><div class="bola">4</div><h3>Orgânico até a loja</h3><p>Instagram e TikTok com constância, levando quem gostou do conteúdo direto para a loja online.</p></div>
+  </div>
+  <div class="ideia">
+    <span class="pill">Ideia para depois</span>
+    <p><b>Estúdio para o TikTok Shop:</b> vídeos e LIVEs gravados aqui mesmo, quando os canais estiverem rodando.</p>
+  </div>
+  <div class="pageno">04</div>
+</section>
+
+<!-- 5 · 3 MESES DE TESTE -->
+<section class="page teste">
+  <div class="bg"></div>
+  <div class="conteudo">
+    <div class="kicker">04 · Como vamos testar</div>
+    <div class="topo"><div class="num">3</div><h2 class="display">meses<br>de teste</h2></div>
+    <div class="colunas">
+      <div>
+        <h4>O que você recebe</h4>
+        <ul>
+          <li>Um resumo por mês: o que foi feito e quanto cada canal vendeu</li>
+          <li>Os números na mão a qualquer hora, direto no Discord</li>
+          <li>Nada muda nas contas sem o seu ok</li>
+        </ul>
+      </div>
+      <div>
+        <h4>O que eu preciso</h4>
+        <ul>
+          <li>Acesso às contas dos marketplaces e das redes</li>
+          <li>Pedido despachado no prazo de cada plataforma</li>
+          <li>Fotos e vídeos da fazenda, da torra e da família</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="fim">
+    <p>No fim dos 3 meses, a gente senta e decide junto o próximo passo.</p>
+    <img src="img/logo-branca.png" alt="Café Canastra">
+  </div>
+</section>
+
+</body>
+</html>

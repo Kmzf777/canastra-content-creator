@@ -1,0 +1,169 @@
+<title>Cenários de Venda Canastra</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: cenários no topo, tabela editável por marketplace, resultado e barras, tabela de referência. */
+:root {
+  --bg: #F3F5F7; --surface: #FFFFFF; --line: #D8DDE3; --fg: #1A1E24; --muted: #5B6470;
+  --accent: #0E7378; --accent-soft: #DDEFEF; --good: #1F7A50;
+  --c-ml: #C9A227; --c-tt: #C93D86; --c-amz: #D9822B; --c-shp: #2F5A9E;
+  --display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171B; --surface: #1C2026; --line: #323842; --fg: #E9ECEF; --muted: #A2AAB4;
+    --accent: #5CC3C8; --accent-soft: #17302F; --good: #6CCB97;
+    --c-ml: #E3C04A; --c-tt: #E46AAA; --c-amz: #EBA25A; --c-shp: #7FA4E0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171B; --surface: #1C2026; --line: #323842; --fg: #E9ECEF; --muted: #A2AAB4;
+  --accent: #5CC3C8; --accent-soft: #17302F; --good: #6CCB97;
+  --c-ml: #E3C04A; --c-tt: #E46AAA; --c-amz: #EBA25A; --c-shp: #7FA4E0;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 900px; margin: 0 auto; display: grid; gap: 32px; }
+section { display: grid; gap: 14px; min-width: 0; }
+h1, h2 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.1; }
+h2 { font-size: 22px; }
+p { margin: 0; max-width: 66ch; }
+.eyebrow { font: 600 13px var(--body); letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+.muted { color: var(--muted); }
+small { font-size: 14px; color: var(--muted); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button { font: 600 15px var(--body); padding: 8px 16px; border-radius: 999px; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--fg); }
+.seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 14px; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { padding: 8px 6px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+th { font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+th:first-child, td:first-child { text-align: left; }
+td .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; vertical-align: middle; }
+td input { width: 96px; font: 500 16px var(--mono); padding: 5px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); text-align: right; }
+tfoot td { font-weight: 600; border-bottom: 0; border-top: 2px solid var(--fg); }
+.big { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 560px) { .big { grid-template-columns: minmax(0, 1fr); } }
+.big div { background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; display: grid; gap: 2px; }
+.big .k { font-size: 14px; color: var(--muted); }
+.big .v { font: 700 clamp(26px, 5vw, 34px) var(--display); font-variant-numeric: tabular-nums; }
+.bars { display: grid; gap: 10px; }
+.bar { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 15px; }
+.bar .track { height: 22px; background: var(--bg); border-radius: 6px; overflow: hidden; }
+.bar .fill { height: 100%; border-radius: 6px; transition: width .25s ease; }
+@media (prefers-reduced-motion: reduce) { .bar .fill { transition: none; } }
+.note { font-size: 15px; color: var(--muted); }
+</style>
+
+<div class="wrap">
+  <header style="display:grid;gap:8px">
+    <span class="eyebrow">Café Canastra · Marketplaces</span>
+    <h1>Quanto sobra por mês em cada cenário de vendas</h1>
+    <p class="muted">Conta simples: pacotes vendidos × margem de contribuição de cada marketplace. Escolha um cenário ou digite as quantidades.</p>
+  </header>
+
+  <section>
+    <div class="seg" id="cen" aria-label="Cenário"></div>
+    <div class="card">
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Marketplace</th><th>Margem por pacote (R$)</th><th>Pacotes por mês</th><th>Sobra no mês</th><th>Sobra em 12 meses</th></tr></thead>
+          <tbody id="tb"></tbody>
+          <tfoot><tr><td>Total</td><td></td><td class="num" id="tq"></td><td class="num" id="tm"></td><td class="num" id="ta"></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="big">
+        <div><span class="k">Sobra por mês</span><span class="v" id="bm"></span></div>
+        <div><span class="k">Sobra em 12 meses (sem crescimento)</span><span class="v" id="ba"></span></div>
+      </div>
+      <div class="bars" id="bars" aria-label="Sobra do mês por marketplace"></div>
+    </div>
+    <p class="note">As quantidades dos cenários são exemplos para comparar, não metas nem previsões. A margem por pacote é o que você trouxe das calculadoras (CM, depois de custo, tarifas, frete, imposto e anúncio). Não entram custos fixos da empresa, como salários e aluguel.</p>
+  </section>
+
+  <section>
+    <h2>Mesma quantidade em todos os marketplaces</h2>
+    <p class="muted">Quanto sobra no mês se cada canal vender o mesmo número de pacotes.</p>
+    <div class="card scroll"><table id="ref"></table></div>
+  </section>
+</div>
+
+<script>
+const MKT = [
+  { id: 'ml', nome: 'Mercado Livre', cor: '--c-ml', cm: 13.78 },
+  { id: 'tt', nome: 'TikTok Shop', cor: '--c-tt', cm: 21.84 },
+  { id: 'amz', nome: 'Amazon', cor: '--c-amz', cm: 28.58 },
+  { id: 'shp', nome: 'Shopee', cor: '--c-shp', cm: 12.84 },
+];
+const CEN = {
+  'Conservador': { ml: 30, tt: 20, amz: 15, shp: 20 },
+  'Moderado': { ml: 100, tt: 80, amz: 50, shp: 80 },
+  'Agressivo': { ml: 300, tt: 250, amz: 150, shp: 250 },
+};
+let atual = 'Moderado';
+const $ = id => document.getElementById(id);
+const brl = v => (v < 0 ? '−' : '') + 'R$ ' + Math.abs(v).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const n = v => { const x = parseFloat(String(v).replace(',', '.')); return isNaN(x) ? 0 : x; };
+
+$('tb').innerHTML = MKT.map(m => `<tr>
+  <td><span class="dot" style="background:var(${m.cor})"></span>${m.nome}</td>
+  <td><input id="cm-${m.id}" type="number" step="0.01" value="${m.cm.toFixed(2)}" aria-label="Margem por pacote ${m.nome}"></td>
+  <td><input id="q-${m.id}" type="number" step="1" min="0" aria-label="Pacotes por mês ${m.nome}"></td>
+  <td class="num" id="m-${m.id}"></td><td class="num" id="a-${m.id}"></td></tr>`).join('');
+
+function renderCen() {
+  $('cen').innerHTML = Object.keys(CEN).concat(['Personalizado']).map(k =>
+    `<button type="button" data-k="${k}" aria-pressed="${k === atual}">${k}</button>`).join('');
+}
+function aplicar(k) {
+  atual = k;
+  if (CEN[k]) MKT.forEach(m => { $('q-' + m.id).value = CEN[k][m.id]; });
+  renderCen(); calc();
+}
+$('cen').addEventListener('click', e => { const b = e.target.closest('button'); if (b) aplicar(b.dataset.k); });
+$('tb').addEventListener('input', e => {
+  if (e.target.id.startsWith('q-') && atual !== 'Personalizado') { atual = 'Personalizado'; renderCen(); }
+  calc();
+});
+
+function calc() {
+  let tq = 0, tm = 0; const linhas = [];
+  MKT.forEach(m => {
+    const cm = n($('cm-' + m.id).value), q = n($('q-' + m.id).value), mes = cm * q;
+    tq += q; tm += mes; linhas.push([m, mes]);
+    $('m-' + m.id).textContent = brl(mes); $('a-' + m.id).textContent = brl(mes * 12);
+  });
+  $('tq').textContent = tq.toLocaleString('pt-BR'); $('tm').textContent = brl(tm); $('ta').textContent = brl(tm * 12);
+  $('bm').textContent = brl(tm); $('ba').textContent = brl(tm * 12);
+  const max = Math.max(...linhas.map(l => Math.abs(l[1])), 1);
+  $('bars').innerHTML = linhas.map(([m, v]) => `<div class="bar"><span>${m.nome}</span>
+    <div class="track"><div class="fill" style="width:${(Math.abs(v) / max * 100).toFixed(1)}%;background:var(${m.cor})"></div></div>
+    <span class="num">${tm ? Math.round(v / tm * 100) : 0}%</span></div>`).join('');
+  ref();
+}
+function ref() {
+  const qs = [50, 100, 250, 500, 1000];
+  let h = '<thead><tr><th>Pacotes/mês por canal</th>' + MKT.map(m => `<th>${m.nome}</th>`).join('') + '<th>Os 4 juntos</th></tr></thead><tbody>';
+  qs.forEach(q => {
+    let s = 0;
+    h += `<tr><td class="num">${q}</td>` + MKT.map(m => { const v = n($('cm-' + m.id).value) * q; s += v; return `<td class="num">${brl(v)}</td>`; }).join('') + `<td class="num">${brl(s)}</td></tr>`;
+  });
+  $('ref').innerHTML = h + '</tbody>';
+}
+aplicar(atual);
+</script>

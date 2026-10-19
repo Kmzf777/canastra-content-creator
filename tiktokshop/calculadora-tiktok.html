@@ -1,0 +1,358 @@
+<title>Calculadora TikTok Shop Canastra</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: painel de entrada à esquerda, escada de margem à direita; abaixo, tabela de referência e pisos. */
+:root {
+  --bg: #F3F5F2;
+  --surface: #FFFFFF;
+  --line: #D9DED6;
+  --fg: #1F1B18;
+  --muted: #5F6660;
+  --accent: #2C67A8;      /* céu a pino */
+  --accent-soft: #E3ECF6;
+  --earth: #8A3B22;       /* terra vermelha da lavoura */
+  --good: #2D7A4B;
+  --good-soft: #E2F1E7;
+  --bad: #B3261E;
+  --bad-soft: #F8E3E1;
+  --warn: #9A6400;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #151816; --surface: #1D211F; --line: #333A35; --fg: #ECEEEA; --muted: #A1A9A3;
+    --accent: #7FB0E6; --accent-soft: #1F2E3F; --earth: #E08A68;
+    --good: #6BC48F; --good-soft: #17301F; --bad: #F08A80; --bad-soft: #3A1D1A; --warn: #E0B050;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #151816; --surface: #1D211F; --line: #333A35; --fg: #ECEEEA; --muted: #A1A9A3;
+  --accent: #7FB0E6; --accent-soft: #1F2E3F; --earth: #E08A68;
+  --good: #6BC48F; --good-soft: #17301F; --bad: #F08A80; --bad-soft: #3A1D1A; --warn: #E0B050;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 28px; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--earth); font-weight: 600; }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 4.4vw, 42px); line-height: 1.05; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 600; font-size: 21px; margin: 0; text-wrap: balance; }
+.lead { color: var(--muted); max-width: 70ch; margin: 0; }
+.main { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 860px) { .main { grid-template-columns: minmax(0, 1fr); } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 16px; min-width: 0; }
+fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 10px; }
+legend { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; padding: 0; margin-bottom: 6px; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.presets button {
+  font: 500 13px var(--body); border: 1px solid var(--line); background: var(--bg); color: var(--fg);
+  border-radius: 999px; padding: 5px 12px; cursor: pointer;
+}
+.presets button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.presets button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.row { display: grid; grid-template-columns: 1fr 118px; gap: 10px; align-items: center; }
+.row label { font-size: 14px; }
+.row small { display: block; color: var(--muted); font-size: 12px; line-height: 1.35; }
+input[type="number"], select {
+  width: 100%; font: 500 15px var(--mono); padding: 7px 9px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--fg); text-align: right; font-variant-numeric: tabular-nums;
+}
+select { text-align: left; font-family: var(--body); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+.check input { margin-top: 4px; accent-color: var(--accent); }
+.check small { display: block; color: var(--muted); font-size: 12px; }
+
+/* escada */
+.result { display: grid; gap: 18px; min-width: 0; }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 520px) { .tiles { grid-template-columns: minmax(0, 1fr); } }
+.tile { border-radius: 8px; padding: 12px 14px; background: var(--bg); border: 1px solid var(--line); display: grid; gap: 2px; }
+.tile .k { font-size: 12px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; font-weight: 600; }
+.tile .v { font: 500 24px var(--mono); font-variant-numeric: tabular-nums; }
+.tile .p { font: 400 13px var(--mono); color: var(--muted); }
+.tile.pos { background: var(--good-soft); border-color: transparent; }
+.tile.pos .v { color: var(--good); }
+.tile.neg { background: var(--bad-soft); border-color: transparent; }
+.tile.neg .v { color: var(--bad); }
+.ladder { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.ladder td { padding: 6px 0; border-bottom: 1px solid var(--line); }
+.ladder td:last-child { text-align: right; font-family: var(--mono); white-space: nowrap; padding-left: 12px; }
+.ladder td.lbl small { color: var(--muted); font-size: 12px; margin-left: 6px; }
+.ladder tr.sub td { font-weight: 600; border-bottom: 2px solid var(--fg); padding-top: 9px; }
+.ladder tr.sub td:last-child { font-weight: 500; }
+.minus td:last-child { color: var(--muted); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.fact { border-left: 3px solid var(--accent); padding: 4px 0 4px 12px; display: grid; gap: 1px; }
+.fact .k { font-size: 12px; color: var(--muted); }
+.fact .v { font: 500 18px var(--mono); font-variant-numeric: tabular-nums; }
+.fact .n { font-size: 12px; color: var(--muted); }
+.alert { font-size: 13px; padding: 9px 12px; border-radius: 6px; background: var(--bad-soft); color: var(--bad); }
+.alert.warn { background: var(--accent-soft); color: var(--fg); }
+
+/* referência */
+.scroll { overflow-x: auto; }
+table.ref { border-collapse: collapse; width: 100%; min-width: 760px; font-variant-numeric: tabular-nums; font-size: 14px; }
+table.ref th, table.ref td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+table.ref th { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+table.ref th:first-child, table.ref td:first-child { text-align: left; }
+table.ref td { font-family: var(--mono); }
+table.ref td:first-child { font-family: var(--body); }
+table.ref tr.grp td { padding-top: 14px; font-family: var(--display); font-weight: 600; font-size: 15px; border-bottom: 1px solid var(--fg); }
+td.neg { color: var(--bad); }
+td.pos { color: var(--good); }
+.pisos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.piso { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: grid; gap: 6px; }
+.piso h3 { margin: 0; font: 600 16px var(--display); }
+.piso dl { margin: 0; display: grid; grid-template-columns: 1fr auto auto; gap: 3px 14px; font-size: 13px; }
+.piso dt { color: var(--muted); }
+.piso dd { margin: 0; font-family: var(--mono); text-align: right; }
+.piso .hd { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); text-align: right; }
+.notes { font-size: 13px; color: var(--muted); display: grid; gap: 6px; max-width: 80ch; }
+.notes p { margin: 0; }
+.notes b { color: var(--fg); font-weight: 600; }
+code { font-family: var(--mono); font-size: .92em; }
+@media (prefers-reduced-motion: no-preference) { .tile .v { transition: color .2s; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Café Canastra · TikTok Shop BR</span>
+    <h1>Quanto sobra em cada pedido</h1>
+    <p class="lead">A escada CM1 → CM2 → CM3 com a tarifa vigente desde 15/07/2026, o Programa de Taxas de Envio e o CMV de <code>mercadolivre/custos.md</code>. As fórmulas são as mesmas de <code>tiktokshop/scripts/precificar_tiktok.py</code>.</p>
+  </header>
+
+  <div class="main">
+    <form class="panel" id="f" autocomplete="off">
+      <fieldset>
+        <legend>Produto</legend>
+        <div class="presets" id="presets"></div>
+        <div class="row"><label for="preco">Preço do anúncio (R$)</label><input type="number" id="preco" step="0.01" min="0" value="99.90"></div>
+        <div class="row"><label for="cmv">CMV do anúncio (R$)<small>kit = soma das unidades</small></label><input type="number" id="cmv" step="0.01" min="0" value="47"></div>
+        <div class="row"><label for="kg">Peso total (kg)<small>para o preço por kg</small></label><input type="number" id="kg" step="0.25" min="0.25" value="1"></div>
+        <div class="row"><label for="itens">Tarifas fixas no pedido<small>1 = kit conta como 1 item (não medido)</small></label><input type="number" id="itens" step="1" min="1" value="1"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Venda</legend>
+        <div class="row"><label for="cupom">Cupom do vendedor (R$)<small>reduz a base da tarifa e do afiliado</small></label><input type="number" id="cupom" step="0.01" min="0" value="0"></div>
+        <div class="row"><label for="afil">Comissão de afiliado (%)<small>padrão de Alimentos e bebidas: 8%</small></label><input type="number" id="afil" step="0.5" min="0" max="80" value="8"></div>
+        <div class="row"><label for="roi">ROI do GMV Max<small>0 = sem anúncio; 50 = campanha (2%)</small></label><input type="number" id="roi" step="0.5" min="0" value="0"></div>
+        <label class="check"><input type="checkbox" id="lojaNova"><span>Isenção de loja nova<small>0% da parte percentual por 60 dias, com missão (hoje 0 missões no painel)</small></span></label>
+        <label class="check"><input type="checkbox" id="lojaNovaFixa"><span>Isenção cobre também a tarifa fixa<small>otimista; nenhuma página oficial diz isso</small></span></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Hipóteses não medidas</legend>
+        <div class="row"><label for="freteA">Frete de cada amostra (R$)</label><input type="number" id="freteA" step="0.5" min="0" value="20"></div>
+        <div class="row"><label for="ppa">Pedidos por amostra</label><input type="number" id="ppa" step="1" min="0" value="10"></div>
+        <div class="row"><label for="cmvA">CMV da amostra (R$)<small>o que se manda ao criador</small></label><input type="number" id="cmvA" step="0.01" min="0" value="47"></div>
+        <div class="row"><label for="perda">Perdas (% do preço)<small>avaria, extravio, reembolso</small></label><input type="number" id="perda" step="0.5" min="0" value="1"></div>
+        <div class="row"><label for="emb">Embalagem de envio (R$)</label><input type="number" id="emb" step="0.1" min="0" value="0"></div>
+      </fieldset>
+    </form>
+
+    <section class="panel result" aria-live="polite">
+      <div class="tiles" id="tiles"></div>
+      <div id="alerts"></div>
+      <table class="ladder" id="ladder"></table>
+      <div class="facts" id="facts"></div>
+    </section>
+  </div>
+
+  <section style="display:grid;gap:12px">
+    <h2>Grade de referência</h2>
+    <p class="lead">Mesmas hipóteses do painel acima (amostra, perda, embalagem, isenção), sem cupom e sem anúncio. A coluna "afil." usa a comissão que está no painel.</p>
+    <div class="scroll"><table class="ref" id="ref"></table></div>
+  </section>
+
+  <section style="display:grid;gap:12px">
+    <h2>Pisos de preço</h2>
+    <p class="lead">Menor preço em que a CM3 atinge a margem, varrido de centavo em centavo. A coluna "afil." usa a comissão do painel.</p>
+    <div class="pisos" id="pisos"></div>
+  </section>
+
+  <section class="notes">
+    <p><b>Fontes.</b> Tarifa: abaixo de R$ 50, 10% + R$ 4 por item; de R$ 50 em diante, 6% + R$ 6 (Academy BR kid=24428156307201, vigência 15/07/2026). SFP: 6% do preço depois do desconto do vendedor, teto de R$ 50 por produto (kid=5665577566734097). Afiliado padrão de Alimentos e bebidas: 8% (kid=3355295847515925). GMV Max criado pela plataforma em campanha: ROI 50 (kid=3355910447433489). Imposto de 9% sobre o preço e CMV de R$ 47 (1 kg), R$ 26 (500 g) e R$ 14 (250 g): <code>mercadolivre/custos.md</code>, 14/10/2026.</p>
+    <p><b>Escada.</b> CM1 = receita − CMV − tarifa − SFP − imposto − embalagem, com receita = preço − cupom. CM2 = CM1 − afiliado − GMV Max. CM3 = CM2 − amostra rateada − perdas. O ROI de equilíbrio é o GMV Max que zera a CM3 do pedido marginal. Lembre que o painel do GMV Max atribui a si pedidos orgânicos e de afiliado.</p>
+    <p><b>Em aberto.</b> Se kit ou 2 unidades pagam 1 ou N tarifas fixas, e se a isenção de loja nova cobre a fixa e o SFP. Os dois só se resolvem no extrato dos primeiros pedidos (Finanças › Demonstrações).</p>
+  </section>
+</div>
+
+<script>
+// CALC-START
+const IMPOSTO = 0.09;
+const FAIXAS = [[0, 0.10, 4.00], [50, 0.06, 6.00]];
+const SFP_PCT = 0.06, SFP_TETO = 50;
+const r2 = x => Math.round((x + (x >= 0 ? 1e-9 : -1e-9)) * 100) / 100;
+
+function faixa(precoItem) {
+  for (let i = FAIXAS.length - 1; i >= 0; i--) if (precoItem >= FAIXAS[i][0]) return [FAIXAS[i][1], FAIXAS[i][2]];
+}
+
+function resultado(preco, cmv, o = {}) {
+  const itens = o.itens ?? 1, cupom = o.cupom ?? 0, afilPct = o.afiliado_pct ?? 0, roi = o.roi || null;
+  const freteA = o.frete_amostra ?? 20, ppa = o.pedidos_por_amostra ?? 10;
+  const cmvA = o.cmv_amostra ?? cmv, perdaPct = o.perda_pct ?? 1, emb = o.embalagem ?? 0;
+  const receita = r2(preco - cupom);
+  let [pct, fixa] = faixa(receita / itens);
+  if (o.loja_nova) pct = 0;
+  const tarifa_pct = r2(receita * pct);
+  const tarifa_fixa = o.loja_nova_fixa ? 0 : r2(fixa * itens);
+  const sfp = r2(Math.min(receita * SFP_PCT, SFP_TETO * itens));
+  const imposto = r2(receita * IMPOSTO);
+  const cm1 = r2(receita - cmv - tarifa_pct - tarifa_fixa - sfp - imposto - emb);
+  const afiliado = r2(receita * afilPct / 100);
+  const gmv_max = roi ? r2(receita / roi) : 0;
+  const cm2 = r2(cm1 - afiliado - gmv_max);
+  const amostra = ppa ? r2((cmvA + freteA) / ppa) : 0;
+  const perda = r2(receita * perdaPct / 100);
+  const cm3 = r2(cm2 - amostra - perda);
+  const antesAds = cm1 - afiliado - amostra - perda;
+  return { preco, cupom, receita, tarifa_pct, tarifa_fixa, sfp, imposto, cmv, embalagem: emb, cm1,
+    cm1_pct: r2(cm1 / receita * 100), afiliado, gmv_max, cm2, cm2_pct: r2(cm2 / receita * 100),
+    amostra, perda, cm3, cm3_pct: Math.round(cm3 / receita * 1000) / 10,
+    plataforma_pct: Math.round((tarifa_pct + tarifa_fixa + sfp) / receita * 1000) / 10,
+    roi_eq: antesAds > 0 ? r2(receita / antesAds) : null };
+}
+
+function precoParaMargem(margem, cmv, o = {}) {
+  for (let c = 1000; c < 150000; c++) {
+    const p = c / 100;
+    if (resultado(p, cmv, o).cm3_pct >= margem) return p;
+  }
+  return null;
+}
+// CALC-END
+
+const SKUS = [
+  { id: '1kg', nome: '1 kg', cmv: 47, kg: 1, preco: 99.90, cmvA: 47, grade: [79.90, 89.90, 99.90, 109.90, 119.90] },
+  { id: '500g', nome: '500 g', cmv: 26, kg: 0.5, preco: 59.90, cmvA: 26, grade: [44.90, 49.90, 54.90, 59.90, 64.90] },
+  { id: 'k2x500', nome: 'Kit 2 × 500 g', cmv: 52, kg: 1, preco: 99.90, cmvA: 26, grade: [89.90, 99.90, 109.90] },
+  { id: 'k2x1', nome: 'Kit 2 × 1 kg', cmv: 94, kg: 2, preco: 179.90, cmvA: 47, grade: [159.90, 179.90, 199.90, 219.90] },
+  { id: 'k3x500', nome: 'Kit 3 × 500 g', cmv: 78, kg: 1.5, preco: 149.90, cmvA: 26, grade: [134.90, 149.90] },
+];
+
+const $ = id => document.getElementById(id);
+const brl = v => v == null ? '—' : (v < 0 ? '−' : '') + 'R$ ' + Math.abs(v).toFixed(2).replace('.', ',');
+const num = v => v == null ? 'sem margem' : v.toFixed(2).replace('.', ',');
+const pctf = v => v.toFixed(1).replace('.', ',') + '%';
+const val = id => { const n = parseFloat($(id).value); return isNaN(n) ? 0 : n; };
+
+let skuAtual = '1kg';
+function renderPresets() {
+  $('presets').innerHTML = SKUS.map(s =>
+    `<button type="button" data-id="${s.id}" aria-pressed="${s.id === skuAtual}">${s.nome}</button>`).join('');
+}
+$('presets').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const s = SKUS.find(x => x.id === b.dataset.id);
+  skuAtual = s.id;
+  $('preco').value = s.preco.toFixed(2); $('cmv').value = s.cmv; $('kg').value = s.kg; $('cmvA').value = s.cmvA;
+  $('itens').value = 1;
+  renderPresets(); calc();
+});
+
+function opts() {
+  return { itens: Math.max(1, Math.round(val('itens'))), cupom: val('cupom'), afiliado_pct: val('afil'),
+    roi: val('roi') > 0 ? val('roi') : null, loja_nova: $('lojaNova').checked, loja_nova_fixa: $('lojaNovaFixa').checked,
+    frete_amostra: val('freteA'), pedidos_por_amostra: val('ppa'), cmv_amostra: val('cmvA'),
+    perda_pct: val('perda'), embalagem: val('emb') };
+}
+
+function tile(k, v, p) {
+  const cls = v < 0 ? 'neg' : v > 0 ? 'pos' : '';
+  return `<div class="tile ${cls}"><span class="k">${k}</span><span class="v">${brl(v)}</span><span class="p">${pctf(p)} da receita</span></div>`;
+}
+
+function calc() {
+  const preco = val('preco'), cmv = val('cmv'), kg = val('kg') || 1, o = opts();
+  if (preco <= 0 || preco - o.cupom <= 0) { $('tiles').innerHTML = '<div class="alert">Informe um preço maior que o cupom.</div>'; return; }
+  const r = resultado(preco, cmv, o);
+  $('tiles').innerHTML = tile('CM1', r.cm1, r.cm1_pct) + tile('CM2', r.cm2, r.cm2_pct) + tile('CM3', r.cm3, r.cm3_pct);
+
+  const pi = (r.receita / o.itens), faixaTxt = pi >= 50 ? '6% + R$ 6' : '10% + R$ 4';
+  const linhas = [
+    ['Preço do anúncio', null, r.preco],
+    o.cupom ? ['− Cupom do vendedor', null, -r.cupom] : null,
+    ['Receita (base de tarifa, SFP e afiliado)', null, r.receita, 'sub'],
+    ['− CMV', '', -r.cmv, 'minus'],
+    ['− Tarifa percentual', o.loja_nova ? 'isenta (loja nova)' : faixaTxt.split(' +')[0], -r.tarifa_pct, 'minus'],
+    ['− Tarifa fixa', o.loja_nova_fixa ? 'isenta' : `${o.itens} × R$ ${faixa(pi)[1].toFixed(0)}`, -r.tarifa_fixa, 'minus'],
+    ['− Programa de Taxas de Envio', '6%, teto R$ 50', -r.sfp, 'minus'],
+    ['− Imposto', '9% do preço', -r.imposto, 'minus'],
+    r.embalagem ? ['− Embalagem de envio', '', -r.embalagem, 'minus'] : null,
+    ['CM1', pctf(r.cm1_pct), r.cm1, 'sub'],
+    ['− Afiliado', pctf(o.afiliado_pct), -r.afiliado, 'minus'],
+    ['− GMV Max', o.roi ? 'ROI ' + num(o.roi) : 'desligado', -r.gmv_max, 'minus'],
+    ['CM2', pctf(r.cm2_pct), r.cm2, 'sub'],
+    ['− Amostra rateada', o.pedidos_por_amostra ? `(CMV + frete) ÷ ${o.pedidos_por_amostra}` : 'sem amostra', -r.amostra, 'minus'],
+    ['− Perdas', pctf(o.perda_pct), -r.perda, 'minus'],
+    ['CM3', pctf(r.cm3_pct), r.cm3, 'sub'],
+  ].filter(Boolean);
+  $('ladder').innerHTML = linhas.map(([l, s, v, c]) =>
+    `<tr class="${c || ''}"><td class="lbl">${l}${s ? `<small>${s}</small>` : ''}</td><td>${brl(v)}</td></tr>`).join('');
+
+  const base = Object.assign({}, o, { cupom: 0, roi: null });
+  const zero = precoParaMargem(0, cmv, base), dez = precoParaMargem(10, cmv, base);
+  $('facts').innerHTML = [
+    ['Plataforma (tarifa + SFP)', pctf(r.plataforma_pct), brl(r.tarifa_pct + r.tarifa_fixa + r.sfp) + ' por pedido'],
+    ['Preço por kg', brl(r.preco / kg), kg + ' kg no anúncio'],
+    ['ROI de equilíbrio do GMV Max', num(r.roi_eq), 'abaixo disso o anúncio come a margem'],
+    ['Empate · 10% de CM3', zero == null ? '—' : num(zero), dez == null ? '—' : '10% em ' + num(dez) + ' (sem cupom e sem Ads)'],
+  ].map(([k, v, n]) => `<div class="fact"><span class="k">${k}</span><span class="v">${v}</span><span class="n">${n}</span></div>`).join('');
+
+  const al = [];
+  if (r.cm3 < 0) al.push(['', `Este pedido perde ${brl(-r.cm3)} depois de afiliado, anúncio, amostra e perdas.`]);
+  if (o.roi && r.roi_eq && o.roi < r.roi_eq) al.push(['', `O ROI ${num(o.roi)} está abaixo do equilíbrio (${num(r.roi_eq)}).`]);
+  if (o.cupom && faixa(preco / o.itens)[0] !== faixa(r.receita / o.itens)[0]) al.push(['warn', 'O cupom levou o item para abaixo de R$ 50 e mudou a faixa da tarifa.']);
+  if (o.itens > 1) al.push(['warn', `Simulando o kit pagando ${o.itens} tarifas fixas, com a faixa de cada item pelo preço do kit ÷ ${o.itens}.`]);
+  $('alerts').innerHTML = al.map(([c, t]) => `<div class="alert ${c}">${t}</div>`).join('');
+
+  renderRef(o); renderPisos(o);
+}
+
+function renderRef(o) {
+  const base = Object.assign({}, o, { cupom: 0, roi: null, itens: 1 });
+  const af = o.afiliado_pct;
+  let h = `<thead><tr><th>SKU · preço</th><th>R$/kg</th><th>Tarifa + SFP</th><th>CM1</th><th>CM3 orgânico</th><th>CM3 afil. ${pctf(af)}</th><th>CM3%</th><th>ROI eq. afil.</th></tr></thead><tbody>`;
+  for (const s of SKUS) {
+    h += `<tr class="grp"><td colspan="8">${s.nome}</td></tr>`;
+    for (const p of s.grade) {
+      const org = resultado(p, s.cmv, Object.assign({}, base, { afiliado_pct: 0, cmv_amostra: s.cmvA }));
+      const a = resultado(p, s.cmv, Object.assign({}, base, { cmv_amostra: s.cmvA }));
+      const c = v => v < 0 ? 'neg' : 'pos';
+      h += `<tr><td>${brl(p)}</td><td>${num(p / s.kg)}</td><td>${num(org.tarifa_pct + org.tarifa_fixa + org.sfp)}</td>
+        <td>${num(org.cm1)}</td><td class="${c(org.cm3)}">${num(org.cm3)}</td><td class="${c(a.cm3)}">${num(a.cm3)}</td>
+        <td class="${c(a.cm3)}">${pctf(a.cm3_pct)}</td><td>${num(a.roi_eq)}</td></tr>`;
+    }
+  }
+  $('ref').innerHTML = h + '</tbody>';
+}
+
+function renderPisos(o) {
+  const base = Object.assign({}, o, { cupom: 0, roi: null, itens: 1 });
+  $('pisos').innerHTML = SKUS.map(s => {
+    const org = Object.assign({}, base, { afiliado_pct: 0, cmv_amostra: s.cmvA });
+    const af = Object.assign({}, base, { cmv_amostra: s.cmvA });
+    const rows = [0, 10, 15, 20].map(m =>
+      `<dt>${m === 0 ? 'empate' : m + '% de CM3'}</dt><dd>${num(precoParaMargem(m, s.cmv, org))}</dd><dd>${num(precoParaMargem(m, s.cmv, af))}</dd>`).join('');
+    return `<div class="piso"><h3>${s.nome}</h3><dl><dt></dt><dd class="hd">orgânico</dd><dd class="hd">afil. ${pctf(o.afiliado_pct)}</dd>${rows}</dl></div>`;
+  }).join('');
+}
+
+$('f').addEventListener('input', calc);
+$('f').addEventListener('submit', e => e.preventDefault());
+renderPresets(); calc();
+</script>

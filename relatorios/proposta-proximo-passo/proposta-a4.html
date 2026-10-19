@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>O próximo passo para o sucesso</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Silkscreen:wght@400;700&family=VT323&display=block" rel="stylesheet">
+<style>
+  :root { --terra:#3B2A1F; --creme:#F1ECE0; --acento:#C8661E; --preto:#14100D; --ouro:#F4C430; --cinza:#6B625B; --linha:#E4DED3; }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body { font-family: 'Inter', sans-serif; color: var(--preto); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; break-after: page; page-break-after: always; }
+  .page:last-child { break-after: auto; page-break-after: auto; }
+
+  /* ---------- CAPA (pixel art) ---------- */
+  .capa { background: #000 url(img/capa-pixel.png) center / cover no-repeat; image-rendering: pixelated; font-family: 'Silkscreen', monospace; }
+  .hud { position: absolute; left: 9mm; right: 9mm; top: 7mm; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 12pt; color: #fff; text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 2px 2px 0 #000; letter-spacing: .04em; }
+  .hud .grana { color: var(--ouro); }
+  .hud .vida { letter-spacing: .1em; }
+  .caixa { position: absolute; background: rgba(20,16,13,.86); color: #fff;
+           box-shadow: 0 0 0 3px var(--creme), 0 0 0 6px var(--preto), 0 0 0 9px var(--acento), 0 0 0 12px var(--preto), 8px 8px 0 12px rgba(0,0,0,.45); }
+  .titulo { left: 22mm; right: 22mm; top: 21mm; padding: 5mm 6mm 5.5mm; text-align: center; }
+  .titulo img { height: 16mm; display: block; margin: 0 auto 3.5mm; }
+  .titulo .linha1 { font-weight: 700; font-size: 21pt; line-height: 1.1; letter-spacing: 0; text-transform: uppercase; }
+  .titulo .sucesso { display: block; font-weight: 700; font-size: 40pt; line-height: 1.05; color: var(--ouro); text-transform: uppercase; letter-spacing: 0;
+                     text-shadow: 4px 4px 0 var(--acento); margin-top: 1mm; }
+  .titulo .sub { margin-top: 3mm; font-family: 'VT323', monospace; font-size: 16pt; color: var(--creme); letter-spacing: .03em; }
+  .dialogo { left: 12mm; right: 12mm; bottom: 12mm; padding: 6.5mm 7mm 6mm; }
+  .dialogo .nome { position: absolute; left: 6mm; top: -7mm; background: var(--acento); color: var(--preto); font-weight: 700; font-size: 10.5pt; padding: 1.2mm 3.5mm; letter-spacing: .06em;
+                   box-shadow: 0 0 0 3px var(--preto); }
+  .dialogo p { font-family: 'VT323', monospace; font-size: 21pt; line-height: 1.12; }
+  .dialogo b { color: var(--ouro); font-weight: 700; }
+  .dialogo .start { position: absolute; right: 7mm; bottom: 4.5mm; font-weight: 700; font-size: 10pt; color: var(--ouro); letter-spacing: .08em; }
+  .dialogo .rodape { margin-top: 2.5mm; font-family: 'VT323', monospace; font-size: 14pt; color: #cfc7b8; letter-spacing: .06em; }
+
+  /* ---------- PÁGINAS MINIMALISTAS ---------- */
+  .min { padding: 22mm 20mm 20mm; }
+  .kicker { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 8.5pt; letter-spacing: .16em; text-transform: uppercase; color: var(--acento); }
+  h2 { font-family: 'Archivo Black', sans-serif; font-weight: 400; font-size: 26pt; line-height: 1.1; text-transform: uppercase; margin: 4mm 0 6mm; letter-spacing: -.005em; }
+  .lead { font-size: 12pt; line-height: 1.55; color: #2c2520; max-width: 160mm; }
+  .lead + .lead { margin-top: 3mm; }
+  .rodape-pg { position: absolute; left: 20mm; right: 20mm; bottom: 12mm; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--linha); padding-top: 4mm; }
+  .rodape-pg img { height: 9mm; }
+  .rodape-pg span { font-family: 'IBM Plex Mono', monospace; font-size: 8pt; color: var(--cinza); letter-spacing: .12em; }
+
+  .passos { margin-top: 9mm; border-top: 1px solid var(--preto); }
+  .passo { display: grid; grid-template-columns: 14mm 1fr; gap: 4mm; padding: 5mm 0; border-bottom: 1px solid var(--linha); }
+  .passo .n { font-family: 'Archivo Black', sans-serif; font-size: 20pt; line-height: 1; color: var(--acento); }
+  .passo h3 { font-size: 12.5pt; font-weight: 700; margin-bottom: 1.5mm; }
+  .passo p { font-size: 10.5pt; line-height: 1.5; color: #4b4038; }
+  .destaque { margin-top: 9mm; display: grid; grid-template-columns: 26mm 1fr; align-items: center; gap: 5mm; background: var(--creme); padding: 6mm 7mm; }
+  .destaque .tres { font-family: 'Archivo Black', sans-serif; font-size: 44pt; line-height: .9; color: var(--acento); }
+  .destaque p { font-size: 11.5pt; line-height: 1.5; }
+
+  .itens { margin-top: 8mm; display: grid; grid-template-columns: 1fr 1fr; gap: 0 9mm; }
+  .item { padding: 4.5mm 0 5mm; border-top: 1px solid var(--linha); }
+  .item:nth-child(1), .item:nth-child(2) { border-top: 1px solid var(--preto); }
+  .item h3 { font-size: 11pt; font-weight: 700; margin-bottom: 1.5mm; display: flex; gap: 2mm; align-items: baseline; }
+  .item h3::before { content: ''; width: 2mm; height: 2mm; background: var(--acento); flex: none; transform: translateY(-.3mm); }
+  .item p { font-size: 9.6pt; line-height: 1.5; color: #4b4038; }
+  .item.largo { grid-column: 1 / -1; }
+  .prova { margin-top: 6mm; display: grid; grid-template-columns: 38mm 1fr; gap: 6mm; align-items: center; }
+  .prova img { width: 38mm; display: block; border: 1px solid var(--linha); }
+  .prova p { font-size: 9.6pt; line-height: 1.5; color: var(--cinza); }
+
+  .etapa { display: grid; grid-template-columns: 14mm 1fr; gap: 4mm; padding: 5mm 0 4.5mm; border-bottom: 1px solid var(--linha); }
+  .etapa:first-of-type { border-top: 1px solid var(--preto); }
+  .etapa .n { font-family: 'Archivo Black', sans-serif; font-size: 20pt; line-height: 1; color: var(--acento); }
+  .etapa h3 { font-size: 12.5pt; font-weight: 700; margin-bottom: 2mm; }
+  .etapa ul { list-style: none; }
+  .etapa li { font-size: 10pt; line-height: 1.5; color: #4b4038; padding-left: 4mm; position: relative; margin-bottom: 1mm; }
+  .etapa li::before { content: '–'; position: absolute; left: 0; color: var(--acento); }
+  .ideia { margin-top: 7mm; border: 1px dashed #b9b0a3; padding: 5mm 6mm; display: grid; grid-template-columns: 34mm 1fr; gap: 4mm; align-items: center; }
+  .ideia .tag { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
+  .ideia p { font-size: 10pt; line-height: 1.5; color: #4b4038; }
+
+  .num-grande { display: flex; align-items: flex-end; gap: 5mm; margin: 4mm 0 6mm; }
+  .num-grande .tres { font-family: 'Archivo Black', sans-serif; font-size: 96pt; line-height: .8; color: var(--acento); }
+  .num-grande h2 { margin: 0 0 1mm; }
+  .colunas { margin-top: 9mm; display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+  .colunas h4 { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 8.5pt; letter-spacing: .14em; text-transform: uppercase; color: var(--acento); padding-bottom: 3mm; border-bottom: 1px solid var(--preto); }
+  .colunas ul { list-style: none; }
+  .colunas li { font-size: 10.5pt; line-height: 1.5; padding: 3mm 0; border-bottom: 1px solid var(--linha); }
+  .fecho { margin-top: 12mm; padding-top: 8mm; border-top: 1px solid var(--preto); }
+  .fecho p { font-family: 'Archivo Black', sans-serif; font-size: 18pt; line-height: 1.2; text-transform: uppercase; }
+  .fecho p span { color: var(--acento); }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<section class="page capa">
+  <div class="hud"><span>1P · ARTHUR</span><span class="vida">♥♥♥ 3 MESES</span><span class="grana">$ 999.999.999</span></div>
+  <div class="caixa titulo">
+    <img src="img/logo-branca.png" alt="Café Canastra">
+    <div class="linha1">O próximo passo<br>para o</div>
+    <span class="sucesso">Sucesso</span>
+    <div class="sub">Marketplaces · Conteúdo · Afiliados · E-commerce</div>
+  </div>
+  <div class="caixa dialogo">
+    <div class="nome">CLAUDE CONTA-FORTE</div>
+    <p>Fala, Arthur! O café já é bom, a base já está pronta. Agora é <b>vender online</b> e fazer o dinheiro chover. Bora?</p>
+    <div class="rodape">PROPOSTA DO RAFAEL · 16 DE OUTUBRO DE 2026</div>
+    <div class="start">▶ PRESS START</div>
+  </div>
+</section>
+
+<!-- RESUMO -->
+<section class="page min">
+  <div class="kicker">01 · Resumo</div>
+  <h2>Colocar o Café Canastra para vender online, de verdade.</h2>
+  <p class="lead">A proposta é eu assumir de vez a parte digital do Café Canastra: marketplaces, conteúdo e as ferramentas de IA que fazem isso rodar todo dia.</p>
+  <p class="lead">A base já está pronta. Os quatro marketplaces foram estudados, a estratégia de cada um está escrita e os agentes já trabalham no Discord. Agora é transformar isso em venda, um passo de cada vez:</p>
+  <div class="passos">
+    <div class="passo"><div class="n">1</div><div><h3>Estruturar os marketplaces e criar conteúdo</h3><p>Mercado Livre arrumado, Shopee aberta, TikTok Shop com catálogo e Amazon de volta. O conteúdo começa junto, desde o primeiro dia.</p></div></div>
+    <div class="passo"><div class="n">2</div><div><h3>Vender nesses marketplaces</h3><p>Preço com margem, anúncio forte e Ads só onde se paga, acompanhando cada canal todo dia.</p></div></div>
+    <div class="passo"><div class="n">3</div><div><h3>Alavancar as vendas com afiliados</h3><p>Afiliados e criadores das próprias plataformas divulgando o café e ganhando por venda.</p></div></div>
+    <div class="passo"><div class="n">4</div><div><h3>Escalar o orgânico até a loja online</h3><p>Instagram e TikTok com constância, levando quem gostou do conteúdo direto para o e-commerce.</p></div></div>
+  </div>
+  <div class="destaque">
+    <div class="tres">3</div>
+    <p><strong>Meses de teste.</strong> Durante o teste você acompanha tudo de perto. No fim, a gente senta, olha os números juntos e decide o próximo passo.</p>
+  </div>
+  <div class="rodape-pg"><img src="img/logo-preta.png" alt="Café Canastra"><span>02</span></div>
+</section>
+
+<!-- JÁ ESTÁ SENDO FEITO -->
+<section class="page min">
+  <div class="kicker">02 · O que já está sendo feito</div>
+  <h2>A base já está de pé.</h2>
+  <p class="lead">Nada aqui é promessa: tudo isso já existe e já está funcionando.</p>
+  <div class="itens">
+    <div class="item"><h3>TikTok Shop aprovado</h3><p>A categoria Alimentos e bebidas foi liberada em 15/10. Ela cobre café em grãos, moído e drip, e era a trava para vender lá.</p></div>
+    <div class="item"><h3>Marketplaces estudados a fundo</h3><p>Mercado Livre, Amazon, Shopee e TikTok Shop. Mais de 500 vídeos, cases e materiais oficiais analisados, com taxas e regras conferidas.</p></div>
+    <div class="item"><h3>Estratégia e calculadora de preço</h3><p>Cada marketplace tem a sua estratégia escrita e uma calculadora com taxa, frete e Ads, para saber quanto sobra em cada venda.</p></div>
+    <div class="item"><h3>Mercado Livre diagnosticado</h3><p>A reputação caiu por atraso de envio, não por reclamação: o produto agrada. O preço do 1 kg e do kit já está calculado com margem.</p></div>
+    <div class="item"><h3>Amazon e Shopee planejadas</h3><p>A conta da Amazon está saudável, com nota 5,0, e o plano é voltar com o 1 kg pelo FBA. A loja da Shopee está planejada do zero.</p></div>
+    <div class="item"><h3>Agentes de IA no Discord</h3><p>Um agente cuida do Mercado Livre, outro do Instagram, outro responde números para a equipe, e o do CRM já entregou 13 melhorias pedidas.</p></div>
+    <div class="item"><h3>Conteúdo com cara de marca</h3><p>Voz e público definidos, Reels em motion com narração e 130 vídeos virais de café estudados quadro a quadro.</p></div>
+    <div class="item"><h3>Valéria e CRM</h3><p>Atendimento no WhatsApp, funis de venda, pedidos integrados aos dois Blings e a venda fechada voltando para o Google e a Meta.</p></div>
+  </div>
+  <div class="prova">
+    <img src="img/carrossel.png" alt="Carrossel publicado no @cafecanastra">
+    <p>Primeiro carrossel do novo ciclo, publicado no @cafecanastra em 14/10. Imagem, texto e conferência das fontes técnicas saíram do nosso fluxo de conteúdo.</p>
+  </div>
+  <div class="rodape-pg"><img src="img/logo-preta.png" alt="Café Canastra"><span>03</span></div>
+</section>
+
+<!-- O QUE VOU FAZER -->
+<section class="page min">
+  <div class="kicker">03 · O que vou fazer</div>
+  <h2>Um passo puxa o outro.</h2>
+  <div class="etapa"><div class="n">1</div><div><h3>Estruturar os marketplaces e criar conteúdo</h3><ul>
+    <li>Mercado Livre: corrigir o prazo de envio, reorganizar os anúncios do 1 kg e do kit e ajustar o preço.</li>
+    <li>Shopee: abrir a loja e cadastrar os produtos. TikTok Shop: montar o catálogo e a vitrine.</li>
+    <li>Amazon: voltar com o 1 kg pelo FBA, em lotes curtos para não vencer estoque.</li>
+    <li>Conteúdo: agenda semanal, Reels, carrosséis e direção criativa de cada peça.</li></ul></div></div>
+  <div class="etapa"><div class="n">2</div><div><h3>Vender</h3><ul>
+    <li>Preço e margem acompanhados canal por canal, com a calculadora de cada marketplace.</li>
+    <li>Ads só onde a conta fecha, e as campanhas das plataformas quando fizerem sentido.</li>
+    <li>Um agente de IA acompanhando cada canal todo dia, sem mudar nada sem aprovação.</li></ul></div></div>
+  <div class="etapa"><div class="n">3</div><div><h3>Alavancar com afiliados</h3><ul>
+    <li>Ativar os programas de afiliados do TikTok Shop, da Shopee e do Mercado Livre.</li>
+    <li>Mandar amostras para criadores de café e pagar comissão só por venda feita.</li></ul></div></div>
+  <div class="etapa"><div class="n">4</div><div><h3>Escalar o orgânico até a loja online</h3><ul>
+    <li>Instagram e TikTok com constância e parcerias com criadores.</li>
+    <li>Análise dos concorrentes para repetir o que funciona, levando tudo para o e-commerce.</li></ul></div></div>
+  <div class="ideia"><div class="tag">Ideia para depois</div><p><strong>Estúdio para o TikTok Shop:</strong> vídeos e LIVEs gravados aqui mesmo, quando os canais já estiverem rodando.</p></div>
+  <div class="rodape-pg"><img src="img/logo-preta.png" alt="Café Canastra"><span>04</span></div>
+</section>
+
+<!-- 3 MESES -->
+<section class="page min">
+  <div class="kicker">04 · Como vamos testar</div>
+  <div class="num-grande"><div class="tres">3</div><h2>meses<br>de teste</h2></div>
+  <p class="lead">Três meses para mostrar na prática. Sem meta inventada: a gente acompanha o que acontece em cada canal e decide junto com base no que os números mostrarem.</p>
+  <div class="colunas">
+    <div><h4>O que você recebe</h4><ul>
+      <li>Um resumo por mês: o que foi feito e quanto cada canal vendeu</li>
+      <li>Os números na mão a qualquer hora, direto no Discord</li>
+      <li>Nada muda nas contas sem o seu ok</li>
+      <li>Conteúdo saindo com constância desde o primeiro mês</li></ul></div>
+    <div><h4>O que eu preciso</h4><ul>
+      <li>Acesso às contas dos marketplaces e das redes</li>
+      <li>Pedido despachado no prazo de cada plataforma</li>
+      <li>Resposta rápida quando precisar de aprovação</li>
+      <li>Fotos e vídeos da fazenda, da torra e da família</li></ul></div>
+  </div>
+  <div class="fecho"><p>No fim dos 3 meses, a gente senta e decide junto <span>o próximo passo.</span></p></div>
+  <div class="rodape-pg"><img src="img/logo-preta.png" alt="Café Canastra"><span>05</span></div>
+</section>
+
+</body>
+</html>

@@ -885,6 +885,31 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     no motor: `src/motor/audio/normalizar.ts` separa o teto PEDIDO (0,6 dB abaixo) do teto
     VERIFICADO e, se o MP4 ainda passar, refaz pedindo mais baixo pelo excesso medido (um
     teste com rajadas de ruído a 0 dBFS precisou de 2,3 dB e passou na segunda tentativa).
+63. **No ML, `type` voltou com sucesso e a marca continuou `Cafe Canastra`** → em 07/10/2026 a
+    janela do Chrome com o grupo de abas do Claude estava atrás de outra:
+    `document.visibilityState === 'hidden'`. Clique e digitação são reportados como feitos e não
+    chegam ao campo; o screenshot estoura; o acordeão aberto por JS fica com altura 0. E fechar a
+    última aba do grupo recria o grupo **numa janela nova, oculta de novo** → antes de escrever
+    pelo navegador, **leia `visibilityState`**; se `hidden`, peça ao usuário para deixar a janela
+    visível, e não feche a aba do grupo — reuse-a. É a lição 3 em outra camada: "Typed" não prova
+    que o texto entrou; o `value` do campo prova. Mecânica em `canastra-mercadolivre`.
+64. **A troca de fundo do kit Suave voltou em 4:5, e a do Clássico tinha outro enquadramento**
+    → em 08/10/2026, nos kits de 40 cápsulas, o mesmo prompt de troca de fundo que nas
+    outras três devolveu 1086×1448 (3:4) devolveu **1122×1402 (4:5)** no Suave, sem aviso; e na
+    do Clássico, `np.abs(v1-v2).max(axis=2) > 12` deu **82,2%** de pixels alterados, com a
+    pirâmide inteira reenquadrada menor. A lição 12 vale para *uma* embalagem grande no quadro;
+    com quatro caixas, a "troca de fundo" é uma geração nova → **confira as dimensões de
+    toda imagem baixada e refaça a conferência ampliada de rótulo também na versão de fundo
+    cor**; não herde o "aprovado" da branca. O 4:5 foi levado a 3:4 estendendo a primeira e a
+    última linha do fundo liso (`assert` de 0 pixels alterados na área original).
+65. **Registrei por duas semanas que a busca do ML "trava depois da primeira consulta
+    programática"** e por isso a rota era "o humano navega, a IA lê" → em 08/10/2026, 16
+    buscas seguidas passaram. A "trava" era a **janela do Chrome oculta**: a lista fica no
+    spinner e o DOM volta sem cards, o que parece bloqueio e é só render suspenso; um
+    `screenshot` destrava. É a lição 63 em outra página, e a lição 10 de novo: um
+    diagnóstico que nunca foi testado contra a hipótese alternativa virou regra escrita.
+    Antes de registrar que uma plataforma "bloqueia", leia `document.visibilityState`.
+    Receita em `canastra-mercadolivre` § Raspar a busca.
 66. **O Reel 08 ("esse café já foi uma fruta") foi reprovado pelo marketing, e o dono
     apontou duas causas** → em 11/10/2026: *"Nada a ver essa do frango assado"* e *"A parte
     do fogo no grão levou a entender que o café é queimado, pode enviesar o público"*. As
@@ -899,6 +924,15 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     de cor, o som e o resfriador, e fale de controle e de sabor doce. Vale para a fala, a
     colagem e a trilha de efeitos. A pesquisa de referência está em
     `instagram/referencias-virais/` (relatório, índice e 72 fichas).
+67. **A janela "visível" voltava a `hidden` toda vez que o Rafael respondia no chat** → em
+    11/10/2026, criando o Clássico 1 kg no ML: o Windows marca a janela do Chrome como oculta
+    quando **outra janela a cobre por inteiro** (detecção de oclusão). Ao voltar para o Claude
+    para escrever "pronto", o Claude cobria o Chrome e a aba congelava: `type` não entrava no
+    formulário de criação, `file_upload` esperava `document_idle` para sempre e o
+    `Runtime.evaluate` estourava 45 s. Lado a lado (Win+← no Chrome, Win+→ no Claude) tudo
+    funcionou de primeira → **antes de operar o navegador, peça as janelas lado a lado**, não
+    "deixe o Chrome na frente". Com o Chrome a 681 px de largura, o quadro de clique e o
+    `innerWidth` podem divergir (681 × 1366): converta a coordenada antes de clicar.
 68. **O Reel 08b v1 foi reprovado pelo dono: "desincronia, legenda em excesso, boneco
     bugado, conteúdo vazio, edição sem vida"** → em 13/10/2026 a v1 empilhava pílula de
     legenda com a frase inteira **e** colagem dizendo a mesma coisa; o boneco de palito
@@ -914,3 +948,57 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     narração acelerada, o movimento não compete com a voz (corrida ~15 px/quadro, tremor
     ≤ 14 px, carimbo de palavra ≤ 115%). Para mudança de linguagem, **teste num trecho de
     10 s e mostre antes de refazer 80 s.**
+69. **Publicar carrossel pelo instagram.com tem três armadilhas silenciosas** → em
+    14/10/2026, no carrossel "Tem casca no seu café?": (a) o `file_upload` recusa mais de
+    10 MB por chamada, e 6 PNGs de 1080×1350 passam disso; mande JPEG q95
+    (~650 KB cada). (b) O passo Cortar abre em **1:1** e corta a logo do topo; escolha
+    **4:5** no botão de proporção (canto inferior esquerdo da prévia) antes de Avançar.
+    (c) A legenda é um editor Lexical: `insertText` e `insertParagraph` **engolem as
+    quebras de linha**, e um `paste` sintético soma ao texto em vez de substituir. O que
+    funcionou: `Set-Clipboard` com o `legenda.txt` no PowerShell, então clique no campo,
+    `ctrl+a`, `Delete` e `ctrl+v` reais; confira o `innerText` contra o arquivo. Para
+    conferir a ordem dos slides sem screenshot (que trava com a janela oculta),
+    compare uma assinatura de cor 4×5 de cada prévia com a dos arquivos locais. Foto
+    realista gerada por IA leva o **"rótulo de IA"** ligado; o Instagram diz que é obrigatório.
+70. **Entreguei ao cliente a URL errada de um reel, trocada com a de outro** → em 15/10/2026
+    rodei três `watch` em paralelo (`&` + `wait`) e li a saída na **ordem em que eu os tinha
+    disparado**. Mas os jobs terminam em ordem de chegada: a paçoquita do Paulo (`DaS9xiXuVZ6`,
+    10,8 mi) saiu colada a uma URL e o vídeo de latte art do @latteflow_app (`Deaw2PkBIDM`)
+    à outra. Só percebi ao baixar de novo e ver **28,7 s onde eu tinha medido 33,5 s** →
+    **saída de jobs paralelos se identifica pelo conteúdo, nunca pela posição**: prefixe cada
+    linha com o id (`sed "s/^/$id: /"`) ou leia `webpage_url` no `video.info.json` da pasta de
+    trabalho. Quando a duração ou o autor não bate com o que você anotou, pare e confira antes
+    de seguir.
+71. **Recortar a cabeça de uma pessoa de um vídeo custou duas tentativas mortas** → em 15/10/2026,
+    na peça 09: (a) o `rembg` instalado num venv dentro da pasta temporária da sessão falhou no
+    import do `onnxruntime` com `DLL load failed … O nome do arquivo ou a extensão é muito
+    grande` — o **caminho longo** do Windows, não um pacote quebrado; (b) com o modelo
+    `birefnet-portrait` (~900 MB) o processo ficou parado sem baixar nada nem gastar CPU →
+    **venv de ferramenta em caminho curto** (`~/.cache/rbg`) e **modelo leve**
+    (`u2net_human_seg`, 176 MB, baixou em 5 s). A máscara de pessoa traz corpo, cenário colado
+    (a escada atrás do Fábio) e até legenda queimada: a cabeça sai de uma **elipse em volta do
+    rosto** + maior componente (`scripts/jeitinho_cabecas.py`), conferida sobre magenta. E
+    escolha o quadro pela **nitidez medida** (variância do Laplaciano no rosto), não no olho:
+    o primeiro quadro escolhido do Fábio estava tremido.
+72. **A peça 09 v1 foi devolvida por "diversos erros de sincronia", falta de legenda e clipes
+    travando, e cada defeito tinha uma causa medida diferente** → em 15/10/2026: (a) a narração
+    entrava **70 ms atrasada** no render inteiro — medido por correlação do envelope do áudio do
+    MP4 contra a narração. Trocar MP3 por WAV levou a 43 ms, e o resto é do próprio render do
+    Remotion (um trecho cru sem normalizar mostra os mesmos 43 ms); compensado com a narração
+    adiantada (`narracao-sinc.wav`) e **conferido de novo** em 1,000 s. (b) A palavra-chave ficava
+    parada 3 s enquanto a voz seguia — lê como fora do tempo; agora sai 0,9 s depois de dita.
+    (c) Eu tinha seguido o "sem pílula" da 08b, mas a regra do cliente é **legenda sempre que não
+    houver texto na tela** (sistema A/B da 07). (d) Onze takes ficavam na tela mais tempo do que
+    duravam e o `Freeze` segurava o último quadro — o take "travava". (e) Takes trocavam 2–6
+    quadros ANTES da palavra, de propósito, e isso também lê como dessincronia → **nunca diga que
+    está sincronizado sem medir o áudio do arquivo final** (correlação, não o código); escala de
+    takes num `.ts` com teste que reprova take curto (`tests/jeitinho-roteiro.test.ts`); e revise o
+    vídeo com a palavra falada escrita em cada quadro (`scripts/revisar_sincronia.py`), não pelo
+    still bonito. O chicote que só desliza também revelava borda preta (lição 58): amplie junto.
+73. **Narrei "o Gabriel faz café na mão" e ele usava uma prensa** → em 15/10/2026, na peça 09, eu
+    escrevi a fala do terceiro criador a partir da transcrição e de quadros soltos ("basta
+    pressionar", "sem filtro de papel") e concluí um método que o vídeo não mostrava; o cliente
+    viu na hora → **fala sobre o que um criador faz se escreve DEPOIS da folha de quadros do
+    vídeo inteiro**, passo a passo, não da transcrição. Para o Giuseppe (substituto) a fala foi
+    escrita só depois de ver os 84 s a 2 qps, e cada passo ("bate o mel, café solúvel, água
+    quente, batedeira") tem um take que o mostra.

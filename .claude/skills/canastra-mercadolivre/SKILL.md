@@ -118,6 +118,23 @@ Em miniatura de 120 px isso não salta aos olhos.
 
 **Adicione antes de remover**: o campo é obrigatório e não aceita ficar vazio.
 
+**Limite de 10 fotos por anúncio.** Com 7 antigas, suba 3 novas, remova as antigas e só então
+complete. **Remova esperando o botão sair do DOM** antes do próximo clique — é o que funcionou em
+08/10/2026; cliques seguidos em intervalo fixo caem no mesmo botão antes do re-render:
+
+```js
+for (let k = 0; k < 3; k++) {
+  const b = [...sec.querySelectorAll('button[aria-label^="Excluir foto"]')].find(antiga);
+  if (!b) break; b.click();
+  for (let i = 0; i < 10 && document.contains(b); i++) await new Promise(r => setTimeout(r, 500));
+}
+```
+
+**`file_upload` pode reportar erro e ter subido assim mesmo** (*"Page still loading… document_idle"*).
+Releia a lista de `aria-label` antes de reenviar, senão a foto entra em dobro. E o `aria-label`
+traz o **nome do arquivo** enviado (`Excluir foto 22.1-kit-….png`) até o Confirmar: é a forma mais
+barata de conferir a ordem.
+
 **Não pré-formate a imagem.** O ML faz **trim da margem branca** e reduz a altura para
 1200 — subi 1448×1448 e ele guardou 1031×1200. As variantes quadradas da grade (`-S` 90,
 `-Q` 284, `-V` 320, `-W` 568) ele gera sozinho. Mande o 3:4 do catálogo com fundo branco.
@@ -127,15 +144,106 @@ Para conferir o que o servidor guardou, baixe do CDN com `curl` e UA de Chrome:
 
 ---
 
-## Fato não explicado — cuidado aqui
+## Título dos kits — resolvido em 07/10/2026
 
-**O título grava nas caixas de 10 e não nos kits de 40.** Mesma receita, Confirmar azul
-conferido no DOM, contador certo, nenhum erro — e o título antigo permanece nos 4 kits.
+**O título grava nos kits, sim.** Em 30/09 ele "não gravava" nos 4 kits de 40; em 07/10 gravou
+de primeira nos 4, com a mesma receita (clique triplo → digitar → Confirmar azul), toast
+*"1 anúncio foi alterado com sucesso"* e título novo **na lista de anúncios**. A hipótese da
+variação não se confirmou. A causa provável de 30/09 é a mesma família de falhas desta skill
+(aba degradada, clique que não chegou), não uma regra do ML.
 
-Hipótese **não testada**: os kits podem ter variação de anúncio, e título de anúncio com
-variação talvez grave por outro caminho.
+---
 
-**Se você for mexer em título de kit, teste e registre o resultado aqui.**
+## Aba oculta — o clique é "feito" e nada entra
+
+Medido em 07/10/2026. Quando a janela do Chrome com o grupo de abas do Claude está atrás de
+outra ou minimizada, `document.visibilityState` é `hidden` e:
+
+- `screenshot` estoura 30 s;
+- `triple_click` e `type` **voltam com sucesso e o texto não entra no campo**;
+- o acordeão aberto por JS fica com altura 0 — o React não termina a animação sem render.
+
+**Receita:** antes de escrever, leia `document.visibilityState`. Se `hidden`, peça ao Rafael
+para deixar a janela visível. E **tire um screenshot antes do primeiro clique** de cada seção:
+ele força o render e foi o que destravou cliques que não entravam.
+
+**Medido de novo em 08/10/2026, e é pior que "não entra":** com a janela oculta, no Suave 1 kg,
+o `type` **entrou** em todos os campos (o `value` conferia, o atacado até recalculou o `%`) e os
+quatro Confirmar mostraram *"1 anúncio foi alterado com sucesso"*. A **ficha** gravou e apareceu
+na página pública em menos de 1 min. O **atacado** e a **descrição** não gravaram: 6 min depois,
+formulário recarregado e página pública seguiam antigos. Ou seja, oculto, o resultado **varia
+por seção** e o aviso de sucesso não distingue. Regra: com `hidden`, não edite; e confira cada
+seção na página pública, uma por uma, nunca pelo aviso.
+
+**Não feche a última aba do grupo.** Fechar a aba em que se estava trabalhando desfaz o grupo;
+o próximo `tabs_context_mcp` cria grupo novo **em outra janela**, que nasce oculta. Para "aba
+nova", crie a nova antes e navegue nela — ou simplesmente reuse a mesma aba: em 07/10 uma aba só
+aguentou 4 kits sem degradar.
+
+### Atacado tem teto, e o erro só aparece no balão do ícone vermelho
+
+Medido em 11/10/2026 no Suave 1 kg (R$ 109,90, frete grátis R$ 34,30). O ML **obriga** o preço de
+atacado a repassar a economia de frete do pedido grande: *"Deve ser R$90,72 ou menos, pois você
+economiza R$19,17 nos custos de envio"* (10 un) e R$ 95,34 / R$ 14,56 (5 un). Teto = preço −
+economia de frete por unidade. Acima disso o campo ganha um **ícone vermelho** discreto, o texto só
+aparece com `hover` no ícone, e o Confirmar **não grava** — em 08/10 isso passou como "não gravou
+por causa da janela oculta". Antes de confirmar atacado, passe o mouse em cada ícone vermelho e
+leia o teto. O balão tem um link **Aplicar** que põe o teto no campo.
+
+O "atacado configurado" e o "atacado na vitrine" são números diferentes: a vitrine aplica os 20%
+OFF do Pix por cima (99,99 vira 79,99). Leia o configurado no formulário.
+
+Marca e outros atributos de lista o ML **normaliza** para o valor do cadastro dele: `Café Canastra`
+gravou e voltou `Cafe Canastra`; `100% arábica` voltou `100% Arabica`. Não adianta redigitar.
+
+### Descrição: `select()` por JS + `type` real
+
+Clique triplo num `textarea` seleciona só um parágrafo. O que funcionou: clique real no campo,
+`t.focus(); t.select()` por JS (estado local — funciona) e então `type` com o texto inteiro.
+O `type` de ~2.500 caracteres **estoura o tempo da ferramenta (30 s) mas termina**: espere
+~10 s e confira `t.value.length` contra o tamanho do texto antes de confirmar.
+
+### Seção que "abre" mas não abre
+
+O input da seção pode existir no DOM com a seção fechada. Confira
+`button.accordion-container__toggle[aria-expanded]`, não a presença do campo.
+
+---
+
+---
+
+## Raspar a busca de concorrentes — medido em 08/10/2026
+
+**A busca não trava depois da primeira consulta.** Rodei 16 buscas seguidas por `navigate`.
+O que parecia trava era a **janela oculta**: a lista fica no spinner e o DOM volta sem
+nenhum `poly-card`. Um `screenshot` (mesmo a 0,15 de escala) força o render.
+
+| Passo | Como |
+|---|---|
+| 1 | `navigate` para `lista.mercadolivre.com.br/<termo-com-hifens>` |
+| 2 | `wait` 3 s → `screenshot` → `wait` 3 s |
+| 3 | `eval(localStorage.__ext2)` — extrator em [`mercadolivre/scripts/extrator_busca.js`](../../../mercadolivre/scripts/extrator_busca.js) |
+| 4 | no fim, **aba nova** em `lista.mercadolivre.com.br` e um único download do `__acc` |
+
+Três armadilhas que custaram rodadas:
+
+- **Saída do `javascript_tool` trunca em ~1.000 caracteres.** Não tente devolver a tabela
+  por ali; acumule e baixe.
+- **Um download automático por aba** (lição 52 do `CLAUDE.md`). O segundo some sem erro.
+- **`localStorage` é por origem.** O que foi gravado em `lista.` não existe em `www.` nem em
+  `vendedores.` — baixe de uma aba que esteja em `lista.`.
+
+O preço grande do card é o **preço Pix**; o de "outros meios" é ~R$ 10 acima. O card **não**
+mostra se o vendedor é Full quando a busca vem pelo contexto "Full Super" — a tag `SUPER`
+separa esses.
+
+### Vendas de um anúncio num período
+
+`vendedores.mercadolivre.com.br/vendas/omni/lista?search=<id>` e trocar o período no
+combobox (opções até **"Último ano"**). Um aviso modal ("Ao filtrar por data…") aparece na
+primeira vez — fechar em **Entendi**. O motivo de "Afeta sua reputação" está em **Ver
+detalhe → Ver histórico da venda** (ex.: *"Você atrasou o envio desta venda"*). Não grave
+nome nem CPF de comprador em arquivo; para medir recompra, conte apelidos distintos.
 
 ---
 

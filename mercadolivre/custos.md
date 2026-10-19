@@ -25,6 +25,7 @@
 | Frete grátis obrigatório | a partir de R$ 79 | idem |
 | Frete grátis 1 kg (reputação vermelha) | **R$ 34,30** | Suave `MLB5903454718`, formulário e venda real |
 | Frete grátis kit 2 × 1 kg (vermelha) | **R$ 54,10** | Kit Clássico `7791312402`, formulário 11/10 |
+| Frete grátis 1 kg a R$ 99,90 (vermelha) | **R$ 29,50** (era R$ 28,90 em 11/10) | Néctar `7791161926`, lista de anúncios 15/10 |
 | Frete em reputação verde/amarela | **não medido** | o ML dá desconto; meça antes de usar |
 
 ## A fórmula

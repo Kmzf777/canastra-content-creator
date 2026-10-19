@@ -1,0 +1,741 @@
+<title>Guia TikTok Shop Canastra</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: uma coluna de leitura (onde estamos → plano → o que é CM → calculadora → glossário); a calculadora abre em duas colunas no desktop. */
+:root {
+  --bg: #F3F5F7;
+  --surface: #FFFFFF;
+  --line: #D8DDE3;
+  --fg: #1A1E24;
+  --muted: #5B6470;
+  --accent: #0E7378;
+  --accent-soft: #DDEFEF;
+  --good: #1F7A50; --good-soft: #DFF1E7;
+  --warn: #8A5A00; --warn-soft: #FBEFD6;
+  --bad: #B3261E;  --bad-soft: #F8E1DF;
+  --c-cafe: #7A4E2D;
+  --c-tiktok: #2E3440;
+  --c-imposto: #8C8799;
+  --c-afil: #C93D86;
+  --c-ads: #D99A12;
+  --c-perda: #B5ADA3;
+  --c-frete: #C0622F;
+  --c-sobra: #1F8A5B;
+  --display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171B; --surface: #1C2026; --line: #323842; --fg: #E9ECEF; --muted: #A2AAB4;
+    --accent: #5CC3C8; --accent-soft: #17302F;
+    --good: #6CCB97; --good-soft: #16301F; --warn: #E8B54A; --warn-soft: #3A2C10; --bad: #F08A80; --bad-soft: #3A1C1A;
+    --c-cafe: #B07A50; --c-tiktok: #8E99AB; --c-imposto: #6F6A7D; --c-afil: #E46AAA; --c-ads: #E8B54A; --c-perda: #6E675F; --c-frete: #E38A57; --c-sobra: #4DBB82;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171B; --surface: #1C2026; --line: #323842; --fg: #E9ECEF; --muted: #A2AAB4;
+  --accent: #5CC3C8; --accent-soft: #17302F;
+  --good: #6CCB97; --good-soft: #16301F; --warn: #E8B54A; --warn-soft: #3A2C10; --bad: #F08A80; --bad-soft: #3A1C1A;
+  --c-cafe: #B07A50; --c-tiktok: #8E99AB; --c-imposto: #6F6A7D; --c-afil: #E46AAA; --c-ads: #E8B54A; --c-perda: #6E675F; --c-frete: #E38A57; --c-sobra: #4DBB82;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 44px; }
+section { display: grid; gap: 16px; min-width: 0; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.08; font-weight: 700; }
+h2 { font-size: 24px; font-weight: 700; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 66ch; }
+.eyebrow { font: 600 13px var(--body); letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+.lead { color: var(--muted); font-size: 18px; }
+.muted { color: var(--muted); }
+small, .small { font-size: 14px; color: var(--muted); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* onde estamos */
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.st { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; }
+.pill { justify-self: start; font: 600 12px var(--body); letter-spacing: .05em; text-transform: uppercase; padding: 2px 9px; border-radius: 999px; }
+.pill.ok { background: var(--good-soft); color: var(--good); }
+.pill.no { background: var(--warn-soft); color: var(--warn); }
+
+/* plano */
+.fases { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: f; }
+.fases li { counter-increment: f; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding-bottom: 22px; position: relative; }
+.fases li::before {
+  content: counter(f); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: var(--surface); font: 700 16px var(--display);
+}
+.fases li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 40px; bottom: 4px; width: 2px; background: var(--line); }
+.fases .t { display: grid; gap: 4px; padding-top: 5px; }
+.fases .gate { font-size: 14px; color: var(--muted); }
+.fases .gate b { color: var(--fg); font-weight: 600; }
+.note { background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; font-size: 15px; }
+
+/* CMs */
+.cms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 720px) { .cms { grid-template-columns: minmax(0, 1fr); } }
+.cm { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; align-content: start; }
+.cm .tag { font: 700 22px var(--display); color: var(--accent); }
+.cm .q { font-weight: 600; }
+.cm ul { margin: 0; padding-left: 18px; font-size: 15px; color: var(--muted); }
+
+/* calculadora */
+.calc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 28px; }
+@media (max-width: 800px) { .calc { grid-template-columns: minmax(0, 1fr); padding: 18px; } }
+.ctrl { display: grid; gap: 22px; align-content: start; }
+.field { display: grid; gap: 8px; }
+.field > .lbl { font-weight: 600; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button {
+  font: 600 15px var(--body); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg);
+}
+.seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.price { display: flex; align-items: center; gap: 10px; }
+.price input[type="number"] {
+  width: 120px; font: 500 20px var(--mono); padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); text-align: right;
+}
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+.sw { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; cursor: pointer; }
+.sw input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); }
+.sw span b { display: block; font-weight: 600; }
+.sw span small { display: block; }
+.adsbox { display: grid; gap: 6px; padding-left: 30px; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.out { display: grid; gap: 20px; align-content: start; min-width: 0; }
+.big { display: grid; gap: 6px; }
+.big .s { font-size: 19px; }
+.big .v { font: 700 clamp(34px, 6vw, 48px) var(--display); line-height: 1; font-variant-numeric: tabular-nums; }
+.verdict { justify-self: start; font: 600 14px var(--body); padding: 4px 12px; border-radius: 999px; }
+.verdict.good { background: var(--good-soft); color: var(--good); }
+.verdict.warn { background: var(--warn-soft); color: var(--warn); }
+.verdict.bad { background: var(--bad-soft); color: var(--bad); }
+.bar { display: flex; height: 34px; border-radius: 8px; overflow: hidden; background: var(--bg); }
+.bar span { height: 100%; transition: width .25s ease; }
+@media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+.legend { display: grid; gap: 0; }
+.legend .r { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.legend .r:last-child { border-bottom: 0; }
+.legend .dot { width: 12px; height: 12px; border-radius: 3px; align-self: center; }
+.legend .r small { display: block; }
+.legend .r .num { white-space: nowrap; }
+.legend .r.sobra { font-weight: 600; }
+.stops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stop { border-radius: 8px; padding: 10px 12px; background: var(--bg); display: grid; gap: 2px; }
+.stop .k { font: 700 14px var(--display); color: var(--accent); }
+.stop .v { font: 500 18px var(--mono); font-variant-numeric: tabular-nums; }
+.stop .d { font-size: 13px; color: var(--muted); line-height: 1.3; }
+.stop.neg .v { color: var(--bad); }
+.tips { display: grid; gap: 8px; font-size: 15px; }
+.tips p { padding-left: 14px; border-left: 3px solid var(--line); }
+.tips p.alert { border-left-color: var(--bad); }
+fieldset.grp { border: 0; margin: 0; padding: 0 0 18px; display: grid; gap: 10px; border-bottom: 1px solid var(--line); min-width: 0; }
+fieldset.grp legend { font: 700 14px var(--display); color: var(--accent); padding: 0; margin-bottom: 10px; letter-spacing: .02em; }
+.ctrl .price { flex-wrap: wrap; }
+fieldset.grp .price input[type="number"], .advbody .price input[type="number"] { width: 110px; font-size: 17px; }
+.chip { display: inline-block; font: 600 11px var(--body); letter-spacing: .04em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); vertical-align: 1px; white-space: nowrap; }
+.chip.ab { background: var(--accent-soft); color: var(--accent); }
+details.adv { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; background: var(--bg); }
+details.adv summary { cursor: pointer; font-weight: 600; }
+.advbody { display: grid; gap: 8px; margin-top: 12px; }
+.advbody .sub { font: 700 13px var(--display); color: var(--accent); margin-top: 10px; letter-spacing: .02em; }
+.advbody .seg button { background: var(--surface); }
+.advbody .seg button[aria-pressed="true"] { background: var(--accent); }
+.modo { font-size: 15px; background: var(--accent-soft); border-radius: 8px; padding: 8px 12px; max-width: none; }
+.mes { display: grid; gap: 0; background: var(--bg); border-radius: 8px; padding: 10px 14px; }
+.mes .k { font: 700 14px var(--display); color: var(--accent); padding-bottom: 4px; }
+.mes .row { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.mes .row:last-child { border-bottom: 0; }
+.mes .row.tot { font-weight: 600; }
+.mes .row b { white-space: nowrap; font-weight: 500; }
+.proj { display: grid; gap: 8px; }
+.proj .k { font: 700 14px var(--display); color: var(--accent); }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { font: 14px var(--body); fill: var(--muted); }
+.chart .lab { font: 600 14px var(--body); }
+.chartkey { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); }
+.chartkey i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: 3px; margin-right: 6px; }
+.proj p.alert { padding-left: 14px; border-left: 3px solid var(--warn); }
+
+/* glossário */
+dl.gl { margin: 0; display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr); gap: 10px 20px; }
+@media (max-width: 560px) { dl.gl { grid-template-columns: minmax(0, 1fr); gap: 2px; } dl.gl dd { margin-bottom: 10px; } }
+dl.gl dt { font-weight: 600; }
+dl.gl dd { margin: 0; color: var(--muted); }
+a { color: var(--accent); }
+footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+</style>
+
+<div class="wrap">
+
+  <header style="display:grid;gap:10px">
+    <span class="eyebrow">Café Canastra · TikTok Shop</span>
+    <h1>O TikTok Shop explicado, e quanto sobra em cada pacote</h1>
+    <p class="lead">Uma página para entender a estratégia sem planilha: onde a loja está, o caminho em quatro fases, o que significam CM1, CM2 e CM3, e uma calculadora com poucos botões.</p>
+  </header>
+
+  <section>
+    <h2>Onde a loja está hoje</h2>
+    <div class="status">
+      <div class="st"><span class="pill ok">Pronto</span><h3>Loja aberta</h3><span class="small">"Cafe Canastra", ligada ao @cafecanastraoficial.</span></div>
+      <div class="st"><span class="pill ok">Pronto</span><h3>Café liberado</h3><span class="small">A categoria Alimentos foi aprovada. É por convite, poucas lojas têm.</span></div>
+      <div class="st"><span class="pill no">Falta</span><h3>Nenhum produto à venda</h3><span class="small">Sem anúncios, sem afiliados, sem campanha.</span></div>
+      <div class="st"><span class="pill no">Falta</span><h3>Questionário do vendedor</h3><span class="small">Sem ele a loja fica limitada a 50 pedidos por dia.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>O caminho, em quatro fases</h2>
+    <p class="muted">No TikTok Shop o café vende por vídeo. Quem assiste compra ali mesmo. Por isso a ordem é: aprender a entregar bem, depois colocar criadores para falar do café, e só então pagar anúncio.</p>
+    <ol class="fases">
+      <li><div class="t">
+        <h3>Arrumar a casa</h3>
+        <p>Fazer o questionário, ver se existe coleta no nosso CEP e decidir quem emite a nota fiscal (Bling ou à mão). Cadastrar 1 kg, 500 g e um kit.</p>
+        <span class="gate"><b>Passa para a próxima quando:</b> produtos no ar e a loja consegue despachar no mesmo dia.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Primeiras vendas com cuidado</h3>
+        <p>Vender pouco e bem: postar vídeos na conta da marca e despachar em 1 dia útil, com o chat respondido no mesmo dia. Aqui o objetivo é a nota da loja, não o volume.</p>
+        <span class="gate"><b>Por que tanto cuidado:</b> se a nota da loja (SPS) cair para 4 ou menos, o TikTok tira o café da loja. É o maior risco do plano.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Criadores vendendo por nós</h3>
+        <p>Abrir o programa de afiliados: criadores postam vídeos do café e ganham 8% de cada venda. Mandamos amostras para os que têm a ver com café.</p>
+        <span class="gate"><b>Passa para a próxima quando:</b> já há vídeos de criadores trazendo vendas.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Anúncio e campanhas</h3>
+        <p>Ligar o anúncio do TikTok (GMV Max) para empurrar os vídeos que já vendem, e entrar nas campanhas como Black Friday, que exigem o anúncio ligado.</p>
+        <span class="gate"><b>Regra:</b> o anúncio só fica ligado se, somando tudo, sobrar dinheiro no pedido. A calculadora abaixo mostra isso.</span>
+      </div></li>
+    </ol>
+    <p class="note">Esta é a proposta que sai da pesquisa e do diagnóstico de 16/10/2026. Nada foi decidido nem alterado na loja. Cada passo é aprovado por você, um de cada vez.</p>
+  </section>
+
+  <section>
+    <h2>O que são CM1, CM2 e CM3</h2>
+    <p class="muted">CM quer dizer <b>margem de contribuição</b>: o dinheiro que sobra de uma venda depois de pagar o que aquela venda gastou. Os três números são a mesma conta em três paradas. A cada parada sai mais uma despesa.</p>
+    <div class="cms">
+      <div class="cm">
+        <span class="tag">CM1</span>
+        <span class="q">O pacote se paga sozinho?</span>
+        <p class="small">Preço menos o que é obrigatório em toda venda:</p>
+        <ul><li>o custo do café (CMV)</li><li>a tarifa do TikTok</li><li>o imposto de 9%</li></ul>
+      </div>
+      <div class="cm">
+        <span class="tag">CM2</span>
+        <span class="q">E pagando quem ajudou a vender?</span>
+        <p class="small">CM1 menos o que depende de como a venda chegou:</p>
+        <ul><li>8% do criador, se veio de um afiliado</li><li>o anúncio, se estava ligado</li></ul>
+      </div>
+      <div class="cm">
+        <span class="tag">CM3</span>
+        <span class="q">Quanto sobra de verdade?</span>
+        <p class="small">CM2 menos os custos que não aparecem no pedido:</p>
+        <ul><li>amostras mandadas a criadores</li><li>pacotes perdidos ou reembolsados</li></ul>
+      </div>
+    </div>
+    <p>A CM3 é o número que importa para decidir preço. É o que fica para pagar salários, aluguel e o lucro da empresa. Se a CM3 é negativa, cada venda tira dinheiro do caixa.</p>
+  </section>
+
+  <section id="calculadora">
+    <h2>Calculadora: quanto sobra em cada pacote</h2>
+    <p class="muted">Ainda não houve pedido na loja, então nenhum custo foi medido num extrato. As tarifas vêm das regras oficiais do TikTok, relidas em 16/10/2026. O que é hipótese nossa leva o selo <span class="chip">estimado</span>, e o que a regra não responde leva <span class="chip ab">aberto</span>.</p>
+    <div class="calc">
+      <form class="ctrl" id="f" autocomplete="off">
+        <fieldset class="grp">
+          <legend>Produto e preço</legend>
+          <div class="seg" id="prod"></div>
+          <label class="lbl" for="preco">Preço no TikTok</label>
+          <div class="price"><span class="muted">R$</span><input type="number" id="preco" step="0.10" min="10" max="400"></div>
+          <input type="range" id="precoR" step="0.10" aria-label="Ajustar preço">
+          <small id="precoRef"></small>
+          <label class="lbl" for="cupom">Desconto do vendedor</label>
+          <div class="price"><span class="muted">R$</span><input type="number" id="cupom" min="0" max="200" step="1" value="0"><span class="muted">por pedido</span></div>
+          <small>Cupom da loja, desconto no produto ou preço de LIVE Flash Sale. Tudo é cobrado sobre o preço com desconto: tarifa, taxa de envio, criador e imposto.</small>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>De onde veio a venda</legend>
+          <div class="seg" id="origem"></div>
+          <small id="origemTxt"></small>
+          <div class="field" id="afilbox">
+            <label class="lbl" for="afilPct">Comissão do criador</label>
+            <div class="price"><input type="number" id="afilPct" min="0" max="80" step="0.5" value="8"><span class="muted">% do preço pago</span></div>
+            <small>8% é o padrão da colaboração aberta em Alimentos e bebidas (vale para qualquer criador que pegar o produto). Na colaboração direcionada você convida até 50 criadores e escolhe outra taxa para eles.</small>
+          </div>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Anúncio e campanha</legend>
+          <label class="sw"><input type="checkbox" id="ads"><span><b>Anúncio ligado (GMV Max)</b><small>O único anúncio do TikTok Shop. Você escolhe o ROI: quanto ele vende para cada R$ 1 gasto.</small></span></label>
+          <div class="adsbox" id="adsbox" hidden>
+            <div class="price"><span class="muted">ROI</span><input type="number" id="roi" min="1" max="100" step="0.5" value="4"></div>
+            <input type="range" id="roiR" min="1" max="30" step="0.5" value="4" aria-label="ROI do anúncio">
+            <small id="adsTxt"></small>
+          </div>
+          <label class="sw"><input type="checkbox" id="camp"><span><b>Pedido dentro de campanha do TikTok</b><small>11.11, Black Friday e 12.12 (venda de 26/10 a 13/12/2026). A campanha exige o anúncio ligado.</small></span></label>
+          <div class="adsbox" id="campbox" hidden>
+            <span class="lbl">Quem paga o cupom da campanha</span>
+            <div class="seg" id="cupQuem"></div>
+            <div class="price"><input type="number" id="cupPct" min="0" max="50" step="1" value="10"><span class="muted">% de cupom no pedido</span><span class="chip">estimado</span></div>
+            <small id="campTxt"></small>
+          </div>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Isenção de loja nova</legend>
+          <div class="seg" id="isen"></div>
+          <small id="isenTxt"></small>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Estimativa do mês</legend>
+          <label class="lbl" for="vendas">Vendas por mês</label>
+          <div class="price"><input type="number" id="vendas" min="1" max="6000" step="1" value="30"><span class="muted">pedidos no 1º mês</span><span class="chip">estimado</span></div>
+          <label class="lbl" for="cresc">Crescimento por mês</label>
+          <div class="price"><input type="number" id="cresc" min="-50" max="100" step="1" value="10"><span class="muted">% ao mês</span><span class="chip">estimado</span></div>
+          <span class="lbl">Nível da loja</span>
+          <div class="seg" id="nivel"></div>
+          <small id="nivelTxt"></small>
+        </fieldset>
+
+        <details class="adv">
+          <summary>Avançado</summary>
+          <div class="advbody">
+            <div id="kitbox" style="display:grid;gap:8px">
+              <span class="sub">Kit e tarifa fixa</span>
+              <div class="seg" id="kitFix"></div>
+              <small>A regra diz "taxa por item vendido" e não diz se um kit conta como 1 item ou como cada pacote dentro dele. <span class="chip ab">aberto</span> Só o extrato do 1º kit vendido responde.</small>
+            </div>
+            <span class="sub">Criador dentro do anúncio</span>
+            <label class="lbl" for="shopAds">Comissão de Shop Ads (%)</label>
+            <div class="price"><input type="number" id="shopAds" min="0" max="80" step="0.5" value="0"><span class="muted">0 = desligada</span></div>
+            <small>Taxa opcional, de 1% a 80%, que o criador ganha quando o vídeo dele roda como anúncio. Desligada, vale a comissão normal. Os vendedores da pesquisa usam de 1% a 5%; taxa muito baixa afasta criadores. Só entra com o anúncio ligado e a venda de criador.</small>
+            <span class="sub">Amostras para criadores</span>
+            <label class="lbl" for="ppa">Pedidos por amostra mandada</label>
+            <div class="price"><input type="number" id="ppa" min="0" max="200" step="1" value="10"><span class="chip">estimado</span></div>
+            <label class="lbl" for="freteA">Frete de cada amostra (R$)</label>
+            <div class="price"><input type="number" id="freteA" min="0" max="80" step="0.5" value="20"><span class="chip">estimado</span></div>
+            <small>A amostra grátis sai do nosso bolso: o pacote mais o frete, que fica fora da taxa de envio. O frete da amostra pela plataforma não foi medido. Na amostra reembolsável o criador paga e recebe de volta quando bate a meta de vendas (até 3 pedidos, em 60 dias), o que corta as amostras que não vendem.</small>
+            <span class="sub">Perdas e envio</span>
+            <label class="lbl" for="perda">Perdas (% do preço)</label>
+            <div class="price"><input type="number" id="perda" min="0" max="20" step="0.5" value="1"><span class="chip">estimado</span></div>
+            <small>Avaria, extravio, reembolso. Café só volta lacrado, e a taxa de envio não é devolvida em pedido devolvido. O reembolso sem devolução até R$ 25 é pago pela plataforma, mas é uma medida temporária.</small>
+            <label class="lbl" for="emb">Embalagem de envio (R$ por pedido)</label>
+            <div class="price"><input type="number" id="emb" min="0" max="30" step="0.10" value="0"><span class="chip">estimado</span></div>
+            <small>Caixa, fita e etiqueta. Ainda não informada em <code>custos.md</code>.</small>
+            <span class="lbl">Quem leva o pacote</span>
+            <div class="seg" id="envio"></div>
+            <div id="freteBox" hidden style="display:grid;gap:8px">
+              <label class="lbl" for="freteP">Frete por pedido (R$)</label>
+              <div class="price"><input type="number" id="freteP" min="0" max="80" step="0.5" value="15"><span class="chip">estimado</span></div>
+            </div>
+            <small id="envioTxt"></small>
+            <span class="sub">Quando o dinheiro chega</span>
+            <div class="seg" id="repasse"></div>
+            <small id="repasseTxt"></small>
+          </div>
+        </details>
+      </form>
+
+      <div class="out" aria-live="polite">
+        <p class="modo" id="modo"></p>
+        <div class="big">
+          <span class="s" id="frase"></span>
+          <span class="v" id="sobra"></span>
+          <span class="verdict" id="verdict"></span>
+        </div>
+        <div>
+          <div class="bar" id="bar" role="img" aria-label="Para onde vai o dinheiro do pedido"></div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div class="stops" id="stops"></div>
+        <div class="mes" id="mes"></div>
+        <div class="proj">
+          <div class="k">Projeção de 12 meses</div>
+          <div id="chart" class="chart"></div>
+          <div class="chartkey"><span><i style="background:var(--accent)"></i>Faturamento do mês</span><span><i style="background:var(--c-sobra)"></i>Sobra acumulada (CM3)</span></div>
+          <p class="small" id="projTxt"></p>
+          <p class="small alert" id="tetoTxt" hidden></p>
+        </div>
+        <div class="tips" id="tips"></div>
+      </div>
+    </div>
+    <small>Hipóteses fixas: imposto de 9% do preço pago e CMV de <code>mercadolivre/custos.md</code>; amostra é um pacote igual ao vendido (no kit, um pacote só). Regras: tarifa e isenção de loja nova (Academy BR, 12/06/2026), taxa de envio (31/08/2026), comissão padrão de criador (21/09/2026), campanha e GMV Max (19/05/2026), níveis da loja (02/04/2026), devolução (24/09/2026), repasse (22/06/2026). Fórmulas iguais às de <code>tiktokshop/scripts/precificar_tiktok.py</code>. Para a grade de preços e os pisos de todos os pacotes, use a <a href="https://claude.ai/artifact/77ataLJwK4aPHpi5vA8wcb">calculadora completa</a>.</small>
+  </section>
+
+  <section>
+    <h2>Palavras que vão aparecer</h2>
+    <dl class="gl">
+      <dt>CMV</dt><dd>Custo do café dentro do pacote: R$ 47 o de 1 kg, R$ 26 o de 500 g.</dd>
+      <dt>Tarifa do TikTok</dt><dd>O que o TikTok cobra por venda. Até R$ 50: 10% + R$ 4 por item. De R$ 50 para cima: 6% + R$ 6. Por isso pacote barato perde muito para a tarifa fixa.</dd>
+      <dt>Taxa de envio (SFP)</dt><dd>Mais 6% do preço, que o TikTok usa para bancar frete grátis e cupons. É obrigatória.</dd>
+      <dt>Afiliado</dt><dd>Criador de conteúdo que coloca o nosso café no vídeo dele e ganha comissão por venda. Em café, o padrão é 8%.</dd>
+      <dt>Colaboração aberta e direcionada</dt><dd>Na aberta, qualquer criador pode pegar o produto e ganha a comissão padrão (8% em café). Na direcionada, convidamos até 50 criadores com outra taxa, que vale mais que a aberta para eles.</dd>
+      <dt>Comissão de Shop Ads</dt><dd>Taxa à parte, de 1% a 80%, que o criador ganha quando o vídeo dele roda como anúncio. Desligada, vale a comissão normal.</dd>
+      <dt>Amostra</dt><dd>Pacote que mandamos de graça a um criador para ele fazer o vídeo. O pacote e o frete são nossos. Na amostra reembolsável, o criador paga e recebe de volta se bater a meta de vendas.</dd>
+      <dt>Desconto do vendedor</dt><dd>Cupom da loja, desconto no produto ou LIVE Flash Sale. Tudo o que o TikTok cobra passa a ser calculado sobre o preço com desconto, e o desconto pode jogar o pacote para a faixa de baixo da tarifa. Cupom pago pelo TikTok não mexe na nossa conta.</dd>
+      <dt>Campanha</dt><dd>Datas como 11.11 e Black Friday, com cupons pagos total ou parcialmente pelo TikTok. Exige o anúncio ligado; se não houver, o TikTok cria um a ROI 50, que cobra 2% do pedido.</dd>
+      <dt>Nível da loja</dt><dd>Limite de pedidos por dia: Iniciante 50, Padrão 100, Premium 200, Profissional sem limite. A loja sobe sozinha quando cumpre os requisitos.</dd>
+      <dt>Repasse</dt><dd>Quando o dinheiro da venda cai na conta: 7 dias depois da entrega no padrão, 3 no expresso (nota SPS acima de 3,5) e 31 no adiado.</dd>
+      <dt>GMV Max</dt><dd>O anúncio do TikTok Shop. O TikTok decide onde mostrar e cobra pelo que gastar. Ele costuma contar como "dele" vendas que viriam de qualquer jeito, então se julga pelo caixa, não pelo número que o painel mostra.</dd>
+      <dt>ROI do anúncio</dt><dd>No TikTok, "ROI" é quanto o anúncio vende para cada R$ 1 gasto, não o lucro. ROI 4 = gastou R$ 25, vendeu R$ 100. Na prática fica entre 1,5 e 4, e o número do painel vem inflado com vendas que viriam sem anúncio.</dd>
+      <dt>SPS</dt><dd>A nota da loja, de 1 a 5, calculada pelas avaliações, atrasos, cancelamentos e chat. Precisa ficar acima de 4 para manter o café na loja.</dd>
+      <dt>AHR</dt><dd>A saúde da conta. Começa em 200 e cai a cada infração. Precisa ficar acima de 150.</dd>
+    </dl>
+  </section>
+
+  <footer>
+    <p>Fontes: regras do TikTok Shop relidas na Central do Vendedor em 16/10/2026; custos de <code>mercadolivre/custos.md</code>; contas iguais às de <code>tiktokshop/scripts/precificar_tiktok.py</code>; diagnóstico em <code>tiktokshop/01-diagnostico-prontidao-2026-10.md</code>.</p>
+  </footer>
+</div>
+
+<script>
+// Mesmas fórmulas de tiktokshop/scripts/precificar_tiktok.py e da calculadora completa.
+// Tarifa: kid=24428156307201 (vigência 15/07/2026). SFP: kid=5665577566734097. Afiliado: kid=3355295847515925.
+const IMPOSTO = 0.09;
+const FAIXAS = [[0, 0.10, 4.00], [50, 0.06, 6.00]];
+const SFP_PCT = 0.06, SFP_TETO = 50;
+const ROI_CAMPANHA = 50;          // GMV Max que a plataforma cria em campanha (2% do pedido), kid=3355910447433489
+const TETO_ISENCAO = 17000;       // R$ de comissão isenta em 60 dias, loja nova
+const r2 = x => Math.round((x + (x >= 0 ? 1e-9 : -1e-9)) * 100) / 100;
+function faixa(p) { for (let i = FAIXAS.length - 1; i >= 0; i--) if (p >= FAIXAS[i][0]) return [FAIXAS[i][1], FAIXAS[i][2]]; }
+// o: { itens, cupom, afiliado_pct, roi, loja_nova, loja_nova_fixa, frete_amostra, pedidos_por_amostra, cmv_amostra, perda_pct, embalagem, frete }
+// "frete" (envio pelo vendedor) é a única entrada que não existe no script; com frete = 0 a conta é a do script.
+function resultado(preco, cmv, o) {
+  const itens = o.itens || 1, cupom = o.cupom || 0;
+  const receita = r2(preco - cupom);                       // base da tarifa, do SFP, do afiliado e do imposto
+  if (!(receita > 0)) return null;
+  let [pct, fixa] = faixa(receita / itens);
+  if (o.loja_nova) pct = 0;
+  const tarifa_pct = r2(receita * pct);
+  const tarifa_fixa = o.loja_nova_fixa ? 0 : r2(fixa * itens);
+  const sfp = r2(Math.min(receita * SFP_PCT, SFP_TETO * itens));
+  const imposto = r2(receita * IMPOSTO);
+  const embalagem = o.embalagem || 0, frete = o.frete || 0;
+  const cm1 = r2(receita - cmv - tarifa_pct - tarifa_fixa - sfp - imposto - embalagem - frete);
+  const afiliado = r2(receita * (o.afiliado_pct || 0) / 100);
+  const ads = o.roi ? r2(receita / o.roi) : 0;
+  const cm2 = r2(cm1 - afiliado - ads);
+  const ppa = o.pedidos_por_amostra || 0;
+  const amostra = ppa ? r2(((o.cmv_amostra ?? cmv) + (o.frete_amostra || 0)) / ppa) : 0;
+  const perda = r2(receita * (o.perda_pct || 0) / 100);
+  const cm3 = r2(cm2 - amostra - perda);
+  const antesAds = cm1 - afiliado - amostra - perda;
+  return { preco, cupom, receita, pct, fixa, tarifa_pct, tarifa_fixa, sfp, imposto, cmv, embalagem, frete, cm1, afiliado, ads, cm2,
+    amostra, perda, cm3, roi_eq: antesAds > 0 ? r2(receita / antesAds) : null };
+}
+function piso(cmv, o, margem) {
+  for (let c = 1000; c < 60000; c++) { const p = c / 100; const r = resultado(p, cmv, o); if (r && r.cm3 / r.receita * 100 >= margem - 1e-9) return p; }
+  return null;
+}
+
+// Projeção de 12 meses: vendas começam em V e crescem g ao mês, presas ao teto do nível da loja.
+// Cada venda leva a CM3 inteira; com g = 0 e sem isenção, a sobra é 12 × V × CM3.
+// Com isenção, ela vale só nos 2 primeiros meses (60 dias) e até R$ 17 mil de comissão poupada.
+function projetar(preco, r, rSem, V, g, teto) {
+  const meses = []; let acum = 0, resta = TETO_ISENCAO;
+  for (let m = 0; m < 12; m++) {
+    const bruto = V * Math.pow(1 + g, m), v = Math.min(teto, bruto);
+    let sobra = v * rSem.cm3;
+    if (r !== rSem && m < 2) { const e = Math.min(resta, v * (r.cm3 - rSem.cm3)); resta -= e; sobra += e; }
+    acum += sobra;
+    meses.push({ m: m + 1, vendas: v, teto: bruto >= teto - 1e-9, fat: v * r.receita, sobra, acum });
+  }
+  return meses;
+}
+// passo redondo para o eixo: 1, 2 ou 5 × 10^n
+function passo(bruto) { const e = Math.pow(10, Math.floor(Math.log10(bruto))); const f = bruto / e; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * e; }
+function eixoTxt(v) { const a = Math.abs(v); const s = a >= 1000 ? (a / 1000).toFixed(a % 1000 === 0 ? 0 : 1).replace('.', ',') + ' mil' : Math.round(a).toString(); return (v < 0 ? '−' : '') + 'R$ ' + s; }
+function grafico(meses) {
+  const W = 560, H = 260, L = 84, Rm = 104, T = 14, B = 38;
+  const vals = meses.flatMap(m => [m.fat, m.acum]).concat([0]);
+  let lo = Math.min(...vals), hi = Math.max(...vals);
+  if (hi - lo < 1) hi = lo + 1;
+  const st = passo((hi - lo) / 4);
+  lo = Math.floor(lo / st) * st; hi = Math.ceil(hi / st) * st;
+  const x = m => L + (m - 1) * (W - L - Rm) / 11;
+  const y = v => T + (hi - v) * (H - T - B) / (hi - lo);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Projeção de 12 meses do faturamento e da sobra acumulada">`;
+  for (let k = 0; lo + k * st <= hi + st / 2 && k < 40; k++) {
+    const v = lo + k * st, yy = y(v).toFixed(1), zero = Math.abs(v) < st / 1000;
+    s += `<line x1="${L}" x2="${W - Rm}" y1="${yy}" y2="${yy}" stroke="var(${zero ? '--fg' : '--line'})" stroke-width="${zero ? 1.5 : 1}"${zero ? '' : ' stroke-dasharray="3 3"'}/>`;
+    s += `<text x="${L - 8}" y="${yy}" text-anchor="end" dominant-baseline="middle">${eixoTxt(zero ? 0 : v)}</text>`;
+  }
+  meses.forEach(m => { s += `<text x="${x(m.m).toFixed(1)}" y="${H - B + 18}" text-anchor="middle">${m.m}</text>`; });
+  s += `<text x="${(L + W - Rm) / 2}" y="${H - 2}" text-anchor="middle">mês</text>`;
+  const linha = (k, cor) => `<polyline fill="none" stroke="var(${cor})" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="${meses.map(m => x(m.m).toFixed(1) + ',' + y(m[k]).toFixed(1)).join(' ')}"/>`
+    + meses.map(m => `<circle cx="${x(m.m).toFixed(1)}" cy="${y(m[k]).toFixed(1)}" r="3" fill="var(${cor})"><title>Mês ${m.m}: ${k === 'fat' ? 'faturamento' : 'sobra acumulada'} ${brl0(m[k])}</title></circle>`).join('');
+  s += linha('fat', '--accent') + linha('acum', '--c-sobra');
+  // mês em que a sobra acumulada vira positiva
+  const iEq = meses.findIndex((m, i) => i > 0 && m.acum >= 0 && meses[i - 1].acum < 0);
+  if (iEq > 0) {
+    const m = meses[iEq];
+    s += `<circle cx="${x(m.m).toFixed(1)}" cy="${y(m.acum).toFixed(1)}" r="6" fill="none" stroke="var(--fg)" stroke-width="1.5"/>`
+      + `<text class="lab" x="${x(m.m).toFixed(1)}" y="${(y(m.acum) - 13).toFixed(1)}" text-anchor="middle" style="fill:var(--fg)">vira positiva no mês ${m.m}</text>`;
+  }
+  // rótulos no fim das linhas, afastados se ficarem colados
+  const last = meses[11];
+  let yf = y(last.fat), ya = y(last.acum);
+  if (Math.abs(yf - ya) < 18) { if (yf <= ya) { yf -= 9; ya += 9; } else { yf += 9; ya -= 9; } }
+  s += `<text class="lab" x="${W - Rm + 8}" y="${yf.toFixed(1)}" dominant-baseline="middle" style="fill:var(--accent)">${eixoTxt(last.fat)}</text>`;
+  s += `<text class="lab" x="${W - Rm + 8}" y="${ya.toFixed(1)}" dominant-baseline="middle" style="fill:var(--c-sobra)">${eixoTxt(last.acum)}</text>`;
+  return s + '</svg>';
+}
+
+// n = pacotes no anúncio (tarifas fixas se o kit pagar por pacote); cmvA = o pacote mandado como amostra
+const PRODS = [
+  { id: '1kg', nome: '1 kg', art: 'cada 1 kg vendido', cmv: 47, cmvA: 47, n: 1, preco: 99.90, min: 60, max: 160,
+    ref: 'Na prateleira do TikTok, o 1 kg especial em grãos sai entre R$ 85,90 e R$ 99,90.' },
+  { id: '500g', nome: '500 g', art: 'cada 500 g vendido', cmv: 26, cmvA: 26, n: 1, preco: 59.90, min: 35, max: 100,
+    ref: 'O café comum de 500 g sai por R$ 16 a R$ 22, abaixo do nosso custo. O especial fica entre R$ 31,99 e R$ 46,90.' },
+  { id: 'k2x1', nome: 'Kit 2 × 1 kg', art: 'cada kit 2 × 1 kg vendido', cmv: 94, cmvA: 47, n: 2, preco: 179.90, min: 120, max: 280,
+    ref: 'O kit da Pilão com 2 × 1 kg sai a R$ 199,98. Kit rende mais por pedido se pagar uma tarifa fixa só.' },
+  { id: 'k2x500', nome: 'Kit 2 × 500 g', art: 'cada kit 2 × 500 g vendido', cmv: 52, cmvA: 26, n: 2, preco: 99.90, min: 70, max: 180,
+    ref: 'Dois de 500 g vendidos juntos. Concorre com o 1 kg no mesmo preço.' },
+  { id: 'k3x500', nome: 'Kit 3 × 500 g', art: 'cada kit 3 × 500 g vendido', cmv: 78, cmvA: 26, n: 3, preco: 149.90, min: 100, max: 220,
+    ref: 'Kit para quem quer provar três cafés. Lojas de torrefação na prateleira oferecem kits de 3 e de 6.' },
+];
+const ORIGENS = [
+  { id: 'video', nome: 'Vídeo nosso', txt: 'Venda que veio de um vídeo da conta @cafecanastraoficial. Não paga criador.' },
+  { id: 'live', nome: 'LIVE nossa', txt: 'Venda numa LIVE da conta oficial. Não paga criador. Só a conta oficial cria LIVE Flash Sale, com preço igual ou menor que o menor dos últimos 14 dias e de 1 a 180 minutos: ponha esse desconto em "Desconto do vendedor".' },
+  { id: 'criador', nome: 'Criador', txt: 'Venda que veio do vídeo ou da LIVE de um criador (afiliado). Ele ganha a comissão sobre o preço pago, depois do desconto do vendedor.' },
+];
+const CUPQ = [
+  { id: 'tiktok', nome: 'TikTok paga', parte: 0, txt: 'Na megacampanha aberta no painel, os cupons de 10% a 30% são "financiados pelo TikTok Shop". Cupom pago pela plataforma não reduz a base da tarifa nem do criador: a nossa conta não muda.' },
+  { id: 'meio', nome: 'Dividido 50/50', parte: 0.5, txt: 'No cupom cofinanciado a campanha mostra a divisão (por exemplo, 50/50). A nossa metade entra como desconto do vendedor. Se ela reduz a base da tarifa a regra não diz.' },
+];
+const ISENS = [
+  { id: 'nao', nome: 'Sem isenção', txt: 'A loja nova pode ter 0% de comissão por 60 dias, até R$ 17 mil, mas só depois de concluir uma missão. Em 16/10 o painel mostrava 0 missões. Por isso o padrão é sem isenção.' },
+  { id: 'pct', nome: '0% na parte %', txt: 'A parte percentual da tarifa (10% ou 6%) vai a zero por 60 dias. A parte fixa e a taxa de envio continuam. Na projeção vale só nos 2 primeiros meses, até R$ 17 mil poupados.' },
+  { id: 'fixa', nome: '0% também na fixa', txt: 'Hipótese otimista: a isenção também zeraria a parte fixa (R$ 4 ou R$ 6). Nenhuma página oficial diz isso. Na projeção vale só nos 2 primeiros meses, até R$ 17 mil poupados.' },
+];
+const NIVEIS = [
+  { id: 'ini', nome: 'Iniciante', dia: 50, txt: 'Toda loja nova começa aqui: até 50 pedidos por dia (cerca de 1.500 no mês).' },
+  { id: 'pad', nome: 'Padrão', dia: 100, txt: 'Até 100 pedidos por dia. Pede 30 dias de loja, 10 anúncios ativos, o questionário do vendedor (ainda não feito), menos de 4 violações e nota SPS de 3,0 ou mais.' },
+  { id: 'pre', nome: 'Premium', dia: 200, txt: 'Até 200 pedidos por dia. Pede 50 pedidos entregues, 10 compradores diferentes e SPS de 3,5 ou mais.' },
+  { id: 'pro', nome: 'Profissional', dia: Infinity, txt: 'Sem limite de pedidos. Pede 100 pedidos entregues, 20 compradores e SPS de 3,5 ou mais.' },
+];
+const KITFIX = [
+  { id: '1', nome: 'Kit paga 1 tarifa fixa' },
+  { id: 'n', nome: 'Uma por pacote' },
+];
+const ENVIOS = [
+  { id: 'tiktok', nome: 'TikTok (padrão)', txt: 'É o modo da nossa loja hoje: o TikTok escolhe a transportadora e a taxa de envio de 6% cobre o frete grátis do comprador. Abaixo do valor mínimo dos cupons de frete, o comprador pode pagar uma parte: nas 6 lojas de café vistas, de R$ 5,88 a R$ 15,86. Isso não sai da nossa margem, mas pesa na venda. Como fica na nossa loja não foi medido.' },
+  { id: 'vend', nome: 'Nós mesmos', txt: 'Envio pelo vendedor: precisa de aprovação do TikTok, e a regra não diz se a taxa de envio de 6% continua. A conta mantém a taxa e soma o frete. <span class="chip ab">aberto</span>' },
+];
+const REPASSES = [
+  { id: 'pad', nome: 'Padrão: 7 dias', dias: 7 },
+  { id: 'exp', nome: 'Expresso: 3 dias', dias: 3 },
+  { id: 'adi', nome: 'Adiado: 31 dias', dias: 31 },
+];
+const REPTXT = {
+  pad: 'O repasse padrão chega 7 dias depois da entrega. A comissão do criador sai depois disso.',
+  exp: 'Com nota SPS acima de 3,5 o repasse fica expresso: 3 dias depois da entrega.',
+  adi: 'O repasse adiado leva 31 dias depois da entrega. Os Termos do Vendedor falam em até 35 a 40 dias, sem explicar a diferença.',
+};
+
+let prod = PRODS[0], origem = ORIGENS[2], cupQ = CUPQ[0], isen = ISENS[0], nivel = NIVEIS[0], kitFix = KITFIX[0], envio = ENVIOS[0], repasse = REPASSES[0];
+const $ = id => document.getElementById(id);
+const brl = v => { const [i, d] = Math.abs(v).toFixed(2).split('.'); return (v < 0 ? '−' : '') + 'R$ ' + i.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + d; };
+const brl0 = v => (v < 0 ? '−' : '') + 'R$ ' + Math.round(Math.abs(v)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const pctf = v => (Math.round(v * 10) / 10).toString().replace('.', ',');
+const EST = ' <span class="chip">estimado</span>';
+const AB = ' <span class="chip ab">aberto</span>';
+function num(id, def) { const v = parseFloat($(id).value); return isFinite(v) ? v : def; }
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+function renderSeg(id, list, cur) {
+  $(id).innerHTML = list.map(p => `<button type="button" data-id="${p.id}" aria-pressed="${p.id === cur.id}">${p.nome}</button>`).join('');
+}
+function renderAll() {
+  renderSeg('prod', PRODS, prod); renderSeg('origem', ORIGENS, origem); renderSeg('cupQuem', CUPQ, cupQ); renderSeg('isen', ISENS, isen);
+  renderSeg('nivel', NIVEIS, nivel); renderSeg('kitFix', KITFIX, kitFix); renderSeg('envio', ENVIOS, envio); renderSeg('repasse', REPASSES, repasse);
+}
+function setProd(p) {
+  prod = p;
+  $('precoR').min = p.min; $('precoR').max = p.max;
+  $('preco').value = p.preco.toFixed(2); $('precoR').value = p.preco;
+  $('precoRef').textContent = p.ref;
+  renderAll(); calc();
+}
+function seg(id, list, set) {
+  $(id).addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; set(list.find(x => x.id === b.dataset.id)); renderAll(); calc(); });
+}
+seg('prod', PRODS, setProd);
+seg('origem', ORIGENS, x => { origem = x; });
+seg('cupQuem', CUPQ, x => { cupQ = x; });
+seg('isen', ISENS, x => { isen = x; });
+seg('nivel', NIVEIS, x => { nivel = x; });
+seg('kitFix', KITFIX, x => { kitFix = x; });
+seg('envio', ENVIOS, x => { envio = x; });
+seg('repasse', REPASSES, x => { repasse = x; });
+$('precoR').addEventListener('input', () => { $('preco').value = (+$('precoR').value).toFixed(2); calc(); });
+$('preco').addEventListener('input', () => { $('precoR').value = $('preco').value; calc(); });
+$('roiR').addEventListener('input', () => { $('roi').value = $('roiR').value; calc(); });
+$('roi').addEventListener('input', () => { $('roiR').value = $('roi').value; calc(); });
+$('ads').addEventListener('change', () => { $('adsbox').hidden = !$('ads').checked; calc(); });
+$('camp').addEventListener('change', () => { $('campbox').hidden = !$('camp').checked; calc(); });
+['cupom', 'afilPct', 'cupPct', 'vendas', 'cresc', 'shopAds', 'ppa', 'freteA', 'perda', 'emb', 'freteP'].forEach(id => $(id).addEventListener('input', calc));
+$('f').addEventListener('submit', e => e.preventDefault());
+
+// Lê todos os controles e devolve as opções no formato de resultado().
+function opcoes(preco) {
+  const adsOn = $('ads').checked, camp = $('camp').checked;
+  const roiUser = Math.max(1, num('roi', 4));
+  const roi = adsOn ? roiUser : camp ? ROI_CAMPANHA : null;
+  const cupPct = Math.min(50, Math.max(0, num('cupPct', 10)));
+  const cupomVend = Math.max(0, num('cupom', 0));
+  const cupomCamp = camp ? r2(preco * cupPct / 100 * cupQ.parte) : 0;
+  const afilBase = origem.id === 'criador' ? Math.max(0, num('afilPct', 8)) : 0;
+  const shopAds = Math.max(0, num('shopAds', 0));
+  const afil = origem.id === 'criador' && roi && shopAds > 0 ? shopAds : afilBase;
+  return {
+    adsOn, camp, roiUser, cupPct, cupomVend, cupomCamp, shopAdsUsada: afil !== afilBase,
+    o: { itens: kitFix.id === 'n' ? prod.n : 1, cupom: r2(cupomVend + cupomCamp), afiliado_pct: afil, roi,
+      loja_nova: isen.id !== 'nao', loja_nova_fixa: isen.id === 'fixa',
+      frete_amostra: Math.max(0, num('freteA', 20)), pedidos_por_amostra: Math.max(0, Math.round(num('ppa', 10))), cmv_amostra: prod.cmvA,
+      perda_pct: Math.max(0, num('perda', 1)), embalagem: Math.max(0, num('emb', 0)), frete: envio.id === 'vend' ? Math.max(0, num('freteP', 15)) : 0 },
+  };
+}
+
+function limpar(msg) {
+  $('frase').textContent = msg;
+  ['sobra', 'verdict', 'bar', 'legend', 'stops', 'mes', 'tips', 'chart', 'projTxt'].forEach(id => { $(id).innerHTML = ''; $(id).textContent = ''; });
+  $('verdict').className = 'verdict'; $('tetoTxt').hidden = true;
+}
+
+function calc() {
+  const preco = parseFloat($('preco').value);
+  const k = opcoes(preco > 0 ? preco : 0), o = k.o;
+  $('kitbox').hidden = prod.n === 1;
+  $('afilbox').hidden = origem.id !== 'criador';
+  $('origemTxt').textContent = origem.txt;
+  $('isenTxt').textContent = isen.txt;
+  $('nivelTxt').textContent = nivel.txt;
+  $('freteBox').hidden = envio.id !== 'vend';
+  $('envioTxt').innerHTML = envio.txt;
+  $('repasseTxt').textContent = REPTXT[repasse.id];
+  $('campTxt').textContent = cupQ.txt + (k.adsOn ? '' : ' Sem anúncio seu, o TikTok cria um a ROI 50 e cobra 2% do pedido.');
+
+  if (!(preco > 0)) { $('modo').innerHTML = ''; limpar('Digite um preço.'); return; }
+  const r = resultado(preco, prod.cmv, o);
+  if (!r) { $('modo').innerHTML = ''; limpar('O desconto é maior que o preço.'); return; }
+  const semAds = resultado(preco, prod.cmv, Object.assign({}, o, { roi: null }));
+  const rSem = o.loja_nova ? resultado(preco, prod.cmv, Object.assign({}, o, { loja_nova: false, loja_nova_fixa: false })) : r;
+  const antes = semAds.cm3;
+  $('adsTxt').innerHTML = `ROI ${pctf(k.roiUser)}: o anúncio leva <b class="num">${pctf(100 / k.roiUser)}%</b> do preço pago (${brl(r.receita / k.roiUser)}). `
+    + (antes > 0 ? `Para não comer a sobra, o ROI precisa ser pelo menos <b class="num">${pctf(r.receita / antes)}</b>.` : 'Neste caso nenhum ROI empata: mesmo sem anúncio não sobra nada.')
+    + ' O ROI do painel conta também vendas que viriam sem anúncio, então o real costuma ser menor.';
+
+  $('modo').innerHTML = '<b>Simulando:</b> ' + [prod.nome + ' a ' + brl(r.receita) + (o.cupom ? ` (${brl(preco)} − ${brl(o.cupom)} de desconto)` : ''),
+    origem.id === 'criador' ? `venda de criador a ${pctf(o.afiliado_pct)}%` + (k.shopAdsUsada ? ' (Shop Ads)' : '') : origem.id === 'live' ? 'LIVE da conta oficial' : 'vídeo da conta oficial',
+    k.adsOn ? 'anúncio a ROI ' + pctf(k.roiUser) : k.camp ? 'anúncio da campanha a ROI 50' : 'sem anúncio',
+    k.camp ? 'campanha, cupom ' + (cupQ.parte ? 'dividido' : 'pago pelo TikTok') : null,
+    isen.id === 'nao' ? 'sem isenção' : isen.id === 'pct' ? 'isenção na parte %' : 'isenção na parte % e na fixa',
+    prod.n > 1 ? (o.itens > 1 ? `kit com ${o.itens} tarifas fixas` : 'kit com 1 tarifa fixa') : null,
+    envio.id === 'vend' ? 'envio por nós' : 'envio pelo TikTok',
+    'nível ' + nivel.nome].filter(Boolean).join(' · ');
+
+  const pct = r.cm3 / r.receita * 100;
+  $('frase').textContent = r.cm3 >= 0 ? `De ${prod.art} a ${brl(r.receita)}, sobram para a Canastra` : `Cada ${prod.nome} vendido a ${brl(r.receita)} dá prejuízo de`;
+  $('sobra').textContent = brl(Math.abs(r.cm3)) + ` (${pctf(Math.abs(pct))}% do preço)`;
+  $('sobra').style.color = r.cm3 < 0 ? css('--bad') : '';
+  const v = $('verdict');
+  if (pct >= 10) { v.className = 'verdict good'; v.textContent = 'Saudável: sobra 10% ou mais'; }
+  else if (pct >= 0) { v.className = 'verdict warn'; v.textContent = 'Apertado: menos de 10%'; }
+  else { v.className = 'verdict bad'; v.textContent = 'Prejuízo'; }
+
+  const fixaTxt = o.loja_nova_fixa ? 'fixa isenta' : (o.itens > 1 ? `${o.itens} × ${brl(r.fixa)}` : brl(r.fixa)) + (prod.n > 1 ? AB : '');
+  const pctTxt = o.loja_nova ? '0% (isenção)' : (r.pct * 100) + '%';
+  const tiktok = r2(r.tarifa_pct + r.tarifa_fixa + r.sfp);
+  const parts = [
+    ['--c-cafe', 'Café (CMV)', prod.n > 1 ? `${prod.n} pacotes` : 'o custo do que vai no pacote', r.cmv],
+    ['--c-tiktok', 'TikTok', `tarifa ${pctTxt} + ${fixaTxt}, taxa de envio 6% (${brl(r.sfp)})`, tiktok],
+    ['--c-imposto', 'Imposto', '9% do preço pago', r.imposto],
+  ];
+  if (r.embalagem || r.frete) parts.push(['--c-frete', 'Envio e embalagem', [r.frete ? `frete nosso ${brl(r.frete)}` : '', r.embalagem ? `embalagem ${brl(r.embalagem)}` : ''].filter(Boolean).join(' + ') + EST, r2(r.embalagem + r.frete)]);
+  parts.push(
+    ['--c-afil', 'Criador (afiliado)', o.afiliado_pct ? pctf(o.afiliado_pct) + '% do preço pago' + (k.shopAdsUsada ? ', comissão de Shop Ads' : '') : 'venda dos nossos vídeos', r.afiliado],
+    ['--c-ads', 'Anúncio (GMV Max)', o.roi ? `ROI ${pctf(o.roi)} = ${pctf(100 / o.roi)}% do preço` + (k.adsOn ? '' : ', criado pela campanha') : 'desligado', r.ads],
+    ['--c-perda', 'Amostras e perdas', `amostra ${brl(r.amostra)} por pedido, perdas ${brl(r.perda)}` + EST, r2(r.amostra + r.perda)]);
+  const sobra = Math.max(r.cm3, 0);
+  const total = parts.reduce((s, p) => s + p[3], 0) + sobra;
+  $('bar').innerHTML = parts.concat([['--c-sobra', '', '', sobra]]).filter(p => p[3] > 0)
+    .map(p => `<span style="width:${(p[3] / total * 100).toFixed(2)}%;background:var(${p[0]})" title="${p[1] || 'Sobra'}"></span>`).join('');
+  $('legend').innerHTML = parts.map(p =>
+    `<div class="r"><span class="dot" style="background:var(${p[0]})"></span><span>${p[1]}<small>${p[2]}</small></span><span class="num">${brl(-p[3])}</span></div>`).join('')
+    + `<div class="r sobra"><span class="dot" style="background:var(--c-sobra)"></span><span>Sobra (CM3)</span><span class="num">${brl(r.cm3)}</span></div>`;
+
+  const stop = (kk, val, d) => `<div class="stop ${val < 0 ? 'neg' : ''}"><span class="k">${kk}</span><span class="v">${brl(val)}</span><span class="d">${d}</span></div>`;
+  $('stops').innerHTML = stop('CM1', r.cm1, 'depois de café, TikTok e imposto') + stop('CM2', r.cm2, 'depois de criador e anúncio') + stop('CM3', r.cm3, 'depois de amostras e perdas');
+
+  // Estimativa do 1º mês. O GMV Max cobra sobre todos os pedidos dos produtos anunciados, então o anúncio entra em todas as vendas.
+  const teto = nivel.dia * 30;
+  const V = Math.min(teto, Math.max(1, Math.round(num('vendas', 30))));
+  const g = Math.min(100, Math.max(-50, num('cresc', 10))) / 100;
+  const sobraMes = V * r.cm3;
+  const row = (t, val, cls) => `<div class="row ${cls || ''}"><span>${t}</span><b class="num"${cls === 'tot' && val < 0 ? ` style="color:${css('--bad')}"` : ''}>${brl(val)}</b></div>`;
+  $('mes').innerHTML = `<div class="k">Em um mês com ${V} vendas</div>`
+    + row('Faturamento' + (o.cupom ? ' (já com o desconto)' : '') + EST, V * r.receita)
+    + row('Café (CMV)', -V * r.cmv)
+    + row('Tarifa e taxa de envio do TikTok' + EST, -V * tiktok)
+    + row('Imposto', -V * r.imposto)
+    + (r.embalagem || r.frete ? row('Envio e embalagem' + EST, -V * (r.embalagem + r.frete)) : '')
+    + row('Gasto com criadores' + (o.afiliado_pct ? '' : ' (vendas dos nossos vídeos)') + EST, -V * r.afiliado)
+    + row('Gasto com anúncio' + (o.roi ? '' : ' (desligado)') + EST, -V * r.ads)
+    + row('Amostras para criadores e perdas' + EST, -V * (r.amostra + r.perda))
+    + row('Sobra do mês (CM3)' + EST, sobraMes, 'tot')
+    + `<div class="row"><span class="small">O dinheiro de cada venda chega ${repasse.dias} dias depois da entrega.</span></div>`;
+
+  const meses = projetar(preco, r, rSem, V, g, teto);
+  $('chart').innerHTML = grafico(meses);
+  const fat12 = meses.reduce((s, m) => s + m.fat, 0), sob12 = meses[11].acum;
+  const iEq = meses.findIndex((m, i) => i > 0 && m.acum >= 0 && meses[i - 1].acum < 0);
+  const eqTxt = meses[0].acum >= 0 && sob12 >= 0 ? 'A sobra é positiva desde o 1º mês.'
+    : iEq > 0 ? `A sobra acumulada vira positiva no mês ${meses[iEq].m}.` : sob12 < 0 ? 'A sobra acumulada não fica positiva em 12 meses.' : '';
+  $('projTxt').innerHTML = `<b>Em 12 meses: faturamento ${brl0(fat12)}, sobra ${brl0(sob12)}.</b> ${eqTxt} As vendas vão de ${V} para ${Math.round(meses[11].vendas)} por mês`
+    + (o.loja_nova ? ', e a isenção de loja nova só conta nos 2 primeiros meses.' : '.') + EST;
+  const iTeto = meses.findIndex(m => m.teto);
+  $('tetoTxt').hidden = iTeto < 0;
+  if (iTeto >= 0) $('tetoTxt').innerHTML = `<b>A projeção bate no teto do nível ${nivel.nome} (${nivel.dia} pedidos por dia, ${brl0(teto).replace('R$ ', '')} no mês) ${iTeto === 0 ? 'já no 1º mês' : 'no mês ' + meses[iTeto].m}.</b> A loja nova começa no Iniciante, com 50 por dia, e o Padrão libera 100. Dali em diante a projeção fica parada no teto.`;
+
+  const tips = [];
+  const zero = piso(prod.cmv, o, 0), dez = piso(prod.cmv, o, 10);
+  if (zero) tips.push(['', `Nessas condições, o preço mínimo para não perder dinheiro é <b class="num">${brl(zero)}</b>` + (dez ? `. Para sobrar 10%, <b class="num">${brl(dez)}</b>.` : '.') + (o.cupom ? ' Os pisos já contam o desconto.' : '')]);
+  if (antes > 0) tips.push(['', `O anúncio pode custar até <b class="num">${pctf(antes / r.receita * 100)}%</b> do preço (${brl(antes)}) antes de comer toda a sobra, ou seja, ROI de pelo menos <b class="num">${pctf(r.receita / antes)}</b>. Em campanha o TikTok cria o anúncio a ROI 50, que leva 2%.`]);
+  else tips.push(['alert', 'Mesmo sem anúncio não sobra nada. Nesse preço não há espaço para pagar anúncio.']);
+  if (r.cm3 < 0) tips.push(['alert', 'Neste preço, cada venda tira dinheiro do caixa. Suba o preço, venda em kit, reduza o desconto ou desligue o anúncio.']);
+  if (o.cupom && faixa(preco / o.itens)[0] !== faixa(r.receita / o.itens)[0]) tips.push(['alert', 'O desconto levou o pacote para abaixo de R$ 50 e mudou a tarifa para 10% + R$ 4.']);
+  else if (r.receita / o.itens < 50) tips.push(['alert', 'Abaixo de R$ 50 a tarifa vira 10% + R$ 4: em pacote barato a parte fixa pesa muito.']);
+  if (prod.n > 1) {
+    const um = resultado(preco, prod.cmv, Object.assign({}, o, { itens: 1 })), varios = resultado(preco, prod.cmv, Object.assign({}, o, { itens: prod.n }));
+    tips.push(['', `Se o kit pagar uma tarifa fixa só, sobram ${brl(um.cm3)}; se pagar uma por pacote, ${brl(varios.cm3)}. A regra não diz qual vale.` + AB]);
+  }
+  if (r.receita < 109 && envio.id === 'tiktok') tips.push(['', 'Os cupons de frete que o TikTok dá ao comprador começam em compras de R$ 109 (usuário novo). Abaixo disso o comprador pode pagar frete, o que pesa na venda mas não na nossa margem.']);
+  if (o.loja_nova) tips.push(['', `A isenção vale ${brl(r2(r.cm3 - rSem.cm3))} por pedido. Ela só existe se a missão de loja nova aparecer no painel.`]);
+  if (origem.id === 'live') tips.push(['', 'Uma marca contou que, no fim de 2025, o TikTok cobria de 20% a 30% da venda em LIVE. Não há página oficial sobre isso, então a conta não usa.']);
+  if (origem.id === 'criador' && o.pedidos_por_amostra) tips.push(['', `Cada amostra custa ${brl(prod.cmvA + o.frete_amostra)} (pacote + frete). Com ${o.pedidos_por_amostra} pedidos por amostra, isso dá ${brl(r.amostra)} por pedido. Na pesquisa, 35% a 40% das amostras nunca viram vídeo.`]);
+  tips.push(['', 'Café só pode ser devolvido lacrado. A taxa de envio de pedido devolvido não volta para nós.']);
+  $('tips').innerHTML = tips.map(([c, t]) => `<p class="${c}">${t}</p>`).join('');
+}
+
+renderAll(); setProd(PRODS[0]);
+</script>

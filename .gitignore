@@ -61,3 +61,6 @@ saida-estaticos/
 
 # biblioteca de colagem: o indice.json versiona, os PNG nao (como embalagem/)
 instagram/assets/colagem/**/*.png
+
+# Qualificação do TikTok Shop: extrato do Simples Nacional (CNPJ, faturamento) não versiona
+tiktokshop/qualificacao-categoria/

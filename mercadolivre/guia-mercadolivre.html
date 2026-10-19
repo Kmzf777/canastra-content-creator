@@ -1,0 +1,673 @@
+<title>Guia Mercado Livre Canastra</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: uma coluna de leitura (onde estamos → plano → o que é CM → calculadora → glossário); a calculadora abre em duas colunas no desktop. */
+:root {
+  --bg: #F5F3F4;
+  --surface: #FFFFFF;
+  --line: #DDD7DB;
+  --fg: #1E1A1D;
+  --muted: #5F5860;
+  --accent: #7B3F6E;
+  --accent-soft: #F1E3EE;
+  --good: #1F7A50; --good-soft: #DFF1E7;
+  --warn: #8A5A00; --warn-soft: #FBEFD6;
+  --bad: #B3261E;  --bad-soft: #F8E1DF;
+  --c-cafe: #7A4E2D;
+  --c-ml: #2E3440;
+  --c-frete: #C0622F;
+  --c-imposto: #8C8799;
+  --c-ads: #D99A12;
+  --c-perda: #B5ADA3;
+  --c-full: #5E6F8A;
+  --c-sobra: #1F8A5B;
+  --display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #171416; --surface: #201C1F; --line: #3A3339; --fg: #EEE9EC; --muted: #ADA4AA;
+    --accent: #D59AC6; --accent-soft: #3A2234;
+    --good: #6CCB97; --good-soft: #16301F; --warn: #E8B54A; --warn-soft: #3A2C10; --bad: #F08A80; --bad-soft: #3A1C1A;
+    --c-cafe: #B07A50; --c-ml: #8E99AB; --c-frete: #E38A57; --c-imposto: #6F6A7D; --c-ads: #E8B54A; --c-perda: #6E675F; --c-full: #8EA0BD; --c-sobra: #4DBB82;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #171416; --surface: #201C1F; --line: #3A3339; --fg: #EEE9EC; --muted: #ADA4AA;
+  --accent: #D59AC6; --accent-soft: #3A2234;
+  --good: #6CCB97; --good-soft: #16301F; --warn: #E8B54A; --warn-soft: #3A2C10; --bad: #F08A80; --bad-soft: #3A1C1A;
+  --c-cafe: #B07A50; --c-ml: #8E99AB; --c-frete: #E38A57; --c-imposto: #6F6A7D; --c-ads: #E8B54A; --c-perda: #6E675F; --c-full: #8EA0BD; --c-sobra: #4DBB82;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 44px; }
+section { display: grid; gap: 16px; min-width: 0; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.08; font-weight: 700; }
+h2 { font-size: 24px; font-weight: 700; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; max-width: 66ch; }
+.eyebrow { font: 600 13px var(--body); letter-spacing: .09em; text-transform: uppercase; color: var(--accent); }
+.lead { color: var(--muted); font-size: 18px; }
+.muted { color: var(--muted); }
+small, .small { font-size: 14px; color: var(--muted); }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* onde estamos */
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.st { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+.pill { justify-self: start; font: 600 12px var(--body); letter-spacing: .05em; text-transform: uppercase; padding: 2px 9px; border-radius: 999px; }
+.pill.ok { background: var(--good-soft); color: var(--good); }
+.pill.no { background: var(--warn-soft); color: var(--warn); }
+
+/* plano */
+.fases { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: f; }
+.fases li { counter-increment: f; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding-bottom: 22px; position: relative; }
+.fases li::before {
+  content: counter(f); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--accent); color: var(--surface); font: 700 16px var(--display);
+}
+.fases li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 40px; bottom: 4px; width: 2px; background: var(--line); }
+.fases .t { display: grid; gap: 4px; padding-top: 5px; }
+.fases .gate { font-size: 14px; color: var(--muted); }
+.fases .gate b { color: var(--fg); font-weight: 600; }
+.note { background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; font-size: 15px; }
+
+/* CMs */
+.cms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 720px) { .cms { grid-template-columns: minmax(0, 1fr); } }
+.cm { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; align-content: start; }
+.cm .tag { font: 700 22px var(--display); color: var(--accent); }
+.cm .q { font-weight: 600; }
+.cm ul { margin: 0; padding-left: 18px; font-size: 15px; color: var(--muted); }
+
+/* calculadora */
+.calc { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 28px; }
+@media (max-width: 800px) { .calc { grid-template-columns: minmax(0, 1fr); padding: 18px; } }
+.ctrl { display: grid; gap: 22px; align-content: start; }
+.field { display: grid; gap: 8px; }
+.field > .lbl { font-weight: 600; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button {
+  font: 600 15px var(--body); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--fg);
+}
+.seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.price { display: flex; align-items: center; gap: 10px; }
+.price input[type="number"] {
+  width: 120px; font: 500 20px var(--mono); padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); text-align: right;
+}
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+.sw { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; cursor: pointer; }
+.sw input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); }
+.sw span b { display: block; font-weight: 600; }
+.sw span small { display: block; }
+.adsbox { display: grid; gap: 6px; padding-left: 30px; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.out { display: grid; gap: 20px; align-content: start; min-width: 0; }
+.big { display: grid; gap: 6px; }
+.big .s { font-size: 19px; }
+.big .v { font: 700 clamp(34px, 6vw, 48px) var(--display); line-height: 1; font-variant-numeric: tabular-nums; }
+.verdict { justify-self: start; font: 600 14px var(--body); padding: 4px 12px; border-radius: 999px; }
+.verdict.good { background: var(--good-soft); color: var(--good); }
+.verdict.warn { background: var(--warn-soft); color: var(--warn); }
+.verdict.bad { background: var(--bad-soft); color: var(--bad); }
+.bar { display: flex; height: 34px; border-radius: 8px; overflow: hidden; background: var(--bg); }
+.bar span { height: 100%; transition: width .25s ease; }
+@media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+.legend { display: grid; gap: 0; }
+.legend .r { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.legend .r:last-child { border-bottom: 0; }
+.legend .dot { width: 12px; height: 12px; border-radius: 3px; align-self: center; }
+.legend .r small { display: block; }
+.legend .r .num { white-space: nowrap; }
+.legend .r.sobra { font-weight: 600; }
+.stops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stop { border-radius: 8px; padding: 10px 12px; background: var(--bg); display: grid; gap: 2px; }
+.stop .k { font: 700 14px var(--display); color: var(--accent); }
+.stop .v { font: 500 18px var(--mono); font-variant-numeric: tabular-nums; }
+.stop .d { font-size: 13px; color: var(--muted); line-height: 1.3; }
+.stop.neg .v { color: var(--bad); }
+.tips { display: grid; gap: 8px; font-size: 15px; }
+.tips p { padding-left: 14px; border-left: 3px solid var(--line); }
+.tips p.alert { border-left-color: var(--bad); }
+
+/* grupos da calculadora */
+fieldset.grp { border: 0; margin: 0; padding: 0 0 18px; display: grid; gap: 10px; border-bottom: 1px solid var(--line); min-width: 0; }
+fieldset.grp legend { font: 700 14px var(--display); color: var(--accent); padding: 0; margin-bottom: 10px; letter-spacing: .02em; }
+.roas { position: relative; display: grid; align-items: center; height: 26px; }
+.roas .band { position: absolute; top: 50%; height: 10px; transform: translateY(-50%); background: var(--good-soft); border: 1px solid var(--good); border-radius: 4px; pointer-events: none; }
+.roas input { position: relative; margin: 0; background: transparent; }
+.bandkey { display: inline-block; width: 18px; height: 8px; border-radius: 3px; background: var(--good-soft); border: 1px solid var(--good); vertical-align: 1px; margin-right: 4px; }
+.chip { display: inline-block; font: 600 11px var(--body); letter-spacing: .04em; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); vertical-align: 1px; white-space: nowrap; }
+details.adv { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; background: var(--bg); }
+details.adv summary { cursor: pointer; font-weight: 600; }
+.advbody { display: grid; gap: 8px; margin-top: 12px; }
+.advbody .price input[type="number"], fieldset.grp .price input#vendas { width: 110px; font-size: 17px; }
+.modo { font-size: 15px; background: var(--accent-soft); border-radius: 8px; padding: 8px 12px; max-width: none; }
+.mes { display: grid; gap: 0; background: var(--bg); border-radius: 8px; padding: 10px 14px; }
+.mes .k { font: 700 14px var(--display); color: var(--accent); padding-bottom: 4px; }
+.mes .row { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.mes .row:last-child { border-bottom: 0; }
+.mes .row.tot { font-weight: 600; }
+.mes .row b { white-space: nowrap; font-weight: 500; }
+
+.proj { display: grid; gap: 8px; }
+.proj .k { font: 700 14px var(--display); color: var(--accent); }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { font: 12px var(--body); fill: var(--muted); }
+.chart .lab { font: 600 12px var(--body); }
+.chartkey { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--muted); }
+.chartkey i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: 3px; margin-right: 6px; }
+
+/* glossário */
+dl.gl { margin: 0; display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr); gap: 10px 20px; }
+@media (max-width: 560px) { dl.gl { grid-template-columns: minmax(0, 1fr); gap: 2px; } dl.gl dd { margin-bottom: 10px; } }
+dl.gl dt { font-weight: 600; }
+dl.gl dd { margin: 0; color: var(--muted); }
+a { color: var(--accent); }
+footer { font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+</style>
+
+<div class="wrap">
+
+  <header style="display:grid;gap:10px">
+    <span class="eyebrow">Café Canastra · Mercado Livre</span>
+    <h1>O Mercado Livre explicado, e quanto sobra em cada pacote</h1>
+    <p class="lead">Uma página para entender a estratégia sem planilha: onde a conta está, o caminho em quatro fases, o que significam CM1, CM2 e CM3, e uma calculadora com poucos botões.</p>
+  </header>
+
+  <section>
+    <h2>Onde a conta está hoje</h2>
+    <div class="status">
+      <div class="st"><span class="pill ok">Pronto</span><h3>Cliente gosta do café</h3><span class="small">Zero reclamação em um ano. O problema não é o produto.</span></div>
+      <div class="st"><span class="pill ok">Pronto</span><h3>Suave 1 kg no ar</h3><span class="small">É o único 1 kg ativo, a R$ 109,90. Clássico, Néctar e o kit 2 × 1 kg estão pausados.</span></div>
+      <div class="st"><span class="pill ok">Pronto</span><h3>Custo de fábrica</h3><span class="small">O 1 kg custa R$ 47. Quem revende café igual paga mais caro e não acompanha o nosso preço.</span></div>
+      <div class="st"><span class="pill ok">Pronto</span><h3>Já enviamos ao Full</h3><span class="small">178 caixas de drip em mar/2026, para o armazém de Extrema (MG), com coleta de R$ 108,58.</span></div>
+      <div class="st"><span class="pill no">Falta</span><h3>Sair da reputação vermelha</h3><span class="small">36,61% dos envios saíram atrasados ou errados (26 de 71). O limite do verde é 13%.</span></div>
+      <div class="st"><span class="pill no">Falta</span><h3>Sobrar dinheiro na venda</h3><span class="small">A R$ 109,90 o 1 kg deixa R$ 3,32. Na cor vermelha o frete grátis custa R$ 34,30.</span></div>
+      <div class="st"><span class="pill no">Falta</span><h3>Anúncio pago e promoções</h3><span class="small">Os dois ficam trancados enquanto a conta for vermelha. Ainda não há 500 g à venda.</span></div>
+    </div>
+    <p class="note"><b>Lição do envio de março:</b> declaramos 80 caixas e chegaram 178. A diferença de unidades gerou multa de R$ 300, que o Mercado Livre abonou desta vez. Não dá para contar com isso de novo: no próximo envio, a quantidade declarada tem de ser a que vai na caixa.</p>
+    <small>Lido no painel da conta em 15/10/2026 (envios ao Full lidos em 16/10), sem alterar nada. Também ficou o aviso "complete os dados da sociedade", pedido do Banco Central, para conferir.</small>
+  </section>
+
+  <section>
+    <h2>O caminho, em quatro fases</h2>
+    <p class="muted">No Mercado Livre a cor da reputação manda em quase tudo: quanto custa o frete, se o anúncio pago roda e se dá para fazer promoção. E a nossa cor ficou vermelha por despacho atrasado, não por preço. Por isso a ordem é: despachar sem atraso, colocar um preço que deixe sobra, e só então pagar anúncio.</p>
+    <ol class="fases">
+      <li><div class="t">
+        <h3>Despachar sem atraso</h3>
+        <p>Preencher o prazo de disponibilidade real em todo anúncio (hoje está vazio no Suave), ter um horário interno para postar antes das 14h e buscar formas de envio que não dependam da agência, como a coleta.</p>
+        <span class="gate"><b>Por que primeiro:</b> todo atraso novo fica um ano contando contra a conta. Nenhum preço ou anúncio conserta a cor.</span>
+        <span class="gate"><b>Passa para a próxima quando:</b> a conta chega ao amarelo. Pela conta do diagnóstico, são cerca de 40 envios corretos seguidos, sem cancelar.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Preço que deixa sobra</h3>
+        <p>Subir o preço do 1 kg para perto do meio do mercado de café especial, reabrir o kit 2 × 1 kg como o jeito mais barato por quilo e decidir se o 500 g entra. Colocar vídeo no anúncio, que o próprio Mercado Livre pede. Pode andar junto com a fase 1.</p>
+        <span class="gate"><b>Por que:</b> com R$ 3,32 por venda não cabe anúncio, promoção nem um erro de envio. Quem vende muito café no Mercado Livre não é o mais barato.</span>
+        <span class="gate"><b>Passa para a próxima quando:</b> o produto deixa 15% ou mais do preço antes do anúncio (CM1).</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Abrir a vitrine</h3>
+        <p>Com a cor amarela, medir de novo o frete (ele cai), abrir as promoções e ligar uma primeira campanha de anúncio só com o 1 kg e o kit. Deixar 7 dias sem mexer. Antes disso, pausar ou refazer a campanha que já existe, com ROAS 4: ela daria prejuízo.</p>
+        <span class="gate"><b>Regra:</b> o anúncio só fica ligado se, somando tudo, sobrar dinheiro na venda. A calculadora abaixo mostra quanto ele pode custar.</span>
+        <span class="gate"><b>Passa para a próxima quando:</b> a conta fica verde e um produto vende cerca de 30 por mês.</span>
+      </div></li>
+      <li><div class="t">
+        <h3>Crescer</h3>
+        <p>No verde vêm o cupom, o frete mais barato e o Full Super, a área de supermercado onde estão quase todos os cafés do topo da busca. Mais kits e venda para empresas no atacado.</p>
+        <span class="gate"><b>Por que por último:</b> o Full e o Full Super pedem conta verde e giro de estoque. Café não pode ficar meses parado no armazém.</span>
+      </div></li>
+    </ol>
+    <p class="note">Esta é uma proposta, não uma decisão. Ela sai do diagnóstico de 15/10/2026 e da pesquisa do Mercado Livre. A estratégia final do 1 kg e do 500 g ainda não foi escrita, e o Full ficou fora da análise por decisão sua de 15/10. Nada foi alterado na conta. Cada passo é aprovado por você, um de cada vez.</p>
+  </section>
+
+  <section>
+    <h2>O que são CM1, CM2 e CM3</h2>
+    <p class="muted">CM quer dizer <b>margem de contribuição</b>: o dinheiro que sobra de uma venda depois de pagar o que aquela venda gastou. Os três números são a mesma conta em três paradas. A cada parada sai mais uma despesa.</p>
+    <div class="cms">
+      <div class="cm">
+        <span class="tag">CM1</span>
+        <span class="q">O pacote se paga sozinho?</span>
+        <p class="small">Preço menos o que é obrigatório em toda venda:</p>
+        <ul><li>o custo do café (CMV)</li><li>a tarifa do Mercado Livre: 14% no Clássico, 19% no Premium</li><li>o frete grátis, que nós pagamos a partir de R$ 79 e que muda com a cor da conta</li><li>o imposto de 9%</li></ul>
+      </div>
+      <div class="cm">
+        <span class="tag">CM2</span>
+        <span class="q">E pagando o anúncio?</span>
+        <p class="small">CM1 menos o que depende de como a venda chegou:</p>
+        <ul><li>o Mercado Ads, se a venda veio de um anúncio pago. Ele cobra por clique; aqui você escolhe o ROAS e a calculadora mostra quanto isso leva de cada venda</li></ul>
+      </div>
+      <div class="cm">
+        <span class="tag">CM3</span>
+        <span class="q">Quanto sobra de verdade?</span>
+        <p class="small">CM2 menos os custos que não aparecem no pedido:</p>
+        <ul><li>devoluções e pacotes perdidos</li><li>no Full, a armazenagem e o custo de levar o lote ao armazém</li><li>mais tarde, cupons</li></ul>
+      </div>
+    </div>
+    <p>A CM3 é o número que importa para decidir preço. É o que fica para pagar salários, aluguel e o lucro da empresa. Se a CM3 é negativa, cada venda tira dinheiro do caixa.</p>
+  </section>
+
+  <section id="calculadora">
+    <h2>Calculadora: quanto sobra em cada pacote</h2>
+    <div class="calc">
+      <form class="ctrl" id="f" autocomplete="off">
+        <fieldset class="grp">
+          <legend>Produto e preço</legend>
+          <div class="seg" id="prod"></div>
+          <div class="price"><span class="muted">R$</span><input type="number" id="preco" step="0.10" aria-label="Preço no Mercado Livre"></div>
+          <input type="range" id="precoR" step="0.10" aria-label="Ajustar preço">
+          <small id="precoRef"></small>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Como vende</legend>
+          <div class="field">
+            <span class="lbl">Tipo de anúncio</span>
+            <div class="seg" id="tipo"></div>
+            <small id="tipoTxt"></small>
+          </div>
+          <div class="field">
+            <label class="sw"><input type="checkbox" id="full"><span><b>Full ligado</b><small>O Mercado Livre guarda o estoque e despacha por nós.</small></span></label>
+            <small id="fullTxt" hidden>Com o Full os atrasos de despacho deixam de ser nossos. O frete segue a mesma tabela do envio próprio, e pela pesquisa a cor da conta continua pesando nele. Entram a armazenagem e a coleta do Full, cobrada pelo volume das caixas: calculamos proporcional ao volume, a partir do envio de março (R$ 108,58 por 0,35 m³). A pesquisa não achou um número de vendas que libera o Full.</small>
+          </div>
+          <div class="field">
+            <label class="sw"><input type="checkbox" id="fg" checked><span><b>Frete grátis</b><small id="fgTxt"></small></span></label>
+          </div>
+          <div class="field">
+            <span class="lbl">Cor da reputação</span>
+            <div class="seg" id="rep"></div>
+            <small id="repTxt"></small>
+          </div>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Anúncio pago</legend>
+          <label class="sw"><input type="checkbox" id="ads"><span><b>A venda veio de um anúncio pago</b><small>Você escolhe o ROAS objetivo, como no painel do Mercado Ads.</small></span></label>
+          <div class="adsbox" id="adsbox" hidden>
+            <div class="roas">
+              <span class="band" id="band" aria-hidden="true"></span>
+              <input type="range" id="roas" min="2" max="35" step="0.5" value="10" aria-label="ROAS objetivo">
+            </div>
+            <small><span class="bandkey"></span> faixa comum na prática: ROAS 8 a 15</small>
+            <small id="adsTxt"></small>
+          </div>
+        </fieldset>
+
+        <fieldset class="grp">
+          <legend>Estimativa do mês</legend>
+          <label class="lbl" for="vendas">Vendas por mês</label>
+          <div class="price"><input type="number" id="vendas" min="1" max="2000" step="1" value="10"><span class="muted">pacotes no 1º mês</span></div>
+          <label class="lbl" for="cresc">Crescimento por mês</label>
+          <div class="price"><input type="number" id="cresc" min="-50" max="100" step="1" value="10"><span class="muted">% ao mês</span><span class="chip">estimado</span></div>
+        </fieldset>
+
+        <details class="adv">
+          <summary>Avançado</summary>
+          <div class="advbody">
+            <label class="lbl" for="dev">Devoluções e perdas (% do preço)</label>
+            <div class="price"><input type="number" id="dev" min="0" max="20" step="0.5" value="2"><span class="chip">estimado</span></div>
+            <small>Não medido. 2% é a reserva que um vendedor citado na pesquisa usa.</small>
+            <label class="lbl" for="share">Vendas que vêm do anúncio (% do mês)</label>
+            <div class="price"><input type="number" id="share" min="0" max="100" step="5" value="100"></div>
+            <small>Só mexe na estimativa do mês. Na pesquisa, essa fatia vai de 27% a 81% conforme a conta.</small>
+            <label class="lbl" for="cpPeq">Frete que fica conosco quando o comprador paga, abaixo de R$ 79 (R$)</label>
+            <div class="price"><input type="number" id="cpPeq" min="0" max="50" step="0.10" value="2.40"><span class="chip">estimado</span></div>
+            <small>Medido na caixa de drip a R$ 34,90 em 30/09 (R$ 1,40 a R$ 18,70). Para café não foi medido.</small>
+            <div id="advFull" hidden style="display:grid;gap:8px">
+              <label class="lbl" for="dias">Dias que um lote dura no Full</label>
+              <div class="price"><input type="number" id="dias" min="7" max="60" step="1" value="30"><span class="chip">estimado</span></div>
+              <small>A pesquisa fala em lotes de 15 a 30 dias, e o Mercado Livre pede no máximo 2 meses. Até 60 dias não entra a taxa de estoque antigo.</small>
+              <label class="lbl" for="m3">Custo da coleta Full por m³ (R$)</label>
+              <div class="price"><input type="number" id="m3" min="0" max="3000" step="5" value="310"><span class="chip">estimado</span></div>
+              <small>A coleta do Mercado Livre cobra por volume e distância. No envio de mar/2026 (Uberlândia a Extrema, 490 km) foram R$ 108,58 por 0,35 m³, cerca de R$ 310 por m³. O custo de cada pacote sai do volume da caixa.</small>
+            </div>
+          </div>
+        </details>
+      </form>
+
+      <div class="out" aria-live="polite">
+        <p class="modo" id="modo"></p>
+        <div class="big">
+          <span class="s" id="frase"></span>
+          <span class="v" id="sobra"></span>
+          <span class="verdict" id="verdict"></span>
+        </div>
+        <div>
+          <div class="bar" id="bar" role="img" aria-label="Para onde vai o dinheiro da venda"></div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div class="stops" id="stops"></div>
+        <div class="mes" id="mes"></div>
+        <div class="proj">
+          <div class="k">Projeção de 12 meses</div>
+          <div id="chart" class="chart"></div>
+          <div class="chartkey"><span><i style="background:var(--accent)"></i>Faturamento do mês</span><span><i style="background:var(--c-sobra)"></i>Sobra acumulada (CM3)</span></div>
+          <p class="small" id="projTxt"></p>
+        </div>
+        <div class="tips" id="tips"></div>
+      </div>
+    </div>
+    <small>Hipóteses fixas: sem a tarifa reduzida de R$ 150 a R$ 700 (não apareceu na conta), imposto de 9% do preço e embalagem de envio fora da conta. O frete vem da tabela oficial do Mercado Livre ajustada pela cor; no envio próprio e na cor vermelha bate com o medido no 1 kg e no kit, e o resto leva o selo estimado. No Full, a armazenagem é a de Alimentos e Bebidas: R$ 0,015 por dia no tamanho M (a caixa do 1 kg cadastrada tem 29 × 27 × 11 cm) e R$ 0,007 no 500 g, tratado como P sem medida. A coleta é proporcional ao volume da caixa: 1 kg 8.613 cm³; 500 g e kits estimados (metade, o dobro e o mesmo volume do 1 kg). O Full Super, que tem outra tabela e pede conta verde, fica de fora. Com "comprador paga", a parte do frete que fica conosco é a proporção medida num kit de cápsulas no Full (R$ 7,20 de R$ 14,45) a partir de R$ 79, e R$ 2,40 abaixo disso; a projeção não desconta a perda de vendas sem frete grátis. Para mexer em tudo, use a <a href="https://claude.ai/artifact/NLqvisuBYzPLmC9RZvufUW">calculadora completa</a>.</small>
+  </section>
+
+  <section>
+    <h2>Palavras que vão aparecer</h2>
+    <dl class="gl">
+      <dt>CMV</dt><dd>Custo do café dentro do pacote: R$ 47 o de 1 kg, R$ 26 o de 500 g.</dd>
+      <dt>Clássico e Premium</dt><dd>Os dois tipos de anúncio. No café, o Clássico cobra 14% do preço. O Premium cobra 19% e deixa o comprador parcelar sem juros.</dd>
+      <dt>Frete grátis</dt><dd>A partir de R$ 79 o frete grátis é obrigatório e quem paga somos nós. O valor sobe com o peso e com a faixa de preço: R$ 99,90 e R$ 100 caem em faixas diferentes.</dd>
+      <dt>Reputação</dt><dd>A cor da conta: verde, amarela, laranja ou vermelha. Sai das reclamações, das vendas canceladas e dos envios atrasados no último ano. No verde o frete tem até 50% de desconto; no vermelho, nenhum.</dd>
+      <dt>Envio incorreto</dt><dd>Pacote postado depois do prazo ou com problema no envio. É o que pôs a nossa conta no vermelho.</dd>
+      <dt>Reputação Protegida</dt><dd>Oferta do Mercado Livre: deixamos R$ 250 de garantia e a conta aparece verde por 60 dias. Cai se 5 vendas tiverem problema. Não muda a cor de verdade.</dd>
+      <dt>Mercado Ads</dt><dd>O anúncio pago do Mercado Livre. Cobra por clique e só roda com a conta amarela ou melhor.</dd>
+      <dt>ROAS</dt><dd>Quanto o anúncio vende para cada R$ 1 gasto. ROAS 10 = gastou R$ 10, vendeu R$ 100. No painel você escolhe um ROAS objetivo de 1 a 35. Na prática as campanhas rodam entre 8 e 15, e o próprio Mercado Livre sugere começar em 10.</dd>
+      <dt>ACOS</dt><dd>O mesmo número ao contrário: quanto do preço foi para o anúncio. ROAS 10 = ACOS 10%. O painel conta como "do anúncio" vendas que viriam de qualquer jeito, então se julga pelo caixa.</dd>
+      <dt>Full e Full Super</dt><dd>O Mercado Livre guarda o estoque no armazém dele e despacha por nós. Cobra armazenagem por dia e por tamanho do pacote, e a ida do lote até lá é por nossa conta. O Full Super é a parte de supermercado, com outra tabela de frete, e pede conta verde.</dd>
+    </dl>
+  </section>
+
+  <footer>
+    <p>Fontes: diagnóstico da conta em <code>mercadolivre/17-diagnostico-2026-10.md</code> (painel lido em 15/10/2026); regras do Mercado Livre em <code>pesquisa-marketplaces/mercadolivre/CONSOLIDADO.md</code> (páginas de ajuda lidas em 14 e 15/10/2026); custos de <code>mercadolivre/custos.md</code>; contas iguais às de <code>mercadolivre/scripts/precificar.py</code> e da <a href="https://claude.ai/artifact/NLqvisuBYzPLmC9RZvufUW">calculadora completa</a>; preços de referência de <code>mercadolivre/15-preco-1kg-suave-classico.md</code> (busca de 08/10/2026).</p>
+  </footer>
+</div>
+
+<script>
+// Mesmas fórmulas do precificar.py e da calculadora completa do ML; custos do Full da pesquisa e do envio de mar/2026.
+const IMPOSTO = 0.09;
+const TARIFA = { classico: 0.14, premium: 0.19 };
+const FAIXAS = [[0, 18.99], [19, 48.99], [49, 78.99], [79, 99.99], [100, 119.99], [120, 149.99], [150, 199.99], [200, 1e9]];
+// Tabela do Mercado Livre na cor verde (50% de desconto já embutido). M = bate com o medido na conta (vermelha, envio próprio), T = tabela oficial, E = estimado.
+const FRETE_VERDE = {
+  '05a1': [[6.05, 'T'], [7.15, 'T'], [8.45, 'T'], [14.45, 'T'], null, null, null, null],
+  '1a2':  [null, null, null, [14.75, 'M'], [17.15, 'M'], [19.55, 'E'], [21.95, 'E'], [24.35, 'E']],
+  '2a3':  [null, null, null, null, null, null, null, [27.05, 'M']],
+};
+const FATOR_REP = { vermelha: 2, amarela: 1.2, verde: 1 };
+// Comprador paga, a partir de R$ 79: o vendedor ainda pagou R$ 7,20 contra R$ 14,45 do frete grátis (kit no Full, 30/09/2026).
+const COMPRADOR_PAGA = 7.20 / 14.45;
+// Parcelas sem juros do Premium por faixa de preço (ajuda 870 e 22737).
+const PARCELAS = [[30, 59.99, 2], [60, 99.99, 3], [100, 149.99, 4], [180, 299.99, 6]];
+const r2 = x => Math.round((x + (x >= 0 ? 1e-9 : -1e-9)) * 100) / 100;
+function faixaIdx(p) { for (let i = 0; i < FAIXAS.length; i++) if (p >= FAIXAS[i][0] && p <= FAIXAS[i][1] + 0.004) return i; return p < 19 ? 0 : 7; }
+function frete(o, p) {
+  if (o.fg === false && p < 79) return { v: r2(o.cpPeq), o: 'E' };
+  const c = FRETE_VERDE[o.peso][faixaIdx(p)];
+  if (!c) return null;
+  let v = c[0] * FATOR_REP[o.rep];
+  if (p < 19) v = Math.min(v, p / 2);
+  let org = c[1];
+  if (o.estimado || o.full || (org === 'M' && o.rep !== 'vermelha')) org = 'E';
+  if (o.fg === false) return { v: r2(r2(v) * COMPRADOR_PAGA), o: 'E' };
+  return { v: r2(v), o: org };
+}
+// o: { peso, rep, cmv, tipo, full, fg, cpPeq, roas (0 = sem anúncio), dev (fração), estimado, dias, armDia, vol (m³), m3 (R$/m³) }
+function resultado(preco, o) {
+  const fr = frete(o, preco);
+  if (!fr) return null;
+  const tarifa = r2(preco * TARIFA[o.tipo]);
+  const imposto = r2(preco * IMPOSTO);
+  const recebe = r2(preco - tarifa - fr.v);
+  const cm1 = r2(recebe - imposto - o.cmv);
+  const ads = o.roas > 0 ? r2(preco / o.roas) : 0;
+  const cm2 = r2(cm1 - ads);
+  const perda = r2(preco * o.dev);
+  // Full: cada pacote fica em média metade da duração do lote no armazém; a coleta é proporcional ao volume da caixa.
+  const arm = o.full ? r2(o.armDia * o.dias / 2) : 0;
+  const coleta = o.full ? r2(o.vol * o.m3) : 0;
+  const cm3 = r2(cm2 - perda - arm - coleta);
+  return { preco, cmv: o.cmv, tarifa, frete: fr.v, origem: fr.o, imposto, recebe, cm1, ads, cm2, perda, arm, coleta, cm3 };
+}
+// Menor preço da barrinha a partir do qual a margem se mantém até o topo (os degraus de frete criam buracos).
+function piso(o, margem, min, max) {
+  let best = null;
+  for (let c = Math.round(max * 100); c >= Math.round(min * 100); c--) {
+    const p = c / 100, r = resultado(p, o);
+    if (r && r.cm3 / p * 100 >= margem - 1e-9) best = p; else break;
+  }
+  return best;
+}
+// Projeção de 12 meses. Vendas crescem g ao mês; no Full a coleta é paga quando cada lote sai (a cada o.dias dias).
+function projetar(preco, o, V, g, share) {
+  const r = resultado(preco, Object.assign({}, o, { roas: 0 }));
+  if (!r) return null;
+  const base = r2(r.cm1 - r.perda);                    // sobra por venda antes de anúncio e Full
+  const ads = o.roas > 0 ? r2(preco / o.roas) : 0;
+  const vend = m => V * Math.pow(1 + g, m);            // vendas do mês m (0 = 1º mês)
+  const coletaMes = new Array(12).fill(0);
+  if (o.full) {
+    for (let t = 0; t < 360; t += o.dias) {
+      let un = 0;
+      for (let d = t; d < t + o.dias; d++) un += vend(Math.floor(d / 30)) / 30;
+      coletaMes[Math.floor(t / 30)] += un * r.coleta;
+    }
+  }
+  const meses = []; let acum = 0;
+  for (let m = 0; m < 12; m++) {
+    const v = vend(m), fat = v * preco, arm = v * r.arm;
+    const sobra = v * base - v * share * ads - arm - coletaMes[m];
+    acum += sobra;
+    meses.push({ m: m + 1, vendas: v, fat, sobra, acum, arm, coleta: coletaMes[m] });
+  }
+  return meses;
+}
+
+const PRODS = [
+  { id: '1kg', nome: '1 kg', art: 'cada 1 kg vendido', cmv: 47, peso: '1a2', preco: 109.90, min: 79, max: 199.90, vol: 0.008613, armDia: 0.015,
+    ref: 'Hoje o Suave está a R$ 109,90. No café especial em grãos, o preço do meio do mercado é R$ 125 (busca de 08/10).' },
+  { id: '500g', nome: '500 g', art: 'cada 500 g vendido', cmv: 26, peso: '05a1', preco: 65.70, min: 35, max: 99.90, estimado: true, vol: 0.0043065, armDia: 0.007,
+    ref: 'Na loja própria o 500 g sai a R$ 65,70. Ainda não existe 500 g no Mercado Livre, então o frete é estimado.' },
+  { id: 'kit', nome: 'Kit 2 × 1 kg', art: 'cada kit 2 × 1 kg vendido', cmv: 94, peso: '2a3', preco: 219.80, min: 200, max: 299.90, vol: 0.017226, armDia: 0.015,
+    ref: 'O kit pausado está a R$ 219,80, o mesmo R$ 109,90 por quilo. O frete de um kit (R$ 54,10) é menor que o de dois pacotes (R$ 68,60).' },
+  { id: 'kit500', nome: 'Kit 2 × 500 g', art: 'cada kit 2 × 500 g vendido', cmv: 52, peso: '1a2', preco: 119.90, min: 100, max: 199.90, estimado: true, vol: 0.008613, armDia: 0.015,
+    ref: 'Dois de 500 g vendidos como "1 kg", como fazem alguns concorrentes. Frete estimado igual ao do 1 kg.' },
+];
+const TIPOS = [
+  { id: 'classico', nome: 'Clássico 14%', txt: 'Clássico: 14% do preço no café, sem parcelamento sem juros.' },
+  { id: 'premium', nome: 'Premium 19%', txt: 'Premium: 19% do preço no café. A mais, o comprador parcela sem juros, e nós pagamos isso pela tarifa maior.' },
+];
+const REPS = [
+  { id: 'vermelha', nome: 'Vermelha (hoje)', txt: 'Sem desconto no frete: paga o dobro da tabela. Anúncio pago e promoções não rodam.' },
+  { id: 'amarela', nome: 'Amarela', txt: 'Frete com até 40% de desconto. Anúncio pago e promoções liberados. Valor ainda não medido na conta.' },
+  { id: 'verde', nome: 'Verde', txt: 'Frete com até 50% de desconto, mais cupom e Full Super. Valor ainda não medido na conta.' },
+];
+let prod = PRODS[0], tipo = TIPOS[0], rep = REPS[0];
+const $ = id => document.getElementById(id);
+const brl = v => (v < 0 ? '−' : '') + 'R$ ' + Math.abs(v).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const brl0 = v => (v < 0 ? '−' : '') + 'R$ ' + Math.round(Math.abs(v)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const pctf = v => v.toFixed(1).replace('.', ',');
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const EST = ' <span class="chip">estimado</span>';
+function parcelas(p) { const f = PARCELAS.find(x => p >= x[0] && p <= x[1] + 0.004); return f ? f[2] : null; }
+function num(id, def) { const v = parseFloat($(id).value); return isFinite(v) ? v : def; }
+
+function renderSeg(id, list, cur) {
+  $(id).innerHTML = list.map(p => `<button type="button" data-id="${p.id}" aria-pressed="${p.id === cur.id}">${p.nome}</button>`).join('');
+}
+function setProd(p) {
+  prod = p;
+  $('precoR').min = p.min; $('precoR').max = p.max;
+  $('preco').min = p.min; $('preco').max = p.max;
+  $('preco').value = p.preco.toFixed(2); $('precoR').value = p.preco;
+  $('precoRef').textContent = p.ref;
+  renderSeg('prod', PRODS, prod); calc();
+}
+function setTipo(t) { tipo = t; renderSeg('tipo', TIPOS, tipo); calc(); }
+function setRep(r) { rep = r; $('repTxt').textContent = r.txt; renderSeg('rep', REPS, rep); calc(); }
+$('prod').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setProd(PRODS.find(p => p.id === b.dataset.id)); });
+$('tipo').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setTipo(TIPOS.find(t => t.id === b.dataset.id)); });
+$('rep').addEventListener('click', e => { const b = e.target.closest('button'); if (b) setRep(REPS.find(r => r.id === b.dataset.id)); });
+$('precoR').addEventListener('input', () => { $('preco').value = (+$('precoR').value).toFixed(2); calc(); });
+$('preco').addEventListener('input', () => { $('precoR').value = $('preco').value; calc(); });
+$('ads').addEventListener('change', () => { $('adsbox').hidden = !$('ads').checked; calc(); });
+$('full').addEventListener('change', () => { $('fullTxt').hidden = !$('full').checked; $('advFull').hidden = !$('full').checked; calc(); });
+$('fg').addEventListener('change', calc);
+['roas', 'vendas', 'cresc', 'dev', 'share', 'dias', 'm3', 'cpPeq'].forEach(id => $(id).addEventListener('input', calc));
+$('f').addEventListener('submit', e => e.preventDefault());
+// faixa comum de ROAS (8 a 15) desenhada sobre a barrinha de 2 a 35
+$('band').style.left = ((8 - 2) / 33 * 100) + '%'; $('band').style.width = ((15 - 8) / 33 * 100) + '%';
+
+// passo "bonito" para o eixo: 1, 2 ou 5 × 10^n
+function passo(bruto) { const e = Math.pow(10, Math.floor(Math.log10(bruto))); const f = bruto / e; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * e; }
+function eixoTxt(v) { const a = Math.abs(v); const s = a >= 1000 ? (a / 1000).toFixed(a % 1000 === 0 ? 0 : 1).replace('.', ',') + ' mil' : Math.round(a).toString(); return (v < 0 ? '−' : '') + 'R$ ' + s; }
+function grafico(meses) {
+  const W = 600, H = 250, L = 66, Rm = 92, T = 12, B = 34;
+  const vals = meses.flatMap(m => [m.fat, m.acum]).concat([0]);
+  let lo = Math.min(...vals), hi = Math.max(...vals);
+  if (hi - lo < 1) hi = lo + 1;
+  const st = passo((hi - lo) / 4);
+  lo = Math.floor(lo / st) * st; hi = Math.ceil(hi / st) * st;
+  const x = m => L + (m - 1) * (W - L - Rm) / 11;
+  const y = v => T + (hi - v) * (H - T - B) / (hi - lo);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Projeção de 12 meses do faturamento e da sobra acumulada">`;
+  for (let v = lo; v <= hi + st / 2; v += st) {
+    const yy = y(v).toFixed(1), zero = Math.abs(v) < st / 1000;
+    s += `<line x1="${L}" x2="${W - Rm}" y1="${yy}" y2="${yy}" stroke="var(${zero ? '--fg' : '--line'})" stroke-width="${zero ? 1.4 : 1}"${zero ? '' : ' stroke-dasharray="3 3"'}/>`;
+    s += `<text x="${L - 8}" y="${yy}" text-anchor="end" dominant-baseline="middle">${eixoTxt(Math.abs(v) < st / 1000 ? 0 : v)}</text>`;
+  }
+  meses.forEach(m => { s += `<text x="${x(m.m).toFixed(1)}" y="${H - B + 16}" text-anchor="middle">${m.m}</text>`; });
+  s += `<text x="${(L + W - Rm) / 2}" y="${H - 2}" text-anchor="middle">mês</text>`;
+  const linha = (k, cor) => `<polyline fill="none" stroke="var(${cor})" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="${meses.map(m => x(m.m).toFixed(1) + ',' + y(m[k]).toFixed(1)).join(' ')}"/>`
+    + meses.map(m => `<circle cx="${x(m.m).toFixed(1)}" cy="${y(m[k]).toFixed(1)}" r="3" fill="var(${cor})"><title>Mês ${m.m}: ${k === 'fat' ? 'faturamento' : 'sobra acumulada'} ${brl0(m[k])}</title></circle>`).join('');
+  s += linha('fat', '--accent') + linha('acum', '--c-sobra');
+  // empate da sobra acumulada
+  const iEq = meses.findIndex((m, i) => i > 0 && m.acum >= 0 && meses[i - 1].acum < 0);
+  if (iEq > 0) {
+    const m = meses[iEq];
+    s += `<circle cx="${x(m.m).toFixed(1)}" cy="${y(m.acum).toFixed(1)}" r="6" fill="none" stroke="var(--fg)" stroke-width="1.5"/>`
+      + `<text class="lab" x="${x(m.m).toFixed(1)}" y="${(y(m.acum) - 12).toFixed(1)}" text-anchor="middle" style="fill:var(--fg)">empata no mês ${m.m}</text>`;
+  }
+  // rótulos no fim das linhas, afastados se ficarem colados
+  const last = meses[11];
+  let yf = y(last.fat), ya = y(last.acum);
+  if (Math.abs(yf - ya) < 16) { if (yf <= ya) { yf -= 8; ya += 8; } else { yf += 8; ya -= 8; } }
+  s += `<text class="lab" x="${W - Rm + 8}" y="${yf.toFixed(1)}" dominant-baseline="middle" style="fill:var(--accent)">${eixoTxt(last.fat)}</text>`;
+  s += `<text class="lab" x="${W - Rm + 8}" y="${ya.toFixed(1)}" dominant-baseline="middle" style="fill:var(--c-sobra)">${eixoTxt(last.acum)}</text>`;
+  return s + '</svg>';
+}
+
+function calc() {
+  const preco = parseFloat($('preco').value);
+  const adsOn = $('ads').checked, full = $('full').checked, fg = $('fg').checked;
+  const roas = num('roas', 10);
+  const o = { peso: prod.peso, rep: rep.id, cmv: prod.cmv, tipo: tipo.id, full, fg, cpPeq: Math.max(0, num('cpPeq', 2.4)), roas: adsOn ? roas : 0,
+    dev: Math.max(0, num('dev', 2)) / 100, estimado: !!prod.estimado,
+    dias: Math.min(60, Math.max(7, Math.round(num('dias', 30)))), armDia: prod.armDia, vol: prod.vol, m3: Math.max(0, num('m3', 310)) };
+  const V = Math.max(1, Math.round(num('vendas', 10)));
+  const g = Math.min(100, Math.max(-50, num('cresc', 10))) / 100;
+  const share = Math.min(100, Math.max(0, num('share', 100))) / 100;
+  const n = parcelas(preco);
+  $('tipoTxt').textContent = tipo.txt + (tipo.id === 'premium'
+    ? (n ? ` Neste preço: até ${n}x sem juros.` : preco > 299.99 ? ' Acima de R$ 300 as parcelas sobem até 12x.' : ' A ajuda não diz quantas parcelas valem nesta faixa de preço.')
+    : '');
+  $('fgTxt').textContent = fg
+    ? (preco >= 79 ? 'Nós pagamos o frete do comprador. A regra diz que é obrigatório a partir de R$ 79, mas o formulário aceitou "comprador paga" num kit a R$ 139,90 (30/09).'
+                   : 'Abaixo de R$ 79 o Mercado Livre oferece o frete grátis padrão, e nós pagamos a nossa parte pela tabela.')
+    : 'O comprador paga o frete. O anúncio sai do filtro "Frete grátis", um dos mais usados na busca, e perde visibilidade. Nós ainda pagamos uma parte: ' + (preco >= 79 ? 'metade do frete grátis (medido num kit no Full: R$ 7,20 contra R$ 14,45).' : 'R$ 2,40 na caixa de drip medida.');
+  $('modo').innerHTML = '<b>Simulando:</b> ' + [tipo.id === 'premium' ? 'Premium' : 'Clássico',
+    full ? 'Full (o Mercado Livre despacha)' : 'envio próprio (Mercado Envios)',
+    fg ? 'frete grátis' : 'comprador paga o frete',
+    'reputação ' + rep.id, adsOn ? 'anúncio a ROAS ' + pctf(roas) : 'sem anúncio'].join(' · ');
+
+  const r = preco > 0 ? resultado(preco, o) : null;
+  if (!r) {
+    $('frase').textContent = `Digite um preço entre ${brl(prod.min)} e ${brl(prod.max)}.`;
+    ['sobra', 'verdict', 'bar', 'legend', 'stops', 'mes', 'tips', 'adsTxt', 'chart', 'projTxt'].forEach(id => { $(id).innerHTML = ''; });
+    $('verdict').className = 'verdict';
+    return;
+  }
+  const semAds = resultado(preco, Object.assign({}, o, { roas: 0 }));
+  const antes = semAds.cm3;
+  $('adsTxt').innerHTML = `ROAS ${pctf(roas)} = ACOS ${pctf(100 / roas)}%: o anúncio leva <b class="num">${brl(preco / roas)}</b> de cada venda que trouxe. `
+    + (antes > 0 ? `Para empatar neste modo, o ROAS precisa ser pelo menos <b class="num">${pctf(preco / antes)}</b>.` : 'Neste modo nenhum ROAS empata: mesmo sem anúncio não sobra nada.');
+
+  const pct = r.cm3 / preco * 100;
+  $('frase').textContent = r.cm3 >= 0 ? `De ${prod.art} a ${brl(preco)}, sobram para a Canastra` : `Cada venda de ${prod.nome} a ${brl(preco)} dá prejuízo de`;
+  $('sobra').textContent = brl(Math.abs(r.cm3)) + ` (${pctf(Math.abs(pct))}% do preço)`;
+  $('sobra').style.color = r.cm3 < 0 ? css('--bad') : '';
+  const v = $('verdict');
+  if (pct >= 10) { v.className = 'verdict good'; v.textContent = 'Saudável: sobra 10% ou mais'; }
+  else if (pct >= 0) { v.className = 'verdict warn'; v.textContent = 'Apertado: menos de 10%'; }
+  else { v.className = 'verdict bad'; v.textContent = 'Prejuízo'; }
+
+  const freteDe = (fg ? '' : 'parte que fica conosco, ') + 'cor ' + rep.id + (r.origem === 'E' ? EST : r.origem === 'M' ? ', igual ao medido na conta' : ', tabela oficial');
+  const parts = [
+    ['--c-cafe', 'Café (CMV)', 'o custo do que vai no pacote', r.cmv],
+    ['--c-ml', 'Tarifa do Mercado Livre', tipo.id === 'premium' ? '19% no Premium' : '14% no Clássico', r.tarifa],
+    ['--c-frete', fg ? 'Frete grátis' : 'Frete (comprador paga)', freteDe, r.frete],
+    ['--c-imposto', 'Imposto', '9% do preço', r.imposto],
+    ['--c-ads', 'Anúncio pago', adsOn ? 'ROAS ' + pctf(roas) + ', ACOS ' + pctf(100 / roas) + '%' : 'venda sem anúncio', r.ads],
+    ['--c-perda', 'Devoluções e perdas', pctf(o.dev * 100) + '% do preço' + EST, r.perda],
+  ];
+  if (full) parts.push(['--c-full', 'Custos do Full', `armazenagem ${brl(r.arm)} + coleta ${brl(r.coleta)} pelo volume da caixa` + EST, r2(r.arm + r.coleta)]);
+  const sobra = Math.max(r.cm3, 0);
+  const total = parts.reduce((s, p) => s + p[3], 0) + sobra;
+  $('bar').innerHTML = parts.concat([['--c-sobra', '', '', sobra]]).filter(p => p[3] > 0)
+    .map(p => `<span style="width:${(p[3] / total * 100).toFixed(2)}%;background:var(${p[0]})" title="${p[1] || 'Sobra'}"></span>`).join('');
+  $('legend').innerHTML = parts.map(p =>
+    `<div class="r"><span class="dot" style="background:var(${p[0]})"></span><span>${p[1]}<small>${p[2]}</small></span><span class="num">${brl(-p[3])}</span></div>`).join('')
+    + `<div class="r sobra"><span class="dot" style="background:var(--c-sobra)"></span><span>Sobra (CM3)</span><span class="num">${brl(r.cm3)}</span></div>`;
+
+  const stop = (k, val, d) => `<div class="stop ${val < 0 ? 'neg' : ''}"><span class="k">${k}</span><span class="v">${brl(val)}</span><span class="d">${d}</span></div>`;
+  $('stops').innerHTML = stop('CM1', r.cm1, 'depois de café, tarifa, frete e imposto') + stop('CM2', r.cm2, 'depois do anúncio pago')
+    + stop('CM3', r.cm3, full ? 'depois de devoluções e custos do Full' : 'depois de devoluções e perdas');
+
+  // Estimativa do 1º mês: só a fatia de vendas que veio do anúncio paga o anúncio.
+  const adsMes = adsOn ? V * share * r.ads : 0;
+  const sobraMes = V * antes - adsMes;
+  $('mes').innerHTML = `<div class="k">Em um mês com ${V} vendas</div>`
+    + `<div class="row"><span>Faturamento</span><b class="num">${brl(V * preco)}</b></div>`
+    + (adsOn ? `<div class="row"><span>Gasto com anúncio (${Math.round(share * 100)}% das vendas vêm dele)</span><b class="num">${brl(-adsMes)}</b></div>` : '')
+    + (full ? `<div class="row"><span>Armazenagem do mês${EST}</span><b class="num">${brl(-V * r.arm)}</b></div>`
+            + `<div class="row"><span>Coleta Full das caixas vendidas${EST}</span><b class="num">${brl(-V * r.coleta)}</b></div>` : '')
+    + `<div class="row tot"><span>Sobra estimada no mês${EST}</span><b class="num" style="color:${sobraMes < 0 ? css('--bad') : ''}">${brl(sobraMes)}</b></div>`;
+
+  const meses = projetar(preco, o, V, g, share);
+  $('chart').innerHTML = grafico(meses);
+  const fat12 = meses.reduce((s, m) => s + m.fat, 0), sob12 = meses[11].acum;
+  const iEq = meses.findIndex((m, i) => i > 0 && m.acum >= 0 && meses[i - 1].acum < 0);
+  const eqTxt = meses[0].acum >= 0 && sob12 >= 0 ? 'A sobra é positiva desde o 1º mês.'
+    : iEq > 0 ? `A sobra acumulada empata no mês ${meses[iEq].m}.` : sob12 < 0 ? 'A sobra acumulada não empata em 12 meses.' : '';
+  $('projTxt').innerHTML = `<b>Em 12 meses: faturamento ${brl0(fat12)}, sobra ${brl0(sob12)}.</b> ${eqTxt} As vendas vão de ${V} para ${Math.round(meses[11].vendas)} por mês`
+    + (full ? `, e a coleta Full entra a cada lote de ${o.dias} dias.` : '.') + EST;
+
+  const tips = [];
+  const zero = piso(o, 0, prod.min, prod.max), dez = piso(o, 10, prod.min, prod.max);
+  const fmtPiso = p => p <= prod.min ? `qualquer preço da barrinha (a partir de <b class="num">${brl(prod.min)}</b>)` : `<b class="num">${brl(p)}</b>`;
+  if (zero) tips.push(['', `Nessas condições, o preço mínimo para não perder dinheiro é ${fmtPiso(zero)}.` + (dez ? ` Para sobrar 10%, ${fmtPiso(dez)}.` : ` Sobrar 10% não cabe nem a ${brl(prod.max)}.`)]);
+  else tips.push(['alert', `Nessas condições, nem a ${brl(prod.max)} a venda se paga.`]);
+  if (antes > 0) {
+    tips.push(['', `O anúncio pode custar até <b class="num">${pctf(antes / preco * 100)}%</b> do preço (${brl(antes)}) antes de comer toda a sobra. Em ROAS, ele precisa vender pelo menos <b class="num">${pctf(preco / antes)}×</b> o que gasta. No Mercado Livre as campanhas costumam rodar entre ROAS 8 e 15, e o próprio Mercado Livre sugere começar em 10.`]);
+  } else {
+    tips.push(['alert', 'Mesmo sem anúncio não sobra nada. Nesse preço não há espaço para pagar anúncio.']);
+  }
+  if (adsOn && rep.id === 'vermelha') tips.push(['alert', 'Com a conta vermelha o anúncio pago nem roda. O Mercado Livre exige a cor amarela ou melhor.']);
+  if (r.cm3 < 0) tips.push(['alert', 'Neste preço, cada venda tira dinheiro do caixa. Suba o preço, venda em kit ou desligue o anúncio.']);
+  if (!fg) tips.push(['alert', 'Sem frete grátis o anúncio sai do filtro "Frete grátis" e tende a vender menos. A calculadora não desconta essa queda de vendas.']);
+  if (full) tips.push(['alert', 'No envio ao Full, declare a quantidade exata de caixas. Em mar/2026 declaramos 80 e chegaram 178: a multa de R$ 300 foi abonada, mas não há garantia de abono de novo.']);
+  const i = faixaIdx(preco);
+  if (fg && i > 0 && preco - FAIXAS[i][0] < 3) {
+    const lo = resultado(FAIXAS[i - 1][1], o);
+    if (lo && lo.frete < r.frete) tips.push(['', `Você está logo acima de um degrau do frete. A ${brl(FAIXAS[i - 1][1])} o frete cai de ${brl(r.frete)} para ${brl(lo.frete)}.`]);
+  }
+  if (r.origem === 'E') tips.push(['', !fg ? 'O frete com "comprador paga" não foi medido no café. A parte que fica conosco vem de um kit de cápsulas e de uma caixa de drip.' : full ? 'O frete no Full não foi medido no café. A pesquisa diz que a tabela é a mesma do envio próprio.' : 'O frete deste caso é estimado. Antes de decidir o preço, ele precisa ser lido no formulário do anúncio.']);
+  $('tips').innerHTML = tips.map(([c, t]) => `<p class="${c}">${t}</p>`).join('');
+}
+
+renderSeg('prod', PRODS, prod); renderSeg('tipo', TIPOS, tipo); setRep(REPS[0]); setProd(PRODS[0]);
+</script>

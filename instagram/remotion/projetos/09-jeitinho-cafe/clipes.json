@@ -1,0 +1,170 @@
+{
+  "f0": {
+    "duracao": 2.0,
+    "largura": 734,
+    "altura": 930,
+    "razao": 0.7892
+  },
+  "f1": {
+    "duracao": 3.1,
+    "largura": 538,
+    "altura": 882,
+    "razao": 0.61
+  },
+  "f2": {
+    "duracao": 2.4,
+    "largura": 756,
+    "altura": 1228,
+    "razao": 0.6156
+  },
+  "f3": {
+    "duracao": 4.9,
+    "largura": 756,
+    "altura": 1228,
+    "razao": 0.6156
+  },
+  "f4": {
+    "duracao": 2.6,
+    "largura": 756,
+    "altura": 1266,
+    "razao": 0.5972
+  },
+  "p1": {
+    "duracao": 2.0,
+    "largura": 1080,
+    "altura": 1738,
+    "razao": 0.6214
+  },
+  "p2": {
+    "duracao": 0.967,
+    "largura": 1080,
+    "altura": 1738,
+    "razao": 0.6214
+  },
+  "p3": {
+    "duracao": 0.866,
+    "largura": 1080,
+    "altura": 1738,
+    "razao": 0.6214
+  },
+  "p3b": {
+    "duracao": 0.967,
+    "largura": 1080,
+    "altura": 1738,
+    "razao": 0.6214
+  },
+  "p4": {
+    "duracao": 2.4,
+    "largura": 1080,
+    "altura": 1738,
+    "razao": 0.6214
+  },
+  "p5": {
+    "duracao": 2.2,
+    "largura": 1080,
+    "altura": 1738,
+    "razao": 0.6214
+  },
+  "p6": {
+    "duracao": 2.3,
+    "largura": 1080,
+    "altura": 1738,
+    "razao": 0.6214
+  },
+  "p7": {
+    "duracao": 1.9,
+    "largura": 1080,
+    "altura": 922,
+    "razao": 1.1714
+  },
+  "gi0": {
+    "duracao": 1.9,
+    "largura": 1080,
+    "altura": 1344,
+    "razao": 0.8036
+  },
+  "gi1": {
+    "duracao": 1.8,
+    "largura": 1080,
+    "altura": 1344,
+    "razao": 0.8036
+  },
+  "gi2": {
+    "duracao": 1.2,
+    "largura": 1080,
+    "altura": 1344,
+    "razao": 0.8036
+  },
+  "gi3": {
+    "duracao": 1.5,
+    "largura": 1080,
+    "altura": 1344,
+    "razao": 0.8036
+  },
+  "gi4": {
+    "duracao": 1.6,
+    "largura": 1080,
+    "altura": 1344,
+    "razao": 0.8036
+  },
+  "gi5": {
+    "duracao": 1.4,
+    "largura": 1080,
+    "altura": 1344,
+    "razao": 0.8036
+  },
+  "gi6": {
+    "duracao": 1.4,
+    "largura": 1080,
+    "altura": 1344,
+    "razao": 0.8036
+  },
+  "gi7": {
+    "duracao": 2.8,
+    "largura": 1080,
+    "altura": 1344,
+    "razao": 0.8036
+  },
+  "g0": {
+    "duracao": 2.0,
+    "largura": 992,
+    "altura": 1026,
+    "razao": 0.9669
+  },
+  "g1": {
+    "duracao": 1.7,
+    "largura": 992,
+    "altura": 1026,
+    "razao": 0.9669
+  },
+  "g2": {
+    "duracao": 0.9,
+    "largura": 992,
+    "altura": 1026,
+    "razao": 0.9669
+  },
+  "g3": {
+    "duracao": 1.0,
+    "largura": 992,
+    "altura": 1026,
+    "razao": 0.9669
+  },
+  "g4": {
+    "duracao": 1.4,
+    "largura": 992,
+    "altura": 1026,
+    "razao": 0.9669
+  },
+  "g5": {
+    "duracao": 2.0,
+    "largura": 992,
+    "altura": 1440,
+    "razao": 0.6889
+  },
+  "abertura": {
+    "duracao": 3.0,
+    "largura": 1080,
+    "altura": 1920,
+    "razao": 0.5625
+  }
+}
