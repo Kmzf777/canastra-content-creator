@@ -27,6 +27,12 @@ Esta skill decide **a primeira coisa que a pessoa vê**: a manchete da capa do c
 | número ou alegação: de onde vem | `instagram/estrategia/02-ganchos.md`, "A regra de sourcing" |
 | **para quem** (o anel do assunto) | `instagram/estrategia/09-publico.md` |
 | **como a marca fala** (registro, palavras proibidas, pontuação) | `instagram/estrategia/10-voz.md` |
+| por que um gancho prende (lacuna, especificidade, linha que vende a seguinte) | skill `content-principles`, **só como referência geral** |
+
+> **Precedência:** a `content-principles` (skill de usuário, de terceiro) entra abaixo de tudo
+> aqui. A rubrica, o banco de ganchos, a regra de sourcing, o `09-publico.md` (é ele quem diz
+> quem é o espectador, sem perguntar) e o `10-voz.md` vencem. Os números dela (frase de menos
+> de 9 palavras, nova dúvida a 60–70%) não têm fonte e não viram meta nem regra da nota.
 
 ---
 

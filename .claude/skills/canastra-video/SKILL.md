@@ -14,6 +14,12 @@ description: Use when planning, writing, producing or auditing any Café Canastr
 > formato `reel`: `python scripts/ganchos.py checar --formato reel --fala "..." --tela "..."
 > --julgamento ... --registrar --tema "<peça>"`, só com nota **70 ou mais**. Depois de publicado,
 > marque o gancho com `python scripts/ganchos.py escolher --formato reel --texto "<1ª frase>" --post <shortcode>`.
+>
+> **Roteiro depois do gancho:** a skill `content-principles` ajuda a revisar se cada linha vende a
+> seguinte, onde abre a próxima dúvida e o que é enchimento. **Só como referência geral:**
+> `estrategia.md`, `instagram/estrategia/03-roteiro.md` (o relógio medido), `09-publico.md`
+> (quem é o espectador, sem perguntar) e `10-voz.md` vencem, e os números dela sem fonte não
+> viram meta.
 
 O motor vive em `instagram/remotion/` e é **dirigido por briefing**:
 
