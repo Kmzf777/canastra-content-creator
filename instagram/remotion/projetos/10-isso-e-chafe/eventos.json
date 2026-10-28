@@ -1,0 +1,1001 @@
+[
+ {
+  "t": 0.0,
+  "quadro": 0,
+  "palavra": "(quadro 0)",
+  "camada": "OBJ",
+  "acao": "xícara de vidro com café clarinho (G1) já no quadro, canto inferior esquerdo, girando 2° e subindo devagar; câmera já em push 1,08→1,14",
+  "som": "—",
+  "db": null
+ },
+ {
+  "t": 0.6,
+  "quadro": 18,
+  "palavra": "chamou",
+  "camada": "TXT",
+  "acao": "aspas rabiscadas se desenham ao lado da cabeça (8 q): alguém disse algo",
+  "som": "rabisco",
+  "db": -20
+ },
+ {
+  "t": 1.1,
+  "quadro": 33,
+  "palavra": "café",
+  "camada": "TXT",
+  "acao": "etiqueta Dymo \"CAFÉ\" pousa na xícara",
+  "som": "fita Dymo",
+  "db": -18
+ },
+ {
+  "t": 1.6,
+  "quadro": 48,
+  "palavra": "chafé",
+  "camada": "TXT",
+  "acao": "\"CHAFÉ?\" pintado gigante ATRÁS da cabeça (oclusão, 80% legível) + soco de zoom +6% em 4 q; a etiqueta da xícara vira \"CHAFÉ?\"",
+  "som": "carimbo grave",
+  "db": -9
+ },
+ {
+  "t": 2.34,
+  "quadro": 70,
+  "palavra": "errou",
+  "camada": "TXT",
+  "acao": "traço creme risca \"CHAFÉ?\" (8 q, termina com a palavra)",
+  "som": "rabisco",
+  "db": -18
+ },
+ {
+  "t": 2.66,
+  "quadro": 80,
+  "palavra": "duas",
+  "camada": "TXT",
+  "acao": "\"2\" carimbado grande à direita",
+  "som": "pop",
+  "db": -15
+ },
+ {
+  "t": 3.04,
+  "quadro": 91,
+  "palavra": "vezes",
+  "camada": "TXT",
+  "acao": "\"ERROS\" completa \"2 ERROS\"",
+  "som": "pop",
+  "db": -15
+ },
+ {
+  "t": 3.5,
+  "quadro": 105,
+  "palavra": "Eu",
+  "camada": "CAM",
+  "acao": "recuo de 1,14 para 1,00 em 10 q: aparecem torrador e sacas; fundo limpo anda 0,96 e o Rafael 1,00 (paralaxe real)",
+  "som": "whoosh suave",
+  "db": -16
+ },
+ {
+  "t": 3.86,
+  "quadro": 116,
+  "palavra": "Rafael",
+  "camada": "TXT",
+  "acao": "Dymo \"RAFAEL\" desliza no peito",
+  "som": "fita Dymo",
+  "db": -18
+ },
+ {
+  "t": 4.36,
+  "quadro": 131,
+  "palavra": "Café",
+  "camada": "OBJ",
+  "acao": "logo Café Canastra (arquivo real) carimba na parede preta, alto à esquerda",
+  "som": "carimbo leve",
+  "db": -14
+ },
+ {
+  "t": 4.64,
+  "quadro": 139,
+  "palavra": "Canastra",
+  "camada": "OBJ",
+  "acao": "polaroide real da lavoura (base verificada) entra girando 8° e pousa no alto à direita",
+  "som": "papel",
+  "db": -16
+ },
+ {
+  "t": 5.09,
+  "quadro": 153,
+  "palavra": "(corte interno)",
+  "camada": "CAM",
+  "acao": "troca para 1,10 + deriva para a direita, em direção ao torrador; a polaroide sai deslizando",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 5.56,
+  "quadro": 167,
+  "palavra": "aqui",
+  "camada": "TXT",
+  "acao": "seta rabiscada começa a se desenhar até o torrador (termina em \"torrefação\")",
+  "som": "rabisco",
+  "db": -18
+ },
+ {
+  "t": 6.12,
+  "quadro": 184,
+  "palavra": "torrefação",
+  "camada": "OBJ",
+  "acao": "etiqueta de barbante \"TORREFAÇÃO · UBERLÂNDIA\" pendurada no torrador, balançando (presa ao fundo, anda com a paralaxe)",
+  "som": "tick de papel",
+  "db": -18
+ },
+ {
+  "t": 6.88,
+  "quadro": 206,
+  "palavra": "(fim do bloco)",
+  "camada": "TRANS",
+  "acao": "folha kraft varre a tela em 7 q e deixa a TELA DIVIDIDA: painel kraft em cima, Rafael embaixo",
+  "som": "papel rápido (pico 2 q antes)",
+  "db": -12
+ },
+ {
+  "t": 7.18,
+  "quadro": 215,
+  "palavra": "primeiro",
+  "camada": "TXT",
+  "acao": "pílula \"ERRO 1\" fixa no canto do painel (fica até 19,1 s)",
+  "som": "—",
+  "db": null
+ },
+ {
+  "t": 7.48,
+  "quadro": 224,
+  "palavra": "erro",
+  "camada": "TXT",
+  "acao": "carimbo \"ERRO 1\" grande no centro do painel, encolhe até a pílula em 12 q",
+  "som": "carimbo",
+  "db": -10
+ },
+ {
+  "t": 7.86,
+  "quadro": 236,
+  "palavra": "achar",
+  "camada": "OBJ",
+  "acao": "xícara de vidro clarinha (G1) sobe para o painel (10 q, assenta)",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 8.46,
+  "quadro": 254,
+  "palavra": "clarinho",
+  "camada": "OBJ",
+  "acao": "post-it \"CLARINHO\" preso com tachinha ao lado da xícara",
+  "som": "tachinha",
+  "db": -16
+ },
+ {
+  "t": 9.38,
+  "quadro": 281,
+  "palavra": "fraco",
+  "camada": "OBJ",
+  "acao": "post-it \"FRACO\" entra; um \"=\" rabiscado liga os dois",
+  "som": "tachinha",
+  "db": -16
+ },
+ {
+  "t": 9.62,
+  "quadro": 289,
+  "palavra": "(pausa)",
+  "camada": "TXT",
+  "acao": "carimbo \"≠\" em #C8661E (acento da cena) esmaga o \"=\"",
+  "som": "carimbo",
+  "db": -10
+ },
+ {
+  "t": 9.8,
+  "quadro": 294,
+  "palavra": "(fim do bloco)",
+  "camada": "CAM",
+  "acao": "Rafael embaixo passa a 1,15; o painel desliza para a esquerda e entra o quadro seguinte",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 10.07,
+  "quadro": 302,
+  "palavra": "torra",
+  "camada": "OBJ",
+  "acao": "recorte de grão torrado entra no painel com Dymo \"TORRA\"",
+  "som": "pop",
+  "db": -16
+ },
+ {
+  "t": 10.77,
+  "quadro": 323,
+  "palavra": "intensidade",
+  "camada": "OBJ",
+  "acao": "mostrador de ponteiro \"INTENSIDADE\" se desenha (traço creme, sem escala de cor)",
+  "som": "rabisco",
+  "db": -18
+ },
+ {
+  "t": 11.23,
+  "quadro": 337,
+  "palavra": "sim",
+  "camada": "TXT",
+  "acao": "✓ rabiscado ao lado de \"TORRA → INTENSIDADE\"; o ponteiro sobe um degrau",
+  "som": "tick",
+  "db": -18
+ },
+ {
+  "t": 11.83,
+  "quadro": 355,
+  "palavra": "precisa",
+  "camada": "OBJ",
+  "acao": "marca \"PONTO\" aparece no mostrador",
+  "som": "tick",
+  "db": -18
+ },
+ {
+  "t": 12.05,
+  "quadro": 362,
+  "palavra": "passar",
+  "camada": "OBJ",
+  "acao": "ponteiro desliza até a marca",
+  "som": "slide curto",
+  "db": -18
+ },
+ {
+  "t": 12.55,
+  "quadro": 376,
+  "palavra": "ponto",
+  "camada": "OBJ",
+  "acao": "ponteiro FREIA exatamente na marca (3% de ultrapassagem); carimbo \"NO PONTO\"",
+  "som": "carimbo leve",
+  "db": -12
+ },
+ {
+  "t": 13.41,
+  "quadro": 402,
+  "palavra": "intenso",
+  "camada": "TXT",
+  "acao": "\"INTENSO\" grande + soco de zoom no Rafael (+8%, 4 q)",
+  "som": "pop",
+  "db": -14
+ },
+ {
+  "t": 13.84,
+  "quadro": 415,
+  "palavra": "(fim do bloco)",
+  "camada": "TRANS",
+  "acao": "chicote de papel (7 q): tela cheia de kraft, Rafael vira um círculo no canto inferior direito",
+  "som": "chicote (pico 2 q antes)",
+  "db": -12
+ },
+ {
+  "t": 14.37,
+  "quadro": 431,
+  "palavra": "intensidade",
+  "camada": "OBJ",
+  "acao": "filtro com pó (G5) no centro; mostrador pequeno no canto com o ponteiro tremendo \"?\"",
+  "som": "pop",
+  "db": -16
+ },
+ {
+  "t": 15.01,
+  "quadro": 450,
+  "palavra": "Coloca",
+  "camada": "OBJ",
+  "acao": "mão com colher entra pela direita (8 q)",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 15.53,
+  "quadro": 466,
+  "palavra": "pouquinho",
+  "camada": "OBJ",
+  "acao": "colher despeja: pó caindo em stop-motion (10 poses/s) + \"+1\"",
+  "som": "grãos/pó",
+  "db": -14
+ },
+ {
+  "t": 16.31,
+  "quadro": 489,
+  "palavra": "pó",
+  "camada": "OBJ",
+  "acao": "segunda colherada \"+2\" + Dymo \"PÓ\"",
+  "som": "grãos/pó",
+  "db": -14
+ },
+ {
+  "t": 16.45,
+  "quadro": 494,
+  "palavra": "(fim do bloco)",
+  "camada": "TRANS",
+  "acao": "chicote de volta para a tela dividida",
+  "som": "chicote",
+  "db": -12
+ },
+ {
+  "t": 16.86,
+  "quadro": 506,
+  "palavra": "se",
+  "camada": "OBJ",
+  "acao": "ponteiro do mostrador sobe com o pó (a intensidade vem do pó)",
+  "som": "tick",
+  "db": -18
+ },
+ {
+  "t": 17.12,
+  "quadro": 514,
+  "palavra": "intensifica",
+  "camada": "TXT",
+  "acao": "\"INTENSIFICA\" engorda de 100% para 120% em 15 q",
+  "som": "pop",
+  "db": -14
+ },
+ {
+  "t": 18.0,
+  "quadro": 540,
+  "palavra": "sabor",
+  "camada": "OBJ",
+  "acao": "xícara clarinha volta com etiqueta \"SABOR\"",
+  "som": "tink de vidro",
+  "db": -18
+ },
+ {
+  "t": 18.48,
+  "quadro": 554,
+  "palavra": "todo",
+  "camada": "TXT",
+  "acao": "✓ rabiscado em \"SABOR\"",
+  "som": "rabisco",
+  "db": -20
+ },
+ {
+  "t": 19.05,
+  "quadro": 572,
+  "palavra": "(fim do bloco)",
+  "camada": "TRANS",
+  "acao": "tela cheia; o fundo limpo escurece para #14100D em 8 q, o Rafael continua aceso (troca de capítulo)",
+  "som": "grave abafado",
+  "db": -12
+ },
+ {
+  "t": 19.94,
+  "quadro": 598,
+  "palavra": "segundo",
+  "camada": "TXT",
+  "acao": "\"2\" gigante creme ATRÁS da cabeça",
+  "som": "pop grave",
+  "db": -12
+ },
+ {
+  "t": 20.34,
+  "quadro": 610,
+  "palavra": "erro",
+  "camada": "TXT",
+  "acao": "\"ERRO\" completa \"ERRO 2\"; a pílula do canto vira 2",
+  "som": "carimbo",
+  "db": -10
+ },
+ {
+  "t": 20.78,
+  "quadro": 623,
+  "palavra": "esse",
+  "camada": "CAM",
+  "acao": "push lento 1,00→1,12 em 1,5 s (tensão)",
+  "som": "—",
+  "db": null
+ },
+ {
+  "t": 21.42,
+  "quadro": 643,
+  "palavra": "ninguém",
+  "camada": "TXT",
+  "acao": "Dymo \"QUASE NINGUÉM CONTA\" desliza",
+  "som": "fita Dymo",
+  "db": -18
+ },
+ {
+  "t": 21.88,
+  "quadro": 656,
+  "palavra": "conta",
+  "camada": "OBJ",
+  "acao": "lupa entra do canto inferior e para sobre o Dymo",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 22.16,
+  "quadro": 665,
+  "palavra": "(fim do bloco)",
+  "camada": "CAM",
+  "acao": "tela dividida escura: em cima, cortiça (quadro de investigação); Rafael embaixo a 1,10",
+  "som": "slide",
+  "db": -16
+ },
+ {
+  "t": 22.48,
+  "quadro": 674,
+  "palavra": "extra",
+  "camada": "OBJ",
+  "acao": "pacote genérico SEM MARCA (desenhado em código) pendurado por tachinha, etiqueta \"MUITO EXTRAFORTE\"",
+  "som": "tachinha",
+  "db": -16
+ },
+ {
+  "t": 23.16,
+  "quadro": 695,
+  "palavra": "passa",
+  "camada": "OBJ",
+  "acao": "o mostrador volta na cortiça; o ponteiro anda",
+  "som": "tick",
+  "db": -18
+ },
+ {
+  "t": 23.68,
+  "quadro": 710,
+  "palavra": "ponto",
+  "camada": "OBJ",
+  "acao": "ponteiro PASSA da marca e continua",
+  "som": "tick duplo",
+  "db": -16
+ },
+ {
+  "t": 24.24,
+  "quadro": 727,
+  "palavra": "propósito",
+  "camada": "TXT",
+  "acao": "\"DE PROPÓSITO\" pintado em #C8661E, carimbado na diagonal; a imagem congela em P&B na pausa até 24,91",
+  "som": "carimbo grave",
+  "db": -9
+ },
+ {
+  "t": 24.91,
+  "quadro": 747,
+  "palavra": "(fim do bloco)",
+  "camada": "CAM",
+  "acao": "descongela; Rafael em tela cheia a 1,10, fundo escuro",
+  "som": "—",
+  "db": null
+ },
+ {
+  "t": 25.1,
+  "quadro": 753,
+  "palavra": "Isso",
+  "camada": "OBJ",
+  "acao": "lupa grande atravessa rente à lente (primeiro plano, profundidade 1,3)",
+  "som": "whoosh suave",
+  "db": -16
+ },
+ {
+  "t": 26.18,
+  "quadro": 785,
+  "palavra": "defeito",
+  "camada": "TRANS",
+  "acao": "zoom pelo aro da lupa: tela cheia de cortiça com peneira de classificação; Rafael em círculo; \"DEFEITO\" em #C8661E",
+  "som": "whoosh + carimbo",
+  "db": -12
+ },
+ {
+  "t": 26.4,
+  "quadro": 792,
+  "palavra": "(rajada)",
+  "camada": "OBJ",
+  "acao": "rajada de 7 defeitos da biblioteca (concha, filme, fungo, imaturo, preto partido, quaker, quebrado), 4 q cada, dentro da lente",
+  "som": "tick por grão",
+  "db": -20
+ },
+ {
+  "t": 27.13,
+  "quadro": 814,
+  "palavra": "preto",
+  "camada": "OBJ",
+  "acao": "grão preto preso com tachinha + etiqueta \"PRETO\"",
+  "som": "tachinha",
+  "db": -15
+ },
+ {
+  "t": 27.76,
+  "quadro": 833,
+  "palavra": "ardido",
+  "camada": "OBJ",
+  "acao": "grão ardido + etiqueta \"ARDIDO\"",
+  "som": "tachinha",
+  "db": -15
+ },
+ {
+  "t": 28.36,
+  "quadro": 851,
+  "palavra": "furado",
+  "camada": "OBJ",
+  "acao": "grão brocado + etiqueta \"BROCA\"",
+  "som": "tachinha",
+  "db": -15
+ },
+ {
+  "t": 28.92,
+  "quadro": 868,
+  "palavra": "broca",
+  "camada": "CAM",
+  "acao": "lupa passa sobre os furos do brocado (zoom de 1,10 na cena)",
+  "som": "—",
+  "db": null
+ },
+ {
+  "t": 29.41,
+  "quadro": 882,
+  "palavra": "Passando",
+  "camada": "OBJ",
+  "acao": "fita-crepe começa a desenrolar pela esquerda",
+  "som": "fita puxada",
+  "db": -14
+ },
+ {
+  "t": 30.37,
+  "quadro": 911,
+  "palavra": "tudo",
+  "camada": "OBJ",
+  "acao": "fita cobre o 1º grão",
+  "som": "fita",
+  "db": -18
+ },
+ {
+  "t": 30.81,
+  "quadro": 924,
+  "palavra": "mesmo",
+  "camada": "OBJ",
+  "acao": "fita cobre o 2º grão",
+  "som": "fita",
+  "db": -18
+ },
+ {
+  "t": 30.99,
+  "quadro": 930,
+  "palavra": "amargo",
+  "camada": "TXT",
+  "acao": "\"AMARGO\" escrito à mão na fita; ela cobre o 3º grão",
+  "som": "rabisco",
+  "db": -16
+ },
+ {
+  "t": 31.61,
+  "quadro": 948,
+  "palavra": "defeito",
+  "camada": "OBJ",
+  "acao": "lupa passa sobre a fita e não acha nada; as etiquetas penduradas continuam aparecendo",
+  "som": "slide",
+  "db": -20
+ },
+ {
+  "t": 31.89,
+  "quadro": 957,
+  "palavra": "some",
+  "camada": "TXT",
+  "acao": "carimbo \"ESCONDIDO\" (terra/creme)",
+  "som": "carimbo",
+  "db": -10
+ },
+ {
+  "t": 32.17,
+  "quadro": 965,
+  "palavra": "(fim do bloco)",
+  "camada": "TRANS",
+  "acao": "chicote de volta: Rafael em close a 1,15, fundo escuro mais leve (respiro)",
+  "som": "chicote",
+  "db": -12
+ },
+ {
+  "t": 33.2,
+  "quadro": 996,
+  "palavra": "coloca",
+  "camada": "OBJ",
+  "acao": "colher vazia entra sobre uma xícara de café preto (recorte xícara)",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 33.56,
+  "quadro": 1007,
+  "palavra": "açúcar",
+  "camada": "OBJ",
+  "acao": "1º torrão (G3) cai da colher e quica",
+  "som": "tink",
+  "db": -18
+ },
+ {
+  "t": 34.38,
+  "quadro": 1031,
+  "palavra": "aguentar",
+  "camada": "OBJ",
+  "acao": "2º torrão",
+  "som": "tink",
+  "db": -18
+ },
+ {
+  "t": 34.74,
+  "quadro": 1042,
+  "palavra": "tomar",
+  "camada": "OBJ",
+  "acao": "3º torrão; o Rafael meio-sorri",
+  "som": "tink",
+  "db": -18
+ },
+ {
+  "t": 35.23,
+  "quadro": 1057,
+  "palavra": "(fim do bloco)",
+  "camada": "TRANS",
+  "acao": "o papel escuro RASGA e revela o fundo claro creme (capítulo 3: nada a esconder)",
+  "som": "rasgo de papel",
+  "db": -10
+ },
+ {
+  "t": 35.49,
+  "quadro": 1065,
+  "palavra": "café",
+  "camada": "OBJ",
+  "acao": "foto real da lavoura presa com fita na parede atrás dele (impressão, não cenário)",
+  "som": "fita",
+  "db": -18
+ },
+ {
+  "t": 36.13,
+  "quadro": 1084,
+  "palavra": "nada",
+  "camada": "OBJ",
+  "acao": "lupa passa pela lavoura e aparece um ✓ limpo",
+  "som": "rabisco",
+  "db": -18
+ },
+ {
+  "t": 36.63,
+  "quadro": 1099,
+  "palavra": "esconder",
+  "camada": "TXT",
+  "acao": "\"NADA PRA ESCONDER\" em terra #3B2A1F atrás da cabeça",
+  "som": "pop",
+  "db": -14
+ },
+ {
+  "t": 37.41,
+  "quadro": 1122,
+  "palavra": "parar",
+  "camada": "CAM",
+  "acao": "tela dividida clara: painel creme em cima, Rafael embaixo",
+  "som": "slide",
+  "db": -16
+ },
+ {
+  "t": 37.79,
+  "quadro": 1134,
+  "palavra": "marrom",
+  "camada": "OBJ",
+  "acao": "packshot REAL do Suave sobe e assenta (sem girar, sem deformar); \"MARROM\" em #C8661E",
+  "som": "thump",
+  "db": -12
+ },
+ {
+  "t": 38.12,
+  "quadro": 1144,
+  "palavra": "(fim do bloco)",
+  "camada": "CAM",
+  "acao": "Rafael embaixo passa a 1,15",
+  "som": "—",
+  "db": null
+ },
+ {
+  "t": 38.81,
+  "quadro": 1164,
+  "palavra": "torra",
+  "camada": "OBJ",
+  "acao": "etiqueta de barbante \"TORRA MÉDIA\" pendurada ao lado do pacote (nunca sobre logo ou selo)",
+  "som": "tick de papel",
+  "db": -18
+ },
+ {
+  "t": 39.73,
+  "quadro": 1192,
+  "palavra": "luz",
+  "camada": "OBJ",
+  "acao": "xícara clarinha (G1) entra ao lado do Suave; sombra de folhas passa pelo painel",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 39.89,
+  "quadro": 1197,
+  "palavra": "atravessa",
+  "camada": "OBJ",
+  "acao": "varredura de luz creme (não dourada) atravessa a xícara em 12 q",
+  "som": "brilho",
+  "db": -20
+ },
+ {
+  "t": 40.83,
+  "quadro": 1225,
+  "palavra": "xícara",
+  "camada": "OBJ",
+  "acao": "a xícara inclina 2°",
+  "som": "tink de vidro",
+  "db": -18
+ },
+ {
+  "t": 41.2,
+  "quadro": 1236,
+  "palavra": "(corte interno)",
+  "camada": "CAM",
+  "acao": "a tela dividida inverte: imagem embaixo, Rafael em cima",
+  "som": "slide",
+  "db": -16
+ },
+ {
+  "t": 41.51,
+  "quadro": 1245,
+  "palavra": "gosto",
+  "camada": "OBJ",
+  "acao": "traço creme sai da xícara e começa uma seta curva",
+  "som": "golinho",
+  "db": -16
+ },
+ {
+  "t": 42.97,
+  "quadro": 1289,
+  "palavra": "chocolate",
+  "camada": "TXT",
+  "acao": "\"CHOCOLATE\" na ponta da seta (só a palavra, sem foto de chocolate)",
+  "som": "pop",
+  "db": -14
+ },
+ {
+  "t": 43.66,
+  "quadro": 1310,
+  "palavra": "(corte interno)",
+  "camada": "CAM",
+  "acao": "volta: Rafael embaixo a 1,10",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 43.89,
+  "quadro": 1317,
+  "palavra": "ainda",
+  "camada": "OBJ",
+  "acao": "a seta continua para a segunda ponta",
+  "som": "rabisco",
+  "db": -20
+ },
+ {
+  "t": 44.27,
+  "quadro": 1328,
+  "palavra": "azedinho",
+  "camada": "TXT",
+  "acao": "Dymo \"AZEDINHO\"",
+  "som": "fita Dymo",
+  "db": -18
+ },
+ {
+  "t": 44.97,
+  "quadro": 1349,
+  "palavra": "fruta",
+  "camada": "OBJ",
+  "acao": "cereja vermelha (a fruta do próprio café) pousa na ponta da seta",
+  "som": "pop",
+  "db": -14
+ },
+ {
+  "t": 45.37,
+  "quadro": 1361,
+  "palavra": "fim",
+  "camada": "TXT",
+  "acao": "✓ rabiscado",
+  "som": "rabisco",
+  "db": -20
+ },
+ {
+  "t": 45.64,
+  "quadro": 1369,
+  "palavra": "(fim do bloco)",
+  "camada": "TRANS",
+  "acao": "cartão-receita kraft sobe e ocupa a metade de cima",
+  "som": "papel",
+  "db": -14
+ },
+ {
+  "t": 46.47,
+  "quadro": 1394,
+  "palavra": "Canastra",
+  "camada": "OBJ",
+  "acao": "logo Café Canastra carimba no topo do cartão (segunda vez, outra posição)",
+  "som": "carimbo leve",
+  "db": -14
+ },
+ {
+  "t": 47.27,
+  "quadro": 1418,
+  "palavra": "conta",
+  "camada": "OBJ",
+  "acao": "balança (G4) entra no cartão",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 47.57,
+  "quadro": 1427,
+  "palavra": "50",
+  "camada": "TXT",
+  "acao": "visor da balança conta de 0 a 50 em 10 q + \"50 g\" grande em Plex Mono",
+  "som": "tick + carimbo",
+  "db": -12
+ },
+ {
+  "t": 48.63,
+  "quadro": 1459,
+  "palavra": "pó",
+  "camada": "OBJ",
+  "acao": "filtro com pó (G5) pousa na balança",
+  "som": "grãos/pó",
+  "db": -16
+ },
+ {
+  "t": 49.17,
+  "quadro": 1475,
+  "palavra": "meio",
+  "camada": "OBJ",
+  "acao": "jarra medidora (G6) entra",
+  "som": "tink de vidro",
+  "db": -18
+ },
+ {
+  "t": 49.39,
+  "quadro": 1482,
+  "palavra": "litro",
+  "camada": "TXT",
+  "acao": "\"500 ml\" carimbado",
+  "som": "carimbo",
+  "db": -12
+ },
+ {
+  "t": 49.87,
+  "quadro": 1496,
+  "palavra": "água",
+  "camada": "OBJ",
+  "acao": "a água sobe na jarra até a marca",
+  "som": "água curta",
+  "db": -18
+ },
+ {
+  "t": 50.0,
+  "quadro": 1500,
+  "palavra": "(fim do bloco)",
+  "camada": "CAM",
+  "acao": "Rafael embaixo passa a 1,15",
+  "som": "—",
+  "db": null
+ },
+ {
+  "t": 50.68,
+  "quadro": 1520,
+  "palavra": "intenso",
+  "camada": "OBJ",
+  "acao": "mostrador pequeno: o ponteiro sobe",
+  "som": "tick",
+  "db": -18
+ },
+ {
+  "t": 51.15,
+  "quadro": 1534,
+  "palavra": "(corte interno)",
+  "camada": "CAM",
+  "acao": "o cartão sobe e sai (ficou 3,6 s na tela para quem quiser salvar); Rafael em tela cheia a 1,10",
+  "som": "slide",
+  "db": -16
+ },
+ {
+  "t": 51.59,
+  "quadro": 1548,
+  "palavra": "primeiro",
+  "camada": "TXT",
+  "acao": "eco: \"ERRO 1\" volta igual ao 7,48 por 0,5 s, atrás da cabeça",
+  "som": "whoosh reverso",
+  "db": -16
+ },
+ {
+  "t": 52.27,
+  "quadro": 1568,
+  "palavra": "Coloca",
+  "camada": "OBJ",
+  "acao": "a mão com colher do 15,01 entra rápido",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 52.83,
+  "quadro": 1585,
+  "palavra": "pouquinho",
+  "camada": "OBJ",
+  "acao": "colherada \"+1\"",
+  "som": "grãos/pó",
+  "db": -16
+ },
+ {
+  "t": 53.75,
+  "quadro": 1612,
+  "palavra": "pó",
+  "camada": "TXT",
+  "acao": "\"+ PÓ\" (o mesmo cartão do 16,31)",
+  "som": "pop",
+  "db": -14
+ },
+ {
+  "t": 53.84,
+  "quadro": 1615,
+  "palavra": "(fim do bloco)",
+  "camada": "TRANS",
+  "acao": "tudo sai num só movimento; volta o fundo real com a cor natural (capítulo final)",
+  "som": "whoosh",
+  "db": -12
+ },
+ {
+  "t": 54.11,
+  "quadro": 1623,
+  "palavra": "agora",
+  "camada": "OBJ",
+  "acao": "rajada de recapitulação no lado direito: CHAFÉ? → ERRO 1 → ERRO 2 → Suave, 7 q cada",
+  "som": "tick por cartão",
+  "db": -20
+ },
+ {
+  "t": 55.07,
+  "quadro": 1652,
+  "palavra": "tempo",
+  "camada": "OBJ",
+  "acao": "a rajada termina no Suave, que fica",
+  "som": "pop",
+  "db": -16
+ },
+ {
+  "t": 55.3,
+  "quadro": 1659,
+  "palavra": "(corte interno)",
+  "camada": "CAM",
+  "acao": "close a 1,14, o mesmo enquadramento do quadro 0 (prepara o loop)",
+  "som": "—",
+  "db": null
+ },
+ {
+  "t": 55.5,
+  "quadro": 1665,
+  "palavra": "manda",
+  "camada": "OBJ",
+  "acao": "aviãozinho de papel rabiscado sai da mão dele e voa para fora do quadro",
+  "som": "whoosh curto",
+  "db": -14
+ },
+ {
+  "t": 56.1,
+  "quadro": 1683,
+  "palavra": "amigo",
+  "camada": "TXT",
+  "acao": "\"MANDA PRO AMIGO\" pequeno em creme",
+  "som": "pop",
+  "db": -16
+ },
+ {
+  "t": 56.78,
+  "quadro": 1703,
+  "palavra": "isso",
+  "camada": "OBJ",
+  "acao": "a xícara clarinha (G1) volta ao canto inferior esquerdo, igual ao quadro 0",
+  "som": "slide",
+  "db": -18
+ },
+ {
+  "t": 57.26,
+  "quadro": 1718,
+  "palavra": "chafé",
+  "camada": "TXT",
+  "acao": "\"CHAFÉ?\" volta atrás da cabeça, igual ao 1,60; o último quadro emenda no primeiro",
+  "som": "carimbo grave",
+  "db": -9
+ }
+]

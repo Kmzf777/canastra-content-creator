@@ -1,6 +1,6 @@
 ---
 name: canastra-video
-description: Use when planning, writing, producing or auditing any Café Canastra moving piece — reel, vídeo de Instagram, Shorts, TikTok, motion, criativo animado, legenda queimada, kinetic type, versão 1:1 ou 4:5 de um vertical — including choosing the format, the hook, the voice, the copy/roteiro, the background music or sound, the edit and the CTA; or when writing/compiling a briefing.json for the engine in instagram/remotion, syncing captions to a narration, rendering, running the conferir.mjs portões, normalizing audio, writing the Reel's descrição, or debugging a render that came out torto, mudo, fora de sincronia or with the wrong duração.
+description: Use when planning, writing, producing or auditing any Café Canastra moving piece — reel, vídeo de Instagram, Shorts, TikTok, motion, criativo animado, legenda queimada, kinetic type, versão 1:1 ou 4:5 de um vertical — including choosing the format, the hook, the voice, the copy/roteiro, the background music or sound, the edit and the CTA; or when writing/compiling a briefing.json for the engine in instagram/remotion, syncing captions to a narration, rendering, running the conferir.mjs portões, normalizing audio, writing the Reel's descrição, editing a reel where someone talks to the camera (reel falado, talking head, gravação sentado falando, corte seco com colagem por cima), or debugging a render that came out torto, mudo, fora de sincronia or with the wrong duração.
 ---
 
 # Motor de vídeo — Café Canastra
@@ -629,6 +629,24 @@ tem a memória desta.
 A estratégia inteira está em `estrategia.md`; a biblioteca em `instagram/referencias-virais/`
 (130 fichas; busca: `python scripts/indice_referencias.py buscar <termos>`). Peça animada:
 `instagram/referencias-virais/relatorio-motion.md`.
+
+## Reel falado editado (pessoa falando + imagem que prova cada frase): padrão aprovado
+
+> **REQUIRED: leia `reel-falado.md`, nesta pasta, antes de editar qualquer reel em que alguém fala
+> para a câmera.** É o processo da peça 10 ("chafé: dois erros", `src/pecas/chafe/`), aprovado pelo
+> dono em 28/10/2026 depois de duas devoluções. Ele cobre ordem do trabalho, regras de movimento,
+> sincronia, cor, câmera 3D, assets, texto, som e conferência quadro a quadro.
+
+O que não se negocia — cada linha já custou uma rodada:
+
+| Regra | Lição |
+|---|---|
+| Legibilidade vence densidade: entrada de 12 q na curva de pouso, ≤ 160 px, sem quique; tudo ≥ 1,2 s cheio na tela; nada de rajada nem chicote borrado | 76 |
+| Carimbo é tinta em etiqueta de papel, sem mão; nada de laranja sobre juta/aço; toda palavra `b()` aparece como texto | 76 |
+| Um relógio só, o da imagem: `scripts/sincronizar_voz_corte.py` gera `voz-sync.wav` e `palavras-v3.json`; prova por correlação no MP4 (≤ 42 ms) e voz acabando antes do último quadro | 77 |
+| Visual e som leem a mesma tabela de quadros (`E`); o pico do som cai no quadro em que o elemento assenta | 77 |
+| Assets novos por peça; embalagem só de `saida-teste/catalogo-estudio/` | 78 |
+| Antes do render completo: folhas a 6 qps de todos os quadros + render de 10 s do trecho mais mexido para o cliente | 76 |
 
 ## Série de colagem (estilo @_victorzk) — motor à parte
 

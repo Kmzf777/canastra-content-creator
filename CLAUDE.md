@@ -1035,3 +1035,35 @@ Formato: **sintoma → causa raiz → regra**. Acrescente ao fim quando algo fal
     mostra o selo antigo `GOURMET / SCAA 80+`, enquanto o pacote de hoje traz
     `SPECIALTY / SCA 80+`. O bloco `GOURMET / SCAA 80+` continua certo **nas cápsulas e no
     drip** (lição 38) — mudou no saco de café, não na caixa.
+75. **Um filtro de "fotos antigas" apagou as fotos que eu tinha acabado de subir** → em 22/10/2026,
+    no drip Suave do ML, removi tudo cujo `aria-label` começava com `Excluir foto D_`, achando que só
+    as antigas tinham nome de servidor. As novas também ganham `D_…` segundos depois do upload, e o
+    anúncio ficou sem foto (nada tinha sido confirmado, então refiz) → **um seletor por padrão de nome
+    não separa "antes" de "depois"**; guarde a lista exata do que existe **antes** de mexer e opere só
+    sobre ela. É a lição 36 no DOM: o nome não identifica a rodada. No mesmo dia o ML recusou títulos
+    por um **validador de identidade** que compara com o título antigo — mecânica na skill
+    `canastra-mercadolivre` § Título.
+76. **O Reel 10 v1 foi devolvido: "movimentos extremistas, coisas que não dá para identificar,
+    textos e carimbos pouco visíveis, animações sem suavidade"** → em 28/10/2026 eu tinha transformado
+    "câmera sempre andando" em meta de densidade: um evento a cada 0,48 s. Para isso usei entradas de
+    950 px em 9 q com quique, chicote com 7 q de borrão, rajada de defeitos a 5 q cada, carimbo com
+    mão por cima do texto e filtro de tinta que comia letras. A análise quadro a quadro (todos os
+    1.737 quadros, folhas a 6 qps, MAD por quadro) achou mais de 25 defeitos concretos →
+    **legibilidade vence densidade**: entrada de 12 q na curva de pouso, andando ≤ 160 px; tudo ≥ 1,2 s
+    cheio na tela; carimbo em etiqueta de papel; corte seco que assenta no lugar do chicote; painel que
+    nunca chega vazio. Antes do render completo, renderize os 10 s mais mexidos para o cliente aprovar
+    o ritmo. Processo inteiro: skill `canastra-video`, `reel-falado.md` (aprovado na v3).
+77. **"O final ficou cortado antes de terminar", e a dessincronia que o cliente sentia era real** → em
+    28/10/2026, no Reel 10, havia três relógios: a imagem; a `voz.wav`, esticada 0,76% (atrasava até
+    0,47 s e cortava o último "chafé"); e o `palavras-v2.json`, que adiantava até 0,23 s, e por ele
+    legenda, texto e som entravam antes da fala. A medição foi por correlação de cada um contra o
+    bruto, trecho a trecho → **um relógio só, o da imagem**: `scripts/sincronizar_voz_corte.py` corta a
+    voz do bruto no deslocamento medido pela imagem e relê as palavras no whisper do bruto. O fim
+    ganha ~0,85 s de bruto (`scripts/recortar_pessoa.py --ss`) para a última palavra respirar. Prova
+    no MP4: ≤ 42 ms em todos os trechos. É a lição 72 de novo: nunca "sincronizado" sem medir o arquivo.
+78. **A v1 do Reel 10 "parecia os vídeos antigos, genérico", e depois usei uma embalagem antiga de
+    má qualidade** → reciclei kraft, cortiça, post-it e Dymo das peças 07–09, e o Suave veio de
+    `assets/suave-250g.png` → **cada peça cria sua linguagem** (a do 10 foi "sala de prova": juta, aço,
+    laudo, estêncil, carimbo, objetos gerados no ChatGPT e recortados), e **embalagem só sai de
+    `saida-teste/catalogo-estudio/`**, também em vídeo. Pergunte se um estranho identifica o objeto em
+    1 s: o "pacote a vácuo" prateado sem rótulo não passou e virou uma caneca de café preto.

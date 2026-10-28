@@ -60,6 +60,7 @@ import {DURACAO_ESPECIAL, Especial} from '../pecas/especial/Especial';
 import {DURACAO_FRUTA, Fruta} from '../pecas/fruta/Fruta';
 import {DURACAO_ONZE2, Onze2} from '../pecas/onze/v2/Onze2';
 import {DURACAO_JEITINHO, Jeitinho} from '../pecas/jeitinho/Jeitinho';
+import {Chafe, DURACAO_CHAFE} from '../pecas/chafe/Chafe';
 import {DURACAO_TESTE, TesteCodigo} from '../pecas/onze/teste/TesteCodigo';
 import {DURACAO_ONZE, Onze} from '../pecas/onze/Onze';
 import {MOLDES_ESTATICO} from '../estatico/moldes';
@@ -227,6 +228,9 @@ export const Raiz: React.FC = () => (
     {/* Peça 09, "cada um tem seu jeitinho": abertura crua + colagem com takes de três criadores. */}
     <Composition id="Jeitinho" component={Jeitinho}
       durationInFrames={DURACAO_JEITINHO} fps={30} width={1080} height={1920} />
+    {/* Reel 10, "chafé: dois erros": o Rafael sentado + colagem + fundo limpo real (câmera 3D). */}
+    <Composition id="Chafe" component={Chafe}
+      durationInFrames={DURACAO_CHAFE} fps={30} width={1080} height={1920} />
     <Composition id="TesteBonecoCodigo" component={TesteCodigo}
       durationInFrames={DURACAO_TESTE} fps={30} width={1080} height={1920} />
     <Composition id="Carta" component={Carta}
